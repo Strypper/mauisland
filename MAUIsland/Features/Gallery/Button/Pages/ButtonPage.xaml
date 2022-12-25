@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:app="clr-namespace:MAUIsland"
+             
+              x:Class="MAUIsland.ButtonPage"
+              x:DataType="app:ButtonPageViewModel"
+             
+              Title="Button"
+              
+              Padding="10">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label Text="The .NET Multi-platform App UI (.NET MAUI) Button displays text and responds to a tap or click that directs the app to carry out a task. A Button usually displays a short text string indicating a command, but it can also display a bitmap image, or a combination of text and an image. When the Button is pressed with a finger or clicked with a mouse it initiates that command."/>
+            <Label Text="A simple button with text content"
+                   FontAttributes="Bold"
+                   FontSize="Title"/>
+            <Frame>
+                <Grid>
+                    <Button Text="Standard XAML Button"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start"
+                            IsEnabled="{x:Binding IsEnable}"/>
+                    <HorizontalStackLayout HorizontalOptions="End">
+                        <CheckBox VerticalOptions="Center"
+                                  IsChecked="{x:Binding IsEnable, Mode=TwoWay}"/>
+                        <Label Text="Enable Button"
+                               VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                </Grid>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</app:BasePage>

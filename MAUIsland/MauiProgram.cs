@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Handlers;
 
 namespace MAUIsland;
 
@@ -48,12 +49,13 @@ public static class MauiProgram
 
     static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {
-
+        builder.Services.AddSingleton<IAppNavigator, AppNavigator>();
         return builder;
     }
 
     static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
     {
+        builder.Services.AddPage<ButtonPage, ButtonPageViewModel>();
         return builder;
     }
 

@@ -402,4 +402,9 @@
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
 
+    <Style x:Key="StartEndFlexLayout"
+           TargetType="FlexLayout">
+        <Setter Property="JustifyContent" Value="SpaceBetween"/>
+    </Style>
+
 </ResourceDictionary>

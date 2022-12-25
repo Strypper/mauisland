@@ -61,7 +61,14 @@
 	<ItemGroup>
 	  <Folder Include="Features\Blog\" />
 	  <Folder Include="Features\Chat\" />
+	  <Folder Include="Features\Gallery\Button\Models\" />
 	  <Folder Include="Features\QA\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Features\Gallery\Button\Pages\ButtonPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

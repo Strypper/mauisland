@@ -3,12 +3,17 @@
     x:Class="MAUIsland.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:MAUIsland"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:app="clr-namespace:MAUIsland"
+    Shell.FlyoutBehavior="Flyout">
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        ContentTemplate="{DataTemplate app:MainPage}"
         Route="MainPage" />
+
+    <ShellContent
+        Title="Button"
+        ContentTemplate="{DataTemplate app:ButtonPage}"
+        Route="buttonPage" />
 
 </Shell>
