@@ -49,6 +49,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\FluentSystemIcons-Regular.ttf" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Bogus" Version="34.0.2" />
 		<PackageReference Include="CommunityToolkit.Common" Version="8.1.0-preview2" />
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.1.0-preview2" />
@@ -61,21 +65,35 @@
 	<ItemGroup>
 	  <Folder Include="Features\Blog\" />
 	  <Folder Include="Features\Chat\" />
-	  <Folder Include="Features\Gallery\Button\Models\" />
+	  <Folder Include="Features\Gallery\MAUI\AllControls\ContentViews\" />
+	  <Folder Include="Features\Gallery\MAUI\AllControls\Models\" />
+	  <Folder Include="Features\Gallery\MAUI\Button\Models\" />
 	  <Folder Include="Features\QA\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Features\Gallery\ActivityIndicator\Pages\ActivityIndicatorPage.xaml">
+	  <MauiXaml Update="Features\Gallery\ContentViews\ControlCardContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Button\Pages\ButtonPage.xaml">
+	  <MauiXaml Update="Features\Gallery\MAUI\ActivityIndicator\Pages\ActivityIndicatorPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Editor\Pages\EditorPage.xaml">
+	  <MauiXaml Update="Features\Gallery\MAUI\AllControls\Pages\MAUIAllControlsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\MenuBar\Pages\MenuBarPage.xaml">
+	  <MauiXaml Update="Features\Gallery\MAUI\Button\Pages\ButtonPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\MAUI\Editor\Pages\EditorPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\MAUI\MenuBar\Pages\MenuBarPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\GalleryPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="UI\Views\SourceCodeExpander.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

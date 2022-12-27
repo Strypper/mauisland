@@ -10,7 +10,7 @@ public partial class ButtonPageViewModel : NavigationAwareBaseViewModel
 	}
 	#endregion
 
-	#region [Fields]
+	#region [Properties]
 	[ObservableProperty]
 	bool isEnable = true;
 	#endregion

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app="clr-namespace:MAUIsland"
+             
+             x:Class="MAUIsland.MenuBarPage"
+             x:DataType="app:MenuBarPageViewModel"
+             Title="MenuBar"
+              Padding="10">
+    <VerticalStackLayout>
+        <Label Text="A context menu, often known as a right-click menu, offers contextual commands that are specific to the control being clicked on. In .NET Multi-platform App UI (.NET MAUI), a context menu can be added to any control that derives from Element, on Mac Catalyst and Windows. This includes all pages, layouts, and views."/>
+        <Button Text="&#x25B6;&#xFE0F; Play"
+        WidthRequest="80">
+            <FlyoutBase.ContextFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem Text="Pause">
+                        <MenuFlyoutItem.IconImageSource>
+                            <FontImageSource Glyph="&#x23F8;"
+                                     FontFamily="Arial" />
+                        </MenuFlyoutItem.IconImageSource>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem Text="Stop">
+                        <MenuFlyoutItem.IconImageSource>
+                            <FontImageSource Glyph="&#x23F9;"
+                                     FontFamily="Arial" />
+                        </MenuFlyoutItem.IconImageSource>
+                    </MenuFlyoutItem>
+                </MenuFlyout>
+            </FlyoutBase.ContextFlyout>
+        </Button>
+    </VerticalStackLayout>
+</app:BasePage>

@@ -18,7 +18,8 @@ public static class MauiProgram
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			})
+                fonts.AddFont("FluentSystemIcons-Regular.ttf", FontNames.FluentSystemIconsRegular);
+            })
             .ConfigureEssentials(essentials =>
             {
                 essentials.UseVersionTracking();
@@ -50,11 +51,15 @@ public static class MauiProgram
     static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {
         builder.Services.AddSingleton<IAppNavigator, AppNavigator>();
+        builder.Services.AddSingleton<IMAUIControlsService, MAUIControlsService>();
         return builder;
     }
 
     static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
     {
+        builder.Services.AddPage<GalleryPage, GalleryPageViewModel>();
+        builder.Services.AddPage<MAUIAllControlsPage, MAUIAllControlsPageViewModel>();
+
         builder.Services.AddPage<ButtonPage, ButtonPageViewModel>();
         builder.Services.AddPage<EditorPage, EditorPageViewModel>();
         builder.Services.AddPage<MenuBarPage, MenuBarPageViewModel>();

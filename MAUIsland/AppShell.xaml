@@ -6,28 +6,27 @@
     xmlns:app="clr-namespace:MAUIsland"
     Shell.FlyoutBehavior="Flyout">
 
+    <Shell.Resources>
+        <FontImageSource x:Key="HomeIcon"
+                         Color="{AppThemeBinding Light='#15161e', Dark='#eaeaea' }"
+                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                         Glyph="{Static app:FluentUIIcon.Ic_fluent_home_20_regular}"/>
+        
+        <FontImageSource x:Key="CodeIcon"
+                         Color="{AppThemeBinding Light='#15161e', Dark='#eaeaea' }"
+                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                         Glyph="{Static app:FluentUIIcon.Ic_fluent_code_circle_20_regular}"/>
+    </Shell.Resources>
+
     <ShellContent
         Title="Home"
+        Icon="{x:StaticResource HomeIcon}"
         ContentTemplate="{DataTemplate app:MainPage}"
         Route="MainPage" />
 
     <ShellContent
-        Title="Button"
-        ContentTemplate="{DataTemplate app:ButtonPage}"
-        Route="buttonPage" />
-
-    <ShellContent
-        Title="Editor"
-        ContentTemplate="{DataTemplate app:EditorPage}"
-        Route="editorPage" />
-
-    <ShellContent
-        Title="MenuBar"
-        ContentTemplate="{DataTemplate app:MenuBarPage}"
-        Route="menuBarPage" />
-
-    <ShellContent
-        Title="Activity Indicator"
-        ContentTemplate="{DataTemplate app:ActivityIndicatorPage}"
-        Route="activityIndicatorPage" />
+        Title="Gallery"
+        Icon="{x:StaticResource CodeIcon}"
+        ContentTemplate="{DataTemplate app:GalleryPage}"
+        Route="galleryPage" />
 </Shell>
