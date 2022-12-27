@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:app="clr-namespace:MAUIsland"
+              
+              x:Class="MAUIsland.ActivityIndicatorPage"
+              Title="Activity Indicator"
+              Padding="10">
+    <VerticalStackLayout>
+        <Label 
+            Text="The .NET Multi-platform App UI (.NET MAUI) ActivityIndicator displays an animation to show that the application is engaged in a lengthy activity. Unlike ProgressBar, ActivityIndicator gives no indication of progress." />
+        <HorizontalStackLayout Spacing="10">
+            <ActivityIndicator IsRunning="True"/>
+
+            <ActivityIndicator IsRunning="True"
+                               Color="Green"/>
+
+            <ActivityIndicator IsRunning="True"
+                               Color="Red"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</app:BasePage>
