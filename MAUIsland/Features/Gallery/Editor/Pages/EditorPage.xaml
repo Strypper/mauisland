@@ -7,17 +7,35 @@
              x:DataType="app:EditorPageViewModel"
              Title="Editor"
               Padding="10">
-    <VerticalStackLayout>
-        <Label Text="You can use a Editor"/>
-        <Label Text="Simple editor"
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label Text="You can use a Editor"/>
+            <Label Text="Simple editor"
                FontSize="Subtitle"
                FontAttributes="Bold"/>
-        <Frame HasShadow="True">
-            <VerticalStackLayout>
-                <Editor/>
-                <Label Text="Show code"/>
-            </VerticalStackLayout>
-        </Frame>
-        
-    </VerticalStackLayout>
+            <Frame HasShadow="True">
+                <VerticalStackLayout>
+                    <Editor/>
+                    <Label Text="Show code"/>
+                </VerticalStackLayout>
+            </Frame>
+            <Label Text="Customizing RcikEditBox's CommandBarFlyout - Adding 'Share' "
+        FontSize="Subtitle"
+               FontAttributes="Bold"/>
+            <Frame HasShadow="True">
+                <VerticalStackLayout>
+                    <Editor BackgroundColor="Aqua"
+                            HeightRequest="200"/>
+                    <Label Text="Show code"/>
+
+                </VerticalStackLayout>
+            </Frame>
+            <Label Text="A custom editor with RichEditBox."
+                   FontSize="Subtitle"
+                   FontAttributes="Bold"/>
+            
+            
+        </VerticalStackLayout>
+    </ScrollView>
+
 </app:BasePage>

@@ -17,7 +17,7 @@
         Route="buttonPage" />
 
     <ShellContent
-        Title="Eidtor"
+        Title="Editor"
         ContentTemplate="{DataTemplate app:EditorPage}"
         Route="editorPage" />
 </Shell>
