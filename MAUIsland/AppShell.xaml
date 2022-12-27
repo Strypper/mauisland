@@ -25,4 +25,9 @@
         Title="MenuBar"
         ContentTemplate="{DataTemplate app:MenuBarPage}"
         Route="menuBarPage" />
+
+    <ShellContent
+        Title="Activity Indicator"
+        ContentTemplate="{DataTemplate app:ActivityIndicatorPage}"
+        Route="activityIndicatorPage" />
 </Shell>
