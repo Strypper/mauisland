@@ -20,4 +20,9 @@
         Title="Eidtor"
         ContentTemplate="{DataTemplate app:EditorPage}"
         Route="editorPage" />
+
+    <ShellContent
+        Title="MenuBar"
+        ContentTemplate="{DataTemplate app:MenuBarPage}"
+        Route="menuBarPage" />
 </Shell>

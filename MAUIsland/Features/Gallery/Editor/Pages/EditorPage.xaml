@@ -14,7 +14,7 @@
                FontAttributes="Bold"/>
         <Frame HasShadow="True">
             <VerticalStackLayout>
-                <Editor/>
+                <Editor HeightRequest="500"/>
                 <Label Text="Show code"/>
             </VerticalStackLayout>
         </Frame>
