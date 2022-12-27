@@ -16,4 +16,8 @@
         ContentTemplate="{DataTemplate app:ButtonPage}"
         Route="buttonPage" />
 
+    <ShellContent
+        Title="Eidtor"
+        ContentTemplate="{DataTemplate app:EditorPage}"
+        Route="editorPage" />
 </Shell>

@@ -69,6 +69,9 @@
 	  <MauiXaml Update="Features\Gallery\Button\Pages\ButtonPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Editor\Pages\EditorPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

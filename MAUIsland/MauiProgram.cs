@@ -37,7 +37,7 @@ public static class MauiProgram
 #if __ANDROID__
     public static void PrependToMappingImageSource(IImageHandler handler, Microsoft.Maui.IImage image)
     {
-        handler.PlatformView?.Clear();
+        //handler.PlatformView?.Clear();
     }
 #endif
 
@@ -56,6 +56,7 @@ public static class MauiProgram
     static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
     {
         builder.Services.AddPage<ButtonPage, ButtonPageViewModel>();
+        builder.Services.AddPage<EditorPage, EditorPageViewModel>();
         return builder;
     }
 
