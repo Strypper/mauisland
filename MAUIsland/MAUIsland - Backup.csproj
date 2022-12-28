@@ -93,9 +93,6 @@
 	  <MauiXaml Update="Features\Gallery\MAUI\MenuBar\Pages\MenuBarPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\MAUI\Picker\Pages\PickerPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\MAUI\ProgressBar\Pages\ProgressBarPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
