@@ -19,6 +19,21 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlName = "Activity Indicator",
                 ControlRoute = AppRoutes.ActivityIndicatorPage
             });
+
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Editor",
+                ControlRoute = AppRoutes.EditorPage
+            });
+
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Date Picker",
+                ControlRoute = AppRoutes.DatePickerPage
+            });
+
+
+
             return controls.AsEnumerable();
         });
     }
