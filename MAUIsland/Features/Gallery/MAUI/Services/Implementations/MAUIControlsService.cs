@@ -38,6 +38,12 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlRoute = AppRoutes.ProgressBarPage
             });
 
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Slider",
+                ControlRoute = AppRoutes.SliderPage
+            });
+
             return controls.AsEnumerable();
         });
     }
