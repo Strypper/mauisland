@@ -7,11 +7,27 @@
               x:DataType="app:DatePickerPageViewModel"
              
              
-              Title="Date Picker">
-    <VerticalStackLayout>
+              Title="Date Picker"
+              Padding="10">
+    <VerticalStackLayout Spacing="10">
         <Label 
-            Text="Welcome to Date Picker"
+            Text="The .NET Multi-platform App UI (.NET MAUI) DatePicker invokes the platform's date-picker control and allows you to select a date."
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Start" />
+        <Label
+            Text="The DatePicker ensures that Date is between MinimumDate and MaximumDate, inclusive. If MinimumDate or MaximumDate is set so that Date is not between them, DatePicker will adjust the value of Date."/>
+        <Label 
+            Text="A simple date picker"
+            FontSize="Title"
+            FontAttributes="Bold"
+            />
+        <DatePicker/>
+
+        <Label
+            Text="A DatePicker with day formatted and year hidden"
+            FontSize="Title"
+            FontAttributes="Bold"
+            />
+        <DatePicker/>
     </VerticalStackLayout>
 </app:BasePage>

@@ -15,10 +15,10 @@
                    FontSize="Subtitle"
                    FontAttributes="Bold"/>
             <Editor x:Name="editor"
-                        Placeholder="Enter your response here"
-                        HeightRequest="250"
-                        TextChanged="OnEditorTextChanged"
-                        Completed="OnEditorCompleted" />
+                    Placeholder="Enter your response here"
+                    HeightRequest="250"
+                    TextChanged="OnEditorTextChanged"
+                    Completed="OnEditorCompleted" />
             <app:SourceCodeExpander XamlCode="{x:Binding SimpleEditXamlCode}"/>
             <Label Text="Set character spacing"
                    FontSize="Subtitle"

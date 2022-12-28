@@ -16,7 +16,7 @@
             <Label Text="A simple button with text content"
                    FontAttributes="Bold"
                    FontSize="Title"/>
-            <Frame>
+            <Frame BackgroundColor="{x:StaticResource Gray900}">
                 <Grid>
                     <Button Text="Standard XAML Button"
                             VerticalOptions="Center"
@@ -30,6 +30,57 @@
                     </HorizontalStackLayout>
                 </Grid>
             </Frame>
+            <app:SourceCodeExpander XamlCode="{x:Binding StandardButtonXamlCode}"/>
+
+            <Label Text="You can change the background color of the button"
+                   FontAttributes="Bold"
+                   FontSize="Title"/>
+
+            <HorizontalStackLayout Spacing="10">
+                <Button Text="Green"
+                        TextColor="{x:StaticResource White}"
+                        BackgroundColor="Green"/>
+
+                <Button Text="Red"
+                        TextColor="{x:StaticResource White}"
+                        BackgroundColor="Red"/>
+
+                <Button Text="Application Primary Color"
+                        TextColor="{x:StaticResource White}"
+                        BackgroundColor="{x:StaticResource Primary}"/>
+
+                <!--This button will be Cyan when in dark mode and Blue when light mode-->
+                <Button Text="Dark or Light mode color"
+                        TextColor="{x:StaticResource Black}"
+                        BackgroundColor="{x:AppThemeBinding Dark={x:StaticResource Cyan300Accent}, 
+                                                            Light={x:StaticResource Blue300Accent}}"/>
+            </HorizontalStackLayout>
+            <app:SourceCodeExpander XamlCode="{x:Binding ButtonsChangedBackgroundGroupXamlCode}"/>
+
+            <Label Text="Apply rotation to a button"
+                   FontAttributes="Bold"
+                   FontSize="Title"/>
+            <Frame BackgroundColor="{x:StaticResource Gray900}">
+
+                <Button Text="MAUI Button Test"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start" 
+                        BorderColor="Black"
+                        BorderWidth="2"
+                        BackgroundColor="Red"
+                        CharacterSpacing="4"
+                        WidthRequest="250"
+                        HeightRequest="70"
+                        FontSize="18"            
+                        FontAttributes="Bold"
+                        LineBreakMode="WordWrap"
+                        TextColor="White"
+                        CornerRadius="30"
+                        RotationX="10"
+                        RotationY="30"/>
+            </Frame>
+
+            <app:SourceCodeExpander XamlCode="{x:Binding RotationButtonXamlCode}"/>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>
