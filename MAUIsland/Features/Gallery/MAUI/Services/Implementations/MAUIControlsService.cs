@@ -38,6 +38,18 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlRoute = AppRoutes.ProgressBarPage
             });
 
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Slider",
+                ControlRoute = AppRoutes.SliderPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_calendar_3_day_28_regular
+                },
+                ControlDetail = "Slider is a horizontal bar that you can manipulate to select a double value from a continuous range."
+            });
+
             return controls.AsEnumerable();
         });
     }
