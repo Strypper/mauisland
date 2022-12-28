@@ -29,4 +29,10 @@
         Icon="{x:StaticResource CodeIcon}"
         ContentTemplate="{DataTemplate app:GalleryPage}"
         Route="galleryPage" />
+
+    <TabBar>
+        <ShellContent Title="MAUI All Controls"
+                      Route="mauiAllControlsPage" 
+                      ContentTemplate="{DataTemplate app:MAUIAllControlsPage}"/>
+    </TabBar>
 </Shell>

@@ -79,8 +79,34 @@
                         RotationX="10"
                         RotationY="30"/>
             </Frame>
-
             <app:SourceCodeExpander XamlCode="{x:Binding RotationButtonXamlCode}"/>
+
+            <Label Text="Use bitmaps with buttons"
+                   FontAttributes="Bold"
+                   FontSize="Title"/>
+            <Label Text="The Button class defines an ImageSource property that allows you to display a small bitmap image on the Button, either alone or in combination with text. You can also specify how the text and image are arranged. The ImageSource property is of type ImageSource, which means that the bitmaps can be loaded from a file, embedded resource, URI, or stream."/>
+            <Frame>
+                <Frame.Resources>
+                    <FontImageSource x:Key="HomeIcon"
+                                     Color="{x:StaticResource Primary }"
+                                     FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                                     Glyph="{Static app:FluentUIIcon.Ic_fluent_home_20_regular}"/>
+
+                    <FontImageSource x:Key="DownloadIcon"
+                                     Color="{x:StaticResource Primary }"
+                                     FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                                     Glyph="{Static app:FluentUIIcon.Ic_fluent_arrow_download_20_regular}"/>
+                </Frame.Resources>
+
+                <HorizontalStackLayout Spacing="10">
+                    <Button Text="Home"
+                            ImageSource="{x:StaticResource HomeIcon}"/>
+
+                    <Button Text="Download"
+                            ImageSource="{x:StaticResource DownloadIcon}"/>
+                </HorizontalStackLayout>
+            </Frame>
+            <app:SourceCodeExpander XamlCode="{x:Binding ButtonWithImageXamlCode}"/>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

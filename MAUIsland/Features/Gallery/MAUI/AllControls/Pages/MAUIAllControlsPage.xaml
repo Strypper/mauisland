@@ -7,7 +7,8 @@
               x:Class="MAUIsland.MAUIAllControlsPage"
               x:DataType="app:MAUIAllControlsPageViewModel"
               
-              Shell.NavBarIsVisible="False">
+              Shell.NavBarIsVisible="False"
+              Padding="20">
     <app:BasePage.Resources>
         <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate"
                       x:DataType="app:ControlInfo">
@@ -15,11 +16,13 @@
                                         DetailClicked="ControlCardContentView_DetailClicked"/>
         </DataTemplate>
     </app:BasePage.Resources>
-    
-    <Grid RowDefinitions="70, *">
-        <Label Text="All MAUI Controls"/>
-        <app:HorizontalWrapLayout Grid.Row="1" Spacing="20"
-                                  BindableLayout.ItemsSource="{x:Binding Items, Mode=OneWay}"
-                                  BindableLayout.ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"/>
-    </Grid>
+
+    <ScrollView>
+        <Grid RowDefinitions="70, *">
+            <Label Text="All MAUI Controls"/>
+            <app:HorizontalWrapLayout Grid.Row="1" Spacing="20"
+                                      BindableLayout.ItemsSource="{x:Binding Items, Mode=OneWay}"
+                                      BindableLayout.ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"/>
+        </Grid>
+    </ScrollView>
 </app:BasePage>

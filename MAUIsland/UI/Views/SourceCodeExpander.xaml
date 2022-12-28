@@ -15,7 +15,8 @@
                          Glyph="{Static app:FluentUIIcon.Ic_fluent_copy_24_regular}"/>
     </ContentView.Resources>
 
-    <Frame HasShadow="True">
+    <Frame HasShadow="True"
+           BackgroundColor="#323232">
         <toolkit:Expander>
             <toolkit:Expander.Header>
                 <Grid>

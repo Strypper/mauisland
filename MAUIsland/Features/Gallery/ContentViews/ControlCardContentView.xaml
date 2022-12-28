@@ -6,22 +6,23 @@
              x:Name="root"
              x:Class="MAUIsland.ControlCardContentView"
              x:DataType="app:ControlCardContentView">
-    <Frame>
+    <Frame BackgroundColor="{x:StaticResource Gray600}">
         <HorizontalStackLayout>
             <Image WidthRequest="100"
                HeightRequest="100"
                VerticalOptions="Center"
                Source="{x:Binding ComponentData.ControlIcon,Source={x:Reference root}}"/>
-            <VerticalStackLayout 
-                   VerticalOptions="Center" 
-                   HorizontalOptions="Center" >
+            <VerticalStackLayout WidthRequest="200"
+                                 VerticalOptions="Center" 
+                                 HorizontalOptions="Center" >
                 <Label Text="{x:Binding ComponentData.ControlName,Source={x:Reference root}}"
-                   FontSize="Subtitle"
-                   FontAttributes="Bold"/>
+                       FontSize="Subtitle"
+                       FontAttributes="Bold"/>
                 <Label Text="{x:Binding ComponentData.ControlDetail,Source={x:Reference root}}"
-                   FontSize="Body"/>
+                       FontSize="Body"/>
                 <Button Text="Detail"
-                    Clicked="Detail_Clicked"/>
+                        Clicked="Detail_Clicked"
+                        HorizontalOptions="Start"/>
             </VerticalStackLayout>
         </HorizontalStackLayout>
     </Frame>
