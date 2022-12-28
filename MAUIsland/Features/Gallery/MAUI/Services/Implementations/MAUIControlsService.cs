@@ -32,7 +32,11 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlRoute = AppRoutes.DatePickerPage
             });
 
-
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Progress Bar",
+                ControlRoute = AppRoutes.ProgressBarPage
+            });
 
             return controls.AsEnumerable();
         });
