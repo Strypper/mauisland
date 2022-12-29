@@ -6,24 +6,43 @@
              x:Name="root"
              x:Class="MAUIsland.ControlCardContentView"
              x:DataType="app:ControlCardContentView">
-    <Frame BackgroundColor="{x:StaticResource Gray600}">
-        <HorizontalStackLayout>
-            <Image WidthRequest="100"
-               HeightRequest="100"
-               VerticalOptions="Center"
-               Source="{x:Binding ComponentData.ControlIcon,Source={x:Reference root}}"/>
-            <VerticalStackLayout WidthRequest="200"
+    <Frame HasShadow="True"
+           Padding="0"
+           BackgroundColor="#323232"
+            IsClippedToBounds="True">
+        <Grid IsClippedToBounds="True">
+            <Ellipse WidthRequest="250"
+                     HeightRequest="250"
+                     Fill="#6f0bd8"
+                     Margin="-150,-150,0,0"
+                     VerticalOptions="Start"
+                     HorizontalOptions="Start"/>
+            <HorizontalStackLayout Spacing="10"
+                                   Margin="10">
+                <Image WidthRequest="30"
+                       HeightRequest="30"
+                       Margin="0,5,0,0"
+                       VerticalOptions="Start"
+                       Source="{x:Binding ComponentData.ControlIcon,Source={x:Reference root}}"/>
+                <VerticalStackLayout Spacing="10"
+                                 WidthRequest="200"
                                  VerticalOptions="Center" 
                                  HorizontalOptions="Center" >
-                <Label Text="{x:Binding ComponentData.ControlName,Source={x:Reference root}}"
-                       FontSize="Subtitle"
-                       FontAttributes="Bold"/>
-                <Label Text="{x:Binding ComponentData.ControlDetail,Source={x:Reference root}}"
-                       FontSize="Body"/>
-                <Button Text="Detail"
-                        Clicked="Detail_Clicked"
-                        HorizontalOptions="Start"/>
-            </VerticalStackLayout>
-        </HorizontalStackLayout>
+                    <Label Text="{x:Binding ComponentData.ControlName,Source={x:Reference root}}"
+                           TextColor="{x:StaticResource White}"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"/>
+                    <Label Text="{x:Binding ComponentData.ControlDetail,Source={x:Reference root}}"
+                           TextColor="{x:StaticResource White}"
+                           ToolTipProperties.Text="{x:Binding ComponentData.ControlDetail,Source={x:Reference root}}"
+                           FontSize="Body"
+                           MaxLines="3"/>
+                    <Button Text="Detail"
+                            TextColor="{x:StaticResource White}"
+                            Clicked="Detail_Clicked"
+                            BackgroundColor="#ff28ba"/>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </Grid>
     </Frame>
 </ContentView>

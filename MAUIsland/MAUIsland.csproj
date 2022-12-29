@@ -72,6 +72,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Resources\Images\Gallery\fluenticon_options_white.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Features\Gallery\ContentViews\ControlCardContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

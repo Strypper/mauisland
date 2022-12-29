@@ -20,7 +20,7 @@
                              HeightRequest="200"
                              Command="{x:Binding NavigateToMauiControlCommand}"/>
             </Frame>
-            <Label Text="NATIVE CONTROL"
+            <Label Text="NATIVE CONTROLS"
                    FontSize="Caption"
                    FontAttributes="Bold"
                    HorizontalTextAlignment="Center"/>
