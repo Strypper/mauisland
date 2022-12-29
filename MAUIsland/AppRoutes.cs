@@ -14,6 +14,7 @@ public static class AppRoutes
     public const string DatePickerPage = "//mauiAllControlsPage/datePickerPage";
     public const string ProgressBarPage = "//mauiAllControlsPage/progressBarPage";
     public const string EditorPage = "//mauiAllControlsPage/editorPage";
+    public const string RadioButtonPage = "//mauiAllControlsPage/radioButtonPage";
     public const string MenuBarPage = "//mauiAllControlsPage/menuBarPage";
 
 }
