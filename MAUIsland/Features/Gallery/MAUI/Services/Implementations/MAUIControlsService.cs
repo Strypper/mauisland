@@ -40,6 +40,18 @@ public class MAUIControlsService : IMAUIControlsService
 
             controls.Add(new ControlInfo()
             {
+                ControlName = "Picker",
+                ControlRoute = AppRoutes.PickerPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_arrow_minimize_vertical_24_regular
+                },
+                ControlDetail = "Picker displays a short list of items, from which the user can select an item."
+            });
+
+            controls.Add(new ControlInfo()
+            {
                 ControlName = "Slider",
                 ControlRoute = AppRoutes.SliderPage,
                 ControlIcon = new FontImageSource()
@@ -49,6 +61,8 @@ public class MAUIControlsService : IMAUIControlsService
                 },
                 ControlDetail = "Slider is a horizontal bar that you can manipulate to select a double value from a continuous range."
             });
+
+            
 
             return controls.AsEnumerable();
         });

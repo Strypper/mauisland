@@ -11,6 +11,7 @@ public partial class AppShell : Shell
 
 		Routing.RegisterRoute("buttonPage", typeof(ButtonPage));
         Routing.RegisterRoute("sliderPage", typeof(SliderPage));
+        Routing.RegisterRoute("pickerPage", typeof(PickerPage));
         Routing.RegisterRoute("progressBarPage", typeof(ProgressBarPage));
         Routing.RegisterRoute("activityIndicatorPage", typeof(ActivityIndicatorPage));
         Routing.RegisterRoute("datePickerPage", typeof(DatePickerPage));
