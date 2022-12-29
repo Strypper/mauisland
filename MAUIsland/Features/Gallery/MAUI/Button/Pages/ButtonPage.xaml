@@ -16,7 +16,7 @@
             <Label Text="A simple button with text content"
                    FontAttributes="Bold"
                    FontSize="Title"/>
-            <Frame BackgroundColor="{x:StaticResource Gray900}">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <Grid>
                     <Button Text="Standard XAML Button"
                             VerticalOptions="Center"
