@@ -14,5 +14,6 @@ public static class AppRoutes
     public const string ProgressBarPage = "//mauiAllControlsPage/progressBarPage";
     public const string EditorPage = "//mauiAllControlsPage/editorPage";
     public const string MenuBarPage = "//mauiAllControlsPage/menuBarPage";
+    public const string ImageButtonPage = "//mauiAllControlsPage/imageButtonPage";
 
 }

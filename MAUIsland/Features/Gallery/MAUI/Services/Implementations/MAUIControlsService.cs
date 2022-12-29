@@ -62,7 +62,13 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlDetail = "Slider is a horizontal bar that you can manipulate to select a double value from a continuous range."
             });
 
-            
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Image Button",
+                ControlRoute = AppRoutes.ImageButtonPage
+            });
+
+
 
             return controls.AsEnumerable();
         });
