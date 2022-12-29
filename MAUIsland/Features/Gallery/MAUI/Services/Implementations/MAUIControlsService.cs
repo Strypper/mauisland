@@ -124,6 +124,18 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlDetail = "RefreshView is a container control that provides pull to refresh functionality for scrollable content."
             });
 
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Search Bar",
+                ControlRoute = AppRoutes.SearchBarPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_search_24_regular
+                },
+                ControlDetail = "SearchBar is a user input control used to initiating a search."
+            });
+
             return controls.AsEnumerable();
         });
     }

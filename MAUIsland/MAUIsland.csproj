@@ -112,6 +112,9 @@
 	  <MauiXaml Update="Features\Gallery\MAUI\RefreshView\Pages\RefreshViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\MAUI\SearchBar\Pages\SearchBarPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\MAUI\Slider\Pages\SliderPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
