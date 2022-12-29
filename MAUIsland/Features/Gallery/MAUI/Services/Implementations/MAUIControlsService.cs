@@ -100,6 +100,18 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlDetail = "Slider is a horizontal bar that you can manipulate to select a double value from a continuous range."
             });
 
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Radio Button",
+                ControlRoute = AppRoutes.RadioButtonPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_radio_button_24_regular
+                },
+                ControlDetail = "RadioButton is a type of button that allows users to select one option from a set. Each option is represented by one radio button, and you can only select one radio button in a group. "
+            }); 
+
             return controls.AsEnumerable();
         });
     }

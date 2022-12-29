@@ -65,6 +65,7 @@ public static class MauiProgram
         builder.Services.AddPage<ProgressBarPage, ProgressBarPageViewModel>();
         builder.Services.AddPage<PickerPage, PickerPageViewModel>();
         builder.Services.AddPage<SliderPage, SliderPageViewModel>();
+        builder.Services.AddPage<RadioButtonPage, RadioButtonPageViewModel>();
         builder.Services.AddPage<DatePickerPage, DatePickerPageViewModel>();
         builder.Services.AddPage<EditorPage, EditorPageViewModel>();
         builder.Services.AddPage<MenuBarPage, MenuBarPageViewModel>();
