@@ -172,6 +172,18 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlDetail = "Stepper enables a numeric value to be selected from a range of values. It consists of two buttons labeled with minus and plus signs."
             });
 
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Switch",
+                ControlRoute = AppRoutes.SwitchPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_toggle_left_24_regular
+                },
+                ControlDetail = "Switch control is a horizontal toggle button that can be manipulated by the user to toggle between on and off states, which are represented by a boolean value."
+            });
+
             return controls.AsEnumerable();
         });
     }
