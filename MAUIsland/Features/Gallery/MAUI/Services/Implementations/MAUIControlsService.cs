@@ -184,6 +184,18 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlDetail = "Switch control is a horizontal toggle button that can be manipulated by the user to toggle between on and off states, which are represented by a boolean value."
             });
 
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Time Picker",
+                ControlRoute = AppRoutes.TimePickerPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_clock_24_regular
+                },
+                ControlDetail = "TimePicker invokes the platform's time-picker control and allows you to select a time."
+            });
+
             return controls.AsEnumerable();
         });
     }
