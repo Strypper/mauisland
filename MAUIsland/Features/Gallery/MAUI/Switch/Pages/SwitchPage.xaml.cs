@@ -1,9 +1,9 @@
 namespace MAUIsland;
 
-public partial class PickerPage 
+public partial class SwitchPage
 {
     #region [CTor]
-    public PickerPage()
+    public SwitchPage()
     {
         InitializeComponent();
     }
