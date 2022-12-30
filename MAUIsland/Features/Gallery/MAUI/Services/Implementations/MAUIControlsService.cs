@@ -160,6 +160,18 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlDetail = "CheckBox is a type of button that can either be checked or empty. When a checkbox is checked, it's considered to be on. When a checkbox is empty, it's considered to be off."
             });
 
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Stepper",
+                ControlRoute = AppRoutes.StepperPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_add_24_regular
+                },
+                ControlDetail = "Stepper enables a numeric value to be selected from a range of values. It consists of two buttons labeled with minus and plus signs."
+            });
+
             return controls.AsEnumerable();
         });
     }
