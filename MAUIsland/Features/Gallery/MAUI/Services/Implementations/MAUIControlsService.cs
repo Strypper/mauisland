@@ -136,6 +136,30 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlDetail = "SearchBar is a user input control used to initiating a search."
             });
 
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Swipe View",
+                ControlRoute = AppRoutes.SwipeViewPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_grid_24_regular
+                },
+                ControlDetail = "SwipeView is a container control that wraps around an item of content, and provides context menu items that are revealed by a swipe gesture."
+            });
+
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Check Box",
+                ControlRoute = AppRoutes.CheckBoxPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_checkbox_1_24_regular
+                },
+                ControlDetail = "CheckBox is a type of button that can either be checked or empty. When a checkbox is checked, it's considered to be on. When a checkbox is empty, it's considered to be off."
+            });
+
             return controls.AsEnumerable();
         });
     }
