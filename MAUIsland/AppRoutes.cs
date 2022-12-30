@@ -11,6 +11,11 @@ public static class AppRoutes
     public const string ActivityIndicatorPage = "//mauiAllControlsPage/activityIndicatorPage";
     public const string SliderPage = "//mauiAllControlsPage/sliderPage";
     public const string PickerPage = "//mauiAllControlsPage/pickerPage";
+    public const string StepperPage = "//mauiAllControlsPage/stepperPage";
+    public const string CheckBoxPage = "//mauiAllControlsPage/checkBoxPage";
+    public const string SwipeViewPage = "//mauiAllControlsPage/swipeViewPage";
+    public const string SearchBarPage = "//mauiAllControlsPage/searchBarPage";
+    public const string RefreshViewPage = "//mauiAllControlsPage/refreshViewPage";
     public const string DatePickerPage = "//mauiAllControlsPage/datePickerPage";
     public const string ProgressBarPage = "//mauiAllControlsPage/progressBarPage";
     public const string EditorPage = "//mauiAllControlsPage/editorPage";

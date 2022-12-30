@@ -2,14 +2,15 @@
 <app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:app="clr-namespace:MAUIsland"
-             
-              x:Class="MAUIsland.PickerPage"
-              x:DataType="app:PickerPageViewModel"
-             
-             Title="Picker">
+              
+              
+              x:Class="MAUIsland.SwipeViewPage"
+              x:DataType="app:SwipeViewPageViewModel"
+              
+              Title="Swipe View">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome Picker Page!"
+            Text="Welcome to Swipe View!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>

@@ -3,13 +3,13 @@
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:app="clr-namespace:MAUIsland"
              
-              x:Class="MAUIsland.PickerPage"
-              x:DataType="app:PickerPageViewModel"
+             x:Class="MAUIsland.StepperPage"
+             x:DataType="app:StepperPageViewModel"
              
-             Title="Picker">
+             Title="Stepper">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome Picker Page!"
+            Text="Welcome to Stepper Page!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>

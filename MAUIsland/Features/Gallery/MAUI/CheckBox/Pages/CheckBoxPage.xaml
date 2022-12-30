@@ -3,13 +3,14 @@
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:app="clr-namespace:MAUIsland"
              
-              x:Class="MAUIsland.PickerPage"
-              x:DataType="app:PickerPageViewModel"
+              x:Class="MAUIsland.CheckBoxPage"
+              x:DataType="app:CheckBoxPageViewModel"
              
-             Title="Picker">
+             
+              Title="Check Box">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome Picker Page!"
+            Text="Welcome to Check Box Page!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>

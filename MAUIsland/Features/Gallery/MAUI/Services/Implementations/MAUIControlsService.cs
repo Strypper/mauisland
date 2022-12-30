@@ -110,7 +110,67 @@ public class MAUIControlsService : IMAUIControlsService
                     Glyph = FluentUIIcon.Ic_fluent_radio_button_24_regular
                 },
                 ControlDetail = "RadioButton is a type of button that allows users to select one option from a set. Each option is represented by one radio button, and you can only select one radio button in a group. "
-            }); 
+            });
+
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Refresh View",
+                ControlRoute = AppRoutes.RefreshViewPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_arrow_reset_24_regular
+                },
+                ControlDetail = "RefreshView is a container control that provides pull to refresh functionality for scrollable content."
+            });
+
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Search Bar",
+                ControlRoute = AppRoutes.SearchBarPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_search_24_regular
+                },
+                ControlDetail = "SearchBar is a user input control used to initiating a search."
+            });
+
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Swipe View",
+                ControlRoute = AppRoutes.SwipeViewPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_grid_24_regular
+                },
+                ControlDetail = "SwipeView is a container control that wraps around an item of content, and provides context menu items that are revealed by a swipe gesture."
+            });
+
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Check Box",
+                ControlRoute = AppRoutes.CheckBoxPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_checkbox_1_24_regular
+                },
+                ControlDetail = "CheckBox is a type of button that can either be checked or empty. When a checkbox is checked, it's considered to be on. When a checkbox is empty, it's considered to be off."
+            });
+
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Stepper",
+                ControlRoute = AppRoutes.StepperPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_add_24_regular
+                },
+                ControlDetail = "Stepper enables a numeric value to be selected from a range of values. It consists of two buttons labeled with minus and plus signs."
+            });
 
             return controls.AsEnumerable();
         });
