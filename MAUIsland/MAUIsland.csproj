@@ -97,6 +97,9 @@
 	  <MauiXaml Update="Features\Gallery\MAUI\Editor\Pages\EditorPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\MAUI\Entry\Pages\EntryPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\MAUI\ImageButton\Pages\ImageButtonPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
