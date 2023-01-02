@@ -196,6 +196,18 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlDetail = "TimePicker invokes the platform's time-picker control and allows you to select a time."
             });
 
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Entry",
+                ControlRoute = AppRoutes.EntryPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_text_box_settings_24_regular
+                },
+                ControlDetail = "Entry allows you to enter and edit a single line of text. In addition, the Entry can be used as a password field.\r\n\r\n"
+            });
+
             return controls.AsEnumerable();
         });
     }

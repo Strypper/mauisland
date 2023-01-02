@@ -16,6 +16,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("searchBarPage", typeof(SearchBarPage));
         Routing.RegisterRoute("swipeViewPage", typeof(SwipeViewPage));
         Routing.RegisterRoute("switchPage", typeof(SwitchPage));
+        Routing.RegisterRoute("entryPage", typeof(EntryPage));
         Routing.RegisterRoute("timePickerPage", typeof(TimePickerPage));
         Routing.RegisterRoute("stepperPage", typeof(StepperPage));
         Routing.RegisterRoute("checkBoxPage", typeof(CheckBoxPage));
