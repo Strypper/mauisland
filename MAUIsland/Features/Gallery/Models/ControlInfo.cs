@@ -13,4 +13,12 @@ public partial class ControlInfo : BaseModel
 
     [ObservableProperty]
     string controlRoute;
+
+    [ObservableProperty]
+    string gitHubUrl;
+
+    [ObservableProperty]
+    string documentUrl;
+
+
 }

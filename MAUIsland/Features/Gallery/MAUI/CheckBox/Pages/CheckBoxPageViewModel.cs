@@ -9,4 +9,12 @@ public partial class CheckBoxPageViewModel : NavigationAwareBaseViewModel
 
     }
     #endregion
+
+    #region [ Fields ]
+    [ObservableProperty]
+    bool isChecked;
+
+    [ObservableProperty]
+    string standardCheckBoxXamlCode = "";
+    #endregion
 }
