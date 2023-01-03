@@ -68,6 +68,7 @@
 	  <Folder Include="Features\Gallery\MAUI\AllControls\ContentViews\" />
 	  <Folder Include="Features\Gallery\MAUI\AllControls\Models\" />
 	  <Folder Include="Features\Gallery\MAUI\Button\Models\" />
+	  <Folder Include="Features\Gallery\MAUI\NewFolder\" />
 	  <Folder Include="Features\QA\" />
 	</ItemGroup>
 
@@ -86,6 +87,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\MAUI\Button\Pages\ButtonPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\MAUI\CarouselView\Pages\CarouselViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\MAUI\CheckBox\Pages\CheckBoxPage.xaml">

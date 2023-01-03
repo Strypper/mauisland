@@ -208,6 +208,18 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlDetail = "Entry allows you to enter and edit a single line of text. In addition, the Entry can be used as a password field.\r\n\r\n"
             });
 
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Carousel View",
+                ControlRoute = AppRoutes.CarouselViewPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_content_view_gallery_24_regular
+                },
+                ControlDetail = "CarouselView will display its items in a horizontal orientation. A single item will be displayed on screen, with swipe gestures resulting in forwards and backwards navigation through the collection of items. "
+            });
+
             return controls.AsEnumerable();
         });
     }

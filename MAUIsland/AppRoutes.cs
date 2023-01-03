@@ -16,6 +16,7 @@ public static class AppRoutes
     public const string EntryPage = "//mauiAllControlsPage/entryPage";
     public const string TimePickerPage = "//mauiAllControlsPage/timePickerPage";
     public const string CheckBoxPage = "//mauiAllControlsPage/checkBoxPage";
+    public const string CarouselViewPage = "//mauiAllControlsPage/carouselViewPage";
     public const string SwipeViewPage = "//mauiAllControlsPage/swipeViewPage";
     public const string SearchBarPage = "//mauiAllControlsPage/searchBarPage";
     public const string RefreshViewPage = "//mauiAllControlsPage/refreshViewPage";
