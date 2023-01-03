@@ -106,6 +106,7 @@
                 <ListView SelectionMode="Single"
                           Header="Slider defines the following properties:"
                           Footer="These properties are backed by BindableProperty objects. The Value property has a default binding mode of BindingMode.TwoWay, which means that it's suitable as a binding source in an application that uses the Model-View-ViewModel (MVVM) pattern."
+                          VerticalScrollBarVisibility="Never"
                           HeaderTemplate="{x:StaticResource BulletListHeaderTemplate}"
                           ItemTemplate="{x:StaticResource BulletListItemTemplate}"
                           FooterTemplate="{x:StaticResource BulletListFooterTemplate}"
