@@ -162,6 +162,66 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlDetail = "CheckBox is a type of button that can either be checked or empty. When a checkbox is checked, it's considered to be on. When a checkbox is empty, it's considered to be off."
             });
 
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Stepper",
+                ControlRoute = AppRoutes.StepperPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_add_24_regular
+                },
+                ControlDetail = "Stepper enables a numeric value to be selected from a range of values. It consists of two buttons labeled with minus and plus signs."
+            });
+
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Switch",
+                ControlRoute = AppRoutes.SwitchPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_toggle_left_24_regular
+                },
+                ControlDetail = "Switch control is a horizontal toggle button that can be manipulated by the user to toggle between on and off states, which are represented by a boolean value."
+            });
+
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Time Picker",
+                ControlRoute = AppRoutes.TimePickerPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_clock_24_regular
+                },
+                ControlDetail = "TimePicker invokes the platform's time-picker control and allows you to select a time."
+            });
+
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Entry",
+                ControlRoute = AppRoutes.EntryPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_text_box_settings_24_regular
+                },
+                ControlDetail = "Entry allows you to enter and edit a single line of text. In addition, the Entry can be used as a password field.\r\n\r\n"
+            });
+
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Carousel View",
+                ControlRoute = AppRoutes.CarouselViewPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_content_view_gallery_24_regular
+                },
+                ControlDetail = "CarouselView will display its items in a horizontal orientation. A single item will be displayed on screen, with swipe gestures resulting in forwards and backwards navigation through the collection of items. "
+            });
+
             return controls.AsEnumerable();
         });
     }

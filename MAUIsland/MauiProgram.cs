@@ -67,6 +67,11 @@ public static class MauiProgram
         builder.Services.AddPage<PickerPage, PickerPageViewModel>();
         builder.Services.AddPage<SliderPage, SliderPageViewModel>();
         builder.Services.AddPage<SearchBarPage, SearchBarPageViewModel>();
+        builder.Services.AddPage<StepperPage, StepperPageViewModel>();
+        builder.Services.AddPage<EntryPage, EntryPageViewModel>();
+        builder.Services.AddPage<CarouselViewPage, CarouselViewPageViewModel>();
+        builder.Services.AddPage<TimePickerPage, TimePickerPageViewModel>();
+        builder.Services.AddPage<SwitchPage, SwitchPageViewModel>();
         builder.Services.AddPage<CheckBoxPage, CheckBoxPageViewModel>();
         //builder.Services.AddPage<SwipeViewPage, SwipeViewPageViewModel>();
         builder.Services.AddPage<RadioButtonPage, SearchBarPageViewModel>();

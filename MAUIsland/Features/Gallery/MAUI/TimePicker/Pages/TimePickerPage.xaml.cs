@@ -1,11 +1,12 @@
 namespace MAUIsland;
 
-public partial class PickerPage 
+public partial class TimePickerPage
 {
     #region [CTor]
-    public PickerPage()
+    public TimePickerPage()
     {
         InitializeComponent();
     }
     #endregion
+
 }

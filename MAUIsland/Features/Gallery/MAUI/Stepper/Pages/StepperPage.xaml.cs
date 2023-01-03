@@ -1,11 +1,12 @@
 namespace MAUIsland;
 
-public partial class PickerPage 
+public partial class StepperPage
 {
     #region [CTor]
-    public PickerPage()
+    public StepperPage()
     {
         InitializeComponent();
     }
     #endregion
+
 }

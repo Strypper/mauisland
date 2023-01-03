@@ -1,11 +1,12 @@
 namespace MAUIsland;
 
-public partial class PickerPage 
+public partial class CarouselViewPage
 {
     #region [CTor]
-    public PickerPage()
+    public CarouselViewPage()
     {
         InitializeComponent();
     }
     #endregion
+
 }
