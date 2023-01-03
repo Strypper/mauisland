@@ -220,6 +220,18 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlDetail = "CarouselView will display its items in a horizontal orientation. A single item will be displayed on screen, with swipe gestures resulting in forwards and backwards navigation through the collection of items. "
             });
 
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Collection View",
+                ControlRoute = AppRoutes.CollectionViewPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_apps_24_regular
+                },
+                ControlDetail = "CollectionView is a view for presenting lists of data using different layout specifications.  "
+            });
+
             return controls.AsEnumerable();
         });
     }

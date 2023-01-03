@@ -68,6 +68,7 @@
 	  <Folder Include="Features\Gallery\MAUI\AllControls\ContentViews\" />
 	  <Folder Include="Features\Gallery\MAUI\AllControls\Models\" />
 	  <Folder Include="Features\Gallery\MAUI\Button\Models\" />
+	  <Folder Include="Features\Gallery\MAUI\NewFolder\" />
 	  <Folder Include="Features\QA\" />
 	</ItemGroup>
 
@@ -91,10 +92,16 @@
 	  <MauiXaml Update="Features\Gallery\MAUI\CarouselView\Pages\CarouselViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\MAUI\CheckBox\Pages\CheckBoxPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\MAUI\DatePicker\Pages\DatePickerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\MAUI\Editor\Pages\EditorPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\MAUI\Entry\Pages\EntryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\MAUI\ImageButton\Pages\ImageButtonPage.xaml">
@@ -109,7 +116,28 @@
 	  <MauiXaml Update="Features\Gallery\MAUI\ProgressBar\Pages\ProgressBarPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\MAUI\RaditoButton\Pages\RadioButtonPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\MAUI\RefreshView\Pages\RefreshViewPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\MAUI\SearchBar\Pages\SearchBarPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\MAUI\Slider\Pages\SliderPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\MAUI\Stepper\Pages\StepperPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\MAUI\SwipeView\Pages\SwipeViewPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\MAUI\Switch\Pages\SwitchPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\MAUI\TimePicker\Pages\TimePickerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\GalleryPage.xaml">
