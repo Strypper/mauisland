@@ -1,4 +1,5 @@
 namespace MAUIsland;
+using System.Windows.Input;
 
 public partial class ControlCardContentView : ContentView
 {
@@ -24,6 +25,8 @@ public partial class ControlCardContentView : ContentView
                                                                                             typeof(ControlCardContentView),
                                                                                             default(ControlInfo)
                                                                                             );
+
+    public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
     #endregion
 
     #region [Properties]

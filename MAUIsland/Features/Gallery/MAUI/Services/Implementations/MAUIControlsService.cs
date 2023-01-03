@@ -97,7 +97,9 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlName = "Slider",
                 ControlRoute = AppRoutes.SliderPage,
                 ControlIcon = "fluenticon_options_white.png",
-                ControlDetail = "Slider is a horizontal bar that you can manipulate to select a double value from a continuous range."
+                ControlDetail = "Slider is a horizontal bar that you can manipulate to select a double value from a continuous range.",
+                DocumentUrl = "https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/slider?view=net-maui-7.0",
+                GitHubUrl = "https://github.com/Strypper/MAUIsland/tree/main/MAUIsland/Features/Gallery/MAUI/Slider"
             });
 
             controls.Add(new ControlInfo()

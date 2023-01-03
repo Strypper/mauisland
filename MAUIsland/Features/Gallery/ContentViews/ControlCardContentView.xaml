@@ -19,11 +19,29 @@
                      HorizontalOptions="Start"/>
             <HorizontalStackLayout Spacing="10"
                                    Margin="10">
-                <Image WidthRequest="30"
+                <VerticalStackLayout>
+                    <Image WidthRequest="30"
                        HeightRequest="30"
                        Margin="0,5,0,0"
                        VerticalOptions="Start"
                        Source="{x:Binding ComponentData.ControlIcon,Source={x:Reference root}}"/>
+                    <Label Text="GitHub">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TapCommand, Source={x:Reference root}}"
+                                          CommandParameter="{x:Binding ComponentData.GitHubUrl, Source={x:Reference root}}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="Doc">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TapCommand, Source={x:Reference root}}"
+                                          CommandParameter="{x:Binding ComponentData.DocumentUrl, Source={x:Reference root}}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
+                </VerticalStackLayout>
+                
+                
                 <VerticalStackLayout Spacing="10"
                                  WidthRequest="200"
                                  VerticalOptions="Center" 
