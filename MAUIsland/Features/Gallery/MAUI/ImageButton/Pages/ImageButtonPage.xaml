@@ -10,7 +10,7 @@
               Padding="20">
     <ScrollView>
         <VerticalStackLayout Spacing="10">
-
+            
         </VerticalStackLayout>
     </ScrollView>
 
