@@ -232,6 +232,18 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlDetail = "CollectionView is a view for presenting lists of data using different layout specifications.  "
             });
 
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Indicator View",
+                ControlRoute = AppRoutes.IndicatorViewPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_apps_24_regular
+                },
+                ControlDetail = " IndicatorView is a control that displays indicators that represent the number of items, and current position, in a CarouselView"
+            });
+
             return controls.AsEnumerable();
         });
     }

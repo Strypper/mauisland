@@ -13,6 +13,7 @@ public static class AppRoutes
     public const string PickerPage = "//mauiAllControlsPage/pickerPage";
     public const string StepperPage = "//mauiAllControlsPage/stepperPage";
     public const string CollectionViewPage = "//mauiAllControlsPage/collectionViewPage";
+    public const string IndicatorViewPage = "//mauiAllControlsPage/indicatorViewPage";
     public const string SwitchPage = "//mauiAllControlsPage/switchPage";
     public const string EntryPage = "//mauiAllControlsPage/entryPage";
     public const string TimePickerPage = "//mauiAllControlsPage/timePickerPage";
