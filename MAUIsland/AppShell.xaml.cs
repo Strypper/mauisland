@@ -8,8 +8,8 @@ public partial class AppShell : Shell
 
 		Routing.RegisterRoute("galleryPage", typeof(GalleryPage));
 		Routing.RegisterRoute("mauiAllControlsPage", typeof(MAUIAllControlsPage));
-
-		Routing.RegisterRoute("buttonPage", typeof(ButtonPage));
+        Routing.RegisterRoute("collectionViewPage", typeof(CollectionViewPage));
+        Routing.RegisterRoute("buttonPage", typeof(ButtonPage));
 		Routing.RegisterRoute("imageButtonPage", typeof(ImageButtonPage));
         Routing.RegisterRoute("sliderPage", typeof(SliderPage));
         Routing.RegisterRoute("pickerPage", typeof(PickerPage));

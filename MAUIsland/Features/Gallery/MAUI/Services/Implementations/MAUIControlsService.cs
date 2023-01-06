@@ -258,6 +258,18 @@ public class MAUIControlsService : IMAUIControlsService
                 DocumentUrl = "https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/carouselview/?view=net-maui-7.0"
             });
 
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Collection View",
+                ControlRoute = AppRoutes.CollectionViewPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_apps_24_regular
+                },
+                ControlDetail = "CollectionView is a view for presenting lists of data using different layout specifications.  "
+            });
+
             return controls.AsEnumerable();
         });
     }
