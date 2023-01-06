@@ -7,10 +7,251 @@
              x:DataType="app:RadioButtonPageViewModel"
              
              Title="Radio Button">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Radio Button Page"
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Padding="10">
+            <Label 
+            Text= "The .NET Multi-platform App UI (.NET MAUI) RadioButton is a type of button that allows users to select one option from a set. Each option is represented by one radio button, and you can only select one radio button in a group."
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+            HorizontalOptions="Start"
+            FontAttributes="None"
+            Padding="10"
+            FontSize="Default"/>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
+               Padding="20,10,20,10">
+                <VerticalStackLayout Spacing="0">
+                    <Grid Margin="0,0,0,5">
+                        <Grid.Resources>
+                            <FontImageSource x:Key="ShowCode"
+                                             Color="{x:StaticResource Primary}"
+                                             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                                             Glyph="{Static app:FluentUIIcon.Ic_fluent_code_16_regular}"
+                                             Size="25"/>
+                        </Grid.Resources>
+                        <Label Text="Basic radio button" Margin="0,0,0,5"
+                           FontSize= "Medium"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center"/>
+
+                        <Border HorizontalOptions="End"
+                            Stroke="White"
+                            StrokeShape="RoundRectangle 10,10,0,0">
+                            <Button x:Name="showCode1"
+                                    WidthRequest="160"
+                                    BackgroundColor="Transparent"
+                                    Text="Show Code"
+                                    ImageSource="{x:StaticResource ShowCode}"
+                                    Clicked="Button_Clicked">
+                            </Button>
+                        </Border>
+
+                        <Grid HeightRequest="1" 
+                             VerticalOptions="End"
+                             Background="White"/>
+                    </Grid>
+
+                    <StackLayout x:Name="example1">
+                        <RadioButton Content="Cat"
+                             Margin="0,0,0,-10"
+                             IsChecked="True"/>
+                        <RadioButton Content="Dog" 
+                             Margin="0,0,0,-10"/>
+                        <RadioButton Content="Fish" 
+                             Margin="0,0,0,-10"/>
+                        <RadioButton Content="Bird" 
+                             Margin="0,0,0,-10"/>
+                    </StackLayout>
+
+                    <Grid x:Name="code1" 
+                          IsVisible="False">
+                        <Editor Text="{x:Binding CodeExample1}"
+                                AutoSize="TextChanges"
+                                IsReadOnly="True"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
+               Padding="20,10,20,10">
+                <VerticalStackLayout Spacing="0">
+                    <Grid Margin="0,0,0,5">
+                        <Grid.Resources>
+                            <FontImageSource x:Key="ShowCode"
+                                             Color="{x:StaticResource Primary}"
+                                             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                                             Glyph="{Static app:FluentUIIcon.Ic_fluent_code_16_regular}"
+                                             Size="25"/>
+                        </Grid.Resources>
+                        <Label Text="Image radio button" Margin="0,0,0,5"
+                           FontSize= "Medium"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center"/>
+
+                        <Border HorizontalOptions="End"
+                            Stroke="White"
+                            StrokeShape="RoundRectangle 10,10,0,0">
+                            <Button x:Name="showCode2"
+                                    WidthRequest="160"
+                                    BackgroundColor="Transparent"
+                                    Text="Show Code"
+                                    ImageSource="{x:StaticResource ShowCode}"
+                                    Clicked="Button_Clicked2">
+                            </Button>
+                        </Border>
+
+                        <Grid HeightRequest="1" 
+                             VerticalOptions="End"
+                             Background="White"/>
+                    </Grid>
+
+                    <StackLayout x:Name="example2">
+                        <StackLayout.Resources>
+                            <FontImageSource x:Key= "Happy"
+                                             Color="White"
+                                             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                                             Glyph="{Static app:FluentUIIcon.Ic_fluent_emoji_28_regular}"/>
+                            <FontImageSource x:Key= "Normal"
+                                             Color="White"
+                                             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                                             Glyph="{Static app:FluentUIIcon.Ic_fluent_emoji_smile_slight_24_regular}"/>
+                            <FontImageSource x:Key="Sad"
+                                             Color="White"
+                                             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                                             Glyph="{Static app:FluentUIIcon.Ic_fluent_emoji_sad_24_regular}"/>
+                        </StackLayout.Resources>
+                        <RadioButton IsChecked="True">
+                            <RadioButton.Content>
+                                <Image WidthRequest="30" 
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Center"
+                                       Source="{x:StaticResource Happy}"/>
+                            </RadioButton.Content>
+                        </RadioButton>
+                        <RadioButton>
+                            <RadioButton.Content>
+                                <Image WidthRequest= "30" 
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Center"
+                                       Source="{x:StaticResource Normal}"/>
+                            </RadioButton.Content>
+                        </RadioButton>
+                        <RadioButton>
+                            <RadioButton.Content>
+                                <Image WidthRequest="30" 
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Center"
+                                       Source="{x:StaticResource Sad}"/>
+                            </RadioButton.Content>
+                        </RadioButton>
+                    </StackLayout>
+
+                    <Grid x:Name="code2" 
+                          IsVisible="False">
+                        <Editor Text="{x:Binding CodeExample2}"
+                                AutoSize="TextChanges"
+                                IsReadOnly="True"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
+               Padding="20,10,20,10">
+                <VerticalStackLayout Spacing="0">
+                    <Grid Margin="0,0,0,5">
+                        <Grid.Resources>
+                            <FontImageSource x:Key="ShowCode"
+                                             Color="{x:StaticResource Primary}"
+                                             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                                             Glyph="{Static app:FluentUIIcon.Ic_fluent_code_16_regular}"
+                                             Size="25"/>
+                        </Grid.Resources>
+                        <Label Text="Text and Image radio button" Margin="0,0,0,5"
+                           FontSize= "Medium"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center"/>
+
+                        <Border HorizontalOptions="End"
+                            Stroke="White"
+                            StrokeShape="RoundRectangle 10,10,0,0">
+                            <Button x:Name="showCode3"
+                                    WidthRequest="160"
+                                    BackgroundColor="Transparent"
+                                    Text="Show Code"
+                                    ImageSource="{x:StaticResource ShowCode}"
+                                    Clicked="Button_Clicked3">
+                            </Button>
+                        </Border>
+
+                        <Grid HeightRequest="1" 
+                             VerticalOptions="End"
+                             Background="White"/>
+                    </Grid>
+
+                    <StackLayout x:Name="example3"
+                                 Orientation="Horizontal">
+                        <StackLayout.Resources>
+                            <FontImageSource x:Key= "Happy"
+                                             Color="White"
+                                             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                                             Glyph="{Static app:FluentUIIcon.Ic_fluent_emoji_28_regular}"/>
+                            <FontImageSource x:Key= "Normal"
+                                             Color="White"
+                                             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                                             Glyph="{Static app:FluentUIIcon.Ic_fluent_emoji_smile_slight_24_regular}"/>
+                            <FontImageSource x:Key="Sad"
+                                             Color="White"
+                                             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                                             Glyph="{Static app:FluentUIIcon.Ic_fluent_emoji_sad_24_regular}"/>
+                        </StackLayout.Resources>
+                        <RadioButton IsChecked="True">
+                            <RadioButton.Content>
+                                <StackLayout>
+                                    <Image WidthRequest="30" 
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Source="{x:StaticResource Happy}"/>
+                                    <Label Text="Happy" 
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="End"/>
+                                </StackLayout>
+                            </RadioButton.Content>
+                        </RadioButton>
+                        <RadioButton>
+                            <RadioButton.Content>
+                                <StackLayout>
+                                    <Image WidthRequest="30" 
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Source="{x:StaticResource Normal}"/>
+                                    <Label Text="Normal" 
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="End"/>
+                                </StackLayout>
+                            </RadioButton.Content>
+                        </RadioButton>
+                        <RadioButton>
+                            <RadioButton.Content>
+                                <StackLayout>
+                                    <Image WidthRequest="30" 
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Source="{x:StaticResource Sad}"/>
+                                    <Label Text="Sad" 
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="End"/>
+                                </StackLayout>
+                            </RadioButton.Content>
+                        </RadioButton>
+                    </StackLayout>
+
+                    <Grid x:Name="code3" 
+                          IsVisible="False">
+                        <Editor Text="{x:Binding CodeExample3}"
+                                AutoSize="TextChanges"
+                                IsReadOnly="True"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </app:BasePage>
