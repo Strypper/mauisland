@@ -7,10 +7,88 @@
              x:DataType="app:RadioButtonPageViewModel"
              
              Title="Radio Button">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Radio Button Page"
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Padding="10">
+            <Label 
+            Text= "The .NET Multi-platform App UI (.NET MAUI) RadioButton is a type of button that allows users to select one option from a set. Each option is represented by one radio button, and you can only select one radio button in a group."
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+            HorizontalOptions="Start"
+            FontAttributes="None"
+            Padding="10"
+            FontSize="Default"/>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
+               Padding="20,10,20,10">
+                <VerticalStackLayout Spacing="0">
+                    <Grid Margin="0,0,0,5">
+                        <Grid.Resources>
+                            <FontImageSource x:Key="ShowCode"
+                                             Color="{x:StaticResource Primary}"
+                                             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                                             Glyph="{Static app:FluentUIIcon.Ic_fluent_code_16_regular}"
+                                             Size="25"/>
+                        </Grid.Resources>
+                        <Label Text="Basic radio button" Margin="0,0,0,5"
+                           FontSize= "Medium"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center"/>
+
+                        <Border HorizontalOptions="End"
+                            Stroke="White"
+                            StrokeShape="RoundRectangle 10,10,0,0">
+                            <Button x:Name="showCode1"
+                                    WidthRequest="160"
+                                    BackgroundColor="Transparent"
+                                    Text="Show Code"
+                                    ImageSource="{x:StaticResource ShowCode}"
+                                    Clicked="Button_Clicked">
+
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroupList>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="Scale"
+                                                        Value="1" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Pressed">
+                                                <VisualState.Setters>
+                                                    <Setter Property="Scale"
+                                                        Value="1" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateGroupList>
+                                </VisualStateManager.VisualStateGroups>
+
+                            </Button>
+                        </Border>
+
+                        <Grid HeightRequest="1" 
+                             VerticalOptions="End"
+                             Background="White"/>
+                    </Grid>
+
+                    <VerticalStackLayout x:Name="example1">
+                        <RadioButton Content="Cat"
+                             Margin="0,0,0,-10"
+                             IsChecked="True"/>
+                        <RadioButton Content="Dog" 
+                             Margin="0,0,0,-10"/>
+                        <RadioButton Content="Fish" 
+                             Margin="0,0,0,-10"/>
+                        <RadioButton Content="Bird" 
+                             Margin="0,0,0,-10"/>
+                    </VerticalStackLayout>
+
+                    <Grid x:Name="code1" 
+                          IsVisible="False">
+                        <Editor Text="{x:Binding CodeExample1}"
+                                AutoSize="TextChanges"
+                                IsReadOnly="True"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
 </app:BasePage>
