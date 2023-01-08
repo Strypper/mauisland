@@ -6,6 +6,8 @@ public static class AppRoutes
     public const string GalleryPage = "galleryPage";
     public const string MAUIAllControlsPage = "mauiAllControlsPage";
 
+    public const string IndicatorViewPage = "indicatorViewPage";
+
     public const string ButtonPage = "buttonPage";
     public const string ImageButtonPage = "imageButtonPage";
     public const string ActivityIndicatorPage = "activityIndicatorPage";
