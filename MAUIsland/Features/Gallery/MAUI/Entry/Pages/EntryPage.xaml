@@ -1,17 +1,18 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:app="clr-namespace:MAUIsland"
-             
-              x:Class="MAUIsland.EntryPage"
-              x:DataType="app:EntryPageViewModel"
-             
-             
-             Title="Entry">
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    x:Class="MAUIsland.EntryPage"
+    x:DataType="app:EntryPageViewModel"
+    Title="Entry">
     <VerticalStackLayout>
-        <Label 
+        <Label
             Text="Welcome to Entry Page!"
-            VerticalOptions="Center" 
+            VerticalOptions="Center"
             HorizontalOptions="Center" />
+        <Button
+            Text="Back"
+            Command="{Binding BackCommand}" />
     </VerticalStackLayout>
 </app:BasePage>

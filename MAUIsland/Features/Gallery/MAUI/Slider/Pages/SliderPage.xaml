@@ -41,6 +41,54 @@
                    FontSize="Body"
                    Margin="0,10,0,0"/>
         </DataTemplate>
+
+        <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}" >
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Minimum</strong>, of type <strong style="color:blue">double</strong>, is the minimum of the range, with a default value of 0.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Maximum</strong>, of type <strong style="color:blue">double</strong>, is the maximum of the range, with a default value of 1.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Value</strong>, of type <strong style="color:blue">double</strong>, is the slider's value, which can range between Minimum and Maximum and has a default value of 0.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">MinimumTrackColor</strong>, of type <strong style="color:blue">Color</strong>, is the bar color on the left side of the thumb.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">MaximumTrackColor</strong>, of type <strong style="color:blue">Color</strong>, is the bar color on the right side of the thumb.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">ThumbColor</strong>, of type <strong style="color:blue">Color</strong>, is the thumb color.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">ThumbImageSource</strong>, of type <strong style="color:blue">ImageSource</strong>, is the image to use for the thumb, of type ImageSource.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">DragStartedCommand</strong>, of type <strong style="color:blue">ICommand</strong>, which is executed at the beginning of a drag action.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">DragCompletedCommand</strong>, of type <strong style="color:blue">ICommand</strong>, which is executed at the end of a drag action.
+                            ]]>
+            </x:String>
+        </x:Array>
     </app:BasePage.Resources>
 
     <ScrollView>
@@ -56,61 +104,13 @@
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <ListView SelectionMode="Single"
-                      Header="Slider defines the following properties:"
-                      Footer="These properties are backed by BindableProperty objects. The Value property has a default binding mode of BindingMode.TwoWay, which means that it's suitable as a binding source in an application that uses the Model-View-ViewModel (MVVM) pattern."
-                      HeaderTemplate="{x:StaticResource BulletListHeaderTemplate}"
-                      ItemTemplate="{x:StaticResource BulletListItemTemplate}"
-                      FooterTemplate="{x:StaticResource BulletListFooterTemplate}">
-                    <ListView.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>
-                                <![CDATA[
-                                <strong style="color:blue">Minimum</strong>, of type <strong style="color:blue">double</strong>, is the minimum of the range, with a default value of 0.
-                            ]]>
-                            </x:String>
-                            <x:String>
-                                <![CDATA[
-                                <strong style="color:blue">Maximum</strong>, of type <strong style="color:blue">double</strong>, is the maximum of the range, with a default value of 1.
-                            ]]>
-                            </x:String>
-                            <x:String>
-                                <![CDATA[
-                                <strong style="color:blue">Value</strong>, of type <strong style="color:blue">double</strong>, is the slider's value, which can range between Minimum and Maximum and has a default value of 0.
-                            ]]>
-                            </x:String>
-                            <x:String>
-                                <![CDATA[
-                                <strong style="color:blue">MinimumTrackColor</strong>, of type <strong style="color:blue">Color</strong>, is the bar color on the left side of the thumb.
-                            ]]>
-                            </x:String>
-                            <x:String>
-                                <![CDATA[
-                                <strong style="color:blue">MaximumTrackColor</strong>, of type <strong style="color:blue">Color</strong>, is the bar color on the right side of the thumb.
-                            ]]>
-                            </x:String>
-                            <x:String>
-                                <![CDATA[
-                                <strong style="color:blue">ThumbColor</strong>, of type <strong style="color:blue">Color</strong>, is the thumb color.
-                            ]]>
-                            </x:String>
-                            <x:String>
-                                <![CDATA[
-                                <strong style="color:blue">ThumbImageSource</strong>, of type <strong style="color:blue">ImageSource</strong>, is the image to use for the thumb, of type ImageSource.
-                            ]]>
-                            </x:String>
-                            <x:String>
-                                <![CDATA[
-                                <strong style="color:blue">DragStartedCommand</strong>, of type <strong style="color:blue">ICommand</strong>, which is executed at the beginning of a drag action.
-                            ]]>
-                            </x:String>
-                            <x:String>
-                                <![CDATA[
-                                <strong style="color:blue">DragCompletedCommand</strong>, of type <strong style="color:blue">ICommand</strong>, which is executed at the end of a drag action.
-                            ]]>
-                            </x:String>
-                        </x:Array>
-                    </ListView.ItemsSource>
-                </ListView>
+                          Header="Slider defines the following properties:"
+                          Footer="These properties are backed by BindableProperty objects. The Value property has a default binding mode of BindingMode.TwoWay, which means that it's suitable as a binding source in an application that uses the Model-View-ViewModel (MVVM) pattern."
+                          VerticalScrollBarVisibility="Never"
+                          HeaderTemplate="{x:StaticResource BulletListHeaderTemplate}"
+                          ItemTemplate="{x:StaticResource BulletListItemTemplate}"
+                          FooterTemplate="{x:StaticResource BulletListFooterTemplate}"
+                          ItemsSource="{x:StaticResource PropertyItemsSource}" />
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">

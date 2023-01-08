@@ -1,9 +1,9 @@
 namespace MAUIsland;
 
-public partial class CheckBoxPage
+public partial class TableViewPage
 {
     #region [CTor]
-    public CheckBoxPage(CheckBoxPageViewModel vm)
+    public TableViewPage(ActivityIndicatorPageViewModel vm)
     {
         InitializeComponent();
 
