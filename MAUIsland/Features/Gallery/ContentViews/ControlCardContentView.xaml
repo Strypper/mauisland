@@ -1,62 +1,87 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:app="clr-namespace:MAUIsland"
-             
-             x:Name="root"
-             x:Class="MAUIsland.ControlCardContentView"
-             x:DataType="app:ControlCardContentView">
-    <Frame HasShadow="True"
-           Padding="0" CornerRadius="4"
-           BackgroundColor="#323232"
-           IsClippedToBounds="True">
+<ContentView
+    x:Class="MAUIsland.ControlCardContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    x:Name="root"
+    x:DataType="app:ControlCardContentView">
+    <Frame
+        Padding="0"
+        BackgroundColor="#323232"
+        CornerRadius="4"
+        HasShadow="True"
+        IsClippedToBounds="True">
         <Grid IsClippedToBounds="True">
-            <Ellipse Fill="#6f0bd8"
-                     WidthRequest="250"
-                     HeightRequest="250"
-                     Margin="-150,-150,0,0"
-                     VerticalOptions="Start"
-                     HorizontalOptions="Start"/>
-            <HorizontalStackLayout Spacing="10"
-                                   Margin="10">
-                <Image Margin="0,5,0,0"
-                       WidthRequest="30"
-                       HeightRequest="30"
-                       VerticalOptions="Start"
-                       Source="{x:Binding ComponentData.ControlIcon,Source={x:Reference root}}"/>
-                
-                
-                <VerticalStackLayout Spacing="10"
-                                 WidthRequest="230"
-                                 VerticalOptions="Center" 
-                                 HorizontalOptions="Center" >
-                    <Label Text="{x:Binding ComponentData.ControlName,Source={x:Reference root}}"
-                           TextColor="{x:StaticResource White}"
-                           FontSize="Subtitle"
-                           FontAttributes="Bold"/>
-                    <Label Text="{x:Binding ComponentData.ControlDetail,Source={x:Reference root}}"
-                           TextColor="{x:StaticResource White}"
-                           ToolTipProperties.Text="{x:Binding ComponentData.ControlDetail,Source={x:Reference root}}"
-                           FontSize="Body"
-                           MaxLines="3"/>
-                    <Button Text="Detail"
-                            TextColor="{x:StaticResource White}"
-                            Clicked="Detail_Clicked"
-                            BackgroundColor="#ff28ba"/>
+            <Ellipse
+                Margin="-150,-150,0,0"
+                Fill="#6f0bd8"
+                HeightRequest="250"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                WidthRequest="250" />
+            <HorizontalStackLayout Margin="10" Spacing="10">
+                <Image
+                    Margin="0,5,0,0"
+                    HeightRequest="30"
+                    Source="{x:Binding ComponentData.ControlIcon,
+                                       Source={x:Reference root}}"
+                    VerticalOptions="Start"
+                    WidthRequest="30" />
+
+
+                <VerticalStackLayout
+                    HorizontalOptions="Center"
+                    Spacing="10"
+                    VerticalOptions="Center"
+                    WidthRequest="230">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Subtitle"
+                        Text="{x:Binding ComponentData.ControlName,
+                                         Source={x:Reference root}}"
+                        TextColor="{x:StaticResource White}" />
+                    <Label
+                        FontSize="Body"
+                        MaxLines="3"
+                        Text="{x:Binding ComponentData.ControlDetail,
+                                         Source={x:Reference root}}"
+                        TextColor="{x:StaticResource White}"
+                        ToolTipProperties.Text="{x:Binding ComponentData.ControlDetail,
+                                                           Source={x:Reference root}}" />
+                    <Button
+                        BackgroundColor="#ff28ba"
+                        Clicked="Detail_Clicked"
+                        CornerRadius="4"
+                        Text="Detail"
+                        TextColor="{x:StaticResource White}" />
                 </VerticalStackLayout>
             </HorizontalStackLayout>
-            <VerticalStackLayout VerticalOptions="End"
-                                 HorizontalOptions="Start">
-                <ImageButton Source="github.png" BackgroundColor="Transparent"
-                             WidthRequest="30" HeightRequest="30" Padding="10"
-                             ToolTipProperties.Text="Github: Source code"
-                             Command="{Binding TapCommand, Source={x:Reference root}}"
-                             CommandParameter="{x:Binding ComponentData.GitHubUrl, Source={x:Reference root}}"/>
-                <ImageButton Source="microsoft.png" BackgroundColor="Transparent"
-                             WidthRequest="30" HeightRequest="30" Padding="10"
-                             ToolTipProperties.Text="Microsoft Learn: Official document"
-                             Command="{Binding TapCommand, Source={x:Reference root}}"
-                             CommandParameter="{x:Binding ComponentData.DocumentUrl, Source={x:Reference root}}"/>
+            <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="End">
+                <ImageButton
+                    Padding="{x:OnPlatform WinUI=10,
+                                           Android=5}"
+                    BackgroundColor="Transparent"
+                    Command="{x:Binding TapCommand,
+                                        Source={x:Reference root}}"
+                    CommandParameter="{x:Binding ComponentData.GitHubUrl,
+                                                 Source={x:Reference root}}"
+                    HeightRequest="50"
+                    Source="github.png"
+                    ToolTipProperties.Text="Github: Source code"
+                    WidthRequest="50" />
+                <ImageButton
+                    Padding="{x:OnPlatform WinUI=10,
+                                           Android=5}"
+                    BackgroundColor="Transparent"
+                    Command="{x:Binding TapCommand,
+                                        Source={x:Reference root}}"
+                    CommandParameter="{x:Binding ComponentData.DocumentUrl,
+                                                 Source={x:Reference root}}"
+                    HeightRequest="50"
+                    Source="microsoft.png"
+                    ToolTipProperties.Text="Microsoft Learn: Official document"
+                    WidthRequest="50" />
             </VerticalStackLayout>
         </Grid>
     </Frame>

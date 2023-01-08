@@ -1,112 +1,120 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:app="clr-namespace:MAUIsland"
-             
-              x:Class="MAUIsland.ButtonPage"
-              x:DataType="app:ButtonPageViewModel"
-             
-              Title="Button"
-              
-              Padding="10">
+<app:BasePage
+    x:Class="MAUIsland.ButtonPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    Title="Button"
+    Padding="10"
+    x:DataType="app:ButtonPageViewModel">
 
     <ScrollView>
         <VerticalStackLayout Spacing="5">
-            <Label Text="The .NET Multi-platform App UI (.NET MAUI) Button displays text and responds to a tap or click that directs the app to carry out a task. A Button usually displays a short text string indicating a command, but it can also display a bitmap image, or a combination of text and an image. When the Button is pressed with a finger or clicked with a mouse it initiates that command."/>
-            <Label Text="A simple button with text content"
-                   FontAttributes="Bold"
-                   FontSize="Title"/>
+            <Label Text="The .NET Multi-platform App UI (.NET MAUI) Button displays text and responds to a tap or click that directs the app to carry out a task. A Button usually displays a short text string indicating a command, but it can also display a bitmap image, or a combination of text and an image. When the Button is pressed with a finger or clicked with a mouse it initiates that command." />
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="A simple button with text content" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <Grid>
-                    <Button Text="Standard XAML Button"
-                            VerticalOptions="Center"
-                            HorizontalOptions="Start"
-                            IsEnabled="{x:Binding IsEnable}"/>
+                    <Button
+                        HorizontalOptions="Start"
+                        IsEnabled="{x:Binding IsEnable}"
+                        Text="Standard XAML Button"
+                        VerticalOptions="Center" />
                     <HorizontalStackLayout HorizontalOptions="End">
-                        <CheckBox VerticalOptions="Center"
-                                  IsChecked="{x:Binding IsEnable, Mode=TwoWay}"/>
-                        <Label Text="Enable Button"
-                               VerticalOptions="Center"/>
+                        <CheckBox IsChecked="{x:Binding IsEnable, Mode=TwoWay}" VerticalOptions="Center" />
+                        <Label Text="Enable Button" VerticalOptions="Center" />
                     </HorizontalStackLayout>
                 </Grid>
             </Frame>
-            <app:SourceCodeExpander XamlCode="{x:Binding StandardButtonXamlCode}"/>
+            <app:SourceCodeExpander XamlCode="{x:Binding StandardButtonXamlCode}" />
 
-            <Label Text="You can change the background color of the button"
-                   FontAttributes="Bold"
-                   FontSize="Title"/>
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="You can change the background color of the button" />
 
             <HorizontalStackLayout Spacing="10">
-                <Button Text="Green"
-                        TextColor="{x:StaticResource White}"
-                        BackgroundColor="Green"/>
+                <Button
+                    BackgroundColor="Green"
+                    Text="Green"
+                    TextColor="{x:StaticResource White}" />
 
-                <Button Text="Red"
-                        TextColor="{x:StaticResource White}"
-                        BackgroundColor="Red"/>
+                <Button
+                    BackgroundColor="Red"
+                    Text="Red"
+                    TextColor="{x:StaticResource White}" />
 
-                <Button Text="Application Primary Color"
-                        TextColor="{x:StaticResource White}"
-                        BackgroundColor="{x:StaticResource Primary}"/>
+                <Button
+                    BackgroundColor="{x:StaticResource Primary}"
+                    Text="Application Primary Color"
+                    TextColor="{x:StaticResource White}" />
 
-                <!--This button will be Cyan when in dark mode and Blue when light mode-->
-                <Button Text="Dark or Light mode color"
-                        TextColor="{x:StaticResource Black}"
-                        BackgroundColor="{x:AppThemeBinding Dark={x:StaticResource Cyan300Accent}, 
-                                                            Light={x:StaticResource Blue300Accent}}"/>
+                <!--  This button will be Cyan when in dark mode and Blue when light mode  -->
+                <Button
+                    BackgroundColor="{x:AppThemeBinding Dark={x:StaticResource Cyan300Accent},
+                                                        Light={x:StaticResource Blue300Accent}}"
+                    Text="Dark or Light mode color"
+                    TextColor="{x:StaticResource Black}" />
             </HorizontalStackLayout>
-            <app:SourceCodeExpander XamlCode="{x:Binding ButtonsChangedBackgroundGroupXamlCode}"/>
+            <app:SourceCodeExpander XamlCode="{x:Binding ButtonsChangedBackgroundGroupXamlCode}" />
 
-            <Label Text="Apply rotation to a button"
-                   FontAttributes="Bold"
-                   FontSize="Title"/>
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="Apply rotation to a button" />
             <Frame BackgroundColor="{x:StaticResource Gray900}">
 
-                <Button Text="MAUI Button Test"
-                        VerticalOptions="Center"
-                        HorizontalOptions="Start" 
-                        BorderColor="Black"
-                        BorderWidth="2"
-                        BackgroundColor="Red"
-                        CharacterSpacing="4"
-                        WidthRequest="250"
-                        HeightRequest="70"
-                        FontSize="18"            
-                        FontAttributes="Bold"
-                        LineBreakMode="WordWrap"
-                        TextColor="White"
-                        CornerRadius="30"
-                        RotationX="10"
-                        RotationY="30"/>
+                <Button
+                    BackgroundColor="Red"
+                    BorderColor="Black"
+                    BorderWidth="2"
+                    CharacterSpacing="4"
+                    CornerRadius="30"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    HeightRequest="70"
+                    HorizontalOptions="Start"
+                    LineBreakMode="WordWrap"
+                    RotationX="10"
+                    RotationY="30"
+                    Text="MAUI Button Test"
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    WidthRequest="250" />
             </Frame>
-            <app:SourceCodeExpander XamlCode="{x:Binding RotationButtonXamlCode}"/>
+            <app:SourceCodeExpander XamlCode="{x:Binding RotationButtonXamlCode}" />
 
-            <Label Text="Use bitmaps with buttons"
-                   FontAttributes="Bold"
-                   FontSize="Title"/>
-            <Label Text="The Button class defines an ImageSource property that allows you to display a small bitmap image on the Button, either alone or in combination with text. You can also specify how the text and image are arranged. The ImageSource property is of type ImageSource, which means that the bitmaps can be loaded from a file, embedded resource, URI, or stream."/>
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="Use bitmaps with buttons" />
+            <Label Text="The Button class defines an ImageSource property that allows you to display a small bitmap image on the Button, either alone or in combination with text. You can also specify how the text and image are arranged. The ImageSource property is of type ImageSource, which means that the bitmaps can be loaded from a file, embedded resource, URI, or stream." />
             <Frame>
                 <Frame.Resources>
-                    <FontImageSource x:Key="HomeIcon"
-                                     Color="{x:StaticResource Primary }"
-                                     FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                                     Glyph="{Static app:FluentUIIcon.Ic_fluent_home_20_regular}"/>
+                    <FontImageSource
+                        x:Key="HomeIcon"
+                        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                        Glyph="{Static app:FluentUIIcon.Ic_fluent_home_20_regular}"
+                        Color="{x:OnPlatform WinUI={x:StaticResource Primary},
+                                             Android={x:StaticResource White}}" />
 
-                    <FontImageSource x:Key="DownloadIcon"
-                                     Color="{x:StaticResource Primary }"
-                                     FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                                     Glyph="{Static app:FluentUIIcon.Ic_fluent_arrow_download_20_regular}"/>
+                    <FontImageSource
+                        x:Key="DownloadIcon"
+                        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                        Glyph="{Static app:FluentUIIcon.Ic_fluent_arrow_download_20_regular}"
+                        Color="{x:OnPlatform WinUI={x:StaticResource Primary},
+                                             Android={x:StaticResource White}}" />
                 </Frame.Resources>
 
                 <HorizontalStackLayout Spacing="10">
-                    <Button Text="Home"
-                            ImageSource="{x:StaticResource HomeIcon}"/>
+                    <Button ImageSource="{x:StaticResource HomeIcon}" Text="Home" />
 
-                    <Button Text="Download"
-                            ImageSource="{x:StaticResource DownloadIcon}"/>
+                    <Button ImageSource="{x:StaticResource DownloadIcon}" Text="Download" />
                 </HorizontalStackLayout>
             </Frame>
-            <app:SourceCodeExpander XamlCode="{x:Binding ButtonWithImageXamlCode}"/>
+            <app:SourceCodeExpander XamlCode="{x:Binding ButtonWithImageXamlCode}" />
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

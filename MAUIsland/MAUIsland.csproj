@@ -119,6 +119,9 @@
 	  <MauiXaml Update="Features\Gallery\Pages\GalleryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Styles\Colors.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="UI\Views\SourceCodeExpander.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
