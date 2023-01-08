@@ -3,9 +3,10 @@ namespace MAUIsland;
 public partial class IndicatorViewPage
 {
     #region [CTor]
-    public IndicatorViewPage()
+    public IndicatorViewPage(IndicatorViewPageViewModel vm)
     {
         InitializeComponent();
+        BindingContext = vm;
     }
     #endregion
 
