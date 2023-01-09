@@ -36,7 +36,7 @@
                             Stroke="White"
                             StrokeShape="RoundRectangle 10,10,0,0">
                             <Button x:Name="showCode1"
-                                    WidthRequest="160"
+                                    HeightRequest="20"
                                     BackgroundColor="Transparent"
                                     Text="Show Code"
                                     ImageSource="{x:StaticResource ShowCode}"
