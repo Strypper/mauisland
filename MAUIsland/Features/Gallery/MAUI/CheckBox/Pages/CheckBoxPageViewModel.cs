@@ -6,8 +6,7 @@ public partial class CheckBoxPageViewModel : NavigationAwareBaseViewModel
     public CheckBoxPageViewModel(IAppNavigator appNavigator)
                                     : base(appNavigator)
     {
-        OnCyanButtonClicked = new Command(() => currentColor = "#28C2D1");
-        OnYellowButtonClicked = new Command(() => currentColor = "#F7B548");
+
     }
     #endregion
 
@@ -32,9 +31,5 @@ public partial class CheckBoxPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     string checkBoxWithLabelXamlCode = "Label Text=\"CheckBox\"/>\r\n<CheckBox/>";
-
-    public ICommand OnCyanButtonClicked { get; private set; }
-
-    public ICommand OnYellowButtonClicked { get; private set; }
     #endregion
 }
