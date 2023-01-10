@@ -79,19 +79,17 @@
 
         <DataTemplate x:Key="BulletListItemTemplate"
                       x:DataType="x:String">
-            <ViewCell>
-                <HorizontalStackLayout Margin="5">
-                    <Ellipse WidthRequest="7"
+            <HorizontalStackLayout Margin="2">
+                <Ellipse WidthRequest="7"
                              HeightRequest="7"
                              VerticalOptions="Center"
                              Fill="{x:AppThemeBinding Dark='#ffffff', Light='Black'}"/>
-                    <Label Text="{x:Binding}"
+                <Label Text="{x:Binding}"
                            TextType="Html"
                            FontSize="Body"
                            Margin="10,0,0,0"
                            VerticalOptions="Center"/>
-                </HorizontalStackLayout>
-            </ViewCell>
+            </HorizontalStackLayout>
         </DataTemplate>
 
         <x:String x:Key="introduce">The .NET Multi-platform App UI (.NET MAUI) RadioButton is a type of button that allows users to select one option from a set. Each option is represented by one radio button, and you can only select one radio button in a group.</x:String>
@@ -177,9 +175,7 @@
             Text= "{x:StaticResource introduce}"
             VerticalOptions="Center" 
             HorizontalOptions="Start"
-            FontAttributes="None"
-            Padding="10"
-            FontSize="Default"/>
+            Padding="10"/>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
                Padding="20,10,20,10">
                 <VerticalStackLayout Spacing="0">
@@ -235,7 +231,7 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <ListView  Margin="10"
+            <CollectionView  Margin="10"
                        SelectionMode="Single"
                        Header="RadioButton defines the following properties:"
                        Footer="These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled."
