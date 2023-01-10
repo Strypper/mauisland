@@ -15,6 +15,7 @@ public static class AppRoutes
     public const string PickerPage = "pickerPage";
     public const string StepperPage = "stepperPage";
     public const string CollectionViewPage = "collectionViewPage";
+    public const string GridLayoutPage = "gridLayoutPage";
     public const string SwitchPage = "switchPage";
     public const string LabelPage = "labelPage";
     public const string EntryPage = "entryPage";

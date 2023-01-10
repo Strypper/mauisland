@@ -1,6 +1,4 @@
-﻿
-
-namespace MAUIsland;
+﻿namespace MAUIsland;
 
 public partial class LabelPageViewModel : NavigationAwareBaseViewModel
 {

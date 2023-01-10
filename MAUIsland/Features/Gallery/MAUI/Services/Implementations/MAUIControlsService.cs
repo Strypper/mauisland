@@ -294,6 +294,18 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlDetail = "Label displays single-line and multi-line text. Text displayed by a Label can be colored, spaced, and can have text decorations."
             });
 
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Grid Layout Page",
+                ControlRoute = AppRoutes.GridLayoutPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_board_split_24_regular
+                },
+                ControlDetail = " Grid, is a layout that organizes its children into rows and columns, which can have proportional or absolute sizes."
+            });
+
             return controls.AsEnumerable();
         });
     }

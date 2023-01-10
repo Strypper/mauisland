@@ -23,6 +23,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("checkBoxPage", typeof(CheckBoxPage));
         Routing.RegisterRoute("refreshViewPage", typeof(RefreshViewPage));
         Routing.RegisterRoute("labelPage", typeof(LabelPage));
+        Routing.RegisterRoute("gridLayoutPage", typeof(GridLayoutPage));
         Routing.RegisterRoute("radioButtonPage", typeof(RadioButtonPage));
         Routing.RegisterRoute("progressBarPage", typeof(ProgressBarPage));
         Routing.RegisterRoute("activityIndicatorPage", typeof(ActivityIndicatorPage));
