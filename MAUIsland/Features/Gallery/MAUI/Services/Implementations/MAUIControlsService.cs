@@ -282,6 +282,18 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlDetail = " IndicatorView is a control that displays indicators that represent the number of items, and current position, in a CarouselView"
             });
 
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Label Page",
+                ControlRoute = AppRoutes.LabelPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_text_case_title_24_regular
+                },
+                ControlDetail = "Label displays single-line and multi-line text. Text displayed by a Label can be colored, spaced, and can have text decorations."
+            });
+
             return controls.AsEnumerable();
         });
     }
