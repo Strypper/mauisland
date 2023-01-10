@@ -75,6 +75,7 @@ public static class MauiProgram
         builder.Services.AddPage<TimePickerPage, TimePickerPageViewModel>();
         builder.Services.AddPage<SwitchPage, SwitchPageViewModel>();
         builder.Services.AddPage<CheckBoxPage, CheckBoxPageViewModel>();
+        builder.Services.AddPage<LabelPage, LabelPageViewModel>();
         //builder.Services.AddPage<SwipeViewPage, SwipeViewPageViewModel>();
         builder.Services.AddPage<RadioButtonPage, RadioButtonPageViewModel>();
         builder.Services.AddPage<DatePickerPage, DatePickerPageViewModel>();

@@ -16,6 +16,7 @@ public static class AppRoutes
     public const string StepperPage = "stepperPage";
     public const string CollectionViewPage = "collectionViewPage";
     public const string SwitchPage = "switchPage";
+    public const string LabelPage = "labelPage";
     public const string EntryPage = "entryPage";
     public const string TimePickerPage = "timePickerPage";
     public const string CheckBoxPage = "checkBoxPage";
