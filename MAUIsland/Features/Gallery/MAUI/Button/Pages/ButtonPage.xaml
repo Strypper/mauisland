@@ -30,7 +30,7 @@
         <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">BorderColor</strong>, of type <strong style="color:blue">Color</strong, describes the border color of the button.
+                                <strong style="color:blue">BorderColor</strong>, of type <strong style="color:blue">Color</strong>, describes the border color of the button.
                             ]]>
             </x:String>
             <x:String>
