@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:app="clr-namespace:MAUIsland"
-              
-              x:Class="MAUIsland.ActivityIndicatorPage"
-              Title="Activity Indicator"
-              Padding="10">
+<app:BasePage
+    x:Class="MAUIsland.ActivityIndicatorPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    Title="Activity Indicator"
+    Padding="10">
     <app:BasePage.Resources>
         <x:String x:Key="ControlInfo">
             The .NET Multi-platform App UI (.NET MAUI) ActivityIndicator displays an animation to show that the application is engaged in a lengthy activity. Unlike ProgressBar, ActivityIndicator gives no indication of progress.
-
-The appearance of an ActivityIndicator is platform-dependent, and the following screenshot shows an ActivityIndicator on iOS and Android:
+            The appearance of an ActivityIndicator is platform-dependent, and the following screenshot shows an ActivityIndicator on iOS and Android:
         </x:String>
 
         <x:String x:Key="PropertiesListHeader">
@@ -36,26 +35,25 @@ The appearance of an ActivityIndicator is platform-dependent, and the following 
     </app:BasePage.Resources>
     <VerticalStackLayout Spacing="10">
         <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-            <Label Text="{x:StaticResource ControlInfo}"/>
+            <Label Text="{x:StaticResource ControlInfo}" />
         </Frame>
         <Frame>
-            <CollectionView Header="{x:StaticResource PropertiesListHeader}"
-                            ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                            Footer="{x:StaticResource PropertiesListFooter}"
-                            Style="{x:StaticResource PropertiesListStyle}"
-                            />
+            <CollectionView
+                Footer="{x:StaticResource PropertiesListFooter}"
+                Header="{x:StaticResource PropertiesListHeader}"
+                ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                Style="{x:StaticResource PropertiesListStyle}" />
         </Frame>
-        <HorizontalStackLayout Spacing="10">
-            <ActivityIndicator IsRunning="True"/>
+        <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <ActivityIndicator IsRunning="True" />
 
-            <ActivityIndicator IsRunning="True"
-                               Color="Green"/>
+                <ActivityIndicator IsRunning="True" Color="Green" />
 
-            <ActivityIndicator IsRunning="True"
-                               Color="Red"/>
-            
-            <ActivityIndicator IsRunning="true"
-                               Color="Aqua" />
-        </HorizontalStackLayout>
+                <ActivityIndicator IsRunning="True" Color="Red" />
+
+                <ActivityIndicator IsRunning="true" Color="Aqua" />
+            </HorizontalStackLayout>
+        </Frame>
     </VerticalStackLayout>
 </app:BasePage>
