@@ -1,14 +1,14 @@
 namespace MAUIsland;
 
-public partial class SliderPage
+public partial class LabelPage
 {
     #region [CTor]
-    public SliderPage(SliderPageViewModel vm)
+
+    public LabelPage(ActivityIndicatorPageViewModel vm)
     {
         InitializeComponent();
 
         BindingContext = vm;
     }
     #endregion
-
 }

@@ -9,6 +9,17 @@ public partial class SliderPageViewModel : NavigationAwareBaseViewModel
 
     }
     #endregion
+
+    #region [Properties]
+    [ObservableProperty]
+    string simpleCreateSliderXamlCode = "<Slider />";
+
+    [ObservableProperty]
+    string sliderWithCustomColorsXamlCode = "<Slider\r\n                        MaximumTrackColor=\"Red\"\r\n                        MinimumTrackColor=\"Blue\"\r\n                        ThumbColor=\"Green\" />";
+
+    [ObservableProperty]
+    string sliderWithCustomThumbImageXamlCode = "<Slider MinimumTrackColor=\"#6e50db\" ThumbImageSource=\"dotnet_bot.png\" />";
+    #endregion
 }
 
 

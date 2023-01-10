@@ -1,9 +1,9 @@
 namespace MAUIsland;
 
-public partial class SliderPage
+public partial class TableViewPage
 {
     #region [CTor]
-    public SliderPage(SliderPageViewModel vm)
+    public TableViewPage(ActivityIndicatorPageViewModel vm)
     {
         InitializeComponent();
 

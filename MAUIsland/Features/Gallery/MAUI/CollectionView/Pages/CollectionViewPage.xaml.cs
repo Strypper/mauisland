@@ -1,9 +1,12 @@
 namespace MAUIsland;
 
-public partial class SliderPage
+
+
+public partial class CollectionViewPage
 {
+
     #region [CTor]
-    public SliderPage(SliderPageViewModel vm)
+    public CollectionViewPage(CollectionViewPageViewModel vm)
     {
         InitializeComponent();
 
