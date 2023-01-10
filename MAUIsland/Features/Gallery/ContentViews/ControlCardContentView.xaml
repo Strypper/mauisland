@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView
     x:Class="MAUIsland.ControlCardContentView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -10,78 +10,106 @@
         Padding="0"
         BackgroundColor="#323232"
         CornerRadius="4"
-        HasShadow="True"
+        HasShadow="False"
         IsClippedToBounds="True">
-        <Grid IsClippedToBounds="True">
+        <Grid
+            RowSpacing="0"
+            ColumnSpacing="16"
+            RowDefinitions="48,96,56"
+            ColumnDefinitions="48,*"
+            IsClippedToBounds="True">
             <Ellipse
+                Grid.RowSpan="3"
+                Grid.ColumnSpan="2"
                 Margin="-150,-150,0,0"
                 Fill="#6f0bd8"
                 HeightRequest="250"
                 HorizontalOptions="Start"
                 VerticalOptions="Start"
                 WidthRequest="250" />
-            <HorizontalStackLayout Margin="10" Spacing="10">
-                <Image
-                    Margin="0,5,0,0"
-                    HeightRequest="30"
-                    Source="{x:Binding ComponentData.ControlIcon,
-                                       Source={x:Reference root}}"
-                    VerticalOptions="Start"
-                    WidthRequest="30" />
 
+            <Image
+                HeightRequest="32"
+                VerticalOptions="Center"
+                Source="{x:Binding
+                    ComponentData.ControlIcon,
+                    Source={x:Reference root}
+                }" />
+            <Label
+                Grid.Column="1"
+                VerticalOptions="Center"
+                FontAttributes="Bold"
+                FontSize="Subtitle"
+                Text="{x:Binding
+                    ComponentData.ControlName,
+                    Source={x:Reference root}
+                }"
+                TextColor="{x:StaticResource White}" />
 
-                <VerticalStackLayout
-                    HorizontalOptions="Center"
-                    Spacing="10"
-                    VerticalOptions="Center"
-                    WidthRequest="230">
-                    <Label
-                        FontAttributes="Bold"
-                        FontSize="Subtitle"
-                        Text="{x:Binding ComponentData.ControlName,
-                                         Source={x:Reference root}}"
-                        TextColor="{x:StaticResource White}" />
-                    <Label
-                        FontSize="Body"
-                        MaxLines="3"
-                        Text="{x:Binding ComponentData.ControlDetail,
-                                         Source={x:Reference root}}"
-                        TextColor="{x:StaticResource White}"
-                        ToolTipProperties.Text="{x:Binding ComponentData.ControlDetail,
-                                                           Source={x:Reference root}}" />
-                    <Button
-                        BackgroundColor="#ff28ba"
-                        Clicked="Detail_Clicked"
-                        CornerRadius="4"
-                        Text="Detail"
-                        TextColor="{x:StaticResource White}" />
-                </VerticalStackLayout>
-            </HorizontalStackLayout>
-            <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="End">
+            <Label
+                Grid.Column="1"
+                Grid.Row="1"
+                Padding="0,0,8,16"
+                FontSize="Body"
+                MaxLines="3"
+                Text="{x:Binding
+                    ComponentData.ControlDetail,
+                    Source={x:Reference root}
+                }"
+                TextColor="{x:StaticResource White}"
+                ToolTipProperties.Text="{x:Binding
+                    ComponentData.ControlDetail,
+                    Source={x:Reference root}
+                }" />
+
+            <Button
+                Grid.Column="1"
+                Grid.Row="2"
+                Margin="0,0,16,16"
+                MaximumWidthRequest="120"
+                BackgroundColor="#ff28ba"
+                Clicked="Detail_Clicked"
+                CornerRadius="4"
+                Text="Detail"
+                TextColor="{x:StaticResource White}" />
+
+            <VerticalStackLayout
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Spacing="8"
+                Padding="0,8"
+                VerticalOptions="End">
                 <ImageButton
-                    Padding="{x:OnPlatform WinUI=10,
-                                           Android=5}"
                     BackgroundColor="Transparent"
-                    Command="{x:Binding TapCommand,
-                                        Source={x:Reference root}}"
-                    CommandParameter="{x:Binding ComponentData.GitHubUrl,
-                                                 Source={x:Reference root}}"
-                    HeightRequest="50"
+                    Command="{x:Binding
+                        TapCommand,
+                        Source={x:Reference root}
+                    }"
+                    CommandParameter="{x:Binding
+                        ComponentData.GitHubUrl,
+                        Source={x:Reference root}
+                    }"
                     Source="github.png"
-                    ToolTipProperties.Text="Github: Source code"
-                    WidthRequest="50" />
+                    Aspect="AspectFit"
+                    VerticalOptions="End"
+                    HeightRequest="32"
+                    Padding="8"
+                    ToolTipProperties.Text="Github: Source code" />
                 <ImageButton
-                    Padding="{x:OnPlatform WinUI=10,
-                                           Android=5}"
-                    BackgroundColor="Transparent"
-                    Command="{x:Binding TapCommand,
-                                        Source={x:Reference root}}"
-                    CommandParameter="{x:Binding ComponentData.DocumentUrl,
-                                                 Source={x:Reference root}}"
-                    HeightRequest="50"
+                    Command="{x:Binding
+                        TapCommand,
+                        Source={x:Reference root}
+                    }"
+                    CommandParameter="{x:Binding
+                        ComponentData.DocumentUrl,
+                        Source={x:Reference root}
+                    }"
                     Source="microsoft.png"
-                    ToolTipProperties.Text="Microsoft Learn: Official document"
-                    WidthRequest="50" />
+                    Aspect="AspectFit"
+                    VerticalOptions="End"
+                    HeightRequest="32"
+                    Padding="8"
+                    ToolTipProperties.Text="Microsoft Learn: Official document" />
             </VerticalStackLayout>
         </Grid>
     </Frame>

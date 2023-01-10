@@ -1,43 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:app="clr-namespace:MAUIsland"
-              
-              
-              x:Class="MAUIsland.MAUIAllControlsPage"
-              x:DataType="app:MAUIAllControlsPageViewModel"
-              
-              Padding="20"
-              BackgroundColor="#272727">
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    x:Class="MAUIsland.MAUIAllControlsPage"
+    x:DataType="app:MAUIAllControlsPageViewModel">
     <app:BasePage.Resources>
-        <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate"
-                      x:DataType="app:ControlInfo">
-            <app:ControlCardContentView ComponentData="{x:Binding}"
-                                        DetailClicked="ControlCardContentView_DetailClicked"/>
+        <DataTemplate
+            x:Key="HorizontalWrapLayoutItemTemplate"
+            x:DataType="app:ControlInfo">
+            <app:ControlCardContentView
+                ComponentData="{x:Binding}"
+                DetailClicked="ControlCardContentView_DetailClicked" />
         </DataTemplate>
+        <GridItemsLayout
+            x:Key="DesktopLayout"
+            Orientation="Vertical"
+            Span="5"
+            VerticalItemSpacing="16"
+            HorizontalItemSpacing="16"
+            />
+        <LinearItemsLayout
+            x:Key="MobileLayout"
+            Orientation="Vertical"
+            ItemSpacing="16"
+            />
     </app:BasePage.Resources>
 
-    <ScrollView VerticalScrollBarVisibility="Always">
-        <Grid RowDefinitions="150, 20, *">
-            <Frame Padding="0">
-                <Grid>
-                    <Image Source="https://i.imgur.com/O7V5Mid.png"
-                           HeightRequest="200"
-                           Aspect="AspectFill"
-                           VerticalOptions="Fill"
-                           HorizontalOptions="Fill"/>
-
-                    <Label Text="All Controls"
-                           TextColor="{x:StaticResource White}"
-                           FontSize="Header"
-                           FontAttributes="Bold"
-                           VerticalOptions="Center"
-                           Margin="20"/>
-                </Grid>
-            </Frame>
-            <app:HorizontalWrapLayout Grid.Row="2" Spacing="10"
-                                      BindableLayout.ItemsSource="{x:Binding Items, Mode=OneWay}"
-                                      BindableLayout.ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"/>
-        </Grid>
-    </ScrollView>
+    <CollectionView
+        ItemsSource="{x:Binding Items, Mode=OneWay}"
+        ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
+        VerticalScrollBarVisibility="{OnPlatform MacCatalyst=Always, WinUI=Always}"
+        ItemsLayout="{OnPlatform
+            Default={StaticResource MobileLayout},
+            MacCatalyst={StaticResource DesktopLayout},
+            WinUI={StaticResource DesktopLayout}
+        }">
+        <CollectionView.Header>
+            <Grid
+                HorizontalOptions="FillAndExpand"
+                RowDefinitions="200">
+                <Frame
+                    Margin="16,32"
+                    CornerRadius="6"
+                    BorderColor="#eeeeee"
+                    IsClippedToBounds="True"
+                    Padding="0">
+                    <Grid>
+                        <Image
+                            Source="https://i.imgur.com/O7V5Mid.png"
+                            Aspect="AspectFill" />
+                        <BoxView
+                            Opacity="0.57"
+                            BackgroundColor="#fff"
+                            />
+                        <Label
+                            Text="MAUI Built-in Controls"
+                            FontSize="24"
+                            TextColor="Black"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center"
+                            Margin="20" />
+                    </Grid>
+                </Frame>
+            </Grid>
+        </CollectionView.Header>
+    </CollectionView>
 </app:BasePage>
