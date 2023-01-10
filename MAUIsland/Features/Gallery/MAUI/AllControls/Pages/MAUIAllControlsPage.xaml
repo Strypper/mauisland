@@ -30,7 +30,7 @@
     <CollectionView
         ItemsSource="{x:Binding Items, Mode=OneWay}"
         ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
-        VerticalScrollBarVisibility="{OnPlatform MacCatalyst=Always, WinUI=Always}"
+        VerticalScrollBarVisibility="{OnPlatform Default=Never, MacCatalyst=Always, WinUI=Always}"
         ItemsLayout="{OnPlatform
             Default={StaticResource MobileLayout},
             MacCatalyst={StaticResource DesktopLayout},
