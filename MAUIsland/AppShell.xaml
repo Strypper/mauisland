@@ -27,4 +27,35 @@
         Icon="{x:StaticResource CodeIcon}"
         ContentTemplate="{DataTemplate app:GalleryPage}"
         Route="galleryPage" />
+
+    <Shell.FlyoutHeader>
+        <Grid>
+            <Label
+                Text="MAUI Island"
+                FontSize="32"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center"
+                Padding="0,32,0,24"
+                />
+        </Grid>
+    </Shell.FlyoutHeader>
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid
+                RowDefinitions="48"
+                ColumnDefinitions="72,*">
+                <Image
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Source="{Binding FlyoutIcon}"
+                    />
+                <Label
+                    Grid.Column="1"
+                    VerticalTextAlignment="Center"
+                    Text="{Binding Title}"
+                    FontSize="18"
+                    />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
 </Shell>
