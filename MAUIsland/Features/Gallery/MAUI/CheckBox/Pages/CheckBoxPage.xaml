@@ -17,7 +17,7 @@
             </x:String>
 
             <x:String x:Key="PropertiesListHeader">
-                Button defines the following properties:
+                CheckBox defines the following properties:
             </x:String>
 
             <x:String x:Key="PropertiesListFooter">
