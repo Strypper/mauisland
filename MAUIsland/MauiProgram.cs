@@ -76,6 +76,7 @@ public static class MauiProgram
         builder.Services.AddPage<SwitchPage, SwitchPageViewModel>();
         builder.Services.AddPage<CheckBoxPage, CheckBoxPageViewModel>();
         builder.Services.AddPage<LabelPage, LabelPageViewModel>();
+        builder.Services.AddPage<StackLayoutPage, StackLayoutPageViewModel>();
         builder.Services.AddPage<GridLayoutPage, GridLayoutPageViewModel>();
         //builder.Services.AddPage<SwipeViewPage, SwipeViewPageViewModel>();
         builder.Services.AddPage<RadioButtonPage, RadioButtonPageViewModel>();

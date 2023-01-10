@@ -17,6 +17,7 @@ public static class AppRoutes
     public const string CollectionViewPage = "collectionViewPage";
     public const string GridLayoutPage = "gridLayoutPage";
     public const string SwitchPage = "switchPage";
+    public const string StackLayoutPage = "stackLayoutPage";
     public const string LabelPage = "labelPage";
     public const string EntryPage = "entryPage";
     public const string TimePickerPage = "timePickerPage";

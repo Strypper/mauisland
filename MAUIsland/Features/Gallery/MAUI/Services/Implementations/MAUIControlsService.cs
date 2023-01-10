@@ -306,6 +306,18 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlDetail = " Grid, is a layout that organizes its children into rows and columns, which can have proportional or absolute sizes."
             });
 
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Stack Layout Page",
+                ControlRoute = AppRoutes.StackLayoutPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_align_space_evenly_vertical_20_regular
+                },
+                ControlDetail = "StackLayout organizes child views in a one-dimensional stack, either horizontally or vertically."
+            });
+
             return controls.AsEnumerable();
         });
     }

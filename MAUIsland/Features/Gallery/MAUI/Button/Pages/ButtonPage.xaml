@@ -27,7 +27,7 @@
         </x:String>
 
 
-        <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
+        <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
                                 <strong style="color:blue">BorderColor</strong>, of type <strong style="color:blue">Color</strong, describes the border color of the button.
@@ -126,7 +126,7 @@
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
-                    ItemsSource="{x:StaticResource PropertyItemsSource}"
+                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
             <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="A simple button with text content" />
