@@ -70,6 +70,7 @@
 	  <Folder Include="Features\Gallery\MAUI\AllControls\Models\" />
 	  <Folder Include="Features\Gallery\MAUI\Button\Models\" />
 	  <Folder Include="Features\QA\" />
+	  <Folder Include="UI\Views\ContentTemplate\" />
 	</ItemGroup>
 
 	<ItemGroup>

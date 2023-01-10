@@ -1,16 +1,97 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:app="clr-namespace:MAUIsland"
-             
-              x:Class="MAUIsland.ImageButtonPage"
-              x:DataType="app:ImageButtonPageViewModel"
-              
-              Title="ImageButton"
-              Padding="20">
-    <ScrollView>
-        <VerticalStackLayout Spacing="10">
+<app:BasePage
+    x:Class="MAUIsland.ImageButtonPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    Title="ImageButton"
+    Padding="20"
+    x:DataType="app:ImageButtonPageViewModel">
 
+    <app:BasePage.Resources>
+        <x:String x:Key="ControlInfo">
+            The .NET Multi-platform App UI (.NET MAUI) ImageButton view combines the Button view and Image view to create a button whose content is an image. When you press the ImageButton with a finger or click it with a mouse, it directs the app to carry out a task. However, unlike the Button the ImageButton view has no concept of text and text appearance.
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeader">
+            ImageButton defines the following properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter">
+            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+        </x:String>
+
+        <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Aspect</strong>, of type <strong style="color:blue">Aspect</strong>, determines how the image will be scaled to fit the display area.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">BorderColor</strong>, of type <strong style="color:blue">Color</strong>, describes the border color of the button.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">BorderWidth</strong>, of type <strong style="color:blue">double</strong>, defines the width of the button's border.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Command</strong>, of type <strong style="color:blue">ICommand</strong>, defines the command that's executed when the button is tapped.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">CommandParameter</strong>, of type <strong style="color:blue">object</strong>, is the parameter that's passed to Command.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">CornerRadius</strong>, of type <strong style="color:blue">int</strong>, describes the corner radius of the button's border.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">IsLoading</strong>, of type <strong style="color:blue">bool</strong>, represents the loading status of the image. The default value of this property is false.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">IsOpaque</strong>, of type <strong style="color:blue">bool</strong>, determines whether .NET MAUI should treat the image as opaque when rendering it. The default value of this property is false.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">IsPressed</strong>, of type <strong style="color:blue">bool</strong>, represents whether the button is being pressed. The default value of this property is false.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">ImageSource</strong>, of type <strong style="color:blue">ImageSource</strong>, specifies an image to display as the content of the button.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Padding</strong>, of type <strong style="color:blue">Thickness</strong>, determines the button's padding.
+                            ]]>
+            </x:String>
+        </x:Array>
+    </app:BasePage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="5">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:StaticResource ControlInfo}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CollectionView
+                    Footer="{x:StaticResource PropertiesListFooter}"
+                    Header="{x:StaticResource PropertiesListHeader}"
+                    ItemsSource="{x:StaticResource PropertyItemsSource}"
+                    Style="{x:StaticResource PropertiesListStyle}" />
+            </Frame>
         </VerticalStackLayout>
     </ScrollView>
 

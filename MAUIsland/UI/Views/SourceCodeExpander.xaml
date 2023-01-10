@@ -16,27 +16,35 @@
             Color="{x:Static app:AppColors.Black}" />
     </ContentView.Resources>
 
-    <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-        <toolkit:Expander>
-            <toolkit:Expander.Header>
-                <Grid>
-                    <Label
-                        FontAttributes="Bold"
-                        Text="XAML Code"
-                        TextColor="#ce8557"
-                        VerticalOptions="Center" />
-                    <ImageButton
-                        BackgroundColor="{x:StaticResource White}"
-                        Clicked="Copy_Clicked"
-                        CornerRadius="5"
-                        HeightRequest="25"
-                        HorizontalOptions="End"
-                        Source="{x:StaticResource CopyIcon}"
-                        VerticalOptions="Center"
-                        WidthRequest="25" />
-                </Grid>
-            </toolkit:Expander.Header>
-            <Editor IsReadOnly="True" Text="{x:Binding XamlCode, Source={x:Reference root}}" />
-        </toolkit:Expander>
-    </Frame>
+    <ContentView.ControlTemplate>
+        <ControlTemplate>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <ContentPresenter />
+                    <toolkit:Expander>
+                        <toolkit:Expander.Header>
+                            <Grid>
+                                <Label
+                                    FontAttributes="Bold"
+                                    Text="XAML Code"
+                                    TextColor="#ce8557"
+                                    VerticalOptions="Center" />
+                                <ImageButton
+                                    BackgroundColor="{x:StaticResource White}"
+                                    Clicked="Copy_Clicked"
+                                    CornerRadius="5"
+                                    HeightRequest="25"
+                                    HorizontalOptions="End"
+                                    Source="{x:StaticResource CopyIcon}"
+                                    VerticalOptions="Center"
+                                    WidthRequest="25" />
+                            </Grid>
+                        </toolkit:Expander.Header>
+                        <Editor IsReadOnly="True" Text="{x:Binding XamlCode, Source={x:Reference root}}" />
+                    </toolkit:Expander>
+                </VerticalStackLayout>
+            </Frame>
+        </ControlTemplate>
+    </ContentView.ControlTemplate>
+
 </ContentView>
