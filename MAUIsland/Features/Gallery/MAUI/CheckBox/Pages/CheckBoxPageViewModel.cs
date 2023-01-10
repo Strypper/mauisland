@@ -30,6 +30,6 @@ public partial class CheckBoxPageViewModel : NavigationAwareBaseViewModel
     string checkBoxWithBindingXamlCode = "<CheckBox IsChecked=\"{x:Binding IsChecked, Mode=TwoWay}\"\r\nColor=\"{x:Binding CurrentColor, Mode=OneWay}\"/>";
 
     [ObservableProperty]
-    string checkBoxWithLabelXamlCode = "Label Text=\"CheckBox\"/>\r\n<CheckBox/>";
+    string checkBoxWithLabelXamlCode = "<Label Text=\"CheckBox\"/>\r\n<CheckBox/>";
     #endregion
 }
