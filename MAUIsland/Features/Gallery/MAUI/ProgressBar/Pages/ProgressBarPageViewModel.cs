@@ -1,6 +1,4 @@
-﻿
-
-namespace MAUIsland;
+﻿namespace MAUIsland;
 
 public partial class ProgressBarPageViewModel : NavigationAwareBaseViewModel
 {
@@ -12,5 +10,9 @@ public partial class ProgressBarPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
+    #region [Property]
+    //[ObservableProperty]
+    //bool isRunning = false;
 
+    #endregion
 }

@@ -6,10 +6,31 @@
               x:Class="MAUIsland.ProgressBarPage"
               
               Title="Progress Bar">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Progress Bar Page!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
+                   Padding="20,10,20,10">
+                <VerticalStackLayout>
+                    <Grid ColumnDefinitions="20,*,40">
+                        <Grid Grid.Column="0">
+                            <Label Text="0%"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <ProgressBar x:Name="progress_bar1"
+                                         Progress="{x:Binding }"
+                                         Margin="10"
+                                         ProgressColor="Red"/>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Label Text="100%"/>
+                        </Grid>
+                    </Grid>
+                    <Button x:Name="button1"
+                            Text="Load"
+                            WidthRequest="60"
+                            Clicked="Button_Clicked"/>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
 </app:BasePage>
