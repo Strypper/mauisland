@@ -44,7 +44,7 @@ body:
       options:
         - Android 
         - Windows
-        - MacOs
+        - MacOS
         - IOS
   - type: textarea
     id: logs
@@ -58,5 +58,5 @@ body:
       label: Code of Conduct
       description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
       options:
-        - label: I agree to follow this project's Code of Conduct
+        - label: I agree to respect and follow this project's rules 
           required: true
