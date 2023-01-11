@@ -6,10 +6,144 @@
               x:Class="MAUIsland.ProgressBarPage"
               
               Title="Progress Bar">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Progress Bar Page!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <app:BasePage.Resources>
+        
+        <DataTemplate x:Key="BulletListItemTemplate"
+                      x:DataType="x:String">
+            <HorizontalStackLayout Margin="2">
+                <Ellipse WidthRequest="7"
+                         HeightRequest="7"
+                         VerticalOptions="Center"
+                         Fill="{x:AppThemeBinding Dark='#ffffff', Light='Black'}"/>
+                <Label Text="{x:Binding}"
+                           TextType="Html"
+                           FontSize="Body"
+                           Margin="10,0,0,0"
+                           VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+        </DataTemplate>
+
+        <x:String x:Key="introduce">The .NET Multi-platform App UI (.NET MAUI) ProgressBar indicates to users that the app is progressing through a lengthy activity. The progress bar is a horizontal bar that is filled to a percentage represented by a double value.</x:String>
+
+        <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}" >
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Progress</strong> is a <strong style="color:blue">double</strong> value that represents the current progress as a value from 0 to 1. <strong style="color:blue">Progress</strong> values less than 0 will be clamped to 0, values greater than 1 will be clamped to 1. The default value of this property is 0.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">ProgressColor</strong> is a <strong style="color:blue">Color</strong> values that defines the color of the ProgressBar.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+    </app:BasePage.Resources>
+    <ScrollView>
+        <VerticalStackLayout Margin="10" Spacing="10" >
+
+            <Label Text= "{x:StaticResource introduce}"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Start"
+                   Padding="10"/>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
+                   Padding="20,10,20,10">
+                <VerticalStackLayout>
+
+                    <Grid Margin="0,0,0,5">
+                        <Label Text="Basic progress bar"
+                               Margin="0,0,0,10"
+                               FontSize= "Medium"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
+
+                        <Grid HeightRequest="1" 
+                              VerticalOptions="End"
+                              Background="White"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="20,*,40"
+                          Margin="0,20,0,0">
+                        <Grid Grid.Column="0">
+                            <Label Text="0%"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <ProgressBar x:Name="progress_bar1"
+                                         Progress="0"
+                                         Margin="10"
+                                         ProgressColor="Yellow"/>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Label Text="100%"/>
+                        </Grid>
+                    </Grid>
+                    <Button x:Name="button1"
+                            Text="Load"
+                            WidthRequest="60"
+                            Clicked="button1_Clicked"/>
+
+                    <app:SourceCodeExpander XamlCode="{x:Binding StandardProgressBarXamlCode}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <CollectionView  Margin="10"
+                             SelectionMode="Single"
+                             Header="ProgressBar defines two properties:"
+                             Footer="These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled."
+                             VerticalScrollBarVisibility="Never"
+                             ItemTemplate="{x:StaticResource BulletListItemTemplate}"
+                             ItemsSource="{x:StaticResource PropertyItemsSource}" />
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
+                   Padding="20,10,20,10">
+                <VerticalStackLayout>
+
+                    <Grid Margin="0,0,0,5">
+                        <Label Text="Animate a ProgressBar"
+                               Margin="0,0,0,10"
+                               FontSize= "Medium"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
+
+                        <Grid HeightRequest="1" 
+                              VerticalOptions="End"
+                              Background="White"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="40,*,40"
+                          Margin="0,20,0,0">
+                        <Grid Grid.Column="0">
+                            <Label>
+                                <Label.Text>
+                                    <Binding Source="{x:Reference progress_bar2}"
+                                             Path="Progress">
+                                        <Binding.Converter>
+                                            <app:PercentageConverter x:TypeArguments="x:String"/>
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Label.Text>
+                            </Label>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <ProgressBar x:Name="progress_bar2"
+                                         Progress="0"
+                                         Margin="10"
+                                         ProgressColor="Red"/>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Label Text="100%"/>
+                        </Grid>
+                    </Grid>
+                    <Button x:Name="button2"
+                            Text="Run"
+                            WidthRequest="60"
+                            Clicked="button2_Clicked"/>
+
+                    <app:SourceCodeExpander XamlCode="{x:Binding AnimateProgressBarXamlCode}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </app:BasePage>
