@@ -128,7 +128,7 @@
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
             <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="A simple button with text content" />
-            <app:SourceCodeExpander XamlCode="{x:Binding StandardButtonXamlCode}">
+            <app:SourceCodeExpander XAMLCode="{x:Binding StandardButtonXamlCode}">
                 <Grid>
                     <Button
                         HorizontalOptions="Start"
@@ -147,7 +147,7 @@
                 FontSize="Title"
                 Text="You can change the background color of the button" />
 
-            <app:SourceCodeExpander XamlCode="{x:Binding ButtonsChangedBackgroundGroupXamlCode}">
+            <app:SourceCodeExpander XAMLCode="{x:Binding ButtonsChangedBackgroundGroupXamlCode}">
                 <HorizontalStackLayout Spacing="10">
                     <Button
                         BackgroundColor="Green"
@@ -177,7 +177,7 @@
                 FontAttributes="Bold"
                 FontSize="Title"
                 Text="Apply rotation to a button" />
-            <app:SourceCodeExpander XamlCode="{x:Binding RotationButtonXamlCode}">
+            <app:SourceCodeExpander XAMLCode="{x:Binding RotationButtonXamlCode}">
                 <Button
                     BackgroundColor="Red"
                     BorderColor="Black"
@@ -202,7 +202,7 @@
                 FontSize="Title"
                 Text="Use bitmaps with buttons" />
             <Label Text="{x:StaticResource ImageButtonControlInfo}" />
-            <app:SourceCodeExpander XamlCode="{x:Binding ButtonWithImageXamlCode}">
+            <app:SourceCodeExpander XAMLCode="{x:Binding ButtonWithImageXamlCode}">
                 <HorizontalStackLayout Spacing="10">
                     <HorizontalStackLayout.Resources>
                         <FontImageSource

@@ -227,7 +227,7 @@
                                 AutoSize="TextChanges"
                                 IsReadOnly="True"/>
                     </Grid>
-                    <app:SourceCodeExpander XamlCode="{x:Binding StandardRadioButtonXamlCode}"/>
+                    <app:SourceCodeExpander XAMLCode="{x:Binding StandardRadioButtonXamlCode}"/>
                 </VerticalStackLayout>
             </Frame>
 
@@ -318,7 +318,7 @@
                                 AutoSize="TextChanges"
                                 IsReadOnly="True"/>
                     </Grid>
-                    <app:SourceCodeExpander XamlCode="{x:Binding ImageRadioButtonXamlCode}"/>
+                    <app:SourceCodeExpander XAMLCode="{x:Binding ImageRadioButtonXamlCode}"/>
                 </VerticalStackLayout>
             </Frame>
 
@@ -421,7 +421,7 @@
                                 IsReadOnly="True"/>
                     </Grid>
 
-                    <app:SourceCodeExpander XamlCode="{x:Binding CustomRadioButtonXamlCode}"/>
+                    <app:SourceCodeExpander XAMLCode="{x:Binding CustomRadioButtonXamlCode}"/>
                 </VerticalStackLayout>
             </Frame>
 

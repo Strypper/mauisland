@@ -13,35 +13,67 @@
             x:Key="CopyIcon"
             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
             Glyph="{Static app:FluentUIIcon.Ic_fluent_copy_24_regular}"
-            Color="{x:Static app:AppColors.Black}" />
+            Color="{x:Static app:AppColors.Black}"
+            Size = "24"/>
+        
+        <DataTemplate x:Key="NumberListItemTemplate"
+                      x:DataType="x:String">
+            <HorizontalStackLayout Margin="2">
+                <Label Text="2"
+                       TextType="Text"
+                       FontFamily="Courier"
+                       FontSize="Body"
+                       Margin="10,0,0,0"
+                       VerticalOptions="Center"/>
+                <Label Text="{x:Binding}"
+                       TextType="Text"
+                       FontFamily="Courier"
+                       FontSize="Body"
+                       Margin="20,0,0,0"
+                       VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+        </DataTemplate>
+        
     </ContentView.Resources>
 
     <ContentView.ControlTemplate>
         <ControlTemplate>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Frame Margin="10"
+                   Padding="10"
+                   Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
-                    <ContentPresenter />
-                    <toolkit:Expander>
-                        <toolkit:Expander.Header>
-                            <Grid>
-                                <Label
-                                    FontAttributes="Bold"
-                                    Text="XAML Code"
-                                    TextColor="#ce8557"
-                                    VerticalOptions="Center" />
-                                <ImageButton
-                                    BackgroundColor="{x:StaticResource White}"
-                                    Clicked="Copy_Clicked"
-                                    CornerRadius="5"
-                                    HeightRequest="25"
-                                    HorizontalOptions="End"
-                                    Source="{x:StaticResource CopyIcon}"
-                                    VerticalOptions="Center"
-                                    WidthRequest="25" />
-                            </Grid>
-                        </toolkit:Expander.Header>
-                        <Editor IsReadOnly="True" Text="{x:Binding XamlCode, Source={x:Reference root}}" />
-                    </toolkit:Expander>
+
+                    <VerticalStackLayout>
+                        <Grid>
+                            <Label FontAttributes="Bold"
+                                   Text="{x:Binding Title,Source={x:Reference root}}"
+                                   TextColor="#ce8557"
+                                   FontSize="Title"
+                                   VerticalOptions="Center" />
+                            <ImageButton BackgroundColor="{x:StaticResource White}"
+                                         Padding="-5"
+                                         Clicked="Copy_Clicked"
+                                         CornerRadius="5"
+                                         HorizontalOptions="End"
+                                         Source="{x:StaticResource CopyIcon}"
+                                         VerticalOptions="Center"
+                                         WidthRequest="25"
+                                         HeightRequest="25"/>
+                        </Grid>
+                        <Grid HeightRequest="1"
+                              Margin="0,5,0,5"
+                              Background="White"/>
+                        <ContentPresenter />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout>
+                        <CollectionView SelectionMode="Single"
+                                        Header="XAML Code:"
+                                        VerticalScrollBarVisibility="Never"
+                                        ItemsSource="{x:Binding XAMLCode,Source={x:Reference root}}"
+                                        ItemTemplate="{x:StaticResource NumberListItemTemplate}" />
+                    </VerticalStackLayout>
+                    
                 </VerticalStackLayout>
             </Frame>
         </ControlTemplate>

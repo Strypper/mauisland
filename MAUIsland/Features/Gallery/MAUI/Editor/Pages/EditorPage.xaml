@@ -19,7 +19,7 @@
                     HeightRequest="250"
                     TextChanged="OnEditorTextChanged"
                     Completed="OnEditorCompleted" />
-            <app:SourceCodeExpander XamlCode="{x:Binding SimpleEditXamlCode}"/>
+            <app:SourceCodeExpander XAMLCode="{x:Binding SimpleEditXamlCode}"/>
             <Label Text="Set character spacing"
                    FontSize="Subtitle"
                    FontAttributes="Bold"/>

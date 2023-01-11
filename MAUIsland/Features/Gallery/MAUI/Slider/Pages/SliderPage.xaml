@@ -111,7 +111,7 @@
 
                     <Slider />
 
-                    <app:SourceCodeExpander XamlCode="{x:Binding SimpleCreateSliderXamlCode}" />
+                    <app:SourceCodeExpander XAMLCode="{x:Binding SimpleCreateSliderXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -150,11 +150,11 @@
                         ThumbColor="{x:Binding Source={x:Reference ThumbColorPicker},
                                                Path=SelectedItem,
                                                Converter={x:StaticResource StringToColorConverter}}" />
-                    <app:SourceCodeExpander XamlCode="{x:Binding SliderWithCustomColorsXamlCode}" />
+                    <app:SourceCodeExpander XAMLCode="{x:Binding SliderWithCustomColorsXamlCode}" />
 
                     <Label FontSize="Subtitle" Text="You can even change the thumb image" />
                     <Slider MinimumTrackColor="#6e50db" ThumbImageSource="dotnet_bot.png" />
-                    <app:SourceCodeExpander XamlCode="{x:Binding SliderWithCustomThumbImageXamlCode}" />
+                    <app:SourceCodeExpander XAMLCode="{x:Binding SliderWithCustomThumbImageXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

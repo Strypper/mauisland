@@ -6,9 +6,9 @@
              x:Class="MAUIsland.MainPage">
 
     <ScrollView>
-        <Grid>
+        <VerticalStackLayout>
             <Label Text="Welcome to MAUIsland"/>
-        </Grid>
+        </VerticalStackLayout>
     </ScrollView>
 
 </ContentPage>

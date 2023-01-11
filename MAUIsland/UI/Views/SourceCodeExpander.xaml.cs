@@ -7,23 +7,32 @@ public partial class SourceCodeExpander : ContentView
     #endregion
 
     #region [Bindable Properties]
-    public static readonly BindableProperty XamlCodeProperty = BindableProperty.Create( nameof(XamlCode),
-                                                                                           typeof(string),
+    public static readonly BindableProperty XAMLCodeProperty = BindableProperty.Create( nameof(XAMLCode),
+                                                                                           typeof(Array),
                                                                                            typeof(RoundedEntry),
-                                                                                           default(string));
-    public string XamlCode
+                                                                                           default(Array));
+    public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title),
+                                                                                    typeof(string),
+                                                                                    typeof(RoundedEntry),
+                                                                                    default(string));
+    public Array XAMLCode
     {
-        get => (string)GetValue(XamlCodeProperty);
-        set => SetValue(XamlCodeProperty, value);
+        get => (Array)GetValue(XAMLCodeProperty);
+        set => SetValue(XAMLCodeProperty, value);
+    }
+
+    public string Title
+    {
+        get=> (string)GetValue(TitleProperty);
+        set => SetValue(TitleProperty, value);
     }
 
     #endregion
     public SourceCodeExpander()
 	{
 		InitializeComponent();
-
     }
 
     private async void Copy_Clicked(object sender, EventArgs e) =>
-        await Clipboard.Default.SetTextAsync(XamlCode);
+        await Clipboard.Default.SetTextAsync(XAMLCode.ToString());
 }

@@ -6,10 +6,15 @@
               x:Class="MAUIsland.ProgressBarPage"
               
               Title="Progress Bar">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Progress Bar Page!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
+            <app:SourceCodeExpander XAMLCode="{x:Binding StandardRadioButtonXamlCode}"
+                                    Title="Basic progress bar">
+                <VerticalStackLayout>
+                    <Button Text =" ngád"/>
+                    <ProgressBar Progress="0.5" ProgressColor="Green"/>
+                </VerticalStackLayout>
+            </app:SourceCodeExpander>
+        </VerticalStackLayout>
+    </ScrollView>
 </app:BasePage>
