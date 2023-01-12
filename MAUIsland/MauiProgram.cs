@@ -63,6 +63,7 @@ public static class MauiProgram
     static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
     {
         builder.Services.AddPage<GalleryPage, GalleryPageViewModel>();
+        builder.Services.AddPage<ChatPage, ChatPageViewModel>();
         builder.Services.AddPage<MAUIAllControlsPage, MAUIAllControlsPageViewModel>();
 
         builder.Services.AddPage<ButtonPage, ButtonPageViewModel>();

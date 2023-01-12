@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MAUIsland.Features.Chat.Pages.ChatPage"
-             Title="ChatPage">
+<app:BasePage
+    x:Class="MAUIsland.ChatPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    Title="ChatPage"
+    Padding="10"
+    x:DataType="app:ChatPageViewModel">
+
+    <app:BasePage.Resources>
+        <x:String x:Key="ControlInfo">
+            TODO
+        </x:String>
+    </app:BasePage.Resources>
+
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Label Text="{x:StaticResource ControlInfo}" />
+        </Frame>
+
+        <Button Clicked="Button_Clicked" />
     </VerticalStackLayout>
-</ContentPage>
+</app:BasePage>

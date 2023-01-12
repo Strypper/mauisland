@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace MAUIsland;
 
-namespace MAUIsland.Features.Chat.Pages
+public class ChatPageViewModel : NavigationAwareBaseViewModel
 {
-    internal class ChatPageViewModel
+    #region[ Ctor ]
+    public ChatPageViewModel(IAppNavigator appNavigator) : base(appNavigator)
     {
+
     }
+    #endregion
 }

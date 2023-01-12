@@ -8,23 +8,36 @@
     <Shell.Resources>
         <FontImageSource
             x:Key="HomeIcon"
-            Color="{AppThemeBinding Light='#15161e', Dark='#eaeaea' }"
             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-            Glyph="{Static app:FluentUIIcon.Ic_fluent_home_20_regular}" />
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_home_20_regular}"
+            Color="{AppThemeBinding Light='#15161e',
+                                    Dark='#eaeaea'}" />
+        <FontImageSource
+            x:Key="ChatIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_chat_20_regular}"
+            Color="{AppThemeBinding Light='#15161e',
+                                    Dark='#eaeaea'}" />
         <FontImageSource
             x:Key="CodeIcon"
-            Color="{AppThemeBinding Light='#15161e', Dark='#eaeaea' }"
             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-            Glyph="{Static app:FluentUIIcon.Ic_fluent_code_circle_20_regular}" />
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_code_circle_20_regular}"
+            Color="{AppThemeBinding Light='#15161e',
+                                    Dark='#eaeaea'}" />
     </Shell.Resources>
     <ShellContent
         Title="Home"
-        Icon="{x:StaticResource HomeIcon}"
         ContentTemplate="{DataTemplate app:MainPage}"
+        Icon="{x:StaticResource HomeIcon}"
         Route="MainPage" />
     <ShellContent
+        Title="Chat"
+        ContentTemplate="{DataTemplate app:ChatPage}"
+        Icon="{x:StaticResource ChatIcon}"
+        Route="chatPage" />
+    <ShellContent
         Title="Gallery"
-        Icon="{x:StaticResource CodeIcon}"
         ContentTemplate="{DataTemplate app:GalleryPage}"
+        Icon="{x:StaticResource CodeIcon}"
         Route="galleryPage" />
 </Shell>
