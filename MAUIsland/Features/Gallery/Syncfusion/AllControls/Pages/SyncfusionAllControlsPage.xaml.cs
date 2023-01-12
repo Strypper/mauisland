@@ -1,13 +1,13 @@
 namespace MAUIsland;
 
-public partial class MAUIAllControlsPage
+public partial class SyncfusionAllControlsPage
 {
     #region [Fields]
-    private MAUIAllControlsPageViewModel viewModel;
+    private SyncfusionAllControlsPageViewModel viewModel;
     #endregion
 
     #region [CTor]
-    public MAUIAllControlsPage(MAUIAllControlsPageViewModel vm)
+    public SyncfusionAllControlsPage(SyncfusionAllControlsPageViewModel vm)
     {
         InitializeComponent();
 
@@ -43,10 +43,10 @@ public partial class MAUIAllControlsPage
             }
         }
     }
-    #endregion
 
     private void ControlCardContentView_DetailClicked(string route)
     {
         viewModel.NavigateToDetailCommand.Execute(route);
     }
+    #endregion
 }

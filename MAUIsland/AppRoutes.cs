@@ -30,4 +30,7 @@ public static class AppRoutes
     public const string RadioButtonPage = "radioButtonPage";
     public const string MenuBarPage = "menuBarPage";
 
+    public const string SyncfusionAllControlsPage = "syncfusionAllControlsPage";
+    public const string SyncfusionListViewPage = "syncfusionListViewPage";
+
 }

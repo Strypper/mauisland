@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <app:BasePage
-    x:Class="MAUIsland.MAUIAllControlsPage"
+    x:Class="MAUIsland.SyncfusionAllControlsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     Padding="20"
-    x:DataType="app:MAUIAllControlsPageViewModel"
+    x:DataType="app:SyncfusionAllControlsPageViewModel"
     BackgroundColor="#272727"
     SizeChanged="BasePage_SizeChanged">
     <app:BasePage.Resources>

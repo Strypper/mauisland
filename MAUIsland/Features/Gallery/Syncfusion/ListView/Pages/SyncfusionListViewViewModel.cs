@@ -1,29 +1,29 @@
 ﻿namespace MAUIsland;
 
-public partial class MAUIAllControlsPageViewModel : NavigationAwareBaseViewModel
+public partial class SyncfusionListViewPageViewModel : NavigationAwareBaseViewModel
 {
     #region [Services]
     private readonly IMAUIControlsService mauiControlsService;
     #endregion
 
     #region [CTor]
-    public MAUIAllControlsPageViewModel(IAppNavigator appNavigator,
-                                        IMAUIControlsService mauiControlsService)
-                                            : base(appNavigator)
-    {
+    public SyncfusionListViewPageViewModel(IAppNavigator appNavigator,
+                                           IMAUIControlsService mauiControlsService) 
+									: base(appNavigator)
+	{
         this.mauiControlsService = mauiControlsService;
     }
     #endregion
 
     #region [Properties]
     [ObservableProperty]
-    int span = 4;
+    int span = 5;
 
     [ObservableProperty]
     bool isBusy;
 
     [ObservableProperty]
-    ObservableCollection<ControlInfo> items;
+    ObservableCollection<ControlInfo> mauiAllControlsItems;
     #endregion
 
     #region [RelayCommand]
@@ -52,20 +52,20 @@ public partial class MAUIAllControlsPageViewModel : NavigationAwareBaseViewModel
         IsBusy = false;
 
 
-        if (Items == null)
+        if (MauiAllControlsItems == null)
         {
-            Items = new ObservableCollection<ControlInfo>(items);
+            MauiAllControlsItems = new ObservableCollection<ControlInfo>(items);
             return;
         }
 
         if (forced)
         {
-            Items.Clear();
+            MauiAllControlsItems.Clear();
         }
 
         foreach (var item in items)
         {
-            Items.Add(item);
+            MauiAllControlsItems.Add(item);
         }
     }
     #endregion

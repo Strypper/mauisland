@@ -29,5 +29,8 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("datePickerPage", typeof(DatePickerPage));
         Routing.RegisterRoute("editorPage", typeof(EditorPage));
 		Routing.RegisterRoute("menuBarPage", typeof(MenuBarPage));
+
+        Routing.RegisterRoute("syncfusionAllControlsPage", typeof(SyncfusionAllControlsPage));
+        Routing.RegisterRoute("syncfusionListViewPage", typeof(SyncfusionListViewPage));
 	}
 }

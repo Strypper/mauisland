@@ -1,17 +1,17 @@
 ﻿namespace MAUIsland;
 
-public partial class MAUIAllControlsPageViewModel : NavigationAwareBaseViewModel
+public partial class SyncfusionAllControlsPageViewModel : NavigationAwareBaseViewModel
 {
     #region [Services]
-    private readonly IMAUIControlsService mauiControlsService;
+    private readonly ISyncfusionControlsService syncfusionControlsService;
     #endregion
 
     #region [CTor]
-    public MAUIAllControlsPageViewModel(IAppNavigator appNavigator,
-                                        IMAUIControlsService mauiControlsService)
+    public SyncfusionAllControlsPageViewModel(IAppNavigator appNavigator,
+                                              ISyncfusionControlsService syncfusionControlsService)
                                             : base(appNavigator)
     {
-        this.mauiControlsService = mauiControlsService;
+        this.syncfusionControlsService = syncfusionControlsService;
     }
     #endregion
 
@@ -47,7 +47,7 @@ public partial class MAUIAllControlsPageViewModel : NavigationAwareBaseViewModel
         IsBusy = true;
 
 
-        var items = await mauiControlsService.GetAllControlInfoAsync();
+        var items = await syncfusionControlsService.GetAllControlInfoAsync();
 
         IsBusy = false;
 

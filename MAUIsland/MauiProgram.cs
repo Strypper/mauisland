@@ -2,6 +2,7 @@
 using CommunityToolkit.Maui.Core;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;
+using Syncfusion.Maui.Core.Hosting;
 
 namespace MAUIsland;
 
@@ -9,6 +10,7 @@ public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
     {
+
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
@@ -26,7 +28,9 @@ public static class MauiProgram
             })
             .RegisterServices()
             .RegisterPages()
-            .RegisterPopups(); ;
+            .RegisterPopups(); 
+
+        builder.ConfigureSyncfusionCore(); 
 
 #if DEBUG
         builder.Logging.AddDebug();
@@ -52,6 +56,7 @@ public static class MauiProgram
     {
         builder.Services.AddSingleton<IAppNavigator, AppNavigator>();
         builder.Services.AddSingleton<IMAUIControlsService, MAUIControlsService>();
+        builder.Services.AddSingleton<ISyncfusionControlsService, SyncfusionControlsService>();
         return builder;
     }
 
@@ -82,6 +87,9 @@ public static class MauiProgram
         builder.Services.AddPage<EditorPage, EditorPageViewModel>();
         builder.Services.AddPage<MenuBarPage, MenuBarPageViewModel>();
         builder.Services.AddPage<ActivityIndicatorPage, ActivityIndicatorPageViewModel>();
+
+        builder.Services.AddPage<SyncfusionAllControlsPage, SyncfusionAllControlsPageViewModel>();
+        builder.Services.AddPage<SyncfusionListViewPage, SyncfusionListViewPageViewModel>();
         return builder;
     }
 
