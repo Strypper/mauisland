@@ -4,7 +4,7 @@ public partial class LabelPage
 {
     #region [CTor]
 
-    public LabelPage(ActivityIndicatorPageViewModel vm)
+    public LabelPage(LabelPageViewModel vm)
     {
         InitializeComponent();
 
