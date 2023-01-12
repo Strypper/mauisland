@@ -13,7 +13,7 @@ body:
     id: contact
     attributes:
       label: Contact Details
-      description: How can we get in touch with you if we need more info?
+      description: How can we get in touch with you if we need more info ?
       placeholder: ex. email@example.com
     validations:
       required: false
@@ -30,22 +30,22 @@ body:
     id: version
     attributes:
       label: Version
-      description: What version of our software are you running?
+      description: What version of MAUI are you running?
       options:
-        - 1.0.2 (Default)
-        - 1.0.3 (Edge)
+        - 6.0 (Default)
+        - 7.0
     validations:
       required: true
   - type: dropdown
-    id: browsers
+    id: platforms
     attributes:
-      label: What browsers are you seeing the problem on?
+      label: What platforms are you seeing the problem on?
       multiple: true
       options:
-        - Firefox
-        - Chrome
-        - Safari
-        - Microsoft Edge
+        - Android 
+        - Windows
+        - MacOS
+        - IOS
   - type: textarea
     id: logs
     attributes:
@@ -58,5 +58,5 @@ body:
       label: Code of Conduct
       description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
       options:
-        - label: I agree to follow this project's Code of Conduct
+        - label: I agree to respect and follow this project's rules 
           required: true
