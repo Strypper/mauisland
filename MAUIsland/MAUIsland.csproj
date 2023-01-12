@@ -70,7 +70,6 @@
 
 	<ItemGroup>
 	  <Folder Include="Features\Blog\" />
-	  <Folder Include="Features\Chat\" />
 	  <Folder Include="Features\Gallery\MAUI\AllControls\ContentViews\" />
 	  <Folder Include="Features\Gallery\MAUI\AllControls\Models\" />
 	  <Folder Include="Features\Gallery\MAUI\Button\Models\" />
@@ -91,6 +90,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Features\Chat\Pages\ChatPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\ContentViews\ControlCardContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
