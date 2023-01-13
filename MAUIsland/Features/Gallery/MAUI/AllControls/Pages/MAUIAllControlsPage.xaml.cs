@@ -49,4 +49,9 @@ public partial class MAUIAllControlsPage
     {
         viewModel.NavigateToDetailCommand.Execute(route);
     }
+
+    private void ControlCardContentView_DetailInNewWindowClicked(string route)
+    {
+        viewModel.NavigateToDetailInNewWindowCommand.Execute(route);
+    }
 }

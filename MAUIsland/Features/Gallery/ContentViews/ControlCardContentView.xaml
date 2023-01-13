@@ -49,12 +49,21 @@
                         TextColor="{x:StaticResource White}"
                         ToolTipProperties.Text="{x:Binding ComponentData.ControlDetail,
                                                            Source={x:Reference root}}" />
-                    <Button
-                        BackgroundColor="#ff28ba"
-                        Clicked="Detail_Clicked"
-                        CornerRadius="4"
-                        Text="Detail"
-                        TextColor="{x:StaticResource White}" />
+                    <HorizontalStackLayout>
+                        <Button
+                            BackgroundColor="#ff28ba"
+                            Clicked="Detail_Clicked"
+                            CornerRadius="4"
+                            Text="Detail"
+                            TextColor="{x:StaticResource White}" />
+
+                        <Button
+                            BackgroundColor="#ff28ba"
+                            Clicked="DetailInNewWindow_Clicked"
+                            CornerRadius="4"
+                            Text="Open in new window"
+                            TextColor="{x:StaticResource White}" />
+                    </HorizontalStackLayout>
                 </VerticalStackLayout>
             </HorizontalStackLayout>
             <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="End">
