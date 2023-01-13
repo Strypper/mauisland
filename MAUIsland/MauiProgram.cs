@@ -18,7 +18,7 @@ public static class MauiProgram
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                fonts.AddFont("CourierPrime-Regular.ttf", "Courier");
+                fonts.AddFont("CONSOLA.TTF", "Consola");
                 fonts.AddFont("FluentSystemIcons-Regular.ttf", FontNames.FluentSystemIconsRegular);
             })
             .ConfigureEssentials(essentials =>
