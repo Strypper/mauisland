@@ -1,13 +1,13 @@
 namespace MAUIsland;
 
-public partial class MAUIAllControlsPage
+public partial class ControlsByGroupPage
 {
     #region [Fields]
-    private MAUIAllControlsPageViewModel viewModel;
+    private ControlsByGroupPageViewModel viewModel;
     #endregion
 
     #region [CTor]
-    public MAUIAllControlsPage(MAUIAllControlsPageViewModel vm)
+    public ControlsByGroupPage(ControlsByGroupPageViewModel vm)
     {
         InitializeComponent();
 

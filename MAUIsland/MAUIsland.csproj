@@ -55,6 +55,7 @@
 	  <None Remove="Resources\Fonts\FluentSystemIcons-Regular.ttf" />
 	  <None Remove="Resources\Images\microsoft.svg" />
 	  <None Remove="Features\Gallery\Core\" />
+	  <None Remove="Features\Gallery\MAUI\AllControls\Pages\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -80,6 +81,7 @@
 	  <Folder Include="Features\Gallery\MAUI\Button\Models\" />
 	  <Folder Include="Features\QA\" />
 	  <Folder Include="Features\Gallery\Core\" />
+	  <Folder Include="Features\Gallery\MAUI\AllControls\Pages\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -103,12 +105,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\ContentViews\ControlCardContentView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\MAUI\ActivityIndicator\Pages\ActivityIndicatorPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\MAUI\AllControls\Pages\MAUIAllControlsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\MAUI\Button\Pages\ButtonPage.xaml">
@@ -157,6 +153,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="UI\Views\SourceCodeExpander.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\MAUI\ActivityIndicator\ActivityIndicatorPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\MAUIAllControlsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

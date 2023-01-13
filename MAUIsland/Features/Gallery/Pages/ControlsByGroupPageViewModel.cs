@@ -1,15 +1,16 @@
 ﻿namespace MAUIsland;
 
-public partial class MAUIAllControlsPageViewModel : NavigationAwareBaseViewModel
+public partial class ControlsByGroupPageViewModel : NavigationAwareBaseViewModel
 {
     #region [Services]
     private readonly IControlsService mauiControlsService;
     #endregion
 
     #region [CTor]
-    public MAUIAllControlsPageViewModel(IAppNavigator appNavigator,
-                                        IControlsService mauiControlsService)
-                                            : base(appNavigator)
+    public ControlsByGroupPageViewModel(
+        IAppNavigator appNavigator,
+        IControlsService mauiControlsService
+    ) : base(appNavigator)
     {
         this.mauiControlsService = mauiControlsService;
     }
@@ -35,14 +36,14 @@ public partial class MAUIAllControlsPageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [Methods]
-    public override async Task OnAppearingAsync()
+
+    protected override void OnInit(IDictionary<string, object> query)
     {
-        await base.OnAppearingAsync();
+        base.OnInit(query);
 
         LoadDataAsync(true)
             .FireAndForget();
     }
-
 
     private async Task LoadDataAsync(bool forced)
     {

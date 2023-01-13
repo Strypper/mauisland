@@ -8,7 +8,7 @@ public partial class AppShell : Shell
 
         Routing.RegisterRoute("bridgeWindowChatPage", typeof(BridgeWindowChatPage));
 
-        Routing.RegisterRoute("mauiAllControlsPage", typeof(MAUIAllControlsPage));
+        Routing.RegisterRoute("mauiAllControlsPage", typeof(ControlsByGroupPage));
         Routing.RegisterRoute("collectionViewPage", typeof(CollectionViewPage));
         Routing.RegisterRoute("buttonPage", typeof(ButtonPage));
 		Routing.RegisterRoute("imageButtonPage", typeof(ImageButtonPage));
