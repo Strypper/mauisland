@@ -34,7 +34,7 @@ public class AppNavigator : IAppNavigator
             navArgs.Add(UriHelper.DataQueryParameterName, args);
         }
 
-        if (inNewWindow && AllowsInNewWindow())
+        if (inNewWindow && AppNavigator.AllowsInNewWindow())
         {
 
 
@@ -62,7 +62,7 @@ public class AppNavigator : IAppNavigator
         }));
     }
 
-    private bool AllowsInNewWindow()
+    private static bool AllowsInNewWindow()
     {
         return DeviceInfo.Platform == DevicePlatform.WinUI;
     }
