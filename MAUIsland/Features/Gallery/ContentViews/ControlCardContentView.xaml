@@ -49,7 +49,7 @@
                         TextColor="{x:StaticResource White}"
                         ToolTipProperties.Text="{x:Binding ComponentData.ControlDetail,
                                                            Source={x:Reference root}}" />
-                    <HorizontalStackLayout>
+                    <Grid ColumnDefinitions="*, 50" ColumnSpacing="5">
                         <Button
                             BackgroundColor="#ff28ba"
                             Clicked="Detail_Clicked"
@@ -57,13 +57,16 @@
                             Text="Detail"
                             TextColor="{x:StaticResource White}" />
 
-                        <Button
+                        <ImageButton
+                            Grid.Column="1"
+                            Padding="5"
                             BackgroundColor="#ff28ba"
                             Clicked="DetailInNewWindow_Clicked"
                             CornerRadius="4"
-                            Text="Open in new window"
-                            TextColor="{x:StaticResource White}" />
-                    </HorizontalStackLayout>
+                            HorizontalOptions="Fill"
+                            Source="{x:StaticResource OpenNewWindowIcon}"
+                            VerticalOptions="Fill" />
+                    </Grid>
                 </VerticalStackLayout>
             </HorizontalStackLayout>
             <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="End">

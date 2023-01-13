@@ -118,7 +118,7 @@
     </app:BasePage.Resources>
 
     <ScrollView>
-        <VerticalStackLayout Spacing="5">
+        <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <Label Text="{x:StaticResource ControlInfo}" />
             </Frame>

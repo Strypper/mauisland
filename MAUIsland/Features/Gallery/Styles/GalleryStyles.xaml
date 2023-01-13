@@ -5,6 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland">
 
+    <FontImageSource
+        x:Key="OpenNewWindowIcon"
+        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+        Glyph="{Static app:FluentUIIcon.Ic_fluent_open_24_regular}"
+        Color="{AppThemeBinding Light='#15161e',
+                                Dark='#eaeaea'}" />
 
     <Style x:Key="DocumentContentFrameStyle" TargetType="Frame">
         <Setter Property="HasShadow" Value="True" />
