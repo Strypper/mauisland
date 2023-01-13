@@ -4,7 +4,9 @@ public interface IAppNavigator
 {
     Task GoBackAsync(bool animated = false, object data = default);
 
-    Task NavigateAsync(string target, bool animated = false, object args = default);
+    void CloseCurrentWindow();
+
+    Task NavigateAsync(string target, bool animated = false, bool inNewWindow = false, object args = default);
 
     Task<bool> OpenUrlAsync(string url);
 

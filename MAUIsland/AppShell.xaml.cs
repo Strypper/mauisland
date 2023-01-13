@@ -34,7 +34,5 @@ public partial class AppShell : Shell
 
         Routing.RegisterRoute("syncfusionAllControlsPage", typeof(SyncfusionAllControlsPage));
         Routing.RegisterRoute("syncfusionListViewPage", typeof(SyncfusionListViewPage));
-
-        
 	}
 }

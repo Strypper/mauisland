@@ -62,16 +62,25 @@
                     Source={x:Reference root}
                 }" />
 
-            <Button
+            <HorizontalStackLayout
                 Grid.Column="1"
                 Grid.Row="2"
-                Margin="0,0,16,16"
-                MaximumWidthRequest="120"
-                BackgroundColor="#ff28ba"
-                Clicked="Detail_Clicked"
-                CornerRadius="4"
-                Text="Detail"
-                TextColor="{x:StaticResource White}" />
+                Spacing="16"
+                Margin="0,0,16,16">
+                <Button
+                    MaximumWidthRequest="120"
+                    BackgroundColor="#ff28ba"
+                    Clicked="Detail_Clicked"
+                    CornerRadius="4"
+                    Text="Detail"
+                    TextColor="{x:StaticResource White}" />
+                <Button
+                    BackgroundColor="#ff28ba"
+                    Clicked="DetailInNewWindow_Clicked"
+                    CornerRadius="4"
+                    Text="Open in new window"
+                    TextColor="{x:StaticResource White}" />
+            </HorizontalStackLayout>
 
             <VerticalStackLayout
                 Grid.Row="1"

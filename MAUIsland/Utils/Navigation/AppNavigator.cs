@@ -17,10 +17,10 @@ public class AppNavigator : IAppNavigator
 
     public Task GoBackAsync(bool animated = false, object data = default)
     {
-        return NavigateAsync(UriHelper.GoBackSegment, animated, data);
+        return NavigateAsync(UriHelper.GoBackSegment, animated, false, data);
     }
 
-    public Task NavigateAsync(string target, bool animated = false, object args = default)
+    public Task NavigateAsync(string target, bool animated = false, bool inNewWindow = false, object args = default)
     {
         var navArgs = new Dictionary<string, object>()
         {
@@ -34,6 +34,24 @@ public class AppNavigator : IAppNavigator
             navArgs.Add(UriHelper.DataQueryParameterName, args);
         }
 
+        if (inNewWindow && AllowsInNewWindow())
+        {
+
+
+            return Task.Run(() =>
+            {
+                var page = Routing.GetOrCreateContent(target, serviceProvider) as Page;
+
+                if (page == null)
+                {
+                    throw new InvalidOperationException($"Cannot find page at route {target}");
+                }
+
+                var newWindow = new Window(page);
+                Application.Current.OpenWindow(newWindow);
+            });
+        }
+
         return MainThread.InvokeOnMainThreadAsync(() => Shell.Current.GoToAsync(
             target,
             animated,
@@ -42,6 +60,11 @@ public class AppNavigator : IAppNavigator
         {
 
         }));
+    }
+
+    private bool AllowsInNewWindow()
+    {
+        return DeviceInfo.Platform == DevicePlatform.WinUI;
     }
 
     public Task<bool> OpenUrlAsync(string url)
@@ -76,5 +99,13 @@ public class AppNavigator : IAppNavigator
         };
         var snackbar = Snackbar.Make(message, action, actionText ?? "OK", TimeSpan.FromSeconds(5), options);
         return snackbar.Show();
+    }
+
+    public void CloseCurrentWindow()
+    {
+        // Application.Current.Windows
+        var xwindow = Application.Current.Windows.Last();
+        var currentWindow = Shell.Current.GetParentWindow();
+        Application.Current.CloseWindow(currentWindow);
     }
 }

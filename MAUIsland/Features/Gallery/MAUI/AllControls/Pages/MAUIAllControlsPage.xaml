@@ -13,7 +13,7 @@
             x:DataType="app:ControlInfo">
             <app:ControlCardContentView
                 ComponentData="{x:Binding}"
-                DetailClicked="ControlCardContentView_DetailClicked" 
+                DetailClicked="ControlCardContentView_DetailClicked"
                 DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
         </DataTemplate>
         <GridItemsLayout
@@ -21,52 +21,48 @@
             Orientation="Vertical"
             Span="5"
             VerticalItemSpacing="16"
-            HorizontalItemSpacing="16"
-            />
+            HorizontalItemSpacing="16" />
         <LinearItemsLayout
             x:Key="MobileLayout"
             Orientation="Vertical"
-            ItemSpacing="16"
-            />
+            ItemSpacing="16" />
     </app:BasePage.Resources>
 
-    <CollectionView
-        ItemsSource="{x:Binding Items, Mode=OneWay}"
-        ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
-        VerticalScrollBarVisibility="{OnPlatform Default=Never, MacCatalyst=Always, WinUI=Always}"
-        ItemsLayout="{OnPlatform
-            Default={StaticResource MobileLayout},
-            MacCatalyst={StaticResource DesktopLayout},
-            WinUI={StaticResource DesktopLayout}
-        }">
-        <CollectionView.Header>
-            <Grid
-                HorizontalOptions="FillAndExpand"
-                RowDefinitions="200">
-                <Frame
-                    Margin="16,32"
-                    CornerRadius="6"
-                    BorderColor="#eeeeee"
-                    IsClippedToBounds="True"
-                    Padding="0">
-                    <Grid>
-                        <Image
-                            Source="https://i.imgur.com/O7V5Mid.png"
-                            Aspect="AspectFill" />
-                        <BoxView
-                            Opacity="0.57"
-                            BackgroundColor="#fff"
-                            />
-                        <Label
-                            Text="MAUI Built-in Controls"
-                            FontSize="24"
-                            TextColor="Black"
-                            FontAttributes="Bold"
-                            VerticalOptions="Center"
-                            Margin="20" />
-                    </Grid>
-                </Frame>
-            </Grid>
-        </CollectionView.Header>
-    </CollectionView>
+    <StackLayout>
+        <Grid
+            RowDefinitions="{OnIdiom Default=200, Phone=120}">
+            <Frame
+                Margin="16,24"
+                CornerRadius="6"
+                BorderColor="#eeeeee"
+                IsClippedToBounds="True"
+                Padding="0">
+                <Grid>
+                    <Image
+                        Source="https://i.imgur.com/O7V5Mid.png"
+                        Aspect="AspectFill" />
+                    <BoxView
+                        Opacity="0.57"
+                        BackgroundColor="#fff" />
+                    <Label
+                        Text="MAUI Built-in Controls"
+                        FontSize="24"
+                        TextColor="Black"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center"
+                        Margin="20" />
+                </Grid>
+            </Frame>
+        </Grid>
+        <CollectionView
+            x:Name="collectionView"
+            ItemsSource="{x:Binding Items, Mode=OneWay}"
+            ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
+            VerticalScrollBarVisibility="{OnPlatform Default=Never, MacCatalyst=Always, WinUI=Always}"
+            ItemsLayout="{OnPlatform
+                Default={StaticResource MobileLayout},
+                MacCatalyst={StaticResource DesktopLayout},
+                WinUI={StaticResource DesktopLayout}
+            }"/>
+    </StackLayout>
 </app:BasePage>
