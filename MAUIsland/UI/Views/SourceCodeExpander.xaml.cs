@@ -1,4 +1,21 @@
+using System.ComponentModel;
+
 namespace MAUIsland;
+public class BoolToImageConverter : IValueConverter
+{
+    public FontImageSource TrueObject { get; set; }
+    public FontImageSource FalseObject { get; set; }
+
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return (bool)value ? TrueObject : FalseObject;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return ((FontImageSource)value).Equals(TrueObject);
+    }
+}
 
 public partial class SourceCodeExpander : ContentView
 {
@@ -15,6 +32,9 @@ public partial class SourceCodeExpander : ContentView
                                                                                     typeof(string),
                                                                                     typeof(RoundedEntry),
                                                                                     default(string));
+
+    VerticalStackLayout _verticalStackLayout;
+
     public Array XAMLCode
     {
         get => (Array)GetValue(XAMLCodeProperty);
@@ -33,6 +53,16 @@ public partial class SourceCodeExpander : ContentView
 		InitializeComponent();
     }
 
+    protected override void OnApplyTemplate()
+    {
+        base.OnApplyTemplate();
+        _verticalStackLayout = (VerticalStackLayout)GetTemplateChild("sourceCodeContainer1");
+    }
     private async void Copy_Clicked(object sender, EventArgs e) =>
         await Clipboard.Default.SetTextAsync(XAMLCode.ToString());
+
+    private void btn_showCode_Clicked(object sender, EventArgs e)
+    {
+        _verticalStackLayout.IsVisible = !_verticalStackLayout.IsVisible;
+    }
 }

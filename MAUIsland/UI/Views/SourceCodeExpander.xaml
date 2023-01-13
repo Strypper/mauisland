@@ -13,9 +13,21 @@
             x:Key="CopyIcon"
             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
             Glyph="{Static app:FluentUIIcon.Ic_fluent_copy_24_regular}"
-            Color="{x:Static app:AppColors.Black}"
+            Color="{x:Static app:AppColors.White}"
             Size = "24"/>
-        
+        <FontImageSource
+            x:Key="ShowDownIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_arrow_down_20_regular}"
+            Color="{x:Static app:AppColors.White}"
+            Size = "20"/>
+        <FontImageSource
+            x:Key="ShowUpIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_arrow_up_20_regular}"
+            Color="{x:Static app:AppColors.White}"
+            Size = "20"/>
+
         <DataTemplate x:Key="NumberListItemTemplate"
                       x:DataType="x:String">
             <HorizontalStackLayout Margin="2">
@@ -39,39 +51,85 @@
     <ContentView.ControlTemplate>
         <ControlTemplate>
             <Frame Margin="10"
-                   Padding="10"
+                   Padding="0"
                    Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
+                <VerticalStackLayout>
 
                     <VerticalStackLayout>
                         <Grid>
                             <Label FontAttributes="Bold"
+                                   Margin="10"
                                    Text="{x:Binding Title,Source={x:Reference root}}"
                                    TextColor="#ce8557"
                                    FontSize="Title"
                                    VerticalOptions="Center" />
-                            <ImageButton BackgroundColor="{x:StaticResource White}"
-                                         Padding="-5"
-                                         Clicked="Copy_Clicked"
-                                         CornerRadius="5"
-                                         HorizontalOptions="End"
-                                         Source="{x:StaticResource CopyIcon}"
-                                         VerticalOptions="Center"
-                                         WidthRequest="25"
-                                         HeightRequest="25"/>
                         </Grid>
                         <Grid HeightRequest="1"
-                              Margin="0,5,0,5"
+                              Margin="0,3,0,3"
                               Background="White"/>
-                        <ContentPresenter />
-                    </VerticalStackLayout>
 
-                    <VerticalStackLayout>
-                        <CollectionView SelectionMode="Single"
-                                        Header="XAML Code:"
-                                        VerticalScrollBarVisibility="Never"
-                                        ItemsSource="{x:Binding XAMLCode,Source={x:Reference root}}"
-                                        ItemTemplate="{x:StaticResource NumberListItemTemplate}" />
+                        <ContentPresenter Margin="10"/>
+
+                        <Grid Margin="0,5,0,0"
+                              BackgroundColor="#393b40">
+                            <Label Text="XAML Code:"
+                                   VerticalTextAlignment="Center"
+                                   Padding="15,0,0,0"
+                                   TextColor="#ce8557"
+                                   FontSize="Body"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Fill"/>
+                            <ImageButton Padding="0"
+                                         WidthRequest="20"
+                                         HeightRequest="20"
+                                         HorizontalOptions="End"
+                                         BackgroundColor="Transparent">
+                                <ImageButton.Triggers>
+                                    
+                                    <DataTrigger TargetType="ImageButton"
+                                                 Binding="{Binding Source={x:Reference sourceCodeContainer1},Path=IsVisible}" 
+                                                 Value="True">
+                                        <Setter Property="Source" Value="{x:StaticResource ShowUpIcon}"/>
+                                    </DataTrigger>
+
+                                    <DataTrigger TargetType="ImageButton"
+                                                 Binding="{Binding Source={x:Reference sourceCodeContainer1},Path=IsVisible}" 
+                                                 Value="False">
+                                        <Setter Property="Source" Value="{x:StaticResource ShowDownIcon}"/>
+                                    </DataTrigger>
+                                    
+                                </ImageButton.Triggers>
+                            </ImageButton>
+                            <Button x:Name="btn_showCode"
+                                    BackgroundColor="Transparent"
+                                    ContentLayout="Left,0"
+                                    HorizontalOptions="Fill"
+                                    Clicked="btn_showCode_Clicked"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                    
+                    <VerticalStackLayout x:Name="sourceCodeContainer1"
+                                         Margin="0"
+                                         IsVisible="false">
+                        <Grid>
+                            <CollectionView SelectionMode="Single"
+                                            VerticalScrollBarVisibility="Never"
+                                            Margin="0,10,0,10"
+                                            ItemsSource="{x:Binding XAMLCode,Source={x:Reference root}}"
+                                            ItemTemplate="{x:StaticResource NumberListItemTemplate}" />
+                            <ImageButton    BackgroundColor="#27282b"
+                                            BorderColor="#494a4d"
+                                            BorderWidth="1"
+                                            Padding="-5"
+                                            Margin="10"
+                                            Clicked="Copy_Clicked"
+                                            CornerRadius="5"
+                                            HorizontalOptions="End"
+                                            Source="{x:StaticResource CopyIcon}"
+                                            VerticalOptions="Start"
+                                            WidthRequest="20"
+                                            HeightRequest="20"/>
+                        </Grid>
                     </VerticalStackLayout>
                     
                 </VerticalStackLayout>
