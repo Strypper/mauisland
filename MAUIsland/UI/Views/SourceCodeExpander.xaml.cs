@@ -1,20 +1,12 @@
 using System.ComponentModel;
 
 namespace MAUIsland;
-public class BoolToImageConverter : IValueConverter
+
+public class CodeLine
 {
-    public FontImageSource TrueObject { get; set; }
-    public FontImageSource FalseObject { get; set; }
+    public int Index { get; set; }
 
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        return (bool)value ? TrueObject : FalseObject;
-    }
-
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        return ((FontImageSource)value).Equals(TrueObject);
-    }
+    public string Code { get; set; }
 }
 
 public partial class SourceCodeExpander : ContentView
@@ -25,9 +17,9 @@ public partial class SourceCodeExpander : ContentView
 
     #region [Bindable Properties]
     public static readonly BindableProperty XAMLCodeProperty = BindableProperty.Create( nameof(XAMLCode),
-                                                                                           typeof(Array),
-                                                                                           typeof(RoundedEntry),
-                                                                                           default(Array));
+                                                                                        typeof(string),
+                                                                                        typeof(RoundedEntry),
+                                                                                        default(string));
     public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title),
                                                                                     typeof(string),
                                                                                     typeof(RoundedEntry),
@@ -35,9 +27,9 @@ public partial class SourceCodeExpander : ContentView
 
     VerticalStackLayout _verticalStackLayout;
 
-    public Array XAMLCode
+    public string XAMLCode
     {
-        get => (Array)GetValue(XAMLCodeProperty);
+        get => (string)GetValue(XAMLCodeProperty);
         set => SetValue(XAMLCodeProperty, value);
     }
 
