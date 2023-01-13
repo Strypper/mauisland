@@ -3,12 +3,12 @@
 public partial class SyncfusionListViewPageViewModel : NavigationAwareBaseViewModel
 {
     #region [Services]
-    private readonly IMAUIControlsService mauiControlsService;
+    private readonly IControlsService mauiControlsService;
     #endregion
 
     #region [CTor]
     public SyncfusionListViewPageViewModel(IAppNavigator appNavigator,
-                                           IMAUIControlsService mauiControlsService) 
+                                           IControlsService mauiControlsService) 
 									: base(appNavigator)
 	{
         this.mauiControlsService = mauiControlsService;
@@ -23,7 +23,7 @@ public partial class SyncfusionListViewPageViewModel : NavigationAwareBaseViewMo
     bool isBusy;
 
     [ObservableProperty]
-    ObservableCollection<ControlInfo> mauiAllControlsItems;
+    ObservableCollection<IControlInfo> mauiAllControlsItems;
     #endregion
 
     #region [RelayCommand]
@@ -47,14 +47,14 @@ public partial class SyncfusionListViewPageViewModel : NavigationAwareBaseViewMo
         IsBusy = true;
 
 
-        var items = await mauiControlsService.GetAllControlInfoAsync();
+        var items = await mauiControlsService.GetControlsAsync(ControlGroupInfo.SyncfusionControls);
 
         IsBusy = false;
 
 
         if (MauiAllControlsItems == null)
         {
-            MauiAllControlsItems = new ObservableCollection<ControlInfo>(items);
+            MauiAllControlsItems = new ObservableCollection<IControlInfo>(items);
             return;
         }
 

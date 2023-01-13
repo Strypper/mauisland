@@ -29,6 +29,7 @@ public static class MauiProgram
             })
             .RegisterServices()
             .RegisterPages()
+            .RegisterControlInfos()
             .RegisterPopups();
 
 
@@ -54,10 +55,26 @@ public static class MauiProgram
         return builder;
     }
 
+    static MauiAppBuilder RegisterControlInfos(this MauiAppBuilder builder)
+    {
+        var assemblies = new Assembly[] { typeof(IControlInfo).Assembly };
+        var controlInfoTypes = assemblies
+            .SelectMany(
+                a => a
+                    .GetTypes()
+                    .Where(a => !a.IsAbstract && !a.IsInterface && a.IsAssignableTo(typeof(IControlInfo))));
+
+        foreach (var controlInfoType in controlInfoTypes)
+        {
+            builder.Services.AddSingleton(typeof(IControlInfo), controlInfoType);
+        }
+        return builder;
+    }
+
     static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {
         builder.Services.AddSingleton<IAppNavigator, AppNavigator>();
-        builder.Services.AddSingleton<IMAUIControlsService, MAUIControlsService>();
+        builder.Services.AddSingleton<IControlsService, ControlsService>();
         builder.Services.AddSingleton<ISyncfusionControlsService, SyncfusionControlsService>();
         return builder;
     }
@@ -75,6 +92,11 @@ public static class MauiProgram
 
             if (viewModelType != null)
                 builder.Services.AddTransient(viewModelType);
+
+            if (pageType.IsAssignableTo(typeof(IControlPage)))
+            {
+                Routing.RegisterRoute(pageType.Name, pageType);
+            }
         }
 
         return builder;

@@ -1,6 +1,6 @@
 namespace MAUIsland;
 
-public partial class ButtonPage
+public partial class ButtonPage : IControlPage
 {
     public ButtonPage(ButtonPageViewModel vm)
 	{

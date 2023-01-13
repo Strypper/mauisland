@@ -20,5 +20,6 @@ public partial class ControlInfo : BaseModel
     [ObservableProperty]
     string documentUrl;
 
-
+    [ObservableProperty]
+    string groupName;
 }

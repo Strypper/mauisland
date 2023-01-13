@@ -24,19 +24,20 @@ public partial class ControlCardContentView : ContentView
     #endregion
 
     #region [Bindable Properties]
-    public static readonly BindableProperty ComponentDataProperty = BindableProperty.Create(nameof(ComponentData),
-                                                                                            typeof(ControlInfo),
-                                                                                            typeof(ControlCardContentView),
-                                                                                            default(ControlInfo)
-                                                                                            );
+    public static readonly BindableProperty ComponentDataProperty = BindableProperty.Create(
+        nameof(ComponentData),
+        typeof(IControlInfo),
+        typeof(ControlCardContentView),
+        default(ControlInfo)
+    );
 
     public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
     #endregion
 
     #region [Properties]
-    public ControlInfo ComponentData
+    public IControlInfo ComponentData
     {
-        get => (ControlInfo)GetValue(ComponentDataProperty);
+        get => (IControlInfo)GetValue(ComponentDataProperty);
         set => SetValue(ComponentDataProperty, value);
     }
     #endregion

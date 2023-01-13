@@ -3,12 +3,12 @@
 public partial class MAUIAllControlsPageViewModel : NavigationAwareBaseViewModel
 {
     #region [Services]
-    private readonly IMAUIControlsService mauiControlsService;
+    private readonly IControlsService mauiControlsService;
     #endregion
 
     #region [CTor]
     public MAUIAllControlsPageViewModel(IAppNavigator appNavigator,
-                                        IMAUIControlsService mauiControlsService)
+                                        IControlsService mauiControlsService)
                                             : base(appNavigator)
     {
         this.mauiControlsService = mauiControlsService;
@@ -23,7 +23,7 @@ public partial class MAUIAllControlsPageViewModel : NavigationAwareBaseViewModel
     bool isBusy;
 
     [ObservableProperty]
-    ObservableCollection<ControlInfo> items;
+    ObservableCollection<IControlInfo> items;
     #endregion
 
     #region [RelayCommand]
@@ -50,14 +50,14 @@ public partial class MAUIAllControlsPageViewModel : NavigationAwareBaseViewModel
         IsBusy = true;
 
 
-        var items = await mauiControlsService.GetAllControlInfoAsync();
+        var items = await mauiControlsService.GetControlsAsync(ControlGroupInfo.MauiBuiltInControls);
 
         IsBusy = false;
 
 
         if (Items == null)
         {
-            Items = new ObservableCollection<ControlInfo>(items);
+            Items = new ObservableCollection<IControlInfo>(items);
             return;
         }
 
