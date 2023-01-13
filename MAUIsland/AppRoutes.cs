@@ -4,6 +4,7 @@ public static class AppRoutes
 {
 
     public const string GalleryPage = "galleryPage";
+    public const string ChatPage = "chatPage";
     public const string MAUIAllControlsPage = "mauiAllControlsPage";
 
     public const string IndicatorViewPage = "indicatorViewPage";

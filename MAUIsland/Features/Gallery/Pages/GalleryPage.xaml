@@ -14,7 +14,10 @@
             TextColor="{x:StaticResource Primary}" />
 
         <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-            <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <VerticalStackLayout
+                HorizontalOptions="Center"
+                Spacing="5"
+                VerticalOptions="Center">
                 <Frame HasShadow="True">
                     <ImageButton
                         Command="{x:Binding NavigateToMauiControlCommand}"
@@ -29,7 +32,10 @@
                     Text="NATIVE CONTROLS" />
             </VerticalStackLayout>
 
-            <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <VerticalStackLayout
+                HorizontalOptions="Center"
+                Spacing="5"
+                VerticalOptions="Center">
                 <Frame HasShadow="True">
                     <ImageButton
                         Command="{x:Binding NavigateToSyncfusionControlCommand}"
@@ -41,7 +47,7 @@
                     FontAttributes="Bold"
                     FontSize="Caption"
                     HorizontalTextAlignment="Center"
-                    Text="NATIVE CONTROLS" />
+                    Text="SYNCFUSION CONTROLS" />
             </VerticalStackLayout>
         </VerticalStackLayout>
     </Grid>

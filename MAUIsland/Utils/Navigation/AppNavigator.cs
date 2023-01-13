@@ -49,6 +49,12 @@ public class AppNavigator : IAppNavigator
         return Launcher.OpenAsync(url);
     }
 
+    public Task<bool> OpenNewWindow(string url)
+    {
+        var page = Shell.Current.Navigation;
+        return Task.FromResult(true);
+    }
+
     public Task ShareAsync(string text, string title = default)
     {
         var request = new ShareTextRequest(text, title);

@@ -3,6 +3,7 @@ using CommunityToolkit.Maui.Core;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;
 using Syncfusion.Maui.Core.Hosting;
+using System.Reflection;
 
 namespace MAUIsland;
 
@@ -28,9 +29,10 @@ public static class MauiProgram
             })
             .RegisterServices()
             .RegisterPages()
-            .RegisterPopups(); 
+            .RegisterPopups();
 
-        builder.ConfigureSyncfusionCore(); 
+
+        builder.ConfigureSyncfusionCore();
 
 #if DEBUG
         builder.Logging.AddDebug();
@@ -60,36 +62,21 @@ public static class MauiProgram
         return builder;
     }
 
-    static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
+    static MauiAppBuilder RegisterPages(this MauiAppBuilder builder, string pattern = "Page")
     {
-        builder.Services.AddPage<GalleryPage, GalleryPageViewModel>();
-        builder.Services.AddPage<MAUIAllControlsPage, MAUIAllControlsPageViewModel>();
+        var assemblies = new Assembly[] { typeof(MauiProgram).Assembly };
+        var pageTypes = assemblies.SelectMany(a => a.GetTypes().Where(a => a.Name.EndsWith(pattern) && !a.IsAbstract && !a.IsInterface));
+        foreach (var pageType in pageTypes)
+        {
+            var viewModelFullName = $"{pageType.FullName}ViewModel";
+            var viewModelType = Type.GetType(viewModelFullName);
 
-        builder.Services.AddPage<ButtonPage, ButtonPageViewModel>();
-        builder.Services.AddPage<ImageButtonPage, ImageButtonPageViewModel>();
-        builder.Services.AddPage<ProgressBarPage, ProgressBarPageViewModel>();
-        builder.Services.AddPage<RefreshViewPage, RefreshViewPageViewModel>();
-        builder.Services.AddPage<PickerPage, PickerPageViewModel>();
-        builder.Services.AddPage<SliderPage, SliderPageViewModel>();
-        builder.Services.AddPage<SearchBarPage, SearchBarPageViewModel>();
-        builder.Services.AddPage<StepperPage, StepperPageViewModel>();
-        builder.Services.AddPage<EntryPage, EntryPageViewModel>();
-        builder.Services.AddPage<CollectionViewPage, CollectionViewPageViewModel>();
-        builder.Services.AddPage<IndicatorViewPage, IndicatorViewPageViewModel>();
-        builder.Services.AddPage<CarouselViewPage, CarouselViewPageViewModel>();
-        builder.Services.AddPage<TimePickerPage, TimePickerPageViewModel>();
-        builder.Services.AddPage<SwitchPage, SwitchPageViewModel>();
-        builder.Services.AddPage<CheckBoxPage, CheckBoxPageViewModel>();
-        builder.Services.AddPage<LabelPage, LabelPageViewModel>();
-        //builder.Services.AddPage<SwipeViewPage, SwipeViewPageViewModel>();
-        builder.Services.AddPage<RadioButtonPage, RadioButtonPageViewModel>();
-        builder.Services.AddPage<DatePickerPage, DatePickerPageViewModel>();
-        builder.Services.AddPage<EditorPage, EditorPageViewModel>();
-        builder.Services.AddPage<MenuBarPage, MenuBarPageViewModel>();
-        builder.Services.AddPage<ActivityIndicatorPage, ActivityIndicatorPageViewModel>();
+            builder.Services.AddTransient(pageType);
 
-        builder.Services.AddPage<SyncfusionAllControlsPage, SyncfusionAllControlsPageViewModel>();
-        builder.Services.AddPage<SyncfusionListViewPage, SyncfusionListViewPageViewModel>();
+            if (viewModelType != null)
+                builder.Services.AddTransient(viewModelType);
+        }
+
         return builder;
     }
 
