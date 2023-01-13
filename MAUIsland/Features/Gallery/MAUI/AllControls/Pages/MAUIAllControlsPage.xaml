@@ -10,7 +10,10 @@
     SizeChanged="BasePage_SizeChanged">
     <app:BasePage.Resources>
         <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate" x:DataType="app:ControlInfo">
-            <app:ControlCardContentView ComponentData="{x:Binding}" DetailClicked="ControlCardContentView_DetailClicked" />
+            <app:ControlCardContentView
+                ComponentData="{x:Binding}"
+                DetailClicked="ControlCardContentView_DetailClicked"
+                DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
         </DataTemplate>
     </app:BasePage.Resources>
 
