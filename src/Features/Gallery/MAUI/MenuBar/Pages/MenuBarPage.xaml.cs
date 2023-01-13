@@ -1,6 +1,6 @@
 namespace MAUIsland;
 
-public partial class MenuBarPage
+public partial class MenuBarPage : IControlPage
 {
     public MenuBarPage(EditorPageViewModel vm)
     {

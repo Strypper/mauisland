@@ -1,6 +1,6 @@
 namespace MAUIsland;
 
-public partial class SwitchPage
+public partial class SwitchPage : IControlPage
 {
     #region [CTor]
     public SwitchPage()

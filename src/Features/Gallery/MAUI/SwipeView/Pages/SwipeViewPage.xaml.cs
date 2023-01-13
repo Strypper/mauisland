@@ -1,6 +1,6 @@
 namespace MAUIsland;
 
-public partial class SwipeViewPage 
+public partial class SwipeViewPage : IControlPage
 {
     #region [CTor]
     public SwipeViewPage()

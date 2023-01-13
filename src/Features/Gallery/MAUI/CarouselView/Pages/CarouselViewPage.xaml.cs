@@ -1,6 +1,6 @@
 namespace MAUIsland;
 
-public partial class CarouselViewPage
+public partial class CarouselViewPage : IControlPage
 {
     #region [CTor]
     public CarouselViewPage()

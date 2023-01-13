@@ -95,7 +95,7 @@ public static class MauiProgram
 
             if (pageType.IsAssignableTo(typeof(IControlPage)))
             {
-                Routing.RegisterRoute(pageType.Name, pageType);
+                Routing.RegisterRoute(pageType.FullName, pageType);
             }
         }
 

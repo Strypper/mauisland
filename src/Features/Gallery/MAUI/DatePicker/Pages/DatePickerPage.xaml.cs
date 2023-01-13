@@ -1,6 +1,6 @@
 namespace MAUIsland;
 
-public partial class DatePickerPage
+public partial class DatePickerPage : IControlPage
 {
     #region [CTor]
     public DatePickerPage()

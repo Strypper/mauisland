@@ -1,6 +1,6 @@
 namespace MAUIsland;
 
-public partial class EntryPage
+public partial class EntryPage : IControlPage
 {
     #region [CTor]
     public EntryPage(EntryPageViewModel vm)

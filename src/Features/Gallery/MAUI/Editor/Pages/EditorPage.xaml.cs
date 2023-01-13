@@ -1,6 +1,6 @@
 namespace MAUIsland;
 
-public partial class EditorPage
+public partial class EditorPage : IControlPage
 {
 	public EditorPage(EditorPageViewModel vm)
 	{

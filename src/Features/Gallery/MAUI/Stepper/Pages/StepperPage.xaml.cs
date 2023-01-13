@@ -1,6 +1,6 @@
 namespace MAUIsland;
 
-public partial class StepperPage
+public partial class StepperPage : IControlPage
 {
     #region [CTor]
     public StepperPage()

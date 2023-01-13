@@ -1,6 +1,6 @@
 namespace MAUIsland;
 
-public partial class SliderPage
+public partial class SliderPage : IControlPage
 {
     #region [CTor]
     public SliderPage(SliderPageViewModel vm)

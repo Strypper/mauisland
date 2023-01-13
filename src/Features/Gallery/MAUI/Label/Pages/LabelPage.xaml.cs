@@ -1,6 +1,6 @@
 namespace MAUIsland;
 
-public partial class LabelPage
+public partial class LabelPage : IControlPage
 {
     #region [CTor]
 

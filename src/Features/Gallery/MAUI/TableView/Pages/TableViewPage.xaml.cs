@@ -1,6 +1,6 @@
 namespace MAUIsland;
 
-public partial class TableViewPage
+public partial class TableViewPage : IControlPage
 {
     #region [CTor]
     public TableViewPage(ActivityIndicatorPageViewModel vm)

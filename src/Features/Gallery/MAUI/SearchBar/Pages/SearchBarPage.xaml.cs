@@ -1,6 +1,6 @@
 namespace MAUIsland;
 
-public partial class SearchBarPage
+public partial class SearchBarPage : IControlPage
 {
     #region [CTor]
     public SearchBarPage()

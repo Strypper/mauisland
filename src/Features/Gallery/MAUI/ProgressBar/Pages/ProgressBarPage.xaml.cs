@@ -15,7 +15,7 @@ public class PercentageConverter<T> : IValueConverter
     }
 }
 
-public partial class ProgressBarPage
+public partial class ProgressBarPage : IControlPage
 {
     double _progress = 0;
 

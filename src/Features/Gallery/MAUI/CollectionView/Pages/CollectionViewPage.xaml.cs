@@ -1,8 +1,6 @@
 namespace MAUIsland;
 
-
-
-public partial class CollectionViewPage
+public partial class CollectionViewPage : IControlPage
 {
 
     #region [CTor]

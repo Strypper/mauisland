@@ -2,6 +2,8 @@
 
 public abstract class NavigationAwareBaseViewModel : BaseViewModel, IQueryAttributable
 {
+    protected bool Initialized { get; private set; }
+
     protected NavigationAwareBaseViewModel(IAppNavigator appNavigator) : base(appNavigator)
     {
     }
@@ -16,6 +18,10 @@ public abstract class NavigationAwareBaseViewModel : BaseViewModel, IQueryAttrib
         else
         {
             System.Diagnostics.Debug.WriteLine($"{GetType().Name}.{nameof(OnInit)}");
+
+            if (Initialized) return;
+
+            Initialized = true;
             OnInit(query);
         }
     }

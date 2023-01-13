@@ -55,7 +55,7 @@
 	  <None Remove="Resources\Fonts\FluentSystemIcons-Regular.ttf" />
 	  <None Remove="Resources\Images\microsoft.svg" />
 	  <None Remove="Features\Gallery\Core\" />
-	  <None Remove="Features\Gallery\MAUI\AllControls\Pages\" />
+	  <None Remove="Features\Gallery\Core\Services\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -76,12 +76,10 @@
 
 	<ItemGroup>
 	  <Folder Include="Features\Blog\" />
-	  <Folder Include="Features\Gallery\MAUI\AllControls\ContentViews\" />
-	  <Folder Include="Features\Gallery\MAUI\AllControls\Models\" />
 	  <Folder Include="Features\Gallery\MAUI\Button\Models\" />
 	  <Folder Include="Features\QA\" />
 	  <Folder Include="Features\Gallery\Core\" />
-	  <Folder Include="Features\Gallery\MAUI\AllControls\Pages\" />
+	  <Folder Include="Features\Gallery\Core\Services\" />
 	</ItemGroup>
 
 	<ItemGroup>

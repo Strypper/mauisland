@@ -1,6 +1,6 @@
 namespace MAUIsland;
 
-public partial class PickerPage 
+public partial class PickerPage : IControlPage
 {
     #region [CTor]
     public PickerPage()

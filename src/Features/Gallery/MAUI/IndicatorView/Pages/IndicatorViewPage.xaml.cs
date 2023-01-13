@@ -1,6 +1,6 @@
 namespace MAUIsland;
 
-public partial class IndicatorViewPage
+public partial class IndicatorViewPage : IControlPage
 {
     #region [CTor]
     public IndicatorViewPage(IndicatorViewPageViewModel vm)
