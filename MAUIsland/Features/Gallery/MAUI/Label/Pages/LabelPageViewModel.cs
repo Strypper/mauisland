@@ -11,4 +11,12 @@ public partial class LabelPageViewModel : NavigationAwareBaseViewModel
 
     }
     #endregion
+
+    #region [Properties]
+    [ObservableProperty]
+    int selectedLineBreakModeIndex;
+
+    [ObservableProperty]
+    List<string> lineBreakModes = Enum.GetNames(typeof(LineBreakMode)).ToList();
+    #endregion
 }

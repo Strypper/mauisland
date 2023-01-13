@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    x:Class="MAUIsland.SyncfusionAllControlsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    Padding="20"
+    x:DataType="app:SyncfusionAllControlsPageViewModel"
+    BackgroundColor="#272727"
+    SizeChanged="BasePage_SizeChanged">
+    <app:BasePage.Resources>
+        <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate" x:DataType="app:ControlInfo">
+            <app:ControlCardContentView ComponentData="{x:Binding}" DetailClicked="ControlCardContentView_DetailClicked" />
+        </DataTemplate>
+    </app:BasePage.Resources>
+
+    <ScrollView VerticalScrollBarVisibility="Always">
+        <Grid RowDefinitions="150, 20, *">
+            <Frame Padding="0">
+                <Grid>
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="200"
+                        HorizontalOptions="Fill"
+                        Source="https://i.imgur.com/O7V5Mid.png"
+                        VerticalOptions="Fill" />
+
+                    <Label
+                        Margin="20"
+                        FontAttributes="Bold"
+                        FontSize="Header"
+                        Text="All Controls"
+                        TextColor="{x:StaticResource White}"
+                        VerticalOptions="Center" />
+                </Grid>
+            </Frame>
+            <app:HorizontalWrapLayout
+                Grid.Row="2"
+                BindableLayout.ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
+                BindableLayout.ItemsSource="{x:Binding Items,
+                                                       Mode=OneWay}"
+                Spacing="10" />
+        </Grid>
+    </ScrollView>
+</app:BasePage>

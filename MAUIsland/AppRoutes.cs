@@ -4,6 +4,7 @@ public static class AppRoutes
 {
 
     public const string GalleryPage = "galleryPage";
+    public const string ChatPage = "chatPage";
     public const string MAUIAllControlsPage = "mauiAllControlsPage";
 
     public const string IndicatorViewPage = "indicatorViewPage";
@@ -29,5 +30,8 @@ public static class AppRoutes
     public const string EditorPage = "editorPage";
     public const string RadioButtonPage = "radioButtonPage";
     public const string MenuBarPage = "menuBarPage";
+
+    public const string SyncfusionAllControlsPage = "syncfusionAllControlsPage";
+    public const string SyncfusionListViewPage = "syncfusionListViewPage";
 
 }

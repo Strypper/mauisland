@@ -10,6 +10,7 @@ public class MAUIControlsService : IMAUIControlsService
         return Task.Run(() =>
         {
             var controls = new List<ControlInfo>();
+
             controls.Add(new ControlInfo()
             {
                 ControlName = "Button",
@@ -50,6 +51,18 @@ public class MAUIControlsService : IMAUIControlsService
                 ControlDetail = "ActivityIndicator displays an animation to show that the application is engaged in a lengthy activity. Unlike ProgressBar, ActivityIndicator gives no indication of progress.",
                 GitHubUrl = "https://github.com/Strypper/MAUIsland/tree/main/MAUIsland/Features/Gallery/MAUI/ActivityIndicator",
                 DocumentUrl = "https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/activityindicator?view=net-maui-7.0"
+            });
+
+            controls.Add(new ControlInfo()
+            {
+                ControlName = "Label Page",
+                ControlRoute = AppRoutes.LabelPage,
+                ControlIcon = new FontImageSource()
+                {
+                    FontFamily = FontNames.FluentSystemIconsRegular,
+                    Glyph = FluentUIIcon.Ic_fluent_text_case_title_24_regular
+                },
+                ControlDetail = "Label displays single-line and multi-line text. Text displayed by a Label can be colored, spaced, and can have text decorations."
             });
 
             controls.Add(new ControlInfo()
@@ -280,18 +293,6 @@ public class MAUIControlsService : IMAUIControlsService
                     Glyph = FluentUIIcon.Ic_fluent_apps_24_regular
                 },
                 ControlDetail = " IndicatorView is a control that displays indicators that represent the number of items, and current position, in a CarouselView"
-            });
-
-            controls.Add(new ControlInfo()
-            {
-                ControlName = "Label Page",
-                ControlRoute = AppRoutes.LabelPage,
-                ControlIcon = new FontImageSource()
-                {
-                    FontFamily = FontNames.FluentSystemIconsRegular,
-                    Glyph = FluentUIIcon.Ic_fluent_text_case_title_24_regular
-                },
-                ControlDetail = "Label displays single-line and multi-line text. Text displayed by a Label can be colored, spaced, and can have text decorations."
             });
 
             return controls.AsEnumerable();

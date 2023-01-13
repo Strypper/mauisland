@@ -178,7 +178,7 @@
             Padding="10"/>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
                Padding="20,10,20,10">
-                <VerticalStackLayout Spacing="0">
+                <VerticalStackLayout>
                     <Grid Margin="0,0,0,5">
                         <Grid.Resources>
                             <FontImageSource x:Key="ShowCode"
@@ -232,13 +232,13 @@
             </Frame>
 
             <CollectionView  Margin="10"
-                       SelectionMode="Single"
-                       Header="RadioButton defines the following properties:"
-                       Footer="These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled."
-                       VerticalScrollBarVisibility="Never"
-                       ItemTemplate="{x:StaticResource BulletListItemTemplate}"
-                       ItemsSource="{x:StaticResource PropertyItemsSource}" />
-            
+                             SelectionMode="Single"
+                             Header="RadioButton defines the following properties:"
+                             Footer="These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled."
+                             VerticalScrollBarVisibility="Never"
+                             ItemTemplate="{x:StaticResource BulletListItemTemplate}"
+                             ItemsSource="{x:StaticResource PropertyItemsSource}" />  
+
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
                Padding="20,10,20,10">
                 <VerticalStackLayout Spacing="0">

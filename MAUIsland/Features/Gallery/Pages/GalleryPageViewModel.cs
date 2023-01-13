@@ -18,5 +18,8 @@ public partial class GalleryPageViewModel : NavigationAwareBaseViewModel
 
     [RelayCommand]
     Task NavigateToMauiControlAsync() => AppNavigator.NavigateAsync(AppRoutes.MAUIAllControlsPage);
+
+    [RelayCommand]
+    Task NavigateToSyncfusionControlAsync() => AppNavigator.NavigateAsync(AppRoutes.SyncfusionAllControlsPage);
     #endregion
 }

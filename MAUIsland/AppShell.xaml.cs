@@ -6,7 +6,9 @@ public partial class AppShell : Shell
 	{
 		InitializeComponent();
 
-		Routing.RegisterRoute("mauiAllControlsPage", typeof(MAUIAllControlsPage));
+        Routing.RegisterRoute("bridgeWindowChatPage", typeof(BridgeWindowChatPage));
+
+        Routing.RegisterRoute("mauiAllControlsPage", typeof(MAUIAllControlsPage));
         Routing.RegisterRoute("collectionViewPage", typeof(CollectionViewPage));
         Routing.RegisterRoute("buttonPage", typeof(ButtonPage));
 		Routing.RegisterRoute("imageButtonPage", typeof(ImageButtonPage));
@@ -29,5 +31,10 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("datePickerPage", typeof(DatePickerPage));
         Routing.RegisterRoute("editorPage", typeof(EditorPage));
 		Routing.RegisterRoute("menuBarPage", typeof(MenuBarPage));
+
+        Routing.RegisterRoute("syncfusionAllControlsPage", typeof(SyncfusionAllControlsPage));
+        Routing.RegisterRoute("syncfusionListViewPage", typeof(SyncfusionListViewPage));
+
+        
 	}
 }

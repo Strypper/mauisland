@@ -63,12 +63,17 @@
 		<PackageReference Include="CommunityToolkit.Maui" Version="3.1.0" />
 		<PackageReference Include="CommunityToolkit.Maui.Core" Version="3.1.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0-preview3" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="20.4.43" />
+		<PackageReference Include="Syncfusion.Maui.Charts" Version="20.4.43" />
+		<PackageReference Include="Syncfusion.Maui.ListView" Version="20.4.43" />
+		<PackageReference Include="Syncfusion.Maui.PdfViewer" Version="20.4.43" />
+		<PackageReference Include="Syncfusion.Maui.TabView" Version="20.4.43" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Features\Blog\" />
-	  <Folder Include="Features\Chat\" />
 	  <Folder Include="Features\Gallery\MAUI\AllControls\ContentViews\" />
 	  <Folder Include="Features\Gallery\MAUI\AllControls\Models\" />
 	  <Folder Include="Features\Gallery\MAUI\Button\Models\" />
@@ -80,6 +85,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Features\Gallery\Syncfusion\AllControls\Pages\SyncfusionAllControlsPage.xaml.cs">
+	    <DependentUpon>SyncfusionAllControlsPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\Gallery\Syncfusion\ListView\Pages\SyncfusionListViewPage.xaml.cs">
+	    <DependentUpon>SyncfusionListViewPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Features\Chat\Pages\BridgeWindowChatPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Chat\Pages\ChatPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\ContentViews\ControlCardContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -126,6 +146,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Styles\Colors.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Syncfusion\AllControls\Pages\SyncfusionAllControlsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Syncfusion\ListView\Pages\SyncfusionListViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="UI\Views\SourceCodeExpander.xaml">
