@@ -265,6 +265,9 @@
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SfListView\SfListViewPage.xaml">
 	    <SubType>Designer</SubType>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\BuiltIn\Xxxx\XxxxPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
