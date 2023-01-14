@@ -59,6 +59,7 @@ public partial class ControlsByGroupPageViewModel : NavigationAwareBaseViewModel
         var items = await mauiControlsService.GetControlsAsync(ControlGroup.Name);
 
         IsBusy = false;
+
         if (Items == null)
         {
             Items = new ObservableCollection<IControlInfo>(items);

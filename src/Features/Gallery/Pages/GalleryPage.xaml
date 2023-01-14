@@ -4,21 +4,22 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
-    Title="GalleryPage"
+    Title=".NET Multi-platform App UI - Controls"
     x:Name="root"
     x:DataType="app:GalleryPageViewModel">
     <Grid>
-        <Label
-            FontAttributes="Bold"
-            FontSize="Title"
-            Text=".NET Multi-platform App UI"
-            TextColor="{x:StaticResource Primary}" />
-
-        <VerticalStackLayout
-            HorizontalOptions="Center"
-            VerticalOptions="Center"
-            BindableLayout.ItemsSource="{Binding ControlGroups}">
-            <BindableLayout.ItemTemplate>
+        <CollectionView
+            Margin="16"
+            VerticalScrollBarVisibility="Never"
+            ItemsSource="{Binding ControlGroups}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    Orientation="Vertical"
+                    Span="{OnIdiom Default=5, Phone=2}"
+                    VerticalItemSpacing="16"
+                    HorizontalItemSpacing="16" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
                 <DataTemplate
                     x:DataType="app:ControlGroupInfo">
                     <Frame
@@ -41,7 +42,7 @@
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </VerticalStackLayout>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </Grid>
 </app:BasePage>

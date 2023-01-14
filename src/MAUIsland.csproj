@@ -56,6 +56,8 @@
 	  <None Remove="Resources\Images\microsoft.svg" />
 	  <None Remove="Features\Gallery\Core\" />
 	  <None Remove="Features\Gallery\Services\" />
+	  <None Remove="Resources\Images\syncfusion_logo.png" />
+	  <None Remove="Resources\Images\fluenticon_options_white.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -80,10 +82,6 @@
 	  <Folder Include="Features\QA\" />
 	  <Folder Include="Features\Gallery\Core\" />
 	  <Folder Include="Features\Gallery\Services\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiImage Include="Resources\Images\Gallery\fluenticon_options_white.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -155,4 +153,8 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <BundleResource Include="Resources\Images\syncfusion_logo.png" />
+	  <BundleResource Include="Resources\Images\fluenticon_options_white.svg" />
+	</ItemGroup>
 </Project>
