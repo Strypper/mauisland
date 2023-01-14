@@ -58,6 +58,8 @@
 	  <None Remove="Features\Gallery\Services\" />
 	  <None Remove="Resources\Images\syncfusion_logo.png" />
 	  <None Remove="Resources\Images\fluenticon_options_white.svg" />
+	  <None Remove="Features\Gallery\Pages\Syncfusion\" />
+	  <None Remove="Features\Gallery\Pages\BuiltIn\DatePicker\Pages\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -78,15 +80,22 @@
 
 	<ItemGroup>
 	  <Folder Include="Features\Blog\" />
-	  <Folder Include="Features\Gallery\MAUI\Button\Models\" />
 	  <Folder Include="Features\QA\" />
 	  <Folder Include="Features\Gallery\Core\" />
 	  <Folder Include="Features\Gallery\Services\" />
+	  <Folder Include="Features\Gallery\Pages\Syncfusion\" />
+	  <Folder Include="Features\Gallery\Pages\BuiltIn\DatePicker\Pages\" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Compile Update="Features\Gallery\Syncfusion\ListView\Pages\SyncfusionListViewPage.xaml.cs">
 	    <DependentUpon>SyncfusionListViewPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SfListView\SyncfusionListViewPage.xaml.cs">
+	    <DependentUpon>SfListViewPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SfListView\SfListViewPage.xaml.cs">
+	    <DependentUpon>SfListViewPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -100,34 +109,7 @@
 	  <MauiXaml Update="Features\Gallery\ContentViews\ControlCardContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\MAUI\Button\Pages\ButtonPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\MAUI\CarouselView\Pages\CarouselViewPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\MAUI\DatePicker\Pages\DatePickerPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\MAUI\Editor\Pages\EditorPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\MAUI\IndicatorView\Pages\IndicatorViewPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\MAUI\Label\LabelPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\MAUI\MenuBar\Pages\MenuBarPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\MAUI\Picker\Pages\PickerPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\MAUI\ProgressBar\Pages\ProgressBarPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\MAUI\Slider\Pages\SliderPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\GalleryPage.xaml">
@@ -142,14 +124,149 @@
 	  <MauiXaml Update="UI\Views\SourceCodeExpander.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\MAUI\ActivityIndicator\ActivityIndicatorPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\MAUIAllControlsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\MAUI\ImageButton\ImageButtonPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
+	  <MauiXaml Update="Features\Gallery\Pages\B\ImageButton\ImageButtonPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\ActivityIndicator\ActivityIndicatorPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\SearchBar\Pages\SearchBarPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\TableView\Pages\TableViewPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\TimePicker\Pages\TimePickerPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\RefreshView\Pages\RefreshViewPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\CollectionView\Pages\CollectionViewPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\MenuBar\Pages\MenuBarPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\Picker\Pages\PickerPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\CarouselView\Pages\CarouselViewPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\Entry\Pages\EntryPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\DatePicker\Pages\DatePickerPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\CheckBox\Pages\CheckBoxPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\Label\Pages\LabelPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\Slider\Pages\SliderPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\Stepper\Pages\StepperPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\ProgressBar\Pages\ProgressBarPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\RaditoButton\Pages\RadioButtonPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\Button\Pages\ButtonPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\SwipeView\Pages\SwipeViewPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\Switch\Pages\SwitchPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\IndicatorView\Pages\IndicatorViewPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\B\Editor\Pages\EditorPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Button\ButtonPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\CarouselView\CarouselViewPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\CheckBox\CheckBoxPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\CollectionView\CollectionViewPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\DatePicker\DatePickerPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Editor\EditorPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Entry\EntryPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\IndicatorView\IndicatorViewPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Label\LabelPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\MenuBar\MenuBarPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Picker\PickerPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\ProgressBar\ProgressBarPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\RaditoButton\RadioButtonPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\RefreshView\RefreshViewPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\SearchBar\SearchBarPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Slider\SliderPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Stepper\StepperPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\SwipeView\SwipeViewPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Switch\SwitchPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\TimePicker\TimePickerPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\TableView\TableViewPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SfListView\SyncfusionListViewPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SfListView\SfListViewPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\BuiltIn\Xxxx\XxxxPage.xaml">
+	    <SubType></SubType>
 	  </MauiXaml>
 	</ItemGroup>
 
