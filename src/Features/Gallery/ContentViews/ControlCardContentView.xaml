@@ -6,6 +6,15 @@
     xmlns:app="clr-namespace:MAUIsland"
     x:Name="root"
     x:DataType="app:ControlCardContentView">
+    <ContentView.Resources>
+        <FontImageSource
+            x:Key="MultiWindowsIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_square_multiple_24_regular}"
+            Color="{AppThemeBinding Light='#15161e',
+                                    Dark='#eaeaea'}" />
+    </ContentView.Resources>
+
     <Frame
         Padding="0"
         BackgroundColor="#323232"
@@ -54,25 +63,26 @@
                 ToolTipProperties.Text="{x:Binding ComponentData.ControlDetail,
                                                    Source={x:Reference root}}" />
 
-            <HorizontalStackLayout
+            <Grid
                 Grid.Row="2"
                 Grid.Column="1"
                 Margin="0,0,16,16"
-                Spacing="16">
+                ColumnDefinitions="*, 50"
+                ColumnSpacing="5">
                 <Button
                     BackgroundColor="#ff28ba"
                     Clicked="Detail_Clicked"
                     CornerRadius="4"
-                    MaximumWidthRequest="120"
+                    HorizontalOptions="Fill"
                     Text="Detail"
                     TextColor="{x:StaticResource White}" />
-                <Button
+                <ImageButton
+                    Grid.Column="1"
                     BackgroundColor="#ff28ba"
                     Clicked="DetailInNewWindow_Clicked"
                     CornerRadius="4"
-                    Text="Open in new window"
-                    TextColor="{x:StaticResource White}" />
-            </HorizontalStackLayout>
+                    Source="{x:StaticResource MultiWindowsIcon}" />
+            </Grid>
 
             <VerticalStackLayout
                 Grid.Row="1"

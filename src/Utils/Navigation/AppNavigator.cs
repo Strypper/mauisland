@@ -34,10 +34,8 @@ public class AppNavigator : IAppNavigator
             navArgs.Add(UriHelper.DataQueryParameterName, args);
         }
 
-        if (inNewWindow && AppNavigator.AllowsInNewWindow())
+        if (inNewWindow && AllowsInNewWindow())
         {
-
-
             return Task.Run(() =>
             {
                 var page = Routing.GetOrCreateContent(target, serviceProvider) as Page;
@@ -47,8 +45,11 @@ public class AppNavigator : IAppNavigator
                     throw new InvalidOperationException($"Cannot find page at route {target}");
                 }
 
-                var newWindow = new Window(page);
-                Application.Current.OpenWindow(newWindow);
+                return MainThread.InvokeOnMainThreadAsync(() =>
+                {
+                    var newWindow = new Window(page);
+                    Application.Current.OpenWindow(newWindow);
+                });
             });
         }
 
@@ -64,7 +65,7 @@ public class AppNavigator : IAppNavigator
 
     private static bool AllowsInNewWindow()
     {
-        return DeviceInfo.Platform == DevicePlatform.WinUI;
+        return DeviceInfo.Platform != DevicePlatform.iOS;
     }
 
     public Task<bool> OpenUrlAsync(string url)

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    x:Class="MAUIsland.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    Title="HomePage"
+    x:DataType="app:HomePageViewModel"
+    Shell.NavBarIsVisible="False">
+
+    <app:BasePage.Resources>
+
+        <DataTemplate x:Key="MAUIFactListItemTemplate" x:DataType="app:MAUIFact">
+            <Grid ColumnDefinitions="10 , *">
+                <Ellipse
+                    Fill="#294611"
+                    HeightRequest="7"
+                    VerticalOptions="Center"
+                    WidthRequest="7" />
+                <Label
+                    Grid.Column="1"
+                    Margin="10,0,0,0"
+                    FontSize="Body"
+                    LineBreakMode="WordWrap"
+                    Text="{x:Binding Fact}"
+                    TextColor="#294611"
+                    TextType="Html"
+                    VerticalOptions="Center" />
+            </Grid>
+        </DataTemplate>
+    </app:BasePage.Resources>
+
+    <Grid>
+        <Image
+            Aspect="AspectFill"
+            HorizontalOptions="Fill"
+            Source="mauibeach.jpeg"
+            VerticalOptions="Fill" />
+
+        <VerticalStackLayout
+            Margin="30"
+            HorizontalOptions="End"
+            VerticalOptions="Start">
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="80"
+                Text="MAUISLAND"
+                TextColor="#294611" />
+            <Border
+                Padding="20"
+                BackgroundColor="Transparent"
+                Stroke="#294611"
+                StrokeShape="RoundRectangle 5,5,5,5">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Subtitle"
+                        Text="Do you know about these MAUI facts ?"
+                        TextColor="#294611" />
+                    <CollectionView
+                        x:Name="MAUIFactsCollectionView"
+                        HeightRequest="250"
+                        ItemTemplate="{x:StaticResource MAUIFactListItemTemplate}"
+                        ItemsSource="{x:Binding MauiFacts}"
+                        SelectionChangedCommand="{x:Binding OpenFactUrlCommand}"
+                        SelectionChangedCommandParameter="{x:Binding Source={x:Reference MAUIFactsCollectionView},
+                                                                     Path=SelectedItem}"
+                        SelectionMode="Single"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </Grid>
+</app:BasePage>

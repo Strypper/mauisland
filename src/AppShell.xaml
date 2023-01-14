@@ -27,9 +27,9 @@
     </Shell.Resources>
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate app:MainPage}"
+        ContentTemplate="{DataTemplate app:HomePage}"
         Icon="{x:StaticResource HomeIcon}"
-        Route="MainPage" />
+        Route="homePage" />
     <ShellContent
         Title="Chat"
         ContentTemplate="{DataTemplate app:ChatPage}"

@@ -4,10 +4,12 @@ public class ControlsService : IControlsService
 {
     private readonly IControlInfo[] controlInfos;
 
+    #region [CTor]
     public ControlsService(IEnumerable<IControlInfo> controlInfos)
     {
         this.controlInfos = controlInfos.ToArray();
     }
+    #endregion
 
     private readonly IList<ControlGroupInfo> controlGroupInfos = new List<ControlGroupInfo>()
     {

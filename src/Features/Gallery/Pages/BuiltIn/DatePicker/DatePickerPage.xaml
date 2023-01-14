@@ -65,7 +65,7 @@
 
 
     <ScrollView>
-        <VerticalStackLayout Spacing="10">
+        <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="5">
                     <Label
@@ -86,7 +86,7 @@
                 <VerticalStackLayout Spacing="5">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="A simple date picker" />
                     <DatePicker />
-                    <app:SourceCodeExpander />
+                    <app:SourceCodeExpander XamlCode="{x:Binding SimpleDatePickerXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

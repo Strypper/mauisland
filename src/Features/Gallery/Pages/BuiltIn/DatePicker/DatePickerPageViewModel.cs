@@ -9,4 +9,9 @@ public partial class DatePickerPageViewModel : NavigationAwareBaseViewModel
 
     }
     #endregion
+
+    #region [Properties]
+    [ObservableProperty]
+    string simpleDatePickerXamlCode = "<DatePicker />";
+    #endregion
 }

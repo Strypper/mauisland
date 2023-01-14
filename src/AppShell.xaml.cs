@@ -6,7 +6,6 @@ public partial class AppShell : Shell
 	{
 		InitializeComponent();
 
-        Routing.RegisterRoute("bridgeWindowChatPage", typeof(BridgeWindowChatPage));
         Routing.RegisterRoute(nameof(ControlsByGroupPage), typeof(ControlsByGroupPage));
 	}
 }

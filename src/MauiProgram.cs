@@ -74,6 +74,7 @@ public static class MauiProgram
     static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {
         builder.Services.AddSingleton<IAppNavigator, AppNavigator>();
+        builder.Services.AddSingleton<IHomeService, HomeService>();
         builder.Services.AddSingleton<IControlsService, ControlsService>();
         return builder;
     }
