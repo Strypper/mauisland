@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    x:Class="MAUIsland.ControlsByGroupPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    Title="{Binding ControlGroup.Title}"
+    x:DataType="app:ControlsByGroupPageViewModel"
+    BackgroundColor="#272727"
+    SizeChanged="BasePage_SizeChanged">
+    <app:BasePage.Resources>
+        <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate" x:DataType="app:IControlInfo">
+            <app:ControlCardContentView
+                ComponentData="{x:Binding}"
+                DetailClicked="ControlCardContentView_DetailClicked"
+                DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
+        </DataTemplate>
+        <GridItemsLayout
+            x:Key="DesktopLayout"
+            HorizontalItemSpacing="16"
+            Orientation="Vertical"
+            Span="5"
+            VerticalItemSpacing="16" />
+        <LinearItemsLayout
+            x:Key="MobileLayout"
+            ItemSpacing="16"
+            Orientation="Vertical" />
+    </app:BasePage.Resources>
+
+    <!--<StackLayout>
+        <Grid RowDefinitions="{OnIdiom Default=200, Phone=120}">
+            <Frame
+                Margin="16,24"
+                Padding="0"
+                BorderColor="#eeeeee"
+                CornerRadius="6"
+                IsClippedToBounds="True">
+                <Grid>
+                    <Image Aspect="AspectFill" Source="https://i.imgur.com/O7V5Mid.png" />
+                    <BoxView BackgroundColor="#fff" Opacity="0.57" />
+                    <Label
+                        Margin="20"
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        Text="{Binding ControlGroup.Title}"
+                        TextColor="Black"
+                        VerticalOptions="Center" />
+                </Grid>
+            </Frame>
+        </Grid>
+    </StackLayout>-->
+    <CollectionView
+        x:Name="collectionView"
+        ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
+        ItemsLayout="{OnPlatform Default={StaticResource MobileLayout},
+                                 MacCatalyst={StaticResource DesktopLayout},
+                                 WinUI={StaticResource DesktopLayout}}"
+        ItemsSource="{x:Binding Items,
+                                Mode=OneWay}"
+        VerticalScrollBarVisibility="{OnPlatform Default=Never,
+                                                 MacCatalyst=Always,
+                                                 WinUI=Always}" />
+</app:BasePage>
