@@ -3,9 +3,9 @@ namespace MAUIsland;
 public partial class SyncfusionListViewPage : IControlPage
 {
     #region [Fields]
-    private SyncfusionListViewPageViewModel viewModel;
+    private SfListViewPageViewModel viewModel;
     #endregion
-    public SyncfusionListViewPage(SyncfusionListViewPageViewModel vm)
+    public SyncfusionListViewPage(SfListViewPageViewModel vm)
 	{
 		InitializeComponent();
 

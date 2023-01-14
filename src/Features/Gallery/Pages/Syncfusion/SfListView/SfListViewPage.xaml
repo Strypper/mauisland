@@ -7,7 +7,7 @@
     xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
     Title="SyncfusionListViewPage"
     Padding="10"
-    x:DataType="app:SyncfusionListViewPageViewModel"
+    x:DataType="app:SfListViewPageViewModel"
     SizeChanged="BasePage_SizeChanged">
     <app:BasePage.Resources>
         <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate" x:DataType="app:IControlInfo">

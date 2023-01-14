@@ -1,16 +1,17 @@
 ﻿namespace MAUIsland;
 
-public partial class SyncfusionListViewPageViewModel : NavigationAwareBaseViewModel
+public partial class SfListViewPageViewModel : NavigationAwareBaseViewModel
 {
     #region [Services]
     private readonly IControlsService mauiControlsService;
     #endregion
 
     #region [CTor]
-    public SyncfusionListViewPageViewModel(IAppNavigator appNavigator,
-                                           IControlsService mauiControlsService) 
-									: base(appNavigator)
-	{
+    public SfListViewPageViewModel(
+        IAppNavigator appNavigator,
+        IControlsService mauiControlsService
+    ) : base(appNavigator)
+    {
         this.mauiControlsService = mauiControlsService;
     }
     #endregion
