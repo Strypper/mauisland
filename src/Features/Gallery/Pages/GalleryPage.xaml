@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    x:Class="MAUIsland.GalleryPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    Title=".NET Multi-platform App UI - Controls"
+    x:Name="root"
+    x:DataType="app:GalleryPageViewModel">
+    <Grid>
+        <CollectionView
+            Margin="16"
+            VerticalScrollBarVisibility="Never"
+            ItemsSource="{Binding ControlGroups}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    Orientation="Vertical"
+                    Span="{OnIdiom Default=5, Phone=2}"
+                    VerticalItemSpacing="16"
+                    HorizontalItemSpacing="16" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate
+                    x:DataType="app:ControlGroupInfo">
+                    <Frame
+                        HasShadow="True">
+                        <VerticalStackLayout
+                            HorizontalOptions="Center"
+                            Spacing="8"
+                            VerticalOptions="Center">
+                            <ImageButton
+                                Command="{x:Binding BindingContext.ViewControlsCommand, Source={x:Reference root}}"
+                                CommandParameter="{Binding .}"
+                                HeightRequest="100"
+                                Source="{Binding IconUrl}"
+                                WidthRequest="100" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Caption"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Title}" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</app:BasePage>
