@@ -1,13 +1,13 @@
 ﻿namespace MAUIsland.Gallery.BuiltIn;
 
-class ActivityIndicatorControlInfo : IControlInfo
+class EditorControlInfo : IControlInfo
 {
-    public string ControlName => nameof(ActivityIndicator);
-    public string ControlRoute => typeof(ActivityIndicatorPage).FullName;
+    public string ControlName => nameof(Editor);
+    public string ControlRoute => typeof(EditorPage).FullName;
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
-        Glyph = FluentUIIcon.Ic_fluent_approvals_app_20_regular
+        Glyph = FluentUIIcon.Ic_fluent_code_text_edit_20_regular
     };
     public string ControlDetail => "ActivityIndicator displays an animation to show that the application is engaged in a lengthy activity. Unlike ProgressBar, ActivityIndicator gives no indication of progress.";
     public string GitHubUrl => $"https://github.com/Strypper/MAUIsland/tree/main/MAUIsland/Features/Gallery/MAUI/{ControlName}";

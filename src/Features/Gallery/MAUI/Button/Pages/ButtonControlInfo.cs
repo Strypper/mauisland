@@ -12,5 +12,5 @@ class ButtonControlInfo : IControlInfo
     public string ControlRoute => typeof(ButtonPage).FullName;
     public string GitHubUrl => $"https://github.com/Strypper/MAUIsland/tree/main/MAUIsland/Features/Gallery/MAUI/{ControlName}";
     public string DocumentUrl => $"https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/{ControlName}/?view=net-maui-7.0";
-    public string GroupName => ControlGroupInfo.MauiBuiltInControls;
+    public string GroupName => ControlGroupInfo.BuiltInControls;
 }

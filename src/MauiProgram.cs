@@ -75,7 +75,6 @@ public static class MauiProgram
     {
         builder.Services.AddSingleton<IAppNavigator, AppNavigator>();
         builder.Services.AddSingleton<IControlsService, ControlsService>();
-        builder.Services.AddSingleton<ISyncfusionControlsService, SyncfusionControlsService>();
         return builder;
     }
 

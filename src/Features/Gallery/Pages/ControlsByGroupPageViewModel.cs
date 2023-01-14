@@ -25,6 +25,10 @@ public partial class ControlsByGroupPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     ObservableCollection<IControlInfo> items;
+
+    [ObservableProperty]
+    ControlGroupInfo controlGroup;
+
     #endregion
 
     #region [RelayCommand]
@@ -41,6 +45,8 @@ public partial class ControlsByGroupPageViewModel : NavigationAwareBaseViewModel
     {
         base.OnInit(query);
 
+        ControlGroup = query.GetData<ControlGroupInfo>();
+
         LoadDataAsync(true)
             .FireAndForget();
     }
@@ -50,12 +56,9 @@ public partial class ControlsByGroupPageViewModel : NavigationAwareBaseViewModel
         if (IsBusy) return;
         IsBusy = true;
 
-
-        var items = await mauiControlsService.GetControlsAsync(ControlGroupInfo.MauiBuiltInControls);
+        var items = await mauiControlsService.GetControlsAsync(ControlGroup.Name);
 
         IsBusy = false;
-
-
         if (Items == null)
         {
             Items = new ObservableCollection<IControlInfo>(items);

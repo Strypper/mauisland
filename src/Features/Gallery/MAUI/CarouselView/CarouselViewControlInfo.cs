@@ -1,15 +1,15 @@
 ﻿namespace MAUIsland.Gallery.BuiltIn;
 
-class ActivityIndicatorControlInfo : IControlInfo
+class CarouselViewControlInfo : IControlInfo
 {
-    public string ControlName => nameof(ActivityIndicator);
-    public string ControlRoute => typeof(ActivityIndicatorPage).FullName;
+    public string ControlName => nameof(CarouselView);
+    public string ControlRoute => typeof(CarouselViewPage).FullName;
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
-        Glyph = FluentUIIcon.Ic_fluent_approvals_app_20_regular
+        Glyph = FluentUIIcon.Ic_fluent_app_recent_24_regular
     };
-    public string ControlDetail => "ActivityIndicator displays an animation to show that the application is engaged in a lengthy activity. Unlike ProgressBar, ActivityIndicator gives no indication of progress.";
+    public string ControlDetail => "CarouselView will display its items in a horizontal orientation. A single item will be displayed on screen, with swipe gestures resulting in forwards and backwards navigation through the collection of items. ";
     public string GitHubUrl => $"https://github.com/Strypper/MAUIsland/tree/main/MAUIsland/Features/Gallery/MAUI/{ControlName}";
     public string DocumentUrl => $"https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/{ControlName}/?view=net-maui-7.0";
     public string GroupName => ControlGroupInfo.BuiltInControls;

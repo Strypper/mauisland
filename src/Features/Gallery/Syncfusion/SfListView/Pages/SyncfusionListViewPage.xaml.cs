@@ -1,19 +1,16 @@
 namespace MAUIsland;
 
-public partial class SyncfusionAllControlsPage
+public partial class SyncfusionListViewPage : IControlPage
 {
     #region [Fields]
-    private SyncfusionAllControlsPageViewModel viewModel;
+    private SyncfusionListViewPageViewModel viewModel;
     #endregion
+    public SyncfusionListViewPage(SyncfusionListViewPageViewModel vm)
+	{
+		InitializeComponent();
 
-    #region [CTor]
-    public SyncfusionAllControlsPage(SyncfusionAllControlsPageViewModel vm)
-    {
-        InitializeComponent();
-
-        BindingContext = viewModel = vm;
+		BindingContext = vm;
     }
-    #endregion
 
     #region [Event Handlers]
     private void BasePage_SizeChanged(object sender, EventArgs e)
@@ -23,6 +20,7 @@ public partial class SyncfusionAllControlsPage
             if (viewModel is not null)
             {
                 viewModel.Span = 1;
+                gridLayout.SpanCount = 1;
                 return;
             }
         }
@@ -31,6 +29,7 @@ public partial class SyncfusionAllControlsPage
             if (viewModel is not null)
             {
                 viewModel.Span = 2;
+                gridLayout.SpanCount = 2;
                 return;
             }
         }
@@ -39,14 +38,10 @@ public partial class SyncfusionAllControlsPage
             if (viewModel is not null)
             {
                 viewModel.Span = 4;
+                gridLayout.SpanCount = 4;
                 return;
             }
         }
-    }
-
-    private void ControlCardContentView_DetailClicked(string route)
-    {
-        viewModel.NavigateToDetailCommand.Execute(route);
     }
     #endregion
 }

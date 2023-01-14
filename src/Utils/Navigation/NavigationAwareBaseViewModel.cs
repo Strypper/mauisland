@@ -26,6 +26,17 @@ public abstract class NavigationAwareBaseViewModel : BaseViewModel, IQueryAttrib
         }
     }
 
+    public override Task OnAppearingAsync()
+    {
+        if (!Initialized)
+        {
+            Initialized = true;
+            OnInit(new Dictionary<string, object>());
+        }
+
+        return base.OnAppearingAsync();
+    }
+
     // ReSharper disable once UnusedParameter.Global
     protected virtual void OnBack(IDictionary<string, object> query)
     {

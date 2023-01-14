@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <app:BasePage
     x:Class="MAUIsland.GalleryPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     Title="GalleryPage"
+    x:Name="root"
     x:DataType="app:GalleryPageViewModel">
     <Grid>
         <Label
@@ -13,42 +14,34 @@
             Text=".NET Multi-platform App UI"
             TextColor="{x:StaticResource Primary}" />
 
-        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-            <VerticalStackLayout
-                HorizontalOptions="Center"
-                Spacing="5"
-                VerticalOptions="Center">
-                <Frame HasShadow="True">
-                    <ImageButton
-                        Command="{x:Binding NavigateToMauiControlCommand}"
-                        HeightRequest="100"
-                        Source="dotnet_bot.png"
-                        WidthRequest="100" />
-                </Frame>
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="Caption"
-                    HorizontalTextAlignment="Center"
-                    Text="NATIVE CONTROLS" />
-            </VerticalStackLayout>
-
-            <VerticalStackLayout
-                HorizontalOptions="Center"
-                Spacing="5"
-                VerticalOptions="Center">
-                <Frame HasShadow="True">
-                    <ImageButton
-                        Command="{x:Binding NavigateToSyncfusionControlCommand}"
-                        HeightRequest="100"
-                        Source="syncfusion_logo.png"
-                        WidthRequest="100" />
-                </Frame>
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="Caption"
-                    HorizontalTextAlignment="Center"
-                    Text="SYNCFUSION CONTROLS" />
-            </VerticalStackLayout>
+        <VerticalStackLayout
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            BindableLayout.ItemsSource="{Binding ControlGroups}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate
+                    x:DataType="app:ControlGroupInfo">
+                    <Frame
+                        HasShadow="True">
+                        <VerticalStackLayout
+                            HorizontalOptions="Center"
+                            Spacing="8"
+                            VerticalOptions="Center">
+                            <ImageButton
+                                Command="{x:Binding BindingContext.ViewControlsCommand, Source={x:Reference root}}"
+                                CommandParameter="{Binding .}"
+                                HeightRequest="100"
+                                Source="{Binding IconUrl}"
+                                WidthRequest="100" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Caption"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Title}" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
         </VerticalStackLayout>
     </Grid>
 </app:BasePage>

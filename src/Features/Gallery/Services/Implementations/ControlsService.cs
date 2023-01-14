@@ -15,11 +15,15 @@ public class ControlsService : IControlsService
     {
         new ControlGroupInfo
         {
-            Name = ControlGroupInfo.MauiBuiltInControls,
+            Name = ControlGroupInfo.BuiltInControls,
+            Title = "Built-in Controls",
+            IconUrl = "dotnet_bot.png",
         },
         new ControlGroupInfo
         {
             Name = ControlGroupInfo.SyncfusionControls,
+            Title = "Syncfusion Controls",
+            IconUrl = "syncfusion_logo.png",
         },
     };
 

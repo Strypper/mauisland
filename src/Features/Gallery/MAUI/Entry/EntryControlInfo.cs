@@ -1,15 +1,15 @@
 ﻿namespace MAUIsland.Gallery.BuiltIn;
 
-class ActivityIndicatorControlInfo : IControlInfo
+class EntryControlInfo : IControlInfo
 {
-    public string ControlName => nameof(ActivityIndicator);
-    public string ControlRoute => typeof(ActivityIndicatorPage).FullName;
+    public string ControlName => nameof(Entry);
+    public string ControlRoute => typeof(EntryPage).FullName;
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
-        Glyph = FluentUIIcon.Ic_fluent_approvals_app_20_regular
+        Glyph = FluentUIIcon.Ic_fluent_text_field_24_regular
     };
-    public string ControlDetail => "ActivityIndicator displays an animation to show that the application is engaged in a lengthy activity. Unlike ProgressBar, ActivityIndicator gives no indication of progress.";
+    public string ControlDetail => "Entry allows you to enter and edit a single line of text. In addition, the Entry can be used as a password field.\r\n\r\n";
     public string GitHubUrl => $"https://github.com/Strypper/MAUIsland/tree/main/MAUIsland/Features/Gallery/MAUI/{ControlName}";
     public string DocumentUrl => $"https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/{ControlName}/?view=net-maui-7.0";
     public string GroupName => ControlGroupInfo.BuiltInControls;

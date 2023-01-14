@@ -2,24 +2,32 @@
 
 public partial class GalleryPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [CTor]
-    public GalleryPageViewModel(IAppNavigator appNavigator)
-                                    : base(appNavigator)
+    private readonly IControlsService controlsService;
+
+    public GalleryPageViewModel(
+        IControlsService controlsService,
+        IAppNavigator appNavigator
+    ) : base(appNavigator)
     {
-
+        this.controlsService = controlsService;
     }
-    #endregion
 
-    #region [Properties]
+    [ObservableProperty]
+    ObservableCollection<ControlGroupInfo> controlGroups;
 
-    #endregion
+    protected override async void OnInit(IDictionary<string, object> query)
+    {
+        base.OnInit(query);
 
-    #region [RelayCommand]
+        var controlGroups = await controlsService.GetControlGroupsAsync();
+
+        ControlGroups = new ObservableCollection<ControlGroupInfo>(controlGroups);
+    }
 
     [RelayCommand]
-    Task NavigateToMauiControlAsync() => AppNavigator.NavigateAsync(AppRoutes.MAUIAllControlsPage);
-
-    [RelayCommand]
-    Task NavigateToSyncfusionControlAsync() => AppNavigator.NavigateAsync(AppRoutes.SyncfusionAllControlsPage);
-    #endregion
+    Task ViewControlsAsync(ControlGroupInfo controlGroupInfo)
+        => AppNavigator.NavigateAsync(
+            AppRoutes.ControlsByGroupPage,
+            args: controlGroupInfo
+        );
 }

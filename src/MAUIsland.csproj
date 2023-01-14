@@ -55,7 +55,7 @@
 	  <None Remove="Resources\Fonts\FluentSystemIcons-Regular.ttf" />
 	  <None Remove="Resources\Images\microsoft.svg" />
 	  <None Remove="Features\Gallery\Core\" />
-	  <None Remove="Features\Gallery\Core\Services\" />
+	  <None Remove="Features\Gallery\Services\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -79,7 +79,7 @@
 	  <Folder Include="Features\Gallery\MAUI\Button\Models\" />
 	  <Folder Include="Features\QA\" />
 	  <Folder Include="Features\Gallery\Core\" />
-	  <Folder Include="Features\Gallery\Core\Services\" />
+	  <Folder Include="Features\Gallery\Services\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -87,9 +87,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Features\Gallery\Syncfusion\AllControls\Pages\SyncfusionAllControlsPage.xaml.cs">
-	    <DependentUpon>SyncfusionAllControlsPage.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Features\Gallery\Syncfusion\ListView\Pages\SyncfusionListViewPage.xaml.cs">
 	    <DependentUpon>SyncfusionListViewPage.xaml</DependentUpon>
 	  </Compile>
@@ -117,9 +114,6 @@
 	  <MauiXaml Update="Features\Gallery\MAUI\Editor\Pages\EditorPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\MAUI\ImageButton\Pages\ImageButtonPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\MAUI\IndicatorView\Pages\IndicatorViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -144,9 +138,6 @@
 	  <MauiXaml Update="Features\Gallery\Styles\Colors.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Syncfusion\AllControls\Pages\SyncfusionAllControlsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Syncfusion\ListView\Pages\SyncfusionListViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -157,6 +148,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\MAUIAllControlsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\MAUI\ImageButton\ImageButtonPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

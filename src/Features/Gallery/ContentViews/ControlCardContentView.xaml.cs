@@ -28,7 +28,7 @@ public partial class ControlCardContentView : ContentView
         nameof(ComponentData),
         typeof(IControlInfo),
         typeof(ControlCardContentView),
-        default(ControlInfo)
+        default(IControlInfo)
     );
 
     public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
