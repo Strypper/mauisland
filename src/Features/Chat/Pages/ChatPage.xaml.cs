@@ -1,39 +1,64 @@
 using Bogus.DataSets;
+using Microsoft.AspNetCore.SignalR.Client;
 using System.Reflection;
 
 namespace MAUIsland;
 
 public partial class ChatPage
 {
-    private ChatPageViewModel _vm;
+    HubConnection _connection;
 
     #region[ Ctor ]
     public ChatPage(ChatPageViewModel vm)
     {
         InitializeComponent();
-        BindingContext = _vm = vm;
+        BindingContext = vm;
+
+        _connection = new HubConnectionBuilder()
+                .WithUrl("https://localhost:44371/mauislandhub", options =>
+                {
+                    options.HttpMessageHandlerFactory = (handler) =>
+                    {
+                        if (handler is HttpClientHandler clientHandler)
+                        {
+                            clientHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+                        }
+                        return handler;
+                    };
+                }).Build();
     }
 
     #endregion
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private async void OnConnectAsync(object sender, EventArgs e)
     {
-        //var route = AppRoutes.ButtonPage;
+        _connection.On<string>("ReceiveMessage", (message) =>
+        {
+            Console.WriteLine(message);
+        });
 
-        //var viewName = route[0].ToString().ToUpper() + route.Substring(1, route.Length - 1);
+        try
+        {
+            await _connection.StartAsync();
+        }
+        catch(Exception ex)
+        {
 
-        //var pageFullName = $"MAUIsland.{viewName}";
-        //var pageType = Type.GetType(pageFullName);
-        //var page = ServiceHelper.GetService<Page>(pageType);
-
-        ////var viewModelFullName = $"MAUIsland.{viewName}ViewModel";
-        ////var viewModelType = Type.GetType(viewModelFullName);
-        ////var viewModel = ServiceHelper.GetService(viewModelType);
-
-        //Window secondWindow = new(page);
-        //Application.Current.OpenWindow(secondWindow);
+        }
     }
 
+    private async void OnSendMessage(object sender, EventArgs e)
+    {
+        try
+        {
+            await _connection.InvokeAsync("SendMessage", "A message was sent from MAUIsland");
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
 }
 static class ServiceHelper
 {

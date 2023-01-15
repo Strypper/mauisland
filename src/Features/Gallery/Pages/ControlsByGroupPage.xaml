@@ -1,17 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <app:BasePage
+    x:Class="MAUIsland.ControlsByGroupPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
-    x:Class="MAUIsland.ControlsByGroupPage"
-    x:DataType="app:ControlsByGroupPageViewModel"
     Title="{Binding ControlGroup.Title}"
+    x:DataType="app:ControlsByGroupPageViewModel"
     BackgroundColor="#272727"
     SizeChanged="BasePage_SizeChanged">
     <app:BasePage.Resources>
-        <DataTemplate
-            x:Key="HorizontalWrapLayoutItemTemplate"
-            x:DataType="app:IControlInfo">
+        <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate" x:DataType="app:IControlInfo">
             <app:ControlCardContentView
                 ComponentData="{x:Binding}"
                 DetailClicked="ControlCardContentView_DetailClicked"
@@ -19,51 +17,47 @@
         </DataTemplate>
         <GridItemsLayout
             x:Key="DesktopLayout"
+            HorizontalItemSpacing="16"
             Orientation="Vertical"
             Span="5"
-            VerticalItemSpacing="16"
-            HorizontalItemSpacing="16" />
+            VerticalItemSpacing="16" />
         <LinearItemsLayout
             x:Key="MobileLayout"
-            Orientation="Vertical"
-            ItemSpacing="16" />
+            ItemSpacing="16"
+            Orientation="Vertical" />
     </app:BasePage.Resources>
 
     <StackLayout>
-        <Grid
-            RowDefinitions="{OnIdiom Default=200, Phone=120}">
+        <Grid RowDefinitions="{OnIdiom Default=200, Phone=120}">
             <Frame
                 Margin="16,24"
-                CornerRadius="6"
+                Padding="0"
                 BorderColor="#eeeeee"
-                IsClippedToBounds="True"
-                Padding="0">
+                CornerRadius="6"
+                IsClippedToBounds="True">
                 <Grid>
-                    <Image
-                        Source="https://i.imgur.com/O7V5Mid.png"
-                        Aspect="AspectFill" />
-                    <BoxView
-                        Opacity="0.57"
-                        BackgroundColor="#fff" />
+                    <Image Aspect="AspectFill" Source="https://i.imgur.com/O7V5Mid.png" />
+                    <BoxView BackgroundColor="#fff" Opacity="0.57" />
                     <Label
-                        Text="{Binding ControlGroup.Title}"
-                        FontSize="24"
-                        TextColor="Black"
+                        Margin="20"
                         FontAttributes="Bold"
-                        VerticalOptions="Center"
-                        Margin="20" />
+                        FontSize="24"
+                        Text="{Binding ControlGroup.Title}"
+                        TextColor="Black"
+                        VerticalOptions="Center" />
                 </Grid>
             </Frame>
         </Grid>
         <CollectionView
             x:Name="collectionView"
-            ItemsSource="{x:Binding Items, Mode=OneWay}"
             ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
-            VerticalScrollBarVisibility="{OnPlatform Default=Never, MacCatalyst=Always, WinUI=Always}"
-            ItemsLayout="{OnPlatform
-                Default={StaticResource MobileLayout},
-                MacCatalyst={StaticResource DesktopLayout},
-                WinUI={StaticResource DesktopLayout}
-            }"/>
+            ItemsLayout="{OnPlatform Default={StaticResource MobileLayout},
+                                     MacCatalyst={StaticResource DesktopLayout},
+                                     WinUI={StaticResource DesktopLayout}}"
+            ItemsSource="{x:Binding Items,
+                                    Mode=OneWay}"
+            VerticalScrollBarVisibility="{OnPlatform Default=Never,
+                                                     MacCatalyst=Always,
+                                                     WinUI=Always}" />
     </StackLayout>
 </app:BasePage>

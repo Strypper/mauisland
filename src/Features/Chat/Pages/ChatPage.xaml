@@ -19,6 +19,9 @@
             <Label Text="{x:StaticResource ControlInfo}" />
         </Frame>
 
-        <Button Clicked="Button_Clicked" />
+        <Button Clicked="OnConnectAsync" Text="Connect!" />
+        <Button Clicked="OnSendMessage" Text="Send a message!" />
+
+        <Label />
     </VerticalStackLayout>
 </app:BasePage>
