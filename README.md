@@ -35,10 +35,10 @@ e.g A demo page for Button built-in control will have below structure
 class diagram
 ```mermaid
 classDiagram
-  ButtonPage ..|> IControlPage
-  ButtonPage --|> BasePage
-  ButtonControlInfo ..|> IControlInfo
-  ButtonPageViewModel --|> NavigationAwareBaseViewModel
+  ButtonPage ..|> IControlPage: declares
+  BasePage <|-- ButtonPage: extends
+  ButtonControlInfo ..|> IControlInfo: declares
+  NavigationAwareBaseViewModel <|-- ButtonPageViewModel: extends
   ButtonPage o-- ButtonPageViewModel: BindingContext
   ButtonPage .. ButtonControlInfo: route name
 
