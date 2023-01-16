@@ -8,10 +8,85 @@
               
              
               Title="Switch">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Switch Page!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <app:BasePage.Resources>
+        
+        <x:String x:Key="introduce">The .NET Multi-platform App UI (.NET MAUI) Switch control is a horizontal toggle button that can be manipulated by the user to toggle between on and off states, which are represented by a boolean value.</x:String>
+        <x:String x:Key="PropertiesListHeader">
+            The Switch control defines the following properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter">
+            These properties are backed by BindableProperty objects, which means they can be styled and be the target of data bindings.
+        </x:String>
+
+        <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">IsToggled</strong> is a <strong style="color:blue">boolean</strong> value that indicates whether the Switch is on. The default value of this property is <strong style="color:blue">false</strong>.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">OnColor</strong> is a <strong style="color:blue">Color</strong> that affects how the Switch is rendered in the toggled, or on state.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">ThumbColor</strong> is the <strong style="color:blue">Color</strong> of the switch thumb.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+    </app:BasePage.Resources>
+    
+    <ScrollView>
+        <VerticalStackLayout Margin="10" Spacing="10">
+            <Label Text= "{x:StaticResource introduce}"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Start"
+                   Padding="10"/>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
+                   Padding="20,10,20,10">
+                <VerticalStackLayout>
+
+                    <Grid Margin="0,0,0,5">
+                        <Label Text="Basic progress bar"
+                               Margin="0,0,0,10"
+                               FontSize= "Medium"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
+
+                        <Grid HeightRequest="1" 
+                              VerticalOptions="End"
+                              Background="White"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="20,*,40"
+                          Margin="0,20,0,0">
+                        <Grid Grid.Column="0">
+                            <Label Text="0%"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <ProgressBar x:Name="progress_bar1"
+                                         Progress="0"
+                                         Margin="10"
+                                         ProgressColor="Yellow"/>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Label Text="100%"/>
+                        </Grid>
+                    </Grid>
+                    <Button x:Name="button1"
+                            Text="Load"
+                            WidthRequest="60"
+                            Clicked="button1_Clicked"/>
+
+                    <app:SourceCodeExpander XamlCode="{x:Binding StandardProgressBarXamlCode}"/>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+        
+        
+    </ScrollView>
 </app:BasePage>
