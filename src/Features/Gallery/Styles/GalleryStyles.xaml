@@ -44,7 +44,7 @@
 
     <DataTemplate x:Key="BulletListHeaderTemplate" x:DataType="x:String">
         <Label
-            Margin="0,0,0,10"
+            Margin="0,0,0,15"
             LineBreakMode="WordWrap"
             Style="{x:StaticResource DocumentSectionTitleStyle}"
             Text="{x:Binding}"
