@@ -6,113 +6,105 @@
     xmlns:app="clr-namespace:MAUIsland"
     x:Name="root"
     x:DataType="app:ControlCardContentView">
+
     <ContentView.Resources>
         <FontImageSource
-            x:Key="MultiWindowsIcon"
+            x:Key="OpenInNewWindowsIcon"
             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-            Glyph="{Static app:FluentUIIcon.Ic_fluent_square_multiple_24_regular}"
-            Color="{AppThemeBinding Light='#15161e',
-                                    Dark='#eaeaea'}" />
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_panel_separate_window_20_regular}"
+            Color="{x:StaticResource White}" />
     </ContentView.Resources>
 
     <Frame
         Padding="0"
         BackgroundColor="#323232"
-        CornerRadius="4"
-        HasShadow="False"
-        IsClippedToBounds="True">
-        <Grid
-            ColumnDefinitions="48,*"
-            ColumnSpacing="16"
-            IsClippedToBounds="True"
-            RowDefinitions="48,96,56"
-            RowSpacing="0">
+        CornerRadius="2"
+        HasShadow="True"
+        IsClippedToBounds="True"
+        WidthRequest="373">
+        <Grid IsClippedToBounds="True">
             <Ellipse
-                Grid.RowSpan="3"
-                Grid.ColumnSpan="2"
                 Margin="-150,-150,0,0"
                 Fill="#6f0bd8"
                 HeightRequest="250"
                 HorizontalOptions="Start"
                 VerticalOptions="Start"
-                WidthRequest="250" />
-
-            <Image
-                HeightRequest="32"
-                Source="{x:Binding ComponentData.ControlIcon,
-                                   Source={x:Reference root}}"
-                VerticalOptions="Center" />
-            <Label
-                Grid.Column="1"
-                FontAttributes="Bold"
-                FontSize="Subtitle"
-                Text="{x:Binding ComponentData.ControlName,
-                                 Source={x:Reference root}}"
-                TextColor="{x:StaticResource White}"
-                VerticalOptions="Center" />
-
-            <Label
-                Grid.Row="1"
-                Grid.Column="1"
-                Padding="0,0,8,16"
-                FontSize="Body"
-                MaxLines="3"
-                Text="{x:Binding ComponentData.ControlDetail,
-                                 Source={x:Reference root}}"
-                TextColor="{x:StaticResource White}"
-                ToolTipProperties.Text="{x:Binding ComponentData.ControlDetail,
-                                                   Source={x:Reference root}}" />
-
+                WidthRequest="270" />
             <Grid
-                Grid.Row="2"
-                Grid.Column="1"
-                Margin="0,0,16,16"
-                ColumnDefinitions="*, 50"
-                ColumnSpacing="5">
-                <Button
-                    BackgroundColor="#ff28ba"
-                    Clicked="Detail_Clicked"
-                    CornerRadius="4"
-                    HorizontalOptions="Fill"
-                    Text="Detail"
-                    TextColor="{x:StaticResource White}" />
-                <ImageButton
-                    Grid.Column="1"
-                    BackgroundColor="#ff28ba"
-                    Clicked="DetailInNewWindow_Clicked"
-                    CornerRadius="4"
-                    Source="{x:StaticResource MultiWindowsIcon}" />
-            </Grid>
+                Margin="10"
+                ColumnDefinitions="auto,310"
+                ColumnSpacing="10">
+                <Image
+                    Margin="0,5,0,0"
+                    HeightRequest="30"
+                    Source="{x:Binding ComponentData.ControlIcon,
+                                       Source={x:Reference root}}"
+                    VerticalOptions="Start"
+                    WidthRequest="30" />
 
-            <VerticalStackLayout
-                Grid.Row="1"
-                Grid.RowSpan="2"
-                Padding="0,8"
-                Spacing="8"
-                VerticalOptions="End">
+
+                <VerticalStackLayout
+                    Grid.Column="1"
+                    HorizontalOptions="Fill"
+                    Spacing="10"
+                    VerticalOptions="Center">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Subtitle"
+                        Text="{x:Binding ComponentData.ControlName,
+                                         Source={x:Reference root}}"
+                        TextColor="{x:StaticResource White}" />
+                    <Label
+                        FontSize="Body"
+                        HeightRequest="70"
+                        MaxLines="3"
+                        Text="{x:Binding ComponentData.ControlDetail,
+                                         Source={x:Reference root}}"
+                        TextColor="{x:StaticResource White}"
+                        ToolTipProperties.Text="{x:Binding ComponentData.ControlDetail,
+                                                           Source={x:Reference root}}" />
+                    <Grid ColumnDefinitions="*,5, 50">
+                        <Button
+                            BackgroundColor="#ff28ba"
+                            Clicked="Detail_Clicked"
+                            CornerRadius="2"
+                            Text="Detail"
+                            TextColor="{x:StaticResource White}" />
+
+                        <ImageButton
+                            Grid.Column="2"
+                            BackgroundColor="#ff28ba"
+                            Clicked="DetailInNewWindow_Clicked"
+                            CornerRadius="2"
+                            Source="{x:StaticResource OpenInNewWindowsIcon}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Grid>
+            <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="End">
                 <ImageButton
-                    Padding="8"
-                    Aspect="AspectFit"
+                    Padding="{x:OnPlatform WinUI=10,
+                                           Android=5}"
                     BackgroundColor="Transparent"
                     Command="{x:Binding TapCommand,
                                         Source={x:Reference root}}"
                     CommandParameter="{x:Binding ComponentData.GitHubUrl,
                                                  Source={x:Reference root}}"
-                    HeightRequest="32"
+                    HeightRequest="50"
                     Source="github.png"
                     ToolTipProperties.Text="Github: Source code"
-                    VerticalOptions="End" />
+                    WidthRequest="50" />
                 <ImageButton
-                    Padding="8"
-                    Aspect="AspectFit"
+                    Padding="{x:OnPlatform WinUI=10,
+                                           Android=5}"
+                    BackgroundColor="Transparent"
                     Command="{x:Binding TapCommand,
                                         Source={x:Reference root}}"
                     CommandParameter="{x:Binding ComponentData.DocumentUrl,
                                                  Source={x:Reference root}}"
-                    HeightRequest="32"
+                    HeightRequest="50"
                     Source="microsoft.png"
                     ToolTipProperties.Text="Microsoft Learn: Official document"
-                    VerticalOptions="End" />
+                    WidthRequest="50" />
             </VerticalStackLayout>
         </Grid>
     </Frame>

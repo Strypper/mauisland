@@ -1,3 +1,6 @@
+using Newtonsoft.Json;
+using System.Text;
+
 namespace MAUIsland;
 public partial class HomePage 
 {
@@ -5,6 +8,7 @@ public partial class HomePage
     {
         InitializeComponent();
 
-        BindingContext = vm; 
+        BindingContext = vm;
+
     }
 }

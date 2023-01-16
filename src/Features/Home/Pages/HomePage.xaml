@@ -6,7 +6,7 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="HomePage"
     x:DataType="app:HomePageViewModel"
-    Shell.NavBarIsVisible="False">
+    Shell.NavBarIsVisible="True">
 
     <app:BasePage.Resources>
 

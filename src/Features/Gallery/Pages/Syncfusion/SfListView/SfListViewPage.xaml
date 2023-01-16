@@ -1,14 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <app:BasePage
-    x:Class="MAUIsland.SyncfusionListViewPage"
+    x:Class="MAUIsland.SfListViewPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
-    Title="SyncfusionListViewPage"
-    Padding="10"
-    x:DataType="app:SfListViewPageViewModel"
-    SizeChanged="BasePage_SizeChanged">
+    Title="SfListView"
+    x:DataType="app:SfListViewPageViewModel">
+
     <app:BasePage.Resources>
         <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate" x:DataType="app:IControlInfo">
             <app:ControlCardContentView ComponentData="{x:Binding}" />

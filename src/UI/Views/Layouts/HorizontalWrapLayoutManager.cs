@@ -51,7 +51,7 @@ public class HorizontalWrapLayoutManager : StackLayoutManager
             else
             {
                 currentRowWidth += measure.Width;
-                currentRowHeight = Math.Max(currentRowHeight, measure.Height);
+                currentRowHeight = Math.Max(currentRowHeight, measure.Height) + 80;
 
                 if (n < _layout.Count - 1)
                 {

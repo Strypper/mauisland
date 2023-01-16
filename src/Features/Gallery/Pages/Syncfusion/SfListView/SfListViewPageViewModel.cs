@@ -1,20 +1,16 @@
-﻿namespace MAUIsland;
-
+namespace MAUIsland;
 public partial class SfListViewPageViewModel : NavigationAwareBaseViewModel
 {
     #region [Services]
     private readonly IControlsService mauiControlsService;
     #endregion
-
-    #region [CTor]
     public SfListViewPageViewModel(
-        IAppNavigator appNavigator,
+        IAppNavigator appNavigator, 
         IControlsService mauiControlsService
     ) : base(appNavigator)
     {
         this.mauiControlsService = mauiControlsService;
     }
-    #endregion
 
     #region [Properties]
     [ObservableProperty]

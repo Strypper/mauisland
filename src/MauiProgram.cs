@@ -95,6 +95,10 @@ public static class MauiProgram
 
             if (pageType.IsAssignableTo(typeof(IControlPage)))
             {
+                if(pageType.FullName == "MAUIsland.SyncfusionListViewPage")
+                {
+
+                }
                 Routing.RegisterRoute(pageType.FullName, pageType);
             }
         }

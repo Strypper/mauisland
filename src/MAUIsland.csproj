@@ -52,6 +52,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Platforms\Android\google-services.json" />
 	  <None Remove="Resources\Fonts\FluentSystemIcons-Regular.ttf" />
 	  <None Remove="Resources\Images\mauibeach.jpeg" />
 	  <None Remove="Resources\Images\microsoft.svg" />
@@ -72,6 +73,7 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0-preview3" />
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="20.4.43" />
 		<PackageReference Include="Syncfusion.Maui.Charts" Version="20.4.43" />
 		<PackageReference Include="Syncfusion.Maui.ListView" Version="20.4.43" />
@@ -84,7 +86,6 @@
 	  <Folder Include="Features\QA\" />
 	  <Folder Include="Features\Gallery\Core\" />
 	  <Folder Include="Features\Gallery\Services\" />
-	  <Folder Include="Features\Gallery\Pages\Syncfusion\" />
 	  <Folder Include="Features\Gallery\Pages\BuiltIn\DatePicker\Pages\" />
 	</ItemGroup>
 
@@ -95,8 +96,8 @@
 	  <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SfListView\SyncfusionListViewPage.xaml.cs">
 	    <DependentUpon>SfListViewPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SfListView\SfListViewPage.xaml.cs">
-	    <DependentUpon>SfListViewPage.xaml</DependentUpon>
+	  <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SyncfusionListView\SynsfusionListViewPage.xaml.cs">
+	    <DependentUpon>SynsfusionListViewPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Features\Home\Pages\HomePage.xaml.cs">
 	    <DependentUpon>HomePage.xaml</DependentUpon>
@@ -263,7 +264,7 @@
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SfListView\SyncfusionListViewPage.xaml">
 	    <SubType>Designer</SubType>
 	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SfListView\SfListViewPage.xaml">
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SyncfusionListView\SynsfusionListViewPage.xaml">
 	    <SubType>Designer</SubType>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\BuiltIn\Xxxx\XxxxPage.xaml">
@@ -274,5 +275,21 @@
 	<ItemGroup>
 	  <BundleResource Include="Resources\Images\syncfusion_logo.png" />
 	  <BundleResource Include="Resources\Images\fluenticon_options_white.svg" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
+	  <PackageReference Include="Xamarin.Firebase.Messaging">
+	    <Version>123.1.1</Version>
+	  </PackageReference>
+	  <PackageReference Include="Xamarin.Google.Dagger">
+	    <Version>2.44.2</Version>
+	  </PackageReference>
+	  <PackageReference Include="Xamarin.GooglePlayServices.Base">
+	    <Version>118.1.0</Version>
+	  </PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <GoogleServicesJson Include="Platforms\Android\google-services.json" />
 	</ItemGroup>
 </Project>

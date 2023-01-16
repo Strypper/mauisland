@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
-    Title="{Binding ControlGroup.Title}"
+    Padding="10"
     x:DataType="app:ControlsByGroupPageViewModel"
     BackgroundColor="#272727"
     SizeChanged="BasePage_SizeChanged">
@@ -15,49 +15,44 @@
                 DetailClicked="ControlCardContentView_DetailClicked"
                 DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
         </DataTemplate>
-        <GridItemsLayout
-            x:Key="DesktopLayout"
-            HorizontalItemSpacing="16"
-            Orientation="Vertical"
-            Span="5"
-            VerticalItemSpacing="16" />
-        <LinearItemsLayout
-            x:Key="MobileLayout"
-            ItemSpacing="16"
-            Orientation="Vertical" />
     </app:BasePage.Resources>
 
-    <!--<StackLayout>
-        <Grid RowDefinitions="{OnIdiom Default=200, Phone=120}">
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem IconImageSource="github.png" Text="Source code" />
+        <ToolbarItem IconImageSource="microsoft.png" Text="Original Document" />
+    </app:BasePage.ToolbarItems>
+
+    <ScrollView VerticalScrollBarVisibility="Always">
+        <Grid ColumnDefinitions="*, 300" RowDefinitions="150, 20, *">
             <Frame
-                Margin="16,24"
+                Grid.ColumnSpan="2"
                 Padding="0"
-                BorderColor="#eeeeee"
-                CornerRadius="6"
-                IsClippedToBounds="True">
+                CornerRadius="4">
                 <Grid>
-                    <Image Aspect="AspectFill" Source="https://i.imgur.com/O7V5Mid.png" />
-                    <BoxView BackgroundColor="#fff" Opacity="0.57" />
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="200"
+                        HorizontalOptions="Fill"
+                        Source="https://i.imgur.com/O7V5Mid.png"
+                        VerticalOptions="Fill" />
+
                     <Label
                         Margin="20"
                         FontAttributes="Bold"
-                        FontSize="24"
+                        FontSize="Header"
                         Text="{Binding ControlGroup.Title}"
-                        TextColor="Black"
+                        TextColor="{x:StaticResource White}"
                         VerticalOptions="Center" />
                 </Grid>
             </Frame>
+            <app:HorizontalWrapLayout
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                BindableLayout.ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
+                BindableLayout.ItemsSource="{x:Binding Items,
+                                                       Mode=OneWay}"
+                HorizontalOptions="Start"
+                Spacing="10" />
         </Grid>
-    </StackLayout>-->
-    <CollectionView
-        x:Name="collectionView"
-        ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
-        ItemsLayout="{OnPlatform Default={StaticResource MobileLayout},
-                                 MacCatalyst={StaticResource DesktopLayout},
-                                 WinUI={StaticResource DesktopLayout}}"
-        ItemsSource="{x:Binding Items,
-                                Mode=OneWay}"
-        VerticalScrollBarVisibility="{OnPlatform Default=Never,
-                                                 MacCatalyst=Always,
-                                                 WinUI=Always}" />
+    </ScrollView>
 </app:BasePage>
