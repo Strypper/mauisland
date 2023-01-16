@@ -8,9 +8,10 @@
               
               Title="Refresh View">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Refresh View Page"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Label
+                Text="Welcome to RefreshView Page"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"/>
+                
     </VerticalStackLayout>
 </app:BasePage>

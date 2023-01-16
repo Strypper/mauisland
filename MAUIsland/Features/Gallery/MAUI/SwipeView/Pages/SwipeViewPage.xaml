@@ -9,9 +9,28 @@
               
               Title="Swipe View">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Swipe View!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <SwipeView>
+            <SwipeView.LeftItems>
+                <SwipeItems>
+                    <SwipeItem Text="Favorite"
+                               IconImageSource="favorite.png"
+                               BackgroundColor="LightGreen"
+                                />
+                    <SwipeItem Text="Delete"
+                               IconImageSource="delete.png"
+                               BackgroundColor="LightPink"
+                                />
+                </SwipeItems>
+            </SwipeView.LeftItems>
+            <!-- Content -->
+            <Grid   HeightRequest="60"
+                    WidthRequest="300"
+                    BackgroundColor="LightGray">
+                <Label 
+                     Text="Swipe right"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"/>
+            </Grid>
+        </SwipeView>
     </VerticalStackLayout>
 </app:BasePage>

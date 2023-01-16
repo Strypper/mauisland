@@ -12,20 +12,16 @@
             Text="Welcome to Search Bar Page!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <SearchBar Placeholder="Search items..."
-                   PlaceholderColor="Silver"
-                   />
-
-
-
         <ScrollView>
             <VerticalStackLayout>
-            <Label
+                <Label
             Text="The .NET Multi-platform App UI (.NET MAUI) SearchBar is a user input control used to initiating a search. The SearchBar control supports placeholder text, query input, search execution, and cancellation. The following iOS screenshot shows a SearchBar query with results displayed in a ListView:"
             
             VerticalTextAlignment="Start"/>
 
             </VerticalStackLayout>
-         </ScrollView>
+        </ScrollView>
+        <SearchBar Placeholder="Search items..."
+                   PlaceholderColor="Silver"/>
     </VerticalStackLayout>
 </app:BasePage>
