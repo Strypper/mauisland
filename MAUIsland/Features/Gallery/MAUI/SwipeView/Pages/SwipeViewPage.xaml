@@ -9,28 +9,44 @@
               
               Title="Swipe View">
     <VerticalStackLayout>
-        <SwipeView>
-            <SwipeView.LeftItems>
-                <SwipeItems>
-                    <SwipeItem Text="Favorite"
-                               IconImageSource="favorite.png"
-                               BackgroundColor="LightGreen"
+        <Label
+                Text="Create a SwipeView"
+                VerticalOptions="Start"
+                HorizontalOptions="Start"
+                FontSize="Large"
+                FontAttributes="Bold"/>
+        <Label
+                Text="A SwipeView must define the content that the SwipeView wraps around, and the swipe items that are revealed by the swipe gesture. The swipe items are one or more SwipeItem objects that are placed in one of the four SwipeView directional collections - LeftItems, RightItems, TopItems, or BottomItems."
+                VerticalTextAlignment="Start"/>
+                
+
+        <VerticalStackLayout>
+            <SwipeView>
+                <SwipeView.LeftItems>
+                    <SwipeItems>
+                        <SwipeItem 
+                                   Text="Favorite"
+                                   IconImageSource="favorite.png"
+                                   BackgroundColor="LightGreen"
                                 />
-                    <SwipeItem Text="Delete"
-                               IconImageSource="delete.png"
-                               BackgroundColor="LightPink"
+                        <SwipeItem 
+                                   Text="Delete"
+                                   IconImageSource="delete.png"
+                                   BackgroundColor="LightPink"
                                 />
-                </SwipeItems>
-            </SwipeView.LeftItems>
-            <!-- Content -->
-            <Grid   HeightRequest="60"
-                    WidthRequest="300"
-                    BackgroundColor="LightGray">
-                <Label 
-                     Text="Swipe right"
-                     HorizontalOptions="Center"
-                     VerticalOptions="Center"/>
-            </Grid>
-        </SwipeView>
+                    </SwipeItems>
+                </SwipeView.LeftItems>
+                <!-- Content -->
+                <Grid   
+                      HeightRequest="60"
+                      WidthRequest="300"
+                      BackgroundColor="DimGray">
+                    <Label 
+                           Text="Swipe right"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                </Grid>
+            </SwipeView>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </app:BasePage>
