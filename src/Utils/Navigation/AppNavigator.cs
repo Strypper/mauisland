@@ -64,7 +64,7 @@ public class AppNavigator : IAppNavigator
 
     private static bool AllowsInNewWindow()
     {
-        return true || DeviceInfo.Platform == DevicePlatform.WinUI;
+        return DeviceInfo.Platform != DevicePlatform.iOS;
     }
 
     public Task<bool> OpenUrlAsync(string url)
