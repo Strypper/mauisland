@@ -2,6 +2,17 @@
 
 public class HomeService : IHomeService
 {
+    #region [Services]
+    private readonly IControlsService mauiControlsService;
+    #endregion
+
+
+    #region [CTor]
+    public HomeService(IControlsService mauiControlsService)
+    {
+        this.mauiControlsService = mauiControlsService;
+    }
+    #endregion
     public Task<IEnumerable<MAUIFact>> GetMAUIFactsAsync()
     {
         return Task.Run(() =>
@@ -129,6 +140,41 @@ public class HomeService : IHomeService
 
 
             return (IEnumerable<MAUIFact>)facts;
+        });
+    }
+
+    public async Task<IEnumerable<ApplicationNew>> GetApplicationNews()
+    {
+        return await Task.Run( async () =>
+        {
+            var activites = new List<ApplicationNew>();
+            var sliderControl = await this.mauiControlsService
+                                                .GetControlByNameAsync(ControlGroupInfo.BuiltInControls, 
+                                                                       nameof(Slider));
+
+            var imageButtonControl = await this.mauiControlsService
+                                    .GetControlByNameAsync(ControlGroupInfo.BuiltInControls,
+                                                           nameof(ImageButton));
+
+
+            activites.Add(new ApplicationNew()
+            {
+                AuthorName = "Strypper",
+                AuthorImageUrl = "https://i.imgur.com/vc9FudE.jpg",
+                Component = sliderControl,
+                Activity = NewActivity.AddFeature,
+                NewLog = sliderControl.ControlDetail
+            });
+
+            activites.Add(new ApplicationNew()
+            {
+                AuthorName = "Strypper",
+                AuthorImageUrl = "https://i.imgur.com/vc9FudE.jpg",
+                Component = imageButtonControl,
+                Activity = NewActivity.Enhancement,
+                NewLog = "You can now drag and drop image from out side app in to see how will work in MAUI"
+            });
+            return (IEnumerable<ApplicationNew>)activites;
         });
     }
 }

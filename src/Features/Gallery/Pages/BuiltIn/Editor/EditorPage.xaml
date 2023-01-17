@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:app="clr-namespace:MAUIsland"
-             
-              x:Class="MAUIsland.EditorPage"
-              x:DataType="app:EditorPageViewModel"
-              
-              Title="Editor"
-              Padding="20">
+<app:BasePage
+    x:Class="MAUIsland.EditorPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    Title="Editor"
+    Padding="20"
+    x:DataType="app:EditorPageViewModel">
+
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="github.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </app:BasePage.ToolbarItems>
+
     <ScrollView>
         <VerticalStackLayout Spacing="10">
-            <Label Text="The .NET Multi-platform App UI (.NET MAUI) Editor allows you to enter and edit multiple lines of text."/>
-            <Label Text="Simple editor"
-                   FontSize="Subtitle"
-                   FontAttributes="Bold"/>
-            <Editor x:Name="editor"
-                    Placeholder="Enter your response here"
-                    HeightRequest="250"
-                    TextChanged="OnEditorTextChanged"
-                    Completed="OnEditorCompleted" />
-            <app:SourceCodeExpander XamlCode="{x:Binding SimpleEditXamlCode}"/>
-            <Label Text="Set character spacing"
-                   FontSize="Subtitle"
-                   FontAttributes="Bold"/>
+            <Label Text="The .NET Multi-platform App UI (.NET MAUI) Editor allows you to enter and edit multiple lines of text." />
+            <Label
+                FontAttributes="Bold"
+                FontSize="Subtitle"
+                Text="Simple editor" />
+            <Editor
+                x:Name="editor"
+                Completed="OnEditorCompleted"
+                HeightRequest="250"
+                Placeholder="Enter your response here"
+                TextChanged="OnEditorTextChanged" />
+            <app:SourceCodeExpander XamlCode="{x:Binding SimpleEditXamlCode}" />
+            <Label
+                FontAttributes="Bold"
+                FontSize="Subtitle"
+                Text="Set character spacing" />
 
         </VerticalStackLayout>
     </ScrollView>

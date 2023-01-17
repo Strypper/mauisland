@@ -19,6 +19,25 @@ public partial class SliderPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     string sliderWithCustomThumbImageXamlCode = "<Slider MinimumTrackColor=\"#6e50db\" ThumbImageSource=\"dotnet_bot.png\" />";
+
+    [ObservableProperty]
+    IControlInfo controlInformation;
+    #endregion
+
+    #region [Overrides]
+    protected override void OnInit(IDictionary<string, object> query)
+    {
+        base.OnInit(query);
+
+        ControlInformation = query.GetData<IControlInfo>();
+
+    }
+    #endregion
+
+    #region [Relay Commands]
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
     #endregion
 }
 

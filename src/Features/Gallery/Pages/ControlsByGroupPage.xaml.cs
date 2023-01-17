@@ -45,9 +45,9 @@ public partial class ControlsByGroupPage
     }
     #endregion
 
-    private void ControlCardContentView_DetailClicked(string route)
+    private void ControlCardContentView_DetailClicked(IControlInfo control)
     {
-        viewModel.NavigateToDetailCommand.Execute(route);
+        viewModel.NavigateToDetailCommand.Execute(control);
     }
 
     private void ControlCardContentView_DetailInNewWindowClicked(string route)

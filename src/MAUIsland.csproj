@@ -52,9 +52,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Platforms\Android\google-services.json" />
 	  <None Remove="Resources\Fonts\FluentSystemIcons-Regular.ttf" />
 	  <None Remove="Resources\Images\mauibeach.jpeg" />
+	  <None Remove="Resources\Images\mauilogo.png" />
 	  <None Remove="Resources\Images\microsoft.svg" />
 	  <None Remove="Features\Gallery\Core\" />
 	  <None Remove="Features\Gallery\Services\" />
@@ -96,8 +96,8 @@
 	  <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SfListView\SyncfusionListViewPage.xaml.cs">
 	    <DependentUpon>SfListViewPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SyncfusionListView\SynsfusionListViewPage.xaml.cs">
-	    <DependentUpon>SynsfusionListViewPage.xaml</DependentUpon>
+	  <Compile Update="Features\Home\ContentViews\ControlActivityCardContentView.xaml.cs">
+	    <DependentUpon>ControlActivityCardContentView.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Features\Home\Pages\HomePage.xaml.cs">
 	    <DependentUpon>HomePage.xaml</DependentUpon>
@@ -121,6 +121,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Syncfusion\ListView\Pages\SyncfusionListViewPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Home\ContentViews\ControlActivityCardContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="UI\Views\SourceCodeExpander.xaml">
@@ -234,7 +237,7 @@
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\ProgressBar\ProgressBarPage.xaml">
 	    <SubType>Designer</SubType>
 	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\RaditoButton\RadioButtonPage.xaml">
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\RadioButton\RadioButtonPage.xaml">
 	    <SubType>Designer</SubType>
 	  </MauiXaml>
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\RefreshView\RefreshViewPage.xaml">
@@ -264,9 +267,6 @@
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SfListView\SyncfusionListViewPage.xaml">
 	    <SubType>Designer</SubType>
 	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SyncfusionListView\SynsfusionListViewPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\BuiltIn\Xxxx\XxxxPage.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
@@ -287,9 +287,5 @@
 	  <PackageReference Include="Xamarin.GooglePlayServices.Base">
 	    <Version>118.1.0</Version>
 	  </PackageReference>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <GoogleServicesJson Include="Platforms\Android\google-services.json" />
 	</ItemGroup>
 </Project>

@@ -10,7 +10,7 @@ class EntryControlInfo : IControlInfo
         Glyph = FluentUIIcon.Ic_fluent_text_field_24_regular
     };
     public string ControlDetail => "Entry allows you to enter and edit a single line of text. In addition, the Entry can be used as a password field.\r\n\r\n";
-    public string GitHubUrl => $"https://github.com/Strypper/MAUIsland/tree/main/MAUIsland/Features/Gallery/MAUI/{ControlName}";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/BuiltIn/{ControlName}";
     public string DocumentUrl => $"https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/{ControlName}/?view=net-maui-7.0";
     public string GroupName => ControlGroupInfo.BuiltInControls;
 }

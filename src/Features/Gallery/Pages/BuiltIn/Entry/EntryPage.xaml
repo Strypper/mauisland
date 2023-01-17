@@ -114,6 +114,20 @@
         </x:Array>
 
     </app:BasePage.Resources>
+
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="github.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </app:BasePage.ToolbarItems>
+
     <VerticalStackLayout>
         <Label
             HorizontalOptions="Center"

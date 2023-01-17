@@ -15,6 +15,9 @@ public partial class ButtonPageViewModel : NavigationAwareBaseViewModel
 	bool isEnable = true;
 
 	[ObservableProperty]
+	IControlInfo controlInformation;
+
+	[ObservableProperty]
 	string standardButtonXamlCode = "<Button Text=\"Standard XAML Button\"\r\n                            VerticalOptions=\"Center\"\r\n                            HorizontalOptions=\"Start\"\r\n                            IsEnabled=\"{x:Binding IsEnable}\"/>";
 
 	[ObservableProperty]
@@ -25,5 +28,21 @@ public partial class ButtonPageViewModel : NavigationAwareBaseViewModel
 
 	[ObservableProperty]
 	string buttonWithImageXamlCode = "<Frame>\r\n                <Frame.Resources>\r\n                    <FontImageSource x:Key=\"HomeIcon\"\r\n                                     Color=\"{x:StaticResource Primary }\"\r\n                                     FontFamily=\"{x:Static app:FontNames.FluentSystemIconsRegular}\"\r\n                                     Glyph=\"{Static app:FluentUIIcon.Ic_fluent_home_20_regular}\"/>\r\n\r\n                    <FontImageSource x:Key=\"DownloadIcon\"\r\n                                     Color=\"{x:StaticResource Primary }\"\r\n                                     FontFamily=\"{x:Static app:FontNames.FluentSystemIconsRegular}\"\r\n                                     Glyph=\"{Static app:FluentUIIcon.Ic_fluent_arrow_download_20_regular}\"/>\r\n                </Frame.Resources>\r\n\r\n                <HorizontalStackLayout Spacing=\"10\">\r\n                    <Button Text=\"Home\"\r\n                            ImageSource=\"{x:StaticResource HomeIcon}\"/>\r\n\r\n                    <Button Text=\"Download\"\r\n                            ImageSource=\"{x:StaticResource DownloadIcon}\"/>\r\n                </HorizontalStackLayout>\r\n            </Frame>";
+    #endregion
+
+    #region [Overrides]
+    protected override void OnInit(IDictionary<string, object> query)
+    {
+        base.OnInit(query);
+
+        ControlInformation = query.GetData<IControlInfo>();
+		
+    }
+	#endregion
+
+	#region [Relay Commands]
+	[RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
     #endregion
 }

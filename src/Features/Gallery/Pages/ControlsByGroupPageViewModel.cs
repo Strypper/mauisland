@@ -33,13 +33,13 @@ public partial class ControlsByGroupPageViewModel : NavigationAwareBaseViewModel
 
     #region [RelayCommand]
     [RelayCommand]
-    Task NavigateToDetailAsync(string controlRoute) => AppNavigator.NavigateAsync(controlRoute);
+    Task NavigateToDetailAsync(IControlInfo control) => AppNavigator.NavigateAsync(control.ControlRoute, args:control);
 
     [RelayCommand]
     Task NavigateToDetailInNewWindowAsync(string controlRoute) => AppNavigator.NavigateAsync(controlRoute, inNewWindow: true);
     #endregion
 
-    #region [Methods]
+    #region [Overrides]
 
     protected override void OnInit(IDictionary<string, object> query)
     {
@@ -50,6 +50,9 @@ public partial class ControlsByGroupPageViewModel : NavigationAwareBaseViewModel
         LoadDataAsync(true)
             .FireAndForget();
     }
+    #endregion
+
+    #region [Methods]
 
     private async Task LoadDataAsync(bool forced)
     {

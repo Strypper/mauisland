@@ -17,6 +17,9 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
     ObservableCollection<MAUIFact> mauiFacts;
 
     [ObservableProperty]
+    ObservableCollection<ApplicationNew> applicationNews;
+
+    [ObservableProperty]
     bool isBusy;
     #endregion
 
@@ -37,22 +40,31 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
 
         var items = await homeService.GetMAUIFactsAsync();
 
+        var news = await homeService.GetApplicationNews();
+
         IsBusy = false;
 
-        if (MauiFacts == null)
+        if (MauiFacts == null && applicationNews == null)
         {
             MauiFacts = new ObservableCollection<MAUIFact>(items);
+            ApplicationNews = new ObservableCollection<ApplicationNew>(news);
             return;
         }
 
         if (forced)
         {
             MauiFacts.Clear();
+            ApplicationNews.Clear();
         }
 
         foreach (var item in items)
         {
             MauiFacts.Add(item);
+        }
+
+        foreach (var item in news)
+        {
+            ApplicationNews.Add(item);
         }
     }
     #endregion

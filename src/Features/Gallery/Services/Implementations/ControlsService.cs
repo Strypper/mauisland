@@ -1,4 +1,6 @@
-﻿namespace MAUIsland;
+﻿using CommunityToolkit.Diagnostics;
+
+namespace MAUIsland;
 
 public class ControlsService : IControlsService
 {
@@ -46,6 +48,21 @@ public class ControlsService : IControlsService
                     ? controlInfos
                     : controlInfos
                         .Where(x => x.GroupName == groupName);
+        });
+    }
+
+    public Task<IControlInfo> GetControlByNameAsync(string groupName, string controlName)
+    {
+        
+        return Task.Run(() =>
+        {
+            IEnumerable<IControlInfo> result = controlInfos
+                .Where(x => x.GroupName == groupName);
+
+            return controlInfos
+                        .Where(x => x.GroupName == groupName 
+                                 && x.ControlName == controlName)
+                        .FirstOrDefault();
         });
     }
 }

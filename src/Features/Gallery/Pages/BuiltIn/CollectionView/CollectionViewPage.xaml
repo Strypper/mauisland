@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:app="clr-namespace:MAUIsland"
-              
-              
-              x:Class="MAUIsland.CollectionViewPage"
-              x:DataType="app:CollectionViewPageViewModel"
-              
-              
-              Title="Collection View">
+<app:BasePage
+    x:Class="MAUIsland.CollectionViewPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    Title="Collection View"
+    x:DataType="app:CollectionViewPageViewModel">
+
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="github.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </app:BasePage.ToolbarItems>
+
     <VerticalStackLayout>
-        <Label 
+        <Label
+            HorizontalOptions="Center"
             Text="Welcome to Collection View Page!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            VerticalOptions="Center" />
     </VerticalStackLayout>
 </app:BasePage>
