@@ -63,7 +63,12 @@
                     HorizontalOptions="Center"
                     ItemTemplate="{x:StaticResource MAUIFactListItemTemplate}"
                     ItemsSource="{x:Binding MauiFacts}"
-                    MaximumHeightRequest="200" />
+                    MaximumHeightRequest="200"
+                    SelectedItem="{x:Binding SelectedMauiFact,
+                                             Mode=TwoWay}"
+                    SelectionChangedCommand="{x:Binding OpenFactUrlCommand}"
+                    SelectionChangedCommandParameter="{x:Binding SelectedMauiFact}"
+                    SelectionMode="Single" />
                 <IndicatorView HorizontalOptions="Center" />
             </VerticalStackLayout>
         </Grid>

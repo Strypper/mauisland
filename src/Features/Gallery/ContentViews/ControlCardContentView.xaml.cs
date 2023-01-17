@@ -12,9 +12,9 @@ public partial class ControlCardContentView : ContentView
     #endregion
 
     #region [Delegates]
-    public delegate void DetailEventHandler(IControlInfo route);
+    public delegate void DetailEventHandler(IControlInfo control);
 
-    public delegate void DetailInNewWindowEventHandler(string route);
+    public delegate void DetailInNewWindowEventHandler(IControlInfo control);
     #endregion
 
     #region [Event Handlers]
@@ -50,7 +50,7 @@ public partial class ControlCardContentView : ContentView
 
     private void DetailInNewWindow_Clicked(object sender, EventArgs e)
     {
-        DetailInNewWindowClicked?.Invoke(ComponentData.ControlRoute);
+        DetailInNewWindowClicked?.Invoke(ComponentData);
     }
     #endregion
 

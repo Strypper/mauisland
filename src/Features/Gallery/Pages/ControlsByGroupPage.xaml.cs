@@ -50,8 +50,8 @@ public partial class ControlsByGroupPage
         viewModel.NavigateToDetailCommand.Execute(control);
     }
 
-    private void ControlCardContentView_DetailInNewWindowClicked(string route)
+    private void ControlCardContentView_DetailInNewWindowClicked(IControlInfo control)
     {
-        viewModel.NavigateToDetailInNewWindowCommand.Execute(route);
+        viewModel.NavigateToDetailInNewWindowCommand.Execute(control);
     }
 }

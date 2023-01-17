@@ -14,6 +14,9 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
 
     #region [Properties]
     [ObservableProperty]
+    MAUIFact selectedMauiFact;
+
+    [ObservableProperty]
     ObservableCollection<MAUIFact> mauiFacts;
 
     [ObservableProperty]

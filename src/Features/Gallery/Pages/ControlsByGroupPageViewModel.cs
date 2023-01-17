@@ -36,7 +36,7 @@ public partial class ControlsByGroupPageViewModel : NavigationAwareBaseViewModel
     Task NavigateToDetailAsync(IControlInfo control) => AppNavigator.NavigateAsync(control.ControlRoute, args:control);
 
     [RelayCommand]
-    Task NavigateToDetailInNewWindowAsync(string controlRoute) => AppNavigator.NavigateAsync(controlRoute, inNewWindow: true);
+    Task NavigateToDetailInNewWindowAsync(IControlInfo control) => AppNavigator.NavigateAsync(control.ControlRoute, inNewWindow: true, args:control);
     #endregion
 
     #region [Overrides]
