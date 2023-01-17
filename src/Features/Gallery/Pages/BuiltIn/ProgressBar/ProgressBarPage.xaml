@@ -7,24 +7,17 @@
               
               Title="Progress Bar">
     <app:BasePage.Resources>
-        
-        <DataTemplate x:Key="BulletListItemTemplate"
-                      x:DataType="x:String">
-            <HorizontalStackLayout Margin="2">
-                <Ellipse WidthRequest="7"
-                         HeightRequest="7"
-                         VerticalOptions="Center"
-                         Fill="{x:AppThemeBinding Dark='#ffffff', Light='Black'}"/>
-                <Label Text="{x:Binding}"
-                           TextType="Html"
-                           FontSize="Body"
-                           Margin="10,0,0,0"
-                           VerticalOptions="Center"/>
-            </HorizontalStackLayout>
-        </DataTemplate>
 
         <x:String x:Key="introduce">The .NET Multi-platform App UI (.NET MAUI) ProgressBar indicates to users that the app is progressing through a lengthy activity. The progress bar is a horizontal bar that is filled to a percentage represented by a double value.</x:String>
 
+        <x:String x:Key="PropertiesListHeader">
+            ProgressBar defines two properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter">
+            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+        </x:String>
+        
         <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}" >
             <x:String>
                 <![CDATA[
@@ -89,10 +82,10 @@
 
             <CollectionView  Margin="10"
                              SelectionMode="Single"
-                             Header="ProgressBar defines two properties:"
-                             Footer="These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled."
+                             Header="{x:StaticResource PropertiesListHeader}"
+                             Footer="{x:StaticResource PropertiesListFooter}"
                              VerticalScrollBarVisibility="Never"
-                             ItemTemplate="{x:StaticResource BulletListItemTemplate}"
+                             Style="{x:StaticResource PropertiesListStyle}"
                              ItemsSource="{x:StaticResource PropertyItemsSource}" />
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
