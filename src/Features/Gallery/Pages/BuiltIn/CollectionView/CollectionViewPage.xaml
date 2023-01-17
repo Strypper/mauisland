@@ -9,10 +9,115 @@
               
               
               Title="Collection View">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Collection View Page!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+
+    <app:BasePage.Resources>
+        <app:StringToColorConverter x:Key="StringToColorConverter" />
+
+        <x:String x:Key="ControlInfo">
+            Collection View is a view for presenting lists of data using different layout specifications. It aims to provide a more flexible, and performant alternative to ListView.
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeader">
+            Collection View defines the following properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter">
+            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+        </x:String>
+
+        <x:Array x:Key="ActivityIndicatorColorResource" Type="{x:Type x:String}">
+            <x:String>Red</x:String>
+            <x:String>Blue</x:String>
+            <x:String>Green</x:String>
+            <x:String>White</x:String>
+            <x:String>Black</x:String>
+            <x:String>Cyan</x:String>
+        </x:Array>
+
+        <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">ItemsSource  </strong>, of type <strong style="color:blue">IEnumerable </strong>, populates with data.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">ItemTemplate</strong>, of type <strong style="color:blue">DataTemplate</strong>, defines the appearance of each item.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">SelectionMode</strong>, of type <strong style="color:blue">SelectionMode</strong>, defines the selection mode, supports single and multiple selection.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">SelectedItem</strong>, of type <strong style="color:blue">object</strong>, the selected item in the list.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">ItemSizingStrategy </strong>, of type <strong style="color:blue">enumeration</strong>, determines the row height of each item.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">CachingStrategy </strong>, of type <strong style="color:blue">enumeration</strong>, uses the virtualization provided by the underlying native controls.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">CachingStrategy </strong>, of type <strong style="color:blue">enumeration</strong>, uses the virtualization provided by the underlying native controls.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Header, Footer </strong>, of type <strong style="color:blue">object</strong>, specifies the string, binding, or view that will be displayed at the start and end of the list.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">HeaderTemplate, FooterTemplate </strong>, of type <strong style="color:blue">DataTemplate</strong>, specifies the DataTemplate to use to format the Header and Footer.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">IsGrouped</strong>, of type <strong style="color:blue">bool</strong>, indicates whether the underlying data should be displayed in groups. The default value of this property is false.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">GroupHeaderTemplate, GroupFooterTemplate </strong>, of type <strong style="color:blue">DataTemplate</strong>, the template to use for the header and footer of each group
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">HeaderTemplate, FooterTemplate </strong>, of type <strong style="color:blue">DataTemplate</strong>, specifies the DataTemplate to use to format the Header and Footer.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">HeaderTemplate, FooterTemplate </strong>, of type <strong style="color:blue">DataTemplate</strong>, specifies the DataTemplate to use to format the Header and Footer.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+
+    </app:BasePage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:StaticResource ControlInfo}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CollectionView
+                    Footer="{x:StaticResource PropertiesListFooter}"
+                    Header="{x:StaticResource PropertiesListHeader}"
+                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                    Style="{x:StaticResource PropertiesListStyle}" />
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
 </app:BasePage>
