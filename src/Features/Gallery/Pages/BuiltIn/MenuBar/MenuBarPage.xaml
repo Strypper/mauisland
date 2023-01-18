@@ -19,8 +19,51 @@
             IconImageSource="microsoft.png"
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
-    <VerticalStackLayout>
-        <Label Text="A context menu, often known as a right-click menu, offers contextual commands that are specific to the control being clicked on. In .NET Multi-platform App UI (.NET MAUI), a context menu can be added to any control that derives from Element, on Mac Catalyst and Windows. This includes all pages, layouts, and views." />
+
+    <app:BasePage.Resources>
+        <x:String x:Key="ControlInfo">
+            A .NET Multi-platform App UI (.NET MAUI) menu bar is a container that presents a set of menus in a horizontal row, at the top of an app on Mac Catalyst and Windows.
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeader">
+            Each top-level menu in the menu bar, known as a menu bar item, is represented by a MenuBarItem object. MenuBarItem defines the following properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter">
+            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+        </x:String>
+
+
+        <x:String x:Key="ImageButtonControlInfo">
+            The Button class defines an ImageSource property that allows you to display a small bitmap image on the Button, either alone or in combination with text. You can also specify how the text and image are arranged. The ImageSource property is of type ImageSource, which means that the bitmaps can be loaded from a file, embedded resource, URI, or stream.
+        </x:String>
+
+        <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Text </strong>, of type <strong style="color:blue">string</strong>, defines the menu text.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">IsEnabled</strong>, of type <strong style="color:blue">boolean</strong>, specifies whether the menu is enabled. The default value of this property is true.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+    </app:BasePage.Resources>
+
+    <VerticalStackLayout Spacing="20">
+        <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Label Text="{x:StaticResource ControlInfo}" />
+        </Frame>
+        <Frame>
+            <CollectionView
+                Footer="{x:StaticResource PropertiesListFooter}"
+                Header="{x:StaticResource PropertiesListHeader}"
+                ItemsSource="{x:StaticResource PropertyItemsSource}"
+                Style="{x:StaticResource PropertiesListStyle}" />
+        </Frame>
         <Button Text="&#x25B6;&#xFE0F; Play" WidthRequest="80">
             <FlyoutBase.ContextFlyout>
                 <MenuFlyout>

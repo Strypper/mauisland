@@ -10,7 +10,7 @@
     x:DataType="app:IndicatorViewPageViewModel">
     <app:BasePage.Resources>
 
-        <x:String x:Key="introduce">The .NET Multi-platform App UI (.NET MAUI) IndicatorView is a control that displays indicators that represent the number of items, and current position, in a CarouselView:</x:String>
+        <x:String x:Key="ControlInfo">The .NET Multi-platform App UI (.NET MAUI) IndicatorView is a control that displays indicators that represent the number of items, and current position, in a CarouselView:</x:String>
 
         <x:String x:Key="PropertiesListHeader">
             IndicatorView defines the following properties:
@@ -18,6 +18,10 @@
 
         <x:String x:Key="PropertiesListFooter">
             These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+        </x:String>
+
+        <x:String x:Key="DemonstrateMessage">
+            The CarouselView currently very buggy on WinUI it can't decide the width it need to stretch the item inside, leading the indicator also confuse to calculate the position.
         </x:String>
 
         <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
@@ -111,7 +115,7 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <Label
                     Padding="10"
-                    Text="{x:StaticResource introduce}"
+                    Text="{x:StaticResource ControlInfo}"
                     VerticalOptions="Center" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
@@ -125,13 +129,12 @@
                     VerticalScrollBarVisibility="Never" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout>
+                <VerticalStackLayout Spacing="10">
                     <Label
                         Margin="0,0,0,10"
-                        FontSize="Medium"
-                        HorizontalOptions="Start"
-                        Text="Basic Indicator"
-                        VerticalOptions="Center" />
+                        Style="{x:StaticResource DocumentSectionTitleStyle}"
+                        Text="Demonstration" />
+                    <Label Text="{x:StaticResource DemonstrateMessage}" />
                     <Grid
                         Background="White"
                         HeightRequest="1"
@@ -142,7 +145,7 @@
                             HorizontalScrollBarVisibility="Never"
                             IndicatorView="indicatorView1"
                             ItemTemplate="{x:StaticResource CarouseViewTemplate1}"
-                            ItemsSource="{Binding Cats}"
+                            ItemsSource="{x:Binding Cats}"
                             Loop="False"
                             WidthRequest="120" />
                         <IndicatorView
