@@ -61,7 +61,7 @@
                     </Grid>
                 </SwipeView>
             </Frame>
-            <app:SourceCodeExpander XamlCode="{x:Binding StandardSwipeViewXamlCode}" />
+            <!--<app:SourceCodeExpander XamlCode="{x:Binding StandardSwipeViewXamlCode}" />-->
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>
