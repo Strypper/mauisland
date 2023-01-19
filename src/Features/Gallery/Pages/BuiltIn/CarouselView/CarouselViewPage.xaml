@@ -6,6 +6,13 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="Carousel View"
     x:DataType="app:CarouselViewPageViewModel">
+
+    <app:BasePage.Resources>
+        <x:String x:Key="ControlInfo">
+            The .NET Multi-platform App UI (.NET MAUI) CarouselView is a view for presenting data in a scrollable layout, where users can swipe to move through a collection of items.
+        </x:String>
+    </app:BasePage.Resources>
+
     <app:BasePage.ToolbarItems>
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
@@ -19,10 +26,11 @@
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
 
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to Carousel View Page!"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:StaticResource ControlInfo}" />
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
 </app:BasePage>
