@@ -5,7 +5,6 @@
               
               
               x:Class="MAUIsland.CollectionViewPage"
-              x:DataType="app:CollectionViewPageViewModel"
               
               
               Title="Collection View">
@@ -68,11 +67,6 @@
             </x:String>
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">CachingStrategy </strong>, of type <strong style="color:blue">enumeration</strong>, uses the virtualization provided by the underlying native controls.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
                                 <strong style="color:blue">Header, Footer </strong>, of type <strong style="color:blue">object</strong>, specifies the string, binding, or view that will be displayed at the start and end of the list.
                             ]]>
             </x:String>
@@ -89,16 +83,6 @@
             <x:String>
                 <![CDATA[
                                 <strong style="color:blue">GroupHeaderTemplate, GroupFooterTemplate </strong>, of type <strong style="color:blue">DataTemplate</strong>, the template to use for the header and footer of each group
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">HeaderTemplate, FooterTemplate </strong>, of type <strong style="color:blue">DataTemplate</strong>, specifies the DataTemplate to use to format the Header and Footer.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">HeaderTemplate, FooterTemplate </strong>, of type <strong style="color:blue">DataTemplate</strong>, specifies the DataTemplate to use to format the Header and Footer.
                             ]]>
             </x:String>
         </x:Array>
@@ -118,6 +102,44 @@
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
+
+            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Basic CollectionView with simple DataTemplate" />
+            
+            <StackLayout Margin="20">
+                <CollectionView ItemsSource="{Binding Monkeys}"
+                        Header="Header: Monkeys"
+                        Footer="This is Footer">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.RowSpan="2"
+                               Source="{Binding ImageUrl}"
+                               Aspect="AspectFill"
+                               HeightRequest="60"
+                               WidthRequest="60" />
+                                <Label Grid.Column="1"
+                               Text="{Binding Name}"
+                               FontAttributes="Bold" />
+                                <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="{Binding Location}"
+                               FontAttributes="Italic"
+                               VerticalOptions="End" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
         </VerticalStackLayout>
     </ScrollView>
+
 </app:BasePage>
