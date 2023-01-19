@@ -27,17 +27,18 @@
     <Border
         Padding="0"
         BackgroundColor="#7FFFC8"
-        HeightRequest="250"
+        HeightRequest="190"
         StrokeShape="RoundRectangle 5,5,5,5"
         WidthRequest="550">
         <Grid
             Padding="15,15,15,15"
             ColumnDefinitions="300, *"
             ColumnSpacing="10">
-            <Frame
+            <Border
                 Padding="0"
                 Background="{x:StaticResource InnerFrameGradient}"
-                HorizontalOptions="Start">
+                HorizontalOptions="Start"
+                StrokeShape="RoundRectangle 5,5,5,5">
                 <Grid
                     Padding="20"
                     HorizontalOptions="Fill"
@@ -50,16 +51,16 @@
                         VerticalOptions="Start" />
                     <toolkit:AvatarView
                         CornerRadius="40"
-                        HeightRequest="80"
+                        HeightRequest="60"
                         HorizontalOptions="Start"
                         ImageSource="{x:Binding ApplicationNew.AuthorImageUrl,
                                                 Source={x:Reference root},
                                                 Mode=OneWay}"
                         VerticalOptions="Center"
-                        WidthRequest="80" />
+                        WidthRequest="60" />
                     <Label
                         FontAttributes="Bold"
-                        FontSize="12"
+                        FontSize="18"
                         HorizontalOptions="Center"
                         Text="{x:Binding ApplicationNew.Activity,
                                          Source={x:Reference root},
@@ -67,19 +68,19 @@
                         VerticalOptions="Center" />
                     <Image
                         Aspect="AspectFit"
-                        HeightRequest="80"
+                        HeightRequest="60"
                         HorizontalOptions="End"
                         Source="{x:Binding ApplicationNew.Component.ControlIcon,
                                            Source={x:Reference root},
                                            Mode=OneWay}"
                         VerticalOptions="Center"
-                        WidthRequest="80" />
+                        WidthRequest="60" />
                     <Label
                         HorizontalOptions="Center"
                         Text="12/02/2023"
                         VerticalOptions="End" />
                 </Grid>
-            </Frame>
+            </Border>
             <VerticalStackLayout
                 Grid.Column="1"
                 HorizontalOptions="Start"

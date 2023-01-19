@@ -52,6 +52,7 @@ public partial class ControlsByGroupPage
 
     private void ControlCardContentView_DetailInNewWindowClicked(IControlInfo control)
     {
+
         viewModel.NavigateToDetailInNewWindowCommand.Execute(control);
     }
 }

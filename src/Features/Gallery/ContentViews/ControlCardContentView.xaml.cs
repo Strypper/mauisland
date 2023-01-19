@@ -53,5 +53,4 @@ public partial class ControlCardContentView : ContentView
         DetailInNewWindowClicked?.Invoke(ComponentData);
     }
     #endregion
-
 }
