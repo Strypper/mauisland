@@ -69,6 +69,19 @@
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
+            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a Frame" />
+            <Label Text="A Frame object typically wraps another control, such as a Label:" />
+
+            <Frame>
+                <Label Text="Frame wrapped around a Label" />
+            </Frame>
+            <app:SourceCodeExpander XamlCode="{x:Binding StandardCreateFrameXamlCode}"/>
+
+            <Frame BorderColor="Grey"
+                   CornerRadius="10"
+                   BackgroundColor="DimGrey">
+                <Label Text="Frame wrapped around a Label" />
+            </Frame>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>
