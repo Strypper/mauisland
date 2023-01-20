@@ -15,7 +15,10 @@ public partial class FramePageViewModel : NavigationAwareBaseViewModel
     IControlInfo controlInformation;
 
     [ObservableProperty]
-    string standardCreateFrameXamlCode = "<Label Text=\"Frame wrapped around a Label\" />";
+    string standardCreateFrameXamlCode = "<Frame>\r\n                        <Label Text=\"Frame wrapped around a Label\" />\r\n                    </Frame>";
+
+    [ObservableProperty]
+    string createTheSecondFrameXamlCode = "<Frame\r\n                        BackgroundColor=\"DimGrey\"\r\n                        BorderColor=\"Grey\"\r\n                        CornerRadius=\"10\">\r\n                        <Label Text=\"Frame wrapped around a Label\" />\r\n                    </Frame>";
     #endregion
 
     #region [Overrides]

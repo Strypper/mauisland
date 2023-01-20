@@ -69,18 +69,52 @@
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a Frame" />
+            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text=" Create a Frame " />
             <Label Text="A Frame object typically wraps another control, such as a Label:" />
 
-            <Frame>
-                <Label Text="Frame wrapped around a Label" />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Frame>
+                        <Label Text="Frame wrapped around a Label" />
+                    </Frame>
+                    <app:SourceCodeExpander XamlCode="{x:Binding StandardCreateFrameXamlCode}" />
+                </VerticalStackLayout>
             </Frame>
-            <app:SourceCodeExpander XamlCode="{x:Binding StandardCreateFrameXamlCode}"/>
 
-            <Frame BorderColor="Grey"
-                   CornerRadius="10"
-                   BackgroundColor="DimGrey">
-                <Label Text="Frame wrapped around a Label" />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Text="The appearance of Frame objects can be customized by setting properties:" />
+                    <Frame
+                        BackgroundColor="DimGrey"
+                        BorderColor="Grey"
+                        CornerRadius="10">
+                        <Label Text="Frame wrapped around a Label" />
+                    </Frame>
+                    <app:SourceCodeExpander XamlCode="{x:Binding CreateTheSecondFrameXamlCode}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text=" Create a card with a Frame " />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Text="The following XAML shows how to create a card with a Frame:" />
+                    <Frame
+                        Padding="8"
+                        BorderColor="Gray"
+                        CornerRadius="5">
+                        <StackLayout>
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="14"
+                                Text="Card Example" />
+                            <BoxView
+                                HeightRequest="2"
+                                HorizontalOptions="Fill"
+                                Color="Gray" />
+                            <Label Text="Frames can wrap more complex layouts to create more complex UI components, such as this card!" />
+                        </StackLayout>
+                    </Frame>
+                </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
     </ScrollView>
