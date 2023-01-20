@@ -70,40 +70,32 @@
                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
-            <Label
-                FontAttributes="Bold"
-                FontSize="Title"
-                Text="A simple CheckBox" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <CheckBox />
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="A simple CheckBox" />
+                    <CheckBox />
+                    <app:SourceCodeExpander XamlCode="{x:Binding StandardCheckBoxXamlCode}" />
+                </VerticalStackLayout>
             </Frame>
-            <app:SourceCodeExpander XamlCode="{x:Binding StandardCheckBoxXamlCode}" />
 
-            <Label
-                FontAttributes="Bold"
-                FontSize="Title"
-                Text="A CheckBox has some properties to be defined" />
 
-            <Label FontSize="Title" Text="1. Color, of type Color, which indicates the color of the CheckBox." />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <CheckBox Color="{x:StaticResource Primary}" />
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="A CheckBox has some properties to be defined" />
+                    <Label Text="1. Color, of type Color, which indicates the color of the CheckBox." />
+                    <CheckBox Color="{x:StaticResource Primary}" />
+                    <app:SourceCodeExpander XamlCode="{x:Binding CheckBoxWithColorXamlCode}" />
+
+                    <Label Text="2. IsChecked, of type bool, which indicates whether the CheckBox is checked. How about a CheckBox being chekced as default?" />
+                    <CheckBox IsChecked="True" />
+                    <app:SourceCodeExpander XamlCode="{x:Binding CheckBoxTrueByDefaultXamlCode}" />
+                </VerticalStackLayout>
             </Frame>
-            <app:SourceCodeExpander XamlCode="{x:Binding CheckBoxWithColorXamlCode}" />
 
-            <Label FontSize="Title" Text="2. IsChecked, of type bool, which indicates whether the CheckBox is checked. How about a CheckBox being chekced as default?" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <CheckBox IsChecked="True" />
-            </Frame>
-            <app:SourceCodeExpander XamlCode="{x:Binding CheckBoxTrueByDefaultXamlCode}" />
-
-            <Label
-                FontAttributes="Bold"
-                FontSize="Title"
-                Text="These properties are backed by BindableProperty objects, which means that they can be styled, and be the target of data bindings." />
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Grid>
-                    <CheckBox IsChecked="{x:Binding IsChecked, Mode=TwoWay}" Color="{x:Binding CurrentColor, Mode=OneWay}" />
+                <VerticalStackLayout>
                     <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+                        <CheckBox IsChecked="{x:Binding IsChecked, Mode=TwoWay}" Color="{x:Binding CurrentColor, Mode=OneWay}" />
                         <Label
                             Text="{x:Binding IsChecked,
                                              Converter={x:StaticResource StringTernaryOperatorConverter},
@@ -112,17 +104,14 @@
                                                   Mode=OneWay}"
                             VerticalOptions="Center" />
                     </HorizontalStackLayout>
-                </Grid>
+                    <app:SourceCodeExpander XamlCode="{x:Binding CheckBoxWithBindingXamlCode}" />
+                </VerticalStackLayout>
             </Frame>
-            <app:SourceCodeExpander XamlCode="{x:Binding CheckBoxWithBindingXamlCode}" />
 
-            <Label
-                FontAttributes="Bold"
-                FontSize="Title"
-                Text="No need to confuse, MAUI checkboxes still doesn't support title yet. We need to add title manually." />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <Grid>
-                    <VerticalStackLayout>
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="No need to confuse, MAUI checkboxes still doesn't support title yet. We need to add title manually." />
                         <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center">
                             <Label
                                 FontAttributes="Bold"
@@ -146,10 +135,10 @@
                                 Text="CheckBox 3" />
                             <CheckBox x:Name="checkBox3" />
                         </HorizontalStackLayout>
+                        <app:SourceCodeExpander XamlCode="{x:Binding CheckBoxWithLabelXamlCode}" />
                     </VerticalStackLayout>
                 </Grid>
             </Frame>
-            <app:SourceCodeExpander XamlCode="{x:Binding CheckBoxWithLabelXamlCode}" />
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

@@ -9,7 +9,7 @@ public class LineBreakModeEnumToStringConverter : IValueConverter
         {
             return (LineBreakMode)value;
         }
-        return LineBreakMode.NoWrap;
+        return LineBreakMode.WordWrap;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
