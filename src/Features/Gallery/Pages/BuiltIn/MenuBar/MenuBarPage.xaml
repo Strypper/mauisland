@@ -21,6 +21,13 @@
     </app:BasePage.ToolbarItems>
 
     <app:BasePage.Resources>
+        <FontImageSource
+            x:Key="DownloadIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_arrow_download_48_regular}"
+            Color="{AppThemeBinding Light='#15161e',
+                                    Dark='#eaeaea'}" />
+
         <x:String x:Key="ControlInfo">
             A .NET Multi-platform App UI (.NET MAUI) menu bar is a container that presents a set of menus in a horizontal row, at the top of an app on Mac Catalyst and Windows.
         </x:String>
@@ -57,28 +64,49 @@
         <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
             <Label Text="{x:StaticResource ControlInfo}" />
         </Frame>
-        <Frame>
+        <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
             <CollectionView
                 Footer="{x:StaticResource PropertiesListFooter}"
                 Header="{x:StaticResource PropertiesListHeader}"
-                ItemsSource="{x:StaticResource PropertyItemsSource}"
+                ItemsSource="{x:StaticResource PropertiesItemsSource}"
                 Style="{x:StaticResource PropertiesListStyle}" />
         </Frame>
-        <Button Text="&#x25B6;&#xFE0F; Play" WidthRequest="80">
-            <FlyoutBase.ContextFlyout>
-                <MenuFlyout>
-                    <MenuFlyoutItem Text="Pause">
-                        <MenuFlyoutItem.IconImageSource>
-                            <FontImageSource FontFamily="Arial" Glyph="&#x23F8;" />
-                        </MenuFlyoutItem.IconImageSource>
-                    </MenuFlyoutItem>
-                    <MenuFlyoutItem Text="Stop">
-                        <MenuFlyoutItem.IconImageSource>
-                            <FontImageSource FontFamily="Arial" Glyph="&#x23F9;" />
-                        </MenuFlyoutItem.IconImageSource>
-                    </MenuFlyoutItem>
-                </MenuFlyout>
-            </FlyoutBase.ContextFlyout>
-        </Button>
+        <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <VerticalStackLayout Spacing="10">
+                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="You can stick menu bar everywhere" />
+                <Label Text="Button:" />
+                <Button
+                    HorizontalOptions="Start"
+                    Text="&#x25B6;&#xFE0F; Play"
+                    WidthRequest="80">
+                    <FlyoutBase.ContextFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem Text="Pause">
+                                <MenuFlyoutItem.IconImageSource>
+                                    <FontImageSource FontFamily="Arial" Glyph="&#x23F8;" />
+                                </MenuFlyoutItem.IconImageSource>
+                            </MenuFlyoutItem>
+                            <MenuFlyoutItem Text="Stop">
+                                <MenuFlyoutItem.IconImageSource>
+                                    <FontImageSource FontFamily="Arial" Glyph="&#x23F9;" />
+                                </MenuFlyoutItem.IconImageSource>
+                            </MenuFlyoutItem>
+                        </MenuFlyout>
+                    </FlyoutBase.ContextFlyout>
+                </Button>
+                <Label Text="Image:" />
+                <Image
+                    HeightRequest="100"
+                    HorizontalOptions="Start"
+                    Source="dotnet_bot.png"
+                    WidthRequest="100">
+                    <FlyoutBase.ContextFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem IconImageSource="{x:StaticResource DownloadIcon}" Text="Save Image" />
+                        </MenuFlyout>
+                    </FlyoutBase.ContextFlyout>
+                </Image>
+            </VerticalStackLayout>
+        </Frame>
     </VerticalStackLayout>
 </app:BasePage>

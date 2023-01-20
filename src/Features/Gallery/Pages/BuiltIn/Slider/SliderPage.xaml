@@ -157,6 +157,26 @@
                     <app:SourceCodeExpander XamlCode="{x:Binding SliderWithCustomThumbImageXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout>
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="LET'S HAVE A LITTLE FUN!!!!" />
+                    <Slider
+                        x:Name="HavingFunSlider"
+                        DragCompleted="HavingFunSlider_DragCompleted"
+                        Maximum="360"
+                        ValueChanged="HavingFunSlider_ValueChanged" />
+                    <Grid
+                        HeightRequest="300"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start"
+                        WidthRequest="300">
+                        <Label
+                            x:Name="RotatingLabel"
+                            Text="COME ON SLIDE ME !!!!"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

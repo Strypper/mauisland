@@ -11,9 +11,8 @@ public partial class EditorPage : IControlPage
 
     void OnEditorTextChanged(object sender, TextChangedEventArgs e)
     {
-        string oldText = e.OldTextValue;
-        string newText = e.NewTextValue;
-        string myText = editor.Text;
+        OldTextSpan.Text = e.OldTextValue;
+        NewTextSpan.Text = e.NewTextValue;
     }
 
     void OnEditorCompleted(object sender, EventArgs e)
