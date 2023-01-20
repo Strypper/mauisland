@@ -121,7 +121,7 @@
 
             <!-- Create Swipe View -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
+                <VerticalStackLayout Spacing="20">
                     <Label   
                         Style="{x:StaticResource DocumentSectionTitleStyle}"
                         Text="Create a SwipeView"/>
@@ -154,16 +154,16 @@
                                 VerticalOptions="Center"/>
                         </Grid>
                     </SwipeView>
+                    <Label 
+                        Text="Once a swipe item has been executed the swipe items are hidden and the SwipeView content is re-displayed. However, this behavior can be changed. For more information, see Swipe behavior."
+                        FontSize="Micro"/>
+                    <app:SourceCodeExpander XamlCode="{x:Binding StandardSwipeViewXamlCode}"/>
                 </VerticalStackLayout>
             </Frame>
-        <Label 
-            Text="Once a swipe item has been executed the swipe items are hidden and the SwipeView content is re-displayed. However, this behavior can be changed. For more information, see Swipe behavior."
-            FontSize="Micro"/>
-        <app:SourceCodeExpander XamlCode="{x:Binding StandardSwipeViewXamlCode}"/>
 
             <!-- Swipe items -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout>
+                <VerticalStackLayout Spacing="20">
                     <Label   
                         Style="{x:StaticResource DocumentSectionTitleStyle}"
                         Text="Swipe items"/>
@@ -190,13 +190,13 @@
                                 VerticalOptions="Center"/>
                         </Grid>
                     </SwipeView>
+                    <app:SourceCodeExpander XamlCode="{x:Binding SwipeItemsXamlCode}"/>
                 </VerticalStackLayout>
             </Frame>
-        <app:SourceCodeExpander XamlCode="{x:Binding SwipeItemsXamlCode}"/>
 
             <!-- Swipe direction -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout>
+                <VerticalStackLayout Spacing="20">
                     <Label   
                         Style="{x:StaticResource DocumentSectionTitleStyle}"
                         Text="Swipe direction"/>
@@ -234,10 +234,10 @@
                             VerticalOptions="Center"/>
                         </Grid>
                     </SwipeView>
+                    <app:SourceCodeExpander XamlCode="{x:Binding SwipeDirectionXamlCode}"/>
                 </VerticalStackLayout>
             </Frame>
-        <app:SourceCodeExpander XamlCode="{x:Binding SwipeDirectionXamlCode}"/>
-            
+
             <!--Swipe threshold-->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout>
@@ -263,13 +263,13 @@
                                 VerticalOptions="Center"/>
                         </Grid>
                     </SwipeView>
+                    <app:SourceCodeExpander XamlCode="{x:Binding SwipeThresholdXamlCode}"/>
                 </VerticalStackLayout>
             </Frame>
-        <app:SourceCodeExpander XamlCode="{x:Binding SwipeThresholdXamlCode}"/>
 
             <!--Swipe mode-->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout>
+                <VerticalStackLayout Spacing="20">
                     <Label   
                         Style="{x:StaticResource DocumentSectionTitleStyle}"
                         Text="Swipe mode"/>
@@ -293,42 +293,42 @@
                                 VerticalOptions="Center"/>
                         </Grid>
                     </SwipeView>
+                    <app:SourceCodeExpander XamlCode="{x:Binding SwipeModeXamlCode}"/>
                 </VerticalStackLayout>
             </Frame>
-        <app:SourceCodeExpander XamlCode="{x:Binding SwipeModeXamlCode}"/>
 
-                <!--Swipe behavior-->
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                    <VerticalStackLayout>
-                        <Label   
+            <!--Swipe behavior-->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label   
                             Style="{x:StaticResource DocumentSectionTitleStyle}"
                             Text="Swipe behavior"/>
-                        <SwipeView>
-                            <SwipeView.LeftItems>
-                                <SwipeItems SwipeBehaviorOnInvoked="RemainOpen">
-                                    <SwipeItem 
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems SwipeBehaviorOnInvoked="RemainOpen">
+                                <SwipeItem 
                                         Text="Favorite"
                                         IconImageSource="favorite.png"
                                         BackgroundColor="LightGreen"/>
-                                    <SwipeItem 
+                                <SwipeItem 
                                         Text="Delete"
                                         IconImageSource="delete.png"
                                         BackgroundColor="LightPink"/>
-                                </SwipeItems>
-                            </SwipeView.LeftItems>
-                            <Grid 
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <Grid 
                                 WidthRequest="300"
                                 HeightRequest="60"
                                 BackgroundColor="Orchid">
-                                <Label 
+                            <Label 
                                     Text="Swipe Right" 
                                     HorizontalTextAlignment="Center"
                                     VerticalOptions="Center"/>
-                            </Grid>
-                        </SwipeView>
-                    </VerticalStackLayout>
-                </Frame>
-            <app:SourceCodeExpander XamlCode="{x:Binding SwipeBehaviorXamlCode}"/>
+                        </Grid>
+                    </SwipeView>
+                    <app:SourceCodeExpander XamlCode="{x:Binding SwipeBehaviorXamlCode}"/>
+                </VerticalStackLayout>
+            </Frame>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>
