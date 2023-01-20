@@ -21,25 +21,68 @@
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="10">
-            <Label Text="The .NET Multi-platform App UI (.NET MAUI) Editor allows you to enter and edit multiple lines of text." />
-            <Label
-                FontAttributes="Bold"
-                FontSize="Subtitle"
-                Text="Simple editor" />
-            <Editor
-                x:Name="editor"
-                Completed="OnEditorCompleted"
-                HeightRequest="250"
-                Placeholder="Enter your response here"
-                TextChanged="OnEditorTextChanged" />
-            <app:SourceCodeExpander XamlCode="{x:Binding SimpleEditXamlCode}" />
-            <Label
-                FontAttributes="Bold"
-                FontSize="Subtitle"
-                Text="Set character spacing" />
+    <app:BasePage.Resources>
+        <x:String x:Key="ControlInfo">
+            The .NET Multi-platform App UI (.NET MAUI) Editor allows you to enter and edit multiple lines of text.
+        </x:String>
 
+        <x:String x:Key="PropertiesListHeader">
+            Editor defines the following properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter">
+            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+        </x:String>
+    </app:BasePage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:StaticResource ControlInfo}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CollectionView
+                    Footer="{x:StaticResource PropertiesListFooter}"
+                    Header="{x:StaticResource PropertiesListHeader}"
+                    Style="{x:StaticResource PropertiesListStyle}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Simple editor" />
+                    <Editor
+                        x:Name="editor"
+                        Completed="OnEditorCompleted"
+                        HeightRequest="250"
+                        Placeholder="Enter your response here"
+                        TextChanged="OnEditorTextChanged" />
+                    <Label Text="Let's watch the behavior of how old text and new text change" />
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Old Text:" />
+                                <Span x:Name="OldTextSpan" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="New Text:" />
+                                <Span x:Name="NewTextSpan" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
+            </Frame>
+            <app:SourceCodeExpander XamlCode="{x:Binding SimpleEditXamlCode}" />
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Set character spacing" />
+
+                    <Editor x:Name="CharacterSpacingEditor" />
+                </VerticalStackLayout>
+            </Frame>
         </VerticalStackLayout>
     </ScrollView>
 
