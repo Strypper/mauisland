@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:app="clr-namespace:MAUIsland"
+             
+              x:Class="MAUIsland.ImageButtonPage"
+              x:DataType="app:ImageButtonPageViewModel"
+              
+              Title="ImageButton"
+              Padding="20">
+    <ScrollView>
+        <VerticalStackLayout Spacing="10">
+            
+        </VerticalStackLayout>
+    </ScrollView>
+
+</app:BasePage>
