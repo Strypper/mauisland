@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    x:Class="MAUIsland.ControlsByGroupPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    Padding="10"
+    x:DataType="app:ControlsByGroupPageViewModel"
+    BackgroundColor="#272727"
+    SizeChanged="BasePage_SizeChanged">
+    <app:BasePage.Resources>
+        <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate" x:DataType="app:IControlInfo">
+            <app:ControlCardContentView
+                ComponentData="{x:Binding}"
+                DetailClicked="ControlCardContentView_DetailClicked"
+                DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
+        </DataTemplate>
+    </app:BasePage.Resources>
+
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem IconImageSource="github.png" Text="Source code" />
+        <ToolbarItem IconImageSource="microsoft.png" Text="Original Document" />
+    </app:BasePage.ToolbarItems>
+
+    <ScrollView VerticalScrollBarVisibility="Always">
+        <Grid ColumnDefinitions="*, 300" RowDefinitions="150, 20, *">
+            <Frame
+                Grid.ColumnSpan="2"
+                Padding="0"
+                CornerRadius="4">
+                <Grid>
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="200"
+                        HorizontalOptions="Fill"
+                        Source="https://i.imgur.com/O7V5Mid.png"
+                        VerticalOptions="Fill" />
+
+                    <Label
+                        Margin="20"
+                        FontAttributes="Bold"
+                        FontSize="Header"
+                        Text="{Binding ControlGroup.Title}"
+                        TextColor="{x:StaticResource White}"
+                        VerticalOptions="Center" />
+                </Grid>
+            </Frame>
+            <app:HorizontalWrapLayout
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                BindableLayout.ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
+                BindableLayout.ItemsSource="{x:Binding Items,
+                                                       Mode=OneWay}"
+                HorizontalOptions="Start"
+                Spacing="10" />
+        </Grid>
+    </ScrollView>
+</app:BasePage>

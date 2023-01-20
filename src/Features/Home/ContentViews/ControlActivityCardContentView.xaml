@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIsland.ControlActivityCardContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="root">
+
+    <ContentView.Resources>
+
+        <app:NewActivityToStringConverter x:Key="NewActivityToStringConverter" />
+
+        <FontImageSource
+            x:Key="HomeIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{x:Static app:FluentUIIcon.Ic_fluent_home_20_regular}"
+            Color="White" />
+
+        <LinearGradientBrush x:Key="InnerFrameGradient" EndPoint="1,0">
+            <GradientStop Offset="0.0" Color="#DCE35B" />
+            <GradientStop Offset="1.0" Color="#45B649" />
+        </LinearGradientBrush>
+
+    </ContentView.Resources>
+
+    <Border
+        Padding="0"
+        BackgroundColor="#7FFFC8"
+        HeightRequest="190"
+        StrokeShape="RoundRectangle 5,5,5,5"
+        WidthRequest="550">
+        <Grid
+            Padding="15,15,15,15"
+            ColumnDefinitions="300, *"
+            ColumnSpacing="10">
+            <Border
+                Padding="0"
+                Background="{x:StaticResource InnerFrameGradient}"
+                HorizontalOptions="Start"
+                StrokeShape="RoundRectangle 5,5,5,5">
+                <Grid
+                    Padding="20"
+                    HorizontalOptions="Fill"
+                    WidthRequest="300">
+                    <Label
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        Text="{x:Binding ApplicationNew.AuthorName,
+                                         Source={x:Reference root}}"
+                        VerticalOptions="Start" />
+                    <toolkit:AvatarView
+                        CornerRadius="40"
+                        HeightRequest="60"
+                        HorizontalOptions="Start"
+                        ImageSource="{x:Binding ApplicationNew.AuthorImageUrl,
+                                                Source={x:Reference root},
+                                                Mode=OneWay}"
+                        VerticalOptions="Center"
+                        WidthRequest="60" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="{x:Binding ApplicationNew.Activity,
+                                         Source={x:Reference root},
+                                         Converter={x:StaticResource NewActivityToStringConverter}}"
+                        VerticalOptions="Center" />
+                    <Image
+                        Aspect="AspectFit"
+                        HeightRequest="60"
+                        HorizontalOptions="End"
+                        Source="{x:Binding ApplicationNew.Component.ControlIcon,
+                                           Source={x:Reference root},
+                                           Mode=OneWay}"
+                        VerticalOptions="Center"
+                        WidthRequest="60" />
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="12/02/2023"
+                        VerticalOptions="End" />
+                </Grid>
+            </Border>
+            <VerticalStackLayout
+                Grid.Column="1"
+                HorizontalOptions="Start"
+                Spacing="5">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Subtitle"
+                    HorizontalOptions="Start"
+                    Text="{x:Binding ApplicationNew.Component.ControlName,
+                                     Source={x:Reference root}}"
+                    TextColor="Black" />
+                <Label
+                    MaxLines="7"
+                    MaximumWidthRequest="220"
+                    Text="{x:Binding ApplicationNew.NewLog,
+                                     Source={x:Reference root}}"
+                    TextColor="Black" />
+            </VerticalStackLayout>
+            <Button
+                Grid.Column="1"
+                BackgroundColor="Black"
+                Clicked="Detail_Clicked"
+                Text="Detail"
+                TextColor="White"
+                VerticalOptions="End" />
+        </Grid>
+    </Border>
+</ContentView>

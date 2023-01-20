@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland">
+
+    <FontImageSource
+        x:Key="OpenNewWindowIcon"
+        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+        Glyph="{Static app:FluentUIIcon.Ic_fluent_open_24_regular}"
+        Color="{AppThemeBinding Light='#15161e',
+                                Dark='#eaeaea'}" />
+
+    <Style x:Key="DocumentContentFrameStyle" TargetType="Frame">
+        <Setter Property="HasShadow" Value="True" />
+        <Setter Property="BackgroundColor" Value="{x:AppThemeBinding Dark='#202020', Light='#ffffff'}" />
+    </Style>
+
+    <Style x:Key="DocumentSectionTitleStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="Title" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextDecorations" Value="Underline" />
+    </Style>
+
+    <DataTemplate x:Key="BulletListItemTemplate" x:DataType="x:String">
+        <Grid ColumnDefinitions="10 , *">
+            <Ellipse
+                Fill="{x:AppThemeBinding Dark='#ffffff',
+                                         Light='Black'}"
+                HeightRequest="7"
+                VerticalOptions="Center"
+                WidthRequest="7" />
+            <Label
+                Grid.Column="1"
+                Margin="10,0,0,0"
+                FontSize="Body"
+                LineBreakMode="WordWrap"
+                Text="{x:Binding}"
+                TextType="Html"
+                VerticalOptions="Center" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="BulletListHeaderTemplate" x:DataType="x:String">
+        <Label
+            Margin="0,0,0,15"
+            LineBreakMode="WordWrap"
+            Style="{x:StaticResource DocumentSectionTitleStyle}"
+            Text="{x:Binding}"
+            TextType="Html" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="BulletListFooterTemplate" x:DataType="x:String">
+        <Label
+            Margin="0,10,0,0"
+            FontSize="Subtitle"
+            LineBreakMode="WordWrap"
+            Text="{x:Binding}" />
+    </DataTemplate>
+
+    <Style x:Key="PropertiesListStyle" TargetType="CollectionView">
+        <Setter Property="HeaderTemplate" Value="{x:StaticResource BulletListHeaderTemplate}" />
+        <Setter Property="ItemTemplate" Value="{x:StaticResource BulletListItemTemplate}" />
+        <Setter Property="FooterTemplate" Value="{x:StaticResource BulletListFooterTemplate}" />
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    x:Class="MAUIsland.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    Title="HomePage"
+    x:DataType="app:HomePageViewModel"
+    Shell.NavBarIsVisible="{x:OnPlatform WinUI=false,
+                                         Android=true}">
+
+    <app:BasePage.Resources>
+
+        <DataTemplate x:Key="MAUIFactListItemTemplate" x:DataType="app:MAUIFact">
+            <Label
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center"
+                LineBreakMode="WordWrap"
+                MaxLines="2"
+                Text="{x:Binding Fact}"
+                TextColor="Black" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ActivitiesItemTemplate" x:DataType="app:ApplicationNew">
+            <app:ControlActivityCardContentView ApplicationNew="{x:Binding}" />
+        </DataTemplate>
+
+        <LinearItemsLayout
+            x:Key="ActivitiesLayout"
+            ItemSpacing="10"
+            Orientation="Horizontal" />
+    </app:BasePage.Resources>
+
+    <Grid ColumnDefinitions="1.4*, *">
+        <Image
+            Grid.ColumnSpan="2"
+            Aspect="AspectFill"
+            HorizontalOptions="Fill"
+            Source="mauibeach.jpeg"
+            VerticalOptions="Fill" />
+
+        <Grid
+            Grid.Column="1"
+            HorizontalOptions="Fill"
+            RowDefinitions="0.6*, 0.4*"
+            VerticalOptions="Fill">
+            <BoxView
+                Grid.RowSpan="2"
+                HorizontalOptions="Fill"
+                Opacity="0.5"
+                VerticalOptions="Fill"
+                Color="{x:StaticResource White}" />
+
+            <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Image
+                    Margin="0,0,0,20"
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    Source="mauilogo.png"
+                    WidthRequest="100" />
+                <CollectionView
+                    x:Name="MAUIFactsCarousel"
+                    HorizontalOptions="Center"
+                    ItemTemplate="{x:StaticResource MAUIFactListItemTemplate}"
+                    ItemsSource="{x:Binding MauiFacts}"
+                    MaximumHeightRequest="200"
+                    SelectedItem="{x:Binding SelectedMauiFact,
+                                             Mode=TwoWay}"
+                    SelectionChangedCommand="{x:Binding OpenFactUrlCommand}"
+                    SelectionChangedCommandParameter="{x:Binding SelectedMauiFact}"
+                    SelectionMode="Single" />
+                <IndicatorView HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Grid>
+        <CollectionView
+            Grid.ColumnSpan="2"
+            Margin="20"
+            Header="TOP NEWS"
+            HorizontalOptions="End"
+            ItemTemplate="{x:StaticResource ActivitiesItemTemplate}"
+            ItemsLayout="{x:StaticResource ActivitiesLayout}"
+            ItemsSource="{x:Binding ApplicationNews}"
+            VerticalOptions="End" />
+    </Grid>
+</app:BasePage>
