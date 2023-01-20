@@ -7,7 +7,7 @@ class MenuBarControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
-        Glyph = FluentUIIcon.Ic_fluent_text_case_title_24_regular
+        Glyph = FluentUIIcon.Ic_fluent_web_asset_24_regular
     };
     public string ControlDetail => "A .NET Multi-platform App UI (.NET MAUI) menu bar is a container that presents a set of menus in a horizontal row, at the top of an app on Mac Catalyst and Windows.";
     public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/BuiltIn/{ControlName}";
