@@ -150,7 +150,8 @@
                             Title="Line Break Mode"
                             ItemsSource="{x:Binding LineBreakModes}"
                             SelectedIndex="{x:Binding SelectedLineBreakModeIndex,
-                                                      Converter={x:StaticResource LineBreakModeEnumToStringConverter}}" />
+                                                      Converter={x:StaticResource LineBreakModeEnumToStringConverter},
+                                                      Mode=TwoWay}" />
 
                         <VerticalStackLayout Spacing="8">
                             <Label Text="Adjust maximum lines" />
