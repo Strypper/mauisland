@@ -9,10 +9,7 @@
     x:DataType="app:LabelPageViewModel">
     <app:BasePage.Resources>
         <app:LineBreakModeEnumToStringConverter x:Key="LineBreakModeEnumToStringConverter" />
-
-        <x:String x:Key="Lorem">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </x:String>
+        <app:StringToColorConverter x:Key="StringToColorConverter" />
 
         <x:String x:Key="ControlInfo">
             The .NET Multi-platform App UI (.NET MAUI) Label displays single-line and multi-line text. Text displayed by a Label can be colored, spaced, and can have text decorations.
@@ -25,6 +22,15 @@
         <x:String x:Key="PropertiesListFooter">
             These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
         </x:String>
+
+        <x:Array x:Key="LabelColorResource" Type="{x:Type x:String}">
+            <x:String>Red</x:String>
+            <x:String>Blue</x:String>
+            <x:String>Green</x:String>
+            <x:String>White</x:String>
+            <x:String>Black</x:String>
+            <x:String>Cyan</x:String>
+        </x:Array>
 
         <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
             <x:String>
@@ -165,6 +171,11 @@
                                 <Label Text="{x:Binding Source={x:Reference MaximumLineStepper}, Path=Value}" VerticalOptions="Center" />
                             </HorizontalStackLayout>
                         </VerticalStackLayout>
+
+                        <Picker
+                            x:Name="LabelColorPicker"
+                            Title="Change Text Color"
+                            ItemsSource="{x:StaticResource LabelColorResource}" />
                     </HorizontalStackLayout>
 
                     <VerticalStackLayout MinimumWidthRequest="200" Spacing="8">
@@ -186,7 +197,10 @@
                         MaxLines="{x:Binding Source={x:Reference MaximumLineStepper},
                                              Path=Value,
                                              Mode=TwoWay}"
-                        Text="{x:StaticResource Lorem}" />
+                        Text="{x:StaticResource Lorem}"
+                        TextColor="{x:Binding Source={x:Reference LabelColorPicker},
+                                              Path=SelectedItem,
+                                              Converter={x:StaticResource StringToColorConverter}}" />
                 </VerticalStackLayout>
             </Frame>
 

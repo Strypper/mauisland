@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="Button"
     Padding="10"
-    x:DataType="app:ButtonPageViewModel">
+    x:DataType="app:ButtonPageViewModel"
+    BackgroundColor="Transparent">
 
     <app:BasePage.Resources>
         <x:String x:Key="ControlInfo">
