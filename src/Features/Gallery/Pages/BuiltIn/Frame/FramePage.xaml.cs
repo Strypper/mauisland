@@ -1,8 +1,10 @@
 namespace MAUIsland;
 public partial class FramePage : IControlPage
 {
-    public FramePage()
+    public FramePage(FramePageViewModel vm)
     {
         InitializeComponent();
+
+        BindingContext = vm;
     }
 }
