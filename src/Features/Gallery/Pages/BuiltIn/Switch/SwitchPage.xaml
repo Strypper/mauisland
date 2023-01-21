@@ -5,10 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     Title="Switch"
+    Padding="10"
     x:DataType="app:SwitchPageViewModel">
     <app:BasePage.Resources>
 
-        <x:String x:Key="introduce">The .NET Multi-platform App UI (.NET MAUI) Switch control is a horizontal toggle button that can be manipulated by the user to toggle between on and off states, which are represented by a boolean value.</x:String>
+        <x:String x:Key="ControlInfo">The .NET Multi-platform App UI (.NET MAUI) Switch control is a horizontal toggle button that can be manipulated by the user to toggle between on and off states, which are represented by a boolean value.</x:String>
         <x:String x:Key="PropertiesListHeader">
             The Switch control defines the following properties:
         </x:String>
@@ -50,15 +51,11 @@
     </app:BasePage.ToolbarItems>
 
     <ScrollView>
-        <VerticalStackLayout Margin="10" Spacing="10">
-            <Label
-                Padding="10"
-                HorizontalOptions="Start"
-                Text="{x:StaticResource introduce}"
-                VerticalOptions="Center" />
+        <VerticalStackLayout Spacing="20">
 
-            <Frame Padding="20,10,20,10" Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="{x:StaticResource ControlInfo}" />
 
                     <Grid Margin="0,0,0,5">
                         <Label
@@ -83,14 +80,40 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <CollectionView
-                Margin="10"
-                Footer="{x:StaticResource PropertiesListFooter}"
-                Header="{x:StaticResource PropertiesListHeader}"
-                ItemsSource="{x:StaticResource PropertyItemsSource}"
-                SelectionMode="Single"
-                Style="{x:StaticResource PropertiesListStyle}"
-                VerticalScrollBarVisibility="Never" />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+
+                <CollectionView
+                    Margin="10"
+                    Footer="{x:StaticResource PropertiesListFooter}"
+                    Header="{x:StaticResource PropertiesListHeader}"
+                    ItemsSource="{x:StaticResource PropertyItemsSource}"
+                    SelectionMode="Single"
+                    Style="{x:StaticResource PropertiesListStyle}"
+                    VerticalScrollBarVisibility="Never" />
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="⚠️ Warning Zone" />
+                    <Label Text="The switch on WinUI have MinimumWidth = 100 by default, this will result a white empty space when you align something next to it" />
+                    <HorizontalStackLayout>
+                        <Switch />
+                        <Label
+                            LineBreakMode="WordWrap"
+                            Text="I am the label next to the switch but sit inside a 0 spacing HorizontalStackLayout"
+                            VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="5">
+                        <Switch MinimumWidthRequest="0" />
+                        <Label
+                            LineBreakMode="WordWrap"
+                            Text="I am not having that issue anymore by setting the MinimumWidthRequest = 0"
+                            VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
 
             <Frame Padding="20,10,20,10" Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout>
