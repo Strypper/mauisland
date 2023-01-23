@@ -1,5 +1,3 @@
-using System.Runtime.Intrinsics.X86;
-
 namespace MAUIsland;
 
 public partial class SearchBarPage : IControlPage
@@ -12,5 +10,4 @@ public partial class SearchBarPage : IControlPage
         BindingContext = vm;
     }
     #endregion
-
 }
