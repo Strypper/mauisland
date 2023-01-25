@@ -25,15 +25,6 @@
             These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
         </x:String>
 
-        <x:Array x:Key="ActivityIndicatorColorResource" Type="{x:Type x:String}">
-            <x:String>Red</x:String>
-            <x:String>Blue</x:String>
-            <x:String>Green</x:String>
-            <x:String>White</x:String>
-            <x:String>Black</x:String>
-            <x:String>Cyan</x:String>
-        </x:Array>
-
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
@@ -121,24 +112,77 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <Image Grid.RowSpan="2"
-                               Source="{Binding ImageUrl}"
-                               Aspect="AspectFill"
-                               HeightRequest="60"
-                               WidthRequest="60" />
+                                       Source="{Binding ImageUrl}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="60"
+                                       WidthRequest="60" />
                                 <Label Grid.Column="1"
-                               Text="{Binding Name}"
-                               FontAttributes="Bold" />
+                                       Text="{Binding Name}"
+                                       FontAttributes="Bold" />
                                 <Label Grid.Row="1"
-                               Grid.Column="1"
-                               Text="{Binding Location}"
-                               FontAttributes="Italic"
-                               VerticalOptions="End" />
+                                       Grid.Column="1"
+                                       Text="{Binding Location}"
+                                       FontAttributes="Italic"
+                                       VerticalOptions="End" />
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </StackLayout>
 
+            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView with selection support" />
+
+            <StackLayout Margin="20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Previous selected item:" />
+                    <Label x:Name="previousSelectedItemLabel"
+                   Grid.Column="1" />
+                    <Label Grid.Row="1"
+                   Text="Current selected item:" />
+                    <Label x:Name="currentSelectedItemLabel"
+                   Grid.Row="1"
+                   Grid.Column="1" />
+                </Grid>
+                <CollectionView ItemsSource="{Binding Monkeys}"
+                        SelectionMode="Single"
+                        SelectionChanged="OnCollectionViewSelectionChanged">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.RowSpan="2" 
+                               Source="{Binding ImageUrl}" 
+                               Aspect="AspectFill"
+                               HeightRequest="60" 
+                               WidthRequest="60" />
+                                <Label Grid.Column="1" 
+                               Text="{Binding Name}" 
+                               FontAttributes="Bold" />
+                                <Label Grid.Row="1"
+                               Grid.Column="1" 
+                               Text="{Binding Location}"
+                               FontAttributes="Italic" 
+                               VerticalOptions="End" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
         </VerticalStackLayout>
     </ScrollView>
 

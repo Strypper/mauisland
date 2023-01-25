@@ -9,7 +9,21 @@ public partial class CollectionViewPage : IControlPage
         InitializeComponent();
 
         BindingContext = vm;
+
+        UpdateSelectionData(Enumerable.Empty<Monkey>(), Enumerable.Empty<Monkey>());
     }
     #endregion
 
+    void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        UpdateSelectionData(e.PreviousSelection, e.CurrentSelection);
+    }
+
+    void UpdateSelectionData(IEnumerable<object> previousSelectedItems, IEnumerable<object> currentSelectedItems)
+    {
+        string previous = (previousSelectedItems.FirstOrDefault() as Monkey)?.Name;
+        string current = (currentSelectedItems.FirstOrDefault() as Monkey)?.Name;
+        previousSelectedItemLabel.Text = string.IsNullOrWhiteSpace(previous) ? "[none]" : previous;
+        currentSelectedItemLabel.Text = string.IsNullOrWhiteSpace(current) ? "[none]" : current;
+    }
 }
