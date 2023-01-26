@@ -7,7 +7,38 @@
     Padding="10"
     x:DataType="app:ControlsByGroupPageViewModel"
     BackgroundColor="#272727"
+    Shell.NavBarIsVisible="True"
     SizeChanged="BasePage_SizeChanged">
+    <Shell.SearchHandler>
+        <app:CardsSearchHandler
+            Cards="{x:Binding Items,
+                              Mode=TwoWay}"
+            ClearIcon="{x:StaticResource SearchBarDismissIcon}"
+            Placeholder="Search Controls"
+            QueryIcon="{x:StaticResource SearchBarSearchIcon}"
+            SelectCard="CardsSearchHandler_SelectCard"
+            ShowsResults="True">
+            <app:CardsSearchHandler.ItemTemplate>
+                <DataTemplate x:DataType="app:IControlInfo">
+                    <Grid
+                        Margin="5"
+                        ColumnDefinitions="40,Auto"
+                        RowDefinitions="Auto">
+                        <Image
+                            HeightRequest="15"
+                            Source="{x:Binding ControlIcon}"
+                            WidthRequest="15" />
+                        <Label
+                            Grid.Column="1"
+                            FontSize="18"
+                            HorizontalTextAlignment="Center"
+                            Text="{x:Binding ControlName}"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </app:CardsSearchHandler.ItemTemplate>
+        </app:CardsSearchHandler>
+    </Shell.SearchHandler>
     <app:BasePage.Resources>
         <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate" x:DataType="app:IControlInfo">
             <app:ControlCardContentView
@@ -16,6 +47,7 @@
                 DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
         </DataTemplate>
     </app:BasePage.Resources>
+
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem IconImageSource="github.png" Text="Source code" />

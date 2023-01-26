@@ -196,11 +196,12 @@
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
+                <VerticalStackLayout Spacing="20">
 
 
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Apply rotation to a button" />
                     <Button
+                        Margin="40,0,0,0"
                         BackgroundColor="Red"
                         BorderColor="Black"
                         BorderWidth="2"
@@ -221,11 +222,6 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <Label
-                FontAttributes="Bold"
-                FontSize="Title"
-                Text="Use bitmaps with buttons" />
-            <Label Text="{x:StaticResource ImageButtonControlInfo}" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <Frame.Resources>
                     <FontImageSource
@@ -244,14 +240,17 @@
                                              Android={x:AppThemeBinding Dark={x:StaticResource Primary},
                                                                         Light={x:StaticResource White}}}" />
                 </Frame.Resources>
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Use bitmaps with buttons" />
+                    <Label Text="{x:StaticResource ImageButtonControlInfo}" />
+                    <HorizontalStackLayout Spacing="10">
+                        <Button ImageSource="{x:StaticResource HomeIcon}" Text="Home" />
 
-                <HorizontalStackLayout Spacing="10">
-                    <Button ImageSource="{x:StaticResource HomeIcon}" Text="Home" />
-
-                    <Button ImageSource="{x:StaticResource DownloadIcon}" Text="Download" />
-                </HorizontalStackLayout>
+                        <Button ImageSource="{x:StaticResource DownloadIcon}" Text="Download" />
+                    </HorizontalStackLayout>
+                    <app:SourceCodeExpander XamlCode="{x:Binding ButtonWithImageXamlCode}" />
+                </VerticalStackLayout>
             </Frame>
-            <app:SourceCodeExpander XamlCode="{x:Binding ButtonWithImageXamlCode}" />
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>
