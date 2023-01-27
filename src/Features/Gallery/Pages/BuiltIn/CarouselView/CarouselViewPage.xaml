@@ -95,7 +95,10 @@
                 </CarouselView>
             </Frame>
 
-
+            <Label Text="The appearance of each item in the CarouselView can be chosen at runtime, based on the item value, and by using converter." />
+            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Set the CarouselView.ItemTemplate property to a DataTemplateSelector object. DataTemplateSelector class defines DataTemplate properties that are set to different data templates. Apply logic to return the desired template in converter class." />
+            <Label Text="CarouselView with first item highlighted:" />
+            
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

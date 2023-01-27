@@ -8,7 +8,39 @@ public partial class CarouselViewPageViewModel : NavigationAwareBaseViewModel
     public CarouselViewPageViewModel(IAppNavigator appNavigator)
                                     : base(appNavigator)
     {
-        items = new()
+        
+    }
+    #endregion
+
+    #region [Properties]
+    [ObservableProperty]
+    IControlInfo controlInformation;
+
+    [ObservableProperty]
+    public ObservableCollection<CarouselItem> items;
+    #endregion
+
+    #region [Overrides]
+    protected override void OnInit(IDictionary<string, object> query)
+    {
+        base.OnInit(query);
+
+        ControlInformation = query.GetData<IControlInfo>();
+
+        LoadDataAsync(true);
+    }
+    #endregion
+
+    #region [Relay Commands]
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
+    #endregion
+
+    #region [Methods]
+    private async Task LoadDataAsync(bool forced)
+    {
+        var items = new List<CarouselItem>()
         {
             new()
             {
@@ -45,30 +77,16 @@ public partial class CarouselViewPageViewModel : NavigationAwareBaseViewModel
 
             }
         };
+
+        if (forced || Items is null)
+        {
+            Items = new();
+        }
+
+        foreach (var item in items)
+        {
+            Items.Add(item);
+        }
     }
-    #endregion
-
-    #region [Properties]
-    [ObservableProperty]
-    IControlInfo controlInformation;
-
-    [ObservableProperty]
-    public ObservableCollection<CarouselItem> items;
-    #endregion
-
-    #region [Overrides]
-    protected override void OnInit(IDictionary<string, object> query)
-    {
-        base.OnInit(query);
-
-        ControlInformation = query.GetData<IControlInfo>();
-
-    }
-    #endregion
-
-    #region [Relay Commands]
-    [RelayCommand]
-    Task OpenUrlAsync(string url)
-    => AppNavigator.OpenUrlAsync(url);
     #endregion
 }
