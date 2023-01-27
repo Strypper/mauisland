@@ -294,7 +294,6 @@
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a TableView" />
                     <Label Text="{x:StaticResource ControlInfo1}" />
                     <Label Text="The following example shows how to create a TableView:" />
-                    <app:SourceCodeExpander XamlCode="{x:Binding StandardTableViewXamlCode}" />
                     <TableView Intent="Menu">
                         <TableRoot>
                             <TableSection Title="Chapters">
@@ -306,6 +305,7 @@
                             </TableSection>
                         </TableRoot>
                     </TableView>
+                    <app:SourceCodeExpander XamlCode="{x:Binding StandardTableViewXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -328,7 +328,6 @@
                         ItemsSource="{x:StaticResource PropertyItemsSource3}"
                         Style="{x:StaticResource PropertiesListStyle}" />
                     <Label Text="The following example shows using a TextCell to define the appearance of items in a TableView:" />
-                    <app:SourceCodeExpander XamlCode="{x:Binding TextCellXamlCode}" />
                     <TableView Intent="Menu">
                         <TableRoot>
                             <TableSection Title="Chapters">
@@ -340,6 +339,7 @@
                             </TableSection>
                         </TableRoot>
                     </TableView>
+                    <app:SourceCodeExpander XamlCode="{x:Binding TextCellXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -349,7 +349,6 @@
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Image cell" />
                     <Label Text="{x:StaticResource ControlInfo3}" />
                     <Label Text="The following example shows using an ImageCell to define the appearance of items in a TableView:" />
-                    <app:SourceCodeExpander XamlCode="{x:Binding ImageCellXamlCode}" />
                     <TableView Intent="Menu">
                         <TableRoot>
                             <TableSection Title="Learn how to use your XBox">
@@ -372,6 +371,7 @@
                             </TableSection>
                         </TableRoot>
                     </TableView>
+                    <app:SourceCodeExpander XamlCode="{x:Binding ImageCellXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -385,7 +385,6 @@
                         ItemsSource="{x:StaticResource PropertyItemsSource4}"
                         Style="{x:StaticResource PropertiesListStyle}" />
                     <Label Text="The following example shows using a SwitchCell to define the appearance of items in a TableView:" />
-                    <app:SourceCodeExpander XamlCode="{x:Binding SwitchCellXamlCode}" />
                     <TableView Intent="Settings">
                         <TableRoot>
                             <TableSection>
@@ -394,6 +393,7 @@
                             </TableSection>
                         </TableRoot>
                     </TableView>
+                    <app:SourceCodeExpander XamlCode="{x:Binding SwitchCellXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -407,7 +407,6 @@
                         ItemsSource="{x:StaticResource PropertyItemsSource5}"
                         Style="{x:StaticResource Key=PropertiesListStyle}" />
                     <Label Text="The following example shows using an EntryCell to define the appearance of items in a TableView:" />
-                    <app:SourceCodeExpander XamlCode="{x:Binding EntryCellXamlCode}" />
                     <TableView Intent="Settings">
                         <TableRoot>
                             <TableSection>
@@ -416,6 +415,7 @@
                             </TableSection>
                         </TableRoot>
                     </TableView>
+                    <app:SourceCodeExpander XamlCode="{x:Binding EntryCellXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -425,7 +425,6 @@
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="View cell" />
                     <Label Text="{x:StaticResource ControlInfo4}" />
                     <Label Text="The following example shows using a ViewCell to define the appearance of an item in a TableView:" />
-                    <app:SourceCodeExpander XamlCode="{x:Binding ViewCellXamlCode}" />
                     <TableView Intent="Settings">
                         <TableRoot>
                             <TableSection Title="Silent">
@@ -445,6 +444,7 @@
                             </TableSection>
                         </TableRoot>
                     </TableView>
+                    <app:SourceCodeExpander XamlCode="{x:Binding ViewCellXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
