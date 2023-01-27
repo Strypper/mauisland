@@ -5,7 +5,163 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     Title="Table View"
+    Padding="20"
     x:DataType="app:TableViewPageViewModel">
+    <app:BasePage.Resources>
+        <x:String x:Key="ControlInfo">
+            The .NET Multi-platform App UI (.NET MAUI) TableView displays a table of scrollable items that can be grouped into sections. A TableView is typically used for displaying items where each row has a different appearance, such as presenting a table of settings.
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeader1">
+            TableView defines the following properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter1">
+            The HasUnevenRows and RowHeight properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+        </x:String>
+
+        <x:Array x:Key="PropertyItemsSource11" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Intent</strong>, of type <strong style="color:blue">TableIntent</strong>, defines the purpose of the table on iOS.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">HasUnevenRows</strong>, of type <strong style="color:blue">bool</strong>, indicates whether items in the table can have rows of different heights. The default value of this property is <strong style="color:blue">false</strong>.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Root</strong>, of type <strong style="color:blue">TableRoot</strong>, defines the child of the TableView.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">RowHeight</strong>, of type <strong style="color:blue">int</strong>, determines the height of each row when <strong style="color:blue">HasUnevenRows</strong> is <strong style="color:blue">false</strong>.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+        <x:String x:Key="PropertiesListHeader2">
+            The value of the Intent property helps to define the TableView appearance on iOS only. This property should be set to a value of the TableIntent enumeration, which defines the following members:
+        </x:String>
+
+        <x:Array x:Key="PropertyItemsSource12" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Menu</strong>, for presenting a selectable menu.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Setting</strong>, for presenting a table of configuration settings.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Form</strong>, for presenting a data input form.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Data</strong>, for presenting data.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+        <x:String x:Key="ControlInfo1">
+            To create a table, create a TableView object and set its Intent property to a TableIntent member. The child of a TableView must be a TableRoot object, which is parent to one or more TableSection objects. Each TableSection consists of an optional title whose color can also be set, and one or more Cell objects.
+        </x:String>
+
+        <x:String x:Key="ControlInfo2">
+            Each item in a TableView is defined by a Cell object, and the Cell type used defines the appearance of the cell's data. .NET MAUI includes the following built-in cells:
+        </x:String>
+
+        <x:Array x:Key="PropertyItemsSource2" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">TextCell</strong>, which displays primary and secondary text on separate lines.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">ImageCell</strong>, which displays an image with primary and secondary text on separate lines.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">SwitchCell</strong>, which displays text and a switch that can be switched on or off.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">EntryCell</strong>, which displays a label and text that's editable.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">ViewCell</strong>, which is a custom cell whose appearance is defined by a <strong style="color:blue">View</strong>. This cell type should be used when you want to fully define the appearance of each item in a <strong style="color:blue">TableView</strong>.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+        <x:String x:Key="PropertiesListHeader3">
+            A TextCell displays primary and secondary text on separate lines. TextCell defines the following properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter3">
+            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+        </x:String>
+
+        <x:Array x:Key="PropertyItemsSource3">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Text</strong>, of type <strong style="color:blue">string</strong>, defines the primary text to be displayed.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">TextColor</strong>, of type <strong style="color:blue">color</strong>, represents the color of the primary text.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Detail</strong>, of type <strong style="color:blue">string</strong>, defines the secondary text to be displayed.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">DetailColor</strong>, of type <strong style="color:blue">color</strong>, indicates the color of the secondary text.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Command</strong>, of type <strong style="color:blue">ICommand</strong>, defines the command that's executed when the cell is tapped.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">CommandParameter</strong>, of type <strong style="color:blue">object</strong>, represents the parameter that's passed to the command.
+                            ]]>
+            </x:String>
+        </x:Array>
+    </app:BasePage.Resources>
     <app:BasePage.ToolbarItems>
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
@@ -18,10 +174,72 @@
             IconImageSource="microsoft.png"
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to Table View Page!"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:StaticResource ControlInfo}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="25">
+                    <CollectionView
+                        Footer="{x:StaticResource PropertiesListFooter1}"
+                        Header="{x:StaticResource PropertiesListHeader1}"
+                        ItemsSource="{x:StaticResource PropertyItemsSource11}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                    <CollectionView
+                        Header="{x:StaticResource PropertiesListHeader2}"
+                        ItemsSource="{x:StaticResource PropertyItemsSource12}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                </VerticalStackLayout>
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a TableView" />
+                    <Label Text="{x:StaticResource ControlInfo1}" />
+                    <Label Text="The following example shows how to create a TableView:" />
+                    <app:SourceCodeExpander XamlCode="{x:Binding StandardTableViewXamlCode}" />
+                    <TableView Intent="Menu">
+                        <TableRoot>
+                            <TableSection Title="Chapters">
+                                <TextCell Detail="Learn about .NET MAUI and what it provides." Text="1. Introduction to .NET MAUI" />
+                                <TextCell Detail="Learn about the visual elements in .NET MAUI" Text="2. Anatomy of an app" />
+                                <TextCell Detail="Learn about the .NET MAUI controls that display text." Text="3. Text" />
+                                <TextCell Detail="Learn how to size .NET MAUI controls on screen." Text="4. Dealing with sizes" />
+                                <TextCell Detail="Learn more about creating your UI in XAML." Text="5. XAML vs code" />
+                            </TableSection>
+                        </TableRoot>
+                    </TableView>
+                </VerticalStackLayout>
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Define cell appearance" />
+                    <Label Text="{x:StaticResource ControlInfo2}" />
+                    <CollectionView ItemsSource="{x:StaticResource PropertyItemsSource2}" Style="{x:StaticResource PropertiesListStyle}" />
+                </VerticalStackLayout>
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Text cell" />
+                    <CollectionView
+                        Footer="{x:StaticResource PropertiesListFooter3}"
+                        Header="{x:StaticResource PropertiesListHeader3}"
+                        ItemsSource="{x:StaticResource PropertyItemsSource3}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                    <Label Text="The following example shows using a TextCell to define the appearance of items in a TableView:" />
+                    <TableView Intent="Menu">
+                        <TableRoot>
+                            <TableSection Title="Chapters">
+                                <TextCell Detail="Learn about .NET MAUI and what it provides." Text="1. Introduction to .NET MAUI" />
+                                <TextCell Detail="Learn about the visual elements in .NET MAUI" Text="2. Anatomy of an app" />
+                                <TextCell Detail="Learn about the .NET MAUI controls that display text." Text="3. Text" />
+                                <TextCell Detail="Learn how to size .NET MAUI controls on screen." Text="4. Dealing with sizes" />
+                                <TextCell Detail="Learn more about creating your UI in XAML." Text="5. XAML vs code" />
+                            </TableSection>
+                        </TableRoot>
+                    </TableView>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
 </app:BasePage>
