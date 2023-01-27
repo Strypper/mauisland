@@ -133,10 +133,13 @@
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Common converters" />
-                    <Label Text="Get only the date" />
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Get the date only" />
                     <DatePicker x:Name="DateOnlyDatePicker" />
                     <Label Text="{x:Binding Source={x:Reference DateOnlyDatePicker}, Path=Date, Converter={x:StaticResource FulldateToDateOnlyConverter}}" />
+                    <Label FontAttributes="Bold" Text="UI" />
+                    <app:SourceCodeExpander XamlCode="{x:Binding DatePickerUseDateOnlyConverterXamlCode}" />
+                    <Label FontAttributes="Bold" Text="Converter" />
+                    <app:SourceCodeExpander XamlCode="{x:Binding FulldateToDateOnlyConverterCsharpCode}" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

@@ -172,7 +172,7 @@
     <ScrollView>
         <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:StaticResource ControlInfo}" />
+                <Label Text="{x:StaticResource ControlInfo}" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout>

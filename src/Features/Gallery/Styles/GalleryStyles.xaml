@@ -12,6 +12,19 @@
         Color="{AppThemeBinding Light='#15161e',
                                 Dark='#eaeaea'}" />
 
+    <FontImageSource
+        x:Key="SearchBarSearchIcon"
+        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+        Glyph="{Static app:FluentUIIcon.Ic_fluent_search_48_regular}"
+        Color="#15161e" />
+
+
+    <FontImageSource
+        x:Key="SearchBarDismissIcon"
+        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+        Glyph="{Static app:FluentUIIcon.Ic_fluent_dismiss_48_regular}"
+        Color="#15161e" />
+
     <Style x:Key="DocumentContentFrameStyle" TargetType="Frame">
         <Setter Property="HasShadow" Value="True" />
         <Setter Property="BackgroundColor" Value="{x:AppThemeBinding Dark='#202020', Light='#ffffff'}" />

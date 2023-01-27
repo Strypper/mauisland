@@ -113,10 +113,7 @@
     <ScrollView>
         <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label
-                    Padding="10"
-                    Text="{x:StaticResource ControlInfo}"
-                    VerticalOptions="Center" />
+                <Label Text="{x:StaticResource ControlInfo}" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <CollectionView

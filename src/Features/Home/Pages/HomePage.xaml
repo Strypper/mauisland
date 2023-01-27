@@ -4,10 +4,13 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="HomePage"
     x:DataType="app:HomePageViewModel"
+    Appearing="BasePage_Appearing"
     Shell.NavBarIsVisible="{x:OnPlatform WinUI=false,
-                                         Android=true}">
+                                         Android=true}"
+    SizeChanged="BasePage_SizeChanged">
 
     <app:BasePage.Resources>
 
@@ -38,6 +41,7 @@
             HorizontalOptions="Fill"
             Source="mauibeach.jpeg"
             VerticalOptions="Fill" />
+
 
         <Grid
             Grid.Column="1"

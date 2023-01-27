@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Maui.Storage;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;
 using Syncfusion.Maui.Core.Hosting;
@@ -76,6 +77,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<IAppNavigator, AppNavigator>();
         builder.Services.AddSingleton<IHomeService, HomeService>();
         builder.Services.AddSingleton<IControlsService, ControlsService>();
+        builder.Services.AddSingleton<IFilePicker, FilePicker>();
+
+        builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
         return builder;
     }
 
