@@ -8,13 +8,52 @@ public partial class CarouselViewPageViewModel : NavigationAwareBaseViewModel
     public CarouselViewPageViewModel(IAppNavigator appNavigator)
                                     : base(appNavigator)
     {
+        items = new()
+        {
+            new()
+            {
+                Title = "CarouselView Item",
+                Content = "Number 1"
 
+            },
+
+            new()
+            {
+                Title = "CarouselView Item",
+                Content = "Number 2"
+
+            },
+
+            new()
+            {
+                Title = "CarouselView Item",
+                Content = "Number 3"
+
+            },
+
+            new()
+            {
+                Title = "CarouselView Item",
+                Content = "Number 4"
+
+            },
+
+            new()
+            {
+                Title = "CarouselView Item",
+                Content = "Number 5"
+
+            }
+        };
     }
     #endregion
 
     #region [Properties]
     [ObservableProperty]
     IControlInfo controlInformation;
+
+    [ObservableProperty]
+    public ObservableCollection<CarouselItem> items;
     #endregion
 
     #region [Overrides]
