@@ -272,6 +272,7 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <Label Text="{x:StaticResource ControlInfo}" />
             </Frame>
+
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
@@ -279,12 +280,14 @@
                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
+
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <CollectionView
                     Header="{x:StaticResource PropertiesListHeader1}"
                     ItemsSource="{x:StaticResource PropertyItemsSource1}"
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
+
             <!--  Create a TableView  -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
@@ -305,6 +308,7 @@
                     </TableView>
                 </VerticalStackLayout>
             </Frame>
+
             <!--  Define cell appearance  -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
@@ -313,6 +317,7 @@
                     <CollectionView ItemsSource="{x:StaticResource PropertyItemsSource2}" Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
             </Frame>
+
             <!--  Text cell  -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
@@ -337,6 +342,7 @@
                     </TableView>
                 </VerticalStackLayout>
             </Frame>
+
             <!--  Image cell  -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
@@ -368,6 +374,7 @@
                     </TableView>
                 </VerticalStackLayout>
             </Frame>
+
             <!--  Switch cell  -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
@@ -389,6 +396,7 @@
                     </TableView>
                 </VerticalStackLayout>
             </Frame>
+
             <!--  Entry cell  -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
@@ -410,6 +418,7 @@
                     </TableView>
                 </VerticalStackLayout>
             </Frame>
+
             <!--  View cell  -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
@@ -438,6 +447,7 @@
                     </TableView>
                 </VerticalStackLayout>
             </Frame>
+
             <!--  Right-to-left layout  -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
