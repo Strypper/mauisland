@@ -55,7 +55,7 @@
     </app:BasePage.ToolbarItems>
 
     <ScrollView VerticalScrollBarVisibility="Always">
-        <Grid ColumnDefinitions="*, 300" RowDefinitions="150, 20, *">
+        <Grid ColumnDefinitions="*, 300" RowDefinitions="150, auto, *">
             <Frame
                 Grid.ColumnSpan="2"
                 Padding="0"
@@ -77,6 +77,10 @@
                         VerticalOptions="Center" />
                 </Grid>
             </Frame>
+            <Label
+                Grid.Row="1"
+                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                Text="Controls" />
             <app:HorizontalWrapLayout
                 Grid.Row="2"
                 Grid.ColumnSpan="2"

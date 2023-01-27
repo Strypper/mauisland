@@ -127,20 +127,34 @@
                 <Label Text="{x:StaticResource ControlInfo}" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CollectionView
+                    Footer="{x:StaticResource PropertiesListFooter}"
+                    Header="{x:StaticResource PropertiesListHeader}"
+                    ItemsSource="{x:StaticResource PropertyItemsSource}"
+                    Style="{x:StaticResource PropertiesListStyle}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="A simple button with text content" />
-                    <Grid>
-                        <Button
-                            HorizontalOptions="Start"
-                            IsEnabled="{x:Binding IsEnable}"
-                            Text="Standard XAML Button"
-                            VerticalOptions="Center" />
-                        <HorizontalStackLayout HorizontalOptions="End">
-                            <CheckBox IsChecked="{x:Binding IsEnable, Mode=TwoWay}" VerticalOptions="Center" />
-                            <Label Text="Enable Button" VerticalOptions="Center" />
-                        </HorizontalStackLayout>
-                    </Grid>
-                    <app:SourceCodeExpander XamlCode="{x:Binding StandardButtonXamlCode}" />
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Try out a simple image button" />
+                    <ImageButton
+                        Padding="{x:Binding Source={x:Reference PaddingSlider},
+                                            Path=Value}"
+                        CornerRadius="{x:Binding Source={x:Reference RoundedCornerSlider},
+                                                 Path=Value}"
+                        HorizontalOptions="Center"
+                        Source="{x:Binding ImageSource}"
+                        VerticalOptions="Center" />
+                    <Button Command="{x:Binding OpenFileCommand}" Text="Upload image" />
+                    <Label Text="Adjust the corner radius" />
+                    <Slider
+                        x:Name="RoundedCornerSlider"
+                        Maximum="500"
+                        Minimum="0" />
+                    <Label Text="Adjust the padding" />
+                    <Slider
+                        x:Name="PaddingSlider"
+                        Maximum="500"
+                        Minimum="0" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

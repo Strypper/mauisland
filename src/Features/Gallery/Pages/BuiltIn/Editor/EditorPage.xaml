@@ -44,6 +44,90 @@
             <x:String>Black</x:String>
             <x:String>Cyan</x:String>
         </x:Array>
+        <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">AutoSize</strong>, of type <strong style="color:blue">EditorAutoSizeOption</strong>, defines whether the editor will change size to accommodate user input. By default, the editor doesn't auto size.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">CharacterSpacing</strong>, of type <strong style="color:blue">double</strong>, sets the spacing between characters in the entered text.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">CursorPosition</strong>, of type <strong style="color:blue">int</strong>, defines the position of the cursor within the editor.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">FontAttributes</strong>, of type <strong style="color:blue">FontAttributes</strong>, determines text style.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">FontAutoScalingEnabled</strong>, of type <strong style="color:blue">bool</strong>, defines whether the text will reflect scaling preferences set in the operating system. The default value of this property is true.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">FontFamily</strong>, of type <strong style="color:blue">string</strong>, defines the font family.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">FontSize</strong>, of type <strong style="color:blue">double</strong>, defines the font size.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">HorizontalTextAlignment</strong>, of type <strong style="color:blue">TextAlignment</strong>, defines the horizontal alignment of the text.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">IsTextPredictionEnabled</strong>, of type <strong style="color:blue">bool</strong>, controls whether text prediction and automatic text correction is enabled.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Placeholder</strong>, of type <strong style="color:blue">string</strong>, defines the text that's displayed when the control is empty.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">PlaceholderColor</strong>, of type <strong style="color:blue">Color</strong>, defines the color of the placeholder text.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">SelectionLength</strong>, of type <strong style="color:blue">int</strong>, represents the length of selected text within the editor.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Text</strong>, of type <strong style="color:blue">string</strong>, defines the text entered into the editor.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">TextColor</strong>, of type <strong style="color:blue">Color</strong>, defines the color of the entered text.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">VerticalTextAlignment</strong>, of type <strong style="color:blue">TextAlignment</strong>, defines the vertical alignment of the text.
+                            ]]>
+            </x:String>
+        </x:Array>
     </app:BasePage.Resources>
 
     <ScrollView>
@@ -55,6 +139,7 @@
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
+                    ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
