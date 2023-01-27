@@ -18,25 +18,16 @@ public partial class ImageButtonPageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [Properties]
-    [ObservableProperty]
-    bool isEnable = true;
+
 
     [ObservableProperty]
     IControlInfo controlInformation;
 
     [ObservableProperty]
-<<<<<<< HEAD
-    string standardButtonXamlCode = "<Button\r\n                            HorizontalOptions=\"Start\"\r\n                            IsEnabled=\"{x:Binding IsEnable}\"\r\n                            Text=\"Standard XAML Button\"\r\n                            VerticalOptions=\"Center\" />\r\n                        <HorizontalStackLayout HorizontalOptions = \"End\" >\r\n                            < CheckBox IsChecked=\"{x:Binding IsEnable, Mode=TwoWay}\" VerticalOptions=\"Center\" />\r\n                            <Label Text = \"Enable Button\" VerticalOptions=\"Center\" />\r\n                        </HorizontalStackLayout>";
 
-=======
     ImageSource imageSource;
 
-    [ObservableProperty]
-    bool isEnable;
-
-    [ObservableProperty]
-    string standardButtonXamlCode;
->>>>>>> 8db9a834644453b23c0f2c6312e792171a570557
+ 
     #endregion
 
     #region [Overrides]
