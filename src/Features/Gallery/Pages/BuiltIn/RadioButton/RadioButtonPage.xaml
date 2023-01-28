@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     Title="Radio Button"
+    Padding="10"
     x:DataType="app:RadioButtonPageViewModel">
     <app:BasePage.Resources>
         <ControlTemplate x:Key="RadioButtonTemplate">
@@ -71,7 +72,7 @@
             </Frame>
         </ControlTemplate>
 
-        <x:String x:Key="introduce">The .NET Multi-platform App UI (.NET MAUI) RadioButton is a type of button that allows users to select one option from a set. Each option is represented by one radio button, and you can only select one radio button in a group.</x:String>
+        <x:String x:Key="ControlInfo">The .NET Multi-platform App UI (.NET MAUI) RadioButton is a type of button that allows users to select one option from a set. Each option is represented by one radio button, and you can only select one radio button in a group.</x:String>
 
         <x:String x:Key="PropertiesListHeader">
             RadioButton defines the following properties:
@@ -169,13 +170,11 @@
     </app:BasePage.ToolbarItems>
 
     <ScrollView>
-        <VerticalStackLayout Margin="10" Spacing="10">
-            <Label
-                Padding="10"
-                HorizontalOptions="Start"
-                Text="{x:StaticResource introduce}"
-                VerticalOptions="Center" />
-            <Frame Padding="20,10,20,10" Style="{x:StaticResource DocumentContentFrameStyle}">
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:StaticResource ControlInfo}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout>
                     <Label
                         Margin="0,0,0,5"
@@ -203,14 +202,16 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <CollectionView
-                Margin="10"
-                Footer="{x:StaticResource PropertiesListFooter}"
-                Header="{x:StaticResource PropertiesListHeader}"
-                ItemsSource="{x:StaticResource PropertyItemsSource}"
-                SelectionMode="Single"
-                Style="{x:StaticResource PropertiesListStyle}"
-                VerticalScrollBarVisibility="Never" />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CollectionView
+                    Margin="10"
+                    Footer="{x:StaticResource PropertiesListFooter}"
+                    Header="{x:StaticResource PropertiesListHeader}"
+                    ItemsSource="{x:StaticResource PropertyItemsSource}"
+                    SelectionMode="Single"
+                    Style="{x:StaticResource PropertiesListStyle}"
+                    VerticalScrollBarVisibility="Never" />
+            </Frame>
 
             <Frame Padding="20,10,20,10" Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="0">
@@ -277,7 +278,7 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <Frame Padding="20,10,20,10" Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="0">
                     <Label
                         Margin="0,0,0,5"

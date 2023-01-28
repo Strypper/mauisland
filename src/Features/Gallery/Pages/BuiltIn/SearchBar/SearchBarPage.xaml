@@ -5,7 +5,149 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     Title="Search Bar"
+    Padding="20"
     x:DataType="app:SearchBarPageViewModel">
+
+    <app:BasePage.Resources>
+        <x:String x:Key="ControlInfo1">
+            The .NET Multi-platform App UI (.NET MAUI) SearchBar is a user input control used to initiating a search. The SearchBar control supports placeholder text, query input, search execution, and cancellation. The following iOS screenshot shows a SearchBar query with results displayed in a ListView:
+        </x:String>
+
+        <x:String x:Key="ControlInfo2">
+            A search can be executed using the SearchBar control by attaching an event handler to one of the following events:
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeader1">
+            SearchBar defines the following properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter1">
+            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter2">
+            The following XAML example shows an event handler attached to the TextChanged event and uses a ListView to display search results:
+        </x:String>
+
+        <x:Array x:Key="PropertyItemsSource1" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">CancelButtonColor</strong> is a <strong style="color:blue">Color</strong> that defines the color of the cancel button.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">CharacterSpacing</strong> is a <strong style="color:blue">Color</strong> that's the spacing between characters of the SearchBar text.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">CursorPosition</strong> is a <strong style="color:blue">int</strong> that determines the position at which the next character will be inserted into the string stored in the <strong style="color:blue">Text</strong> property.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">FontAttributes</strong> is a <strong style="color:blue">FontAttributes</strong> enum value that determines whether the SearchBar font is bold, italic, or neither.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">FontAutoScalingEnabled</strong> is a <strong style="color:blue">bool</strong> which defines whether an app's UI reflects text scaling preferences set in the operating system.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">FontFamily</strong> is a <strong style="color:blue">string</strong> that determines the font family used by the SearchBar.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">FontSize</strong> is a <strong style="color:blue">double</strong> value that represents specific font sizes across platforms.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">HorizontalTextAlignment</strong> is a <strong style="color:blue">TextAlignment</strong> enum value that defines the horizontal alignment of the query text.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">IsTextPredictionEnabled</strong> is a <strong style="color:blue">bool</strong> that determines whether text prediction and automatic text correction is enabled.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Placeholder</strong> is a <strong style="color:blue">string</strong> that defines the placeholder text, such as "Search...".
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">PlaceholderColor</strong> is a <strong style="color:blue">Color</strong> that defines the color of the placeholder text.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">SearchCommand</strong> is an <strong style="color:blue">ICommand</strong> that allows binding user actions, such as finger taps or clicks, to commands defined on a viewmodel.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">SearchCommandParameter</strong> is an <strong style="color:blue">object</strong> that specifies the parameter that should be passed to the <strong style="color:blue">SearchCommand</strong>.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">SelectionLength</strong> is an <strong style="color:blue">int</strong> that can be used to return or set the length of text selection within the SearchBar.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Text</strong> is a <strong style="color:blue">string</strong> containing the query text in the SearchBar.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">TextColor</strong> is a <strong style="color:blue">Color</strong> that defines the query text color.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">VerticalTextAlignment</strong> is a <strong style="color:blue">TextAlignment</strong> enum value that defines the vertical alignment of the query text.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="PropertyItemsSource2" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">SearchButtonPressed</strong>, which is called when the user either clicks the search button or presses the enter key.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">TextChanged</strong>, which is called anytime the text in the query box is changed. This event is inherited from the <strong style="color:blue">InputView</strong> class.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+    </app:BasePage.Resources>
     <app:BasePage.ToolbarItems>
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
@@ -18,10 +160,50 @@
             IconImageSource="microsoft.png"
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to Search Bar Page!"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:StaticResource ControlInfo1}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CollectionView
+                    Footer="{x:StaticResource PropertiesListFooter1}"
+                    Header="{x:StaticResource PropertiesListHeader1}"
+                    ItemsSource="{x:StaticResource PropertyItemsSource1}"
+                    Style="{x:StaticResource PropertiesListStyle}" />
+            </Frame>
+
+            <!--  Create a SearchBar  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a SearchBar" />
+                    <Label Text="The following XAML example shows how to create a SearchBar:" />
+                    <SearchBar Placeholder="Search items..." />
+                    <app:SourceCodeExpander XamlCode="{x:Binding StandardSearchBarXamlCode}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!--  Perform a search with event handlers  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Perform a search with event handlers" />
+                    <Label Text="{x:StaticResource ControlInfo2}" />
+                    <CollectionView
+                        Footer="{x:StaticResource PropertiesListFooter2}"
+                        ItemsSource="{x:StaticResource PropertyItemsSource2}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                    <app:SourceCodeExpander XamlCode="{x:Binding PerformASearchWithEventHandlers1XamlCode}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!--  Perform a search using a viewmodel  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Perform a search using a viewmodel" />
+                    <Label Text="The following XAML example consumes the SearchViewModel class:" />
+                    <app:SourceCodeExpander XamlCode="{x:Binding PerformASearchWithEventHandlers2XamlCode}" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
 </app:BasePage>

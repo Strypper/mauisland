@@ -8,6 +8,8 @@
     Padding="10"
     x:DataType="app:DatePickerPageViewModel">
     <app:BasePage.Resources>
+        <app:FulldateToDateOnlyConverter x:Key="FulldateToDateOnlyConverter" />
+
         <x:String x:Key="ControlInfo">The .NET Multi-platform App UI (.NET MAUI) DatePicker invokes the platform's date-picker control and allows you to select a date.</x:String>
 
         <x:String x:Key="PropertiesListHeader">The .NET Multi-platform App UI (.NET MAUI) DatePicker invokes the platform's date-picker control and allows you to select a date.</x:String>
@@ -96,10 +98,48 @@
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="5">
+                <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="A simple date picker" />
+                    <Label Text="The default format with be month/day/year" />
                     <DatePicker />
                     <app:SourceCodeExpander XamlCode="{x:Binding SimpleDatePickerXamlCode}" />
+                </VerticalStackLayout>
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Control the date picker minimum date - maximum date" />
+                    <HorizontalStackLayout Spacing="10">
+                        <DatePicker
+                            x:Name="CurrentDatePicker"
+                            MaximumDate="{x:Binding Source={x:Reference MaximumDatePicker},
+                                                    Path=Date}"
+                            MinimumDate="{x:Binding Source={x:Reference MinimumDatePicker},
+                                                    Path=Date}"
+                            VerticalOptions="End" />
+
+                        <VerticalStackLayout>
+                            <Label Text="Minimum date" />
+                            <DatePicker x:Name="MinimumDatePicker" MaximumDate="{x:Binding Source={x:Reference MaximumDatePicker}, Path=Date}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout>
+                            <Label Text="Maximum date" />
+                            <DatePicker x:Name="MaximumDatePicker" MinimumDate="{x:Binding Source={x:Reference MinimumDatePicker}, Path=Date}" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                    <Label Text="{x:Binding Source={x:Reference CurrentDatePicker}, Path=Date}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Get the date only" />
+                    <DatePicker x:Name="DateOnlyDatePicker" />
+                    <Label Text="{x:Binding Source={x:Reference DateOnlyDatePicker}, Path=Date, Converter={x:StaticResource FulldateToDateOnlyConverter}}" />
+                    <Label FontAttributes="Bold" Text="UI" />
+                    <app:SourceCodeExpander XamlCode="{x:Binding DatePickerUseDateOnlyConverterXamlCode}" />
+                    <Label FontAttributes="Bold" Text="Converter" />
+                    <app:SourceCodeExpander XamlCode="{x:Binding FulldateToDateOnlyConverterCsharpCode}" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

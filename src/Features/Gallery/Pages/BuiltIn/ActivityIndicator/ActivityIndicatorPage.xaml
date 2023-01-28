@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="Activity Indicator"
     Padding="10"
-    x:DataType="app:ActivityIndicatorPageViewModel">
+    x:DataType="app:ActivityIndicatorPageViewModel"
+    BackgroundColor="Transparent">
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem
@@ -25,8 +26,7 @@
         <app:StringToColorConverter x:Key="StringToColorConverter" />
 
         <x:String x:Key="ControlInfo">
-            The .NET Multi-platform App UI (.NET MAUI) ActivityIndicator displays an animation to show that the application is engaged in a lengthy activity. Unlike ProgressBar, ActivityIndicator gives no indication of progress.
-            The appearance of an ActivityIndicator is platform-dependent, and the following screenshot shows an ActivityIndicator on iOS and Android:
+            The .NET Multi-platform App UI (.NET MAUI) ActivityIndicator displays an animation to show that the application is engaged in a lengthy activity. Unlike ProgressBar, ActivityIndicator gives no indication of progress. The appearance of an ActivityIndicator is platform-dependent, and the following screenshot shows an ActivityIndicator on iOS and Android:
         </x:String>
 
         <x:String x:Key="PropertiesListHeader">

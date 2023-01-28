@@ -12,6 +12,19 @@
         Color="{AppThemeBinding Light='#15161e',
                                 Dark='#eaeaea'}" />
 
+    <FontImageSource
+        x:Key="SearchBarSearchIcon"
+        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+        Glyph="{Static app:FluentUIIcon.Ic_fluent_search_48_regular}"
+        Color="#15161e" />
+
+
+    <FontImageSource
+        x:Key="SearchBarDismissIcon"
+        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+        Glyph="{Static app:FluentUIIcon.Ic_fluent_dismiss_48_regular}"
+        Color="#15161e" />
+
     <Style x:Key="DocumentContentFrameStyle" TargetType="Frame">
         <Setter Property="HasShadow" Value="True" />
         <Setter Property="BackgroundColor" Value="{x:AppThemeBinding Dark='#202020', Light='#ffffff'}" />
@@ -64,5 +77,9 @@
         <Setter Property="ItemTemplate" Value="{x:StaticResource BulletListItemTemplate}" />
         <Setter Property="FooterTemplate" Value="{x:StaticResource BulletListFooterTemplate}" />
     </Style>
+
+    <x:String x:Key="Lorem">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </x:String>
 
 </ResourceDictionary>
