@@ -13,6 +13,70 @@
             The .NET Multi-platform App UI (.NET MAUI) CarouselView is a view for presenting data in a scrollable layout, where users can swipe to move through a collection of items.
         </x:String>
 
+        <DataTemplate x:Key="OtherDataTemplate" x:DataType="app:CarouselItem">
+            <StackLayout>
+                <Frame
+                    Margin="20"
+                    BorderColor="DarkGray"
+                    CornerRadius="5"
+                    HasShadow="True"
+                    HeightRequest="300"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                    <StackLayout>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            Text="{Binding Title}"
+                            VerticalOptions="Center" />
+                        <Image
+                            Aspect="AspectFill"
+                            HeightRequest="150"
+                            HorizontalOptions="Center"
+                            Source="microsoft.png"
+                            WidthRequest="150" />
+                        <Label HorizontalOptions="Center" Text="{Binding Content}" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </DataTemplate>
+
+        <DataTemplate x:Key="HighlightedDataTemplate" x:DataType="app:CarouselItem">
+            <StackLayout>
+                <Frame
+                    Margin="20"
+                    BackgroundColor="GreenYellow"
+                    BorderColor="Black"
+                    CornerRadius="5"
+                    HasShadow="True"
+                    HeightRequest="300"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                    <StackLayout>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            Text="{Binding Title}"
+                            VerticalOptions="Center" />
+                        <Image
+                            Aspect="AspectFill"
+                            HeightRequest="150"
+                            HorizontalOptions="Center"
+                            Source="microsoft.png"
+                            WidthRequest="150" />
+                        <Label HorizontalOptions="Center" Text="{Binding Content}" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </DataTemplate>
+
+        <app:ItemDataTemplateSelector
+            x:Key="ItemDataTemplateSelector"
+            Highlighted="{StaticResource HighlightedDataTemplate}"
+            Other="{StaticResource OtherDataTemplate}" />
+
         <x:Array x:Key="StringArray" Type="{x:Type x:String}">
             <x:String>
                 Number one
@@ -53,7 +117,7 @@
 
             <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="First of all, a .NET MAUI CarouselView needs a collection of items to be displayed." />
             <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="This set of items can be specified via the property ItemSource, of type IEnumerable." />
-            <Frame Style="{x:AppThemeBinding Light}">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <CarouselView ItemsSource="{x:StaticResource StringArray}" />
             </Frame>
 
@@ -61,8 +125,8 @@
             <Label Text="And as you can also see, the above example is ugly, right? We need to decorate it a little bit!" />
             <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Carousel view has a property called ItemTemplate, of type DataTemplate, specifies the template to apply to each item in the collection of items to be displayed." />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <CarouselView ItemsSource="{x:Binding Items}">
-                    <CarouselView.ItemTemplate>
+                <CarouselView ItemTemplate="{x:StaticResource OtherDataTemplate}" ItemsSource="{x:Binding Items}">
+                    <!--<CarouselView.ItemTemplate>
                         <DataTemplate x:DataType="app:CarouselItem">
                             <StackLayout>
                                 <Frame
@@ -91,14 +155,16 @@
                                 </Frame>
                             </StackLayout>
                         </DataTemplate>
-                    </CarouselView.ItemTemplate>
+                    </CarouselView.ItemTemplate>-->
                 </CarouselView>
             </Frame>
 
             <Label Text="The appearance of each item in the CarouselView can be chosen at runtime, based on the item value, and by using converter." />
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Set the CarouselView.ItemTemplate property to a DataTemplateSelector object. DataTemplateSelector class defines DataTemplate properties that are set to different data templates. Apply logic to return the desired template in converter class." />
-            <Label Text="CarouselView with first item highlighted:" />
-            
+            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Set the CarouselView.ItemTemplate property to a DataTemplateSelector object. DataTemplateSelector class defines DataTemplate properties that are set to different data templates. Apply logic to return the desired template in slector class." />
+            <Label Text="*CarouselView with first item highlighted:" />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CarouselView ItemTemplate="{StaticResource ItemDataTemplateSelector}" ItemsSource="{Binding Items}" />
+            </Frame>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>
