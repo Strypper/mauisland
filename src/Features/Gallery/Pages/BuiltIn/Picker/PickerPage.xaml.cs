@@ -3,9 +3,11 @@ namespace MAUIsland;
 public partial class PickerPage : IControlPage
 {
     #region [CTor]
-    public PickerPage()
+    public PickerPage(PickerPageViewModel vm)
     {
         InitializeComponent();
+
+        BindingContext = vm;
     }
     #endregion
 }
