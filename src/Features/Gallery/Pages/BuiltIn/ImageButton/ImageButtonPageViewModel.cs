@@ -18,17 +18,16 @@ public partial class ImageButtonPageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [Properties]
+
+
     [ObservableProperty]
     IControlInfo controlInformation;
 
     [ObservableProperty]
+
     ImageSource imageSource;
 
-    [ObservableProperty]
-    bool isEnable;
-
-    [ObservableProperty]
-    string standardButtonXamlCode;
+ 
     #endregion
 
     #region [Overrides]
