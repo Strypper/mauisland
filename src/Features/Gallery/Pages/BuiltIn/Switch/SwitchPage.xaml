@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="Switch"
     Padding="10"
-    x:DataType="app:SwitchPageViewModel">
+    x:DataType="app:SwitchPageViewModel"
+    BackgroundColor="Transparent">
     <app:BasePage.Resources>
 
         <x:String x:Key="ControlInfo">The .NET Multi-platform App UI (.NET MAUI) Switch control is a horizontal toggle button that can be manipulated by the user to toggle between on and off states, which are represented by a boolean value.</x:String>
@@ -72,6 +73,7 @@
                     </Grid>
 
                     <Switch
+                        HorizontalOptions="Start"
                         IsToggled="True"
                         OnColor="Pink"
                         ThumbColor="ForestGreen" />
@@ -94,23 +96,45 @@
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="⚠️ Warning Zone" />
-                    <Label Text="The switch on WinUI have MinimumWidth = 100 by default, this will result a white empty space when you align something next to it" />
-                    <HorizontalStackLayout>
-                        <Switch />
-                        <Label
-                            LineBreakMode="WordWrap"
-                            Text="I am the label next to the switch but sit inside a 0 spacing HorizontalStackLayout"
-                            VerticalTextAlignment="Center" />
+                    <HorizontalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="⚠️ Warning Zone" />
+                        <Image
+                            HeightRequest="25"
+                            Source="windowslogo.png"
+                            WidthRequest="25" />
                     </HorizontalStackLayout>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="The switch on WinUI have " />
+                                <Span
+                                    BackgroundColor="#282a36"
+                                    FontAttributes="Bold"
+                                    Text="MinimumWidthRequest = &quot;100&quot; "
+                                    TextColor="#428fd6" />
+                                <Span Text="by default, this will result a white empty space when you align something next to it" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Frame IsVisible="{x:OnPlatform WinUI=true, Android=false, iOS=false, Tizen=false, MacCatalyst=false}" Style="{x:StaticResource DocumentContentFrameStyle}">
+                        <VerticalStackLayout>
+                            <HorizontalStackLayout>
+                                <Switch />
+                                <Label
+                                    LineBreakMode="WordWrap"
+                                    Text="I am the label next to the switch but sit inside a 0 spacing HorizontalStackLayout"
+                                    VerticalTextAlignment="Center" />
+                            </HorizontalStackLayout>
 
-                    <HorizontalStackLayout Spacing="5">
-                        <Switch MinimumWidthRequest="0" />
-                        <Label
-                            LineBreakMode="WordWrap"
-                            Text="I am not having that issue anymore by setting the MinimumWidthRequest = 0"
-                            VerticalTextAlignment="Center" />
-                    </HorizontalStackLayout>
+                            <HorizontalStackLayout Spacing="5">
+                                <Switch MinimumWidthRequest="0" />
+                                <Label
+                                    LineBreakMode="WordWrap"
+                                    Text="I am not having that issue anymore by setting the MinimumWidthRequest = 0"
+                                    VerticalTextAlignment="Center" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
                 </VerticalStackLayout>
             </Frame>
 
@@ -151,7 +175,10 @@
                         </Label.Triggers>
                     </Label>
 
-                    <Switch x:Name="switch2" OnColor="CadetBlue">
+                    <Switch
+                        x:Name="switch2"
+                        HorizontalOptions="Start"
+                        OnColor="CadetBlue">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroupList>
                                 <VisualStateGroup x:Name="SwitchCommonStates">

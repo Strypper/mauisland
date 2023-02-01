@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="ImageButton"
     Padding="20"
-    x:DataType="app:ImageButtonPageViewModel">
+    x:DataType="app:ImageButtonPageViewModel"
+    SizeChanged="BasePage_SizeChanged">
     <app:BasePage.Resources>
         <x:String x:Key="ControlInfo">
             The .NET Multi-platform App UI (.NET MAUI) Button displays text and responds to a tap or click that directs the app to carry out a task. A Button usually displays a short text string indicating a command, but it can also display a bitmap image, or a combination of text and an image. When the Button is pressed with a finger or clicked with a mouse it initiates that command.
@@ -122,42 +123,103 @@
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
     <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource ControlInfo}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter}"
-                    Header="{x:StaticResource PropertiesListHeader}"
-                    ItemsSource="{x:StaticResource PropertyItemsSource}"
-                    Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Try out a simple image button" />
-                    <ImageButton
-                        Padding="{x:Binding Source={x:Reference PaddingSlider},
-                                            Path=Value}"
-                        CornerRadius="{x:Binding Source={x:Reference RoundedCornerSlider},
-                                                 Path=Value}"
-                        HorizontalOptions="Center"
-                        Source="{x:Binding ImageSource}"
-                        VerticalOptions="Center" />
-                    <Button Command="{x:Binding OpenFileCommand}" Text="Upload image" />
-                    <Label Text="Adjust the corner radius" />
-                    <Slider
-                        x:Name="RoundedCornerSlider"
-                        Maximum="500"
-                        Minimum="0" />
-                    <Label Text="Adjust the padding" />
-                    <Slider
-                        x:Name="PaddingSlider"
-                        Maximum="500"
-                        Minimum="0" />
-                </VerticalStackLayout>
-            </Frame>
-        </VerticalStackLayout>
+        <Grid x:Name="rootGrid" ColumnDefinitions="*, 330">
+            <VerticalStackLayout
+                x:Name="DocumentStack"
+                HorizontalOptions="Fill"
+                MinimumWidthRequest="360"
+                Spacing="20">
+                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                    <Label Text="{x:StaticResource ControlInfo}" />
+                </Frame>
+                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                    <CollectionView
+                        Footer="{x:StaticResource PropertiesListFooter}"
+                        Header="{x:StaticResource PropertiesListHeader}"
+                        ItemsSource="{x:StaticResource PropertyItemsSource}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                </Frame>
+                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Try out a simple image button" />
+                        <ImageButton
+                            Padding="{x:Binding Source={x:Reference PaddingSlider},
+                                                Path=Value}"
+                            CornerRadius="{x:Binding Source={x:Reference RoundedCornerSlider},
+                                                     Path=Value}"
+                            HorizontalOptions="Center"
+                            Source="{x:Binding ImageSource}"
+                            VerticalOptions="Center" />
+                        <Button Command="{x:Binding OpenFileCommand}" Text="Upload image" />
+                        <Label Text="Adjust the corner radius" />
+                        <Slider
+                            x:Name="RoundedCornerSlider"
+                            Maximum="500"
+                            Minimum="0" />
+                        <Label Text="Adjust the padding" />
+                        <Slider
+                            x:Name="PaddingSlider"
+                            Maximum="500"
+                            Minimum="0" />
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Visual states" />
+                        <ImageButton
+                            HeightRequest="100"
+                            Source="windowslogo.png"
+                            WidthRequest="100">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="Scale" Value="1" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <VisualState.Setters>
+                                            <Setter Property="Scale" Value="0.8" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </ImageButton>
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+
+
+            <VerticalStackLayout
+                x:Name="SidePanel"
+                Grid.Column="1"
+                Padding="10,0,10,10"
+                Spacing="20">
+                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Supported platforms" />
+                        <HorizontalStackLayout Spacing="10">
+                            <Image
+                                HeightRequest="30"
+                                Source="windowslogo.png"
+                                WidthRequest="30" />
+                            <Image
+                                HeightRequest="30"
+                                Source="androidlogo.png"
+                                WidthRequest="30" />
+                            <Image
+                                HeightRequest="30"
+                                Source="tizenlogo.png"
+                                WidthRequest="30" />
+                            <Image
+                                HeightRequest="30"
+                                Source="ioslogo.png"
+                                WidthRequest="30" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </Grid>
     </ScrollView>
 
 </app:BasePage>

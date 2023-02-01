@@ -28,6 +28,24 @@
             <app:ControlActivityCardContentView ApplicationNew="{x:Binding}" />
         </DataTemplate>
 
+        <DataTemplate x:Key="ActivitiesHeaderTemplate" x:DataType="{x:Type x:String}">
+            <Grid>
+                <Grid.Resources>
+                    <LinearGradientBrush x:Key="ActivitiesHeaderTitleGradient" EndPoint="1,0">
+                        <GradientStop Offset="0.0" Color="#DCE35B" />
+                        <GradientStop Offset="1.0" Color="#45B649" />
+                    </LinearGradientBrush>
+                </Grid.Resources>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Title"
+                    Rotation="-90"
+                    Text="{x:Binding}"
+                    VerticalOptions="Center" />
+            </Grid>
+        </DataTemplate>
+
+
         <LinearItemsLayout
             x:Key="ActivitiesLayout"
             ItemSpacing="10"
@@ -80,6 +98,7 @@
             Grid.ColumnSpan="2"
             Margin="20"
             Header="TOP NEWS"
+            HeaderTemplate="{x:StaticResource ActivitiesHeaderTemplate}"
             HorizontalOptions="End"
             ItemTemplate="{x:StaticResource ActivitiesItemTemplate}"
             ItemsLayout="{x:StaticResource ActivitiesLayout}"

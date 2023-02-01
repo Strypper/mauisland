@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIsland.ChatBubbleContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="root">
+    <HorizontalStackLayout Spacing="10">
+        <toolkit:AvatarView
+            HeightRequest="50"
+            ImageSource="{x:Binding ComponentData.AuthorImage,
+                                    Source={x:Reference root}}"
+            VerticalOptions="Start"
+            WidthRequest="50" />
+        <VerticalStackLayout Spacing="5">
+            <Label
+                Margin="10,0,0,0"
+                FontAttributes="Bold"
+                Text="{x:Binding ComponentData.AuthorName,
+                                 Source={x:Reference root}}" />
+            <Frame Padding="15" VerticalOptions="End">
+                <Label
+                    LineBreakMode="WordWrap"
+                    LineHeight="1.8"
+                    MaximumWidthRequest="200"
+                    Text="{x:Binding ComponentData.ChatMessageContent,
+                                     Source={x:Reference root}}" />
+            </Frame>
+            <Label Margin="10,0,0,0" Text="{x:Binding ComponentData.SentTime, Source={x:Reference root}}" />
+        </VerticalStackLayout>
+    </HorizontalStackLayout>
+</ContentView>

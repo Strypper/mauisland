@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIsland.ChatPagePhoneLayout"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:DataType="app:ChatPageViewModel"
+    SizeChanged="ContentView_SizeChanged">
+
+    <ContentView.Resources>
+        <LinearItemsLayout
+            x:Key="ChatLayout"
+            ItemSpacing="10"
+            Orientation="Vertical" />
+
+        <DataTemplate x:Key="ChatCollectionViewItemTemplate" x:DataType="app:ChatMessage">
+            <app:ChatBubbleContentView ComponentData="{x:Binding}" />
+        </DataTemplate>
+
+    </ContentView.Resources>
+
+    <toolkit:DockLayout ShouldExpandLastChild="True">
+        <Grid
+            toolkit:DockLayout.DockPosition="Bottom"
+            ColumnDefinitions="*, auto"
+            ColumnSpacing="10">
+            <Editor
+                IsTextPredictionEnabled="True"
+                Keyboard="Chat"
+                Placeholder="Enter message"
+                Text="{x:Binding TypingMessage,
+                                 Mode=TwoWay}" />
+            <Button
+                Grid.Column="1"
+                Command="{x:Binding AddNewMessageCommand}"
+                CornerRadius="2"
+                ImageSource="{x:StaticResource SendIcon}"
+                Text="Send" />
+        </Grid>
+        <Border
+            Margin="0,0,0,15"
+            Padding="10"
+            StrokeShape="RoundRectangle 5,5,5,5">
+            <Border.Shadow>
+                <Shadow
+                    Brush="Black"
+                    Opacity="0.8"
+                    Offset="10,10" />
+            </Border.Shadow>
+            <CollectionView
+                x:Name="ListOfMessages"
+                ItemTemplate="{x:StaticResource ChatCollectionViewItemTemplate}"
+                ItemsLayout="{x:StaticResource ChatLayout}"
+                ItemsSource="{x:Binding Messages}"
+                ItemsUpdatingScrollMode="KeepLastItemInView"
+                MaximumHeightRequest="610" />
+        </Border>
+    </toolkit:DockLayout>
+</ContentView>

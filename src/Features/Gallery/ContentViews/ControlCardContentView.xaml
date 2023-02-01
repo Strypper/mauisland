@@ -67,6 +67,7 @@
                             BackgroundColor="#ff28ba"
                             Clicked="Detail_Clicked"
                             CornerRadius="2"
+                            FontAttributes="Bold"
                             Text="Detail"
                             TextColor="{x:StaticResource White}" />
 

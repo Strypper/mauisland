@@ -4,21 +4,70 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="ChatPage"
     Padding="10"
-    x:DataType="app:ChatPageViewModel">
+    x:DataType="app:ChatPageViewModel"
+    SizeChanged="BasePage_SizeChanged">
 
-    <app:BasePage.Resources>
-        <x:String x:Key="ControlInfo">
-            TODO
-        </x:String>
-    </app:BasePage.Resources>
+    <Shell.TitleView>
+        <Grid>
+            <Grid.Resources>
+                <OnPlatform x:Key="StackLayoutMargin" x:TypeArguments="Thickness">
+                    <On Platform="WinUI" Value="10" />
+                    <On Platform="Android" Value="0,15,5,5" />
+                </OnPlatform>
 
-    <VerticalStackLayout>
-        <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-            <Label Text="{x:StaticResource ControlInfo}" />
-        </Frame>
+                <FontImageSource
+                    x:Key="BeachTitleBarIcon"
+                    FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                    Glyph="{x:Static app:FluentUIIcon.Ic_fluent_beach_48_regular}"
+                    Color="#eaeaea" />
+            </Grid.Resources>
+            <HorizontalStackLayout
+                Margin="{x:StaticResource StackLayoutMargin}"
+                Spacing="10"
+                VerticalOptions="Start">
+                <Image
+                    HeightRequest="25"
+                    Source="{x:StaticResource BeachTitleBarIcon}"
+                    VerticalOptions="Start"
+                    WidthRequest="25" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Subtitle"
+                    Text="Island Lobby"
+                    TextColor="White"
+                    VerticalOptions="Start" />
+            </HorizontalStackLayout>
+        </Grid>
+    </Shell.TitleView>
 
-        <Button Clicked="Button_Clicked" />
-    </VerticalStackLayout>
+    <app:BasePage.Resources />
+
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="github.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </app:BasePage.ToolbarItems>
+
+    <ScrollView>
+        <Grid
+            toolkit:StateContainer.CanStateChange="{x:Binding CanStateChange}"
+            toolkit:StateContainer.CurrentState="{x:Binding CurrentState}"
+            toolkit:StateContainer.ShouldAnimateOnStateChange="True">
+            <toolkit:StateContainer.StateViews>
+                <app:ChatPagePhoneLayout toolkit:StateView.StateKey="Phone" />
+                <app:ChatPageTabletLayout toolkit:StateView.StateKey="Tablet" />
+                <app:ChatPageDesktopLayout toolkit:StateView.StateKey="Desktop" />
+            </toolkit:StateContainer.StateViews>
+        </Grid>
+    </ScrollView>
 </app:BasePage>

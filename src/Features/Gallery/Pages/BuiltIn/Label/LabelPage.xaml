@@ -223,6 +223,10 @@
                     <app:SourceCodeExpander XamlCode="{x:Binding LabelXamlCodeExample}" />
                 </VerticalStackLayout>
             </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label FormattedText="{x:Binding FormatedStringByCsharpCode}" />
+            </Frame>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

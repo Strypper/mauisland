@@ -7,13 +7,16 @@ public partial class TimePickerPageViewModel : NavigationAwareBaseViewModel
     public TimePickerPageViewModel(IAppNavigator appNavigator)
                                     : base(appNavigator)
     {
-
     }
     #endregion
 
     #region [Properties]
     [ObservableProperty]
+    string dumbassText = "Bruh";
+
+    [ObservableProperty]
     IControlInfo controlInformation;
+
     #endregion
 
     #region [Overrides]
@@ -30,5 +33,8 @@ public partial class TimePickerPageViewModel : NavigationAwareBaseViewModel
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
+    #endregion
+
+    #region [Methods]
     #endregion
 }

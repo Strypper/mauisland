@@ -321,7 +321,6 @@
             <!--  Text cell  -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Text cell" />
                     <CollectionView
                         Footer="{x:StaticResource PropertiesListFooter2}"
                         Header="{x:StaticResource PropertiesListHeader2}"

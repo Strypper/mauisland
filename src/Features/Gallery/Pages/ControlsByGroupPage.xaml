@@ -79,6 +79,7 @@
             </Frame>
             <Label
                 Grid.Row="1"
+                Grid.ColumnSpan="2"
                 Style="{x:StaticResource DocumentSectionTitleStyle}"
                 Text="Controls" />
             <app:HorizontalWrapLayout
