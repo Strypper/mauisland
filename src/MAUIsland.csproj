@@ -87,6 +87,9 @@
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+		<PackageReference Include="Refit" Version="6.3.2" />
+		<PackageReference Include="Refit.HttpClientFactory" Version="6.3.2" />
+		<PackageReference Include="Refit.Newtonsoft.Json" Version="6.3.2" />
 		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="20.4.44" />
 		<PackageReference Include="Syncfusion.Maui.Charts" Version="20.4.44" />
 		<PackageReference Include="Syncfusion.Maui.ListView" Version="20.4.44" />
@@ -105,6 +108,9 @@
 	<ItemGroup>
 	  <Compile Update="Features\Chat\ContentViews\ChatBubbleContentView.xaml.cs">
 	    <DependentUpon>ChatBubbleContentView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\Chat\Popups\AuthenticatePopup.xaml.cs">
+	    <DependentUpon>AuthenticatePopup.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Features\Gallery\Syncfusion\ListView\Pages\SyncfusionListViewPage.xaml.cs">
 	    <DependentUpon>SyncfusionListViewPage.xaml</DependentUpon>
@@ -134,6 +140,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Chat\ContentViews\ChatPageTabletLayout.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Chat\Popups\AuthenticatePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Chat\Styles\ChatStyles.xaml">

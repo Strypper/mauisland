@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePopup
+    x:Class="MAUIsland.AuthenticatePopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Padding="10"
+    x:DataType="app:AuthenticatePopupViewModel"
+    Shell.PresentationMode="Modal">
+
+    <app:BasePopup.Resources>
+        <FontImageSource
+            x:Key="CameraIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_camera_24_regular}"
+            Color="{x:StaticResource Primary}" />
+
+        <FontImageSource
+            x:Key="UploadIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_arrow_upload_24_regular}"
+            Color="{x:StaticResource Primary}" />
+    </app:BasePopup.Resources>
+
+    <Grid>
+        <Button
+            Command="{x:Binding NavigateBackCommand}"
+            HorizontalOptions="Start"
+            Text="Back"
+            VerticalOptions="Start" />
+        <Frame
+            HorizontalOptions="Center"
+            Style="{x:StaticResource DocumentContentFrameStyle}"
+            VerticalOptions="Center">
+            <VerticalStackLayout Spacing="5">
+                <HorizontalStackLayout
+                    HorizontalOptions="Center"
+                    Spacing="10"
+                    VerticalOptions="Start">
+                    <toolkit:AvatarView
+                        CornerRadius="40"
+                        HeightRequest="80"
+                        VerticalOptions="Start"
+                        WidthRequest="80" />
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <ImageButton
+                            BackgroundColor="Transparent"
+                            BorderColor="{x:StaticResource Primary}"
+                            Source="{x:StaticResource CameraIcon}" />
+                        <ImageButton
+                            BackgroundColor="Transparent"
+                            BorderColor="{x:StaticResource Primary}"
+                            Source="{x:StaticResource UploadIcon}" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+                <Label Text="Phone number" />
+                <Entry
+                    Keyboard="Telephone"
+                    MinimumWidthRequest="300"
+                    Placeholder="Input your phone number"
+                    Text="{x:Binding PhoneNumber,
+                                     Mode=TwoWay}" />
+                <Label Text="Email" />
+                <Entry Keyboard="Email" MinimumWidthRequest="300" />
+                <Label Text="Password" />
+                <Entry
+                    IsPassword="True"
+                    MinimumWidthRequest="300"
+                    Text="{x:Binding Password}" />
+                <Label Text="Confirm password" />
+                <Entry IsPassword="True" MinimumWidthRequest="300" />
+                <Label Text="First name" />
+                <Entry x:Name="FirstNameEntry" />
+                <Label Text="Last name" />
+                <Entry x:Name="LastNameEntry" />
+                <HorizontalStackLayout>
+                    <Button Command="{x:Binding LoginCommand}" Text="Sign in" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Frame>
+    </Grid>
+</app:BasePopup>

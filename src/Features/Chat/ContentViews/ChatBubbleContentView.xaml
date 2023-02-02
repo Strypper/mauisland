@@ -18,7 +18,10 @@
                 FontAttributes="Bold"
                 Text="{x:Binding ComponentData.AuthorName,
                                  Source={x:Reference root}}" />
-            <Frame Padding="15" VerticalOptions="End">
+            <Frame
+                Padding="15"
+                Style="{x:StaticResource DocumentContentFrameStyle}"
+                VerticalOptions="End">
                 <Label
                     LineBreakMode="WordWrap"
                     LineHeight="1.8"

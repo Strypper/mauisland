@@ -11,7 +11,7 @@ public partial class ChatPagePhoneLayout : ContentView
 
     private void ContentView_SizeChanged(object sender, EventArgs e)
     {
-        if(Window is not null)
+        if (Window is not null)
         {
             System.Diagnostics.Debug.WriteLine(Window.Height);
         }

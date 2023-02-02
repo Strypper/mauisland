@@ -43,19 +43,28 @@
         </Grid>
     </Shell.TitleView>
 
-    <app:BasePage.Resources />
+    <app:BasePage.Resources>
+        <FontImageSource
+            x:Key="ContactCardIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_contact_card_24_regular}"
+            Color="{AppThemeBinding Light='#15161e',
+                                    Dark='#eaeaea'}" />
+
+        <FontImageSource
+            x:Key="ChatBubblesQuestionIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_chat_bubbles_question_24_regular}"
+            Color="{AppThemeBinding Light='#15161e',
+                                    Dark='#eaeaea'}" />
+    </app:BasePage.Resources>
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem
-            Command="{x:Binding OpenUrlCommand}"
-            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
-            IconImageSource="github.png"
-            Text="Source code" />
-        <ToolbarItem
-            Command="{x:Binding OpenUrlCommand}"
-            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
-            IconImageSource="microsoft.png"
-            Text="Original Document" />
+            Command="{x:Binding SignUpCommand}"
+            IconImageSource="{x:StaticResource ContactCardIcon}"
+            Text="Sign in" />
+        <ToolbarItem IconImageSource="{x:StaticResource ChatBubblesQuestionIcon}" Text="Ask questions" />
     </app:BasePage.ToolbarItems>
 
     <ScrollView>

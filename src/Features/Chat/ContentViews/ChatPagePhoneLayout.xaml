@@ -26,6 +26,8 @@
             ColumnDefinitions="*, auto"
             ColumnSpacing="10">
             <Editor
+                IsEnabled="{x:Binding CanChatState,
+                                      Mode=OneWay}"
                 IsTextPredictionEnabled="True"
                 Keyboard="Chat"
                 Placeholder="Enter message"
@@ -36,6 +38,8 @@
                 Command="{x:Binding AddNewMessageCommand}"
                 CornerRadius="2"
                 ImageSource="{x:StaticResource SendIcon}"
+                IsEnabled="{x:Binding CanChatState,
+                                      Mode=OneWay}"
                 Text="Send" />
         </Grid>
         <Border
@@ -50,6 +54,7 @@
             </Border.Shadow>
             <CollectionView
                 x:Name="ListOfMessages"
+                EmptyView="Please log-in to chat"
                 ItemTemplate="{x:StaticResource ChatCollectionViewItemTemplate}"
                 ItemsLayout="{x:StaticResource ChatLayout}"
                 ItemsSource="{x:Binding Messages}"

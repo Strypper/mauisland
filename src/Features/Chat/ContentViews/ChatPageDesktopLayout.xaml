@@ -3,11 +3,13 @@
     x:Class="MAUIsland.ChatPageDesktopLayout"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:app="clr-namespace:MAUIsland">
+    xmlns:app="clr-namespace:MAUIsland"
+    x:DataType="app:ChatPageViewModel">
     <VerticalStackLayout>
         <Label
             HorizontalOptions="Center"
-            Text="Desktop Mode"
+            Text="{x:Binding CurrentUser.UserName,
+                             Mode=OneWay}"
             VerticalOptions="Center" />
     </VerticalStackLayout>
 </ContentView>

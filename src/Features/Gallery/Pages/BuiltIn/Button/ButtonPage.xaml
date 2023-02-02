@@ -160,7 +160,6 @@
                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
-
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
                     <Label
@@ -168,33 +167,34 @@
                         FontSize="Title"
                         Text="You can change the background color of the button" />
 
-                    <HorizontalStackLayout Spacing="10">
-                        <Button
-                            BackgroundColor="Green"
-                            Text="Green"
-                            TextColor="{x:StaticResource White}" />
+                    <ScrollView HorizontalOptions="Start" HorizontalScrollBarVisibility="Always">
+                        <HorizontalStackLayout Spacing="10">
+                            <Button
+                                BackgroundColor="Green"
+                                Text="Green"
+                                TextColor="{x:StaticResource White}" />
 
-                        <Button
-                            BackgroundColor="Red"
-                            Text="Red"
-                            TextColor="{x:StaticResource White}" />
+                            <Button
+                                BackgroundColor="Red"
+                                Text="Red"
+                                TextColor="{x:StaticResource White}" />
 
-                        <Button
-                            BackgroundColor="{x:StaticResource Primary}"
-                            Text="Application Primary Color"
-                            TextColor="{x:StaticResource White}" />
+                            <Button
+                                BackgroundColor="{x:StaticResource Primary}"
+                                Text="Application Primary Color"
+                                TextColor="{x:StaticResource White}" />
 
-                        <!--  This button will be Cyan when in dark mode and Blue when light mode  -->
-                        <Button
-                            BackgroundColor="{x:AppThemeBinding Dark={x:StaticResource Cyan300Accent},
-                                                                Light={x:StaticResource Blue300Accent}}"
-                            Text="Dark or Light mode color"
-                            TextColor="{x:StaticResource Black}" />
-                    </HorizontalStackLayout>
+                            <!--  This button will be Cyan when in dark mode and Blue when light mode  -->
+                            <Button
+                                BackgroundColor="{x:AppThemeBinding Dark={x:StaticResource Cyan300Accent},
+                                                                    Light={x:StaticResource Blue300Accent}}"
+                                Text="Dark or Light mode color"
+                                TextColor="{x:StaticResource Black}" />
+                        </HorizontalStackLayout>
+                    </ScrollView>
                     <app:SourceCodeExpander XamlCode="{x:Binding ButtonsChangedBackgroundGroupXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
-
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
 
@@ -221,24 +221,21 @@
                     <app:SourceCodeExpander XamlCode="{x:Binding RotationButtonXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
-
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <Frame.Resources>
                     <FontImageSource
                         x:Key="HomeIcon"
                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
                         Glyph="{Static app:FluentUIIcon.Ic_fluent_home_20_regular}"
-                        Color="{x:OnPlatform WinUI={x:StaticResource Primary},
-                                             Android={x:AppThemeBinding Dark={x:StaticResource Primary},
-                                                                        Light={x:StaticResource White}}}" />
+                        Color="{x:AppThemeBinding Dark={x:StaticResource Primary},
+                                                  Light={x:StaticResource White}}" />
 
                     <FontImageSource
                         x:Key="DownloadIcon"
                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
                         Glyph="{Static app:FluentUIIcon.Ic_fluent_arrow_download_20_regular}"
-                        Color="{x:OnPlatform WinUI={x:StaticResource Primary},
-                                             Android={x:AppThemeBinding Dark={x:StaticResource Primary},
-                                                                        Light={x:StaticResource White}}}" />
+                        Color="{x:AppThemeBinding Dark={x:StaticResource Primary},
+                                                  Light={x:StaticResource White}}" />
                 </Frame.Resources>
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Use bitmaps with buttons" />

@@ -225,7 +225,13 @@
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label FormattedText="{x:Binding FormatedStringByCsharpCode}" />
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Code style label" />
+                    <Label FormattedText="{x:Binding FormatedStringByCsharpCode}" />
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Test your code format" />
+                    <Editor />
+                    <Label />
+                </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
     </ScrollView>
