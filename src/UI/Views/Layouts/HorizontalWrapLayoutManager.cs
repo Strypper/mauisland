@@ -52,11 +52,20 @@ public class HorizontalWrapLayoutManager : StackLayoutManager
             currentRow.Add(childSize);
         }
 
-        var totalWidth = rows.Max(x => x.Value.Aggregate(0.0, (result, item) => result + item.Width));
-        var totalHeight = rows.Aggregate(0.0, (result, x) => result + x.Value.Max(r => r.Height));
-        if (rows.Keys.Count > 1)
+        var totalWidth = 0.0;
+        var totalHeight = 0.0;
+
+        if (rows.Any())
         {
-            totalHeight += _layout.Spacing * (rows.Keys.Count - 1);
+            var rowWidths = rows.Select(x => x.Value.Aggregate(0.0, (result, item) => result + item.Width)).ToList();
+            var rowHeights = rows.Select(x => x.Value.Any() ? x.Value.Max(i => i.Height) : 0).ToList();
+
+            totalWidth = rowWidths.Any() ? rowWidths.Max() : 0;
+            totalHeight = rowHeights.Any() ? rowHeights.Sum() : 0;
+            if (rows.Keys.Count > 1)
+            {
+                totalHeight += _layout.Spacing * (rows.Keys.Count - 1);
+            }
         }
 
         totalWidth += padding.HorizontalThickness;
