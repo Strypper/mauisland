@@ -6,6 +6,7 @@
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
     Title="SfListView"
+    Padding="10"
     x:DataType="app:SfListViewPageViewModel">
 
     <app:BasePage.Resources>

@@ -5,7 +5,7 @@ public partial class SfListViewPageViewModel : NavigationAwareBaseViewModel
     private readonly IControlsService mauiControlsService;
     #endregion
     public SfListViewPageViewModel(
-        IAppNavigator appNavigator, 
+        IAppNavigator appNavigator,
         IControlsService mauiControlsService
     ) : base(appNavigator)
     {
@@ -21,6 +21,9 @@ public partial class SfListViewPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     ObservableCollection<IControlInfo> mauiAllControlsItems;
+
+    [ObservableProperty]
+    ControlGroupInfo controlGroup;
     #endregion
 
     #region [RelayCommand]
@@ -28,16 +31,19 @@ public partial class SfListViewPageViewModel : NavigationAwareBaseViewModel
     Task NavigateToDetailAsync(string controlRoute) => AppNavigator.NavigateAsync(controlRoute);
     #endregion
 
-    #region [Methods]
-    public override async Task OnAppearingAsync()
+    #region [Override]
+    protected override void OnInit(IDictionary<string, object> query)
     {
-        await base.OnAppearingAsync();
+        base.OnInit(query);
+
+        ControlGroup = query.GetData<ControlGroupInfo>();
 
         LoadDataAsync(true)
             .FireAndForget();
     }
+    #endregion
 
-
+    #region [Methods]
     private async Task LoadDataAsync(bool forced)
     {
         if (IsBusy) return;

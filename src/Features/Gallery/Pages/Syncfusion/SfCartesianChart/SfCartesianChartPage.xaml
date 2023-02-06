@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    x:Class="MAUIsland.SfCartesianChartPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:charts="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+    Title="SfCartesianChart"
+    Padding="10"
+    x:DataType="app:SfCartesianChartPageViewModel">
+
+    <app:BasePage.Resources>
+
+        <x:String x:Key="ControlInfo">
+            The .NET MAUI chart provides a perfect way to visualize data with a high level of user involvement that focuses on development, productivity, and simplicity of use. Chart also provides a wide variety of charting features that can be used to visualize large quantities of data, as well as flexibility in data binding and user customization.
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeader">
+            Key features:
+        </x:String>
+
+        <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                Cartesian charts support different types of series and each type of chart represents a unique style of representing data with more user friendly and greater UI visualization.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                Allows you to map data from a specified path by achieving the data binding concept.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                Interactive zooming allows you to explore portions of large charts in more detail, with excellent performance.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                The Cartesian chart provides support for rendering multiple series at the same time, with options to compare and visualize two different series simultaneously.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                User friendly customization support. Cartesian chart provides various options for you to customize chart features, axis, labels, legends, series, etc., and visualize them accordingly.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+
+    </app:BasePage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:StaticResource ControlInfo}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <syncfusion:SfListView ItemTemplate="{x:StaticResource BulletListItemTemplate}" ItemsSource="{x:StaticResource PropertiesItemsSource}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <charts:SfCartesianChart>
+                    <charts:SfCartesianChart.XAxes>
+                        <charts:CategoryAxis>
+                            <charts:CategoryAxis.Title>
+                                <charts:ChartAxisTitle Text="Name" />
+                            </charts:CategoryAxis.Title>
+                        </charts:CategoryAxis>
+                    </charts:SfCartesianChart.XAxes>
+                    <charts:SfCartesianChart.YAxes>
+                        <charts:NumericalAxis>
+                            <charts:NumericalAxis.Title>
+                                <charts:ChartAxisTitle Text="Exp" />
+                            </charts:NumericalAxis.Title>
+                        </charts:NumericalAxis>
+                    </charts:SfCartesianChart.YAxes>
+
+                    <charts:ColumnSeries
+                        ItemsSource="{x:Binding Persons}"
+                        XBindingPath="Name"
+                        YBindingPath="Exp" />
+                </charts:SfCartesianChart>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</app:BasePage>
