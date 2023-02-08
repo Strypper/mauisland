@@ -77,7 +77,10 @@
                     </charts:SfCartesianChart.YAxes>
 
                     <charts:ColumnSeries
+                        EnableAnimation="True"
                         ItemsSource="{x:Binding Persons}"
+                        PaletteBrushes="{x:Binding PalletBrushes,
+                                                   Mode=OneWay}"
                         XBindingPath="Name"
                         YBindingPath="Exp" />
                 </charts:SfCartesianChart>

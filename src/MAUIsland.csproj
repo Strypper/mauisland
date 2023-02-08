@@ -70,6 +70,7 @@
 	  <None Remove="Resources\Images\microsoft.svg" />
 	  <None Remove="Features\Gallery\Core\" />
 	  <None Remove="Features\Gallery\Services\" />
+	  <None Remove="Resources\Images\syncfusionbanner.png" />
 	  <None Remove="Resources\Images\syncfusion_logo.png" />
 	  <None Remove="Resources\Images\fluenticon_options_white.svg" />
 	  <None Remove="Features\Gallery\Pages\Syncfusion\" />

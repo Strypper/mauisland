@@ -65,16 +65,16 @@
                         Aspect="AspectFill"
                         HeightRequest="200"
                         HorizontalOptions="Fill"
-                        Source="https://i.imgur.com/O7V5Mid.png"
+                        Source="{x:Binding ControlGroup.Banner}"
                         VerticalOptions="Fill" />
 
-                    <Label
+                    <!--<Label
                         Margin="20"
                         FontAttributes="Bold"
                         FontSize="Header"
                         Text="{Binding ControlGroup.Title}"
                         TextColor="{x:StaticResource White}"
-                        VerticalOptions="Center" />
+                        VerticalOptions="Center" />-->
                 </Grid>
             </Frame>
             <Label
@@ -88,7 +88,10 @@
                 BindableLayout.ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
                 BindableLayout.ItemsSource="{x:Binding Items,
                                                        Mode=OneWay}"
-                HorizontalOptions="Start"
+                HorizontalOptions="{x:OnIdiom Desktop=Start,
+                                              Tablet=Start,
+                                              Default=Start,
+                                              Phone=Center}"
                 Spacing="10" />
         </Grid>
     </ScrollView>

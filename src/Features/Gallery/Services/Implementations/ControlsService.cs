@@ -18,12 +18,14 @@ public class ControlsService : IControlsService
             Name = ControlGroupInfo.SyncfusionControls,
             Title = "Syncfusion",
             IconUrl = "syncfusion_logo.png",
+            Banner = "syncfusionbanner.png"
         },
         new ControlGroupInfo
         {
             Name = ControlGroupInfo.BuiltInControls,
             Title = "Built-in",
             LottieUrl = "dotnetbot.json",
+            Banner = "https://i.imgur.com/O7V5Mid.png"
         },
     };
 

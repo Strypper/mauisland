@@ -17,6 +17,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     ControlGroupInfo controlGroup;
 
     [ObservableProperty]
+    List<Brush> palletBrushes;
+
+    [ObservableProperty]
     bool isBusy;
     #endregion
 
@@ -44,23 +47,76 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         persons.Add(new SfCartesianChartPersonModel() { Name = "Hung", Exp = 40 });
         persons.Add(new SfCartesianChartPersonModel() { Name = "Long", Exp = 20 });
 
+        var gradients = new List<Brush>(createGradientPalletBrushes());
+
         IsBusy = false;
 
-        if (Persons == null)
-        {
-            Persons = new(persons);
-            return;
-        }
+        Persons = new(persons);
+        PalletBrushes = new(gradients);
 
         if (forced)
         {
             Persons.Clear();
+            PalletBrushes.Clear();
         }
 
         foreach (var item in persons)
         {
             Persons.Add(item);
         }
+
+        foreach (var item in gradients)
+        {
+            PalletBrushes.Add(item);
+        }
+    }
+
+    List<Brush> createGradientPalletBrushes()
+    {
+        LinearGradientBrush gradientColor1 = new();
+        gradientColor1.GradientStops = new()
+            {
+                new GradientStop() { Offset = 1, Color = Color.FromRgb(255, 231, 199) },
+                new GradientStop() { Offset = 0, Color = Color.FromRgb(252, 182, 159) }
+            };
+
+        LinearGradientBrush gradientColor2 = new();
+        gradientColor2.GradientStops = new()
+            {
+                new GradientStop() { Offset = 1, Color = Color.FromRgb(250, 221, 125) },
+                new GradientStop() { Offset = 0, Color = Color.FromRgb(252, 204, 45) }
+            };
+
+        LinearGradientBrush gradientColor3 = new();
+        gradientColor3.GradientStops = new()
+            {
+                new GradientStop() { Offset = 1, Color = Color.FromRgb(255, 231, 199) },
+                new GradientStop() { Offset = 0, Color = Color.FromRgb(252, 182, 159) }
+            };
+
+        LinearGradientBrush gradientColor4 = new LinearGradientBrush();
+        gradientColor4.GradientStops = new GradientStopCollection()
+            {
+                new GradientStop() { Offset = 1, Color = Color.FromRgb(221, 214, 243) },
+                new GradientStop() { Offset = 0, Color = Color.FromRgb(250, 172, 168) }
+            };
+
+        LinearGradientBrush gradientColor5 = new LinearGradientBrush();
+        gradientColor5.GradientStops = new GradientStopCollection()
+            {
+                new GradientStop() { Offset = 1, Color = Color.FromRgb(168, 234, 238) },
+                new GradientStop() { Offset = 0, Color = Color.FromRgb(123, 176, 249) }
+            };
+
+        List<Brush> brushes = new();
+        brushes.Add(gradientColor1);
+        brushes.Add(gradientColor2);
+        brushes.Add(gradientColor3);
+        brushes.Add(gradientColor4);
+        brushes.Add(gradientColor5);
+
+        return brushes;
+
     }
     #endregion
 }

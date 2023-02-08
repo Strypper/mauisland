@@ -11,6 +11,8 @@ public partial class ControlGroupInfo : BaseModel
     [ObservableProperty]
     ImageSource iconUrl;
     [ObservableProperty]
+    ImageSource banner;
+    [ObservableProperty]
     string lottieUrl;
 
     public const string BuiltInControls = nameof(BuiltInControls);
