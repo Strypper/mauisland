@@ -55,7 +55,6 @@
             VerticalOptions="Fill" />
         <Frame
             Padding="30"
-            BackgroundColor="White"
             CornerRadius="4"
             HasShadow="True"
             HorizontalOptions="Center"

@@ -24,7 +24,7 @@
         <Grid>
             <Ellipse
                 Margin="-150,-150,0,0"
-                Fill="#6f0bd8"
+                Fill="#7014e8"
                 HeightRequest="250"
                 HorizontalOptions="Start"
                 VerticalOptions="Start"
@@ -64,7 +64,7 @@
                                                            Source={x:Reference root}}" />
                     <Grid ColumnDefinitions="*,5, 50">
                         <Button
-                            BackgroundColor="#ff28ba"
+                            BackgroundColor="#2b0b98"
                             Clicked="Detail_Clicked"
                             CornerRadius="2"
                             FontAttributes="Bold"
@@ -73,7 +73,7 @@
 
                         <ImageButton
                             Grid.Column="2"
-                            BackgroundColor="#ff28ba"
+                            BackgroundColor="#2b0b98"
                             Clicked="DetailInNewWindow_Clicked"
                             CornerRadius="2"
                             Source="{x:StaticResource OpenInNewWindowsIcon}" />

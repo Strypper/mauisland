@@ -25,7 +25,7 @@ public class ControlsService : IControlsService
             Name = ControlGroupInfo.BuiltInControls,
             Title = "Built-in",
             LottieUrl = "dotnetbot.json",
-            Banner = "https://i.imgur.com/O7V5Mid.png"
+            Banner = "builtinbanner.png"
         },
     };
 

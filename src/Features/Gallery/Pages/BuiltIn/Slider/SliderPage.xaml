@@ -154,7 +154,7 @@
 
                     <Label FontSize="Subtitle" Text="You can even change the thumb image" />
                     <Slider MinimumTrackColor="#6e50db" ThumbImageSource="dotnet_bot.png" />
-                    <app:SourceCodeExpander Code="{x:Binding SliderWithCustomThumbImageXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding SliderWithCustomThumbImageXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
