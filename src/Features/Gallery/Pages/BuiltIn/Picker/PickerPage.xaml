@@ -140,7 +140,7 @@
                         Text="{x:Binding Source={x:Reference picker}, Path=SelectedItem}"
                         TextColor="{x:StaticResource White}" />
 
-                    <app:SourceCodeExpander XamlCode="{x:Binding MemberPickerXamlCode}"/>
+                    <app:SourceCodeExpander Code="{x:Binding MemberPickerXamlCode}"/>
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

@@ -198,7 +198,7 @@
                         <RadioButton Margin="0,0,0,-10" Content="Bird" />
                     </StackLayout>
 
-                    <app:SourceCodeExpander XamlCode="{x:Binding StandardRadioButtonXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding StandardRadioButtonXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -274,7 +274,7 @@
                         </RadioButton>
                     </StackLayout>
 
-                    <app:SourceCodeExpander XamlCode="{x:Binding ImageRadioButtonXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding ImageRadioButtonXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -359,7 +359,7 @@
                         </RadioButton>
                     </StackLayout>
 
-                    <app:SourceCodeExpander XamlCode="{x:Binding CustomRadioButtonXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding CustomRadioButtonXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 

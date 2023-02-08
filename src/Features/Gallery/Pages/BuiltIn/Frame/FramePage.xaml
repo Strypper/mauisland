@@ -86,7 +86,7 @@
                     <Frame>
                         <Label Text="Frame wrapped around a Label" />
                     </Frame>
-                    <app:SourceCodeExpander XamlCode="{x:Binding StandardCreateFrameXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding StandardCreateFrameXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -99,7 +99,7 @@
                         CornerRadius="10">
                         <Label Text="Frame wrapped around a Label" />
                     </Frame>
-                    <app:SourceCodeExpander XamlCode="{x:Binding CreateTheSecondFrameXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding CreateTheSecondFrameXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -123,7 +123,7 @@
                             <Label Text="Frames can wrap more complex layouts to create more complex UI components, such as this card!" />
                         </StackLayout>
                     </Frame>
-                    <app:SourceCodeExpander XamlCode="{x:Binding CreateACardWithAFrameXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding CreateACardWithAFrameXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -147,7 +147,7 @@
                             Source="outdoors.jpg"
                             WidthRequest="100" />
                     </Frame>
-                    <app:SourceCodeExpander XamlCode="{x:Binding RoundElementsXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding RoundElementsXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

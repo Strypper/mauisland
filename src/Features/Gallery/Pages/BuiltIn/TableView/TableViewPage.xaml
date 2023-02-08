@@ -305,7 +305,7 @@
                             </TableSection>
                         </TableRoot>
                     </TableView>
-                    <app:SourceCodeExpander XamlCode="{x:Binding StandardTableViewXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding StandardTableViewXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -338,7 +338,7 @@
                             </TableSection>
                         </TableRoot>
                     </TableView>
-                    <app:SourceCodeExpander XamlCode="{x:Binding TextCellXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding TextCellXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -370,7 +370,7 @@
                             </TableSection>
                         </TableRoot>
                     </TableView>
-                    <app:SourceCodeExpander XamlCode="{x:Binding ImageCellXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding ImageCellXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -392,7 +392,7 @@
                             </TableSection>
                         </TableRoot>
                     </TableView>
-                    <app:SourceCodeExpander XamlCode="{x:Binding SwitchCellXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding SwitchCellXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -414,7 +414,7 @@
                             </TableSection>
                         </TableRoot>
                     </TableView>
-                    <app:SourceCodeExpander XamlCode="{x:Binding EntryCellXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding EntryCellXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -443,7 +443,7 @@
                             </TableSection>
                         </TableRoot>
                     </TableView>
-                    <app:SourceCodeExpander XamlCode="{x:Binding ViewCellXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding ViewCellXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -452,7 +452,7 @@
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Right-to-left layout" />
                     <Label Text="{x:StaticResource ControlInfo5}" />
-                    <app:SourceCodeExpander XamlCode="{x:Binding RightToLeftLayoutXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding RightToLeftLayoutXamlCode}" CodeType="Xaml" />
                     <Label Text="The default FlowDirection for an element with a parent is MatchParent. Therefore, the TableView inherits the FlowDirection property value from the ContentPage." />
                 </VerticalStackLayout>
             </Frame>

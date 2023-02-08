@@ -82,6 +82,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Bogus" Version="34.0.2" />
+		<PackageReference Include="ColorCode.Core" Version="2.0.14" />
 		<PackageReference Include="CommunityToolkit.Common" Version="8.1.0" />
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.1.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="4.0.0" />

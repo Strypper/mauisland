@@ -90,7 +90,7 @@
                         Text="Load"
                         WidthRequest="60" />
 
-                    <app:SourceCodeExpander XamlCode="{x:Binding StandardProgressBarXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding StandardProgressBarXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -149,7 +149,7 @@
                         Text="Run"
                         WidthRequest="60" />
 
-                    <app:SourceCodeExpander XamlCode="{x:Binding AnimateProgressBarXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding AnimateProgressBarXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 

@@ -104,7 +104,7 @@
                             Text="(uninitialized)"
                             VerticalOptions="Center" />
                     </StackLayout>
-                    <app:SourceCodeExpander XamlCode="{x:Binding StandardStepperXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding StandardStepperXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -130,7 +130,7 @@
                             Text="{Binding Source={x:Reference _stepper}, Path=Value, StringFormat='The Stepper value is {0:F0}'}"
                             VerticalOptions="Center" />
                     </StackLayout>
-                    <app:SourceCodeExpander XamlCode="{x:Binding DataBindAStepperXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding DataBindAStepperXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

@@ -150,7 +150,7 @@
                             <Label Text="Enable Button" VerticalOptions="Center" />
                         </HorizontalStackLayout>
                     </Grid>
-                    <app:SourceCodeExpander XamlCode="{x:Binding StandardButtonXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding StandardButtonXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
@@ -192,7 +192,7 @@
                                 TextColor="{x:StaticResource Black}" />
                         </HorizontalStackLayout>
                     </ScrollView>
-                    <app:SourceCodeExpander XamlCode="{x:Binding ButtonsChangedBackgroundGroupXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding ButtonsChangedBackgroundGroupXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
@@ -218,7 +218,7 @@
                         TextColor="White"
                         VerticalOptions="Center"
                         WidthRequest="250" />
-                    <app:SourceCodeExpander XamlCode="{x:Binding RotationButtonXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding RotationButtonXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
@@ -245,7 +245,7 @@
 
                         <Button ImageSource="{x:StaticResource DownloadIcon}" Text="Download" />
                     </HorizontalStackLayout>
-                    <app:SourceCodeExpander XamlCode="{x:Binding ButtonWithImageXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding ButtonWithImageXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

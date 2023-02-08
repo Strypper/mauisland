@@ -179,7 +179,7 @@
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a SearchBar" />
                     <Label Text="The following XAML example shows how to create a SearchBar:" />
                     <SearchBar Placeholder="Search items..." />
-                    <app:SourceCodeExpander XamlCode="{x:Binding StandardSearchBarXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding StandardSearchBarXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -192,7 +192,7 @@
                         Footer="{x:StaticResource PropertiesListFooter2}"
                         ItemsSource="{x:StaticResource PropertyItemsSource2}"
                         Style="{x:StaticResource PropertiesListStyle}" />
-                    <app:SourceCodeExpander XamlCode="{x:Binding PerformASearchWithEventHandlers1XamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding PerformASearchWithEventHandlers1XamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -201,7 +201,7 @@
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Perform a search using a viewmodel" />
                     <Label Text="The following XAML example consumes the SearchViewModel class:" />
-                    <app:SourceCodeExpander XamlCode="{x:Binding PerformASearchWithEventHandlers2XamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding PerformASearchWithEventHandlers2XamlCode}" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

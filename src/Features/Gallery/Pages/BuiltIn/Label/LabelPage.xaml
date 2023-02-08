@@ -220,7 +220,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <app:SourceCodeExpander XamlCode="{x:Binding LabelXamlCodeExample}" />
+                    <app:SourceCodeExpander Code="{x:Binding LabelXamlCodeExample}" />
                 </VerticalStackLayout>
             </Frame>
 

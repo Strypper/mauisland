@@ -78,7 +78,7 @@
                         OnColor="Pink"
                         ThumbColor="ForestGreen" />
 
-                    <app:SourceCodeExpander XamlCode="{x:Binding StandardSwitchXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding StandardSwitchXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -197,7 +197,7 @@
                         </VisualStateManager.VisualStateGroups>
                     </Switch>
 
-                    <app:SourceCodeExpander XamlCode="{x:Binding AdvanceSwitchXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding AdvanceSwitchXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
