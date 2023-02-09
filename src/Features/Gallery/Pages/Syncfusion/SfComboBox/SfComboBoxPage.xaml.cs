@@ -1,9 +1,13 @@
-namespace MAUIsland.Features.Gallery.Pages.Syncfusion.SfComboBox;
+namespace MAUIsland;
 
-public partial class SfComboBoxPage : ContentPage
+public partial class SfComboBoxPage : IControlPage
 {
-	public SfComboBoxPage()
+    #region [CTor]
+    public SfComboBoxPage(SfCartesianChartPageViewModel vm)
 	{
-		InitializeComponent();
+		IntializeComponent();
+
+		BindingContext = vm;
 	}
+    #endregion
 }
