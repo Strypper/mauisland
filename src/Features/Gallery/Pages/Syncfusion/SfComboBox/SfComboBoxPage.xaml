@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MAUIsland.Features.Gallery.Pages.Syncfusion.SfComboBox.SfComboBoxPage"
-             Title="SfComboBoxPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
-</ContentPage>
+<app:BasePage
+    x:Class="MAUIsland.SfComboBoxPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+    Title="SfComboBoxPage"
+    Padding="10"
+    x:DataType="app:SfComboBoxPageViewModel">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label
+                HorizontalOptions="Center"
+                Text="Welcome to .NET MAUI!"
+                VerticalOptions="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+</app:BasePage>

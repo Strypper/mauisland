@@ -1,5 +1,4 @@
-using Syncfusion.Maui.Charts;
-
+using Syncfusion.Maui.Inputs;
 namespace MAUIsland.Gallery.Syncfusion;
 class SfComboBoxControlInfo : IControlInfo
 {
