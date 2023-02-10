@@ -40,18 +40,32 @@
         </app:CardsSearchHandler>
     </Shell.SearchHandler>
     <app:BasePage.Resources>
-        <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate" x:DataType="app:IControlInfo">
+        <DataTemplate x:Key="BuiltInCardItemTemplate" x:DataType="app:IControlInfo">
             <app:ControlCardContentView
                 ComponentData="{x:Binding}"
                 DetailClicked="ControlCardContentView_DetailClicked"
                 DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
         </DataTemplate>
+        <DataTemplate x:Key="SyncfusionCardItemTemplate" x:DataType="app:IControlInfo">
+            <app:SyncfusionCardContentView
+                ComponentData="{x:Binding}"
+                DetailClicked="ControlCardContentView_DetailClicked"
+                DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
+        </DataTemplate>
+        <app:BrandCardTemplateSelector
+            x:Key="BrandCardTemplateSelector"
+            BuiltInCardTemplate="{x:StaticResource BuiltInCardItemTemplate}"
+            SyncfustionCardTemplate="{x:StaticResource SyncfusionCardItemTemplate}" />
     </app:BasePage.Resources>
 
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem IconImageSource="github.png" Text="Source code" />
-        <ToolbarItem IconImageSource="microsoft.png" Text="Original Document" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlGroup.ProviderUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
     </app:BasePage.ToolbarItems>
 
     <ScrollView VerticalScrollBarVisibility="Always">
@@ -85,7 +99,7 @@
             <app:HorizontalWrapLayout
                 Grid.Row="2"
                 Grid.ColumnSpan="2"
-                BindableLayout.ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
+                BindableLayout.ItemTemplateSelector="{x:StaticResource BrandCardTemplateSelector}"
                 BindableLayout.ItemsSource="{x:Binding Items,
                                                        Mode=OneWay}"
                 HorizontalOptions="{x:OnIdiom Desktop=Start,

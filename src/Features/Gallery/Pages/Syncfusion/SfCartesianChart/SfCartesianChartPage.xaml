@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:charts="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+    xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
     xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
     Title="SfCartesianChart"
     Padding="10"
@@ -48,6 +49,9 @@
             </x:String>
         </x:Array>
 
+        <DataTemplate x:Key="SfListViewHeader">
+            <Label FontAttributes="Bold" Text="{x:StaticResource PropertiesListHeader}" />
+        </DataTemplate>
 
     </app:BasePage.Resources>
 
@@ -57,33 +61,39 @@
                 <Label Text="{x:StaticResource ControlInfo}" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <syncfusion:SfListView ItemTemplate="{x:StaticResource BulletListItemTemplate}" ItemsSource="{x:StaticResource PropertiesItemsSource}" />
+                <syncfusion:SfListView
+                    HeaderTemplate="{x:StaticResource SfListViewHeader}"
+                    ItemTemplate="{x:StaticResource BulletListItemTemplate}"
+                    ItemsSource="{x:StaticResource PropertiesItemsSource}" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <charts:SfCartesianChart>
-                    <charts:SfCartesianChart.XAxes>
-                        <charts:CategoryAxis>
-                            <charts:CategoryAxis.Title>
-                                <charts:ChartAxisTitle Text="Name" />
-                            </charts:CategoryAxis.Title>
-                        </charts:CategoryAxis>
-                    </charts:SfCartesianChart.XAxes>
-                    <charts:SfCartesianChart.YAxes>
-                        <charts:NumericalAxis>
-                            <charts:NumericalAxis.Title>
-                                <charts:ChartAxisTitle Text="Exp" />
-                            </charts:NumericalAxis.Title>
-                        </charts:NumericalAxis>
-                    </charts:SfCartesianChart.YAxes>
+                <VerticalStackLayout Spacing="10">
+                    <charts:SfCartesianChart>
+                        <charts:SfCartesianChart.XAxes>
+                            <charts:CategoryAxis>
+                                <charts:CategoryAxis.Title>
+                                    <charts:ChartAxisTitle Text="Name" />
+                                </charts:CategoryAxis.Title>
+                            </charts:CategoryAxis>
+                        </charts:SfCartesianChart.XAxes>
+                        <charts:SfCartesianChart.YAxes>
+                            <charts:NumericalAxis>
+                                <charts:NumericalAxis.Title>
+                                    <charts:ChartAxisTitle Text="Exp" />
+                                </charts:NumericalAxis.Title>
+                            </charts:NumericalAxis>
+                        </charts:SfCartesianChart.YAxes>
 
-                    <charts:ColumnSeries
-                        EnableAnimation="True"
-                        ItemsSource="{x:Binding Persons}"
-                        PaletteBrushes="{x:Binding PalletBrushes,
-                                                   Mode=OneWay}"
-                        XBindingPath="Name"
-                        YBindingPath="Exp" />
-                </charts:SfCartesianChart>
+                        <charts:ColumnSeries
+                            EnableAnimation="True"
+                            ItemsSource="{x:Binding Persons}"
+                            PaletteBrushes="{x:Binding PalletBrushes,
+                                                       Mode=OneWay}"
+                            XBindingPath="Name"
+                            YBindingPath="Exp" />
+                    </charts:SfCartesianChart>
+                    <app:SourceCodeExpander Code="{x:Binding BasicSfCartesianChartXamlCode}" />
+                </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
     </ScrollView>

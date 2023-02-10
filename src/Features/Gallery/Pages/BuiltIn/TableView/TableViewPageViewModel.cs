@@ -44,6 +44,7 @@ public partial class TableViewPageViewModel : NavigationAwareBaseViewModel
 
     }
     #endregion
+
     #region [Relay Commands]
     [RelayCommand]
     Task OpenUrlAsync(string url)
