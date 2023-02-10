@@ -4,16 +4,69 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
     xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
     Title="SfComboBoxPage"
     Padding="10"
     x:DataType="app:SfComboBoxPageViewModel">
+    <app:BasePage.Resources>
+        <x:String x:Key="ControlInfo">
+            The .NET MAUI ComboBox control is a selection component that allows users to type a value or choose an option from a list of predefined options. It has many features, such as data binding, editing, searching, clear button and dropdown button customization, and more.
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeader">
+            Key features:
+        </x:String>
+
+        <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Data Binding</strong> - Support binding various types of data sources.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Editable mode</strong> – Editable and non-editable text boxes to select items from the given data source.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Filtering</strong> – The ComboBox filters items based on the entered text and auto-fills with the first suggestion.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Searching</strong> – Highlights the matching item in the drop-down list based on the provided input.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Placeholder</strong> – Display placeholder text inside the control until the user enters text.
+                            ]]>
+            </x:String>
+        </x:Array>
+    </app:BasePage.Resources>
     <ScrollView>
-        <VerticalStackLayout>
-            <Label
-                HorizontalOptions="Center"
-                Text="Welcome to .NET MAUI!"
-                VerticalOptions="Center" />
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:StaticResource ControlInfo}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <syncfusion:SfListView ItemTemplate="{x:StaticResource BulletListItemTemplate}" ItemsSource="{x:StaticResource PropertiesItemsSource}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <inputs:SfComboBox
+                    x:Name="comboBox"
+                    DisplayMemberPath="Name"
+                    IsEditable="true"
+                    ItemsSource="{x:Binding Items}"
+                    TextMemberPath="Name"
+                    WidthRequest="250" />
+            </Frame>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>
