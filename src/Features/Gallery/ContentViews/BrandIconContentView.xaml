@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    xmlns:skiaConverters="clr-namespace:SkiaSharp.Extended.UI.Controls.Converters;assembly=SkiaSharp.Extended.UI"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:Name="root"
     x:DataType="app:BrandIconContentView">
@@ -13,8 +14,10 @@
         <FontImageSource
             x:Key="OpenInNewWindowsIcon"
             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-            Glyph="{Static app:FluentUIIcon.Ic_fluent_panel_separate_window_20_regular}"
+            Glyph="{x:Static app:FluentUIIcon.Ic_fluent_panel_separate_window_20_regular}"
             Color="{x:StaticResource White}" />
+
+        <skiaConverters:SKLottieImageSourceConverter x:Key="SKLottieImageSourceConverter" />
 
         <app:ImageSourceToBoolConverter x:Key="ImageSourceToBoolConverter" />
     </ContentView.Resources>
@@ -29,6 +32,12 @@
             Source="{x:Binding ComponentData.IconUrl,
                                Source={x:Reference root}}"
             WidthRequest="100" />
+        <!--
+            Source="{x:Binding ComponentData.LottieUrl,
+            Source={x:Reference root},
+            Mode=OneWay,
+            Converter={x:StaticResource SKLottieImageSourceConverter}}"
+        -->
         <skia:SKLottieView
             HeightRequest="100"
             HorizontalOptions="Center"
