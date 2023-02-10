@@ -58,11 +58,13 @@ classDiagram
 ## Use script
 
 ```
-dotnet cake --group DESIRE_GROUP --name CONTROL_NAME
+dotnet cake --group DESIRE_GROUP --name CONTROL_NAME --cardDetail CARD_DETAIL --originalDocumentUrl URL
 ```
 
 ### Available groups
 - `BuiltIn` - [MAUI built-in controls](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/?view=net-maui-7.0)
 - `Syncfusion` - [Syncfusion controls for MAUI](https://www.syncfusion.com/maui-controls)
+- `CardDetail` - Provde detail information for this card ℹ️
+- `OriginalDocumentUrl` - Provide the card original documentation📄 
 
 NOTE: We can add any new group we want.
