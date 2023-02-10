@@ -7,6 +7,11 @@ public partial class BreedLabel : ContentView
     {
         InitializeComponent();
     }
+
+    private void InitializeComponent()
+    {
+        throw new NotImplementedException();
+    }
     #endregion
 
     #region [Properties]
