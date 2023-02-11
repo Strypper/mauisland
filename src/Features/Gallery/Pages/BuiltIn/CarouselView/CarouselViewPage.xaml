@@ -94,6 +94,8 @@
                 Number five
             </x:String>
         </x:Array>
+
+        <x:Array x:Key="EmptyArray" Type="{x:Type x:String}" />
     </app:BasePage.Resources>
 
     <app:BasePage.ToolbarItems>
@@ -164,6 +166,63 @@
             <Label Text="*CarouselView with first item highlighted:" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <CarouselView ItemTemplate="{StaticResource ItemDataTemplateSelector}" ItemsSource="{Binding Items}" />
+            </Frame>
+
+            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Besides appearance, the .NET MAUI CarouselView defines the following properties that control layout:" />
+            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="1. ItemsLayout, of type LinearItemsLayout, specifies the layout to be used. " />
+            <Label Text="The ItemsLayout class, which LinearItemsLayout type inherits from, defines the following properties:" />
+            <Label Text="  - Orientation, of type ItemsLayoutOrientation, specifies the direction in which the CarouselView expands as items are added. This enumeration has 2 values: Vertical and Hortizontal" />
+            <Label Text="  - SnapPointsAlignment, of type SnapPointsAlignment, specifies how snap points are aligned with items." />
+            <Label Text="  - SnapPointsType, of type SnapPointsType, specifies the behavior of snap points when scrolling." />
+            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Then, the LinearItemsLayout also defines an ItemSpacing property, of type double, that represents the empty space around each item. The default value of this property is 0, and its value must always be greater than or equal to 0." />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CarouselView
+                    ItemTemplate="{x:StaticResource OtherDataTemplate}"
+                    ItemsSource="{x:Binding Items}"
+                    PeekAreaInsets="100">
+                    <CarouselView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="20.0" Orientation="Horizontal" />
+                    </CarouselView.ItemsLayout>
+                </CarouselView>
+            </Frame>
+
+            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="2. PeekAreaInsets, of type Thickness, specifies how much to make adjacent items partially visible by." />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CarouselView
+                    ItemTemplate="{x:StaticResource OtherDataTemplate}"
+                    ItemsSource="{x:Binding Items}"
+                    PeekAreaInsets="100" />
+            </Frame>
+
+            <Label Text="What if the connection is lost, and the .Net MAUI CarouselView cannot load data, so what does it display?" />
+            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="The .NET Multi-platform App UI (.NET MAUI) CarouselView defines the following properties that can be used to provide user feedback when there's no data to display:" />
+            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="1.EmptyView, of type object, the string, binding, or view that will be displayed when the ItemsSource property is null, or when the collection specified by the ItemsSource property is null or empty. The default value is null. This is useful when a string is needed in the case of no data found." />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CarouselView EmptyView="No items to display." ItemsSource="{x:StaticResource EmptyArray}" />
+            </Frame>
+            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="2.EmptyViewTemplate, of type DataTemplate, the template to use to format the specified EmptyView. This is better than just a string with good visualization and styles. The default value is null." />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CarouselView ItemsSource="{x:StaticResource EmptyArray}">
+                    <CarouselView.EmptyView>
+                        <ContentView>
+                            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                <Label
+                                    Margin="10,25,10,10"
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    HorizontalOptions="Fill"
+                                    HorizontalTextAlignment="Center"
+                                    Text="No data found." />
+                                <Label
+                                    FontAttributes="Italic"
+                                    FontSize="12"
+                                    HorizontalOptions="Fill"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Please try agian later!" />
+                            </StackLayout>
+                        </ContentView>
+                    </CarouselView.EmptyView>
+                </CarouselView>
             </Frame>
         </VerticalStackLayout>
     </ScrollView>
