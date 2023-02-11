@@ -1,13 +1,14 @@
 ﻿using Refit;
+using System.Net;
 
 namespace MAUIsland;
 
-public interface ITotechsIdentityAuthentication
+public interface ITotechsIdentityAuthenticationRefit
 {
     [Post("/Access/Register")]
-    Task Register(string userName, 
-                  string password, 
-                  string firstName, 
+    Task<HttpStatusCode> Register(string userName,
+                  string password,
+                  string firstName,
                   string lastName,
                   string email,
                   string phoneNumber,

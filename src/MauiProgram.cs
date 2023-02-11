@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Storage;
-using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;
 using Refit;
 using SkiaSharp.Views.Maui.Controls.Hosting;
@@ -62,7 +61,7 @@ public static class MauiProgram
 
     static MauiAppBuilder RegisterRefitApi(this MauiAppBuilder builder)
     {
-        builder.Services.AddRefitClient<ITotechsIdentityAuthentication>()
+        builder.Services.AddRefitClient<ITotechsIdentityAuthenticationRefit>()
                         .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://totechsidentityprovider.azurewebsites.net/api"));
         return builder;
     }
