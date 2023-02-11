@@ -52,10 +52,15 @@ public partial class BrandIconContentView : ContentView
     {
         DetailInNewWindowClicked?.Invoke(ComponentData);
     }
-    #endregion
 
     private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
         DetailClicked?.Invoke(ComponentData);
     }
+
+    private void MenuFlyoutItem_Clicked(object sender, EventArgs e)
+    {
+        DetailInNewWindowClicked?.Invoke(ComponentData);
+    }
+    #endregion
 }

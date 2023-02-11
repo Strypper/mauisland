@@ -4,5 +4,10 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland">
-    <Grid BackgroundColor="Red" VerticalOptions="Fill" />
+
+    <HorizontalStackLayout>
+        <TableView Intent="Menu">
+            
+        </TableView>
+    </HorizontalStackLayout>
 </ContentView>

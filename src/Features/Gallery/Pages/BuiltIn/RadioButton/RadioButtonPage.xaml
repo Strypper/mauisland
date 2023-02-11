@@ -174,6 +174,7 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <Label Text="{x:StaticResource ControlInfo}" />
             </Frame>
+
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout>
                     <Label
@@ -291,11 +292,9 @@
                         HeightRequest="1"
                         VerticalOptions="End" />
 
-                    <StackLayout
-                        HeightRequest="100"
-                        Orientation="Horizontal"
-                        Spacing="14">
-                        <StackLayout.Resources>
+                    <!--  This cause app to break when in release mode - Investigation: ControlTemplate="{StaticResource RadioButtonTemplate}" cause the app to break  -->
+                    <!--<HorizontalStackLayout HeightRequest="100" Spacing="14">
+                        <HorizontalStackLayout.Resources>
                             <FontImageSource
                                 x:Key="Happy"
                                 FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
@@ -311,10 +310,10 @@
                                 FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
                                 Glyph="{Static app:FluentUIIcon.Ic_fluent_emoji_sad_24_regular}"
                                 Color="White" />
-                        </StackLayout.Resources>
+                        </HorizontalStackLayout.Resources>
                         <RadioButton ControlTemplate="{StaticResource RadioButtonTemplate}" IsChecked="True">
                             <RadioButton.Content>
-                                <StackLayout>
+                                <HorizontalStackLayout>
                                     <Image
                                         HorizontalOptions="Center"
                                         Source="{x:StaticResource Happy}"
@@ -324,12 +323,12 @@
                                         HorizontalOptions="Center"
                                         Text="Happy"
                                         VerticalOptions="End" />
-                                </StackLayout>
+                                </HorizontalStackLayout>
                             </RadioButton.Content>
                         </RadioButton>
                         <RadioButton ControlTemplate="{StaticResource RadioButtonTemplate}">
                             <RadioButton.Content>
-                                <StackLayout>
+                                <HorizontalStackLayout>
                                     <Image
                                         HorizontalOptions="Center"
                                         Source="{x:StaticResource Normal}"
@@ -339,12 +338,12 @@
                                         HorizontalOptions="Center"
                                         Text="Normal"
                                         VerticalOptions="End" />
-                                </StackLayout>
+                                </HorizontalStackLayout>
                             </RadioButton.Content>
                         </RadioButton>
                         <RadioButton ControlTemplate="{StaticResource RadioButtonTemplate}">
                             <RadioButton.Content>
-                                <StackLayout>
+                                <HorizontalStackLayout>
                                     <Image
                                         HorizontalOptions="Center"
                                         Source="{x:StaticResource Sad}"
@@ -354,10 +353,10 @@
                                         HorizontalOptions="Center"
                                         Text="Sad"
                                         VerticalOptions="End" />
-                                </StackLayout>
+                                </HorizontalStackLayout>
                             </RadioButton.Content>
                         </RadioButton>
-                    </StackLayout>
+                    </HorizontalStackLayout>-->
 
                     <app:SourceCodeExpander Code="{x:Binding CustomRadioButtonXamlCode}" />
                 </VerticalStackLayout>

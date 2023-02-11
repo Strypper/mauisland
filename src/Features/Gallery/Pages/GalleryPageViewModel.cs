@@ -42,5 +42,8 @@ public partial class GalleryPageViewModel : NavigationAwareBaseViewModel
             AppRoutes.ControlsByGroupPage,
             args: controlGroupInfo
         );
+
+    [RelayCommand]
+    Task ViewControlsInNewWindowAsync(ControlGroupInfo controlGroupInfo) => AppNavigator.NavigateAsync(AppRoutes.ControlsByGroupPage, inNewWindow: true, args: controlGroupInfo);
     #endregion
 }
