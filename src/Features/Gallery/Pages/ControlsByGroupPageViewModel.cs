@@ -39,8 +39,7 @@ public partial class ControlsByGroupPageViewModel : NavigationAwareBaseViewModel
     Task NavigateToDetailInNewWindowAsync(IControlInfo control) => AppNavigator.NavigateAsync(control.ControlRoute, inNewWindow: true, args: control);
 
     [RelayCommand]
-    Task OpenUrlAsync(string url)
-=> AppNavigator.OpenUrlAsync(url);
+    Task OpenUrlAsync(string url) => AppNavigator.OpenUrlAsync(url);
     #endregion
 
     #region [Overrides]
@@ -50,6 +49,8 @@ public partial class ControlsByGroupPageViewModel : NavigationAwareBaseViewModel
         base.OnInit(query);
 
         ControlGroup = query.GetData<ControlGroupInfo>();
+
+        CommunityToolkit.Diagnostics.Guard.IsNotNull(ControlGroup);
 
         LoadDataAsync(true)
             .FireAndForget();

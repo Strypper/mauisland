@@ -21,5 +21,10 @@ public partial class GalleryPage
     {
         this.viewModel.ViewControlsCommand.Execute(control);
     }
+    private void BrandIconContentView_DetailInNewWindowClicked(ControlGroupInfo control)
+    {
+        this.viewModel.ViewControlsInNewWindowCommand.Execute(control);
+    }
     #endregion
+
 }

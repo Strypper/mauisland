@@ -15,6 +15,9 @@ public partial class RefreshViewPageViewModel : NavigationAwareBaseViewModel
     #region [Properties]
     [ObservableProperty]
     IControlInfo controlInformation;
+
+    [ObservableProperty]
+    bool isBusy;
     #endregion
 
     #region [Overrides]
@@ -31,5 +34,13 @@ public partial class RefreshViewPageViewModel : NavigationAwareBaseViewModel
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    async Task RefreshAsync()
+    {
+        IsBusy = true;
+        await AppNavigator.ShowSnackbarAsync("You triggered refresh", null, "Ok");
+        IsBusy = false;
+    }
     #endregion
 }

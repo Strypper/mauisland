@@ -139,7 +139,7 @@
                     <Label FontAttributes="Bold" Text="UI" />
                     <app:SourceCodeExpander Code="{x:Binding DatePickerUseDateOnlyConverterXamlCode}" />
                     <Label FontAttributes="Bold" Text="Converter" />
-                    <app:SourceCodeExpander Code="{x:Binding FulldateToDateOnlyConverterCsharpCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding FulldateToDateOnlyConverterCsharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

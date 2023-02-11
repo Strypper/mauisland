@@ -31,7 +31,17 @@
                                   Converter={x:StaticResource ImageSourceToBoolConverter}}"
             Source="{x:Binding ComponentData.IconUrl,
                                Source={x:Reference root}}"
-            WidthRequest="100" />
+            WidthRequest="100">
+            <FlyoutBase.ContextFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem
+                        Clicked="DetailInNewWindow_Clicked"
+                        IconImageSource="{x:StaticResource OpenNewWindowIcon}"
+                        IsEnabled="False"
+                        Text="Open in new window" />
+                </MenuFlyout>
+            </FlyoutBase.ContextFlyout>
+        </ImageButton>
         <!--
             Source="{x:Binding ComponentData.LottieUrl,
             Source={x:Reference root},
@@ -51,6 +61,15 @@
             <skia:SKLottieView.GestureRecognizers>
                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
             </skia:SKLottieView.GestureRecognizers>
+            <FlyoutBase.ContextFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem
+                        Clicked="DetailInNewWindow_Clicked"
+                        IconImageSource="{x:StaticResource OpenNewWindowIcon}"
+                        IsEnabled="False" 
+                        Text="Open in new window" />
+                </MenuFlyout>
+            </FlyoutBase.ContextFlyout>
         </skia:SKLottieView>
         <Label
             FontAttributes="Bold"
