@@ -15,6 +15,9 @@ public partial class ControlGroupInfo : BaseModel
     [ObservableProperty]
     string lottieUrl;
 
+    [ObservableProperty]
+    string microsoftStoreLink;
+
     public const string BuiltInControls = nameof(BuiltInControls);
     public const string SyncfusionControls = nameof(SyncfusionControls);
 }

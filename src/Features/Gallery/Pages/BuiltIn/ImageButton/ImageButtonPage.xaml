@@ -148,7 +148,7 @@
                             CornerRadius="{x:Binding Source={x:Reference RoundedCornerSlider},
                                                      Path=Value}"
                             HorizontalOptions="Center"
-                            Source="{x:Binding ImageSource}"
+                            Source="{x:Binding ImageSourceSample}"
                             VerticalOptions="Center" />
                         <Button Command="{x:Binding OpenFileCommand}" Text="Upload image" />
                         <Label Text="Adjust the corner radius" />
@@ -165,26 +165,18 @@
                 </Frame>
                 <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                     <VerticalStackLayout Spacing="10">
-                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Visual states" />
-                        <ImageButton
-                            HeightRequest="100"
-                            Source="windowslogo.png"
-                            WidthRequest="100">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal">
-                                        <VisualState.Setters>
-                                            <Setter Property="Scale" Value="1" />
-                                        </VisualState.Setters>
-                                    </VisualState>
-                                    <VisualState x:Name="Pressed">
-                                        <VisualState.Setters>
-                                            <Setter Property="Scale" Value="0.8" />
-                                        </VisualState.Setters>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                        </ImageButton>
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="⚠️ Warning Zone" />
+                            <Image
+                                HeightRequest="25"
+                                Source="windowslogo.png"
+                                WidthRequest="25" />
+                            <Image
+                                HeightRequest="25"
+                                Source="androidlogo.png"
+                                WidthRequest="25" />
+                        </HorizontalStackLayout>
+                        <Label Text="Visual states currently cause app to break when release mode." />
                     </VerticalStackLayout>
                 </Frame>
             </VerticalStackLayout>
