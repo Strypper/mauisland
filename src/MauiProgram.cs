@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Storage;
+using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;
 using Refit;
 using SkiaSharp.Views.Maui.Controls.Hosting;
