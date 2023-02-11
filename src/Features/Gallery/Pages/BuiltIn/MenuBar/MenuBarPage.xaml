@@ -60,53 +60,55 @@
 
     </app:BasePage.Resources>
 
-    <VerticalStackLayout Spacing="20">
-        <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-            <Label Text="{x:StaticResource ControlInfo}" />
-        </Frame>
-        <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-            <CollectionView
-                Footer="{x:StaticResource PropertiesListFooter}"
-                Header="{x:StaticResource PropertiesListHeader}"
-                ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                Style="{x:StaticResource PropertiesListStyle}" />
-        </Frame>
-        <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-            <VerticalStackLayout Spacing="10">
-                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="You can stick menu bar everywhere" />
-                <Label Text="Button:" />
-                <Button
-                    HorizontalOptions="Start"
-                    Text="&#x25B6;&#xFE0F; Play"
-                    WidthRequest="80">
-                    <FlyoutBase.ContextFlyout>
-                        <MenuFlyout>
-                            <MenuFlyoutItem Text="Pause">
-                                <MenuFlyoutItem.IconImageSource>
-                                    <FontImageSource FontFamily="Arial" Glyph="&#x23F8;" />
-                                </MenuFlyoutItem.IconImageSource>
-                            </MenuFlyoutItem>
-                            <MenuFlyoutItem Text="Stop">
-                                <MenuFlyoutItem.IconImageSource>
-                                    <FontImageSource FontFamily="Arial" Glyph="&#x23F9;" />
-                                </MenuFlyoutItem.IconImageSource>
-                            </MenuFlyoutItem>
-                        </MenuFlyout>
-                    </FlyoutBase.ContextFlyout>
-                </Button>
-                <Label Text="Image:" />
-                <Image
-                    HeightRequest="100"
-                    HorizontalOptions="Start"
-                    Source="dotnet_bot.png"
-                    WidthRequest="100">
-                    <FlyoutBase.ContextFlyout>
-                        <MenuFlyout>
-                            <MenuFlyoutItem IconImageSource="{x:StaticResource DownloadIcon}" Text="Save Image" />
-                        </MenuFlyout>
-                    </FlyoutBase.ContextFlyout>
-                </Image>
-            </VerticalStackLayout>
-        </Frame>
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:StaticResource ControlInfo}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CollectionView
+                    Footer="{x:StaticResource PropertiesListFooter}"
+                    Header="{x:StaticResource PropertiesListHeader}"
+                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                    Style="{x:StaticResource PropertiesListStyle}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="You can stick menu bar everywhere" />
+                    <Label Text="Button:" />
+                    <Button
+                        HorizontalOptions="Start"
+                        Text="&#x25B6;&#xFE0F; Play"
+                        WidthRequest="80">
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="Pause">
+                                    <MenuFlyoutItem.IconImageSource>
+                                        <FontImageSource FontFamily="Arial" Glyph="&#x23F8;" />
+                                    </MenuFlyoutItem.IconImageSource>
+                                </MenuFlyoutItem>
+                                <MenuFlyoutItem Text="Stop">
+                                    <MenuFlyoutItem.IconImageSource>
+                                        <FontImageSource FontFamily="Arial" Glyph="&#x23F9;" />
+                                    </MenuFlyoutItem.IconImageSource>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+                    </Button>
+                    <Label Text="Image:" />
+                    <Image
+                        HeightRequest="100"
+                        HorizontalOptions="Start"
+                        Source="dotnet_bot.png"
+                        WidthRequest="100">
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem IconImageSource="{x:StaticResource DownloadIcon}" Text="Save Image" />
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+                    </Image>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
 </app:BasePage>

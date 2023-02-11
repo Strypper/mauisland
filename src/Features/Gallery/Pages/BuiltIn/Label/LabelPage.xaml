@@ -220,7 +220,17 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <app:SourceCodeExpander XamlCode="{x:Binding LabelXamlCodeExample}" />
+                    <app:SourceCodeExpander Code="{x:Binding LabelXamlCodeExample}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Code style label" />
+                    <Label FormattedText="{x:Binding FormatedStringByCsharpCode}" />
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Test your code format" />
+                    <Editor />
+                    <Label />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

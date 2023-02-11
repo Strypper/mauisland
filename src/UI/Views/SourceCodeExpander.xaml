@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:Name="root"
-    x:DataType="app:SourceCodeExpander">
+    x:DataType="app:SourceCodeExpander"
+    Loaded="root_Loaded">
 
     <ContentView.Resources>
         <FontImageSource
@@ -21,8 +22,8 @@
             <toolkit:Expander.Header>
                 <Grid>
                     <Label
+                        x:Name="CodeTypeLabel"
                         FontAttributes="Bold"
-                        Text="XAML Code"
                         TextColor="#ce8557"
                         VerticalOptions="Center" />
                     <ImageButton
@@ -36,7 +37,8 @@
                         WidthRequest="25" />
                 </Grid>
             </toolkit:Expander.Header>
-            <Editor IsReadOnly="True" Text="{x:Binding XamlCode, Source={x:Reference root}}" />
+            <!--<Editor IsReadOnly="True" Text="{x:Binding XamlCode, Source={x:Reference root}}" />-->
+            <Label FormattedText="{x:Binding OutputFormattedString, Source={x:Reference root}}" />
         </toolkit:Expander>
     </Frame>
 </ContentView>

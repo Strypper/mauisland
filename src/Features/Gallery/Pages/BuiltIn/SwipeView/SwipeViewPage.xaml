@@ -153,7 +153,7 @@
                         </Grid>
                     </SwipeView>
                     <Label FontSize="Micro" Text="Once a swipe item has been executed the swipe items are hidden and the SwipeView content is re-displayed. However, this behavior can be changed. For more information, see Swipe behavior." />
-                    <app:SourceCodeExpander XamlCode="{x:Binding StandardSwipeViewXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding StandardSwipeViewXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -184,7 +184,7 @@
                                 VerticalOptions="Center" />
                         </Grid>
                     </SwipeView>
-                    <app:SourceCodeExpander XamlCode="{x:Binding SwipeItemsXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding SwipeItemsXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -226,7 +226,7 @@
                                 VerticalOptions="Center" />
                         </Grid>
                     </SwipeView>
-                    <app:SourceCodeExpander XamlCode="{x:Binding SwipeDirectionXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding SwipeDirectionXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -253,7 +253,7 @@
                                 VerticalOptions="Center" />
                         </Grid>
                     </SwipeView>
-                    <app:SourceCodeExpander XamlCode="{x:Binding SwipeThresholdXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding SwipeThresholdXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -281,7 +281,7 @@
                                 VerticalOptions="Center" />
                         </Grid>
                     </SwipeView>
-                    <app:SourceCodeExpander XamlCode="{x:Binding SwipeModeXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding SwipeModeXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -312,7 +312,7 @@
                                 VerticalOptions="Center" />
                         </Grid>
                     </SwipeView>
-                    <app:SourceCodeExpander XamlCode="{x:Binding SwipeBehaviorXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding SwipeBehaviorXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

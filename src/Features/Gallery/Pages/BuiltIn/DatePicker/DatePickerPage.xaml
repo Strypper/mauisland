@@ -102,7 +102,7 @@
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="A simple date picker" />
                     <Label Text="The default format with be month/day/year" />
                     <DatePicker />
-                    <app:SourceCodeExpander XamlCode="{x:Binding SimpleDatePickerXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding SimpleDatePickerXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
@@ -137,9 +137,9 @@
                     <DatePicker x:Name="DateOnlyDatePicker" />
                     <Label Text="{x:Binding Source={x:Reference DateOnlyDatePicker}, Path=Date, Converter={x:StaticResource FulldateToDateOnlyConverter}}" />
                     <Label FontAttributes="Bold" Text="UI" />
-                    <app:SourceCodeExpander XamlCode="{x:Binding DatePickerUseDateOnlyConverterXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding DatePickerUseDateOnlyConverterXamlCode}" />
                     <Label FontAttributes="Bold" Text="Converter" />
-                    <app:SourceCodeExpander XamlCode="{x:Binding FulldateToDateOnlyConverterCsharpCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding FulldateToDateOnlyConverterCsharpCode}" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

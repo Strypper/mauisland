@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
 
+                <ResourceDictionary Source="Features/Chat/Styles/ChatStyles.xaml" />
                 <ResourceDictionary Source="Features/Gallery/Styles/GalleryStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

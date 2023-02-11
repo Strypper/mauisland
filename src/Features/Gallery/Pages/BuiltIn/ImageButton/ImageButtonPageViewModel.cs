@@ -1,6 +1,4 @@
-﻿using CommunityToolkit.Maui.Storage;
-
-namespace MAUIsland;
+﻿namespace MAUIsland;
 
 public partial class ImageButtonPageViewModel : NavigationAwareBaseViewModel
 {
@@ -18,17 +16,16 @@ public partial class ImageButtonPageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [Properties]
+
+
     [ObservableProperty]
     IControlInfo controlInformation;
 
     [ObservableProperty]
-    ImageSource imageSource;
 
-    [ObservableProperty]
-    bool isEnable;
+    ImageSource imageSourceSample;
 
-    [ObservableProperty]
-    string standardButtonXamlCode;
+
     #endregion
 
     #region [Overrides]
@@ -53,7 +50,7 @@ public partial class ImageButtonPageViewModel : NavigationAwareBaseViewModel
 
         var imagefile = await filePicker.UploadImageFile(pickedImage);
 
-        ImageSource = ImageSource.FromStream(() =>
+        ImageSourceSample = ImageSource.FromStream(() =>
             filePicker.ByteArrayToStream(filePicker.StringToByteBase64(imagefile?.byteBase64))
         );
     }

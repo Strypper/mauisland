@@ -18,10 +18,9 @@
             IconImageSource="microsoft.png"
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to Time Picker Page!"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}" />
+        </VerticalStackLayout>
+    </ScrollView>
 </app:BasePage>

@@ -3,9 +3,11 @@ namespace MAUIsland;
 public partial class TimePickerPage : IControlPage
 {
     #region [CTor]
-    public TimePickerPage()
+    public TimePickerPage(TimePickerPageViewModel vm)
     {
         InitializeComponent();
+
+        BindingContext = vm;
     }
     #endregion
 

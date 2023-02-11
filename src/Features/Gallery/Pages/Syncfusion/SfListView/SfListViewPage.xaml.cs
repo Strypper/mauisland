@@ -1,8 +1,10 @@
 namespace MAUIsland;
 public partial class SfListViewPage : IControlPage
 {
-    public SfListViewPage()
+    public SfListViewPage(SfListViewPageViewModel vm)
     {
         InitializeComponent();
+
+        BindingContext = vm;
     }
 }

@@ -16,6 +16,8 @@ public partial class ChatPage
 
     #endregion
 
+
+    #region [Events]
     private void Button_Clicked(object sender, EventArgs e)
     {
         var route = AppRoutes.ChatPage;
@@ -29,5 +31,24 @@ public partial class ChatPage
         Window secondWindow = new(page);
         Application.Current.OpenWindow(secondWindow);
     }
+    private void BasePage_SizeChanged(object sender, EventArgs e)
+    {
+        if (Window.Width < 500)
+        {
+            _vm.CurrentState = "Phone";
+            return;
+        }
+        else if (Window.Width < 900)
+        {
+            _vm.CurrentState = "Tablet";
+            return;
+        }
+        else if (Window.Width < 2000)
+        {
+            _vm.CurrentState = "Desktop";
+            return;
+        }
+    }
+    #endregion
 
 }

@@ -41,13 +41,19 @@
         Icon="{x:StaticResource CodeIcon}"
         Route="galleryPage" />
     <Shell.FlyoutHeader>
-        <Grid>
+        <VerticalStackLayout Padding="0,32,0,24">
             <Label
-                Padding="0,32,0,24"
                 FontAttributes="Bold"
                 FontSize="32"
                 HorizontalTextAlignment="Center"
                 Text="MAUI Island" />
-        </Grid>
+            <Label x:Name="AppVersionLabel" HorizontalOptions="Center" />
+        </VerticalStackLayout>
     </Shell.FlyoutHeader>
+    <Shell.FlyoutBackdrop>
+        <LinearGradientBrush EndPoint="1,0">
+            <GradientStop Offset="0.0" Color="#7014e8" />
+            <GradientStop Offset="1.0" Color="#2b0b98" />
+        </LinearGradientBrush>
+    </Shell.FlyoutBackdrop>
 </Shell>

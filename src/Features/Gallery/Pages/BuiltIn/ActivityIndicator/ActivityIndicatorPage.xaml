@@ -84,7 +84,7 @@
 
                         <ActivityIndicator IsRunning="true" Color="Aqua" />
                     </HorizontalStackLayout>
-                    <app:SourceCodeExpander XamlCode="{x:Binding GroupOfActivityIndicators}" />
+                    <app:SourceCodeExpander Code="{x:Binding GroupOfActivityIndicators}" />
                 </VerticalStackLayout>
 
             </Frame>
@@ -108,7 +108,7 @@
                         Color="{x:Binding Source={x:Reference ActivityIndicatorColorPicker},
                                           Path=SelectedItem,
                                           Converter={x:StaticResource StringToColorConverter}}" />
-                    <app:SourceCodeExpander XamlCode="{x:Binding BindingActivityIndicators}" />
+                    <app:SourceCodeExpander Code="{x:Binding BindingActivityIndicators}" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

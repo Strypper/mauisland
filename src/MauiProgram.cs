@@ -3,6 +3,8 @@ using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Storage;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;
+using Refit;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 using Syncfusion.Maui.Core.Hosting;
 using System.Reflection;
 
@@ -18,6 +20,7 @@ public static class MauiProgram
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitCore()
+            .UseSkiaSharp()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -31,7 +34,8 @@ public static class MauiProgram
             .RegisterServices()
             .RegisterPages()
             .RegisterControlInfos()
-            .RegisterPopups();
+            .RegisterPopups()
+            .RegisterRefitApi();
 
 
         builder.ConfigureSyncfusionCore();
@@ -52,7 +56,14 @@ public static class MauiProgram
 
     static MauiAppBuilder RegisterPopups(this MauiAppBuilder builder)
     {
+        builder.Services.AddPopup<AuthenticatePopup, AuthenticatePopupViewModel>(AppRoutes.SignUp);
+        return builder;
+    }
 
+    static MauiAppBuilder RegisterRefitApi(this MauiAppBuilder builder)
+    {
+        builder.Services.AddRefitClient<ITotechsIdentityAuthentication>()
+                        .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://totechsidentityprovider.azurewebsites.net/api"));
         return builder;
     }
 
@@ -74,11 +85,15 @@ public static class MauiProgram
 
     static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {
-        builder.Services.AddSingleton<IAppNavigator, AppNavigator>();
-        builder.Services.AddSingleton<IHomeService, HomeService>();
-        builder.Services.AddSingleton<IControlsService, ControlsService>();
         builder.Services.AddSingleton<IFilePicker, FilePicker>();
+        builder.Services.AddSingleton<IHomeService, HomeService>();
+        builder.Services.AddSingleton<IAppNavigator, AppNavigator>();
+        builder.Services.AddSingleton<IUserServices, BogusUserServices>();
+        builder.Services.AddSingleton<IControlsService, ControlsService>();
+        builder.Services.AddSingleton<ISecureStorageService, SecureStorageService>();
+        builder.Services.AddSingleton<IAuthenticationServices, BogusAuthenticationService>();
 
+        builder.Services.AddSingleton<IAppInfo>(AppInfo.Current);
         builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
         return builder;
     }

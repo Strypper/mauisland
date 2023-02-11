@@ -3,7 +3,7 @@ namespace MAUIsland;
 public partial class TableViewPage : IControlPage
 {
     #region [CTor]
-    public TableViewPage(ActivityIndicatorPageViewModel vm)
+    public TableViewPage(TableViewPageViewModel vm)
     {
         InitializeComponent();
 
