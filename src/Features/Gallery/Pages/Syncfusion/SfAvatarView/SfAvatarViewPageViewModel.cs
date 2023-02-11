@@ -17,9 +17,9 @@ public partial class SfAvatarViewPageViewModel : NavigationAwareBaseViewModel
     #region [Overrides]
     protected override void OnInit(IDictionary<string, object> query)
     {
-        base.OnInit(query);
+        //base.OnInit(query);
 
-        ControlInformation = query.GetData<IControlInfo>();
+        //ControlInformation = query.GetData<IControlInfo>();
 
     }
     #endregion
