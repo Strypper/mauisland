@@ -13,6 +13,10 @@ public partial class EntryPageViewModel : NavigationAwareBaseViewModel
     #region [Properties]
     [ObservableProperty]
     IControlInfo controlInformation;
+
+    [ObservableProperty]
+    string standardEntryXamlCode = "<Entry x:Name=\"Entry\"\r\n                               Placeholder=\"Enter text here\"\r\n                               PlaceholderColor=\"LightSlateGray\"\r\n                               HorizontalTextAlignment=\"Start\"\r\n                               VerticalTextAlignment=\"Center\"/> ";
+
     #endregion
 
     #region [Overrides]
