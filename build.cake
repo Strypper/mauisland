@@ -49,9 +49,23 @@ class {name}ControlInfo : IControlInfo
     xmlns=""http://schemas.microsoft.com/dotnet/2021/maui""
     xmlns:x=""http://schemas.microsoft.com/winfx/2009/xaml""
     xmlns:app=""clr-namespace:MAUIsland""
+    Padding=""10""
     x:Class=""MAUIsland.{name}Page""
     x:DataType=""app:{name}PageViewModel""
     Title=""{name}"">
+
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command=""{{x:Binding OpenUrlCommand}}""
+            CommandParameter=""{{x:Binding ControlInformation.GitHubUrl}}""
+            IconImageSource=""github.png""
+            Text=""Source code"" />
+        <ToolbarItem
+            Command=""{{x:Binding OpenUrlCommand}}""
+            CommandParameter=""{{x:Binding ControlInformation.DocumentUrl}}""
+            IconImageSource=""microsoft.png""
+            Text=""Original Document"" />
+    </app:BasePage.ToolbarItems>
     
     <app:BasePage.Resources>
 

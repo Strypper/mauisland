@@ -29,6 +29,12 @@ public partial class AuthenticatePopupViewModel : BaseViewModel
 
     [ObservableProperty]
     string phoneNumber = "0348164682";
+
+    [ObservableProperty]
+    string email = "ocgrb.strypperjason115@gmail.com";
+
+    [ObservableProperty]
+    string avatarUrl;
     #endregion
 
     #region [Relay Commands]
@@ -41,12 +47,34 @@ public partial class AuthenticatePopupViewModel : BaseViewModel
     {
         try
         {
-            var accessToken = await this.authenticationServices.SignInWithPhoneNumber(PhoneNumber, Password);
+            var authenticationToken = await this.authenticationServices.AuthenticateWithPhoneNumber(PhoneNumber, Password);
+            Guard.IsNotNullOrWhiteSpace(authenticationToken);
 
-            Guard.IsNotNullOrWhiteSpace(accessToken);
-            var userInfo = await this.userServices.GetUserByAccessToken(accessToken);
-
+            var userInfo = await this.userServices.GetUserInfo(authenticationToken);
             Guard.IsNotNull(userInfo);
+
+            await this.userServices.SaveUserToLocalAsync(userInfo);
+            WeakReferenceMessenger.Default.Send(new LoginMessage(userInfo));
+            await AppNavigator.GoBackAsync();
+        }
+        catch (Exception ex)
+        {
+            await AppNavigator.ShowSnackbarAsync(ex.Message);
+            throw;
+        }
+    }
+
+    [RelayCommand]
+    async Task SignUpAsync()
+    {
+        try
+        {
+            var authenticationAccessToken = await this.authenticationServices.CreatePrincipleUserInfo(PhoneNumber, UserName, Email, Password, "", "", "");
+            Guard.IsNotNullOrWhiteSpace(authenticationAccessToken);
+
+            var userInfo = await this.userServices.GetUserInfo(authenticationAccessToken);
+            Guard.IsNotNull(userInfo);
+
             await this.userServices.SaveUserToLocalAsync(userInfo);
             WeakReferenceMessenger.Default.Send(new LoginMessage(userInfo));
             await AppNavigator.GoBackAsync();
