@@ -11,4 +11,8 @@ public partial class EntryPage : IControlPage
     }
     #endregion
 
+    private void Entry_Completed(object sender, EventArgs e)
+    {
+
+    }
 }
