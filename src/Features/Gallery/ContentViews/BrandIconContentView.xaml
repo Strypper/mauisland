@@ -32,7 +32,7 @@
             Source="{x:Binding ComponentData.IconUrl,
                                Source={x:Reference root}}"
             WidthRequest="100">
-            <FlyoutBase.ContextFlyout>
+            <!--<FlyoutBase.ContextFlyout>
                 <MenuFlyout>
                     <MenuFlyoutItem
                         Clicked="DetailInNewWindow_Clicked"
@@ -40,7 +40,7 @@
                         IsEnabled="False"
                         Text="Open in new window" />
                 </MenuFlyout>
-            </FlyoutBase.ContextFlyout>
+            </FlyoutBase.ContextFlyout>-->
         </ImageButton>
         <!--
             Source="{x:Binding ComponentData.LottieUrl,
@@ -61,15 +61,15 @@
             <skia:SKLottieView.GestureRecognizers>
                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
             </skia:SKLottieView.GestureRecognizers>
-            <FlyoutBase.ContextFlyout>
+            <!--<FlyoutBase.ContextFlyout>
                 <MenuFlyout>
                     <MenuFlyoutItem
                         Clicked="DetailInNewWindow_Clicked"
                         IconImageSource="{x:StaticResource OpenNewWindowIcon}"
-                        IsEnabled="False" 
+                        IsEnabled="False"
                         Text="Open in new window" />
                 </MenuFlyout>
-            </FlyoutBase.ContextFlyout>
+            </FlyoutBase.ContextFlyout>-->
         </skia:SKLottieView>
         <Label
             FontAttributes="Bold"

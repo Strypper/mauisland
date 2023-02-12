@@ -26,7 +26,7 @@ public class BogusUserServices : IUserServices
         });
     }
 
-    public Task<UserModel> GetUserByguid(string guid)
+    public Task<UserModel> GetUserByguid(string guid, string authenticationToken)
     {
         return Task.Run(() =>
         {
@@ -38,7 +38,7 @@ public class BogusUserServices : IUserServices
         });
     }
 
-    public Task<UserModel> GetUserByAccessToken(string accesToken)
+    public Task<UserModel> GetUserInfo(string authenticationToken)
     {
         return Task.Run(() =>
         {

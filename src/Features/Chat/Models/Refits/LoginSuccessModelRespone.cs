@@ -3,5 +3,5 @@
 public class LoginSuccessModelRespone
 {
     public string AccessToken { get; set; }
-    public TotechsUserModel UserInfo { get; set; }
+    public PrincipalUserModel UserInfo { get; set; }
 }

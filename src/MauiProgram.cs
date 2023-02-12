@@ -62,7 +62,7 @@ public static class MauiProgram
 
     static MauiAppBuilder RegisterRefitApi(this MauiAppBuilder builder)
     {
-        builder.Services.AddRefitClient<ITotechsIdentityAuthentication>()
+        builder.Services.AddRefitClient<ITotechsIdentityAuthenticationRefit>()
                         .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://totechsidentityprovider.azurewebsites.net/api"));
         return builder;
     }
