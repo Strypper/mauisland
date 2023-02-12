@@ -293,7 +293,7 @@
                         VerticalOptions="End" />
 
                     <!--  This cause app to break when in release mode - Investigation: ControlTemplate="{StaticResource RadioButtonTemplate}" cause the app to break  -->
-                    <!--<HorizontalStackLayout HeightRequest="100" Spacing="14">
+                    <HorizontalStackLayout HeightRequest="100" Spacing="14">
                         <HorizontalStackLayout.Resources>
                             <FontImageSource
                                 x:Key="Happy"
@@ -356,7 +356,7 @@
                                 </HorizontalStackLayout>
                             </RadioButton.Content>
                         </RadioButton>
-                    </HorizontalStackLayout>-->
+                    </HorizontalStackLayout>
 
                     <app:SourceCodeExpander Code="{x:Binding CustomRadioButtonXamlCode}" />
                 </VerticalStackLayout>

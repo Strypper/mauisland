@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Storage;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Maui.Handlers;
 using Refit;
 using SkiaSharp.Views.Maui.Controls.Hosting;
@@ -118,6 +118,19 @@ public static class MauiProgram
             }
         }
 
+        return builder;
+    }
+
+    static MauiAppBuilder GetAppSettings(this MauiAppBuilder builder)
+    {
+        var a = Assembly.GetExecutingAssembly();
+        using var stream = a.GetManifestResourceStream("appsettings.Development.json");
+
+        var config = new ConfigurationBuilder()
+                    .AddJsonStream(stream)
+                    .Build();
+
+        builder.Configuration.AddConfiguration(config);
         return builder;
     }
 

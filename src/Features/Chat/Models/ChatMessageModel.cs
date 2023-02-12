@@ -1,6 +1,6 @@
 ﻿namespace MAUIsland;
 
-public partial class ChatMessage : BaseModel
+public partial class ChatMessageModel : BaseModel
 {
     [ObservableProperty]
     string chatMessageContent;

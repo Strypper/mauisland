@@ -6,6 +6,7 @@
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:charts="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
     xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+    xmlns:sfavatar="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
     Title="SfCartesianChart"
     Padding="10"
@@ -53,6 +54,8 @@
             <Label FontAttributes="Bold" Text="{x:StaticResource PropertiesListHeader}" />
         </DataTemplate>
 
+        <charts:DataPointSelectionBehavior x:Key="SfCartesianChartSelectionBrush" SelectionBrush="#314A6E" />
+
     </app:BasePage.Resources>
 
     <ScrollView>
@@ -72,7 +75,7 @@
                         <charts:SfCartesianChart.XAxes>
                             <charts:CategoryAxis>
                                 <charts:CategoryAxis.Title>
-                                    <charts:ChartAxisTitle Text="Name" />
+                                    <charts:ChartAxisTitle Text="Name" TextColor="White" />
                                 </charts:CategoryAxis.Title>
                             </charts:CategoryAxis>
                         </charts:SfCartesianChart.XAxes>
@@ -89,6 +92,7 @@
                             ItemsSource="{x:Binding Persons}"
                             PaletteBrushes="{x:Binding PalletBrushes,
                                                        Mode=OneWay}"
+                            SelectionBehavior="{x:StaticResource SfCartesianChartSelectionBrush}"
                             XBindingPath="Name"
                             YBindingPath="Exp" />
                     </charts:SfCartesianChart>
