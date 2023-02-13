@@ -14,7 +14,7 @@
             ItemSpacing="10"
             Orientation="Vertical" />
 
-        <DataTemplate x:Key="ChatCollectionViewItemTemplate" x:DataType="app:ChatMessage">
+        <DataTemplate x:Key="ChatCollectionViewItemTemplate" x:DataType="app:ChatMessageModel">
             <app:ChatBubbleContentView ComponentData="{x:Binding}" />
         </DataTemplate>
 

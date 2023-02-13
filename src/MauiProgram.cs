@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Storage;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;
 using Refit;
 using SkiaSharp.Views.Maui.Controls.Hosting;
@@ -35,7 +37,8 @@ public static class MauiProgram
             .RegisterPages()
             .RegisterControlInfos()
             .RegisterPopups()
-            .RegisterRefitApi();
+            .RegisterRefitApi()
+            .GetAppSettings();
 
 
         builder.ConfigureSyncfusionCore();
@@ -123,14 +126,33 @@ public static class MauiProgram
 
     static MauiAppBuilder GetAppSettings(this MauiAppBuilder builder)
     {
-        var a = Assembly.GetExecutingAssembly();
-        using var stream = a.GetManifestResourceStream("appsettings.Development.json");
+        var assembly = Assembly.GetExecutingAssembly();
+        using var stream = assembly.GetManifestResourceStream("MAUIsland.appsettings.Development.json");
 
-        var config = new ConfigurationBuilder()
-                    .AddJsonStream(stream)
-                    .Build();
+        if (stream is not null)
+        {
+            var config = new ConfigurationBuilder()
+                        .AddJsonStream(stream)
+                        .Build();
 
-        builder.Configuration.AddConfiguration(config);
+            builder.Configuration.AddConfiguration(config);
+        }
+        else
+        {
+            var options = new SnackbarOptions
+            {
+                BackgroundColor = AppColors.Purple,
+                TextColor = AppColors.White,
+                ActionButtonTextColor = AppColors.Pink,
+                CornerRadius = new CornerRadius(Dimensions.ButtonCornerRadius),
+                CharacterSpacing = 0.5
+            };
+            var message = "Can't find app settings file";
+
+            var snackbar = Snackbar.Make(message, null, "OK", TimeSpan.FromSeconds(5), options);
+            snackbar.Show();
+        }
+
         return builder;
     }
 

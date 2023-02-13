@@ -28,7 +28,7 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
     UserModel currentUser;
 
     [ObservableProperty]
-    ObservableCollection<ChatMessage> messages;
+    ObservableCollection<ChatMessageModel> messages;
 
     #endregion
 
@@ -39,7 +39,7 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
         if (!string.IsNullOrEmpty(TypingMessage) &&
            !string.IsNullOrWhiteSpace(TypingMessage))
         {
-            Messages.Add(new ChatMessage()
+            Messages.Add(new ChatMessageModel()
             {
                 AuthorName = CurrentUser.UserName,
                 AuthorImage = CurrentUser.AvatarUrl,
@@ -65,7 +65,7 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
             {
                 CurrentUser = m.Value;
                 AppNavigator.ShowSnackbarAsync("Welcome " + m.Value.UserName);
-                Messages.Add(new ChatMessage()
+                Messages.Add(new ChatMessageModel()
                 {
                     AuthorName = "MAUIsland",
                     AuthorImage = "dotnet_bot.png",
@@ -94,7 +94,7 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
 
         if (Messages == null)
         {
-            Messages = new ObservableCollection<ChatMessage>();
+            Messages = new ObservableCollection<ChatMessageModel>();
             return;
         }
 

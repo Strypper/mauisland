@@ -5,8 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     Title="Entry"
-    x:DataType="app:EntryPageViewModel"
-    Padding="10">
+    Padding="10"
+    x:DataType="app:EntryPageViewModel">
     <app:BasePage.Resources>
         <x:String x:Key="ControlInfo">
             The .NET Multi-platform App UI (.NET MAUI) Button displays text and responds to a tap or click that directs the app to carry out a task. A Button usually displays a short text string indicating a command, but it can also display a bitmap image, or a combination of text and an image. When the Button is pressed with a finger or clicked with a mouse it initiates that command.
@@ -146,13 +146,14 @@
                 <VerticalStackLayout>
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create Entry With Place Holder" />
                     <Grid>
-                        <Entry x:Name="Entry"
-                               Placeholder="Enter text here"
-                               PlaceholderColor="LightSlateGray"
-                               HorizontalTextAlignment="Start"
-                               VerticalTextAlignment="Center"/>
+                        <Entry
+                            x:Name="Entry"
+                            HorizontalTextAlignment="Start"
+                            Placeholder="Enter text here"
+                            PlaceholderColor="LightSlateGray"
+                            VerticalTextAlignment="Center" />
                     </Grid>
-                    <app:SourceCodeExpander Code="{x:Binding standardEntryXamlCode}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding StandardEntryXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
