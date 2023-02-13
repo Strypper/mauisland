@@ -4,10 +4,14 @@ namespace MAUIsland;
 
 public partial class ChatPageViewModel : NavigationAwareBaseViewModel
 {
-    #region[ Ctor ]
-    public ChatPageViewModel(IAppNavigator appNavigator) : base(appNavigator)
-    {
+    #region [Fields]
+    IChatHubService chatHubService;
+    #endregion
 
+    #region[ Ctor ]
+    public ChatPageViewModel(IAppNavigator appNavigator, IChatHubService chatHubService) : base(appNavigator)
+    {
+        this.chatHubService = chatHubService;
     }
     #endregion
 
@@ -34,21 +38,18 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
 
     #region [Relay Commands]
     [RelayCommand]
-    void AddNewMessage()
+    async Task SendMessageAsync()
     {
         if (!string.IsNullOrEmpty(TypingMessage) &&
            !string.IsNullOrWhiteSpace(TypingMessage))
         {
-            Messages.Add(new ChatMessageModel()
-            {
-                AuthorName = CurrentUser.UserName,
-                AuthorImage = CurrentUser.AvatarUrl,
-                ChatMessageContent = TypingMessage,
-                SentTime = DateTime.Now,
-            });
-
+            await this.chatHubService.SendMessageTest(TypingMessage,
+                                                      CurrentUser.UserName,
+                                                      CurrentUser.AvatarUrl,
+                                                      DateTime.Now);
             TypingMessage = string.Empty;
         }
+
     }
 
     [RelayCommand]
@@ -59,6 +60,7 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
 
     protected override void OnInit(IDictionary<string, object> query)
     {
+        //Subscribe to Login Message
         WeakReferenceMessenger.Default.Register<LoginMessage>(this, (r, m) =>
         {
             MainThread.BeginInvokeOnMainThread(() =>
@@ -74,6 +76,10 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
                 });
             });
         });
+
+
+        ConnectToChatHubAsync()
+            .FireAndForget();
 
         LoadDataAsync(true)
             .FireAndForget();
@@ -102,6 +108,18 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
         {
             Messages.Clear();
         }
+    }
+
+    private async Task ConnectToChatHubAsync()
+    {
+        this.chatHubService.RegisterChannel();
+        await this.chatHubService.ConnectAsync();
+        this.chatHubService.ChatMessageReceived += ChatHubService_ChatMessageReceived;
+    }
+
+    private void ChatHubService_ChatMessageReceived(ChatMessageModel message)
+    {
+        Messages.Add(message);
     }
 
     partial void OnCurrentUserChanging(UserModel? currentUser)

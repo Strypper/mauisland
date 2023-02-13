@@ -2,6 +2,7 @@
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Storage;
+using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;
@@ -38,6 +39,7 @@ public static class MauiProgram
             .RegisterControlInfos()
             .RegisterPopups()
             .RegisterRefitApi()
+            .RegisterHubConnection(true)
             .GetAppSettings();
 
 
@@ -93,6 +95,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<IAppNavigator, AppNavigator>();
         builder.Services.AddSingleton<IUserServices, BogusUserServices>();
         builder.Services.AddSingleton<IControlsService, ControlsService>();
+        builder.Services.AddSingleton<IChatHubService, SignalRChatHubService>();
         builder.Services.AddSingleton<ISecureStorageService, SecureStorageService>();
         builder.Services.AddSingleton<IAuthenticationServices, BogusAuthenticationService>();
 
@@ -119,6 +122,42 @@ public static class MauiProgram
             {
                 Routing.RegisterRoute(pageType.FullName, pageType);
             }
+        }
+
+        return builder;
+    }
+
+    static MauiAppBuilder RegisterHubConnection(this MauiAppBuilder builder, bool isLocal)
+    {
+        try
+        {
+            if (isLocal)
+            {
+                builder.Services.AddSingleton((_) => new HubConnectionBuilder()
+                .WithAutomaticReconnect()
+                .WithUrl(ChatConstants.BaseUrl, options =>
+                {
+                    options.HttpMessageHandlerFactory = (handler) =>
+                    {
+                        if (handler is HttpClientHandler clientHandler)
+                        {
+                            clientHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+                        }
+                        return handler;
+                    };
+                }).Build());
+            }
+            else
+            {
+                builder.Services.AddSingleton((_) => new HubConnectionBuilder()
+                            .WithAutomaticReconnect()
+                            .WithUrl(ChatConstants.BaseUrl).Build());
+            }
+        }
+        catch (Exception ex)
+        {
+
+            throw;
         }
 
         return builder;

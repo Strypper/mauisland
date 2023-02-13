@@ -35,7 +35,7 @@
                                  Mode=TwoWay}" />
             <Button
                 Grid.Column="1"
-                Command="{x:Binding AddNewMessageCommand}"
+                Command="{x:Binding SendMessageCommand}"
                 CornerRadius="2"
                 ImageSource="{x:StaticResource SendIcon}"
                 IsEnabled="{x:Binding CanChatState,
