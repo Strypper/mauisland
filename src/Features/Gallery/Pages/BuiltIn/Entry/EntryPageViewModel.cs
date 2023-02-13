@@ -15,6 +15,9 @@ public partial class EntryPageViewModel : NavigationAwareBaseViewModel
     IControlInfo controlInformation;
 
     [ObservableProperty]
+    ObservableCollection<ChatMessageModel> messages;
+
+    [ObservableProperty]
     string standardEntryXamlCode = "<Entry x:Name=\"Entry\"\r\n                               Placeholder=\"Enter text here\"\r\n                               PlaceholderColor=\"LightSlateGray\"\r\n                               HorizontalTextAlignment=\"Start\"\r\n                               VerticalTextAlignment=\"Center\"/> ";
 
     #endregion
@@ -26,6 +29,7 @@ public partial class EntryPageViewModel : NavigationAwareBaseViewModel
 
         ControlInformation = query.GetData<IControlInfo>();
 
+        Messages = new();
     }
     #endregion
 
@@ -33,5 +37,19 @@ public partial class EntryPageViewModel : NavigationAwareBaseViewModel
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    Task SendMessage(string message)
+    {
+        Messages.Add(new ChatMessageModel()
+        {
+            AuthorName = "MAUIsland",
+            AuthorImage = "dotnet_bot.png",
+            ChatMessageContent = message,
+            SentTime = DateTime.Now
+        });
+
+        return Task.CompletedTask;
+    }
     #endregion
 }

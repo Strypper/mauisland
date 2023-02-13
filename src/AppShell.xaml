@@ -30,11 +30,11 @@
         ContentTemplate="{DataTemplate app:HomePage}"
         Icon="{x:StaticResource HomeIcon}"
         Route="homePage" />
-    <ShellContent
+    <!--<ShellContent
         Title="Chat"
         ContentTemplate="{DataTemplate app:ChatPage}"
         Icon="{x:StaticResource ChatIcon}"
-        Route="chatPage" />
+        Route="chatPage" />-->
     <ShellContent
         Title="Gallery"
         ContentTemplate="{DataTemplate app:GalleryPage}"

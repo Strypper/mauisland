@@ -61,6 +61,7 @@
             CornerRadius="4"
             HasShadow="True"
             HorizontalOptions="Center"
+            Style="{x:StaticResource DocumentContentFrameStyle}"
             VerticalOptions="Center">
             <app:HorizontalWrapLayout
                 BindableLayout.ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
