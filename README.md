@@ -6,7 +6,7 @@ MAUIsland is a collection of native controls, helper functions, custom controls,
 
 # ⁉ Support
 
-If you need help with something or have an idea, feel free to start a [Discussion](https://github.com/CommunityToolkit/WindowsCommunityToolkit/discussions) or find us on [Discord](https://aka.ms/wct/discord). If you have detailed repro steps, open an [issue here instead](https://github.com/CommunityToolkit/WindowsCommunityToolkit/issues/new/choose).
+If you need help with something or have an idea, feel free to start a [Discussion](https://github.com/CommunityToolkit/WindowsCommunityToolkit/discussions) or find us on [Discord](https://discord.gg/edgzveQ9KN). If you have detailed repro steps, open an [issue here instead](https://github.com/Strypper/mauisland/issues/new/choose).
 
 # 📄 Code of Conduct
 
