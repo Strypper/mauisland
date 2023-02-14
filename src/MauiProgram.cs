@@ -40,10 +40,8 @@ public static class MauiProgram
             .RegisterPopups()
             .RegisterRefitApi()
             .RegisterHubConnection(true)
-            .GetAppSettings();
-
-
-        builder.ConfigureSyncfusionCore();
+            .GetAppSettings()
+            .ConfigureSyncfusionCore();
 
 #if DEBUG
         builder.Logging.AddDebug();

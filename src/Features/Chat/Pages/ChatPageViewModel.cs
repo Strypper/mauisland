@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
+﻿using CommunityToolkit.Diagnostics;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace MAUIsland;
 
@@ -60,23 +61,9 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
 
     protected override void OnInit(IDictionary<string, object> query)
     {
-        //Subscribe to Login Message
-        WeakReferenceMessenger.Default.Register<LoginMessage>(this, (r, m) =>
-        {
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                CurrentUser = m.Value;
-                AppNavigator.ShowSnackbarAsync("Welcome " + m.Value.UserName);
-                Messages.Add(new ChatMessageModel()
-                {
-                    AuthorName = "MAUIsland",
-                    AuthorImage = "dotnet_bot.png",
-                    ChatMessageContent = $"Welcome {m.Value.UserName}",
-                    SentTime = DateTime.Now,
-                });
-            });
-        });
+        SubcribeToLoginMessage();
 
+        Guard.IsNotNull(CurrentUser);
 
         ConnectToChatHubAsync()
             .FireAndForget();
@@ -120,6 +107,26 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
     private void ChatHubService_ChatMessageReceived(ChatMessageModel message)
     {
         Messages.Add(message);
+    }
+
+    private void SubcribeToLoginMessage()
+    {
+        //Subscribe to Login Message
+        WeakReferenceMessenger.Default.Register<LoginMessage>(this, (r, m) =>
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                CurrentUser = m.Value;
+                AppNavigator.ShowSnackbarAsync("Welcome " + m.Value.UserName);
+                Messages.Add(new ChatMessageModel()
+                {
+                    AuthorName = "MAUIsland",
+                    AuthorImage = "dotnet_bot.png",
+                    ChatMessageContent = $"Welcome {m.Value.UserName}",
+                    SentTime = DateTime.Now,
+                });
+            });
+        });
     }
 
     partial void OnCurrentUserChanging(UserModel? currentUser)
