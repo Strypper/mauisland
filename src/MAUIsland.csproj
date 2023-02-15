@@ -61,6 +61,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="appsettings.Development.json" />
 	  <None Remove="Resources\Fonts\FluentSystemIcons-Regular.ttf" />
 	  <None Remove="Resources\Images\androidlogo.svg" />
 	  <None Remove="Resources\Images\builtinbanner.png" />
@@ -368,5 +369,9 @@
 	  <PackageReference Include="AdaptiveProperties.MAUI">
 	    <Version>1.0.4</Version>
 	  </PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="appsettings.Development.json" />
 	</ItemGroup>
 </Project>
