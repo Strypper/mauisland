@@ -35,12 +35,42 @@
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">Color</strong>, of type <strong style="color:blue">Color </strong>, value that defines the color of the ActivityIndicator.
+                                <strong style="color:blue">Shape layer</strong> - Visualize the map area from GeoJSON or shapefile input data.
                             ]]>
             </x:String>
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">IsRunning</strong>, of type <strong style="color:blue">bool</strong>,value that indicates whether the ActivityIndicator should be visible and animating, or hidden. The default value of this property is false, which indicates that the ActivityIndicator isn't visible.
+                               <strong style="color:blue">Data labels</strong> - Provide identification for shapes by displaying their names. If the labels exceed the shape bounds, they are trimmed or hidden.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Markers</strong> - Denote a location with built-in symbols or display custom content at a specific latitude and longitude on a map.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Bubbles</strong> - Add information to shapes such as population density or number of users. Bubbles can be rendered in different colors and sizes based on the data values of their assigned shapes.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Shape selection</strong> - Choose a shape to highlight a region on a map. You can use the event for performing action during the shape selection.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Legend</strong> - Use legends to provide clear information on the data plotted in a map.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Colors</strong> - Categorize the shapes on a map by assigning their colors based on their underlying values. It is possible to set the shape color for a specific value or for a range of values.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Tooltip</strong> - Display additional information about shapes, markers, and bubbles using a customizable tooltip on a map.
                             ]]>
             </x:String>
         </x:Array>
@@ -53,6 +83,7 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <Label Text="{x:Binding ControlInformation.ControlDetail}" />
             </Frame>
+            
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
@@ -60,15 +91,14 @@
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
-            <map:SfMaps>
-                <map:SfMaps.Layer>
-                    <map:MapShapeLayer x:Name="layer"
-                           ShapesSource="https://cdn.syncfusion.com/maps/map-data/australia.json"
-                           ShapeDataField="STATE_NAME"
-                           DataSource="{Binding Data}"        
-                           PrimaryValuePath="State"  />
-                </map:SfMaps.Layer>
-            </map:SfMaps>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <map:SfMaps>
+                    <map:SfMaps.Layer>
+                        <map:MapShapeLayer DataSource="vietnam.shp" />
+                    </map:SfMaps.Layer>
+                </map:SfMaps>
+            </Frame>
 
         </VerticalStackLayout>
     </ScrollView>

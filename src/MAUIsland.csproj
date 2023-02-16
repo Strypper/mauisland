@@ -59,6 +59,10 @@
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
+	<ItemGroup>
+	  <MauiAsset Remove="Resources\Raw\vietnam.json" />
+	  <MauiAsset Remove="Resources\Raw\vietnam.shp" />
+	</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\FluentSystemIcons-Regular.ttf" />
@@ -80,6 +84,8 @@
 	  <None Remove="Resources\Images\windowslogo.svg" />
 	  <None Remove="Resources\Raw\dotnetbot.json" />
 	  <None Remove="Resources\Raw\island.json" />
+	  <None Remove="Resources\Raw\vietnam.json" />
+	  <None Remove="Resources\Raw\vietnam.shp" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -345,7 +351,6 @@
 	  <BundleResource Include="Resources\Images\syncfusion_logo.png" />
 	  <BundleResource Include="Resources\Images\fluenticon_options_white.svg" />
 	</ItemGroup>
-
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
 	  <PackageReference Include="AdaptiveProperties.MAUI">
 	    <Version>1.0.4</Version>
@@ -365,5 +370,10 @@
 	  <PackageReference Include="AdaptiveProperties.MAUI">
 	    <Version>1.0.4</Version>
 	  </PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\Raw\vietnam.json" />
+	  <EmbeddedResource Include="Resources\Raw\vietnam.shp" />
 	</ItemGroup>
 </Project>

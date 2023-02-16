@@ -1,3 +1,6 @@
+using Syncfusion.Maui.Maps;
+using System.Diagnostics;
+
 namespace MAUIsland;
 public partial class SfMapPage : IControlPage
 {
@@ -5,8 +8,8 @@ public partial class SfMapPage : IControlPage
     public SfMapPage(SfMapPageViewModel vm)
     {
         InitializeComponent();
-
         BindingContext = vm;
     }
     #endregion
+
 }
