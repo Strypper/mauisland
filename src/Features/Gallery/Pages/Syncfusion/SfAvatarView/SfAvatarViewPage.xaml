@@ -4,47 +4,78 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:sfavatar="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     Title="SfAvatarView"
     Padding="10"
     x:DataType="app:SfAvatarViewPageViewModel">
 
     <app:BasePage.Resources>
 
-        <x:String x:Key="PropertiesListHeader">
-            SfAvatarView defines the following properties:
+        <x:String x:Key="ControlInfo">
+            The .NET MAUI Avatar View control provides a graphical representation of user image that allows you to customize the view by adding image, background color, icon, text, etc.
         </x:String>
 
-        <x:String x:Key="PropertiesListFooter">
-            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+        <x:String x:Key="PropertiesListHeader">
+            Key features
         </x:String>
 
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">Color</strong>, of type <strong style="color:blue">Color </strong>, value that defines the color of the ActivityIndicator.
-                            ]]>
+                                Supports for adding image and initials.
+                ]]>
             </x:String>
+
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">IsRunning</strong>, of type <strong style="color:blue">bool</strong>,value that indicates whether the ActivityIndicator should be visible and animating, or hidden. The default value of this property is false, which indicates that the ActivityIndicator isn't visible.
+                                Customizes the height, width, Stroke, BackgroundColor, and CornerRadius of the view.
                             ]]>
             </x:String>
-        </x:Array>
 
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">GroupView</strong>: Supports to add maximum three custom images or initials in a single view.
+                ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                Supports different types of visual styles.
+                ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                Supports <strong style="color:blue">BadgeView</strong>.
+                ]]>
+            </x:String>
+        </x:Array>
 
     </app:BasePage.Resources>
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+                <Label Text="{x:StaticResource ControlInfo}" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Grid>
+                    <sfavatar:SfAvatarView
+                        AvatarName="Viper"
+                        ContentType="Custom"
+                        CornerRadius="75"
+                        HeightRequest="150"
+                        HorizontalOptions="Center"
+                        ImageSource="CauVang.png"
+                        VerticalOptions="Center"
+                        WidthRequest="150" />
+                </Grid>
             </Frame>
         </VerticalStackLayout>
     </ScrollView>
