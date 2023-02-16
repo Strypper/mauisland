@@ -26,4 +26,16 @@ public partial class CollectionViewPage : IControlPage
         previousSelectedItemLabel.Text = string.IsNullOrWhiteSpace(previous) ? "[none]" : previous;
         currentSelectedItemLabel.Text = string.IsNullOrWhiteSpace(current) ? "[none]" : current;
     }
+    private void RadioButton_Checked(object sender, CheckedChangedEventArgs e)
+    {
+        RadioButton button = sender as RadioButton;
+        var layout = button.Content;
+
+        //if (layout == "Grid")
+            //CollectionViewExample.ItemsLayout = "VerticalGrid, 2" as IItemsLayout;
+        //else
+        //    CollectionViewExample.ItemsLayout = null;
+
+    }
+
 }
