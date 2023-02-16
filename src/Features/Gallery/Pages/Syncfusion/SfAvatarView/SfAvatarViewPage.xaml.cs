@@ -1,3 +1,5 @@
+using Syncfusion.Maui.Core;
+
 namespace MAUIsland;
 public partial class SfAvatarViewPage : IControlPage
 {
@@ -8,5 +10,6 @@ public partial class SfAvatarViewPage : IControlPage
 
         BindingContext = vm;
     }
+
     #endregion
 }

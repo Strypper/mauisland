@@ -67,14 +67,13 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <Grid>
                     <sfavatar:SfAvatarView
-                        AvatarName="Viper"
                         ContentType="Custom"
-                        CornerRadius="75"
-                        HeightRequest="150"
+                        CornerRadius="25"
+                        HeightRequest="50"
                         HorizontalOptions="Center"
-                        ImageSource="CauVang.png"
+                        ImageSource="alex.png"
                         VerticalOptions="Center"
-                        WidthRequest="150" />
+                        WidthRequest="50" />
                 </Grid>
             </Frame>
         </VerticalStackLayout>
