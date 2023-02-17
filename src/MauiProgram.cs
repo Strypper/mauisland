@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;
 using Refit;
 using SkiaSharp.Views.Maui.Controls.Hosting;
+using SQLite;
 using Syncfusion.Maui.Core.Hosting;
 using System.Reflection;
 
@@ -18,11 +19,15 @@ public static class MauiProgram
     public static MauiApp CreateMauiApp()
     {
 
+        var isLocal = true;
+
+
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitCore()
+            .UseMauiCommunityToolkitMediaElement()
             .UseSkiaSharp()
             .ConfigureFonts(fonts =>
             {
@@ -38,8 +43,8 @@ public static class MauiProgram
             .RegisterPages()
             .RegisterControlInfos()
             .RegisterPopups()
-            .RegisterRefitApi()
-            .RegisterHubConnection(true)
+            .RegisterRefitApi(isLocal)
+            .RegisterHubConnection(isLocal)
             .GetAppSettings()
             .ConfigureSyncfusionCore();
 
@@ -63,10 +68,17 @@ public static class MauiProgram
         return builder;
     }
 
-    static MauiAppBuilder RegisterRefitApi(this MauiAppBuilder builder)
+    static MauiAppBuilder RegisterRefitApi(this MauiAppBuilder builder, bool isLocal)
     {
-        builder.Services.AddRefitClient<ITotechsIdentityAuthenticationRefit>()
-                        .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://totechsidentityprovider.azurewebsites.net/api"));
+        builder.Services.AddRefitClient<IIntranetAuthenticationRefit>()
+                        .ConfigureHttpClient(c => c.BaseAddress = new Uri(!isLocal
+                                                                          ? "https://totechsidentityprovider.azurewebsites.net/api"
+                                                                          : "https://localhost:44371/api"));
+
+        builder.Services.AddRefitClient<IIntranetUserRefit>()
+                        .ConfigureHttpClient(c => c.BaseAddress = new Uri(!isLocal
+                                                                  ? "https://totechsidentityprovider.azurewebsites.net/api"
+                                                                  : "https://localhost:44371/api"));
         return builder;
     }
 
@@ -91,14 +103,21 @@ public static class MauiProgram
         builder.Services.AddSingleton<IFilePicker, FilePicker>();
         builder.Services.AddSingleton<IHomeService, HomeService>();
         builder.Services.AddSingleton<IAppNavigator, AppNavigator>();
-        builder.Services.AddSingleton<IUserServices, BogusUserServices>();
+        builder.Services.AddSingleton<IUserServices, UserService>();
         builder.Services.AddSingleton<IControlsService, ControlsService>();
         builder.Services.AddSingleton<IChatHubService, SignalRChatHubService>();
         builder.Services.AddSingleton<ISecureStorageService, SecureStorageService>();
-        builder.Services.AddSingleton<IAuthenticationServices, BogusAuthenticationService>();
+        builder.Services.AddSingleton<IAuthenticationServices, RefitAuthenticationService>();
 
         builder.Services.AddSingleton<IAppInfo>(AppInfo.Current);
         builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
+
+        //Register local database
+        builder.Services.AddTransient<SQLiteAsyncConnection>((_) =>
+        {
+            string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LocalDatabase.db3");
+            return new SQLiteAsyncConnection(dbPath);
+        });
         return builder;
     }
 
@@ -108,6 +127,11 @@ public static class MauiProgram
         var pageTypes = assemblies.SelectMany(a => a.GetTypes().Where(a => a.Name.EndsWith(pattern) && !a.IsAbstract && !a.IsInterface));
         foreach (var pageType in pageTypes)
         {
+            if (pageType.FullName == "MAUIsland.MediaElementPage")
+            {
+
+            }
+
             var viewModelFullName = $"{pageType.FullName}ViewModel";
             var viewModelType = Type.GetType(viewModelFullName);
 
@@ -133,16 +157,13 @@ public static class MauiProgram
             {
                 builder.Services.AddSingleton((_) => new HubConnectionBuilder()
                 .WithAutomaticReconnect()
-                .WithUrl(ChatConstants.BaseUrl, options =>
+                .WithUrl(ChatConstants.LocalBaseUrl, options =>
                 {
-                    options.HttpMessageHandlerFactory = (handler) =>
+                    options.AccessTokenProvider = () =>
                     {
-                        if (handler is HttpClientHandler clientHandler)
-                        {
-                            clientHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
-                        }
-                        return handler;
+                        return Task.FromResult("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidmlldC50b0B0b3RlY2hzLmNvbS52biIsImp0aSI6IjliNjg4OTVlLThiMDgtNGJkMi04ZTI1LWU1ZTVjZWYxZjc2ZSIsImd1aWQiOiJiMjcxMDk5Mi1lNjEwLTQ1N2UtYjY0Ny1kYjFjMDVkZDI0ZTIiLCJuYmYiOjE2NzY2NjEzOTcsImV4cCI6MTY3Njc0Nzc5NywiaWF0IjoxNjc2NjYxMzk3LCJpc3MiOiJUb3RlY2hzSW50cmFuZXQiLCJhdWQiOiJtYXVpc2xhbmQifQ.4HqSJV1YG6Yj6ZWT2aHmLKeqUjCm--Z7nuq-wyg0hXA");
                     };
+
                 }).Build());
             }
             else

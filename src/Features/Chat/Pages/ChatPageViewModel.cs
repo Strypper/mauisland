@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Diagnostics;
-using CommunityToolkit.Mvvm.Messaging;
+﻿using CommunityToolkit.Mvvm.Messaging;
 
 namespace MAUIsland;
 
@@ -63,10 +62,8 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
     {
         SubcribeToLoginMessage();
 
-        Guard.IsNotNull(CurrentUser);
+        //Guard.IsNotNull(CurrentUser);
 
-        ConnectToChatHubAsync()
-            .FireAndForget();
 
         LoadDataAsync(true)
             .FireAndForget();
@@ -125,6 +122,10 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
                     ChatMessageContent = $"Welcome {m.Value.UserName}",
                     SentTime = DateTime.Now,
                 });
+
+
+                ConnectToChatHubAsync()
+                    .FireAndForget();
             });
         });
     }

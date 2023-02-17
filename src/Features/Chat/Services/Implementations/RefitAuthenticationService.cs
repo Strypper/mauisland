@@ -1,16 +1,24 @@
-﻿using System.Net;
+﻿using CommunityToolkit.Diagnostics;
 
 namespace MAUIsland;
 
 public class RefitAuthenticationService : IAuthenticationServices
 {
-    private readonly ITotechsIdentityAuthenticationRefit totechsIdentityAuthenticationRefit;
+    #region [Fields]
+    private readonly IIntranetAuthenticationRefit intranetAuthenticationRefit;
+    private readonly ISecureStorageService secureStorageService;
     private readonly IUserServices userServices;
     private readonly IAppNavigator appNavigator;
+    #endregion
+
     #region [CTor]
-    public RefitAuthenticationService(ITotechsIdentityAuthenticationRefit totechsIdentityAuthenticationRefit, IUserServices userServices, IAppNavigator appNavigator)
+    public RefitAuthenticationService(IIntranetAuthenticationRefit intranetAuthenticationRefit,
+                                      ISecureStorageService secureStorageService,
+                                      IUserServices userServices,
+                                      IAppNavigator appNavigator)
     {
-        this.totechsIdentityAuthenticationRefit = totechsIdentityAuthenticationRefit;
+        this.intranetAuthenticationRefit = intranetAuthenticationRefit;
+        this.secureStorageService = secureStorageService;
         this.userServices = userServices;
         this.appNavigator = appNavigator;
     }
@@ -18,42 +26,40 @@ public class RefitAuthenticationService : IAuthenticationServices
 
     #region [Methods]
 
-
-    public async Task<string> Authenticate(string username, string password)
+    public async Task Authenticate(string username, string password)
     {
-        var response = await this.totechsIdentityAuthenticationRefit.Login(username, password);
-        return response.AccessToken;
+        var authenticationResponseDTO = await this.intranetAuthenticationRefit.Login(new UserNameLoginDTO(username, password));
+
+        Guard.IsNotNull(authenticationResponseDTO);
+
+        await SaveToSecureStorageAsync(authenticationResponseDTO);
+
     }
 
-    public async Task<string> AuthenticateWithPhoneNumber(string phoneNumer, string password)
+    public async Task AuthenticateWithPhoneNumber(string phonenumber, string password)
     {
-        var response = await this.totechsIdentityAuthenticationRefit.LoginWithPhoneNumber(new PhoneNumberLoginDTO(phoneNumer, password));
-        return response.AccessToken;
+        var authenticationResponseDTO = await this.intranetAuthenticationRefit.LoginWithPhoneNumber(new PhoneNumberLoginDTO(phonenumber, password));
+
+        Guard.IsNotNull(authenticationResponseDTO);
+
+        await SaveToSecureStorageAsync(authenticationResponseDTO);
     }
 
-    public async Task<string> CreatePrincipleUserInfo(string phoneNumber, string userName, string email, string password, string firstName, string lastName, string profilePicUrl)
-    {
-        var response = await this.totechsIdentityAuthenticationRefit.Register(userName, password, firstName, lastName, email, phoneNumber, profilePicUrl, new string[] { "", "" });
-        if (response == HttpStatusCode.NoContent)
-        {
-            return string.Empty;
-        }
-        else return string.Empty;
-    }
 
-    public Task<PrincipalUserModel> GetPrincipleUserInfo(string userGuid, string authenticateAccessToken)
+    public Task SignUp(string phoneNumber, string userName, string email, string password, string firstName, string lastName, string profilePicUrl)
     {
         throw new NotImplementedException();
     }
+    #endregion
 
-    public Task<ServiceUserInfo> GetServiceUserInfo(string userGuid, string authenticateAccessToken)
+    #region [Private methods]
+    async Task SaveToSecureStorageAsync(AuthenticationResponseDTO dto)
     {
-        throw new NotImplementedException();
-    }
-
-    public Task<string> SignUp(string authenticateAccessToken, string avatarUrl, string userName)
-    {
-        throw new NotImplementedException();
+        await this.secureStorageService.RemoveAllValueAsync();
+        await this.secureStorageService.WriteValueAsync("accesstoken", dto.accessToken);
+        await this.secureStorageService.WriteValueAsync("requestat", dto.requestAt.ToString());
+        await this.secureStorageService.WriteValueAsync("expirein", dto.expireIn.ToString());
+        await this.secureStorageService.WriteValueAsync("guid", dto.id);
     }
     #endregion
 }

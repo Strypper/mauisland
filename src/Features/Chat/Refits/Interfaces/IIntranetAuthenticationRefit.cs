@@ -3,9 +3,9 @@ using System.Net;
 
 namespace MAUIsland;
 
-public interface ITotechsIdentityAuthenticationRefit
+public interface IIntranetAuthenticationRefit
 {
-    [Post("/Access/Register")]
+    [Post("/Authentication/Create")]
     Task<HttpStatusCode> Register(string userName,
                   string password,
                   string firstName,
@@ -15,9 +15,9 @@ public interface ITotechsIdentityAuthenticationRefit
                   string profilePicUrl,
                   string[] roles);
 
-    [Post("/Access/Login")]
-    Task<LoginSuccessModelRespone> Login(string userName, string password);
+    [Post("/Authentication/Login")]
+    Task<AuthenticationResponseDTO> Login(UserNameLoginDTO dto);
 
-    [Post("/Access/LoginWithPhoneNumber")]
-    Task<LoginSuccessModelRespone> LoginWithPhoneNumber(PhoneNumberLoginDTO dto);
+    [Post("/Authentication/LoginWithPhoneNumber")]
+    Task<AuthenticationResponseDTO> LoginWithPhoneNumber(PhoneNumberLoginDTO dto);
 }

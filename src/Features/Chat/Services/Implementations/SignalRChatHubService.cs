@@ -37,15 +37,17 @@ public class SignalRChatHubService : IChatHubService
         });
     }
 
-    public async Task ConnectAsync() {
+    public async Task ConnectAsync()
+    {
+
         await this.hubConnection.StartAsync();
-        
+
     }
 
     public Task SendMessageTest(string message, string authorName, string avatarUrl, DateTime sentTime)
     {
         return Task.Run(() =>
-        this.hubConnection.InvokeAsync("SendMessage", authorName, avatarUrl, message));
+        this.hubConnection.InvokeAsync("SendMessage", message));
     }
     #endregion
 }

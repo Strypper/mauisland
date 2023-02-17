@@ -90,8 +90,9 @@
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.1.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="4.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui.Core" Version="4.0.0" />
+		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="1.0.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
-		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.2" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
@@ -103,6 +104,7 @@
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.3" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.3" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.3" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="20.4.49" />
 		<PackageReference Include="Syncfusion.Maui.Barcode" Version="20.4.49" />
 		<PackageReference Include="Syncfusion.Maui.Calendar" Version="20.4.49" />
@@ -139,6 +141,9 @@
 	  <Compile Update="Features\Gallery\ContentViews\BrandIconContentView.xaml.cs">
 	    <DependentUpon>BrandIconContentView.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Features\Gallery\Pages\Toolkit\MediaElement\MediaElementPage.xaml.cs">
+	    <DependentUpon>MediaElementPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Features\Gallery\Syncfusion\ListView\Pages\SyncfusionListViewPage.xaml.cs">
 	    <DependentUpon>SyncfusionListViewPage.xaml</DependentUpon>
 	  </Compile>
@@ -155,6 +160,12 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Features\Chat\ContentViews\ChatBubbleContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Chat\ContentViews\LoginFormContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Chat\ContentViews\RegisterFormContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Chat\Pages\ChatPage.xaml">
@@ -188,6 +199,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\GalleryPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Toolkit\MediaElement\MediaElementPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Styles\Colors.xaml">

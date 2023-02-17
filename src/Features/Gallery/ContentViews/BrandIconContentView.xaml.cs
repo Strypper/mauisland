@@ -17,7 +17,7 @@ public partial class BrandIconContentView : ContentView
     public delegate void DetailInNewWindowEventHandler(ControlGroupInfo control);
     #endregion
 
-    #region [Event Handlers]
+    #region [Events]
     public event DetailEventHandler DetailClicked;
 
     public event DetailInNewWindowEventHandler DetailInNewWindowClicked;
