@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIsland.LoginFormContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    x:Name="root"
+    Loaded="root_Loaded">
+    <ContentView.Resources>
+        <FontImageSource
+            x:Key="PhoneIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_phone_24_regular}"
+            Color="{AppThemeBinding Light='#15161e',
+                                    Dark='#eaeaea'}" />
+    </ContentView.Resources>
+    <VerticalStackLayout Spacing="10">
+        <Entry x:Name="UserNameEntry" Placeholder="User name" />
+        <Entry
+            x:Name="PasswordEntry"
+            IsPassword="True"
+            Placeholder="Password" />
+        <Button Clicked="Login_Clicked" Text="Login" />
+    </VerticalStackLayout>
+</ContentView>

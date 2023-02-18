@@ -26,9 +26,6 @@ public partial class Styles
             CornerRadius = new CornerRadius(16)
         });
 
-    #region [ Button ]
-
-
     static readonly Style ButtonBase = CreateStyle<Button>()
         .Set(VisualElement.BackgroundColorProperty, AppColors.Purple)
         .Set(Button.TextColorProperty, AppColors.Secondary1)
@@ -36,7 +33,7 @@ public partial class Styles
         .Set(VisualElement.MaximumWidthRequestProperty, Dimensions.ButtonWidth)
         .Set(Button.CornerRadiusProperty, Dimensions.ButtonCornerRadius)
         .Set(Button.FontSizeProperty, Dimensions.FontSizeT5)
-        .Set(Button.FontFamilyProperty, FontNames.InterBold);
+        .Set(Button.FontFamilyProperty, FontNames.SmoochSansRegular);
 
     public static readonly Style ButtonPrimary = CreateStyle<Button>()
         .BaseOn(ButtonBase)
@@ -111,8 +108,6 @@ public partial class Styles
         .Set(Button.BorderWidthProperty, 1)
         .Set(Button.BackgroundColorProperty, Colors.Transparent)
         ;
-    #endregion
-
 
 }
 
@@ -120,231 +115,149 @@ public partial class Styles
 {
     static readonly Color textPrimaryColor = AppColors.Black;
 
-    #region [ Heading ]
-
-    public static readonly Style Heading1 = CreateStyle<Label>()
+    public static readonly Style Title1 = CreateStyle<Label>()
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT1)
-        .Set(Label.FontFamilyProperty, FontNames.InterExtraBold)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansBold)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT1)
         ;
 
-    public static readonly Style Heading2 = CreateStyle<Label>()
+    public static readonly Style Title2 = CreateStyle<Label>()
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT2)
-        .Set(Label.FontFamilyProperty, FontNames.InterBold)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansBold)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT2)
         ;
 
-    public static readonly Style Heading3 = CreateStyle<Label>()
+    public static readonly Style Title3 = CreateStyle<Label>()
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT3)
-        .Set(Label.FontFamilyProperty, FontNames.InterBold)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansBold)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT3)
         ;
 
-    public static readonly Style Heading4 = CreateStyle<Label>()
+    public static readonly Style Title4 = CreateStyle<Label>()
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT4)
-        .Set(Label.FontFamilyProperty, FontNames.InterBold)
-        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT7)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansBold)
+        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT4)
         ;
 
-    public static readonly Style Heading5 = CreateStyle<Label>()
+    public static readonly Style Title5 = CreateStyle<Label>()
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT5)
-        .Set(Label.FontFamilyProperty, FontNames.InterBold)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansBold)
+        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT5)
+        ;
+
+    public static readonly Style Title6 = CreateStyle<Label>()
+        .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
+        .Set(Label.TextColorProperty, textPrimaryColor)
+        .Set(Label.FontSizeProperty, Dimensions.FontSizeT6)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansBold)
+        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT6)
+        ;
+
+    public static readonly Style Title7 = CreateStyle<Label>()
+        .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
+        .Set(Label.TextColorProperty, textPrimaryColor)
+        .Set(Label.FontSizeProperty, Dimensions.FontSizeT7)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansBold)
+        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT7)
+        ;
+
+    public static readonly Style Subtitle1 = CreateStyle<Label>()
+        .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
+        .Set(Label.TextColorProperty, textPrimaryColor)
+        .Set(Label.FontSizeProperty, Dimensions.FontSizeT1)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT1)
         ;
 
-    public static readonly Style Heading6 = CreateStyle<Label>()
-        .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
-        .Set(Label.TextColorProperty, textPrimaryColor)
-        .Set(Label.FontSizeProperty, Dimensions.FontSizeT6)
-        .Set(Label.FontFamilyProperty, FontNames.InterBold)
-        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT2)
-        ;
-    #endregion
-
-    #region [ Heading - Small ]
-
-    public static readonly Style Heading1Small = CreateStyle<Label>()
+    public static readonly Style Subtitle2 = CreateStyle<Label>()
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT2)
-        .Set(Label.FontFamilyProperty, FontNames.InterExtraBold)
-        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT4)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
+        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT2)
         ;
 
-    public static readonly Style Heading2Small = CreateStyle<Label>()
+    public static readonly Style Subtitle3 = CreateStyle<Label>()
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT3)
-        .Set(Label.FontFamilyProperty, FontNames.InterBold)
-        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT5)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
+        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT3)
         ;
 
-    public static readonly Style Heading3Small = CreateStyle<Label>()
+    public static readonly Style Subtitle4 = CreateStyle<Label>()
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT4)
-        .Set(Label.FontFamilyProperty, FontNames.InterBold)
-        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT6)
-        ;
-
-    public static readonly Style Heading4Small = CreateStyle<Label>()
-        .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
-        .Set(Label.TextColorProperty, textPrimaryColor)
-        .Set(Label.FontSizeProperty, Dimensions.FontSizeT5)
-        .Set(Label.FontFamilyProperty, FontNames.InterBold)
-        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT3)
-        ;
-
-    public static readonly Style Heading5Small = CreateStyle<Label>()
-        .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
-        .Set(Label.TextColorProperty, textPrimaryColor)
-        .Set(Label.FontSizeProperty, Dimensions.FontSizeT6)
-        .Set(Label.FontFamilyProperty, FontNames.InterBold)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT4)
         ;
 
-    public static readonly Style Heading6Small = CreateStyle<Label>()
+    public static readonly Style Subtitle5 = CreateStyle<Label>()
+        .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
+        .Set(Label.TextColorProperty, textPrimaryColor)
+        .Set(Label.FontSizeProperty, Dimensions.FontSizeT5)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
+        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT5)
+        ;
+
+    public static readonly Style Subtitle6 = CreateStyle<Label>()
+        .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
+        .Set(Label.TextColorProperty, textPrimaryColor)
+        .Set(Label.FontSizeProperty, Dimensions.FontSizeT6)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
+        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT6)
+        ;
+
+    public static readonly Style Subtitle7 = CreateStyle<Label>()
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT7)
-        .Set(Label.FontFamilyProperty, FontNames.InterBold)
-        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT5)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
+        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT6)
         ;
-    #endregion
 
-    #region [ SubHeading ]
-
-    public static readonly Style SubHeading1 = CreateStyle<Label>()
+    public static readonly Style Body1 = CreateStyle<Label>()
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT5)
-        .Set(Label.FontFamilyProperty, FontNames.InterBold)
-        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT6)
-        ;
-
-    public static readonly Style SubHeading2 = CreateStyle<Label>()
-        .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
-        .Set(Label.TextColorProperty, textPrimaryColor)
-        .Set(Label.FontSizeProperty, Dimensions.FontSizeT6)
-        .Set(Label.FontFamilyProperty, FontNames.InterBold)
-        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT6)
-        ;
-
-    public static readonly Style SubHeading1Semi = CreateStyle<Label>()
-        .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
-        .Set(Label.TextColorProperty, textPrimaryColor)
-        .Set(Label.FontSizeProperty, Dimensions.FontSizeT5)
-        .Set(Label.FontFamilyProperty, FontNames.InterSemiBold)
-        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT6)
-        ;
-
-    public static readonly Style SubHeading2Semi = CreateStyle<Label>()
-        .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
-        .Set(Label.TextColorProperty, textPrimaryColor)
-        .Set(Label.FontSizeProperty, Dimensions.FontSizeT6)
-        .Set(Label.FontFamilyProperty, FontNames.InterSemiBold)
-        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT6)
-        ;
-
-    #endregion
-
-    #region [ Body - Regular ]
-
-    public static readonly Style BodyLarge = CreateStyle<Label>()
-        .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
-        .Set(Label.TextColorProperty, textPrimaryColor)
-        .Set(Label.FontSizeProperty, Dimensions.FontSizeT5)
-        .Set(Label.FontFamilyProperty, FontNames.InterRegular)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT3)
         ;
 
-    public static readonly Style BodySmall = CreateStyle<Label>()
+    public static readonly Style Body2 = CreateStyle<Label>()
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT6)
-        .Set(Label.FontFamilyProperty, FontNames.InterRegular)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT6)
         ;
 
-    public static readonly Style CaptionLarge = CreateStyle<Label>()
+    public static readonly Style Body3 = CreateStyle<Label>()
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT7)
-        .Set(Label.FontFamilyProperty, FontNames.InterRegular)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
         //.Set(Label.LineHeightProperty, Dimensions.LineHeightT7)
         ;
 
-    public static readonly Style CaptionSmall = CreateStyle<Label>()
+    public static readonly Style Body4 = CreateStyle<Label>()
         .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
         .Set(Label.TextColorProperty, textPrimaryColor)
         .Set(Label.FontSizeProperty, Dimensions.FontSizeT8)
-        .Set(Label.FontFamilyProperty, FontNames.InterRegular)
-        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT7)
+        .Set(Label.FontFamilyProperty, FontNames.SmoochSansRegular)
+        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT8)
         ;
-
-    public static readonly Style Footer = CreateStyle<Label>()
-        .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
-        .Set(Label.TextColorProperty, textPrimaryColor)
-        .Set(Label.FontSizeProperty, Dimensions.FontSizeT9)
-        .Set(Label.FontFamilyProperty, FontNames.InterRegular)
-        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT7)
-        ;
-
-    #endregion
-
-    #region [ Body - SemiBold ]
-
-    public static readonly Style BodyLargeSemiBold = CreateStyle<Label>()
-    .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
-    .Set(Label.TextColorProperty, textPrimaryColor)
-    .Set(Label.FontSizeProperty, Dimensions.FontSizeT5)
-    .Set(Label.FontFamilyProperty, FontNames.InterRegular)
-    //.Set(Label.LineHeightProperty, Dimensions.LineHeightT3)
-    ;
-
-    public static readonly Style BodySmallSemiBold = CreateStyle<Label>()
-        .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
-        .Set(Label.TextColorProperty, textPrimaryColor)
-        .Set(Label.FontSizeProperty, Dimensions.FontSizeT6)
-        .Set(Label.FontFamilyProperty, FontNames.InterRegular)
-        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT6)
-        ;
-
-    public static readonly Style CaptionLargeSemiBold = CreateStyle<Label>()
-        .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
-        .Set(Label.TextColorProperty, textPrimaryColor)
-        .Set(Label.FontSizeProperty, Dimensions.FontSizeT7)
-        .Set(Label.FontFamilyProperty, FontNames.InterRegular)
-        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT7)
-        ;
-
-    public static readonly Style CaptionSmallSemiBold = CreateStyle<Label>()
-        .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
-        .Set(Label.TextColorProperty, textPrimaryColor)
-        .Set(Label.FontSizeProperty, Dimensions.FontSizeT8)
-        .Set(Label.FontFamilyProperty, FontNames.InterRegular)
-        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT7)
-        ;
-
-    public static readonly Style FooterSemiBold = CreateStyle<Label>()
-        .Set(VisualElement.BackgroundColorProperty, Colors.Transparent)
-        .Set(Label.TextColorProperty, textPrimaryColor)
-        .Set(Label.FontSizeProperty, Dimensions.FontSizeT9)
-        .Set(Label.FontFamilyProperty, FontNames.InterRegular)
-        //.Set(Label.LineHeightProperty, Dimensions.LineHeightT7)
-        ;
-
-    #endregion
 }
 
 

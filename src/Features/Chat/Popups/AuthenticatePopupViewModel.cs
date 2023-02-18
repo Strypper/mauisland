@@ -9,6 +9,7 @@ public partial class AuthenticatePopupViewModel : BaseViewModel
     private readonly IUserServices userServices;
     private readonly IAuthenticationServices authenticationServices;
     #endregion
+
     #region [CTor]
     public AuthenticatePopupViewModel(IAppNavigator appNavigator,
                                 IUserServices userServices,
@@ -21,20 +22,12 @@ public partial class AuthenticatePopupViewModel : BaseViewModel
     #endregion
 
     #region [Properties]
-    [ObservableProperty]
-    string userName;
 
     [ObservableProperty]
-    string password = "Welkom112!!@";
+    bool canStateChange = true;
 
     [ObservableProperty]
-    string phoneNumber = "0348164682";
-
-    [ObservableProperty]
-    string email = "ocgrb.strypperjason115@gmail.com";
-
-    [ObservableProperty]
-    string avatarUrl;
+    string viewMode = "Login";
     #endregion
 
     #region [Relay Commands]
@@ -43,23 +36,23 @@ public partial class AuthenticatePopupViewModel : BaseViewModel
     Task NavigateBack() => AppNavigator.GoBackAsync();
 
     [RelayCommand]
-    async Task LoginAsync()
+    async Task LoginAsync(UserNameLoginDTO dto)
     {
         try
         {
-            var authenticationToken = await this.authenticationServices.AuthenticateWithPhoneNumber(PhoneNumber, Password);
-            Guard.IsNotNullOrWhiteSpace(authenticationToken);
+            await authenticationServices.Authenticate(dto.username, dto.password);
 
-            var userInfo = await this.userServices.GetUserInfo(authenticationToken);
+            var userInfo = await userServices.GetUserInfo();
             Guard.IsNotNull(userInfo);
 
-            await this.userServices.SaveUserToLocalAsync(userInfo);
+            //await userServices.SaveUserToLocalAsync(userInfo);
+
             WeakReferenceMessenger.Default.Send(new LoginMessage(userInfo));
             await AppNavigator.GoBackAsync();
         }
-        catch (Exception ex)
+        catch (Exception e)
         {
-            await AppNavigator.ShowSnackbarAsync(ex.Message);
+            await AppNavigator.ShowSnackbarAsync(e.Message);
             throw;
         }
     }
@@ -69,15 +62,14 @@ public partial class AuthenticatePopupViewModel : BaseViewModel
     {
         try
         {
-            var authenticationAccessToken = await this.authenticationServices.CreatePrincipleUserInfo(PhoneNumber, UserName, Email, Password, "", "", "");
-            Guard.IsNotNullOrWhiteSpace(authenticationAccessToken);
+            //await this.authenticationServices.SignUp(PhoneNumber, UserName, Email, Password, "", "", "");
 
-            var userInfo = await this.userServices.GetUserInfo(authenticationAccessToken);
-            Guard.IsNotNull(userInfo);
+            //var userInfo = await this.userServices.GetUserInfo();
+            //Guard.IsNotNull(userInfo);
 
-            await this.userServices.SaveUserToLocalAsync(userInfo);
-            WeakReferenceMessenger.Default.Send(new LoginMessage(userInfo));
-            await AppNavigator.GoBackAsync();
+            //await this.userServices.SaveUserToLocalAsync(userInfo);
+            //WeakReferenceMessenger.Default.Send(new LoginMessage(userInfo));
+            //await AppNavigator.GoBackAsync();
         }
         catch (Exception ex)
         {
@@ -86,5 +78,28 @@ public partial class AuthenticatePopupViewModel : BaseViewModel
         }
     }
 
+    #endregion
+
+    #region [Methods]
+    async Task CompletedLogin()
+    {
+        //try
+        //{
+        //    var authenticationToken = await this.authenticationServices.AuthenticateWithPhoneNumber(PhoneNumber, Password);
+        //    Guard.IsNotNullOrWhiteSpace(authenticationToken);
+
+        //    var userInfo = await this.userServices.GetUserInfo(authenticationToken);
+        //    Guard.IsNotNull(userInfo);
+
+        //    await this.userServices.SaveUserToLocalAsync(userInfo);
+        //    WeakReferenceMessenger.Default.Send(new LoginMessage(userInfo));
+        //    await AppNavigator.GoBackAsync();
+        //}
+        //catch (Exception ex)
+        //{
+        //    await AppNavigator.ShowSnackbarAsync(ex.Message);
+        //    throw;
+        //}
+    }
     #endregion
 }

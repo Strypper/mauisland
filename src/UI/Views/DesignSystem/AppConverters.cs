@@ -1,4 +1,6 @@
-﻿namespace MAUIsland;
+﻿using CommunityToolkit.Maui.Converters;
+
+namespace MAUIsland;
 
 public static class AppConverters
 {
@@ -12,5 +14,7 @@ public static class AppConverters
     public static readonly AnyFalseToOpacityValueConverter AnyFalseToOpacity = new AnyFalseToOpacityValueConverter();
 
     public static readonly FirstItemValueConverter FirstItem = new FirstItemValueConverter();
+
+    public static readonly IsListNullOrEmptyConverter IsListNullOrEmpty = new IsListNullOrEmptyConverter();
 }
 
