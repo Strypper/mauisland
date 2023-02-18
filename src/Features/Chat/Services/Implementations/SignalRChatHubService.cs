@@ -1,17 +1,23 @@
-﻿using Microsoft.AspNetCore.SignalR.Client;
+﻿using CommunityToolkit.Diagnostics;
+using Microsoft.AspNetCore.SignalR.Client;
 
 namespace MAUIsland;
 
 public class SignalRChatHubService : IChatHubService
 {
     #region [Fields]
-    private readonly HubConnection hubConnection;
+    private HubConnection hubConnection;
+
+    private readonly ISecureStorageService secureStorageService;
+
+    private readonly IAppNavigator appNavigator;
     #endregion
 
     #region [CTor]
-    public SignalRChatHubService(HubConnection hubConnection)
+    public SignalRChatHubService(ISecureStorageService secureStorageService, IAppNavigator appNavigator)
     {
-        this.hubConnection = hubConnection;
+        this.secureStorageService = secureStorageService;
+        this.appNavigator = appNavigator;
     }
 
     #endregion
@@ -22,8 +28,10 @@ public class SignalRChatHubService : IChatHubService
     #endregion
 
     #region [Methods]
-    public void RegisterChannel()
+    public void RegisterChannels()
     {
+        Guard.IsNotNull(this.hubConnection);
+
         this.hubConnection.On<string, string, string, DateTime>("ReceiveMessage", (message, authorName, avartarUrl, sentTime) =>
         {
             var chatmessage = new ChatMessageModel()
@@ -37,17 +45,62 @@ public class SignalRChatHubService : IChatHubService
         });
     }
 
-    public async Task ConnectAsync()
+    public async Task ConnectAsync(bool isLocal)
     {
+        var accessToken = await this.secureStorageService.ReadValueAsync("accesstoken");
+        Guard.IsNotNullOrEmpty(accessToken);
 
-        await this.hubConnection.StartAsync();
+        try
+        {
+            if (isLocal)
+            {
+                hubConnection = new HubConnectionBuilder()
+                                .WithAutomaticReconnect()
+                                .WithUrl(ChatConstants.LocalBaseUrl, options =>
+                                {
+                                    options.HttpMessageHandlerFactory = (handler) =>
+                                    {
+                                        if (handler is HttpClientHandler clientHandler)
+                                        {
+                                            clientHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+                                        }
+                                        return handler;
+                                    };
+                                    options.AccessTokenProvider = () =>
+                                    {
+                                        return Task.FromResult(accessToken);
+                                    };
 
+                                }).Build();
+            }
+            else
+            {
+                hubConnection = new HubConnectionBuilder()
+                                .WithAutomaticReconnect()
+                                .WithUrl(ChatConstants.BaseUrl, options =>
+                                {
+                                    options.AccessTokenProvider = () =>
+                                    {
+                                        return Task.FromResult(accessToken);
+                                    };
+                                }).Build();
+            }
+
+            await this.hubConnection.StartAsync();
+        }
+        catch (Exception ex)
+        {
+            await appNavigator.ShowSnackbarAsync(ex.Message);
+        }
     }
 
     public Task SendMessageTest(string message, string authorName, string avatarUrl, DateTime sentTime)
     {
         return Task.Run(() =>
-        this.hubConnection.InvokeAsync("SendMessage", message));
+        {
+            Guard.IsNotNull(this.hubConnection);
+            this.hubConnection.InvokeAsync("SendMessage", message);
+        });
     }
     #endregion
 }

@@ -36,25 +36,6 @@
             <VerticalStackLayout Spacing="5">
                 <HorizontalStackLayout
                     HorizontalOptions="Center"
-                    Spacing="10"
-                    VerticalOptions="Start">
-                    <toolkit:AvatarView
-                        CornerRadius="40"
-                        HeightRequest="80"
-                        VerticalOptions="Start"
-                        WidthRequest="80" />
-                    <VerticalStackLayout VerticalOptions="Center">
-                        <ImageButton
-                            BackgroundColor="Transparent"
-                            BorderColor="{x:StaticResource Primary}"
-                            Source="{x:StaticResource CameraIcon}" />
-                        <ImageButton
-                            BackgroundColor="Transparent"
-                            BorderColor="{x:StaticResource Primary}"
-                            Source="{x:StaticResource UploadIcon}" />
-                    </VerticalStackLayout>
-                </HorizontalStackLayout>
-                <HorizontalStackLayout
                     RadioButtonGroup.GroupName="ViewMode"
                     RadioButtonGroup.SelectedValue="{x:Binding ViewMode,
                                                                Mode=TwoWay}"
@@ -66,15 +47,18 @@
                     <RadioButton Content="Sign up" Value="Register" />
                 </HorizontalStackLayout>
 
-                <Grid
-                    toolkit:StateContainer.CanStateChange="{x:Binding CanStateChange}"
-                    toolkit:StateContainer.CurrentState="{x:Binding ViewMode}"
-                    toolkit:StateContainer.ShouldAnimateOnStateChange="True">
-                    <toolkit:StateContainer.StateViews>
-                        <app:LoginFormContentView toolkit:StateView.StateKey="Login" LoginClicked="LoginFormContentView_LoginClicked" />
-                        <app:RegisterFormContentView toolkit:StateView.StateKey="Register" />
-                    </toolkit:StateContainer.StateViews>
-                </Grid>
+                <ScrollView>
+                    <Grid
+                        toolkit:StateContainer.CanStateChange="{x:Binding CanStateChange}"
+                        toolkit:StateContainer.CurrentState="{x:Binding ViewMode}"
+                        toolkit:StateContainer.ShouldAnimateOnStateChange="True"
+                        HorizontalOptions="Center">
+                        <toolkit:StateContainer.StateViews>
+                            <app:LoginFormContentView toolkit:StateView.StateKey="Login" LoginClicked="LoginFormContentView_LoginClicked" />
+                            <app:RegisterFormContentView toolkit:StateView.StateKey="Register" RegisterClick="RegisterFormContentView_RegisterClick" />
+                        </toolkit:StateContainer.StateViews>
+                    </Grid>
+                </ScrollView>
             </VerticalStackLayout>
         </Frame>
     </Grid>

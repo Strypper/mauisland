@@ -58,18 +58,17 @@ public partial class AuthenticatePopupViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    async Task SignUpAsync()
+    async Task SignUpAsync(RegisterDTO dto)
     {
         try
         {
-            //await this.authenticationServices.SignUp(PhoneNumber, UserName, Email, Password, "", "", "");
+            await authenticationServices.SignUp(dto.phonenumber, dto.username, dto.email, dto.password, dto.firstname, dto.lastname, dto.profilepic);
+            await authenticationServices.Authenticate(dto.username, dto.password);
 
-            //var userInfo = await this.userServices.GetUserInfo();
-            //Guard.IsNotNull(userInfo);
-
-            //await this.userServices.SaveUserToLocalAsync(userInfo);
-            //WeakReferenceMessenger.Default.Send(new LoginMessage(userInfo));
-            //await AppNavigator.GoBackAsync();
+            var userInfo = await userServices.GetUserInfo();
+            Guard.IsNotNull(userInfo);
+            WeakReferenceMessenger.Default.Send(new LoginMessage(userInfo));
+            await AppNavigator.GoBackAsync();
         }
         catch (Exception ex)
         {

@@ -46,9 +46,21 @@ public class RefitAuthenticationService : IAuthenticationServices
     }
 
 
-    public Task SignUp(string phoneNumber, string userName, string email, string password, string firstName, string lastName, string profilePicUrl)
+    public async Task SignUp(string phoneNumber, string userName, string email, string password, string firstName, string lastName, string profilePicUrl)
     {
-        throw new NotImplementedException();
+        Guard.IsNotNullOrEmpty(phoneNumber);
+        Guard.IsNotNullOrEmpty(userName);
+        Guard.IsNotNullOrEmpty(email);
+        Guard.IsNotNullOrEmpty(password);
+        Guard.IsNotNullOrEmpty(firstName);
+        Guard.IsNotNullOrEmpty(profilePicUrl);
+
+        var response = await this.intranetAuthenticationRefit.Register(new RegisterDTO(userName, password, firstName, lastName, email, phoneNumber, profilePicUrl));
+
+        if (response != System.Net.HttpStatusCode.NoContent)
+        {
+
+        }
     }
     #endregion
 

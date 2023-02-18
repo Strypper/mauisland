@@ -25,12 +25,13 @@
             toolkit:DockLayout.DockPosition="Bottom"
             ColumnDefinitions="*, auto"
             ColumnSpacing="10">
-            <Editor
+            <Entry
                 IsEnabled="{x:Binding CanChatState,
                                       Mode=OneWay}"
                 IsTextPredictionEnabled="True"
                 Keyboard="Chat"
                 Placeholder="Enter message"
+                ReturnCommand="{x:Binding SendMessageCommand}"
                 Text="{x:Binding TypingMessage,
                                  Mode=TwoWay}" />
             <Button

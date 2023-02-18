@@ -62,9 +62,6 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
     {
         SubcribeToLoginMessage();
 
-        //Guard.IsNotNull(CurrentUser);
-
-
         LoadDataAsync(true)
             .FireAndForget();
     }
@@ -96,8 +93,8 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
 
     private async Task ConnectToChatHubAsync()
     {
-        this.chatHubService.RegisterChannel();
-        await this.chatHubService.ConnectAsync();
+        await this.chatHubService.ConnectAsync(true);
+        this.chatHubService.RegisterChannels();
         this.chatHubService.ChatMessageReceived += ChatHubService_ChatMessageReceived;
     }
 
