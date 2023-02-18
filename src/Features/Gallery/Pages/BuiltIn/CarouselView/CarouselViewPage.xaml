@@ -115,15 +115,23 @@
                 <Label Text="{x:StaticResource ControlInfo}" />
             </Frame>
 
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="First of all, a .NET MAUI CarouselView needs a collection of items to be displayed." />
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="This set of items can be specified via the property ItemSource, of type IEnumerable." />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout>
+                    <Label Text="First of all, a .NET MAUI CarouselView needs a collection of items to be displayed." />
+                    <Label Text="This set of items can be specified via the property ItemSource, of type IEnumerable." />
+                </VerticalStackLayout>
+            </Frame>
+            <Frame BackgroundColor="Gray">
                 <CarouselView ItemsSource="{x:StaticResource StringArray}" />
             </Frame>
 
-            <Label Text="As you can see, CarouselView provides looped access to its collection of items. Therefore, swiping (scrolling) backwards from the first item in the collection will display the last item in the collection. Similarly, swiping forwards from the last item in the collection will return to the first item in the collection." />
-            <Label Text="And as you can also see, the above example is ugly, right? We need to decorate it a little bit!" />
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Carousel view has a property called ItemTemplate, of type DataTemplate, specifies the template to apply to each item in the collection of items to be displayed." />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout>
+                    <Label Text="As you can see, CarouselView provides looped access to its collection of items. Therefore, swiping (scrolling) backwards from the first item in the collection will display the last item in the collection. Similarly, swiping forwards from the last item in the collection will return to the first item in the collection." />
+                    <Label Text="And as you can also see, the above example is ugly, right? We need to decorate it a little bit!" />
+                    <Label Text="Carousel view has a property called ItemTemplate, of type DataTemplate, specifies the template to apply to each item in the collection of items to be displayed." />
+                </VerticalStackLayout>
+            </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <CarouselView ItemTemplate="{x:StaticResource OtherDataTemplate}" ItemsSource="{x:Binding Items}">
                     <!--<CarouselView.ItemTemplate>
@@ -159,9 +167,14 @@
                 </CarouselView>
             </Frame>
 
-            <Label Text="The appearance of each item in the CarouselView can be chosen at runtime, based on the item value, and by using converter." />
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Set the CarouselView.ItemTemplate property to a DataTemplateSelector object. DataTemplateSelector class defines DataTemplate properties that are set to different data templates. Apply logic to return the desired template in slector class." />
-            <Label Text="*CarouselView with first item highlighted:" />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout>
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="ItemTemplate" />
+                    <Label Text="The appearance of each item in the CarouselView can be chosen at runtime, based on the item value, and by using converter." />
+                    <Label Text="Set the CarouselView.ItemTemplate property to a DataTemplateSelector object. DataTemplateSelector class defines DataTemplate properties that are set to different data templates. Apply logic to return the desired template in slector class." />
+                    <Label Text="*CarouselView with first item highlighted:" />
+                </VerticalStackLayout>
+            </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <CarouselView ItemTemplate="{StaticResource ItemDataTemplateSelector}" ItemsSource="{Binding Items}" />
             </Frame>

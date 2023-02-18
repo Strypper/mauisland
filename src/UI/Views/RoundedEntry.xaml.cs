@@ -2,16 +2,10 @@ namespace MAUIsland;
 
 public partial class RoundedEntry : ContentView
 {
-    #region [ CTor ]
-
     public RoundedEntry()
     {
         InitializeComponent();
     }
-
-    #endregion
-
-    #region [ Properties ]
 
     public static readonly BindableProperty PrefixIconProperty = BindableProperty.Create(
         nameof(PrefixIcon),
@@ -82,13 +76,6 @@ public partial class RoundedEntry : ContentView
         BindingMode.OneWay,
         propertyChanged: HandleIsValidChanged
     );
-    public bool IsValid
-    {
-        get => (bool)GetValue(IsValidProperty);
-        set => SetValue(IsValidProperty, value);
-    }
-
-    #endregion
     private static void HandleIsValidChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is not RoundedEntry entry) return;
@@ -96,6 +83,11 @@ public partial class RoundedEntry : ContentView
         entry.border.BorderColor = (bool)newValue ? AppColors.Green : AppColors.Red;
     }
 
+    public bool IsValid
+    {
+        get => (bool)GetValue(IsValidProperty);
+        set => SetValue(IsValidProperty, value);
+    }
 
     void Entry_Focused(System.Object sender, Microsoft.Maui.Controls.FocusEventArgs e)
     {

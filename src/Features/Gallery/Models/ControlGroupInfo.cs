@@ -20,4 +20,5 @@ public partial class ControlGroupInfo : BaseModel
 
     public const string BuiltInControls = nameof(BuiltInControls);
     public const string SyncfusionControls = nameof(SyncfusionControls);
+    public const string CommunityToolkit = nameof(CommunityToolkit);
 }

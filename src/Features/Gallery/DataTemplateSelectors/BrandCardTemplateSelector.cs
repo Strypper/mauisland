@@ -6,8 +6,8 @@ public class BrandCardTemplateSelector : DataTemplateSelector
     public DataTemplate SyncfustionCardTemplate { get; set; }
     protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
     {
-        return ((IControlInfo)item).GroupName == ControlGroupInfo.BuiltInControls
-            ? BuiltInCardTemplate
-            : SyncfustionCardTemplate;
+        return ((IControlInfo)item).GroupName == ControlGroupInfo.SyncfusionControls
+            ? SyncfustionCardTemplate
+            : BuiltInCardTemplate;
     }
 }

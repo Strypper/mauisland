@@ -12,15 +12,15 @@ public partial class ChatBubbleContentView : ContentView
     #region [Bindable Properties]
     public static readonly BindableProperty ComponentDataProperty = BindableProperty.Create(
                                 nameof(ComponentData),
-                                typeof(ChatMessage),
+                                typeof(ChatMessageModel),
                                 typeof(ChatBubbleContentView),
-                                default(ChatMessage));
+                                default(ChatMessageModel));
     #endregion
 
     #region [Properties]
-    public ChatMessage ComponentData
+    public ChatMessageModel ComponentData
     {
-        get => (ChatMessage)GetValue(ComponentDataProperty);
+        get => (ChatMessageModel)GetValue(ComponentDataProperty);
         set => SetValue(ComponentDataProperty, value);
     }
     #endregion

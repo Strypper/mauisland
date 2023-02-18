@@ -30,6 +30,14 @@ public class ControlsService : IControlsService
             Banner = "builtinbanner.png",
             ProviderUrl = "https://learn.microsoft.com/en-us/dotnet/maui/what-is-maui?view=net-maui-7.0"
         },
+        new ControlGroupInfo
+        {
+            Name = ControlGroupInfo.CommunityToolkit,
+            Title = "Toolkit",
+            IconUrl = "communitytoolkitlogo.png",
+            Banner = "builtinbanner.png",
+            ProviderUrl = "https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/"
+        },
     };
 
     public Task<IEnumerable<ControlGroupInfo>> GetControlGroupsAsync()

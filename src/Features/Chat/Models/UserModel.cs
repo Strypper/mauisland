@@ -3,6 +3,12 @@
 public partial class UserModel : BaseModel
 {
     [ObservableProperty]
+    string guid;
+
+    [ObservableProperty]
+    string email;
+
+    [ObservableProperty]
     string userName;
 
     [ObservableProperty]

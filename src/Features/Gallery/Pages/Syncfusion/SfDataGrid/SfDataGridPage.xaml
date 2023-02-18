@@ -11,22 +11,48 @@
     <app:BasePage.Resources>
 
         <x:String x:Key="PropertiesListHeader">
-            SfDataGrid defines the following properties:
-        </x:String>
-
-        <x:String x:Key="PropertiesListFooter">
-            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+            Key Features:
         </x:String>
 
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">Color</strong>, of type <strong style="color:blue">Color </strong>, value that defines the color of the ActivityIndicator.
+                                <strong style="color:blue">Data Binding</strong>, Bind different types of data sources, including DataTable.
                             ]]>
             </x:String>
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">IsRunning</strong>, of type <strong style="color:blue">bool</strong>,value that indicates whether the ActivityIndicator should be visible and animating, or hidden. The default value of this property is false, which indicates that the ActivityIndicator isn't visible.
+                                <strong style="color:blue">Column Types</strong>, Show different data types in different types of columns. The following column types are supported: numeric, text, date, checkbox, image, and template. The template column is used to load any control in a column.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Sorting</strong>, Interactively sort one or more columns.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Filtering</strong>, Programmatically filter data based on the criteria.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Column Sizing</strong>, Set the width of columns with various sizing options. Columns can also be sized based on their content.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Auto row height</strong>, Set the height for rows based on the content of their cells.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Selection</strong>, Select one or more rows. Keyboard navigation is supported in Windows platform.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Styling</strong>, Customize the appearance of cells and headers. Conditional styling is supported.
                             ]]>
             </x:String>
         </x:Array>
@@ -41,7 +67,6 @@
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
