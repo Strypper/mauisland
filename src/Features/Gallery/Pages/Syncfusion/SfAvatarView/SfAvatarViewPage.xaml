@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:badge="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     xmlns:sfavatar="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     Title="SfAvatarView"
     Padding="10"
@@ -19,6 +20,13 @@
             Key features:
         </x:String>
 
+        <x:String x:Key="PropertiesListHeader1">
+            You can directly set value to the circle in the SfAvatarView using the following styles:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter1">
+            The following code sample demonstrates how to define visual style of circle AvatarView.
+        </x:String>
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
@@ -51,6 +59,37 @@
             </x:String>
         </x:Array>
 
+        <x:Array x:Key="PropertiesItemsSource1" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                ExtraLargeCircle
+                ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                LargeCircle
+                ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                MediumCircle
+                ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                SmallCircle
+                ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                ExtraSmallCircle
+                ]]>
+            </x:String>
+        </x:Array>
     </app:BasePage.Resources>
 
     <ScrollView>
@@ -74,12 +113,12 @@
                     <Grid>
                         <sfavatar:SfAvatarView
                             ContentType="Custom"
-                            CornerRadius="25"
-                            HeightRequest="50"
+                            CornerRadius="40"
+                            HeightRequest="80"
                             HorizontalOptions="Center"
-                            ImageSource="https://i.imgur.com/yi64vKP.jpg"
+                            ImageSource="https://i.imgur.com/D4pGobm.png"
                             VerticalOptions="Center"
-                            WidthRequest="50" />
+                            WidthRequest="80" />
                     </Grid>
                 </VerticalStackLayout>
 
@@ -89,8 +128,7 @@
             <Label
                 FontAttributes="Bold"
                 FontSize="Title"
-                Text="Content Types in SfAvatarView"
-                VerticalTextAlignment="Start" />
+                Text="Content Types in SfAvatarView" />
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
@@ -99,11 +137,11 @@
                     <sfavatar:SfAvatarView
                         BackgroundColor="OrangeRed"
                         ContentType="Default"
-                        CornerRadius="25"
-                        HeightRequest="50"
+                        CornerRadius="40"
+                        HeightRequest="80"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
-                        WidthRequest="50" />
+                        WidthRequest="80" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -115,14 +153,14 @@
                         AvatarName="Alex"
                         BackgroundColor="Bisque"
                         ContentType="Initials"
-                        CornerRadius="25"
+                        CornerRadius="40"
                         FontAttributes="Bold"
-                        HeightRequest="50"
+                        HeightRequest="80"
                         HorizontalOptions="Center"
                         InitialsColor="Black"
                         InitialsType="SingleCharacter"
                         VerticalOptions="Center"
-                        WidthRequest="50" />
+                        WidthRequest="80" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -134,12 +172,12 @@
                         AvatarName="Alex"
                         BackgroundColor="Bisque"
                         ContentType="Initials"
-                        CornerRadius="25"
+                        CornerRadius="40"
                         FontAttributes="Bold"
-                        HeightRequest="50"
+                        HeightRequest="80"
                         InitialsColor="Black"
                         InitialsType="DoubleCharacter"
-                        WidthRequest="50" />
+                        WidthRequest="80" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -151,28 +189,62 @@
                         AvatarCharacter="Avatar8"
                         BackgroundColor="DeepSkyBlue"
                         ContentType="AvatarCharacter"
-                        CornerRadius="25"
-                        HeightRequest="50"
+                        CornerRadius="40"
+                        HeightRequest="80"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
-                        WidthRequest="50" />
+                        WidthRequest="80" />
                 </VerticalStackLayout>
             </Frame>
 
-            <Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="GroupView" />
                     <Label Text="You can add maximum three images or initials in the same view using a GroupView type.  Set the InitialsMemberPath for displaying the initials in the group view. For image, set the ImageSourceMemberPath. The following code sample demonstrates how to add images using the GroupSource property." />
                     <sfavatar:SfAvatarView
                         BackgroundColorMemberPath="Colors"
                         ContentType="Group"
-                        CornerRadius="25"
+                        CornerRadius="40"
                         GroupSource="{Binding CollectionImages}"
-                        HeightRequest="50"
+                        HeightRequest="80"
                         HorizontalOptions="Center"
                         ImageSourceMemberPath="ImageSource"
                         VerticalOptions="Center"
-                        WidthRequest="50" />
+                        WidthRequest="80" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Add initials only in GroupView" />
+                    <Label Text="You can set the initials only in the group view by setting the InitialsMemberPath alone. It is demonstrated in the following code sample." />
+                    <sfavatar:SfAvatarView
+                        BackgroundColorMemberPath="Colors"
+                        ContentType="Group"
+                        CornerRadius="40"
+                        GroupSource="{Binding CollectionImages}"
+                        HeightRequest="80"
+                        HorizontalOptions="Center"
+                        InitialsMemberPath="Name"
+                        VerticalOptions="Center"
+                        WidthRequest="80" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!--  Visual Style in .NET MAUI Avatar View(SfAvatarView)  -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="Visual Style in .NET MAUI Avatar View(SfAvatarView)" />
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Circle" />
+                    <CollectionView
+                        Footer="{x:StaticResource PropertiesListFooter1}"
+                        Header="{x:StaticResource PropertiesListHeader1}"
+                        ItemsSource="{x:StaticResource PropertiesItemsSource1}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
