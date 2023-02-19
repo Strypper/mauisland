@@ -3,30 +3,61 @@
     x:Class="MAUIsland.RegisterFormContentView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:Name="root">
+
     <VerticalStackLayout Spacing="5">
+        <HorizontalStackLayout
+            HorizontalOptions="Center"
+            Spacing="10"
+            VerticalOptions="Start">
+            <toolkit:AvatarView
+                CornerRadius="40"
+                HeightRequest="80"
+                VerticalOptions="Start"
+                WidthRequest="80" />
+            <VerticalStackLayout VerticalOptions="Center">
+                <ImageButton
+                    BackgroundColor="Transparent"
+                    BorderColor="{x:StaticResource Primary}"
+                    Source="{x:StaticResource CameraIcon}" />
+                <ImageButton
+                    BackgroundColor="Transparent"
+                    BorderColor="{x:StaticResource Primary}"
+                    Source="{x:StaticResource UploadIcon}" />
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
         <Label Text="Phone number" />
         <Entry
+            x:Name="PhoneNumberEntry"
             Keyboard="Telephone"
             MinimumWidthRequest="300"
             Placeholder="Input your phone number"
-            Text="{x:Binding PhoneNumber,
-                             Mode=TwoWay}" />
+            Text="0348164682" />
         <Label Text="Email" />
-        <Entry Keyboard="Email" MinimumWidthRequest="300" />
+        <Entry
+            x:Name="EmailEntry"
+            Keyboard="Email"
+            MinimumWidthRequest="300"
+            Text="Bruh@Bruh1.com" />
         <Label Text="Password" />
         <Entry
+            x:Name="PasswordEntry"
             IsPassword="True"
             MinimumWidthRequest="300"
-            Text="{x:Binding Password}" />
+            Text="String!!@112" />
         <Label Text="Confirm password" />
-        <Entry IsPassword="True" MinimumWidthRequest="300" />
+        <Entry
+            x:Name="ConfirmPasswordEntry"
+            IsPassword="True"
+            MinimumWidthRequest="300"
+            Text="String!!@112" />
         <Label Text="First name" />
-        <Entry x:Name="FirstNameEntry" />
+        <Entry x:Name="FirstNameEntry" Text="Bravo" />
         <Label Text="Last name" />
-        <Entry x:Name="LastNameEntry" />
+        <Entry x:Name="LastNameEntry" Text="Snow" />
         <HorizontalStackLayout>
-            <Button Command="{x:Binding LoginCommand}" Text="Sign in" />
+            <Button Clicked="Signup_Clicked" Text="Sign up" />
         </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentView>

@@ -62,6 +62,11 @@
                                     Dark='#eaeaea'}" />
     </app:BasePage.Resources>
 
+    <!--
+        IsEnabled="{x:Binding CanChatState,
+        Mode=OneWay,
+        Converter={toolkit:InvertedBoolConverter}}"
+    -->
     <app:BasePage.ToolbarItems>
         <ToolbarItem
             Command="{x:Binding SignUpCommand}"

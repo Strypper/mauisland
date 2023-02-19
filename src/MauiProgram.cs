@@ -2,7 +2,6 @@
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Storage;
-using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;
@@ -19,7 +18,7 @@ public static class MauiProgram
     public static MauiApp CreateMauiApp()
     {
 
-        var isLocal = true;
+        var isLocal = false;
 
 
         var builder = MauiApp.CreateBuilder();
@@ -44,7 +43,6 @@ public static class MauiProgram
             .RegisterControlInfos()
             .RegisterPopups()
             .RegisterRefitApi(isLocal)
-            .RegisterHubConnection(isLocal)
             .GetAppSettings()
             .ConfigureSyncfusionCore();
 
@@ -72,12 +70,12 @@ public static class MauiProgram
     {
         builder.Services.AddRefitClient<IIntranetAuthenticationRefit>()
                         .ConfigureHttpClient(c => c.BaseAddress = new Uri(!isLocal
-                                                                          ? "https://totechsidentityprovider.azurewebsites.net/api"
+                                                                          ? "https://intranetcloud.azurewebsites.net/api"
                                                                           : "https://localhost:44371/api"));
 
         builder.Services.AddRefitClient<IIntranetUserRefit>()
                         .ConfigureHttpClient(c => c.BaseAddress = new Uri(!isLocal
-                                                                  ? "https://totechsidentityprovider.azurewebsites.net/api"
+                                                                  ? "https://intranetcloud.azurewebsites.net/api"
                                                                   : "https://localhost:44371/api"));
         return builder;
     }
@@ -144,39 +142,6 @@ public static class MauiProgram
             {
                 Routing.RegisterRoute(pageType.FullName, pageType);
             }
-        }
-
-        return builder;
-    }
-
-    static MauiAppBuilder RegisterHubConnection(this MauiAppBuilder builder, bool isLocal)
-    {
-        try
-        {
-            if (isLocal)
-            {
-                builder.Services.AddSingleton((_) => new HubConnectionBuilder()
-                .WithAutomaticReconnect()
-                .WithUrl(ChatConstants.LocalBaseUrl, options =>
-                {
-                    options.AccessTokenProvider = () =>
-                    {
-                        return Task.FromResult("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidmlldC50b0B0b3RlY2hzLmNvbS52biIsImp0aSI6IjliNjg4OTVlLThiMDgtNGJkMi04ZTI1LWU1ZTVjZWYxZjc2ZSIsImd1aWQiOiJiMjcxMDk5Mi1lNjEwLTQ1N2UtYjY0Ny1kYjFjMDVkZDI0ZTIiLCJuYmYiOjE2NzY2NjEzOTcsImV4cCI6MTY3Njc0Nzc5NywiaWF0IjoxNjc2NjYxMzk3LCJpc3MiOiJUb3RlY2hzSW50cmFuZXQiLCJhdWQiOiJtYXVpc2xhbmQifQ.4HqSJV1YG6Yj6ZWT2aHmLKeqUjCm--Z7nuq-wyg0hXA");
-                    };
-
-                }).Build());
-            }
-            else
-            {
-                builder.Services.AddSingleton((_) => new HubConnectionBuilder()
-                            .WithAutomaticReconnect()
-                            .WithUrl(ChatConstants.BaseUrl).Build());
-            }
-        }
-        catch (Exception ex)
-        {
-
-            throw;
         }
 
         return builder;
