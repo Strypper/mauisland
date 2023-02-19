@@ -27,9 +27,9 @@ public partial class SfAvatarViewPageViewModel : NavigationAwareBaseViewModel
 
         ControlInformation = query.GetData<IControlInfo>();
         CollectionImages = new ObservableCollection<Employee>();
-        CollectionImages.Add(new Employee { Name = "Charlie", ImageSource = "https://i.imgur.com/UPKRRWz.jpg", Colors = Colors.Gray });
-        CollectionImages.Add(new Employee { Name = "John", ImageSource = "https://i.imgur.com/wYB5zD1.jpg", Colors = Colors.Bisque });
-        CollectionImages.Add(new Employee { Name = "Justin", ImageSource = "https://i.imgur.com/kG3WfiO.jpg", Colors = Colors.LightCoral });
+        CollectionImages.Add(new Employee { Name = "Teddy", ImageSource = "https://i.imgur.com/fixi8ti.jpg", Colors = Colors.Gray });
+        CollectionImages.Add(new Employee { Name = "Wolf", ImageSource = "https://i.imgur.com/mauGXij.png", Colors = Colors.Bisque });
+        CollectionImages.Add(new Employee { Name = "Monkey", ImageSource = "https://i.imgur.com/O9SgXez.jpg", Colors = Colors.LightCoral });
     }
     #endregion
 }

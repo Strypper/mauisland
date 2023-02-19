@@ -113,12 +113,12 @@
                     <Grid>
                         <sfavatar:SfAvatarView
                             ContentType="Custom"
-                            CornerRadius="40"
-                            HeightRequest="80"
+                            CornerRadius="30"
+                            HeightRequest="60"
                             HorizontalOptions="Center"
-                            ImageSource="https://i.imgur.com/D4pGobm.png"
+                            ImageSource="https://i.imgur.com/fixi8ti.jpg"
                             VerticalOptions="Center"
-                            WidthRequest="80" />
+                            WidthRequest="60" />
                     </Grid>
                 </VerticalStackLayout>
 
@@ -129,7 +129,6 @@
                 FontAttributes="Bold"
                 FontSize="Title"
                 Text="Content Types in SfAvatarView" />
-
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Default" />
@@ -137,11 +136,11 @@
                     <sfavatar:SfAvatarView
                         BackgroundColor="OrangeRed"
                         ContentType="Default"
-                        CornerRadius="40"
-                        HeightRequest="80"
+                        CornerRadius="30"
+                        HeightRequest="60"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
-                        WidthRequest="80" />
+                        WidthRequest="60" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -153,14 +152,14 @@
                         AvatarName="Alex"
                         BackgroundColor="Bisque"
                         ContentType="Initials"
-                        CornerRadius="40"
+                        CornerRadius="30"
                         FontAttributes="Bold"
-                        HeightRequest="80"
+                        HeightRequest="60"
                         HorizontalOptions="Center"
                         InitialsColor="Black"
                         InitialsType="SingleCharacter"
                         VerticalOptions="Center"
-                        WidthRequest="80" />
+                        WidthRequest="60" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -172,12 +171,12 @@
                         AvatarName="Alex"
                         BackgroundColor="Bisque"
                         ContentType="Initials"
-                        CornerRadius="40"
+                        CornerRadius="30"
                         FontAttributes="Bold"
-                        HeightRequest="80"
+                        HeightRequest="60"
                         InitialsColor="Black"
                         InitialsType="DoubleCharacter"
-                        WidthRequest="80" />
+                        WidthRequest="60" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -189,11 +188,11 @@
                         AvatarCharacter="Avatar8"
                         BackgroundColor="DeepSkyBlue"
                         ContentType="AvatarCharacter"
-                        CornerRadius="40"
-                        HeightRequest="80"
+                        CornerRadius="30"
+                        HeightRequest="60"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
-                        WidthRequest="80" />
+                        WidthRequest="60" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -204,13 +203,13 @@
                     <sfavatar:SfAvatarView
                         BackgroundColorMemberPath="Colors"
                         ContentType="Group"
-                        CornerRadius="40"
+                        CornerRadius="30"
                         GroupSource="{Binding CollectionImages}"
-                        HeightRequest="80"
+                        HeightRequest="60"
                         HorizontalOptions="Center"
                         ImageSourceMemberPath="ImageSource"
                         VerticalOptions="Center"
-                        WidthRequest="80" />
+                        WidthRequest="60" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -221,13 +220,13 @@
                     <sfavatar:SfAvatarView
                         BackgroundColorMemberPath="Colors"
                         ContentType="Group"
-                        CornerRadius="40"
+                        CornerRadius="30"
                         GroupSource="{Binding CollectionImages}"
-                        HeightRequest="80"
+                        HeightRequest="60"
                         HorizontalOptions="Center"
                         InitialsMemberPath="Name"
                         VerticalOptions="Center"
-                        WidthRequest="80" />
+                        WidthRequest="60" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -236,7 +235,6 @@
                 FontAttributes="Bold"
                 FontSize="Title"
                 Text="Visual Style in .NET MAUI Avatar View(SfAvatarView)" />
-
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Circle" />
@@ -245,6 +243,171 @@
                         Header="{x:StaticResource PropertiesListHeader1}"
                         ItemsSource="{x:StaticResource PropertiesItemsSource1}"
                         Style="{x:StaticResource PropertiesListStyle}" />
+                </VerticalStackLayout>
+            </Frame>
+
+
+            <!--  Customization in SfAvatarView  -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="Customization in SfAvatarView" />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Stroke" />
+                    <Label Text="The Stroke property is used for setting color to the stroke of SfAvatarView." />
+                    <Grid>
+                        <sfavatar:SfAvatarView
+                            AvatarShape="Circle"
+                            AvatarSize="Large"
+                            ContentType="Default"
+                            HorizontalOptions="Center"
+                            ImageSource="https://i.imgur.com/O9SgXez.jpg"
+                            Stroke="Tomato"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Default background color" />
+                    <Label Text="The background color for the SfAvatarView control can be set using the AvatarColorMode property. When the AvatarColorMode property is set to default, it displays the background color set in the BackgroundColor property." />
+                    <Grid>
+                        <sfavatar:SfAvatarView
+                            AvatarColorMode="Default"
+                            AvatarName="Alex"
+                            AvatarShape="Circle"
+                            AvatarSize="Large"
+                            BackgroundColor="Bisque"
+                            ContentType="Initials"
+                            HorizontalOptions="Center"
+                            Stroke="Black"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Dark color" />
+                    <Label Text="The dark background color can be set using DarkBackground in the AvatarColorMode property." />
+                    <Grid>
+                        <sfavatar:SfAvatarView
+                            AvatarColorMode="DarkBackground"
+                            AvatarName="Alex"
+                            AvatarShape="Circle"
+                            AvatarSize="Large"
+                            ContentType="Initials"
+                            HorizontalOptions="Center"
+                            InitialsType="DoubleCharacter"
+                            Stroke="Black"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Light color" />
+                    <Label Text="The light background color can be set using LightBackground in the AvatarColorMode property." />
+                    <Grid>
+                        <sfavatar:SfAvatarView
+                            AvatarColorMode="LightBackground"
+                            AvatarName="Alex"
+                            AvatarShape="Circle"
+                            AvatarSize="Large"
+                            ContentType="Initials"
+                            HorizontalOptions="Center"
+                            InitialsType="DoubleCharacter"
+                            Stroke="Black"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Gradients" />
+                    <Label Text="You can also specify a range of colors using LinearGradientBrush in Background Property as demonstrated in the following code example." />
+                    <sfavatar:SfAvatarView
+                        AvatarName="Alex"
+                        AvatarShape="Circle"
+                        AvatarSize="Large"
+                        ContentType="Initials"
+                        HorizontalOptions="Center"
+                        InitialsType="DoubleCharacter"
+                        VerticalOptions="Center">
+                        <sfavatar:SfAvatarView.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Offset="0" Color="#2F9BDF" />
+                                <GradientStop Offset="1" Color="#51F1F2" />
+                            </LinearGradientBrush>
+                        </sfavatar:SfAvatarView.Background>
+                    </sfavatar:SfAvatarView>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Stroke Thickness" />
+                    <Label Text="You can customize the thickness of the avatar view using the StrokeThickness property." />
+                    <Grid>
+                        <sfavatar:SfAvatarView
+                            AvatarShape="Circle"
+                            AvatarSize="Large"
+                            ContentType="Default"
+                            HorizontalOptions="Center"
+                            ImageSource="https://i.imgur.com/mauGXij.png"
+                            Stroke="LightGreen"
+                            StrokeThickness="4"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Corner radius" />
+                    <Label Text="You can customize the corner radius of the avatar view using the CornerRadius property." />
+                    <Grid>
+                        <sfavatar:SfAvatarView
+                            ContentType="Default"
+                            CornerRadius="20"
+                            HeightRequest="60"
+                            HorizontalOptions="Center"
+                            ImageSource="https://i.imgur.com/fixi8ti.jpg"
+                            VerticalOptions="Center"
+                            WidthRequest="60" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!--  Set badge view to avatar  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Set badge view to avatar" />
+                    <Label Text="The SfAvatarView control provides support for BadgeView to notify users of new or unread messages, notifications, or the status of something." />
+                    <badge:SfBadgeView HorizontalOptions="Center" VerticalOptions="Center">
+                        <badge:SfBadgeView.Content>
+                            <sfavatar:SfAvatarView
+                                ContentType="Custom"
+                                CornerRadius="30"
+                                HeightRequest="60"
+                                HorizontalOptions="Center"
+                                ImageSource="https://i.imgur.com/O9SgXez.jpg"
+                                VerticalOptions="Center"
+                                WidthRequest="60" />
+                        </badge:SfBadgeView.Content>
+                        <badge:SfBadgeView.BadgeSettings>
+                            <badge:BadgeSettings
+                                Animation="Scale"
+                                Icon="Available"
+                                Position="BottomRight"
+                                Type="Success"
+                                Offset="-2,-2" />
+                        </badge:SfBadgeView.BadgeSettings>
+                    </badge:SfBadgeView>
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
