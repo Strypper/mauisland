@@ -54,7 +54,10 @@
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <toolkit:MediaElement ShouldShowPlaybackControls="True" Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
+                <toolkit:MediaElement
+                    MinimumHeightRequest="200"
+                    ShouldShowPlaybackControls="True"
+                    Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
