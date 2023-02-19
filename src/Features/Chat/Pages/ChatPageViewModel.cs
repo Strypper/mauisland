@@ -8,7 +8,7 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
     IChatHubService chatHubService;
     #endregion
 
-    #region[ Ctor ]
+    #region[CTor]
     public ChatPageViewModel(IAppNavigator appNavigator, IChatHubService chatHubService) : base(appNavigator)
     {
         this.chatHubService = chatHubService;
@@ -41,7 +41,7 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
     async Task SendMessageAsync()
     {
         if (!string.IsNullOrEmpty(TypingMessage) &&
-           !string.IsNullOrWhiteSpace(TypingMessage))
+            !string.IsNullOrWhiteSpace(TypingMessage))
         {
             await this.chatHubService.SendMessageTest(TypingMessage,
                                                       CurrentUser.UserName,
@@ -60,17 +60,13 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
 
     protected override void OnInit(IDictionary<string, object> query)
     {
+
+
         SubcribeToLoginMessage();
 
         LoadDataAsync(true)
             .FireAndForget();
-    }
 
-    protected override void OnBack(IDictionary<string, object> query)
-    {
-        base.OnBack(query);
-
-        CurrentUser = query.GetData<UserModel>();
     }
     #endregion
 
@@ -93,7 +89,7 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
 
     private async Task ConnectToChatHubAsync()
     {
-        await this.chatHubService.ConnectAsync(true);
+        await this.chatHubService.ConnectAsync(false);
         this.chatHubService.RegisterChannels();
         this.chatHubService.ChatMessageReceived += ChatHubService_ChatMessageReceived;
     }

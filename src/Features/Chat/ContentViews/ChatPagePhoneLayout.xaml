@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:DataType="app:ChatPageViewModel"
     SizeChanged="ContentView_SizeChanged">
@@ -18,16 +19,34 @@
             <app:ChatBubbleContentView ComponentData="{x:Binding}" />
         </DataTemplate>
 
+        <DataTemplate x:Key="ChatCollectionViewEmptyViewTemplate" x:DataType="app:ChatPageViewModel">
+            <VerticalStackLayout Spacing="5">
+                <skia:SKLottieView
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    RepeatCount="-1"
+                    SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                    Source="dotnetbot.json"
+                    WidthRequest="100">
+                    <skia:SKLottieView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{x:Binding SignUpCommand}" />
+                    </skia:SKLottieView.GestureRecognizers>
+                </skia:SKLottieView>
+                <Label HorizontalOptions="Center" Text="Hey friend !! let's build this together." />
+                <Button Command="{x:Binding SignUpCommand}" Text="Sign in" />
+            </VerticalStackLayout>
+        </DataTemplate>
+
     </ContentView.Resources>
 
     <toolkit:DockLayout ShouldExpandLastChild="True">
         <Grid
             toolkit:DockLayout.DockPosition="Bottom"
             ColumnDefinitions="*, auto"
-            ColumnSpacing="10">
+            ColumnSpacing="10"
+            RowDefinitions="auto, *">
             <Entry
-                IsEnabled="{x:Binding CanChatState,
-                                      Mode=OneWay}"
+                IsEnabled="{x:Binding CanChatState}"
                 IsTextPredictionEnabled="True"
                 Keyboard="Chat"
                 Placeholder="Enter message"
@@ -42,6 +61,13 @@
                 IsEnabled="{x:Binding CanChatState,
                                       Mode=OneWay}"
                 Text="Send" />
+            <Label
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="Center"
+                Text="FEATURE IS IN PREVIEW !!!"
+                TextColor="{x:StaticResource Primary}"
+                VerticalOptions="Center" />
         </Grid>
         <Border
             Margin="0,0,0,15"
@@ -53,14 +79,17 @@
                     Opacity="0.8"
                     Offset="10,10" />
             </Border.Shadow>
-            <CollectionView
-                x:Name="ListOfMessages"
-                EmptyView="Please log-in to chat"
-                ItemTemplate="{x:StaticResource ChatCollectionViewItemTemplate}"
-                ItemsLayout="{x:StaticResource ChatLayout}"
-                ItemsSource="{x:Binding Messages}"
-                ItemsUpdatingScrollMode="KeepLastItemInView"
-                MaximumHeightRequest="610" />
+            <VerticalStackLayout>
+                <CollectionView
+                    x:Name="ListOfMessages"
+                    EmptyView="{x:Binding Mode=TwoWay}"
+                    EmptyViewTemplate="{x:StaticResource ChatCollectionViewEmptyViewTemplate}"
+                    ItemTemplate="{x:StaticResource ChatCollectionViewItemTemplate}"
+                    ItemsLayout="{x:StaticResource ChatLayout}"
+                    ItemsSource="{x:Binding Messages}"
+                    ItemsUpdatingScrollMode="KeepLastItemInView"
+                    MaximumHeightRequest="610" />
+            </VerticalStackLayout>
         </Border>
     </toolkit:DockLayout>
 </ContentView>

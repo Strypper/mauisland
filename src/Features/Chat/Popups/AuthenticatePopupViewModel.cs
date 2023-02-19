@@ -23,11 +23,12 @@ public partial class AuthenticatePopupViewModel : BaseViewModel
 
     #region [Properties]
 
-    [ObservableProperty]
-    bool canStateChange = true;
 
     [ObservableProperty]
     string viewMode = "Login";
+
+    [ObservableProperty]
+    bool isLogin = true;
     #endregion
 
     #region [Relay Commands]

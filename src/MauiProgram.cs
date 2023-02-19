@@ -4,6 +4,7 @@ using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Handlers;
 using Refit;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using SQLite;
@@ -17,7 +18,7 @@ public static class MauiProgram
     public static MauiApp CreateMauiApp()
     {
 
-        var isLocal = true;
+        var isLocal = false;
 
 
         var builder = MauiApp.CreateBuilder();
@@ -69,12 +70,12 @@ public static class MauiProgram
     {
         builder.Services.AddRefitClient<IIntranetAuthenticationRefit>()
                         .ConfigureHttpClient(c => c.BaseAddress = new Uri(!isLocal
-                                                                          ? "https://totechsidentityprovider.azurewebsites.net/api"
+                                                                          ? "https://intranetcloud.azurewebsites.net/api"
                                                                           : "https://localhost:44371/api"));
 
         builder.Services.AddRefitClient<IIntranetUserRefit>()
                         .ConfigureHttpClient(c => c.BaseAddress = new Uri(!isLocal
-                                                                  ? "https://totechsidentityprovider.azurewebsites.net/api"
+                                                                  ? "https://intranetcloud.azurewebsites.net/api"
                                                                   : "https://localhost:44371/api"));
         return builder;
     }

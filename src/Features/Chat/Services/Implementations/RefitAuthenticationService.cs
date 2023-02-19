@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Diagnostics;
+using Newtonsoft.Json;
+using Refit;
 
 namespace MAUIsland;
 
@@ -28,21 +30,44 @@ public class RefitAuthenticationService : IAuthenticationServices
 
     public async Task Authenticate(string username, string password)
     {
-        var authenticationResponseDTO = await this.intranetAuthenticationRefit.Login(new UserNameLoginDTO(username, password));
+        Guard.IsNotNullOrEmpty(username);
+        Guard.IsNotNullOrEmpty(password);
 
-        Guard.IsNotNull(authenticationResponseDTO);
+        try
+        {
+            var authenticationResponseDTO = await this.intranetAuthenticationRefit.Login(new UserNameLoginDTO(username, password));
 
-        await SaveToSecureStorageAsync(authenticationResponseDTO);
+            Guard.IsNotNull(authenticationResponseDTO);
+
+            await SaveToSecureStorageAsync(authenticationResponseDTO);
+        }
+        catch (ApiException ex)
+        {
+            throw new Exception(ex.Message);
+        }
+
 
     }
 
     public async Task AuthenticateWithPhoneNumber(string phonenumber, string password)
     {
-        var authenticationResponseDTO = await this.intranetAuthenticationRefit.LoginWithPhoneNumber(new PhoneNumberLoginDTO(phonenumber, password));
+        Guard.IsNotNullOrEmpty(phonenumber);
+        Guard.IsNotNullOrEmpty(password);
 
-        Guard.IsNotNull(authenticationResponseDTO);
+        try
+        {
+            var authenticationResponseDTO = await this.intranetAuthenticationRefit.LoginWithPhoneNumber(new PhoneNumberLoginDTO(phonenumber, password));
 
-        await SaveToSecureStorageAsync(authenticationResponseDTO);
+            Guard.IsNotNull(authenticationResponseDTO);
+
+            await SaveToSecureStorageAsync(authenticationResponseDTO);
+        }
+        catch (ApiException ex)
+        {
+
+            throw new Exception(ex.Message);
+        }
+
     }
 
 
@@ -55,11 +80,18 @@ public class RefitAuthenticationService : IAuthenticationServices
         Guard.IsNotNullOrEmpty(firstName);
         Guard.IsNotNullOrEmpty(profilePicUrl);
 
-        var response = await this.intranetAuthenticationRefit.Register(new RegisterDTO(userName, password, firstName, lastName, email, phoneNumber, profilePicUrl));
-
-        if (response != System.Net.HttpStatusCode.NoContent)
+        try
         {
-
+            var response = await this.intranetAuthenticationRefit.Register(new RegisterDTO(userName, firstName, lastName, phoneNumber, email, password, profilePicUrl));
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorContentJson = JsonConvert.DeserializeObject<RefitErrorMessageModel>(response.Error.Content);
+                throw new Exception(errorContentJson.title);
+            }
+        }
+        catch (ApiException ex)
+        {
+            throw new Exception(ex.Message);
         }
     }
     #endregion
