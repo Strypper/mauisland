@@ -245,6 +245,105 @@
                         Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
             </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+
+                <Grid ColumnSpacing="5" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <sfavatar:SfAvatarView
+                        Grid.Row="0"
+                        Grid.Column="4"
+                        AvatarShape="Circle"
+                        AvatarSize="ExtraLarge"
+                        Style="{StaticResource AvatarViewStyle}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="4"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="ExtraLargeCircle"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+
+                    <sfavatar:SfAvatarView
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        AvatarShape="Circle"
+                        AvatarSize="Large"
+                        Style="{StaticResource AvatarViewStyle}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="LargeCircle"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                    <sfavatar:SfAvatarView
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        AvatarShape="Circle"
+                        AvatarSize="Medium"
+                        Style="{StaticResource AvatarViewStyle}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="MediumCircle"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                    <sfavatar:SfAvatarView
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        AvatarShape="Circle"
+                        AvatarSize="Small"
+                        Style="{StaticResource AvatarViewStyle}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="SmallCircle"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                    <sfavatar:SfAvatarView
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        AvatarShape="Circle"
+                        AvatarSize="ExtraSmall"
+                        Style="{StaticResource AvatarViewStyle}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="ExtraSmallCircle"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </Grid>
+
+            </Frame>
 
 
             <!--  Customization in SfAvatarView  -->
