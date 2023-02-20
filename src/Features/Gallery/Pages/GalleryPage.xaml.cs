@@ -2,12 +2,29 @@ namespace MAUIsland;
 
 public partial class GalleryPage
 {
+    #region [Services]
+    private readonly GalleryPageViewModel viewModel;
+    #endregion
+
     #region [CTor]
     public GalleryPage(GalleryPageViewModel vm)
     {
         InitializeComponent();
 
-        BindingContext = vm;
+        BindingContext = viewModel = vm;
     }
     #endregion
+
+
+    #region [Event Handlers]
+    private void BrandIconContentView_DetailClicked(ControlGroupInfo control)
+    {
+        this.viewModel.ViewControlsCommand.Execute(control);
+    }
+    private void BrandIconContentView_DetailInNewWindowClicked(ControlGroupInfo control)
+    {
+        this.viewModel.ViewControlsInNewWindowCommand.Execute(control);
+    }
+    #endregion
+
 }

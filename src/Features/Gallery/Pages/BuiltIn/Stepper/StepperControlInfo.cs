@@ -10,7 +10,7 @@ class StepperControlInfo : IControlInfo
         Glyph = FluentUIIcon.Ic_fluent_add_24_regular
     };
     public string ControlDetail => "Stepper enables a numeric value to be selected from a range of values. It consists of two buttons labeled with minus and plus signs.";
-    public string GitHubUrl => $"https://github.com/Strypper/MAUIsland/tree/main/MAUIsland/Features/Gallery/MAUI/{ControlName}";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/BuiltIn/{ControlName}";
     public string DocumentUrl => $"https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/{ControlName}/?view=net-maui-7.0";
     public string GroupName => ControlGroupInfo.BuiltInControls;
 }

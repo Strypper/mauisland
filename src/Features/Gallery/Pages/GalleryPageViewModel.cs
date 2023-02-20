@@ -2,8 +2,12 @@
 
 public partial class GalleryPageViewModel : NavigationAwareBaseViewModel
 {
-    private readonly IControlsService controlsService;
 
+    #region [Services]
+    private readonly IControlsService controlsService;
+    #endregion
+
+    #region [CTor]
     public GalleryPageViewModel(
         IControlsService controlsService,
         IAppNavigator appNavigator
@@ -11,10 +15,15 @@ public partial class GalleryPageViewModel : NavigationAwareBaseViewModel
     {
         this.controlsService = controlsService;
     }
+    #endregion
+
+    #region [Properties]
 
     [ObservableProperty]
     ObservableCollection<ControlGroupInfo> controlGroups;
+    #endregion
 
+    #region [Overrides]
     protected override async void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
@@ -23,11 +32,18 @@ public partial class GalleryPageViewModel : NavigationAwareBaseViewModel
 
         ControlGroups = new ObservableCollection<ControlGroupInfo>(controlGroups);
     }
+    #endregion
 
+
+    #region [RelayCommands]
     [RelayCommand]
     Task ViewControlsAsync(ControlGroupInfo controlGroupInfo)
         => AppNavigator.NavigateAsync(
             AppRoutes.ControlsByGroupPage,
             args: controlGroupInfo
         );
+
+    [RelayCommand]
+    Task ViewControlsInNewWindowAsync(ControlGroupInfo controlGroupInfo) => AppNavigator.NavigateAsync(AppRoutes.ControlsByGroupPage, inNewWindow: true, args: controlGroupInfo);
+    #endregion
 }

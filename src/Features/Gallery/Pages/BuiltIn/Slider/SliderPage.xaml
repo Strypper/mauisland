@@ -111,7 +111,7 @@
 
                     <Slider />
 
-                    <app:SourceCodeExpander XamlCode="{x:Binding SimpleCreateSliderXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding SimpleCreateSliderXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -150,11 +150,31 @@
                         ThumbColor="{x:Binding Source={x:Reference ThumbColorPicker},
                                                Path=SelectedItem,
                                                Converter={x:StaticResource StringToColorConverter}}" />
-                    <app:SourceCodeExpander XamlCode="{x:Binding SliderWithCustomColorsXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding SliderWithCustomColorsXamlCode}" />
 
                     <Label FontSize="Subtitle" Text="You can even change the thumb image" />
                     <Slider MinimumTrackColor="#6e50db" ThumbImageSource="dotnet_bot.png" />
-                    <app:SourceCodeExpander XamlCode="{x:Binding SliderWithCustomThumbImageXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding SliderWithCustomThumbImageXamlCode}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout>
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="LET'S HAVE A LITTLE FUN!!!!" />
+                    <Slider
+                        x:Name="HavingFunSlider"
+                        DragCompleted="HavingFunSlider_DragCompleted"
+                        Maximum="360"
+                        ValueChanged="HavingFunSlider_ValueChanged" />
+                    <Grid
+                        HeightRequest="300"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start"
+                        WidthRequest="300">
+                        <Label
+                            x:Name="RotatingLabel"
+                            Text="COME ON SLIDE ME !!!!"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

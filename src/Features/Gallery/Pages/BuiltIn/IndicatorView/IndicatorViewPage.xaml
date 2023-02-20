@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:app="clr-namespace:MAUIsland"
-             
-             x:Name="root"
-             x:Class="MAUIsland.IndicatorViewPage"
-             x:DataType="app:IndicatorViewPageViewModel"
-             
-             Title="Indicator View">
+<app:BasePage
+    x:Class="MAUIsland.IndicatorViewPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    x:Name="root"
+    Title="Indicator View"
+    Padding="10"
+    x:DataType="app:IndicatorViewPageViewModel">
     <app:BasePage.Resources>
-        
-        <x:String x:Key="introduce">The .NET Multi-platform App UI (.NET MAUI) IndicatorView is a control that displays indicators that represent the number of items, and current position, in a CarouselView:</x:String>
+
+        <x:String x:Key="ControlInfo">The .NET Multi-platform App UI (.NET MAUI) IndicatorView is a control that displays indicators that represent the number of items, and current position, in a CarouselView:</x:String>
 
         <x:String x:Key="PropertiesListHeader">
             IndicatorView defines the following properties:
@@ -20,7 +20,11 @@
             These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
         </x:String>
 
-        <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}" >
+        <x:String x:Key="DemonstrateMessage">
+            The CarouselView currently very buggy on WinUI it can't decide the width it need to stretch the item inside, leading the indicator also confuse to calculate the position.
+        </x:String>
+
+        <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
                                 <strong style="color:blue">Count</strong>, of type <strong style="color:blue">int</strong>, the number of indicators.
@@ -78,63 +82,77 @@
             </x:String>
         </x:Array>
 
-        <DataTemplate x:Key="CarouseViewTemplate1" 
-                      x:DataType="app:Cats">
+        <DataTemplate x:Key="CarouseViewTemplate1" x:DataType="app:Cats">
             <StackLayout>
-                <Frame WidthRequest="120"
-                       BorderColor="Blue"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center">
+                <Frame
+                    BorderColor="Blue"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="120">
                     <StackLayout>
-                        <Label Text="{Binding Name}"/>
-                        <Label Text="{Binding Description}"/>
+                        <Label Text="{Binding Name}" />
+                        <Label Text="{Binding Description}" />
                     </StackLayout>
                 </Frame>
             </StackLayout>
         </DataTemplate>
-        
+
     </app:BasePage.Resources>
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="github.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </app:BasePage.ToolbarItems>
     <ScrollView>
-        <VerticalStackLayout>
-            <Label Text="{x:StaticResource introduce}"
-                   VerticalOptions="Center"
-                   Padding="10"/>
+        <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout>
-                    <Label Text="Basic Indicator"
-                           Margin="0,0,0,10"
-                           FontSize= "Medium"
-                           HorizontalOptions="Start"
-                           VerticalOptions="Center"/>
-                    <Grid HeightRequest="1" 
-                          VerticalOptions="End"
-                          Background="White"/>
+                <Label Text="{x:StaticResource ControlInfo}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CollectionView
+                    Margin="10"
+                    Footer="{x:StaticResource PropertiesListFooter}"
+                    Header="{x:StaticResource PropertiesListHeader}"
+                    ItemsSource="{x:StaticResource PropertyItemsSource}"
+                    SelectionMode="Single"
+                    Style="{x:StaticResource PropertiesListStyle}"
+                    VerticalScrollBarVisibility="Never" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        Margin="0,0,0,10"
+                        Style="{x:StaticResource DocumentSectionTitleStyle}"
+                        Text="Demonstration" />
+                    <Label Text="{x:StaticResource DemonstrateMessage}" />
+                    <Grid
+                        Background="White"
+                        HeightRequest="1"
+                        VerticalOptions="End" />
 
                     <StackLayout HorizontalOptions="Start">
-                        <CarouselView ItemsSource="{Binding Cats}"
-                                      WidthRequest="120"
-                                      HorizontalScrollBarVisibility="Never"
-                                      IndicatorView="indicatorView1"
-                                      Loop="False"
-                                      ItemTemplate="{x:StaticResource CarouseViewTemplate1}"/>
-                        <IndicatorView x:Name="indicatorView1"
-                                       IndicatorColor="LightGray"
-                                       SelectedIndicatorColor="DarkGray"/>
+                        <CarouselView
+                            HorizontalScrollBarVisibility="Never"
+                            IndicatorView="indicatorView1"
+                            ItemTemplate="{x:StaticResource CarouseViewTemplate1}"
+                            ItemsSource="{x:Binding Cats}"
+                            Loop="False"
+                            WidthRequest="120" />
+                        <IndicatorView
+                            x:Name="indicatorView1"
+                            IndicatorColor="LightGray"
+                            SelectedIndicatorColor="DarkGray" />
                     </StackLayout>
-                    <app:SourceCodeExpander XamlCode="{x:Binding StandardIndicatorViewXamlCode}"/>
+                    <app:SourceCodeExpander Code="{x:Binding StandardIndicatorViewXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
-
-            <CollectionView Margin="10"
-                            SelectionMode="Single"
-                            Header="{x:StaticResource PropertiesListHeader}"
-                            Footer="{x:StaticResource PropertiesListFooter}"
-                            ItemsSource="{x:StaticResource PropertyItemsSource}"
-                            Style="{x:StaticResource PropertiesListStyle}"
-                            VerticalScrollBarVisibility="Never"/>
-
-            
-
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

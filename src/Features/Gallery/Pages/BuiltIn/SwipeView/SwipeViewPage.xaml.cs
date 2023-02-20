@@ -3,10 +3,11 @@ namespace MAUIsland;
 public partial class SwipeViewPage : IControlPage
 {
     #region [CTor]
-    public SwipeViewPage()
+    public SwipeViewPage(SwipeViewPageViewModel vm)
     {
         InitializeComponent();
+
+        BindingContext = vm;
     }
     #endregion
-
 }

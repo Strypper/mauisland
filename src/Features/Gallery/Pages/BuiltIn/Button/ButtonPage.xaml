@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="Button"
     Padding="10"
-    x:DataType="app:ButtonPageViewModel">
+    x:DataType="app:ButtonPageViewModel"
+    BackgroundColor="Transparent">
 
     <app:BasePage.Resources>
         <x:String x:Key="ControlInfo">
@@ -117,10 +118,40 @@
 
     </app:BasePage.Resources>
 
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="github.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </app:BasePage.ToolbarItems>
+
     <ScrollView>
         <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <Label Text="{x:StaticResource ControlInfo}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="A simple button with text content" />
+                    <Grid>
+                        <Button
+                            HorizontalOptions="Start"
+                            IsEnabled="{x:Binding IsEnable}"
+                            Text="Standard XAML Button"
+                            VerticalOptions="Center" />
+                        <HorizontalStackLayout HorizontalOptions="End">
+                            <CheckBox IsChecked="{x:Binding IsEnable, Mode=TwoWay}" VerticalOptions="Center" />
+                            <Label Text="Enable Button" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </Grid>
+                    <app:SourceCodeExpander Code="{x:Binding StandardButtonXamlCode}" CodeType="Xaml" />
+                </VerticalStackLayout>
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <CollectionView
@@ -129,109 +160,94 @@
                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="A simple button with text content" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Grid>
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Title"
+                        Text="You can change the background color of the button" />
+
+                    <ScrollView HorizontalOptions="Start" HorizontalScrollBarVisibility="Always">
+                        <HorizontalStackLayout Spacing="10">
+                            <Button
+                                BackgroundColor="Green"
+                                Text="Green"
+                                TextColor="{x:StaticResource White}" />
+
+                            <Button
+                                BackgroundColor="Red"
+                                Text="Red"
+                                TextColor="{x:StaticResource White}" />
+
+                            <Button
+                                BackgroundColor="{x:StaticResource Primary}"
+                                Text="Application Primary Color"
+                                TextColor="{x:StaticResource White}" />
+
+                            <!--  This button will be Cyan when in dark mode and Blue when light mode  -->
+                            <Button
+                                BackgroundColor="{x:AppThemeBinding Dark={x:StaticResource Cyan300Accent},
+                                                                    Light={x:StaticResource Blue300Accent}}"
+                                Text="Dark or Light mode color"
+                                TextColor="{x:StaticResource Black}" />
+                        </HorizontalStackLayout>
+                    </ScrollView>
+                    <app:SourceCodeExpander Code="{x:Binding ButtonsChangedBackgroundGroupXamlCode}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+
+
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Apply rotation to a button" />
                     <Button
+                        Margin="40,0,0,0"
+                        BackgroundColor="Red"
+                        BorderColor="Black"
+                        BorderWidth="2"
+                        CharacterSpacing="4"
+                        CornerRadius="30"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HeightRequest="70"
                         HorizontalOptions="Start"
-                        IsEnabled="{x:Binding IsEnable}"
-                        Text="Standard XAML Button"
-                        VerticalOptions="Center" />
-                    <HorizontalStackLayout HorizontalOptions="End">
-                        <CheckBox IsChecked="{x:Binding IsEnable, Mode=TwoWay}" VerticalOptions="Center" />
-                        <Label Text="Enable Button" VerticalOptions="Center" />
-                    </HorizontalStackLayout>
-                </Grid>
+                        LineBreakMode="WordWrap"
+                        RotationX="10"
+                        RotationY="30"
+                        Text="MAUI Button Test"
+                        TextColor="White"
+                        VerticalOptions="Center"
+                        WidthRequest="250" />
+                    <app:SourceCodeExpander Code="{x:Binding RotationButtonXamlCode}" CodeType="Xaml" />
+                </VerticalStackLayout>
             </Frame>
-            <app:SourceCodeExpander XamlCode="{x:Binding StandardButtonXamlCode}" />
-
-            <Label
-                FontAttributes="Bold"
-                FontSize="Title"
-                Text="You can change the background color of the button" />
-
-            <HorizontalStackLayout Spacing="10">
-                <Button
-                    BackgroundColor="Green"
-                    Text="Green"
-                    TextColor="{x:StaticResource White}" />
-
-                <Button
-                    BackgroundColor="Red"
-                    Text="Red"
-                    TextColor="{x:StaticResource White}" />
-
-                <Button
-                    BackgroundColor="{x:StaticResource Primary}"
-                    Text="Application Primary Color"
-                    TextColor="{x:StaticResource White}" />
-
-                <!--  This button will be Cyan when in dark mode and Blue when light mode  -->
-                <Button
-                    BackgroundColor="{x:AppThemeBinding Dark={x:StaticResource Cyan300Accent},
-                                                        Light={x:StaticResource Blue300Accent}}"
-                    Text="Dark or Light mode color"
-                    TextColor="{x:StaticResource Black}" />
-            </HorizontalStackLayout>
-            <app:SourceCodeExpander XamlCode="{x:Binding ButtonsChangedBackgroundGroupXamlCode}" />
-
-            <Label
-                FontAttributes="Bold"
-                FontSize="Title"
-                Text="Apply rotation to a button" />
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-
-                <Button
-                    BackgroundColor="Red"
-                    BorderColor="Black"
-                    BorderWidth="2"
-                    CharacterSpacing="4"
-                    CornerRadius="30"
-                    FontAttributes="Bold"
-                    FontSize="18"
-                    HeightRequest="70"
-                    HorizontalOptions="Start"
-                    LineBreakMode="WordWrap"
-                    RotationX="10"
-                    RotationY="30"
-                    Text="MAUI Button Test"
-                    TextColor="White"
-                    VerticalOptions="Center"
-                    WidthRequest="250" />
-            </Frame>
-            <app:SourceCodeExpander XamlCode="{x:Binding RotationButtonXamlCode}" />
-
-            <Label
-                FontAttributes="Bold"
-                FontSize="Title"
-                Text="Use bitmaps with buttons" />
-            <Label Text="{x:StaticResource ImageButtonControlInfo}" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <Frame.Resources>
                     <FontImageSource
                         x:Key="HomeIcon"
                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
                         Glyph="{Static app:FluentUIIcon.Ic_fluent_home_20_regular}"
-                        Color="{x:OnPlatform WinUI={x:StaticResource Primary},
-                                             Android={x:AppThemeBinding Dark={x:StaticResource Primary},
-                                                                        Light={x:StaticResource White}}}" />
+                        Color="{x:AppThemeBinding Dark={x:StaticResource Primary},
+                                                  Light={x:StaticResource White}}" />
 
                     <FontImageSource
                         x:Key="DownloadIcon"
                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
                         Glyph="{Static app:FluentUIIcon.Ic_fluent_arrow_download_20_regular}"
-                        Color="{x:OnPlatform WinUI={x:StaticResource Primary},
-                                             Android={x:AppThemeBinding Dark={x:StaticResource Primary},
-                                                                        Light={x:StaticResource White}}}" />
+                        Color="{x:AppThemeBinding Dark={x:StaticResource Primary},
+                                                  Light={x:StaticResource White}}" />
                 </Frame.Resources>
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Use bitmaps with buttons" />
+                    <Label Text="{x:StaticResource ImageButtonControlInfo}" />
+                    <HorizontalStackLayout Spacing="10">
+                        <Button ImageSource="{x:StaticResource HomeIcon}" Text="Home" />
 
-                <HorizontalStackLayout Spacing="10">
-                    <Button ImageSource="{x:StaticResource HomeIcon}" Text="Home" />
-
-                    <Button ImageSource="{x:StaticResource DownloadIcon}" Text="Download" />
-                </HorizontalStackLayout>
+                        <Button ImageSource="{x:StaticResource DownloadIcon}" Text="Download" />
+                    </HorizontalStackLayout>
+                    <app:SourceCodeExpander Code="{x:Binding ButtonWithImageXamlCode}" CodeType="Xaml" />
+                </VerticalStackLayout>
             </Frame>
-            <app:SourceCodeExpander XamlCode="{x:Binding ButtonWithImageXamlCode}" />
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

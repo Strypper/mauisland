@@ -20,19 +20,18 @@
         BackgroundColor="#323232"
         CornerRadius="2"
         HasShadow="True"
-        IsClippedToBounds="True"
-        WidthRequest="373">
-        <Grid IsClippedToBounds="True">
+        WidthRequest="340">
+        <Grid>
             <Ellipse
                 Margin="-150,-150,0,0"
-                Fill="#6f0bd8"
+                Fill="#7014e8"
                 HeightRequest="250"
                 HorizontalOptions="Start"
                 VerticalOptions="Start"
                 WidthRequest="270" />
             <Grid
                 Margin="10"
-                ColumnDefinitions="auto,310"
+                ColumnDefinitions="30,280"
                 ColumnSpacing="10">
                 <Image
                     Margin="0,5,0,0"
@@ -65,15 +64,16 @@
                                                            Source={x:Reference root}}" />
                     <Grid ColumnDefinitions="*,5, 50">
                         <Button
-                            BackgroundColor="#ff28ba"
+                            BackgroundColor="#2b0b98"
                             Clicked="Detail_Clicked"
                             CornerRadius="2"
+                            FontAttributes="Bold"
                             Text="Detail"
                             TextColor="{x:StaticResource White}" />
 
                         <ImageButton
                             Grid.Column="2"
-                            BackgroundColor="#ff28ba"
+                            BackgroundColor="#2b0b98"
                             Clicked="DetailInNewWindow_Clicked"
                             CornerRadius="2"
                             Source="{x:StaticResource OpenInNewWindowsIcon}" />

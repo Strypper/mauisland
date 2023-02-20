@@ -1,29 +1,105 @@
+using ColorCode;
+using System.ComponentModel;
+
 namespace MAUIsland;
 
-public partial class SourceCodeExpander : ContentView
+public partial class SourceCodeExpander : ContentView, INotifyPropertyChanged
 {
     #region [CTor]
+    public SourceCodeExpander()
+    {
+        InitializeComponent();
+    }
+    #endregion
 
+    #region [Fields]
+    private FormattedString outputFormattedString;
+    #endregion
+
+    #region [Properties]
+    public FormattedString OutputFormattedString
+    {
+        get { return outputFormattedString; }
+        set { outputFormattedString = value; OnPropertyChanged("OutputFormattedString"); }
+    }
     #endregion
 
     #region [Bindable Properties]
-    public static readonly BindableProperty XamlCodeProperty = BindableProperty.Create( nameof(XamlCode),
+    public static readonly BindableProperty CodeProperty = BindableProperty.Create(nameof(Code),
                                                                                            typeof(string),
-                                                                                           typeof(RoundedEntry),
+                                                                                           typeof(SourceCodeExpander),
                                                                                            default(string));
-    public string XamlCode
+    public string Code
     {
-        get => (string)GetValue(XamlCodeProperty);
-        set => SetValue(XamlCodeProperty, value);
+        get => (string)GetValue(CodeProperty);
+        set => SetValue(CodeProperty, value);
+    }
+
+
+    public static readonly BindableProperty CodeTypeProperty = BindableProperty.Create(nameof(CodeType),
+                                                                                       typeof(CodeType),
+                                                                                       typeof(SourceCodeExpander),
+                                                                                       CodeType.Xaml);
+    public CodeType CodeType
+    {
+        get => (CodeType)GetValue(CodeTypeProperty);
+        set => SetValue(CodeTypeProperty, value);
+    }
+    #endregion
+
+    #region [Event Handlers]
+
+    private async void Copy_Clicked(object sender, EventArgs e) =>
+        await Clipboard.Default.SetTextAsync(Code);
+    private void root_Loaded(object sender, EventArgs e)
+    {
+        CodeTypeLabel.Text = CodeType == CodeType.Xaml ? "Xaml Code" : "C# Code";
+        ApplyColor(Code, CodeType == CodeType.Xaml ? Languages.Xml : Languages.CSharp);
     }
 
     #endregion
-    public SourceCodeExpander()
-	{
-		InitializeComponent();
 
+    #region [Methods]
+    private void ApplyColor(string code, ILanguage language)
+    {
+        var formatter = new FormattedStringFormatter();
+        var fs = new FormattedString();
+        formatter.FormatString(code, language, fs);
+
+        //Output = XamlServices.Save(fs);
+
+        OutputFormattedString = fs;
+    }
+    #endregion
+
+}
+
+
+#region [Converters]
+public class CodeTypeToStringConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
     }
 
-    private async void Copy_Clicked(object sender, EventArgs e) =>
-        await Clipboard.Default.SetTextAsync(XamlCode);
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+#endregion
+
+public partial class SourceCodeForSample : BaseModel
+{
+    [ObservableProperty]
+    string codeContent;
+
+    [ObservableProperty]
+    CodeType codeType;
+}
+
+public enum CodeType
+{
+    CSharp, Xaml
 }

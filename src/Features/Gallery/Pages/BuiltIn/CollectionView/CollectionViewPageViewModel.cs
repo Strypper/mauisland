@@ -28,21 +28,9 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
         }
     }
 
+
+    [ObservableProperty]
     ObservableCollection<object> selectedMonkeys;
-    public ObservableCollection<object> SelectedMonkeys
-    {
-        get
-        {
-            return selectedMonkeys;
-        }
-        set
-        {
-            if (selectedMonkeys != value)
-            {
-                selectedMonkeys = value;
-            }
-        }
-    }
 
     public string SelectedMonkeyMessage { get; private set; }
 

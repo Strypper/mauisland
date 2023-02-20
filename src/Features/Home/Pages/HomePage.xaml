@@ -4,72 +4,105 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="HomePage"
     x:DataType="app:HomePageViewModel"
-    Shell.NavBarIsVisible="True">
+    Appearing="BasePage_Appearing"
+    Shell.NavBarIsVisible="{x:OnPlatform WinUI=false,
+                                         Android=true}"
+    SizeChanged="BasePage_SizeChanged">
 
     <app:BasePage.Resources>
 
         <DataTemplate x:Key="MAUIFactListItemTemplate" x:DataType="app:MAUIFact">
-            <Grid ColumnDefinitions="10 , *">
-                <Ellipse
-                    Fill="#294611"
-                    HeightRequest="7"
-                    VerticalOptions="Center"
-                    WidthRequest="7" />
+            <Label
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center"
+                LineBreakMode="WordWrap"
+                MaxLines="2"
+                Text="{x:Binding Fact}"
+                TextColor="Black" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ActivitiesItemTemplate" x:DataType="app:ApplicationNew">
+            <app:ControlActivityCardContentView ApplicationNew="{x:Binding}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ActivitiesHeaderTemplate" x:DataType="{x:Type x:String}">
+            <Grid>
+                <Grid.Resources>
+                    <LinearGradientBrush x:Key="ActivitiesHeaderTitleGradient" EndPoint="1,0">
+                        <GradientStop Offset="0.0" Color="#DCE35B" />
+                        <GradientStop Offset="1.0" Color="#45B649" />
+                    </LinearGradientBrush>
+                </Grid.Resources>
                 <Label
-                    Grid.Column="1"
-                    Margin="10,0,0,0"
-                    FontSize="Body"
-                    LineBreakMode="WordWrap"
-                    Text="{x:Binding Fact}"
-                    TextColor="#294611"
-                    TextType="Html"
+                    FontAttributes="Bold"
+                    FontSize="Title"
+                    Rotation="-90"
+                    Text="{x:Binding}"
                     VerticalOptions="Center" />
             </Grid>
         </DataTemplate>
+
+
+        <LinearItemsLayout
+            x:Key="ActivitiesLayout"
+            ItemSpacing="10"
+            Orientation="Horizontal" />
     </app:BasePage.Resources>
 
-    <Grid>
+    <Grid ColumnDefinitions="1.4*, *">
         <Image
+            Grid.ColumnSpan="2"
             Aspect="AspectFill"
             HorizontalOptions="Fill"
             Source="mauibeach.jpeg"
             VerticalOptions="Fill" />
 
-        <VerticalStackLayout
-            Margin="30"
-            HorizontalOptions="End"
-            VerticalOptions="Start">
 
-            <Label
-                FontAttributes="Bold"
-                FontSize="80"
-                Text="MAUISLAND"
-                TextColor="#294611" />
-            <Border
-                Padding="20"
-                BackgroundColor="Transparent"
-                Stroke="#294611"
-                StrokeShape="RoundRectangle 5,5,5,5">
-                <VerticalStackLayout Spacing="10">
-                    <Label
-                        FontAttributes="Bold"
-                        FontSize="Subtitle"
-                        Text="Do you know about these MAUI facts ?"
-                        TextColor="#294611" />
-                    <CollectionView
-                        x:Name="MAUIFactsCollectionView"
-                        HeightRequest="250"
-                        ItemTemplate="{x:StaticResource MAUIFactListItemTemplate}"
-                        ItemsSource="{x:Binding MauiFacts}"
-                        SelectionChangedCommand="{x:Binding OpenFactUrlCommand}"
-                        SelectionChangedCommandParameter="{x:Binding Source={x:Reference MAUIFactsCollectionView},
-                                                                     Path=SelectedItem}"
-                        SelectionMode="Single"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Border>
-        </VerticalStackLayout>
+        <Grid
+            Grid.Column="1"
+            HorizontalOptions="Fill"
+            RowDefinitions="0.6*, 0.4*"
+            VerticalOptions="Fill">
+            <BoxView
+                Grid.RowSpan="2"
+                HorizontalOptions="Fill"
+                Opacity="0.5"
+                VerticalOptions="Fill"
+                Color="{x:StaticResource White}" />
+
+            <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Image
+                    Margin="0,0,0,20"
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    Source="mauilogo.png"
+                    WidthRequest="100" />
+                <CollectionView
+                    x:Name="MAUIFactsCarousel"
+                    HorizontalOptions="Center"
+                    ItemTemplate="{x:StaticResource MAUIFactListItemTemplate}"
+                    ItemsSource="{x:Binding MauiFacts}"
+                    MaximumHeightRequest="200"
+                    SelectedItem="{x:Binding SelectedMauiFact,
+                                             Mode=TwoWay}"
+                    SelectionChangedCommand="{x:Binding OpenFactUrlCommand}"
+                    SelectionChangedCommandParameter="{x:Binding SelectedMauiFact}"
+                    SelectionMode="Single" />
+                <IndicatorView HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Grid>
+        <CollectionView
+            Grid.ColumnSpan="2"
+            Margin="20"
+            Header="TOP NEWS"
+            HeaderTemplate="{x:StaticResource ActivitiesHeaderTemplate}"
+            HorizontalOptions="End"
+            ItemTemplate="{x:StaticResource ActivitiesItemTemplate}"
+            ItemsLayout="{x:StaticResource ActivitiesLayout}"
+            ItemsSource="{x:Binding ApplicationNews}"
+            VerticalOptions="End" />
     </Grid>
 </app:BasePage>

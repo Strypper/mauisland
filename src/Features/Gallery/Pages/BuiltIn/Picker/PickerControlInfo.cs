@@ -10,7 +10,7 @@ class PickerControlInfo : IControlInfo
         Glyph = FluentUIIcon.Ic_fluent_time_picker_24_regular
     };
     public string ControlDetail => "Picker displays a short list of items, from which the user can select an item.";
-    public string GitHubUrl => $"https://github.com/Strypper/MAUIsland/tree/main/MAUIsland/Features/Gallery/MAUI/{ControlName}";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/BuiltIn/{ControlName}";
     public string DocumentUrl => $"https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/{ControlName}/?view=net-maui-7.0";
     public string GroupName => ControlGroupInfo.BuiltInControls;
 }

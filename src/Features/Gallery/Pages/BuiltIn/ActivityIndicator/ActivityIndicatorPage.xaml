@@ -6,13 +6,27 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="Activity Indicator"
     Padding="10"
-    x:DataType="app:ActivityIndicatorPageViewModel">
+    x:DataType="app:ActivityIndicatorPageViewModel"
+    BackgroundColor="Transparent">
+
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="github.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </app:BasePage.ToolbarItems>
+
     <app:BasePage.Resources>
         <app:StringToColorConverter x:Key="StringToColorConverter" />
 
         <x:String x:Key="ControlInfo">
-            The .NET Multi-platform App UI (.NET MAUI) ActivityIndicator displays an animation to show that the application is engaged in a lengthy activity. Unlike ProgressBar, ActivityIndicator gives no indication of progress.
-            The appearance of an ActivityIndicator is platform-dependent, and the following screenshot shows an ActivityIndicator on iOS and Android:
+            The .NET Multi-platform App UI (.NET MAUI) ActivityIndicator displays an animation to show that the application is engaged in a lengthy activity. Unlike ProgressBar, ActivityIndicator gives no indication of progress. The appearance of an ActivityIndicator is platform-dependent, and the following screenshot shows an ActivityIndicator on iOS and Android:
         </x:String>
 
         <x:String x:Key="PropertiesListHeader">
@@ -70,7 +84,7 @@
 
                         <ActivityIndicator IsRunning="true" Color="Aqua" />
                     </HorizontalStackLayout>
-                    <app:SourceCodeExpander XamlCode="{x:Binding GroupOfActivityIndicators}" />
+                    <app:SourceCodeExpander Code="{x:Binding GroupOfActivityIndicators}" />
                 </VerticalStackLayout>
 
             </Frame>
@@ -94,7 +108,7 @@
                         Color="{x:Binding Source={x:Reference ActivityIndicatorColorPicker},
                                           Path=SelectedItem,
                                           Converter={x:StaticResource StringToColorConverter}}" />
-                    <app:SourceCodeExpander XamlCode="{x:Binding BindingActivityIndicators}" />
+                    <app:SourceCodeExpander Code="{x:Binding BindingActivityIndicators}" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

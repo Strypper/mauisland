@@ -18,53 +18,56 @@ public class HorizontalWrapLayoutManager : StackLayoutManager
 
         widthConstraint -= padding.HorizontalThickness;
 
-        double currentRowWidth = 0;
-        double currentRowHeight = 0;
-        double totalWidth = 0;
-        double totalHeight = 0;
+        var rows = new Dictionary<int, List<Size>>();
+        var currentRowIndex = 0;
+        var currentRow = new List<Size>();
 
-        for (int n = 0; n < _layout.Count; n++)
+        rows.Add(currentRowIndex, currentRow);
+
+        foreach (var child in _layout)
         {
-            var child = _layout[n];
-
             if (child.Visibility == Visibility.Collapsed)
             {
                 continue;
             }
 
-            var measure = child.Measure(double.PositiveInfinity, heightConstraint);
+            var childSize = child.Measure(double.PositiveInfinity, heightConstraint);
+            var childWidth = childSize.Width + (currentRow.Any() ? _layout.Spacing : 0);
 
-            // Will adding this IView put us past the edge?
-            if (currentRowWidth + measure.Width > widthConstraint)
+            var rowWidth = currentRow.Aggregate(0.0, (w, x) => w + x.Width);
+            if (rowWidth + childWidth > widthConstraint)
             {
-                // Keep track of the width so far
-                totalWidth = Math.Max(totalWidth, currentRowWidth);
-                totalHeight += currentRowHeight;
-
-                // Account for spacing
-                totalHeight += _layout.Spacing;
-
-                // Start over at 0 
-                currentRowWidth = 0;
-                currentRowHeight = measure.Height;
-            }
-            else
-            {
-                currentRowWidth += measure.Width;
-                currentRowHeight = Math.Max(currentRowHeight, measure.Height) + 80;
-
-                if (n < _layout.Count - 1)
+                if (currentRow.Any())
                 {
-                    currentRowWidth += _layout.Spacing;
+                    currentRowIndex++;
+                    currentRow = new List<Size>();
+                    rows.Add(currentRowIndex, currentRow);
                 }
+            }
+            else if (currentRow.Any())
+            {
+                currentRow.Add(new Size(_layout.Spacing, 0));
+            }
+
+            currentRow.Add(childSize);
+        }
+
+        var totalWidth = 0.0;
+        var totalHeight = 0.0;
+
+        if (rows.Any())
+        {
+            var rowWidths = rows.Select(x => x.Value.Aggregate(0.0, (result, item) => result + item.Width)).ToList();
+            var rowHeights = rows.Select(x => x.Value.Any() ? x.Value.Max(i => i.Height) : 0).ToList();
+
+            totalWidth = rowWidths.Any() ? rowWidths.Max() : 0;
+            totalHeight = rowHeights.Any() ? rowHeights.Sum() : 0;
+            if (rows.Keys.Count > 1)
+            {
+                totalHeight += _layout.Spacing * (rows.Keys.Count - 1);
             }
         }
 
-        // Account for the last row
-        totalWidth = Math.Max(totalWidth, currentRowWidth);
-        totalHeight += currentRowHeight;
-
-        // Account for padding
         totalWidth += padding.HorizontalThickness;
         totalHeight += padding.VerticalThickness;
 
