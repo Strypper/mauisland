@@ -6,6 +6,18 @@
     xmlns:app="clr-namespace:MAUIsland">
 
     <FontImageSource
+        x:Key="CameraIcon"
+        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+        Glyph="{Static app:FluentUIIcon.Ic_fluent_camera_24_regular}"
+        Color="{x:StaticResource Primary}" />
+
+    <FontImageSource
+        x:Key="UploadIcon"
+        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+        Glyph="{Static app:FluentUIIcon.Ic_fluent_arrow_upload_24_regular}"
+        Color="{x:StaticResource Primary}" />
+
+    <FontImageSource
         x:Key="BeachIcon"
         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
         Glyph="{x:Static app:FluentUIIcon.Ic_fluent_beach_48_regular}"

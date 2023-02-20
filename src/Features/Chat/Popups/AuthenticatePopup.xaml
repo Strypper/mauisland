@@ -7,7 +7,6 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Padding="10"
     x:DataType="app:AuthenticatePopupViewModel"
-    Loaded="BasePopup_Loaded"
     Shell.PresentationMode="Modal">
 
     <app:BasePopup.Resources>
@@ -48,76 +47,17 @@
                     <RadioButton Content="Sign up" Value="Register" />
                 </HorizontalStackLayout>
 
-                <Grid
-                    toolkit:StateContainer.CurrentState="{x:Binding ViewMode}"
-                    toolkit:StateContainer.ShouldAnimateOnStateChange="True"
-                    HorizontalOptions="Center">
-                    <toolkit:StateContainer.StateViews>
-                        <VerticalStackLayout toolkit:StateView.StateKey="Login" Spacing="10">
-                            <Entry x:Name="UserNameEntry" Placeholder="User name" />
-                            <Entry
-                                x:Name="PasswordEntry"
-                                IsPassword="True"
-                                Placeholder="Password" />
-                            <Button Clicked="Login_Clicked" Text="Login" />
-                        </VerticalStackLayout>
-
-
-                        <VerticalStackLayout toolkit:StateView.StateKey="Register" Spacing="5">
-                            <HorizontalStackLayout
-                                HorizontalOptions="Center"
-                                Spacing="10"
-                                VerticalOptions="Start">
-                                <toolkit:AvatarView
-                                    CornerRadius="40"
-                                    HeightRequest="80"
-                                    VerticalOptions="Start"
-                                    WidthRequest="80" />
-                                <VerticalStackLayout VerticalOptions="Center">
-                                    <ImageButton
-                                        BackgroundColor="Transparent"
-                                        BorderColor="{x:StaticResource Primary}"
-                                        Source="{x:StaticResource CameraIcon}" />
-                                    <ImageButton
-                                        BackgroundColor="Transparent"
-                                        BorderColor="{x:StaticResource Primary}"
-                                        Source="{x:StaticResource UploadIcon}" />
-                                </VerticalStackLayout>
-                            </HorizontalStackLayout>
-                            <Label Text="Phone number" />
-                            <Entry
-                                x:Name="PhoneNumberEntry"
-                                Keyboard="Telephone"
-                                MinimumWidthRequest="300"
-                                Placeholder="Input your phone number"
-                                Text="0348164682" />
-                            <Label Text="Email" />
-                            <Entry
-                                x:Name="EmailEntry"
-                                Keyboard="Email"
-                                MinimumWidthRequest="300"
-                                Text="Bruh@Bruh1.com" />
-                            <Label Text="Password" />
-                            <Entry
-                                IsPassword="True"
-                                MinimumWidthRequest="300"
-                                Text="String!!@112" />
-                            <Label Text="Confirm password" />
-                            <Entry
-                                x:Name="ConfirmPasswordEntry"
-                                IsPassword="True"
-                                MinimumWidthRequest="300"
-                                Text="String!!@112" />
-                            <Label Text="First name" />
-                            <Entry x:Name="FirstNameEntry" Text="Bravo" />
-                            <Label Text="Last name" />
-                            <Entry x:Name="LastNameEntry" Text="Snow" />
-                            <HorizontalStackLayout>
-                                <Button Clicked="Signup_Clicked" Text="Sign up" />
-                            </HorizontalStackLayout>
-                        </VerticalStackLayout>
-                    </toolkit:StateContainer.StateViews>
-                </Grid>
+                <ScrollView>
+                    <Grid
+                        toolkit:StateContainer.CurrentState="{x:Binding ViewMode}"
+                        toolkit:StateContainer.ShouldAnimateOnStateChange="True"
+                        HorizontalOptions="Center">
+                        <toolkit:StateContainer.StateViews>
+                            <app:LoginFormContentView toolkit:StateView.StateKey="Login" LoginClicked="LoginFormContentView_LoginClicked" />
+                            <app:RegisterFormContentView toolkit:StateView.StateKey="Register" RegisterClick="RegisterFormContentView_RegisterClick" />
+                        </toolkit:StateContainer.StateViews>
+                    </Grid>
+                </ScrollView>
             </VerticalStackLayout>
         </Frame>
     </Grid>
