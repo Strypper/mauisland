@@ -1,3 +1,5 @@
+using CommunityToolkit.Diagnostics;
+
 namespace MAUIsland;
 
 public partial class AuthenticatePopup
@@ -13,43 +15,20 @@ public partial class AuthenticatePopup
         BindingContext = viewModel = vm;
     }
 
-    private void Login_Clicked(object sender, EventArgs e)
+    private void LoginFormContentView_LoginClicked(string username, string password)
     {
-        viewModel.LoginCommand.Execute(new UserNameLoginDTO(UserNameEntry.Text,
-                                                            PasswordEntry.Text));
+        Guard.IsNotNullOrEmpty(username);
+        Guard.IsNotNullOrEmpty(password);
+        viewModel.LoginCommand.Execute(new UserNameLoginDTO(username, password));
     }
 
-    private void Signup_Clicked(object sender, EventArgs e)
+    private void RegisterFormContentView_RegisterClick(string phoneNumber, string userName, string email, string password, string firstName, string lastName, string profilePicUrl)
     {
-        viewModel.SignUpCommand.Execute(new RegisterDTO(EmailEntry.Text,
-                                                        FirstNameEntry.Text,
-                                                        LastNameEntry.Text,
-                                                        PhoneNumberEntry.Text,
-                                                        EmailEntry.Text,
-                                                        ConfirmPasswordEntry.Text,
-                                                        "https://i.imgur.com/BhXNGWm.png"));
+        Guard.IsNotNullOrEmpty(phoneNumber);
+        Guard.IsNotNullOrEmpty(password);
+        Guard.IsNotNullOrEmpty(email);
+        Guard.IsNotNullOrEmpty(userName);
+        Guard.IsNotNullOrEmpty(profilePicUrl);
+        viewModel.SignUpCommand.Execute(new RegisterDTO(userName, firstName, lastName, phoneNumber, email, password, profilePicUrl));
     }
-
-    private void BasePopup_Loaded(object sender, EventArgs e)
-    {
-        UserNameEntry.Text = "viet.to@totechs.com.vn";
-        PasswordEntry.Text = "Welkom112!!@";
-    }
-
-    //private void LoginFormContentView_LoginClicked(string username, string password)
-    //{
-    //	Guard.IsNotNullOrEmpty(username);
-    //	Guard.IsNotNullOrEmpty(password);
-    //	viewModel.LoginCommand.Execute(new UserNameLoginDTO(username, password));
-    //}
-
-    //private void RegisterFormContentView_RegisterClick(string phoneNumber, string userName, string email, string password, string firstName, string lastName, string profilePicUrl)
-    //{
-    //	Guard.IsNotNullOrEmpty(phoneNumber);
-    //	Guard.IsNotNullOrEmpty(password);
-    //	Guard.IsNotNullOrEmpty(email);
-    //	Guard.IsNotNullOrEmpty(userName);
-    //	Guard.IsNotNullOrEmpty(profilePicUrl);
-    //	viewModel.SignUpCommand.Execute(new RegisterDTO(userName, firstName, lastName, phoneNumber, email, password, profilePicUrl));
-    //}
 }
