@@ -6,19 +6,20 @@ namespace MAUIsland;
 public class SignalRChatHubService : IChatHubService
 {
     #region [Fields]
-    private HubConnection hubConnection;
-
-    private readonly ISecureStorageService secureStorageService;
 
     private readonly IAppNavigator appNavigator;
+
+    private readonly HubConnection hubConnection;
+
+    private readonly ISecureStorageService secureStorageService;
     #endregion
 
     #region [CTor]
-    public SignalRChatHubService(ISecureStorageService secureStorageService, IAppNavigator appNavigator)
-    {
-        this.secureStorageService = secureStorageService;
-        this.appNavigator = appNavigator;
-    }
+    public SignalRChatHubService(IAppNavigator appNavigator,
+                                 HubConnection hubConnection,
+                                 ISecureStorageService secureStorageService)
+    => (this.appNavigator, this.hubConnection, this.secureStorageService)
+        = (appNavigator, hubConnection, secureStorageService);
 
     #endregion
 
@@ -45,53 +46,11 @@ public class SignalRChatHubService : IChatHubService
         });
     }
 
-    public async Task ConnectAsync(bool isLocal)
+    public async Task ConnectAsync()
     {
-        var accessToken = await this.secureStorageService.ReadValueAsync("accesstoken");
-        Guard.IsNotNullOrEmpty(accessToken);
+        Guard.IsNotNull(this.hubConnection);
 
-        try
-        {
-            if (isLocal)
-            {
-                hubConnection = new HubConnectionBuilder()
-                                .WithAutomaticReconnect()
-                                .WithUrl(ChatConstants.LocalBaseUrl, options =>
-                                {
-                                    options.HttpMessageHandlerFactory = (handler) =>
-                                    {
-                                        if (handler is HttpClientHandler clientHandler)
-                                        {
-                                            clientHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
-                                        }
-                                        return handler;
-                                    };
-                                    options.AccessTokenProvider = () =>
-                                    {
-                                        return Task.FromResult(accessToken);
-                                    };
-
-                                }).Build();
-            }
-            else
-            {
-                hubConnection = new HubConnectionBuilder()
-                                .WithAutomaticReconnect()
-                                .WithUrl(ChatConstants.BaseUrl, options =>
-                                {
-                                    options.AccessTokenProvider = () =>
-                                    {
-                                        return Task.FromResult(accessToken);
-                                    };
-                                }).Build();
-            }
-
-            await this.hubConnection.StartAsync();
-        }
-        catch (Exception ex)
-        {
-            await appNavigator.ShowSnackbarAsync(ex.Message);
-        }
+        await this.hubConnection.StartAsync();
     }
 
     public Task SendMessageTest(string message, string authorName, string avatarUrl, DateTime sentTime)

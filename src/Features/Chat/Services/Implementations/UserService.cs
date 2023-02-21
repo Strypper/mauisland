@@ -1,22 +1,18 @@
 ﻿using CommunityToolkit.Diagnostics;
-using SQLite;
 
 namespace MAUIsland;
 
 public class UserService : IUserServices
 {
     #region [Fields]
-    private readonly SQLiteAsyncConnection _sqliteAsyncConnection;
     private readonly IIntranetUserRefit _intranetUserRefit;
     private readonly ISecureStorageService _secureStorageService;
     #endregion
 
     #region [CTor]
-    public UserService(SQLiteAsyncConnection sqliteAsyncConnection,
-                       IIntranetUserRefit intranetUserRefit,
+    public UserService(IIntranetUserRefit intranetUserRefit,
                        ISecureStorageService secureStorageService)
     {
-        _sqliteAsyncConnection = sqliteAsyncConnection;
         _intranetUserRefit = intranetUserRefit;
         _secureStorageService = secureStorageService;
     }
@@ -65,7 +61,7 @@ public class UserService : IUserServices
 
     public Task SaveUserToLocalAsync(UserModel user)
     {
-        return Task.Run(() => _sqliteAsyncConnection.InsertAsync(user));
+        return Task.Run(() => null);
     }
     #endregion
 }

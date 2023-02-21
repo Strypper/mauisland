@@ -71,9 +71,11 @@
 	  <None Remove="Resources\Images\androidlogo.svg" />
 	  <None Remove="Resources\Images\builtinbanner.png" />
 	  <None Remove="Resources\Images\fluentuibackground.jpg" />
+	  <None Remove="Resources\Images\githublogo.png" />
 	  <None Remove="Resources\Images\ioslogo.png" />
 	  <None Remove="Resources\Images\mauibeach.jpeg" />
 	  <None Remove="Resources\Images\mauilogo.png" />
+	  <None Remove="Resources\Images\mauitoolkitbanner.png" />
 	  <None Remove="Resources\Images\microsoft.svg" />
 	  <None Remove="Features\Gallery\Core\" />
 	  <None Remove="Features\Gallery\Services\" />
@@ -95,10 +97,10 @@
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.1.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="4.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui.Core" Version="4.0.0" />
-		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="1.0.1" />
+		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="1.0.2" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.3" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3-beta1" />
@@ -109,27 +111,29 @@
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.3" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.3" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.3" />
-		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
-		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="20.4.49" />
-		<PackageReference Include="Syncfusion.Maui.Barcode" Version="20.4.49" />
-		<PackageReference Include="Syncfusion.Maui.Calendar" Version="20.4.49" />
-		<PackageReference Include="Syncfusion.Maui.Charts" Version="20.4.49" />
-		<PackageReference Include="Syncfusion.Maui.Core" Version="20.4.49" />
-		<PackageReference Include="Syncfusion.Maui.DataForm" Version="20.4.49" />
-		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="20.4.49" />
-		<PackageReference Include="Syncfusion.Maui.Gauges" Version="20.4.49" />
-		<PackageReference Include="Syncfusion.Maui.Inputs" Version="20.4.49" />
-		<PackageReference Include="Syncfusion.Maui.ListView" Version="20.4.49" />
-		<PackageReference Include="Syncfusion.Maui.Maps" Version="20.4.49" />
-		<PackageReference Include="Syncfusion.Maui.PdfViewer" Version="20.4.49" />
-		<PackageReference Include="Syncfusion.Maui.ProgressBar" Version="20.4.49" />
-		<PackageReference Include="Syncfusion.Maui.SignaturePad" Version="20.4.49" />
-		<PackageReference Include="Syncfusion.Maui.Sliders" Version="20.4.49" />
-		<PackageReference Include="Syncfusion.Maui.TabView" Version="20.4.49" />
+		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="20.4.50" />
+		<PackageReference Include="Syncfusion.Maui.Barcode" Version="20.4.50" />
+		<PackageReference Include="Syncfusion.Maui.Calendar" Version="20.4.50" />
+		<PackageReference Include="Syncfusion.Maui.Charts" Version="20.4.50" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="20.4.50" />
+		<PackageReference Include="Syncfusion.Maui.DataForm" Version="20.4.50" />
+		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="20.4.50" />
+		<PackageReference Include="Syncfusion.Maui.Gauges" Version="20.4.50" />
+		<PackageReference Include="Syncfusion.Maui.Inputs" Version="20.4.50" />
+		<PackageReference Include="Syncfusion.Maui.ListView" Version="20.4.50" />
+		<PackageReference Include="Syncfusion.Maui.Maps" Version="20.4.50" />
+		<PackageReference Include="Syncfusion.Maui.PdfViewer" Version="20.4.50" />
+		<PackageReference Include="Syncfusion.Maui.ProgressBar" Version="20.4.50" />
+		<PackageReference Include="Syncfusion.Maui.SignaturePad" Version="20.4.50" />
+		<PackageReference Include="Syncfusion.Maui.Sliders" Version="20.4.50" />
+		<PackageReference Include="Syncfusion.Maui.TabView" Version="20.4.50" />
+		<PackageReference Include="ZXing.Net.Maui" Version="0.3.0-preview.1" />
+		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.3.0-preview.1" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Features\Blog\" />
+	  <Folder Include="Features\Gallery\Pages\Community\" />
 	  <Folder Include="Features\QA\" />
 	  <Folder Include="Features\Gallery\Core\" />
 	  <Folder Include="Features\Gallery\Services\" />
@@ -145,6 +149,9 @@
 	  </Compile>
 	  <Compile Update="Features\Gallery\ContentViews\BrandIconContentView.xaml.cs">
 	    <DependentUpon>BrandIconContentView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\CommunityPage.xaml.cs">
+	    <DependentUpon>CommunityPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Features\Gallery\Pages\Toolkit\MediaElement\MediaElementPage.xaml.cs">
 	    <DependentUpon>MediaElementPage.xaml</DependentUpon>
@@ -201,6 +208,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\MAUI\Label\LabelPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\CommunityPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\NewsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\GalleryPage.xaml">

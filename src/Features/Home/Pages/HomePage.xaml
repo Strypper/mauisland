@@ -60,7 +60,6 @@
             Source="mauibeach.jpeg"
             VerticalOptions="Fill" />
 
-
         <Grid
             Grid.Column="1"
             HorizontalOptions="Fill"
@@ -94,9 +93,10 @@
                 <IndicatorView HorizontalOptions="Center" />
             </VerticalStackLayout>
         </Grid>
+
         <CollectionView
             Grid.ColumnSpan="2"
-            Margin="20"
+            Margin="0,0,0,20"
             Header="TOP NEWS"
             HeaderTemplate="{x:StaticResource ActivitiesHeaderTemplate}"
             HorizontalOptions="End"

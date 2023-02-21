@@ -64,7 +64,7 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
 
         SubcribeToLoginMessage();
 
-        LoadDataAsync(true)
+        LoadMessagesAsync(true)
             .FireAndForget();
 
     }
@@ -72,7 +72,7 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
 
     #region [Methods]
 
-    private async Task LoadDataAsync(bool forced)
+    private async Task LoadMessagesAsync(bool forced)
     {
 
         if (Messages == null)
@@ -89,7 +89,7 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
 
     private async Task ConnectToChatHubAsync()
     {
-        await this.chatHubService.ConnectAsync(false);
+        await this.chatHubService.ConnectAsync();
         this.chatHubService.RegisterChannels();
         this.chatHubService.ChatMessageReceived += ChatHubService_ChatMessageReceived;
     }

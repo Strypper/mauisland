@@ -8,7 +8,7 @@ public interface IChatHubService
 
     #region [Methods]
     void RegisterChannels();
-    Task ConnectAsync(bool isLocal);
+    Task ConnectAsync();
     Task SendMessageTest(string message, string authorName, string avatarUrl, DateTime sentTime);
 
     #endregion

@@ -34,7 +34,6 @@ public partial class GalleryPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-
     #region [RelayCommands]
     [RelayCommand]
     Task ViewControlsAsync(ControlGroupInfo controlGroupInfo)

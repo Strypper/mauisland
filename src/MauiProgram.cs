@@ -2,14 +2,15 @@
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Storage;
+using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;
 using Refit;
 using SkiaSharp.Views.Maui.Controls.Hosting;
-using SQLite;
 using Syncfusion.Maui.Core.Hosting;
 using System.Reflection;
+using ZXing.Net.Maui.Controls;
 
 namespace MAUIsland;
 
@@ -43,8 +44,10 @@ public static class MauiProgram
             .RegisterControlInfos()
             .RegisterPopups()
             .RegisterRefitApi(isLocal)
+            .RegisterRealTimeConnection(isLocal)
             .GetAppSettings()
-            .ConfigureSyncfusionCore();
+            .ConfigureSyncfusionCore()
+            .UseBarcodeReader();
 
 #if DEBUG
         builder.Logging.AddDebug();
@@ -75,8 +78,8 @@ public static class MauiProgram
 
         builder.Services.AddRefitClient<IIntranetUserRefit>()
                         .ConfigureHttpClient(c => c.BaseAddress = new Uri(!isLocal
-                                                                  ? "https://intranetcloud.azurewebsites.net/api"
-                                                                  : "https://localhost:44371/api"));
+                                                                          ? "https://intranetcloud.azurewebsites.net/api"
+                                                                          : "https://localhost:44371/api"));
         return builder;
     }
 
@@ -111,11 +114,49 @@ public static class MauiProgram
         builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
 
         //Register local database
-        builder.Services.AddTransient<SQLiteAsyncConnection>((_) =>
+        return builder;
+    }
+
+    static MauiAppBuilder RegisterRealTimeConnection(this MauiAppBuilder builder, bool isLocal)
+    {
+        builder.Services.AddScoped<HubConnection>((_) =>
         {
-            string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LocalDatabase.db3");
-            return new SQLiteAsyncConnection(dbPath);
+            var secureStorageService = ServiceHelper.GetService<ISecureStorageService>();
+
+            if (secureStorageService is null) return null;
+
+            var accessToken = secureStorageService.ReadValueAsync("accesstoken")
+                                                  .GetAwaiter().GetResult();
+
+            if (accessToken is null) return null;
+
+            return isLocal ? new HubConnectionBuilder()
+                                .WithAutomaticReconnect()
+                                .WithUrl(ChatConstants.LocalBaseUrl, options =>
+                                {
+                                    options.HttpMessageHandlerFactory = (handler) =>
+                                    {
+                                        if (handler is HttpClientHandler clientHandler)
+                                            clientHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+                                        return handler;
+                                    };
+                                    options.AccessTokenProvider = () =>
+                                    {
+                                        return Task.FromResult(accessToken);
+                                    };
+
+                                }).Build()
+                            : new HubConnectionBuilder()
+                                .WithAutomaticReconnect()
+                                .WithUrl(ChatConstants.BaseUrl, options =>
+                                {
+                                    options.AccessTokenProvider = () =>
+                                    {
+                                        return Task.FromResult(accessToken);
+                                    };
+                                }).Build();
         });
+
         return builder;
     }
 
