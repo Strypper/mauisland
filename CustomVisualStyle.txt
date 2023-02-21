@@ -1,9 +1,0 @@
-<sfavatar:SfAvatarView
-                        Grid.Row="0"
-                        Grid.Column="4"
-                        AvatarShape="Custom"
-                        AvatarSize="ExtraLarge"
-                        CornerRadius="0,20,0,20"
-                        HeightRequest="70"
-                        Style="{StaticResource AvatarViewStyle}"
-                        WidthRequest="70" />

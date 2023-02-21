@@ -287,24 +287,17 @@
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Grid ColumnSpacing="5" RowSpacing="5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
+                <Grid
+                    ColumnDefinitions="*,*,*,*,*"
+                    ColumnSpacing="5"
+                    RowDefinitions="*, *"
+                    RowSpacing="5">
                     <sfavatar:SfAvatarView
                         Grid.Row="0"
                         Grid.Column="4"
                         AvatarShape="Circle"
                         AvatarSize="ExtraLarge"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
                         Style="{StaticResource AvatarViewStyle}" />
                     <Label
                         Grid.Row="1"
@@ -322,6 +315,7 @@
                         Grid.Column="3"
                         AvatarShape="Circle"
                         AvatarSize="Large"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
                         Style="{StaticResource AvatarViewStyle}" />
                     <Label
                         Grid.Row="1"
@@ -339,6 +333,7 @@
                         Grid.Column="2"
                         AvatarShape="Circle"
                         AvatarSize="Medium"
+                        ImageSource="dotnet_bot.png"
                         Style="{StaticResource AvatarViewStyle}" />
                     <Label
                         Grid.Row="1"
@@ -356,6 +351,7 @@
                         Grid.Column="1"
                         AvatarShape="Circle"
                         AvatarSize="Small"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
                         Style="{StaticResource AvatarViewStyle}" />
                     <Label
                         Grid.Row="1"
@@ -373,6 +369,7 @@
                         Grid.Column="0"
                         AvatarShape="Circle"
                         AvatarSize="ExtraSmall"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
                         Style="{StaticResource AvatarViewStyle}" />
                     <Label
                         Grid.Row="1"
@@ -399,24 +396,18 @@
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Grid ColumnSpacing="5" RowSpacing="5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                <Grid
+                    ColumnDefinitions="*,*,*,*,*"
+                    ColumnSpacing="5"
+                    RowDefinitions="*, *"
+                    RowSpacing="5">
 
                     <sfavatar:SfAvatarView
                         Grid.Row="0"
                         Grid.Column="4"
                         AvatarShape="Square"
                         AvatarSize="ExtraLarge"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
                         Style="{StaticResource AvatarViewStyle}" />
                     <Label
                         Grid.Row="1"
@@ -434,6 +425,7 @@
                         Grid.Column="3"
                         AvatarShape="Square"
                         AvatarSize="Large"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
                         Style="{StaticResource AvatarViewStyle}" />
                     <Label
                         Grid.Row="1"
@@ -451,6 +443,7 @@
                         Grid.Column="2"
                         AvatarShape="Square"
                         AvatarSize="Medium"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
                         Style="{StaticResource AvatarViewStyle}" />
                     <Label
                         Grid.Row="1"
@@ -468,6 +461,7 @@
                         Grid.Column="1"
                         AvatarShape="Square"
                         AvatarSize="Small"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
                         Style="{StaticResource AvatarViewStyle}" />
                     <Label
                         Grid.Row="1"
@@ -485,6 +479,7 @@
                         Grid.Column="0"
                         AvatarShape="Square"
                         AvatarSize="ExtraSmall"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
                         Style="{StaticResource AvatarViewStyle}" />
                     <Label
                         Grid.Row="1"
@@ -496,6 +491,7 @@
                         Text="ExtraSmallSquare"
                         VerticalOptions="Center"
                         VerticalTextAlignment="Center" />
+
                 </Grid>
             </Frame>
 
