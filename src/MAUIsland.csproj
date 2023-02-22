@@ -389,6 +389,8 @@
 	  </PackageReference>
 	  <PackageReference Include="Xamarin.Google.Dagger" Version="2.44.2">
 	  </PackageReference>
+	  <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.1.0">
+	  </PackageReference>
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
