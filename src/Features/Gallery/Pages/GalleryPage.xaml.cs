@@ -1,6 +1,5 @@
 namespace MAUIsland;
-
-public partial class GalleryPage
+partial class GalleryPage
 {
     #region [Services]
     private readonly GalleryPageViewModel viewModel;
