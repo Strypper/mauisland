@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     Title="SfBusyIndicator"
     x:DataType="app:SfBusyIndicatorPageViewModel">
 
@@ -44,6 +45,9 @@
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <core:SfBusyIndicator x:Name="busyIndicator" IsRunning="True" />
             </Frame>
         </VerticalStackLayout>
     </ScrollView>

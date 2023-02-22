@@ -67,10 +67,10 @@
             VerticalOptions="Fill">
             <BoxView
                 Grid.RowSpan="2"
+                Background="{x:StaticResource White}"
                 HorizontalOptions="Fill"
                 Opacity="0.5"
-                VerticalOptions="Fill"
-                Color="{x:StaticResource White}" />
+                VerticalOptions="Fill" />
 
             <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
                 <Image
