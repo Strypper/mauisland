@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    x:Class="MAUIsland.SfRadialGaugePage"
+    Padding="10"
+    x:DataType="app:SfRadialGaugePageViewModel"
+    Title="SfRadialGauge">
+
+    <app:BasePage.Resources>
+
+        <x:String x:Key="PropertiesListHeader">
+            Key features:
+        </x:String>
+
+        <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Axes</strong>, the radial gauge axis is a circular arc in which a set of values are displayed along a linear or custom scale based on the design requirements. Axis elements, such as labels, ticks, and axis line, can be easily customized with built-in properties.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Ranges</strong>, radial range is a visual element that helps to quickly visualize a value where it falls on the axis.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Pointers</strong>, pointer is used to indicate values on an axis. Radial gauge has three types of pointers: needle pointer, shape pointer, content pointer and range pointer. All the pointers can be customized as needed.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Pointer animation</strong>, animates the pointer in a visually appealing way when the pointer moves from one value to another.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Pointer interaction</strong>, radial gauge provides an option to drag a pointer from one value to another. It is used to change the value at run time.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Annotations</strong>, add multiple views such as text and image as an annotation to a specific point of interest in a radial gauge.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+
+    </app:BasePage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CollectionView
+                    Header="{x:StaticResource PropertiesListHeader}"
+                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                    Style="{x:StaticResource PropertiesListStyle}" />
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</app:BasePage>

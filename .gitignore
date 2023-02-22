@@ -2,6 +2,7 @@
 Makefile.in
 *.userprefs
 *.usertasks
+appsettings.Development.json
 config.make
 config.status
 aclocal.m4

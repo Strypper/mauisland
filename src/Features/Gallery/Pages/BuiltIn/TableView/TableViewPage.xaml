@@ -270,7 +270,7 @@
     <ScrollView>
         <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource ControlInfo}" />
+                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
@@ -350,23 +350,23 @@
                     <Label Text="The following example shows using an ImageCell to define the appearance of items in a TableView:" />
                     <TableView Intent="Menu">
                         <TableRoot>
-                            <TableSection Title="Learn how to use your XBox">
+                            <TableSection Title="Explore all the platforms">
                                 <ImageCell
-                                    Detail="Learn about your XBox and its capabilities."
-                                    ImageSource="xbox.png"
-                                    Text="1. Introduction" />
+                                    Detail="iOS (formerly iPhone OS ) is a mobile operating system created and developed by Apple Inc. exclusively for its hardware. It is the operating system that powers many of the company's mobile devices, including the iPhone; the term also includes the system software for iPads predating iPadOS"
+                                    ImageSource="ioslogo.png"
+                                    Text="1. IOS" />
                                 <ImageCell
-                                    Detail="Learn how to turn on your XBox."
-                                    ImageSource="xbox.png"
-                                    Text="2. Turn it on" />
+                                    Detail="Android is an operating system for mobile devices. It is mostly used for smartphones, like Google 's own Google Pixel, as well as by other phone manufacturers like HTC and Samsung. It has also been used for tablets such as the Motorola, Xoom and Amazon Kindle."
+                                    ImageSource="androidlogo.png"
+                                    Text="2. Android" />
                                 <ImageCell
-                                    Detail="Learn how to connect your wireless controller."
-                                    ImageSource="xbox.png"
-                                    Text="3. Connect your controller" />
+                                    Detail="Windows is a group of several proprietary graphical operating system families developed and marketed by Microsoft. Each family caters to a certain sector of the computing industry. For example, Windows NT for consumers, Windows Server for servers, and Windows IoT for embedded systems. Defunct Windows families include Windows 9x, Windows Mobile, and Windows Phone."
+                                    ImageSource="windowslogo.png"
+                                    Text="3. Windows" />
                                 <ImageCell
-                                    Detail="Learn how to launch a game."
-                                    ImageSource="xbox.png"
-                                    Text="4. Launch a game" />
+                                    Detail="Tizen is a Linux-based mobile operating system backed by the Linux Foundation, mainly developed and used primarily by Samsung Electronics. The project was originally conceived as an HTML5-based platform for mobile devices to succeed MeeGo. Samsung merged its previous Linux-based OS effort, Bada, into Tizen, and has since used it primarily on platforms such as wearable devices and smart TVs."
+                                    ImageSource="tizenlogo.png"
+                                    Text="4. Tizen" />
                             </TableSection>
                         </TableRoot>
                     </TableView>
@@ -400,11 +400,7 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Entry cell" />
-                    <CollectionView
-                        Footer="{x:StaticResource Proper}"
-                        Header="{x:StaticResource PropertiesListHeader5}"
-                        ItemsSource="{x:StaticResource PropertyItemsSource5}"
-                        Style="{x:StaticResource Key=PropertiesListStyle}" />
+                    <CollectionView ItemsSource="{x:StaticResource PropertyItemsSource5}" Style="{x:StaticResource PropertiesListStyle}" />
                     <Label Text="The following example shows using an EntryCell to define the appearance of items in a TableView:" />
                     <TableView Intent="Settings">
                         <TableRoot>

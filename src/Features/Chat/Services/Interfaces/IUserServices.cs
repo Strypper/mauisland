@@ -6,7 +6,7 @@ public interface IUserServices
 
     Task<UserModel> GetUserByguid(string guid);
 
-    Task<UserModel> GetUserByAccessToken(string accesToken);
+    Task<UserModel> GetUserInfo();
 
     Task SaveUserToLocalAsync(UserModel user);
 }

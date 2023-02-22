@@ -4,10 +4,14 @@ namespace MAUIsland;
 
 public partial class ChatPageViewModel : NavigationAwareBaseViewModel
 {
-    #region[ Ctor ]
-    public ChatPageViewModel(IAppNavigator appNavigator) : base(appNavigator)
-    {
+    #region [Fields]
+    IChatHubService chatHubService;
+    #endregion
 
+    #region[CTor]
+    public ChatPageViewModel(IAppNavigator appNavigator, IChatHubService chatHubService) : base(appNavigator)
+    {
+        this.chatHubService = chatHubService;
     }
     #endregion
 
@@ -28,27 +32,24 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
     UserModel currentUser;
 
     [ObservableProperty]
-    ObservableCollection<ChatMessage> messages;
+    ObservableCollection<ChatMessageModel> messages;
 
     #endregion
 
     #region [Relay Commands]
     [RelayCommand]
-    void AddNewMessage()
+    async Task SendMessageAsync()
     {
         if (!string.IsNullOrEmpty(TypingMessage) &&
-           !string.IsNullOrWhiteSpace(TypingMessage))
+            !string.IsNullOrWhiteSpace(TypingMessage))
         {
-            Messages.Add(new ChatMessage()
-            {
-                AuthorName = CurrentUser.UserName,
-                AuthorImage = CurrentUser.AvatarUrl,
-                ChatMessageContent = TypingMessage,
-                SentTime = DateTime.Now,
-            });
-
+            await this.chatHubService.SendMessageTest(TypingMessage,
+                                                      CurrentUser.UserName,
+                                                      CurrentUser.AvatarUrl,
+                                                      DateTime.Now);
             TypingMessage = string.Empty;
         }
+
     }
 
     [RelayCommand]
@@ -59,42 +60,24 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
 
     protected override void OnInit(IDictionary<string, object> query)
     {
-        WeakReferenceMessenger.Default.Register<LoginMessage>(this, (r, m) =>
-        {
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                CurrentUser = m.Value;
-                AppNavigator.ShowSnackbarAsync("Welcome " + m.Value.UserName);
-                Messages.Add(new ChatMessage()
-                {
-                    AuthorName = "MAUIsland",
-                    AuthorImage = "dotnet_bot.png",
-                    ChatMessageContent = $"Welcome {m.Value.UserName}",
-                    SentTime = DateTime.Now,
-                });
-            });
-        });
 
-        LoadDataAsync(true)
+
+        SubcribeToLoginMessage();
+
+        LoadMessagesAsync(true)
             .FireAndForget();
-    }
 
-    protected override void OnBack(IDictionary<string, object> query)
-    {
-        base.OnBack(query);
-
-        CurrentUser = query.GetData<UserModel>();
     }
     #endregion
 
     #region [Methods]
 
-    private async Task LoadDataAsync(bool forced)
+    private async Task LoadMessagesAsync(bool forced)
     {
 
         if (Messages == null)
         {
-            Messages = new ObservableCollection<ChatMessage>();
+            Messages = new ObservableCollection<ChatMessageModel>();
             return;
         }
 
@@ -102,6 +85,42 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
         {
             Messages.Clear();
         }
+    }
+
+    private async Task ConnectToChatHubAsync()
+    {
+        await this.chatHubService.ConnectAsync();
+        this.chatHubService.RegisterChannels();
+        this.chatHubService.ChatMessageReceived += ChatHubService_ChatMessageReceived;
+    }
+
+    private void ChatHubService_ChatMessageReceived(ChatMessageModel message)
+    {
+        Messages.Add(message);
+    }
+
+    private void SubcribeToLoginMessage()
+    {
+        //Subscribe to Login Message
+        WeakReferenceMessenger.Default.Register<LoginMessage>(this, (r, m) =>
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                CurrentUser = m.Value;
+                AppNavigator.ShowSnackbarAsync("Welcome " + m.Value.UserName);
+                Messages.Add(new ChatMessageModel()
+                {
+                    AuthorName = "MAUIsland",
+                    AuthorImage = "dotnet_bot.png",
+                    ChatMessageContent = $"Welcome {m.Value.UserName}",
+                    SentTime = DateTime.Now,
+                });
+
+
+                ConnectToChatHubAsync()
+                    .FireAndForget();
+            });
+        });
     }
 
     partial void OnCurrentUserChanging(UserModel? currentUser)

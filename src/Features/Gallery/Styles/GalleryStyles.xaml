@@ -25,6 +25,20 @@
         Glyph="{Static app:FluentUIIcon.Ic_fluent_dismiss_48_regular}"
         Color="#15161e" />
 
+    <FontImageSource
+        x:Key="InfoIcon"
+        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+        Glyph="{Static app:FluentUIIcon.Ic_fluent_info_24_regular}"
+        Color="{x:AppThemeBinding Dark=White,
+                                  Light=Black}" />
+
+    <FontImageSource
+        x:Key="MicrosoftStoreIcon"
+        FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+        Glyph="{Static app:FluentUIIcon.Ic_fluent_store_microsoft_24_regular}"
+        Color="{x:AppThemeBinding Dark=White,
+                                  Light=Black}" />
+
     <Style x:Key="DocumentContentFrameStyle" TargetType="Frame">
         <Setter Property="HasShadow" Value="True" />
         <Setter Property="BackgroundColor" Value="{x:AppThemeBinding Dark='#202020', Light='#ffffff'}" />

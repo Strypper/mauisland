@@ -21,6 +21,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
 
     [ObservableProperty]
     bool isBusy;
+
+    [ObservableProperty]
+    string basicSfCartesianChartXamlCode = "<charts:SfCartesianChart>\r\n                        <charts:SfCartesianChart.XAxes>\r\n                            <charts:CategoryAxis>\r\n                                <charts:CategoryAxis.Title>\r\n                                    <charts:ChartAxisTitle Text=\"Name\" TextColor=\"White\" />\r\n                                </charts:CategoryAxis.Title>\r\n                            </charts:CategoryAxis>\r\n                        </charts:SfCartesianChart.XAxes>\r\n                        <charts:SfCartesianChart.YAxes>\r\n                            <charts:NumericalAxis>\r\n                                <charts:NumericalAxis.Title>\r\n                                    <charts:ChartAxisTitle Text=\"Exp\" />\r\n                                </charts:NumericalAxis.Title>\r\n                            </charts:NumericalAxis>\r\n                        </charts:SfCartesianChart.YAxes>\r\n\r\n                        <charts:ColumnSeries\r\n                            EnableAnimation=\"True\"\r\n                            ItemsSource=\"{x:Binding Persons}\"\r\n                            PaletteBrushes=\"{x:Binding PalletBrushes,\r\n                                                       Mode=OneWay}\"\r\n                            SelectionBehavior=\"{x:StaticResource SfCartesianChartSelectionBrush}\"\r\n                            XBindingPath=\"Name\"\r\n                            YBindingPath=\"Exp\" />\r\n                    </charts:SfCartesianChart>";
     #endregion
 
     #region [Overrides]

@@ -15,52 +15,22 @@ public class BogusUserServices : IUserServices
     #region [Methods]
     public Task<UserModel> GetCurrentUser()
     {
-        return Task.Run(() =>
-        {
-
-            return new Faker<UserModel>()
-                    .RuleFor(u => u.Gender, f => f.PickRandom<bool>())
-                    .RuleFor(u => u.AvatarUrl, f => f.Internet.Avatar())
-                    .RuleFor(u => u.UserName, (f, u) => f.Internet.UserName())
-                    .Generate();
-        });
+        throw new NotImplementedException();
     }
 
     public Task<UserModel> GetUserByguid(string guid)
     {
-        return Task.Run(() =>
-        {
-            return new Faker<UserModel>()
-                    .RuleFor(u => u.Gender, f => f.PickRandom<bool>())
-                    .RuleFor(u => u.AvatarUrl, f => f.Internet.Avatar())
-                    .RuleFor(u => u.UserName, (f, u) => f.Internet.UserName())
-                    .Generate();
-        });
+        throw new NotImplementedException();
     }
 
-    public Task<UserModel> GetUserByAccessToken(string accesToken)
+    public Task<UserModel> GetUserInfo()
     {
-        return Task.Run(() =>
-        {
-
-            return new Faker<UserModel>()
-                    //.RuleFor(u => u.Gender, f => f.PickRandom<bool>())
-                    .RuleFor(u => u.AvatarUrl, f => f.Internet.Avatar())
-                    .RuleFor(u => u.UserName, (f, u) => f.Internet.UserName())
-                    .Generate();
-        });
+        throw new NotImplementedException();
     }
 
     public Task SaveUserToLocalAsync(UserModel user)
     {
-        return Task.Run(() =>
-        {
-            return new Faker<UserModel>()
-        //.RuleFor(u => u.Gender, f => f.PickRandom<bool>())
-        .RuleFor(u => u.AvatarUrl, f => f.Internet.Avatar())
-        .RuleFor(u => u.UserName, (f, u) => f.Internet.UserName())
-        .Generate();
-        });
+        throw new NotImplementedException();
     }
     #endregion
 }

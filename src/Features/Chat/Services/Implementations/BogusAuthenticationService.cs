@@ -2,28 +2,27 @@
 
 public class BogusAuthenticationService : IAuthenticationServices
 {
-    public Task<string> SignIn(string userName, string password)
+    #region [CTor]
+    public BogusAuthenticationService()
     {
-        return Task.Run(() =>
-        {
-            return string.Empty;
-        });
+
+    }
+    #endregion
+
+    #region [Methods]
+    public Task Authenticate(string username, string password)
+    {
+        throw new NotImplementedException();
     }
 
-    public Task<string> SignInWithPhoneNumber(string phoneNumer, string password)
+    public Task AuthenticateWithPhoneNumber(string phoneNumer, string password)
     {
-        return Task.Run(() =>
-        {
-            var faker = new Faker();
-            return faker.System.ApplePushToken();
-        });
+        throw new NotImplementedException();
     }
 
-    public Task<string> SignUp(string phoneNumber, string userName, string email, string password)
+    public Task SignUp(string phoneNumber, string userName, string email, string password, string firstName, string lastName, string profilePicUrl)
     {
-        return Task.Run(() =>
-        {
-            return string.Empty;
-        });
+        throw new NotImplementedException();
     }
+    #endregion
 }

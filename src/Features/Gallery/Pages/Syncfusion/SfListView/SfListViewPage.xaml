@@ -24,16 +24,6 @@
             Key features
         </x:String>
 
-        <x:String x:Key="PropertiesListFooter">
-            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
-        </x:String>
-
-
-        <x:String x:Key="ImageButtonControlInfo">
-            The Button class defines an ImageSource property that allows you to display a small bitmap image on the Button, either alone or in combination with text. You can also specify how the text and image are arranged. The ImageSource property is of type ImageSource, which means that the bitmaps can be loaded from a file, embedded resource, URI, or stream.
-        </x:String>
-
-
         <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
@@ -130,7 +120,8 @@
                 <Label Text="{x:StaticResource ControlInfo}" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <syncfusion:SfListView ItemTemplate="{x:StaticResource BulletListItemTemplate}" ItemsSource="{x:StaticResource PropertyItemsSource}" />
+                <syncfusion:SfListView ItemTemplate="{x:StaticResource BulletListItemTemplate}"
+                                       ItemsSource="{x:StaticResource PropertyItemsSource}" />
             </Frame>
 
             <syncfusion:SfListView

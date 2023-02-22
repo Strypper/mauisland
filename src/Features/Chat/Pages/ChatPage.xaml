@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="ChatPage"
     Padding="10"
@@ -28,11 +29,13 @@
                 Margin="{x:StaticResource StackLayoutMargin}"
                 Spacing="10"
                 VerticalOptions="Start">
-                <Image
-                    HeightRequest="25"
-                    Source="{x:StaticResource BeachTitleBarIcon}"
-                    VerticalOptions="Start"
-                    WidthRequest="25" />
+                <skia:SKLottieView
+                    HeightRequest="45"
+                    HorizontalOptions="Center"
+                    RepeatCount="-1"
+                    SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                    Source="island.json"
+                    WidthRequest="45" />
                 <Label
                     FontAttributes="Bold"
                     FontSize="Subtitle"
@@ -59,6 +62,11 @@
                                     Dark='#eaeaea'}" />
     </app:BasePage.Resources>
 
+    <!--
+        IsEnabled="{x:Binding CanChatState,
+        Mode=OneWay,
+        Converter={toolkit:InvertedBoolConverter}}"
+    -->
     <app:BasePage.ToolbarItems>
         <ToolbarItem
             Command="{x:Binding SignUpCommand}"

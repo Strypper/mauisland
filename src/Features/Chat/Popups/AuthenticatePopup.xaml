@@ -36,47 +36,28 @@
             <VerticalStackLayout Spacing="5">
                 <HorizontalStackLayout
                     HorizontalOptions="Center"
-                    Spacing="10"
-                    VerticalOptions="Start">
-                    <toolkit:AvatarView
-                        CornerRadius="40"
-                        HeightRequest="80"
-                        VerticalOptions="Start"
-                        WidthRequest="80" />
-                    <VerticalStackLayout VerticalOptions="Center">
-                        <ImageButton
-                            BackgroundColor="Transparent"
-                            BorderColor="{x:StaticResource Primary}"
-                            Source="{x:StaticResource CameraIcon}" />
-                        <ImageButton
-                            BackgroundColor="Transparent"
-                            BorderColor="{x:StaticResource Primary}"
-                            Source="{x:StaticResource UploadIcon}" />
-                    </VerticalStackLayout>
+                    RadioButtonGroup.GroupName="ViewMode"
+                    RadioButtonGroup.SelectedValue="{x:Binding ViewMode,
+                                                               Mode=TwoWay}"
+                    Spacing="5">
+                    <RadioButton
+                        Content="Log in"
+                        IsChecked="True"
+                        Value="Login" />
+                    <RadioButton Content="Sign up" Value="Register" />
                 </HorizontalStackLayout>
-                <Label Text="Phone number" />
-                <Entry
-                    Keyboard="Telephone"
-                    MinimumWidthRequest="300"
-                    Placeholder="Input your phone number"
-                    Text="{x:Binding PhoneNumber,
-                                     Mode=TwoWay}" />
-                <Label Text="Email" />
-                <Entry Keyboard="Email" MinimumWidthRequest="300" />
-                <Label Text="Password" />
-                <Entry
-                    IsPassword="True"
-                    MinimumWidthRequest="300"
-                    Text="{x:Binding Password}" />
-                <Label Text="Confirm password" />
-                <Entry IsPassword="True" MinimumWidthRequest="300" />
-                <Label Text="First name" />
-                <Entry x:Name="FirstNameEntry" />
-                <Label Text="Last name" />
-                <Entry x:Name="LastNameEntry" />
-                <HorizontalStackLayout>
-                    <Button Command="{x:Binding LoginCommand}" Text="Sign in" />
-                </HorizontalStackLayout>
+
+                <ScrollView>
+                    <Grid
+                        toolkit:StateContainer.CurrentState="{x:Binding ViewMode}"
+                        toolkit:StateContainer.ShouldAnimateOnStateChange="True"
+                        HorizontalOptions="Center">
+                        <toolkit:StateContainer.StateViews>
+                            <app:LoginFormContentView toolkit:StateView.StateKey="Login" LoginClicked="LoginFormContentView_LoginClicked" />
+                            <app:RegisterFormContentView toolkit:StateView.StateKey="Register" RegisterClick="RegisterFormContentView_RegisterClick" />
+                        </toolkit:StateContainer.StateViews>
+                    </Grid>
+                </ScrollView>
             </VerticalStackLayout>
         </Frame>
     </Grid>

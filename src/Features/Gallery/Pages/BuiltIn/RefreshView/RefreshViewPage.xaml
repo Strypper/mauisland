@@ -5,7 +5,41 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     Title="Refresh View"
+    Padding="10"
     x:DataType="app:RefreshViewPageViewModel">
+    <app:BasePage.Resources>
+        <x:String x:Key="PropertiesListHeader">
+            RefreshView defines the following properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter">
+            These properties are backed by BindableProperty objects. The Value property has a default binding mode of BindingMode.TwoWay, which means that it's suitable as a binding source in an application that uses the Model-View-ViewModel (MVVM) pattern.
+        </x:String>
+
+        <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Command</strong>, of type <strong style="color:blue">ICommand</strong>, which is executed when a refresh is triggered.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">CommandParameter</strong>, of type <strong style="color:blue">object</strong>, which is the parameter that's passed to the Command.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">IsRefreshing</strong>, of type <strong style="color:blue">bool</strong>, which indicates the current state of the RefreshView.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">RefreshColor</strong>, of type <strong style="color:blue">Color</strong>, the color of the progress circle that appears during the refresh.
+                            ]]>
+            </x:String>
+        </x:Array>
+    </app:BasePage.Resources>
+
     <app:BasePage.ToolbarItems>
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
@@ -18,10 +52,29 @@
             IconImageSource="microsoft.png"
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to Refresh View Page"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CollectionView
+                    Footer="{x:StaticResource PropertiesListFooter}"
+                    Header="{x:StaticResource PropertiesListHeader}"
+                    ItemsSource="{x:StaticResource PropertyItemsSource}"
+                    Style="{x:StaticResource PropertiesListStyle}" />
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy}">
+                    <ScrollView>
+                        <Border HeightRequest="200">
+                            <Label Text="You wrap the refresh view with any of the components not just collection view type" />
+                        </Border>
+                    </ScrollView>
+                </RefreshView>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
 </app:BasePage>

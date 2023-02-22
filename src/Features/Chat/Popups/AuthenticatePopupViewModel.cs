@@ -9,6 +9,7 @@ public partial class AuthenticatePopupViewModel : BaseViewModel
     private readonly IUserServices userServices;
     private readonly IAuthenticationServices authenticationServices;
     #endregion
+
     #region [CTor]
     public AuthenticatePopupViewModel(IAppNavigator appNavigator,
                                 IUserServices userServices,
@@ -21,14 +22,13 @@ public partial class AuthenticatePopupViewModel : BaseViewModel
     #endregion
 
     #region [Properties]
-    [ObservableProperty]
-    string userName;
+
 
     [ObservableProperty]
-    string password = "Welkom112!!@";
+    string viewMode = "Login";
 
     [ObservableProperty]
-    string phoneNumber = "0348164682";
+    bool isLogin = true;
     #endregion
 
     #region [Relay Commands]
@@ -37,17 +37,37 @@ public partial class AuthenticatePopupViewModel : BaseViewModel
     Task NavigateBack() => AppNavigator.GoBackAsync();
 
     [RelayCommand]
-    async Task LoginAsync()
+    async Task LoginAsync(UserNameLoginDTO dto)
     {
         try
         {
-            var accessToken = await this.authenticationServices.SignInWithPhoneNumber(PhoneNumber, Password);
+            await authenticationServices.Authenticate(dto.username, dto.password);
 
-            Guard.IsNotNullOrWhiteSpace(accessToken);
-            var userInfo = await this.userServices.GetUserByAccessToken(accessToken);
-
+            var userInfo = await userServices.GetUserInfo();
             Guard.IsNotNull(userInfo);
-            await this.userServices.SaveUserToLocalAsync(userInfo);
+
+            //await userServices.SaveUserToLocalAsync(userInfo);
+
+            WeakReferenceMessenger.Default.Send(new LoginMessage(userInfo));
+            await AppNavigator.GoBackAsync();
+        }
+        catch (Exception e)
+        {
+            await AppNavigator.ShowSnackbarAsync(e.Message);
+            throw;
+        }
+    }
+
+    [RelayCommand]
+    async Task SignUpAsync(RegisterDTO dto)
+    {
+        try
+        {
+            await authenticationServices.SignUp(dto.phonenumber, dto.username, dto.email, dto.password, dto.firstname, dto.lastname, dto.profilepic);
+            await authenticationServices.Authenticate(dto.username, dto.password);
+
+            var userInfo = await userServices.GetUserInfo();
+            Guard.IsNotNull(userInfo);
             WeakReferenceMessenger.Default.Send(new LoginMessage(userInfo));
             await AppNavigator.GoBackAsync();
         }
@@ -58,5 +78,28 @@ public partial class AuthenticatePopupViewModel : BaseViewModel
         }
     }
 
+    #endregion
+
+    #region [Methods]
+    async Task CompletedLogin()
+    {
+        //try
+        //{
+        //    var authenticationToken = await this.authenticationServices.AuthenticateWithPhoneNumber(PhoneNumber, Password);
+        //    Guard.IsNotNullOrWhiteSpace(authenticationToken);
+
+        //    var userInfo = await this.userServices.GetUserInfo(authenticationToken);
+        //    Guard.IsNotNull(userInfo);
+
+        //    await this.userServices.SaveUserToLocalAsync(userInfo);
+        //    WeakReferenceMessenger.Default.Send(new LoginMessage(userInfo));
+        //    await AppNavigator.GoBackAsync();
+        //}
+        //catch (Exception ex)
+        //{
+        //    await AppNavigator.ShowSnackbarAsync(ex.Message);
+        //    throw;
+        //}
+    }
     #endregion
 }

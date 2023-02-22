@@ -9,7 +9,10 @@
     Shell.TitleColor="Transparent">
     <app:BasePage.Resources>
         <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate" x:DataType="app:ControlGroupInfo">
-            <app:BrandIconContentView ComponentData="{x:Binding}" DetailClicked="BrandIconContentView_DetailClicked" />
+            <app:BrandIconContentView
+                ComponentData="{x:Binding}"
+                DetailClicked="BrandIconContentView_DetailClicked"
+                DetailInNewWindowClicked="BrandIconContentView_DetailInNewWindowClicked" />
         </DataTemplate>
     </app:BasePage.Resources>
 
@@ -58,6 +61,7 @@
             CornerRadius="4"
             HasShadow="True"
             HorizontalOptions="Center"
+            Style="{x:StaticResource DocumentContentFrameStyle}"
             VerticalOptions="Center">
             <app:HorizontalWrapLayout
                 BindableLayout.ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"

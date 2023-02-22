@@ -17,7 +17,7 @@ public partial class BrandIconContentView : ContentView
     public delegate void DetailInNewWindowEventHandler(ControlGroupInfo control);
     #endregion
 
-    #region [Event Handlers]
+    #region [Events]
     public event DetailEventHandler DetailClicked;
 
     public event DetailInNewWindowEventHandler DetailInNewWindowClicked;
@@ -52,10 +52,15 @@ public partial class BrandIconContentView : ContentView
     {
         DetailInNewWindowClicked?.Invoke(ComponentData);
     }
-    #endregion
 
     private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
         DetailClicked?.Invoke(ComponentData);
     }
+
+    private void MenuFlyoutItem_Clicked(object sender, EventArgs e)
+    {
+        DetailInNewWindowClicked?.Invoke(ComponentData);
+    }
+    #endregion
 }
