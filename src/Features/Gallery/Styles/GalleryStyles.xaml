@@ -18,7 +18,6 @@
         Glyph="{Static app:FluentUIIcon.Ic_fluent_search_48_regular}"
         Color="#15161e" />
 
-
     <FontImageSource
         x:Key="SearchBarDismissIcon"
         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
