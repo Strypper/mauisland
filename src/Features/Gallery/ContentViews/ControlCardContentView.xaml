@@ -90,7 +90,7 @@
                     CommandParameter="{x:Binding ComponentData.GitHubUrl,
                                                  Source={x:Reference root}}"
                     HeightRequest="50"
-                    Source="github.png"
+                    Source="githublogo.png"
                     ToolTipProperties.Text="Github: Source code"
                     WidthRequest="50" />
                 <ImageButton

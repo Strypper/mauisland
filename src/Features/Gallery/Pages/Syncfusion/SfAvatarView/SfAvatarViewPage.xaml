@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:badge="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
     xmlns:sfavatar="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     Title="SfAvatarView"
     Padding="10"
@@ -165,6 +166,25 @@
             </Frame>
 
             <!--  Content Types in SfAvatarView  -->
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="5">
+                    <inputs:SfComboBox
+                        x:Name="comboBox"
+                        DisplayMemberPath="Name"
+                        ItemsSource="{x:Binding TotechsMembers}"
+                        SelectedItem="{x:Binding SelectedTotechsMember,
+                                                 Mode=TwoWay}" />
+                    <sfavatar:SfAvatarView
+                        ContentType="Default"
+                        HeightRequest="60"
+                        ImageSource="{x:Binding SelectedTotechsMember.AvatarUrl,
+                                                Mode=OneWay}"
+                        WidthRequest="60" />
+                    <Label HorizontalOptions="Center" Text="{x:Binding SelectedTotechsMember.Name}" />
+                </VerticalStackLayout>
+            </Frame>
+
             <Label
                 FontAttributes="Bold"
                 FontSize="Title"

@@ -4,7 +4,7 @@
 		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
+		 <!--<TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks>--> 
 		<OutputType>Exe</OutputType>
 		<RootNamespace>MAUIsland</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -100,7 +100,7 @@
 		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="1.0.2" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.3" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0-preview.1.23110.8" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3-beta1" />
