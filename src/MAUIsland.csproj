@@ -111,22 +111,22 @@
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.3" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.3" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.3" />
-		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="20.4.50" />
-		<PackageReference Include="Syncfusion.Maui.Barcode" Version="20.4.50" />
-		<PackageReference Include="Syncfusion.Maui.Calendar" Version="20.4.50" />
-		<PackageReference Include="Syncfusion.Maui.Charts" Version="20.4.50" />
-		<PackageReference Include="Syncfusion.Maui.Core" Version="20.4.50" />
-		<PackageReference Include="Syncfusion.Maui.DataForm" Version="20.4.50" />
-		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="20.4.50" />
-		<PackageReference Include="Syncfusion.Maui.Gauges" Version="20.4.50" />
-		<PackageReference Include="Syncfusion.Maui.Inputs" Version="20.4.50" />
-		<PackageReference Include="Syncfusion.Maui.ListView" Version="20.4.50" />
-		<PackageReference Include="Syncfusion.Maui.Maps" Version="20.4.50" />
-		<PackageReference Include="Syncfusion.Maui.PdfViewer" Version="20.4.50" />
-		<PackageReference Include="Syncfusion.Maui.ProgressBar" Version="20.4.50" />
-		<PackageReference Include="Syncfusion.Maui.SignaturePad" Version="20.4.50" />
-		<PackageReference Include="Syncfusion.Maui.Sliders" Version="20.4.50" />
-		<PackageReference Include="Syncfusion.Maui.TabView" Version="20.4.50" />
+		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="20.4.51" />
+		<PackageReference Include="Syncfusion.Maui.Barcode" Version="20.4.51" />
+		<PackageReference Include="Syncfusion.Maui.Calendar" Version="20.4.51" />
+		<PackageReference Include="Syncfusion.Maui.Charts" Version="20.4.51" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="20.4.51" />
+		<PackageReference Include="Syncfusion.Maui.DataForm" Version="20.4.51" />
+		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="20.4.51" />
+		<PackageReference Include="Syncfusion.Maui.Gauges" Version="20.4.51" />
+		<PackageReference Include="Syncfusion.Maui.Inputs" Version="20.4.51" />
+		<PackageReference Include="Syncfusion.Maui.ListView" Version="20.4.51" />
+		<PackageReference Include="Syncfusion.Maui.Maps" Version="20.4.51" />
+		<PackageReference Include="Syncfusion.Maui.PdfViewer" Version="20.4.51" />
+		<PackageReference Include="Syncfusion.Maui.ProgressBar" Version="20.4.51" />
+		<PackageReference Include="Syncfusion.Maui.SignaturePad" Version="20.4.51" />
+		<PackageReference Include="Syncfusion.Maui.Sliders" Version="20.4.51" />
+		<PackageReference Include="Syncfusion.Maui.TabView" Version="20.4.51" />
 		<PackageReference Include="ZXing.Net.Maui" Version="0.3.0-preview.1" />
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.3.0-preview.1" />
 	</ItemGroup>
@@ -388,8 +388,6 @@
 	  <PackageReference Include="Xamarin.Firebase.Messaging" Version="123.1.1">
 	  </PackageReference>
 	  <PackageReference Include="Xamarin.Google.Dagger" Version="2.44.2">
-	  </PackageReference>
-	  <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.1.0">
 	  </PackageReference>
 	</ItemGroup>
 
