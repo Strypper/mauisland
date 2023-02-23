@@ -4,14 +4,17 @@ namespace MAUIsland;
 
 public partial class ChatPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [Fields]
-    IChatHubService chatHubService;
+    #region [Services]
+    private readonly IChatHubService chatHubService;
+
+    private readonly IConversationService conversationService;
     #endregion
 
     #region[CTor]
-    public ChatPageViewModel(IAppNavigator appNavigator, IChatHubService chatHubService) : base(appNavigator)
+    public ChatPageViewModel(IAppNavigator appNavigator, IChatHubService chatHubService, IConversationService conversationService) : base(appNavigator)
     {
         this.chatHubService = chatHubService;
+        this.conversationService = conversationService;
     }
     #endregion
 
@@ -60,13 +63,9 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
 
     protected override void OnInit(IDictionary<string, object> query)
     {
-
-
         SubcribeToLoginMessage();
 
-        LoadMessagesAsync(true)
-            .FireAndForget();
-
+        Messages = new();
     }
     #endregion
 
@@ -80,6 +79,13 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
             Messages = new ObservableCollection<ChatMessageModel>();
             return;
         }
+
+        var recentChatMessages = await this.conversationService.GetRecentChatAsync();
+        foreach (var chatMessage in recentChatMessages)
+        {
+            Messages.Add(chatMessage);
+        }
+
 
         if (forced)
         {
@@ -108,6 +114,14 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
             {
                 CurrentUser = m.Value;
                 AppNavigator.ShowSnackbarAsync("Welcome " + m.Value.UserName);
+
+
+                ConnectToChatHubAsync()
+                    .FireAndForget();
+
+                LoadMessagesAsync(false)
+                    .FireAndForget();
+
                 Messages.Add(new ChatMessageModel()
                 {
                     AuthorName = "MAUIsland",
@@ -115,10 +129,6 @@ public partial class ChatPageViewModel : NavigationAwareBaseViewModel
                     ChatMessageContent = $"Welcome {m.Value.UserName}",
                     SentTime = DateTime.Now,
                 });
-
-
-                ConnectToChatHubAsync()
-                    .FireAndForget();
             });
         });
     }

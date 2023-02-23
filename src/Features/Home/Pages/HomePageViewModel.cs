@@ -3,14 +3,20 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
 {
     #region [Services]
     private readonly IHomeService homeService;
+    private readonly IConversationService conversationService;
     #endregion
+
+    #region [CTor]
     public HomePageViewModel(
         IAppNavigator appNavigator,
-        IHomeService homeService
+        IHomeService homeService,
+        IConversationService conversationService
     ) : base(appNavigator)
     {
         this.homeService = homeService;
+        this.conversationService = conversationService;
     }
+    #endregion
 
     #region [Properties]
     [ObservableProperty]
