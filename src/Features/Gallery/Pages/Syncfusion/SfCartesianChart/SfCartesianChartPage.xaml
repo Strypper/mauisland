@@ -76,14 +76,14 @@
                         <charts:SfCartesianChart.XAxes>
                             <charts:CategoryAxis>
                                 <charts:CategoryAxis.Title>
-                                    <charts:ChartAxisTitle Text="Name" TextColor="White" />
+                                    <charts:ChartAxisTitle Text="Name" TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}" />
                                 </charts:CategoryAxis.Title>
                             </charts:CategoryAxis>
                         </charts:SfCartesianChart.XAxes>
                         <charts:SfCartesianChart.YAxes>
                             <charts:NumericalAxis>
                                 <charts:NumericalAxis.Title>
-                                    <charts:ChartAxisTitle Text="Exp" />
+                                    <charts:ChartAxisTitle Text="Exp" TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}" />
                                 </charts:NumericalAxis.Title>
                             </charts:NumericalAxis>
                         </charts:SfCartesianChart.YAxes>

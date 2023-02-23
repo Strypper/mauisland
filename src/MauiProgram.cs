@@ -19,7 +19,7 @@ public static class MauiProgram
     public static MauiApp CreateMauiApp()
     {
 
-        var isLocal = false;
+        var isLocal = true;
 
 
         var builder = MauiApp.CreateBuilder();
@@ -80,6 +80,11 @@ public static class MauiProgram
                         .ConfigureHttpClient(c => c.BaseAddress = new Uri(!isLocal
                                                                           ? "https://intranetcloud.azurewebsites.net/api"
                                                                           : "https://localhost:44371/api"));
+
+        builder.Services.AddRefitClient<IIntranetConversationRefit>()
+                .ConfigureHttpClient(c => c.BaseAddress = new Uri(!isLocal
+                                                                  ? "https://intranetcloud.azurewebsites.net/api"
+                                                                  : "https://localhost:44371/api"));
         return builder;
     }
 
@@ -104,10 +109,11 @@ public static class MauiProgram
         builder.Services.AddSingleton<IFilePicker, FilePicker>();
         builder.Services.AddSingleton<IHomeService, HomeService>();
         builder.Services.AddSingleton<IAppNavigator, AppNavigator>();
-        builder.Services.AddSingleton<IUserServices, UserService>();
         builder.Services.AddSingleton<IControlsService, ControlsService>();
         builder.Services.AddSingleton<IChatHubService, SignalRChatHubService>();
         builder.Services.AddSingleton<ISecureStorageService, SecureStorageService>();
+        builder.Services.AddSingleton<IUserServices, RefitIntranetUserService>();
+        builder.Services.AddSingleton<IConversationService, RefitIntranetConversationService>();
         builder.Services.AddSingleton<IAuthenticationServices, RefitAuthenticationService>();
 
         builder.Services.AddSingleton<IAppInfo>(AppInfo.Current);
@@ -134,12 +140,6 @@ public static class MauiProgram
                                 .WithAutomaticReconnect()
                                 .WithUrl(ChatConstants.LocalBaseUrl, options =>
                                 {
-                                    options.HttpMessageHandlerFactory = (handler) =>
-                                    {
-                                        if (handler is HttpClientHandler clientHandler)
-                                            clientHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
-                                        return handler;
-                                    };
                                     options.AccessTokenProvider = () =>
                                     {
                                         return Task.FromResult(accessToken);

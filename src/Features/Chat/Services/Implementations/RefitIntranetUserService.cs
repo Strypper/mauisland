@@ -2,15 +2,15 @@
 
 namespace MAUIsland;
 
-public class UserService : IUserServices
+public class RefitIntranetUserService : IUserServices
 {
-    #region [Fields]
+    #region [Services]
     private readonly IIntranetUserRefit _intranetUserRefit;
     private readonly ISecureStorageService _secureStorageService;
     #endregion
 
     #region [CTor]
-    public UserService(IIntranetUserRefit intranetUserRefit,
+    public RefitIntranetUserService(IIntranetUserRefit intranetUserRefit,
                        ISecureStorageService secureStorageService)
     {
         _intranetUserRefit = intranetUserRefit;
