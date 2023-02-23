@@ -19,7 +19,7 @@ public static class MauiProgram
     public static MauiApp CreateMauiApp()
     {
 
-        var isLocal = true;
+        var isLocal = false;
 
 
         var builder = MauiApp.CreateBuilder();
