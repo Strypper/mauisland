@@ -238,6 +238,31 @@
                     </badge:SfBadgeView>
                 </VerticalStackLayout>
             </Frame>
+            <!--  Badge background customization  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Badge background customization" />
+                    <Label Text="Other than the predefined styles, the color of the badge can be customized using the BadgeType property which has to be set as None. Then the color of the badge view can be set using the Background property." />
+                    <badge:SfBadgeView
+                        BadgeText="48"
+                        HeightRequest="85"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="150">
+                        <badge:SfBadgeView.Content>
+                            <Button
+                                BackgroundColor="#d6d8d7"
+                                HeightRequest="60"
+                                Text="Primary"
+                                TextColor="Black"
+                                WidthRequest="120" />
+                        </badge:SfBadgeView.Content>
+                        <badge:SfBadgeView.BadgeSettings>
+                            <badge:BadgeSettings Background="Green" Type="None" />
+                        </badge:SfBadgeView.BadgeSettings>
+                    </badge:SfBadgeView>
+                </VerticalStackLayout>
+            </Frame>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>
