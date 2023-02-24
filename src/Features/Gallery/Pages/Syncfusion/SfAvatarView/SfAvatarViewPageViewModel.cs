@@ -36,7 +36,7 @@ public partial class SfAvatarViewPageViewModel : NavigationAwareBaseViewModel
         CollectionImages.Add(new Employee { Name = "Monkey", ImageSource = "https://i.imgur.com/O9SgXez.jpg", Colors = Colors.LightCoral });
 
         TotechsMembers = new();
-        TotechsMembers.Add(new SfAvatarViewTestUserModel() { Name = "Strypper Vandel Jason", AvatarUrl = "https://totechsintranet.blob.core.windows.net/team-members/Me(    ver2019).jpg" });
+        TotechsMembers.Add(new SfAvatarViewTestUserModel() { Name = "Strypper Vandel Jason", AvatarUrl = "https://totechsintranet.blob.core.windows.net/team-members/Me(ver 2019).jpg" });
         TotechsMembers.Add(new SfAvatarViewTestUserModel() { Name = "Tran Tien Dat", AvatarUrl = "https://totechsintranet.blob.core.windows.net/team-members/Dat.png" });
         TotechsMembers.Add(new SfAvatarViewTestUserModel() { Name = "Luanderson Airton", AvatarUrl = "https://totechsintranet.blob.core.windows.net/team-members/Luan.jpg" });
         TotechsMembers.Add(new SfAvatarViewTestUserModel() { Name = "Ho Dac Toan", AvatarUrl = "https://totechsintranet.blob.core.windows.net/team-members/Toan.jpg" });
