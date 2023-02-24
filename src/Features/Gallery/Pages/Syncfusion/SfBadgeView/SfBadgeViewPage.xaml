@@ -822,7 +822,8 @@
                 <VerticalStackLayout Spacing="20">
                     <Label Text="You can enable or disable the animation of the badge text using Scale or None enum values of the BadgeAnimation property. You can see the animation when you change the badge text." />
                     <badge:SfBadgeView
-                        BadgeText="6"
+                        BadgeText="{x:Binding Source={x:Reference NotificationCountStepper},
+                                              Path=Value}"
                         HeightRequest="70"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
@@ -841,6 +842,12 @@
                                 Offset="0,0" />
                         </badge:SfBadgeView.BadgeSettings>
                     </badge:SfBadgeView>
+                    <Label
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        Text="{x:Binding Source={x:Reference NotificationCountStepper},
+                                         Path=Value}" />
+                    <Stepper x:Name="NotificationCountStepper" HorizontalOptions="Center" />
                     <app:SourceCodeExpander Code="{x:Binding AnimationBasic}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
