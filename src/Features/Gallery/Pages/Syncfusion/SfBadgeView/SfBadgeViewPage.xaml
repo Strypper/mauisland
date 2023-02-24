@@ -548,6 +548,67 @@
                     <app:SourceCodeExpander Code="{x:Binding PositionCustomization}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
+            <!--  Setting a badge offset  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setting a badge offset" />
+                    <Label Text="The badge view x,y position can be adjusted using the Offset property." />
+                    <!--  Origin  -->
+                    <badge:SfBadgeView
+                        BadgeText="8"
+                        HeightRequest="70"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="60">
+                        <badge:SfBadgeView.Content>
+                            <Image
+                                HeightRequest="70"
+                                Source="https://i.imgur.com/mdBNR5T.png"
+                                WidthRequest="60" />
+                        </badge:SfBadgeView.Content>
+                        <badge:SfBadgeView.BadgeSettings>
+                            <badge:BadgeSettings
+                                Position="BottomRight"
+                                Type="Success"
+                                Offset="0,-1" />
+                        </badge:SfBadgeView.BadgeSettings>
+                    </badge:SfBadgeView>
+                    <app:SourceCodeExpander Code="{x:Binding SettingAbadgeOffset}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Frame>
+            <!--  Change your avatarview  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="50">
+                    <badge:SfBadgeView
+                        BadgeText="8"
+                        HeightRequest="110"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="62">
+                        <VerticalStackLayout Spacing="10">
+                            <inputs:SfComboBox
+                                x:Name="comboBox"
+                                DisplayMemberPath="Name"
+                                ItemsSource="{x:Binding TotechsMembers}"
+                                SelectedItem="{x:Binding SelectedTotechsMember,
+                                                         Mode=TwoWay}" />
+                            <sfavatar:SfAvatarView
+                                ContentType="Default"
+                                HeightRequest="60"
+                                ImageSource="{x:Binding SelectedTotechsMember.AvatarUrl,
+                                                        Mode=OneWay}"
+                                WidthRequest="60" />
+                            <Label HorizontalOptions="Center" Text="{x:Binding SelectedTotechsMember.Name}" />
+                        </VerticalStackLayout>
+                        <badge:SfBadgeView.BadgeSettings>
+                            <badge:BadgeSettings
+                                Position="BottomRight"
+                                Type="Success"
+                                Offset="0,-1" />
+                        </badge:SfBadgeView.BadgeSettings>
+                    </badge:SfBadgeView>
+                </VerticalStackLayout>
+            </Frame>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>
