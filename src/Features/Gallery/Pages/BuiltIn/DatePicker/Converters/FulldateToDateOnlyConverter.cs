@@ -1,4 +1,5 @@
-﻿namespace MAUIsland;
+﻿
+namespace MAUIsland;
 
 public class FulldateToDateOnlyConverter : IValueConverter
 {
