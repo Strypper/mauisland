@@ -9,5 +9,5 @@ public interface IIntranetUserRefit
 
     [Multipart]
     [Put("/User/UploadTestImage")]
-    Task UploadTestImage(int id, [AliasAs("myPhoto")] StreamPart stream);
+    Task UploadTestImage(TestUploadImageDTO);
 }
