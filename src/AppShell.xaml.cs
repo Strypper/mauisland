@@ -1,9 +1,13 @@
-﻿namespace MAUIsland;
+﻿using Microsoft.Extensions.Configuration;
+
+namespace MAUIsland;
 
 public partial class AppShell : Shell
 {
     #region [Services]
     private readonly IAppInfo appInfo;
+
+    private readonly AppSettings appSettings;
     #endregion
 
     #region [CTor]
@@ -12,10 +16,31 @@ public partial class AppShell : Shell
         InitializeComponent();
 
         appInfo = ServiceHelper.GetService<IAppInfo>();
+        appSettings = ServiceHelper.GetService<IConfiguration>()
+                                   .GetRequiredSection("AppSettings")
+                                   .Get<AppSettings>();
 
+        RegisterRoutes();
+        WriteAppVersion();
+        RegisterSyncfusionLicense();
+
+    }
+    #endregion
+
+    #region [Methods]
+    void RegisterRoutes()
+    {
         Routing.RegisterRoute(nameof(ControlsByGroupPage), typeof(ControlsByGroupPage));
-
+    }
+    void WriteAppVersion()
+    {
         AppVersionLabel.Text = appInfo.VersionString;
     }
+
+    void RegisterSyncfusionLicense()
+    {
+        Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(appSettings.SyncfusionKey);
+    }
+
     #endregion
 }

@@ -14,9 +14,12 @@
             The .NET MAUI ComboBox control is a selection component that allows users to type a value or choose an option from a list of predefined options. It has many features, such as data binding, editing, searching, clear button and dropdown button customization, and more.
         </x:String>
 
-        <x:String x:Key="PropertiesListHeader">
-            Key features:
-        </x:String>
+        <DataTemplate x:Key="PropertiesSfListHeaderTemplate">
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="Key features: " />
+        </DataTemplate>
 
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
             <x:String>
@@ -56,16 +59,20 @@
                 <Label Text="{x:StaticResource ControlInfo}" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <syncfusion:SfListView ItemTemplate="{x:StaticResource BulletListItemTemplate}" ItemsSource="{x:StaticResource PropertiesItemsSource}" />
+                <syncfusion:SfListView
+                    HeaderTemplate="{x:StaticResource PropertiesSfListHeaderTemplate}"
+                    ItemTemplate="{x:StaticResource BulletListItemTemplate}"
+                    ItemsSource="{x:StaticResource PropertiesItemsSource}" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <inputs:SfComboBox
-                    x:Name="comboBox"
-                    DisplayMemberPath="Name"
-                    IsEditable="true"
-                    ItemsSource="{x:Binding Items}"
-                    TextMemberPath="Name"
-                    WidthRequest="250" />
+                <VerticalStackLayout Spacing="5">
+                    <inputs:SfComboBox
+                        x:Name="comboBox"
+                        DisplayMemberPath="Name"
+                        IsEditable="true"
+                        ItemsSource="{x:Binding Items}"
+                        WidthRequest="250" />
+                </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
     </ScrollView>

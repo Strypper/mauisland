@@ -18,12 +18,14 @@
     </ContentView.Resources>
 
     <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-        <toolkit:Expander>
+        <toolkit:Expander IsExpanded="{x:Binding IsExpanding, Source={x:Reference root}, Mode=TwoWay}">
             <toolkit:Expander.Header>
                 <Grid>
                     <Label
                         x:Name="CodeTypeLabel"
                         FontAttributes="Bold"
+                        IsVisible="{x:Binding ShowCodeType,
+                                              Source={x:Reference root}}"
                         TextColor="#ce8557"
                         VerticalOptions="Center" />
                     <ImageButton

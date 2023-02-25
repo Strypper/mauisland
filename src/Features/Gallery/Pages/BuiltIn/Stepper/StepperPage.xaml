@@ -9,7 +9,8 @@
     x:DataType="app:StepperPageViewModel">
 
     <app:BasePage.Resources>
-        <app:IntToMrIncreadibleMemeConverter x:Key="IntToMrIncreadibleMemeConverter" />
+        <app:AgeToMrIncreadibleMemeConverter x:Key="AgeToMrIncreadibleMemeConverter" />
+        <app:AgeToMrIncreadibleTitleMemeConverter x:Key="AgeToMrIncreadibleTitleMemeConverter" />
 
         <x:String x:Key="ControlInfo">
             The .NET Multi-platform App UI (.NET MAUI) Stepper enables a numeric value to be selected from a range of values. It consists of two buttons labeled with minus and plus signs. These buttons can be manipulated by the user to incrementally select a double value from a range of values.
@@ -86,6 +87,7 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="What types of women do you like?" />
+                    <Label Text="{x:Binding Source={x:Reference AgeStepper}, Path=Value, Mode=OneWay, Converter={x:StaticResource AgeToMrIncreadibleTitleMemeConverter}}" />
                     <HorizontalStackLayout Spacing="5">
                         <VerticalStackLayout Spacing="5">
                             <Label>
@@ -108,7 +110,8 @@
                             HeightRequest="100"
                             Source="{x:Binding Source={x:Reference AgeStepper},
                                                Path=Value,
-                                               Converter={x:StaticResource IntToMrIncreadibleMemeConverter}}"
+                                               Mode=OneWay,
+                                               Converter={x:StaticResource AgeToMrIncreadibleMemeConverter}}"
                             WidthRequest="100" />
                     </HorizontalStackLayout>
                 </VerticalStackLayout>

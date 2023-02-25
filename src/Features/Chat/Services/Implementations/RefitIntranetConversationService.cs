@@ -21,6 +21,8 @@ public class RefitIntranetConversationService : IConversationService
         _appNavigator = appNavigator;
     }
     #endregion
+
+    #region [Methods]
     public async Task<ICollection<ChatMessageModel>> GetRecentChatAsync()
     {
         var accessToken = await _secureStorageService.ReadValueAsync("accesstoken");
@@ -51,4 +53,5 @@ public class RefitIntranetConversationService : IConversationService
             throw;
         }
     }
+    #endregion
 }

@@ -67,6 +67,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="appsettings.Development.json" />
 	  <None Remove="Resources\Fonts\FluentSystemIcons-Regular.ttf" />
 	  <None Remove="Resources\Images\androidlogo.svg" />
 	  <None Remove="Resources\Images\builtinbanner.png" />
@@ -76,6 +77,18 @@
 	  <None Remove="Resources\Images\mauibeach.jpeg" />
 	  <None Remove="Resources\Images\mauilogo.png" />
 	  <None Remove="Resources\Images\mauitoolkitbanner.png" />
+	  <None Remove="Resources\Images\memes\mrincredibleblackwhite.png" />
+	  <None Remove="Resources\Images\memes\mrincredibleblackwhite1.png" />
+	  <None Remove="Resources\Images\memes\mrincredibleblackwhite2.png" />
+	  <None Remove="Resources\Images\memes\mrincredibleblackwhite3.png" />
+	  <None Remove="Resources\Images\memes\mrincredibleblackwhite4.png" />
+	  <None Remove="Resources\Images\memes\mrincredibleblackwhite5.png" />
+	  <None Remove="Resources\Images\memes\mrincrediblesmile.png" />
+	  <None Remove="Resources\Images\memes\mrincrediblesmile1.png" />
+	  <None Remove="Resources\Images\memes\mrincrediblesmile2.png" />
+	  <None Remove="Resources\Images\memes\mrincrediblesmile3.png" />
+	  <None Remove="Resources\Images\memes\mrincrediblesmile4.png" />
+	  <None Remove="Resources\Images\memes\mrincrediblesmile5.png" />
 	  <None Remove="Resources\Images\microsoft.svg" />
 	  <None Remove="Features\Gallery\Core\" />
 	  <None Remove="Features\Gallery\Services\" />
@@ -229,6 +242,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Home\ContentViews\ControlActivityCardContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Settings\Pages\SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="UI\Views\SourceCodeExpander.xaml">
@@ -396,6 +412,25 @@
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
 	  <PackageReference Include="AdaptiveProperties.MAUI" Version="1.0.4">
 	  </PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="appsettings.Development.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite1.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite2.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite3.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite4.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite5.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincrediblesmile.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincrediblesmile1.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincrediblesmile2.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincrediblesmile3.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincrediblesmile4.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincrediblesmile5.png" />
 	</ItemGroup>
 
 </Project>

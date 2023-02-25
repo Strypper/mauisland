@@ -1,11 +1,11 @@
 ﻿namespace MAUIsland;
 
-public class IntToMrIncreadibleMemeConverter : IValueConverter
+public class AgeToMrIncreadibleMemeConverter : IValueConverter
 {
     IDictionary<double, ImageSource> memes = new Dictionary<double, ImageSource>(){
-	    { 12, ImageSource.FromFile("mrincredibleblackwhite.png")},
-	    { 13, ImageSource.FromFile("mrincredibleblackwhite1.png")},
-	    { 14, ImageSource.FromFile("mrincredibleblackwhite2.png")},
+        { 12, ImageSource.FromFile("mrincredibleblackwhite.png")},
+        { 13, ImageSource.FromFile("mrincredibleblackwhite1.png")},
+        { 14, ImageSource.FromFile("mrincredibleblackwhite2.png")},
         { 15, ImageSource.FromFile("mrincredibleblackwhite3.png")},
         { 16, ImageSource.FromFile("mrincredibleblackwhite4.png")},
         { 17, ImageSource.FromFile("mrincredibleblackwhite5.png")},
@@ -20,7 +20,7 @@ public class IntToMrIncreadibleMemeConverter : IValueConverter
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         var age = (double)value;
-        return !memes.ContainsKey(age) ? "mrincredibleblackwhite4.png"
+        return !memes.ContainsKey(age) ? ImageSource.FromFile("mrincredibleblackwhite.png")
                                        : memes[age];
     }
 
