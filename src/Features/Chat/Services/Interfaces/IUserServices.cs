@@ -9,4 +9,6 @@ public interface IUserServices
     Task<UserModel> GetUserInfo();
 
     Task SaveUserToLocalAsync(UserModel user);
+
+    Task UploadCurrentUserAvatar(FileResult file);
 }

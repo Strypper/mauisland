@@ -1,44 +1,76 @@
-﻿namespace MAUIsland;
+﻿using CommunityToolkit.Diagnostics;
+
+namespace MAUIsland;
 
 public partial class SettingsPageViewModel : NavigationAwareBaseViewModel
 {
     #region [Services]
-    private readonly IFilePicker filePicker;
-    private readonly IIntranetUserRefit intranetUserRefit;
+
+    private readonly IFilePicker _filePicker;
+    private readonly IUserServices _userService;
+
     #endregion
 
     #region [CTor]
+
     public SettingsPageViewModel(IAppNavigator appNavigator,
-                                 IIntranetUserRefit intranetUserRefit,
+                                 IUserServices userService,
                                  IFilePicker filePicker) : base(appNavigator)
     {
-        this.filePicker = filePicker;
-        this.intranetUserRefit = intranetUserRefit;
+        _filePicker = filePicker;
+        _userService = userService;
+    }
+
+    #endregion
+
+    #region [Overrides]
+
+    protected override void OnInit(IDictionary<string, object> query)
+    {
+        GetCurrentUser().FireAndForget();
     }
     #endregion
 
     #region [Properties]
+
     [ObservableProperty]
     ImageSource avatarImageSource;
+
+    [ObservableProperty]
+    UserModel currentUser;
+
+    [ObservableProperty]
+    FileResult file;
+
     #endregion
 
     #region [Relay Commands]
+
     [RelayCommand]
-    async Task OpenFileAsync()
+    private async Task OpenFileAsync()
     {
-        var pickedImage = await filePicker.OpenMediaPickerAsync();
-
-        var imagefile = await filePicker.UploadImageFile(pickedImage);
-
+        File = await _filePicker.OpenMediaPickerAsync();
+        var imagefile = await _filePicker.UploadImageFile(File);
         AvatarImageSource = ImageSource.FromStream(() =>
-            filePicker.ByteArrayToStream(filePicker.StringToByteBase64(imagefile?.byteBase64))
+            _filePicker.ByteArrayToStream(_filePicker.StringToByteBase64(imagefile?.byteBase64))
         );
     }
 
     [RelayCommand]
-    async Task SaveAsync()
+    private async Task SaveAsync()
     {
-        //this.intranetUserRefit.UploadTestImage(1, new Refit.StreamPart(ImageSourceSample, "photo.jpg", "image/jpeg"))
+        Guard.IsNotNull(File);
+
+        await _userService.UploadCurrentUserAvatar(File);
+    }
+
+    #endregion
+
+    #region [Methods]
+    async Task GetCurrentUser()
+    {
+        CurrentUser = await _userService.GetCurrentUser();
+        AvatarImageSource = CurrentUser.AvatarUrl;
     }
     #endregion
 }
