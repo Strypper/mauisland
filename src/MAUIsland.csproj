@@ -139,6 +139,7 @@
 	  <Folder Include="Features\Gallery\Core\" />
 	  <Folder Include="Features\Gallery\Services\" />
 	  <Folder Include="Features\Gallery\Pages\BuiltIn\DatePicker\Pages\" />
+	  <Folder Include="Features\Settings\Models\" />
 	  <Folder Include="Resources\Images\memes\" />
 	</ItemGroup>
 
