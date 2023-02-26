@@ -79,7 +79,7 @@
     </app:BasePage.ToolbarItems>
 
     <ScrollView VerticalScrollBarVisibility="Always">
-        <Grid ColumnDefinitions="*, 300" RowDefinitions="150, auto, *">
+        <VerticalStackLayout Spacing="10">
             <Frame
                 Grid.ColumnSpan="2"
                 Padding="0"
@@ -101,13 +101,13 @@
                         VerticalOptions="Center" />-->
                 </Grid>
             </Frame>
-            <Label
+            <!--<Label
                 Grid.Row="1"
                 Grid.ColumnSpan="2"
                 Style="{x:StaticResource DocumentSectionTitleStyle}"
-                Text="Controls" />
+                Text="Controls" />-->
             <app:HorizontalWrapLayout
-                Grid.Row="2"
+                Grid.Row="1"
                 Grid.ColumnSpan="2"
                 BindableLayout.ItemTemplateSelector="{x:StaticResource BrandCardTemplateSelector}"
                 BindableLayout.ItemsSource="{x:Binding Items,
@@ -117,6 +117,6 @@
                                               Default=Start,
                                               Phone=Center}"
                 Spacing="10" />
-        </Grid>
+        </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

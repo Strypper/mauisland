@@ -19,7 +19,7 @@ public static class MauiProgram
     public static MauiApp CreateMauiApp()
     {
 
-        var isLocal = true;
+        var isLocal = false;
 
 
         var builder = MauiApp.CreateBuilder();
@@ -192,14 +192,20 @@ public static class MauiProgram
     {
         var assembly = Assembly.GetExecutingAssembly();
         using var stream = assembly.GetManifestResourceStream("MAUIsland.appsettings.Development.json");
+        using var appsettingspagestream = assembly.GetManifestResourceStream("MAUIsland.Features.Gallery.Pages.BuiltIn.AppSettingsJson.JsonFiles.appsettings.json");
 
-        if (stream is not null)
+        if (stream is not null && appsettingspagestream is not null)
         {
             var config = new ConfigurationBuilder()
                         .AddJsonStream(stream)
                         .Build();
 
+            var appsettingsconfig = new ConfigurationBuilder()
+                        .AddJsonStream(appsettingspagestream)
+                        .Build();
+
             builder.Configuration.AddConfiguration(config);
+            builder.Configuration.AddConfiguration(appsettingsconfig);
         }
         else
         {

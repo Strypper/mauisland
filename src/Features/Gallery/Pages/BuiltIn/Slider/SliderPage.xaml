@@ -83,7 +83,7 @@
     </app:BasePage.Resources>
 
     <app:BasePage.ToolbarItems>
-        <ToolbarItem IconImageSource="github.png" Text="Source code" />
+        <ToolbarItem IconImageSource="githublogo.png" Text="Source code" />
         <ToolbarItem IconImageSource="microsoft.png" Text="Original Document" />
     </app:BasePage.ToolbarItems>
 

@@ -6,14 +6,28 @@
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="SettingsPage"
+    Padding="10"
     x:DataType="app:SettingsPageViewModel">
     <VerticalStackLayout>
-        <toolkit:AvatarView ImageSource="{x:Binding AvatarImageSource}" />
-        <Button Command="{x:Binding OpenFileCommand}" Text="Upload image" />
-        <Button
-            Command="{x:Binding SaveCommand}"
-            IsEnabled="{x:Binding AvatarImageSource,
-                                  Converter={toolkit:IsNotNullConverter}}"
-            Text="Save" />
+        <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <HorizontalStackLayout Spacing="10">
+                <toolkit:AvatarView
+                    HeightRequest="150"
+                    ImageSource="{x:Binding AvatarImageSource}"
+                    WidthRequest="150" />
+                <VerticalStackLayout Spacing="10" VerticalOptions="Center">
+                    <Button
+                        Command="{x:Binding OpenFileCommand}"
+                        ImageSource="{x:StaticResource UploadIcon}"
+                        Text="Change avatar" />
+                    <Button
+                        Command="{x:Binding SaveCommand}"
+                        ImageSource="{x:StaticResource SaveIcon}"
+                        IsEnabled="{x:Binding AvatarImageSource,
+                        Converter={toolkit:IsNotNullConverter}}"
+                        Text="Save" />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </Frame>
     </VerticalStackLayout>
 </app:BasePage>
