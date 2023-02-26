@@ -19,7 +19,7 @@ public static class MauiProgram
     public static MauiApp CreateMauiApp()
     {
 
-        var isLocal = false;
+        var isLocal = true;
 
 
         var builder = MauiApp.CreateBuilder();
@@ -82,9 +82,9 @@ public static class MauiProgram
                                                                           : "https://localhost:44371/api"));
 
         builder.Services.AddRefitClient<IIntranetConversationRefit>()
-                .ConfigureHttpClient(c => c.BaseAddress = new Uri(!isLocal
-                                                                  ? "https://intranetcloud.azurewebsites.net/api"
-                                                                  : "https://localhost:44371/api"));
+                        .ConfigureHttpClient(c => c.BaseAddress = new Uri(!isLocal
+                                                                          ? "https://intranetcloud.azurewebsites.net/api"
+                                                                          : "https://localhost:44371/api"));
         return builder;
     }
 

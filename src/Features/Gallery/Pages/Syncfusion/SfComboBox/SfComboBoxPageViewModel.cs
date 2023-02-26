@@ -22,12 +22,12 @@ public partial class SfComboBoxPageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [Overrides]
-    
+
     protected override void OnInit(IDictionary<string, object> query)
     {
-        //base.OnInit(query);
+        base.OnInit(query);
 
-        //ControlGroupInfo = query.GetData<ControlGroupInfo>();
+        ControlGroupInfo = query.GetData<ControlGroupInfo>();
 
         LoadDataAsync(true)
             .FireAndForget();

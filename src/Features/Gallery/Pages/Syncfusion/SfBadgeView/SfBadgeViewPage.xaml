@@ -4,6 +4,10 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:badge="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+    xmlns:sfavatar="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
     Title="SfBadgeView"
     Padding="10"
     x:DataType="app:SfBadgeViewPageViewModel">
@@ -24,40 +28,828 @@
     <app:BasePage.Resources>
 
         <x:String x:Key="PropertiesListHeader">
-            SfBadgeView defines the following properties:
+            Key features:
         </x:String>
 
-        <x:String x:Key="PropertiesListFooter">
-            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+        <x:String x:Key="PropertiesListHeader1">
+            The colors of the badge can be customized using the BadgeType property. The badge supports the following eight different essential colors for various situations:
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeader2">
+            The badge icon has been changed using the Icon property. Badge icons will be visible when you do not set the badge text. The badge supports the following types of Icon.
         </x:String>
 
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">Color</strong>, of type <strong style="color:blue">Color </strong>, value that defines the color of the ActivityIndicator.
+                                <strong style="color:blue">Position</strong> : Position the badge text around the badge content.
                             ]]>
             </x:String>
+
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">IsRunning</strong>, of type <strong style="color:blue">bool</strong>,value that indicates whether the ActivityIndicator should be visible and animating, or hidden. The default value of this property is false, which indicates that the ActivityIndicator isn't visible.
+                                <strong style="color:blue">Predefinded styles</strong> : Customize the badge background with predefined colors.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Animation</strong> : Use animations for badge text.
                             ]]>
             </x:String>
         </x:Array>
 
+        <x:Array x:Key="PropertiesItemsSource1" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Dark</strong>    
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Error</strong>
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Info</strong>
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Light</strong>
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Primary</strong>
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Secondary</strong>
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Success</strong>
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Warning</strong>
+                            ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="PropertiesItemsSource2" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Add</strong>    
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Available</strong>
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Away</strong>
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Busy</strong>
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Delete</strong>
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Dot</strong>
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">None</strong>
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Prohibit1</strong>
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Prohibit2</strong>
+                            ]]>
+            </x:String>
+        </x:Array>
 
     </app:BasePage.Resources>
 
     <ScrollView>
-        <VerticalStackLayout Spacing="20">
+        <VerticalStackLayout Spacing="10">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <Label Text="{x:Binding ControlInformation.ControlDetail}" />
             </Frame>
+
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter}"
-                    Header="{x:StaticResource PropertiesListHeader}"
-                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                    Style="{x:StaticResource PropertiesListStyle}" />
+                <VerticalStackLayout Spacing="10">
+                    <CollectionView
+                        Header="{x:StaticResource PropertiesListHeader}"
+                        ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                </VerticalStackLayout>
+            </Frame>
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="Getting Started" />
+            <!--  Adding a content  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Adding a content" />
+                    <Label Text="An Image, button, or label or any view can be added to the Badge View using the Content property." />
+                    <badge:SfBadgeView HorizontalOptions="Center" VerticalOptions="Center">
+                        <badge:SfBadgeView.Content>
+                            <Button
+                                HeightRequest="60"
+                                Text="Primary"
+                                WidthRequest="120" />
+                        </badge:SfBadgeView.Content>
+                    </badge:SfBadgeView>
+                    <app:SourceCodeExpander Code="{x:Binding AddingAContent}" CodeType="Xaml" />
+                    <Label Text="The following screenshot illustrates the result of the above code." />
+                    <badge:SfBadgeView
+                        BadgeText="20"
+                        HeightRequest="85"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="150">
+                        <badge:SfBadgeView.Content>
+                            <Button
+                                HeightRequest="60"
+                                Text="Primary"
+                                WidthRequest="120" />
+                        </badge:SfBadgeView.Content>
+                    </badge:SfBadgeView>
+                    <app:SourceCodeExpander Code="{x:Binding AddingAContentSecond}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Frame>
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="Badge Customization" />
+            <!--  Font customization  -->
+
+            <!--  Error: BREAK!!!  -->
+
+            <!--  Stroke customization  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Stroke customization" />
+                    <Label Text="The stroke and stroke thickness of the badge view can be customized using the Stroke and StrokeThickness properties, respectively." />
+                    <badge:SfBadgeView
+                        BadgeText="30"
+                        HeightRequest="85"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="150">
+                        <badge:SfBadgeView.Content>
+                            <Button
+                                BackgroundColor="#d6d8d7"
+                                HeightRequest="60"
+                                Text="Primary"
+                                TextColor="Black"
+                                WidthRequest="120" />
+                        </badge:SfBadgeView.Content>
+                        <badge:SfBadgeView.BadgeSettings>
+                            <badge:BadgeSettings Stroke="Orange" StrokeThickness="2" />
+                        </badge:SfBadgeView.BadgeSettings>
+                    </badge:SfBadgeView>
+                    <app:SourceCodeExpander Code="{x:Binding StrokeCustomization}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Frame>
+            <!--  Text customization  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Text customization" />
+                    <Label Text="The text color and margin of badge view can be changed using the TextColor and TextPadding properties, respectively." />
+                    <badge:SfBadgeView
+                        BadgeText="45"
+                        HeightRequest="100"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="170">
+                        <badge:SfBadgeView.Content>
+                            <Button
+                                BackgroundColor="#d6d8d7"
+                                HeightRequest="60"
+                                Text="Primary"
+                                TextColor="Black"
+                                WidthRequest="120" />
+                        </badge:SfBadgeView.Content>
+                        <badge:SfBadgeView.BadgeSettings>
+                            <badge:BadgeSettings TextColor="LightYellow" TextPadding="10" />
+                        </badge:SfBadgeView.BadgeSettings>
+                    </badge:SfBadgeView>
+                    <app:SourceCodeExpander Code="{x:Binding TextCustomization}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Frame>
+            <!--  Predefined styles  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Predefined styles" />
+                    <CollectionView
+                        Header="{x:StaticResource PropertiesListHeader1}"
+                        ItemsSource="{x:StaticResource PropertiesItemsSource1}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                    <badge:SfBadgeView
+                        BadgeText="8"
+                        HeightRequest="65"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="75">
+                        <badge:SfBadgeView.Content>
+                            <Image
+                                HeightRequest="70"
+                                Source="https://i.imgur.com/mdBNR5T.png"
+                                WidthRequest="60" />
+                        </badge:SfBadgeView.Content>
+                        <badge:SfBadgeView.BadgeSettings>
+                            <badge:BadgeSettings Type="Error" />
+                        </badge:SfBadgeView.BadgeSettings>
+                    </badge:SfBadgeView>
+                    <app:SourceCodeExpander Code="{x:Binding BadgeBackgroundCustomization}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Frame>
+            <!--  Badge background customization  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Badge background customization" />
+                    <Label Text="Other than the predefined styles, the color of the badge can be customized using the BadgeType property which has to be set as None. Then the color of the badge view can be set using the Background property." />
+                    <badge:SfBadgeView
+                        BadgeText="48"
+                        HeightRequest="85"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="150">
+                        <badge:SfBadgeView.Content>
+                            <Button
+                                BackgroundColor="#d6d8d7"
+                                HeightRequest="60"
+                                Text="Primary"
+                                TextColor="Black"
+                                WidthRequest="120" />
+                        </badge:SfBadgeView.Content>
+                        <badge:SfBadgeView.BadgeSettings>
+                            <badge:BadgeSettings Background="Green" Type="None" />
+                        </badge:SfBadgeView.BadgeSettings>
+                    </badge:SfBadgeView>
+                    <app:SourceCodeExpander Code="{x:Binding BadgeBackgroundCustomization}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Frame>
+            <!--  Setting corner radius of the badge  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setting corner radius of the badge" />
+                    <Label Text="The CornerRadius property is used to reduce the radius of the corners." />
+                    <badge:SfBadgeView
+                        BadgeText="100"
+                        HeightRequest="85"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="160">
+                        <badge:SfBadgeView.Content>
+                            <Button
+                                BackgroundColor="#d6d8d7"
+                                HeightRequest="60"
+                                Text="Primary"
+                                TextColor="Black"
+                                WidthRequest="120" />
+                        </badge:SfBadgeView.Content>
+                        <badge:SfBadgeView.BadgeSettings>
+                            <badge:BadgeSettings CornerRadius="5,5,5,5" />
+                        </badge:SfBadgeView.BadgeSettings>
+                    </badge:SfBadgeView>
+                    <app:SourceCodeExpander Code="{x:Binding CornerRadiusOfTheBadge}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Frame>
+            <!--  Alignment of badge  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Alignment of badge" />
+                    <Label Text="Align the badge view using the Center, Start, and End properties of BadgeAlignment property." />
+                    <!--  START  -->
+                    <Grid
+                        ColumnDefinitions="*,*,*"
+                        ColumnSpacing="5"
+                        RowDefinitions="*"
+                        RowSpacing="5">
+                        <badge:SfBadgeView
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            BadgeText="20"
+                            HeightRequest="113"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="176">
+                            <badge:SfBadgeView.Content>
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    BackgroundColor="LightGray"
+                                    HeightRequest="70"
+                                    HorizontalTextAlignment="Center"
+                                    Text="START"
+                                    TextColor="Black"
+                                    VerticalTextAlignment="Center"
+                                    WidthRequest="120" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings BadgeAlignment="Center" CornerRadius="0" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                        <!--  CENTER  -->
+                        <badge:SfBadgeView
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            BadgeText="20"
+                            HeightRequest="80"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="130">
+                            <badge:SfBadgeView.Content>
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    BackgroundColor="LightGray"
+                                    HeightRequest="60"
+                                    HorizontalTextAlignment="Center"
+                                    Text="CENTER"
+                                    TextColor="Black"
+                                    VerticalTextAlignment="Center"
+                                    WidthRequest="100" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings BadgeAlignment="Center" CornerRadius="0" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                        <!--  END  -->
+                        <badge:SfBadgeView
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            BadgeText="20"
+                            HeightRequest="60"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="100">
+                            <badge:SfBadgeView.Content>
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="3"
+                                    BackgroundColor="LightGray"
+                                    HeightRequest="60"
+                                    HorizontalTextAlignment="Center"
+                                    Text="END"
+                                    TextColor="Black"
+                                    VerticalTextAlignment="Center"
+                                    WidthRequest="100" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings BadgeAlignment="Center" CornerRadius="0" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                    </Grid>
+                    <app:SourceCodeExpander Code="{x:Binding AlignmentOfBadge}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Frame>
+            <!--  Position customization  -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="Badge Customization" />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Text="The default position of notification is TopRight. The position can be customized as TopLeft, BottomLeft, BottomRight, Left,Top, Right, and Bottom using the Position property." />
+                    <HorizontalStackLayout Spacing="50">
+                        <!--  Left  -->
+                        <badge:SfBadgeView
+                            BadgeText="5"
+                            HeightRequest="60"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="140">
+                            <badge:SfBadgeView.Content>
+                                <Button
+                                    BackgroundColor="#d6d8d7"
+                                    HeightRequest="60"
+                                    Text="Left"
+                                    TextColor="Black"
+                                    WidthRequest="120" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings Position="Left" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                        <!--  Top  -->
+                        <badge:SfBadgeView
+                            BadgeText="5"
+                            HeightRequest="75"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="140">
+                            <badge:SfBadgeView.Content>
+                                <Button
+                                    BackgroundColor="#d6d8d7"
+                                    HeightRequest="60"
+                                    Text="Top"
+                                    TextColor="Black"
+                                    WidthRequest="120" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings Position="Top" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                        <!--  Right  -->
+                        <badge:SfBadgeView
+                            BadgeText="5"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="140">
+                            <badge:SfBadgeView.Content>
+                                <Button
+                                    BackgroundColor="#d6d8d7"
+                                    HeightRequest="60"
+                                    Text="Right"
+                                    TextColor="Black"
+                                    WidthRequest="120" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings Position="Right" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                        <!--  Bottom  -->
+                        <badge:SfBadgeView
+                            BadgeText="5"
+                            HeightRequest="80"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="140">
+                            <badge:SfBadgeView.Content>
+                                <Button
+                                    BackgroundColor="#d6d8d7"
+                                    HeightRequest="60"
+                                    Text="Bottom"
+                                    TextColor="Black"
+                                    WidthRequest="120" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings Position="Bottom" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                        <!--  Top right  -->
+                        <badge:SfBadgeView
+                            BadgeText="5"
+                            HeightRequest="75"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="140">
+                            <badge:SfBadgeView.Content>
+                                <Button
+                                    BackgroundColor="#d6d8d7"
+                                    HeightRequest="60"
+                                    Text="Top right"
+                                    TextColor="Black"
+                                    WidthRequest="120" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings Position="TopRight" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                        <!--  Bottom left  -->
+                        <badge:SfBadgeView
+                            BadgeText="5"
+                            HeightRequest="75"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="140">
+                            <badge:SfBadgeView.Content>
+                                <Button
+                                    BackgroundColor="#d6d8d7"
+                                    HeightRequest="60"
+                                    Text="Bottom left"
+                                    TextColor="Black"
+                                    WidthRequest="120" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings Position="BottomLeft" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                        <!--  Bottom right  -->
+                        <badge:SfBadgeView
+                            BadgeText="5"
+                            HeightRequest="75"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="140">
+                            <badge:SfBadgeView.Content>
+                                <Button
+                                    BackgroundColor="#d6d8d7"
+                                    HeightRequest="60"
+                                    Text="Bottom right"
+                                    TextColor="Black"
+                                    WidthRequest="120" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings Position="BottomRight" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                        <!--  Top left  -->
+                        <badge:SfBadgeView
+                            BadgeText="5"
+                            HeightRequest="75"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="140">
+                            <badge:SfBadgeView.Content>
+                                <Button
+                                    BackgroundColor="#d6d8d7"
+                                    HeightRequest="60"
+                                    Text="Top left"
+                                    TextColor="Black"
+                                    WidthRequest="120" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings Position="TopLeft" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                    </HorizontalStackLayout>
+                    <app:SourceCodeExpander Code="{x:Binding PositionCustomization}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Frame>
+            <!--  Setting a badge offset  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setting a badge offset" />
+                    <Label Text="The badge view x,y position can be adjusted using the Offset property." />
+                    <!--  Origin  -->
+                    <badge:SfBadgeView
+                        BadgeText="8"
+                        HeightRequest="70"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="60">
+                        <badge:SfBadgeView.Content>
+                            <Image
+                                HeightRequest="70"
+                                Source="https://i.imgur.com/mdBNR5T.png"
+                                WidthRequest="60" />
+                        </badge:SfBadgeView.Content>
+                        <badge:SfBadgeView.BadgeSettings>
+                            <badge:BadgeSettings
+                                Position="BottomRight"
+                                Type="Success"
+                                Offset="0,-1" />
+                        </badge:SfBadgeView.BadgeSettings>
+                    </badge:SfBadgeView>
+                    <app:SourceCodeExpander Code="{x:Binding SettingAbadgeOffset}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Frame>
+            <!--  Change your avatarview  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <badge:SfBadgeView
+                        BadgeText="8"
+                        HeightRequest="112"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="65">
+                        <VerticalStackLayout Spacing="10">
+                            <inputs:SfComboBox
+                                x:Name="comboBox"
+                                DisplayMemberPath="Name"
+                                ItemsSource="{x:Binding TotechsMembers}"
+                                SelectedItem="{x:Binding SelectedTotechsMember,
+                                                         Mode=TwoWay}" />
+                            <sfavatar:SfAvatarView
+                                ContentType="Default"
+                                HeightRequest="60"
+                                ImageSource="{x:Binding SelectedTotechsMember.AvatarUrl,
+                                                        Mode=OneWay}"
+                                WidthRequest="60" />
+                            <Label HorizontalOptions="Center" Text="{x:Binding SelectedTotechsMember.Name}" />
+                        </VerticalStackLayout>
+                        <badge:SfBadgeView.BadgeSettings>
+                            <badge:BadgeSettings
+                                Position="BottomRight"
+                                Type="Success"
+                                Offset="0,-1" />
+                        </badge:SfBadgeView.BadgeSettings>
+                    </badge:SfBadgeView>
+                </VerticalStackLayout>
+            </Frame>
+            <!--  Predefined symbols  -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="Predefined symbols" />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <CollectionView
+                        Header="{x:StaticResource PropertiesListHeader2}"
+                        ItemsSource="{x:StaticResource PropertiesItemsSource2}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                    <HorizontalStackLayout Spacing="140">
+                        <!--  Away  -->
+                        <badge:SfBadgeView HorizontalOptions="Center" VerticalOptions="Center">
+                            <badge:SfBadgeView.Content>
+                                <Image
+                                    HeightRequest="70"
+                                    Source="https://i.imgur.com/mdBNR5T.png"
+                                    WidthRequest="60" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings
+                                    Icon="Away"
+                                    Position="BottomRight"
+                                    Type="Warning"
+                                    Offset="-2, -2" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                        <!--  Available  -->
+                        <badge:SfBadgeView HorizontalOptions="Center" VerticalOptions="Center">
+                            <badge:SfBadgeView.Content>
+                                <Image
+                                    HeightRequest="70"
+                                    Source="https://i.imgur.com/mdBNR5T.png"
+                                    WidthRequest="60" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings
+                                    Icon="Available"
+                                    Position="BottomRight"
+                                    Type="Success"
+                                    Offset="-2, -2" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                        <!--  Add  -->
+                        <badge:SfBadgeView HorizontalOptions="Center" VerticalOptions="Center">
+                            <badge:SfBadgeView.Content>
+                                <Image
+                                    HeightRequest="70"
+                                    Source="https://i.imgur.com/mdBNR5T.png"
+                                    WidthRequest="60" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings
+                                    Icon="Add"
+                                    Position="BottomRight"
+                                    Type="Success"
+                                    Offset="-2, -2" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                        <!--  Busy  -->
+                        <badge:SfBadgeView HorizontalOptions="Center" VerticalOptions="Center">
+                            <badge:SfBadgeView.Content>
+                                <Image
+                                    HeightRequest="70"
+                                    Source="https://i.imgur.com/mdBNR5T.png"
+                                    WidthRequest="60" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings
+                                    Icon="Busy"
+                                    Position="BottomRight"
+                                    Type="Error"
+                                    Offset="-2, -2" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                        <!--  Delete  -->
+                        <badge:SfBadgeView HorizontalOptions="Center" VerticalOptions="Center">
+                            <badge:SfBadgeView.Content>
+                                <Image
+                                    HeightRequest="70"
+                                    Source="https://i.imgur.com/mdBNR5T.png"
+                                    WidthRequest="60" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings
+                                    Icon="Delete"
+                                    Position="BottomRight"
+                                    Type="Error"
+                                    Offset="-2, -2" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                        <!--  Dot  -->
+                        <badge:SfBadgeView HorizontalOptions="Center" VerticalOptions="Center">
+                            <badge:SfBadgeView.Content>
+                                <Image
+                                    HeightRequest="70"
+                                    Source="https://i.imgur.com/mdBNR5T.png"
+                                    WidthRequest="60" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings
+                                    Icon="Dot"
+                                    Position="BottomRight"
+                                    Type="Error"
+                                    Offset="-5, -6" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                        <!--  Prohibit1  -->
+                        <badge:SfBadgeView HorizontalOptions="Center" VerticalOptions="Center">
+                            <badge:SfBadgeView.Content>
+                                <Image
+                                    HeightRequest="70"
+                                    Source="https://i.imgur.com/mdBNR5T.png"
+                                    WidthRequest="60" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings
+                                    Icon="Prohibit1"
+                                    Position="BottomRight"
+                                    Type="Warning"
+                                    Offset="-2, -2" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                        <!--  Prohibit2  -->
+                        <badge:SfBadgeView HorizontalOptions="Center" VerticalOptions="Center">
+                            <badge:SfBadgeView.Content>
+                                <Image
+                                    HeightRequest="70"
+                                    Source="https://i.imgur.com/mdBNR5T.png"
+                                    WidthRequest="60" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSettings
+                                    Icon="Prohibit2"
+                                    Position="BottomRight"
+                                    Type="Warning"
+                                    Offset="-2, -2" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                    </HorizontalStackLayout>
+                    <app:SourceCodeExpander Code="{x:Binding PredefinedStyles}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Frame>
+            <!--  Animation  -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="Animation" />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Text="You can enable or disable the animation of the badge text using Scale or None enum values of the BadgeAnimation property. You can see the animation when you change the badge text." />
+                    <badge:SfBadgeView
+                        BadgeText="{x:Binding Source={x:Reference NotificationCountStepper},
+                                              Path=Value}"
+                        HeightRequest="70"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="65">
+                        <badge:SfBadgeView.Content>
+                            <Image
+                                HeightRequest="70"
+                                Source="https://i.imgur.com/mdBNR5T.png"
+                                WidthRequest="60" />
+                        </badge:SfBadgeView.Content>
+                        <badge:SfBadgeView.BadgeSettings>
+                            <badge:BadgeSettings
+                                Animation="Scale"
+                                Position="TopRight"
+                                Type="Error"
+                                Offset="0,0" />
+                        </badge:SfBadgeView.BadgeSettings>
+                    </badge:SfBadgeView>
+                    <Label
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        Text="{x:Binding Source={x:Reference NotificationCountStepper},
+                                         Path=Value}" />
+                    <Stepper x:Name="NotificationCountStepper" HorizontalOptions="Center" />
+                    <app:SourceCodeExpander Code="{x:Binding AnimationBasic}" CodeType="Xaml" />
+                </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
     </ScrollView>

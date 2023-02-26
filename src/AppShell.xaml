@@ -24,22 +24,36 @@
             Glyph="{Static app:FluentUIIcon.Ic_fluent_code_circle_20_regular}"
             Color="{AppThemeBinding Light='#15161e',
                                     Dark='#eaeaea'}" />
+
+        <FontImageSource
+            x:Key="SettingsIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_settings_48_regular}"
+            Color="{AppThemeBinding Light='#15161e',
+                                    Dark='#eaeaea'}" />
     </Shell.Resources>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate app:HomePage}"
+            Icon="{x:StaticResource HomeIcon}"
+            Route="homePage" />
+        <ShellContent
+            Title="Chat"
+            ContentTemplate="{DataTemplate app:ChatPage}"
+            Icon="{x:StaticResource ChatIcon}"
+            Route="chatPage" />
+        <ShellContent
+            Title="Gallery"
+            ContentTemplate="{DataTemplate app:GalleryPage}"
+            Icon="{x:StaticResource CodeIcon}"
+            Route="galleryPage" />
+    </FlyoutItem>
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate app:HomePage}"
-        Icon="{x:StaticResource HomeIcon}"
-        Route="homePage" />
-    <ShellContent
-        Title="Chat"
-        ContentTemplate="{DataTemplate app:ChatPage}"
-        Icon="{x:StaticResource ChatIcon}"
-        Route="chatPage" />
-    <ShellContent
-        Title="Gallery"
-        ContentTemplate="{DataTemplate app:GalleryPage}"
-        Icon="{x:StaticResource CodeIcon}"
-        Route="galleryPage" />
+        Title="Settings"
+        ContentTemplate="{DataTemplate app:SettingsPage}"
+        Icon="{x:StaticResource SettingsIcon}"
+        Route="settingsPage" />
     <Shell.FlyoutHeader>
         <VerticalStackLayout Padding="0,32,0,24">
             <Label
@@ -50,6 +64,9 @@
             <Label x:Name="AppVersionLabel" HorizontalOptions="Center" />
         </VerticalStackLayout>
     </Shell.FlyoutHeader>
+    <Shell.FlyoutFooter>
+        <Label Text="Code with ☕" />
+    </Shell.FlyoutFooter>
     <Shell.FlyoutBackdrop>
         <LinearGradientBrush EndPoint="1,0">
             <GradientStop Offset="0.0" Color="#7014e8" />

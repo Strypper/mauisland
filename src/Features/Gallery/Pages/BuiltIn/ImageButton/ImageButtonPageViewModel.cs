@@ -22,7 +22,6 @@ public partial class ImageButtonPageViewModel : NavigationAwareBaseViewModel
     IControlInfo controlInformation;
 
     [ObservableProperty]
-
     ImageSource imageSourceSample;
 
 
@@ -41,7 +40,7 @@ public partial class ImageButtonPageViewModel : NavigationAwareBaseViewModel
     #region [Relay Commands]
     [RelayCommand]
     Task OpenUrlAsync(string url)
-    => AppNavigator.OpenUrlAsync(url);
+        => AppNavigator.OpenUrlAsync(url);
 
     [RelayCommand]
     async Task OpenFileAsync()
@@ -54,6 +53,7 @@ public partial class ImageButtonPageViewModel : NavigationAwareBaseViewModel
             filePicker.ByteArrayToStream(filePicker.StringToByteBase64(imagefile?.byteBase64))
         );
     }
+
 
     #endregion
 }

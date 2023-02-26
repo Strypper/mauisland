@@ -166,7 +166,6 @@
             </Frame>
 
             <!--  Content Types in SfAvatarView  -->
-
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="5">
                     <inputs:SfComboBox

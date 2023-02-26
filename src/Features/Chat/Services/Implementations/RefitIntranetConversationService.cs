@@ -21,6 +21,8 @@ public class RefitIntranetConversationService : IConversationService
         _appNavigator = appNavigator;
     }
     #endregion
+
+    #region [Methods]
     public async Task<ICollection<ChatMessageModel>> GetRecentChatAsync()
     {
         var accessToken = await _secureStorageService.ReadValueAsync("accesstoken");
@@ -36,8 +38,8 @@ public class RefitIntranetConversationService : IConversationService
             {
                 chatMessageModels.Add(new ChatMessageModel()
                 {
-                    AuthorName = message.user.userName,
-                    AuthorImage = message.user.profilePic,
+                    AuthorName = message.user?.userName,
+                    AuthorImage = message.user?.profilePic,
                     ChatMessageContent = message.messageContent,
                     SentTime = message.dateTime
                 });
@@ -51,4 +53,5 @@ public class RefitIntranetConversationService : IConversationService
             throw;
         }
     }
+    #endregion
 }

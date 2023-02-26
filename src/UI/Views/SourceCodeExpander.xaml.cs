@@ -45,6 +45,26 @@ public partial class SourceCodeExpander : ContentView, INotifyPropertyChanged
         get => (CodeType)GetValue(CodeTypeProperty);
         set => SetValue(CodeTypeProperty, value);
     }
+
+    public static readonly BindableProperty ShowCodeTypeProperty = BindableProperty.Create(nameof(ShowCodeType),
+                                                                                   typeof(bool),
+                                                                                   typeof(SourceCodeExpander),
+                                                                                   true);
+    public bool ShowCodeType
+    {
+        get => (bool)GetValue(ShowCodeTypeProperty);
+        set => SetValue(ShowCodeTypeProperty, value);
+    }
+
+    public static readonly BindableProperty IsExpandingProperty = BindableProperty.Create(nameof(IsExpanding),
+                                                                               typeof(bool),
+                                                                               typeof(SourceCodeExpander),
+                                                                               false);
+    public bool IsExpanding
+    {
+        get => (bool)GetValue(IsExpandingProperty);
+        set => SetValue(IsExpandingProperty, value);
+    }
     #endregion
 
     #region [Event Handlers]

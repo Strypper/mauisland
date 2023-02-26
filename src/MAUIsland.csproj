@@ -67,6 +67,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="appsettings.Development.json" />
 	  <None Remove="Resources\Fonts\FluentSystemIcons-Regular.ttf" />
 	  <None Remove="Resources\Images\androidlogo.svg" />
 	  <None Remove="Resources\Images\builtinbanner.png" />
@@ -138,6 +139,8 @@
 	  <Folder Include="Features\Gallery\Core\" />
 	  <Folder Include="Features\Gallery\Services\" />
 	  <Folder Include="Features\Gallery\Pages\BuiltIn\DatePicker\Pages\" />
+	  <Folder Include="Features\Settings\Models\" />
+	  <Folder Include="Resources\Images\memes\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -229,6 +232,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Home\ContentViews\ControlActivityCardContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Settings\Pages\SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="UI\Views\SourceCodeExpander.xaml">
@@ -396,6 +402,10 @@
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
 	  <PackageReference Include="AdaptiveProperties.MAUI" Version="1.0.4">
 	  </PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="appsettings.Development.json" />
 	</ItemGroup>
 
 </Project>

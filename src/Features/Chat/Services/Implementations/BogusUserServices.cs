@@ -32,5 +32,10 @@ public class BogusUserServices : IUserServices
     {
         throw new NotImplementedException();
     }
+
+    public Task UploadCurrentUserAvatar(FileResult file)
+    {
+        throw new NotImplementedException();
+    }
     #endregion
 }
