@@ -1,4 +1,4 @@
-﻿using Refit;
+﻿using CommunityToolkit.Diagnostics;
 
 namespace MAUIsland;
 
@@ -6,75 +6,71 @@ public partial class SettingsPageViewModel : NavigationAwareBaseViewModel
 {
     #region [Services]
 
-    private readonly IFilePicker filePicker;
-    private readonly IIntranetUserRefit intranetUserRefit;
+    private readonly IFilePicker _filePicker;
+    private readonly IUserServices _userService;
 
-    #endregion [Services]
+    #endregion
 
     #region [CTor]
 
     public SettingsPageViewModel(IAppNavigator appNavigator,
-                                 IIntranetUserRefit intranetUserRefit,
+                                 IUserServices userService,
                                  IFilePicker filePicker) : base(appNavigator)
     {
-        this.filePicker = filePicker;
-        this.intranetUserRefit = intranetUserRefit;
+        _filePicker = filePicker;
+        _userService = userService;
     }
 
-    #endregion [CTor]
+    #endregion
 
-    #region [Fields]
+    #region [Overrides]
 
-    private FileResult _file;
-
-    #endregion [Fields]
+    protected override void OnInit(IDictionary<string, object> query)
+    {
+        GetCurrentUser().FireAndForget();
+    }
+    #endregion
 
     #region [Properties]
 
     [ObservableProperty]
-    private ImageSource avatarImageSource;
+    ImageSource avatarImageSource;
 
-    #endregion [Properties]
+    [ObservableProperty]
+    UserModel currentUser;
+
+    [ObservableProperty]
+    FileResult file;
+
+    #endregion
 
     #region [Relay Commands]
 
     [RelayCommand]
     private async Task OpenFileAsync()
     {
-        _file = await filePicker.OpenMediaPickerAsync();
-        var imagefile = await filePicker.UploadImageFile(_file);
+        File = await _filePicker.OpenMediaPickerAsync();
+        var imagefile = await _filePicker.UploadImageFile(File);
         AvatarImageSource = ImageSource.FromStream(() =>
-            filePicker.ByteArrayToStream(filePicker.StringToByteBase64(imagefile?.byteBase64))
+            _filePicker.ByteArrayToStream(_filePicker.StringToByteBase64(imagefile?.byteBase64))
         );
     }
 
     [RelayCommand]
     private async Task SaveAsync()
     {
-        using var imageStream = File.OpenRead(_file.FullPath);
-        var imageByteArray = await File.ReadAllBytesAsync(_file.FullPath);
+        Guard.IsNotNull(File);
 
-        var imageFromStream = new StreamPart(imageStream, _file.FileName);
-        var imageFromByteArray = new ByteArrayPart(imageByteArray, _file.FileName);
-
-        await intranetUserRefit.TestUpload1(imageFromStream);
-        await intranetUserRefit.TestUpload2(imageFromStream);
-
-        //// Error timeout
-        //var streamPartDTO = new TestUploadStreamPartDTO
-        //{
-        //    File = imageFromStream,
-        //};
-        //await intranetUserRefit.TestUpload2(streamPartDTO);
-
-        var byteArrayPartDTO = new TestUploadByteArrayPartDTO
-        {
-            File = imageFromByteArray,
-        };
-        await intranetUserRefit.TestUpload2(byteArrayPartDTO);
-
-        await intranetUserRefit.TestUpload3(88, imageFromStream);
+        await _userService.UploadCurrentUserAvatar(File);
     }
 
-    #endregion [Relay Commands]
+    #endregion
+
+    #region [Methods]
+    async Task GetCurrentUser()
+    {
+        CurrentUser = await _userService.GetCurrentUser();
+        AvatarImageSource = CurrentUser.AvatarUrl;
+    }
+    #endregion
 }

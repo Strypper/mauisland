@@ -38,8 +38,8 @@ public class RefitIntranetConversationService : IConversationService
             {
                 chatMessageModels.Add(new ChatMessageModel()
                 {
-                    AuthorName = message.user.userName,
-                    AuthorImage = message.user.profilePic,
+                    AuthorName = message.user?.userName,
+                    AuthorImage = message.user?.profilePic,
                     ChatMessageContent = message.messageContent,
                     SentTime = message.dateTime
                 });

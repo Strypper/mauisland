@@ -1,18 +1,22 @@
 ﻿using CommunityToolkit.Diagnostics;
+using Refit;
 
 namespace MAUIsland;
 
 public class RefitIntranetUserService : IUserServices
 {
     #region [Services]
+    private readonly IAppNavigator _appNavigator;
     private readonly IIntranetUserRefit _intranetUserRefit;
     private readonly ISecureStorageService _secureStorageService;
     #endregion
 
     #region [CTor]
-    public RefitIntranetUserService(IIntranetUserRefit intranetUserRefit,
-                       ISecureStorageService secureStorageService)
+    public RefitIntranetUserService(IAppNavigator appNavigator,
+                                    IIntranetUserRefit intranetUserRefit,
+                                    ISecureStorageService secureStorageService)
     {
+        _appNavigator = appNavigator;
         _intranetUserRefit = intranetUserRefit;
         _secureStorageService = secureStorageService;
     }
@@ -62,6 +66,37 @@ public class RefitIntranetUserService : IUserServices
     public Task SaveUserToLocalAsync(UserModel user)
     {
         return Task.Run(() => null);
+    }
+
+    public async Task UploadCurrentUserAvatar(FileResult file)
+    {
+        Guard.IsNotNull(file);
+
+        var accessToken = await _secureStorageService.ReadValueAsync("accesstoken");
+
+        Guard.IsNotNullOrEmpty(accessToken);
+
+        using var fileStream = File.OpenRead(file.FullPath);
+
+        var stream = new StreamPart(fileStream, file.FileName, file.ContentType);
+
+        try
+        {
+            var result = await _intranetUserRefit.UpdateAvatar(accessToken, stream);
+            if (result.IsSuccessStatusCode)
+            {
+                await _appNavigator.ShowSnackbarAsync("Save success !!!");
+            }
+            else
+            {
+                await _appNavigator.ShowSnackbarAsync($"Something wrong !!! {result.StatusCode}");
+            }
+        }
+        catch (ApiException ex)
+        {
+
+            throw;
+        }
     }
     #endregion
 }
