@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="Frame"
     Padding="20"
-    x:DataType="app:FramePageViewModel">
+    x:DataType="app:FramePageViewModel"
+    BackgroundColor="Transparent">
 
     <app:BasePage.Resources>
 

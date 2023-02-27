@@ -24,16 +24,17 @@
 
     <VerticalStackLayout Spacing="10">
         <ImageButton
-            Clicked="Detail_Clicked"
-            HeightRequest="100"
-            BackgroundColor="Black"
-            CornerRadius="4"
             Padding="4"
+            BackgroundColor="Black"
+            Clicked="Detail_Clicked"
+            CornerRadius="4"
+            HeightRequest="100"
             IsVisible="{x:Binding ComponentData.IconUrl,
                                   Source={x:Reference root},
                                   Converter={x:StaticResource ImageSourceToBoolConverter}}"
             Source="{x:Binding ComponentData.IconUrl,
-                               Source={x:Reference root}, Mode=OneWay}"
+                               Source={x:Reference root},
+                               Mode=OneWay}"
             WidthRequest="100">
             <!--<FlyoutBase.ContextFlyout>
                 <MenuFlyout>
@@ -78,6 +79,7 @@
             FontAttributes="Bold"
             HorizontalOptions="Center"
             Text="{x:Binding ComponentData.Title,
-                             Source={x:Reference root}}" />
+                             Source={x:Reference root},
+                             Mode=OneWay}" />
     </VerticalStackLayout>
 </ContentView>

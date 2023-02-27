@@ -56,19 +56,20 @@
             Opacity="0.7"
             Source="fluentuibackground.jpg"
             VerticalOptions="Fill" />
-        <Frame
+        <!--<Frame
             Padding="30"
             CornerRadius="4"
             HasShadow="True"
             HorizontalOptions="Center"
             Style="{x:StaticResource DocumentContentFrameStyle}"
-            VerticalOptions="Center">
-            <app:HorizontalWrapLayout
-                BindableLayout.ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
-                BindableLayout.ItemsSource="{Binding ControlGroups, Mode=OneWay}"
-                HorizontalOptions="Center"
-                Spacing="50"
-                VerticalOptions="Center" />
-        </Frame>
+            VerticalOptions="Center">-->
+        <app:HorizontalWrapLayout
+            BindableLayout.ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
+            BindableLayout.ItemsSource="{x:Binding ControlGroups,
+                                                   Mode=OneWay}"
+            HorizontalOptions="Center"
+            Spacing="50"
+            VerticalOptions="Center" />
+        <!--</Frame>-->
     </Grid>
 </app:BasePage>

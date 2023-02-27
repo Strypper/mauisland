@@ -28,6 +28,13 @@ public partial class GalleryPageViewModel : NavigationAwareBaseViewModel
     {
         base.OnInit(query);
 
+        LoadControlsAsync().FireAndForget();
+    }
+    #endregion
+
+    #region [Methods]
+    async Task LoadControlsAsync()
+    {
         var controlGroups = await controlsService.GetControlGroupsAsync();
 
         ControlGroups = new ObservableCollection<ControlGroupInfo>(controlGroups);

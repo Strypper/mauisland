@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="AppSettingsJson"
     Padding="10"
-    x:DataType="app:AppSettingsJsonPageViewModel">
+    x:DataType="app:AppSettingsJsonPageViewModel"
+    BackgroundColor="Transparent">
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem
