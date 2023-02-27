@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="Slider"
     Padding="20"
-    x:DataType="app:SliderPageViewModel">
+    x:DataType="app:SliderPageViewModel"
+    BackgroundColor="Transparent">
     <app:BasePage.Resources>
         <app:StringToColorConverter x:Key="StringToColorConverter" />
 

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<app:BasePage 
+<app:BasePage
+    x:Class="MAUIsland.GridPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    Title="Grid"
     Padding="10"
-    x:Class="MAUIsland.GridPage"
     x:DataType="app:GridPageViewModel"
-    Title="Grid">
+    BackgroundColor="Transparent">
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem
@@ -20,7 +21,7 @@
             IconImageSource="microsoft.png"
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
-    
+
     <app:BasePage.Resources>
 
         <x:String x:Key="PropertiesListHeader">
