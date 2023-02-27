@@ -68,15 +68,29 @@
 
 	<ItemGroup>
 	  <None Remove="appsettings.Development.json" />
+	  <None Remove="Features\Gallery\Pages\BuiltIn\AppSettingsJson\JsonFiles\appsettings.json" />
 	  <None Remove="Resources\Fonts\FluentSystemIcons-Regular.ttf" />
 	  <None Remove="Resources\Images\androidlogo.svg" />
 	  <None Remove="Resources\Images\builtinbanner.png" />
 	  <None Remove="Resources\Images\fluentuibackground.jpg" />
 	  <None Remove="Resources\Images\githublogo.png" />
 	  <None Remove="Resources\Images\ioslogo.png" />
+	  <None Remove="Resources\Images\logos\jamesmontemagnologo.png" />
 	  <None Remove="Resources\Images\mauibeach.jpeg" />
 	  <None Remove="Resources\Images\mauilogo.png" />
 	  <None Remove="Resources\Images\mauitoolkitbanner.png" />
+	  <None Remove="Resources\Images\memes\mrincredibleblackwhite.png" />
+	  <None Remove="Resources\Images\memes\mrincredibleblackwhite1.png" />
+	  <None Remove="Resources\Images\memes\mrincredibleblackwhite2.png" />
+	  <None Remove="Resources\Images\memes\mrincredibleblackwhite3.png" />
+	  <None Remove="Resources\Images\memes\mrincredibleblackwhite4.png" />
+	  <None Remove="Resources\Images\memes\mrincredibleblackwhite5.png" />
+	  <None Remove="Resources\Images\memes\mrincrediblesmile.png" />
+	  <None Remove="Resources\Images\memes\mrincrediblesmile1.png" />
+	  <None Remove="Resources\Images\memes\mrincrediblesmile2.png" />
+	  <None Remove="Resources\Images\memes\mrincrediblesmile3.png" />
+	  <None Remove="Resources\Images\memes\mrincrediblesmile4.png" />
+	  <None Remove="Resources\Images\memes\mrincrediblesmile5.png" />
 	  <None Remove="Resources\Images\microsoft.svg" />
 	  <None Remove="Features\Gallery\Core\" />
 	  <None Remove="Features\Gallery\Services\" />
@@ -101,7 +115,7 @@
 		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="1.0.2" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.3" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0-preview.1.23110.8" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3-beta1" />
@@ -140,7 +154,6 @@
 	  <Folder Include="Features\Gallery\Services\" />
 	  <Folder Include="Features\Gallery\Pages\BuiltIn\DatePicker\Pages\" />
 	  <Folder Include="Features\Settings\Models\" />
-	  <Folder Include="Resources\Images\memes\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -406,6 +419,31 @@
 
 	<ItemGroup>
 	  <EmbeddedResource Include="appsettings.Development.json" />
+	  <EmbeddedResource Include="Features\Gallery\Pages\BuiltIn\AppSettingsJson\JsonFiles\appsettings.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\banners\builtinbanner.png" />
+	  <MauiImage Include="Resources\Images\banners\mauitoolkitbanner.png" />
+	  <MauiImage Include="Resources\Images\banners\syncfusionbanner.png" />
+	  <MauiImage Include="Resources\Images\logos\androidlogo.svg" />
+	  <MauiImage Include="Resources\Images\logos\communitytoolkitlogo.png" />
+	  <MauiImage Include="Resources\Images\logos\githublogo.png" />
+	  <MauiImage Include="Resources\Images\logos\ioslogo.png" />
+	  <MauiImage Include="Resources\Images\logos\jamesmontemagnologo.png" />
+	  <MauiImage Include="Resources\Images\logos\mauilogo.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite1.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite2.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite3.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite4.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite5.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincrediblesmile.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincrediblesmile1.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincrediblesmile2.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincrediblesmile3.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincrediblesmile4.png" />
+	  <MauiImage Include="Resources\Images\memes\mrincrediblesmile5.png" />
 	</ItemGroup>
 
 </Project>

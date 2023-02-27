@@ -10,7 +10,7 @@
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
             CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
-            IconImageSource="github.png"
+            IconImageSource="githublogo.png"
             Text="Source code" />
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
