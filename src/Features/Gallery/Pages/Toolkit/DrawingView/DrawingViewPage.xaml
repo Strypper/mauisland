@@ -60,12 +60,42 @@
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
+            <!--  Using the DrawingView  -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Using the DrawingView" />
                     <toolkit:DrawingView
+                        HeightRequest="350"
                         LineColor="Red"
                         LineWidth="5"
-                        Lines="{x:Binding MyLines}" />
+                        WidthRequest="350" />
+                    <app:SourceCodeExpander Code="{x:Binding BasicDrawingView}" CodeType="Xaml" />
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="C#" />
+                    <app:SourceCodeExpander Code="{x:Binding BasicDrawingViewCSharp}" CodeType="CSharp" />
+                </VerticalStackLayout>
+            </Frame>
+            <!--  MultiLine usage  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="MultiLine usage" />
+                    <Label Text="By default DrawingView supports only 1 line. To enable MultiLine set IsMultiLineModeEnabled to true. Make sure ShouldClearOnFinish is false." />
+                    <toolkit:DrawingView
+                        HeightRequest="350"
+                        IsMultiLineModeEnabled="true"
+                        LineColor="Black"
+                        ShouldClearOnFinish="false"
+                        WidthRequest="350" />
+                    <app:SourceCodeExpander Code="{x:Binding MultiLineUsage}" CodeType="Xaml" />
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="C#" />
+                    <app:SourceCodeExpander Code="{x:Binding MultiLineUsageCSharp}" CodeType="CSharp" />
+                </VerticalStackLayout>
+            </Frame>
+            <!--  Handle event when DrawingLineCompleted  -->
+            <Frame>
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text=" Handle event when DrawingLineCompleted" />
+                    <Label Text="DrawingView allows to subscribe to the events like DrawingLineCompleted. The corresponding command DrawingLineCompletedCommand is also available." />
+                    <toolkit:DrawingView DrawingLineCompleted="OnDrawingLineCompletedEvent" DrawingLineCompletedCommand="{Binding DrawingLineCompletedCommand}" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
