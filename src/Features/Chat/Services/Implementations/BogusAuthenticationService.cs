@@ -20,7 +20,7 @@ public class BogusAuthenticationService : IAuthenticationServices
         throw new NotImplementedException();
     }
 
-    public Task SignUp(string phoneNumber, string userName, string email, string password, string firstName, string lastName, string profilePicUrl)
+    public Task SignUp(string phoneNumber, string userName, string email, string password, string firstName, string lastName, FileResult profilePicUrl)
     {
         throw new NotImplementedException();
     }

@@ -56,6 +56,12 @@ public partial class SfDataGridPageViewModel : NavigationAwareBaseViewModel
         OrderInfo.Add(new SfDataGridMockData() { OrderId = "1014", CustomerId = "Gina Irene", Customer = "UK", ShipCity = "AROUT", ShipCountry = "London" });
     }
     #endregion
+
+    #region [Relay Commands]
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
+    #endregion
 }
 
 public partial class SfDataGridMockData : BaseModel

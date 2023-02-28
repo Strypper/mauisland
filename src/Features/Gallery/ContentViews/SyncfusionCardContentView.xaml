@@ -100,7 +100,7 @@
                     CommandParameter="{x:Binding ComponentData.DocumentUrl,
                                                  Source={x:Reference root}}"
                     HeightRequest="50"
-                    Source="syncfusion_logo.png"
+                    Source="syncfusionlogo.png"
                     ToolTipProperties.Text="Microsoft Learn: Official document"
                     WidthRequest="50" />
             </VerticalStackLayout>
