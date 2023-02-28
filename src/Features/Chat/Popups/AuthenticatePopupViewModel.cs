@@ -6,23 +6,30 @@ namespace MAUIsland;
 public partial class AuthenticatePopupViewModel : BaseViewModel
 {
     #region [Services]
+    private readonly IFilePicker filePicker;
     private readonly IUserServices userServices;
     private readonly IAuthenticationServices authenticationServices;
     #endregion
 
     #region [CTor]
     public AuthenticatePopupViewModel(IAppNavigator appNavigator,
-                                IUserServices userServices,
-                                IAuthenticationServices authenticationServices)
+                                      IFilePicker filePicker,
+                                      IUserServices userServices,
+                                      IAuthenticationServices authenticationServices)
         : base(appNavigator)
     {
+        this.filePicker = filePicker;
         this.userServices = userServices;
         this.authenticationServices = authenticationServices;
     }
     #endregion
 
     #region [Properties]
+    [ObservableProperty]
+    FileResult file;
 
+    [ObservableProperty]
+    ImageSource avatarImageSource;
 
     [ObservableProperty]
     string viewMode = "Login";
@@ -63,7 +70,13 @@ public partial class AuthenticatePopupViewModel : BaseViewModel
     {
         try
         {
-            await authenticationServices.SignUp(dto.phonenumber, dto.username, dto.email, dto.password, dto.firstname, dto.lastname, dto.profilepic);
+            await authenticationServices.SignUp(dto.phonenumber,
+                                                dto.username,
+                                                dto.email,
+                                                dto.password,
+                                                dto.firstname,
+                                                dto.lastname,
+                                                File);
             await authenticationServices.Authenticate(dto.username, dto.password);
 
             var userInfo = await userServices.GetUserInfo();
@@ -78,28 +91,18 @@ public partial class AuthenticatePopupViewModel : BaseViewModel
         }
     }
 
+    [RelayCommand]
+    private async Task OpenFileAsync()
+    {
+        File = await this.filePicker.OpenMediaPickerAsync();
+        var imagefile = await this.filePicker.UploadImageFile(File);
+        AvatarImageSource = ImageSource.FromStream(() =>
+            this.filePicker.ByteArrayToStream(this.filePicker.StringToByteBase64(imagefile?.byteBase64))
+        );
+    }
+
     #endregion
 
     #region [Methods]
-    async Task CompletedLogin()
-    {
-        //try
-        //{
-        //    var authenticationToken = await this.authenticationServices.AuthenticateWithPhoneNumber(PhoneNumber, Password);
-        //    Guard.IsNotNullOrWhiteSpace(authenticationToken);
-
-        //    var userInfo = await this.userServices.GetUserInfo(authenticationToken);
-        //    Guard.IsNotNull(userInfo);
-
-        //    await this.userServices.SaveUserToLocalAsync(userInfo);
-        //    WeakReferenceMessenger.Default.Send(new LoginMessage(userInfo));
-        //    await AppNavigator.GoBackAsync();
-        //}
-        //catch (Exception ex)
-        //{
-        //    await AppNavigator.ShowSnackbarAsync(ex.Message);
-        //    throw;
-        //}
-    }
     #endregion
 }

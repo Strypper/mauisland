@@ -6,7 +6,9 @@
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     Title="SfBusyIndicator"
-    x:DataType="app:SfBusyIndicatorPageViewModel">
+    Padding="10"
+    x:DataType="app:SfBusyIndicatorPageViewModel"
+    BackgroundColor="Transparent">
 
     <app:BasePage.Resources>
 
@@ -21,12 +23,27 @@
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">Color</strong>, of type <strong style="color:blue">Color </strong>, value that defines the color of the ActivityIndicator.
+                                Comes with three different animation types [Circular Material, Linear Material and Cupertino].
                             ]]>
             </x:String>
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">IsRunning</strong>, of type <strong style="color:blue">bool</strong>,value that indicates whether the ActivityIndicator should be visible and animating, or hidden. The default value of this property is false, which indicates that the ActivityIndicator isn't visible.
+                                Supports customizing the indicator color, and overlay background.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                The animation duration can be customized.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                Size of the indicator can be customized.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                Supports displaying a title with font customizations.
                             ]]>
             </x:String>
         </x:Array>
@@ -47,7 +64,45 @@
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <core:SfBusyIndicator x:Name="busyIndicator" IsRunning="True" />
+                <HorizontalStackLayout Spacing="10">
+                    <core:SfBusyIndicator
+                        AnimationType="CircularMaterial"
+                        HeightRequest="30"
+                        IsRunning="True"
+                        WidthRequest="30" />
+                    <core:SfBusyIndicator
+                        AnimationType="Cupertino"
+                        HeightRequest="30"
+                        IsRunning="True"
+                        WidthRequest="30" />
+                    <core:SfBusyIndicator
+                        AnimationType="SingleCircle"
+                        HeightRequest="30"
+                        IsRunning="True"
+                        WidthRequest="30" />
+                    <core:SfBusyIndicator
+                        AnimationType="DoubleCircle"
+                        HeightRequest="30"
+                        IsRunning="True"
+                        WidthRequest="30" />
+                    <core:SfBusyIndicator
+                        AnimationType="LinearMaterial"
+                        HeightRequest="5"
+                        IsRunning="True"
+                        WidthRequest="100" />
+                </HorizontalStackLayout>
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <core:SfBusyIndicator
+                        Title="Spinning..."
+                        FontSize="16"
+                        HeightRequest="30"
+                        IsRunning="True"
+                        TitlePlacement="Bottom"
+                        WidthRequest="30" />
+                    <app:SourceCodeExpander Code="{x:Binding SimpleBusyIndicator}" />
+                </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
     </ScrollView>

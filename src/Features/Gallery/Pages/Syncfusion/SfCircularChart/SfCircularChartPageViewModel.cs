@@ -58,6 +58,12 @@ public partial class SfCircularChartPageViewModel : NavigationAwareBaseViewModel
         };
     }
     #endregion
+
+    #region [Relay Commands]
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
+    #endregion
 }
 
 
