@@ -4,14 +4,28 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
     Title="SfDataGrid"
     Padding="10"
     x:DataType="app:SfDataGridPageViewModel">
+
 
     <app:BasePage.Resources>
 
         <x:String x:Key="PropertiesListHeader">
             Key Features:
+        </x:String>
+
+        <x:String x:Key="BindingDataToDataGrid">
+            To bind the data source to the SfDataGrid, set the SfDataGrid.ItemsSource property as follows. You can bind the data source of the SfDataGrid either from XAML or in code. The following code example binds the collection created in the previous step to the SfDataGrid.ItemsSource property:
+        </x:String>
+
+        <x:String x:Key="DefiningColumnSection">
+            By default, the SfDataGrid automatically creates columns for all the properties in the data source. The type of the column generated depends on the type of data in the column. When the columns are auto-generated, handle the SfDataGrid.AutoGeneratingColumnMode mode to customize or cancel the columns before they are added to the columns collection in the SfDataGrid.
+        </x:String>
+
+        <x:String x:Key="DefiningColumnSection1">
+            The columns can be manually defined by setting the SfDataGrid.AutoGenerateColumnsMode property to ‘None’ and by adding the DataGridColumn objects to the SfDataGrid.Columns collection. This can be done from both XAML and code. The following code example illustrates this:
         </x:String>
 
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
@@ -71,7 +85,25 @@
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}" />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Simple datagrid" />
+                    <Label Text="{x:StaticResource BindingDataToDataGrid}" />
+                    <syncfusion:SfDataGrid
+                        x:Name="dataGrid"
+                        BackgroundColor="White"
+                        ItemsSource="{x:Binding OrderInfo}" />
+                    <app:SourceCodeExpander Code="{x:Binding SimpleDataGridXamlCode}" />
+                </VerticalStackLayout>
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Defining columns" />
+                    <Label Text="{x:StaticResource DefiningColumnSection}" />
+                    <Label Text="{x:StaticResource DefiningColumnSection1}" />
+                    <app:SourceCodeExpander Code="{x:Binding DefiningColumnsXamlCode}" />
+                </VerticalStackLayout>
+            </Frame>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>
