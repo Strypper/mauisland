@@ -6,7 +6,7 @@ MAUIsland is a collection of native controls, helper functions, custom controls,
 
 # ⚠ Warning
 
-We just introduced our breaking changes and this will impact the community for trying our project. Our application require appsettings.Development.json
+We just introduced our breaking changes and this will impact the community for trying out our project. Our application require appsettings.Development.json
 Please kindly create this file like below image
 
 ![image](https://user-images.githubusercontent.com/32596308/221789108-b2795d5e-00d1-4cca-a166-757e818a5983.png)
