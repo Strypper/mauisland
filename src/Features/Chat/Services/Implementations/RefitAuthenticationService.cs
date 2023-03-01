@@ -71,18 +71,23 @@ public class RefitAuthenticationService : IAuthenticationServices
     }
 
 
-    public async Task SignUp(string phoneNumber, string userName, string email, string password, string firstName, string lastName, FileResult profilePicUrl)
+    public async Task SignUp(string phoneNumber, string userName, string email, string password, string firstName, string lastName, FileResult? profilePicUrl)
     {
         Guard.IsNotNullOrEmpty(phoneNumber);
         Guard.IsNotNullOrEmpty(userName);
         Guard.IsNotNullOrEmpty(email);
         Guard.IsNotNullOrEmpty(password);
         Guard.IsNotNullOrEmpty(firstName);
-        Guard.IsNotNull(profilePicUrl);
+        //Guard.IsNotNull(profilePicUrl);
 
-        using var fileStream = File.OpenRead(profilePicUrl.FullPath);
+        StreamPart stream = null;
 
-        var stream = new StreamPart(fileStream, profilePicUrl.FileName, profilePicUrl.ContentType);
+        if (profilePicUrl is not null)
+        {
+            using var fileStream = File.OpenRead(profilePicUrl.FullPath);
+
+            stream = new StreamPart(fileStream, profilePicUrl.FileName, profilePicUrl.ContentType);
+        }
 
         try
         {
@@ -92,7 +97,7 @@ public class RefitAuthenticationService : IAuthenticationServices
                                                                            phoneNumber,
                                                                            email,
                                                                            password,
-                                                                           stream);
+                                                                           stream ?? null);
             if (!response.IsSuccessStatusCode)
             {
                 var errorContentJson = JsonConvert.DeserializeObject<RefitErrorMessageModel>(response.Error.Content);

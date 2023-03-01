@@ -1,5 +1,3 @@
-using CommunityToolkit.Maui.Core;
-
 namespace MAUIsland;
 public partial class DrawingViewPageViewModel : NavigationAwareBaseViewModel
 {
@@ -14,7 +12,7 @@ public partial class DrawingViewPageViewModel : NavigationAwareBaseViewModel
     #region [Properties]
     [ObservableProperty]
     IControlInfo controlInformation;
-    
+
     [ObservableProperty]
     string basicDrawingViewXamlCode = "<toolkit:DrawingView\r\n            Lines=\"{Binding MyLines}\"\r\n            LineColor=\"Red\"\r\n            LineWidth=\"5\" />";
 
@@ -55,7 +53,13 @@ public partial class DrawingViewPageViewModel : NavigationAwareBaseViewModel
         base.OnInit(query);
 
         ControlInformation = query.GetData<IControlInfo>();
-        
+
     }
+    #endregion
+
+    #region [Relay Commands]
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
     #endregion
 }

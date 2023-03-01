@@ -29,7 +29,7 @@ public partial class LoginFormContentView : ContentView
 
     private void root_Loaded(object sender, EventArgs e)
     {
-        UserNameEntry.Text = "viet.to@totechs.com.vn";
+        UserNameEntry.Text = "viet.to@totechs.com";
         PasswordEntry.Text = "Welkom112!!@";
     }
 }
