@@ -409,3 +409,4 @@ ASALocalRun/
 .localhistory/
 
 .vs
+/src/appsettings.Development.json
