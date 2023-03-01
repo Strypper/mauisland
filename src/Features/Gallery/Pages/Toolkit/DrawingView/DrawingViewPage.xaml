@@ -24,27 +24,55 @@
 
     <app:BasePage.Resources>
 
-        <x:String x:Key="PropertiesListHeader">
-            DrawingView defines the following properties:
-        </x:String>
-
-        <x:String x:Key="PropertiesListFooter">
-            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
-        </x:String>
-
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">Color</strong>, of type <strong style="color:blue">Color </strong>, value that defines the color of the ActivityIndicator.
+                                Lines <strong style="color:blue">ObservableCollection<IDrawingLine></strong>.
                             ]]>
             </x:String>
+
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">IsRunning</strong>, of type <strong style="color:blue">bool</strong>,value that indicates whether the ActivityIndicator should be visible and animating, or hidden. The default value of this property is false, which indicates that the ActivityIndicator isn't visible.
+                                IsMultiLineModeEnabled <strong style="color:blue">bool</strong>.
+                
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                ShouldClearOnFinish <strong style="color:blue">bool</strong>.
+                
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                DrawingLineCompletedCommand <strong style="color:blue">ICommand</strong>.
+                
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                DrawingLineCompleted <strong style="color:blue">EventHandler<DrawingLineCompletedEventArgs></strong>.
+                
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                LineColor <strong style="color:blue">EventHandler<DrawingLineCompletedEventArgs></strong>.
+                
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                LineWidth <strong style="color:blue">float</strong>.
+                
                             ]]>
             </x:String>
         </x:Array>
-
 
     </app:BasePage.Resources>
 
@@ -52,13 +80,6 @@
         <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter}"
-                    Header="{x:StaticResource PropertiesListHeader}"
-                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                    Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
             <!--  Using the DrawingView  -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
@@ -69,9 +90,9 @@
                         LineColor="Red"
                         LineWidth="5"
                         WidthRequest="350" />
-                    <app:SourceCodeExpander Code="{x:Binding BasicDrawingView}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding BasicDrawingViewXamlCode}" CodeType="Xaml" />
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="C#" />
-                    <app:SourceCodeExpander Code="{x:Binding BasicDrawingViewCSharp}" CodeType="CSharp" />
+                    <app:SourceCodeExpander Code="{x:Binding BasicDrawingViewCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
             </Frame>
             <!--  MultiLine usage  -->
@@ -85,16 +106,34 @@
                         LineColor="Black"
                         ShouldClearOnFinish="false"
                         WidthRequest="350" />
-                    <app:SourceCodeExpander Code="{x:Binding MultiLineUsage}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding MultiLineUsageXamlCode}" CodeType="Xaml" />
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="C#" />
-                    <app:SourceCodeExpander Code="{x:Binding MultiLineUsageCSharp}" CodeType="CSharp" />
+                    <app:SourceCodeExpander Code="{x:Binding MultiLineUsageCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
             </Frame>
             <!--  Handle event when DrawingLineCompleted  -->
-            <Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text=" Handle event when DrawingLineCompleted" />
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Handle event when DrawingLineCompleted" />
                     <Label Text="DrawingView allows to subscribe to the events like DrawingLineCompleted. The corresponding command DrawingLineCompletedCommand is also available." />
+                    <app:SourceCodeExpander Code="{x:Binding DrawingLineCompletedXamlCode}" CodeType="Xaml" />
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="C#" />
+                    <app:SourceCodeExpander Code="{x:Binding DrawingLineCompletedCSharpCode}" CodeType="CSharp" />
+                </VerticalStackLayout>
+            </Frame>
+            <!--  Advanced usage  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Advanced usage" />
+                    <Label Text="To get the full benefits, the DrawingView provides the methods to get the image stream of the drawing lines." />
+                    <app:SourceCodeExpander Code="{x:Binding AdvancedUsageXamlCode}" CodeType="Xaml" />
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="C#" />
+                    <app:SourceCodeExpander Code="{x:Binding AdvancedUsageCSharpCode}" CodeType="CSharp" />
+                    <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                        <VerticalStackLayout Spacing="10">
+                            <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
+                        </VerticalStackLayout>
+                    </Frame>
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

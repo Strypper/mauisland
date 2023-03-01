@@ -198,7 +198,7 @@
                                 WidthRequest="120" />
                         </badge:SfBadgeView.Content>
                     </badge:SfBadgeView>
-                    <app:SourceCodeExpander Code="{x:Binding AddingAContent}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding AddingAContentXamlCode}" CodeType="Xaml" />
                     <Label Text="The following screenshot illustrates the result of the above code." />
                     <badge:SfBadgeView
                         BadgeText="20"
@@ -213,7 +213,7 @@
                                 WidthRequest="120" />
                         </badge:SfBadgeView.Content>
                     </badge:SfBadgeView>
-                    <app:SourceCodeExpander Code="{x:Binding AddingAContentSecond}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding AddingAContentSecondXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
             <Label
@@ -247,7 +247,7 @@
                             <badge:BadgeSettings Stroke="Orange" StrokeThickness="2" />
                         </badge:SfBadgeView.BadgeSettings>
                     </badge:SfBadgeView>
-                    <app:SourceCodeExpander Code="{x:Binding StrokeCustomization}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding StrokeCustomizationXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
             <!--  Text customization  -->
@@ -273,7 +273,7 @@
                             <badge:BadgeSettings TextColor="LightYellow" TextPadding="10" />
                         </badge:SfBadgeView.BadgeSettings>
                     </badge:SfBadgeView>
-                    <app:SourceCodeExpander Code="{x:Binding TextCustomization}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding TextCustomizationXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
             <!--  Predefined styles  -->
@@ -300,7 +300,7 @@
                             <badge:BadgeSettings Type="Error" />
                         </badge:SfBadgeView.BadgeSettings>
                     </badge:SfBadgeView>
-                    <app:SourceCodeExpander Code="{x:Binding BadgeBackgroundCustomization}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding PredefindedSymbolsXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
             <!--  Badge background customization  -->
@@ -326,7 +326,7 @@
                             <badge:BadgeSettings Background="Green" Type="None" />
                         </badge:SfBadgeView.BadgeSettings>
                     </badge:SfBadgeView>
-                    <app:SourceCodeExpander Code="{x:Binding BadgeBackgroundCustomization}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding BadgeBackgroundCustomizationXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
             <!--  Setting corner radius of the badge  -->
@@ -352,7 +352,7 @@
                             <badge:BadgeSettings CornerRadius="5,5,5,5" />
                         </badge:SfBadgeView.BadgeSettings>
                     </badge:SfBadgeView>
-                    <app:SourceCodeExpander Code="{x:Binding CornerRadiusOfTheBadge}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding CornerRadiusOfTheBadgeXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
             <!--  Alignment of badge  -->
@@ -441,7 +441,7 @@
                             </badge:SfBadgeView.BadgeSettings>
                         </badge:SfBadgeView>
                     </Grid>
-                    <app:SourceCodeExpander Code="{x:Binding AlignmentOfBadge}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding AlignmentOfBadgeXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
             <!--  Position customization  -->
@@ -605,7 +605,7 @@
                             </badge:SfBadgeView.BadgeSettings>
                         </badge:SfBadgeView>
                     </HorizontalStackLayout>
-                    <app:SourceCodeExpander Code="{x:Binding PositionCustomization}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding PositionCustomizationXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
             <!--  Setting a badge offset  -->
@@ -633,7 +633,7 @@
                                 Offset="0,-1" />
                         </badge:SfBadgeView.BadgeSettings>
                     </badge:SfBadgeView>
-                    <app:SourceCodeExpander Code="{x:Binding SettingAbadgeOffset}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding SettingAbadgeOffsetXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
             <!--  Change your avatarview  -->
@@ -810,7 +810,7 @@
                             </badge:SfBadgeView.BadgeSettings>
                         </badge:SfBadgeView>
                     </HorizontalStackLayout>
-                    <app:SourceCodeExpander Code="{x:Binding PredefinedStyles}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding PredefinedStylesXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
             <!--  Animation  -->
@@ -848,7 +848,7 @@
                         Text="{x:Binding Source={x:Reference NotificationCountStepper},
                                          Path=Value}" />
                     <Stepper x:Name="NotificationCountStepper" HorizontalOptions="Center" />
-                    <app:SourceCodeExpander Code="{x:Binding AnimationBasic}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding AnimationBasicXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

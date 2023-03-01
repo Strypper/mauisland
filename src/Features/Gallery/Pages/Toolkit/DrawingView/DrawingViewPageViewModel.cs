@@ -16,16 +16,28 @@ public partial class DrawingViewPageViewModel : NavigationAwareBaseViewModel
     IControlInfo controlInformation;
     
     [ObservableProperty]
-    string basicDrawingView = "<toolkit:DrawingView\r\n            Lines=\"{Binding MyLines}\"\r\n            LineColor=\"Red\"\r\n            LineWidth=\"5\" />";
+    string basicDrawingViewXamlCode = "<toolkit:DrawingView\r\n            Lines=\"{Binding MyLines}\"\r\n            LineColor=\"Red\"\r\n            LineWidth=\"5\" />";
 
     [ObservableProperty]
-    string basicDrawingViewCSharp = "using CommunityToolkit.Maui.Views;\r\n\r\nvar drawingView = new DrawingView\r\n{\r\n    Lines = new ObservableCollection<IDrawingLine>(),\r\n    LineColor = Colors.Red,\r\n    LineWidth = 5\r\n};";
+    string basicDrawingViewCSharpCode = "using CommunityToolkit.Maui.Views;\r\n\r\nvar drawingView = new DrawingView\r\n{\r\n    Lines = new ObservableCollection<IDrawingLine>(),\r\n    LineColor = Colors.Red,\r\n    LineWidth = 5\r\n};";
 
     [ObservableProperty]
-    string multiLineUsage = "<views:DrawingView\r\n            Lines=\"{Binding MyLines}\"\r\n            IsMultiLineModeEnabled=\"true\"\r\n            ShouldClearOnFinish=\"false\" />";
+    string multiLineUsageXamlCode = "<views:DrawingView\r\n            Lines=\"{Binding MyLines}\"\r\n            IsMultiLineModeEnabled=\"true\"\r\n            ShouldClearOnFinish=\"false\" />";
 
     [ObservableProperty]
-    string multiLineUsageCSharp = "using CommunityToolkit.Maui.Views;\r\n\r\nvar gestureImage = new Image();\r\nvar drawingView = new DrawingView\r\n{\r\n    Lines = new ObservableCollection<IDrawingLine>(),\r\n    IsMultiLineModeEnabled = true,\r\n    ShouldClearOnFinish = false,\r\n};";
+    string multiLineUsageCSharpCode = "using CommunityToolkit.Maui.Views;\r\n\r\nvar gestureImage = new Image();\r\nvar drawingView = new DrawingView\r\n{\r\n    Lines = new ObservableCollection<IDrawingLine>(),\r\n    IsMultiLineModeEnabled = true,\r\n    ShouldClearOnFinish = false,\r\n};";
+
+    [ObservableProperty]
+    string drawingLineCompletedXamlCode = "<views:DrawingView\r\n            Lines=\"{Binding MyLines}\"\r\n            DrawingLineCompletedCommand=\"{Binding DrawingLineCompletedCommand}\"\r\n            DrawingLineCompleted=\"OnDrawingLineCompletedEvent\" />";
+
+    [ObservableProperty]
+    string drawingLineCompletedCSharpCode = "using CommunityToolkit.Maui.Views;\r\n\r\nvar gestureImage = new Image();\r\nvar drawingView = new DrawingView\r\n{\r\n    Lines = new ObservableCollection<IDrawingLine>(),\r\n    DrawingLineCompletedCommand = new Command<IDrawingLine>(async (line) =>\r\n    {\r\n        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());\r\n        gestureImage.Source = ImageSource.FromStream(() => stream);\r\n    })\r\n};\r\ndrawingView.DrawingLineCompleted += async (s, e) =>\r\n{\r\n    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());\r\n    gestureImage.Source = ImageSource.FromStream(() => stream);\r\n};";
+
+    [ObservableProperty]
+    string advancedUsageXamlCode = "<toolkit:DrawingView\r\n            x:Name=\"DrawingViewControl\"\r\n            Lines=\"{Binding MyLines}\"\r\n            IsMultiLineModeEnabled=\"true\"\r\n            ShouldClearOnFinish=\"true\"\r\n            DrawingLineCompletedCommand=\"{Binding DrawingLineCompletedCommand}\"\r\n            DrawingLineCompleted=\"OnDrawingLineCompletedEvent\"\r\n            LineColor=\"Red\"\r\n            LineWidth=\"5\"\r\n            HorizontalOptions=\"FillAndExpand\"\r\n            VerticalOptions=\"FillAndExpand\">\r\n            <toolkit:DrawingView.Background>\r\n                    <LinearGradientBrush StartPoint=\"0,0\"\r\n                                         EndPoint=\"0,1\">\r\n                        <GradientStop Color=\"Blue\"\r\n                                      Offset=\"0\"/>\r\n                        <GradientStop Color=\"Yellow\"\r\n                                      Offset=\"1\"/>\r\n                    </LinearGradientBrush>\r\n            </toolkit:DrawingView.Background>\r\n</toolkit:DrawingView>";
+
+    [ObservableProperty]
+    string advancedUsageCSharpCode = "using CommunityToolkit.Maui.Views;\r\n\r\nvar gestureImage = new Image();\r\nvar drawingView = new DrawingView\r\n{\r\n    Lines = new ObservableCollection<IDrawingLine>(),\r\n    IsMultiLineModeEnabled = true,\r\n    ShouldClearOnFinish = false,\r\n    DrawingLineCompletedCommand = new Command<IDrawingLine>(async (line) =>\r\n    {\r\n        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());\r\n        gestureImage.Source = ImageSource.FromStream(() => stream);\r\n    }),\r\n    LineColor = Colors.Red,\r\n    LineWidth = 5,\r\n    Background = Brush.Red\r\n};\r\ndrawingView.DrawingLineCompleted += async (s, e) =>\r\n{\r\n    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());\r\n    gestureImage.Source = ImageSource.FromStream(() => stream);\r\n};\r\n\r\n// get stream from lines collection\r\nvar lines = new List<IDrawingLine>();\r\nvar stream1 = await DrawingView.GetImageStream(\r\n                lines,\r\n                new Size(gestureImage.Width, gestureImage.Height),\r\n                Colors.Black);\r\n\r\n// get steam from the current DrawingView\r\nvar stream2 = await drawingView.GetImageStream(gestureImage.Width, gestureImage.Height);";
 
     #endregion
 
