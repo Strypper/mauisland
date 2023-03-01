@@ -39,6 +39,14 @@ public partial class DrawingViewPageViewModel : NavigationAwareBaseViewModel
     [ObservableProperty]
     string advancedUsageCSharpCode = "using CommunityToolkit.Maui.Views;\r\n\r\nvar gestureImage = new Image();\r\nvar drawingView = new DrawingView\r\n{\r\n    Lines = new ObservableCollection<IDrawingLine>(),\r\n    IsMultiLineModeEnabled = true,\r\n    ShouldClearOnFinish = false,\r\n    DrawingLineCompletedCommand = new Command<IDrawingLine>(async (line) =>\r\n    {\r\n        var stream = await line.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());\r\n        gestureImage.Source = ImageSource.FromStream(() => stream);\r\n    }),\r\n    LineColor = Colors.Red,\r\n    LineWidth = 5,\r\n    Background = Brush.Red\r\n};\r\ndrawingView.DrawingLineCompleted += async (s, e) =>\r\n{\r\n    var stream = await e.LastDrawingLine.GetImageStream(gestureImage.Width, gestureImage.Height, Colors.Gray.AsPaint());\r\n    gestureImage.Source = ImageSource.FromStream(() => stream);\r\n};\r\n\r\n// get stream from lines collection\r\nvar lines = new List<IDrawingLine>();\r\nvar stream1 = await DrawingView.GetImageStream(\r\n                lines,\r\n                new Size(gestureImage.Width, gestureImage.Height),\r\n                Colors.Black);\r\n\r\n// get steam from the current DrawingView\r\nvar stream2 = await drawingView.GetImageStream(gestureImage.Width, gestureImage.Height);";
 
+    [ObservableProperty]
+    string customIDrawingLineCSharpCode1 = "public class MyDrawingLine : IDrawingLine\r\n{\r\n    public ObservableCollection<PointF> Points { get; } = new();\r\n    ...\r\n}";
+
+    [ObservableProperty]
+    string customIDrawingLineCSharpCode2 = "public class MyDrawingLineAdapter : IDrawingLineAdapter\r\n{\r\n    public IDrawingLine(MauiDrawingLine mauiDrawingLine)\r\n    {\r\n        return new MyDrawingLine\r\n        {\r\n            Points = mauiDrawingLine.Points,\r\n            ...\r\n        }\r\n    }\r\n}";
+
+    [ObservableProperty]
+    string customIDrawingLineCSharpCode3 = "var myDrawingLineAdapter = new MyDrawingLineAdapter();\r\ndrawingViewHandler.SetDrawingLineAdapter(myDrawingLineAdapter);";
     #endregion
 
     #region [Overrides]

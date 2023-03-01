@@ -23,63 +23,179 @@
     </app:BasePage.ToolbarItems>
 
     <app:BasePage.Resources>
+        <x:String x:Key="PropertiesListHeader">
+            Properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeader1">
+            Properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeader2">
+            There are 2 steps to replace the default DrawingLine with the custom implementation:
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeader3">
+            Event argument which contains last drawing line:
+        </x:String>
 
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
-                                Lines <strong style="color:blue">ObservableCollection<IDrawingLine></strong>.
+                                Lines <strong style="color:blue">ObservableCollection"IDrawingLine"</strong>.
                             ]]>
             </x:String>
 
             <x:String>
                 <![CDATA[
                                 IsMultiLineModeEnabled <strong style="color:blue">bool</strong>.
-                
+
                             ]]>
             </x:String>
 
             <x:String>
                 <![CDATA[
                                 ShouldClearOnFinish <strong style="color:blue">bool</strong>.
-                
+
                             ]]>
             </x:String>
 
             <x:String>
                 <![CDATA[
                                 DrawingLineCompletedCommand <strong style="color:blue">ICommand</strong>.
-                
+
                             ]]>
             </x:String>
 
             <x:String>
                 <![CDATA[
-                                DrawingLineCompleted <strong style="color:blue">EventHandler<DrawingLineCompletedEventArgs></strong>.
-                
+                                DrawingLineCompleted <strong style="color:blue">EventHandler"DrawingLineCompletedEventArgs"</strong>.
+
                             ]]>
             </x:String>
 
             <x:String>
                 <![CDATA[
-                                LineColor <strong style="color:blue">EventHandler<DrawingLineCompletedEventArgs></strong>.
-                
+                                LineColor <strong style="color:blue">EventHandler"DrawingLineCompletedEventArgs"</strong>.
+
                             ]]>
             </x:String>
 
             <x:String>
                 <![CDATA[
                                 LineWidth <strong style="color:blue">float</strong>.
-                
+
                             ]]>
             </x:String>
         </x:Array>
 
+        <x:Array x:Key="PropertiesItemsSource1" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                LineColor <strong style="color:blue">Color</strong>.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                LineWidth <strong style="color:blue">float</strong>.
+
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                Points <strong style="color:blue">ObservableCollection"PointF"</strong>.
+
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                Granularity <strong style="color:blue">int</strong>.
+
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                ShouldSmoothPathWhenDrawn <strong style="color:blue">bool</strong>.
+
+                            ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="PropertiesItemsSource2" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                Creat custom class which implements <strong style="color:blue">IDrawingLine</strong>.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                Create custom class which implements <strong style="color:blue">IDrawingLineAdapter</strong>.
+
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                Set custom <strong style="color:blue">IDrawingLineAdapter</strong> in <strong style="color:blue">IDrawingViewHandler</strong>.
+
+                            ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="PropertiesItemsSource3" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                LastDrawingLine <strong style="color:blue">IDrawingLine</strong>.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="PropertiesItemsSource4" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                GetImageStream: Retrieves a <strong style="color:blue">Stream</strong> containing an image of the <strong style="color:blue">Lines</strong> that are currently drawn on the <strong style="color:blue">DrawingView</strong>.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                GetImageStream (static): Retrieves a <strong style="color:blue">Stream</strong> containing an image of the collection of <strong style="color:blue">IDrawingLine</strong> that is provided as a parameter.
+                            ]]>
+            </x:String>
+
+        </x:Array>
     </app:BasePage.Resources>
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+            </Frame>
+            <!--  Properties  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Properties" />
+                    <CollectionView
+                        Header="{x:StaticResource PropertiesListHeader}"
+                        ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                </VerticalStackLayout>
+            </Frame>
+            <!--  DrawingLine  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="DrawingLine" />
+                    <Label Text="The DrawingLine contains the list of points and allows configuring each line style individually." />
+                    <CollectionView
+                        Header="{x:StaticResource PropertiesListHeader1}"
+                        ItemsSource="{x:StaticResource PropertiesItemsSource1}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                </VerticalStackLayout>
             </Frame>
             <!--  Using the DrawingView  -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
@@ -129,11 +245,36 @@
                     <app:SourceCodeExpander Code="{x:Binding AdvancedUsageXamlCode}" CodeType="Xaml" />
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="C#" />
                     <app:SourceCodeExpander Code="{x:Binding AdvancedUsageCSharpCode}" CodeType="CSharp" />
-                    <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                        <VerticalStackLayout Spacing="10">
-                            <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
-                        </VerticalStackLayout>
-                    </Frame>
+                </VerticalStackLayout>
+            </Frame>
+            <!--  Custom IDrawingLine  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Custom IDrawingLine" />
+                    <CollectionView
+                        Header="{x:StaticResource PropertiesListHeader2}"
+                        ItemsSource="{x:StaticResource PropertiesItemsSource2}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                    <app:SourceCodeExpander Code="{x:Binding CustomIDrawingLineCSharpCode1}" CodeType="CSharp" />
+                    <app:SourceCodeExpander Code="{x:Binding CustomIDrawingLineCSharpCode2}" CodeType="CSharp" />
+                    <app:SourceCodeExpander Code="{x:Binding CustomIDrawingLineCSharpCode3}" CodeType="CSharp" />
+                </VerticalStackLayout>
+            </Frame>
+            <!--  DrawingLineCompletedEventArgs  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="DrawingLineCompletedEventArgs" />
+                    <CollectionView
+                        Header="{x:StaticResource PropertiesListHeader3}"
+                        ItemsSource="{x:StaticResource PropertiesItemsSource3}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                </VerticalStackLayout>
+            </Frame>
+            <!--  Methods  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Methods" />
+                    <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource4}" Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
