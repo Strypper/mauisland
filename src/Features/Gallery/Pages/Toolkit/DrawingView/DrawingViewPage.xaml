@@ -95,7 +95,6 @@
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text=" Handle event when DrawingLineCompleted" />
                     <Label Text="DrawingView allows to subscribe to the events like DrawingLineCompleted. The corresponding command DrawingLineCompletedCommand is also available." />
-                    <toolkit:DrawingView DrawingLineCompleted="OnDrawingLineCompletedEvent" DrawingLineCompletedCommand="{Binding DrawingLineCompletedCommand}" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
