@@ -1,7 +1,6 @@
 ﻿namespace MAUIsland;
 
 
-
 public partial class RefreshViewPageViewModel : NavigationAwareBaseViewModel
 {
     #region [CTor]
@@ -18,6 +17,10 @@ public partial class RefreshViewPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     bool isBusy;
+
+    [ObservableProperty]
+    ObservableCollection<DemoItem> items;
+
     #endregion
 
     #region [Overrides]
@@ -27,6 +30,8 @@ public partial class RefreshViewPageViewModel : NavigationAwareBaseViewModel
 
         ControlInformation = query.GetData<IControlInfo>();
 
+        Items = new();
+        Items.Add(new DemoItem("Item1", DateTime.Now));
     }
     #endregion
 
@@ -39,8 +44,11 @@ public partial class RefreshViewPageViewModel : NavigationAwareBaseViewModel
     async Task RefreshAsync()
     {
         IsBusy = true;
+        Items.Add(new DemoItem("new Item", DateTime.Now));
         await AppNavigator.ShowSnackbarAsync("You triggered refresh", null, "Ok");
         IsBusy = false;
     }
     #endregion
 }
+
+public record DemoItem(string name, DateTime time);
