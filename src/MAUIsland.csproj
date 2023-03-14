@@ -104,6 +104,7 @@
 	  <None Remove="Resources\Images\windowslogo.svg" />
 	  <None Remove="Resources\Raw\dotnetbot.json" />
 	  <None Remove="Resources\Raw\island.json" />
+	  <None Remove="Resources\Raw\swipeupordown.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -124,6 +125,7 @@
 		<PackageReference Include="Refit.HttpClientFactory" Version="6.3.2" />
 		<PackageReference Include="Refit.Newtonsoft.Json" Version="6.3.2" />
 		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
+		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.3" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.3" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.3" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.3" />
