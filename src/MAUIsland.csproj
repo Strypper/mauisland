@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net7.0-android;net7.0-maccatalyst;net7.0-ios</TargetFrameworks>
-    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
     <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
     <!--<TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks>-->
     <OutputType>Exe</OutputType>
@@ -66,7 +66,10 @@
     <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
   <ItemGroup>
+    <MauiAsset Remove="Resources\Raw\australia.shp" />
+    <MauiAsset Remove="Resources\Raw\river.json" />
     <MauiAsset Remove="Resources\Raw\usa_state.shp" />
+    <MauiAsset Remove="Resources\Raw\world-map.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -104,9 +107,12 @@
     <None Remove="Features\Gallery\Pages\BuiltIn\DatePicker\Pages\" />
     <None Remove="Resources\Images\tizenlogo.svg" />
     <None Remove="Resources\Images\windowslogo.svg" />
+    <None Remove="Resources\Raw\australia.shp" />
     <None Remove="Resources\Raw\dotnetbot.json" />
     <None Remove="Resources\Raw\island.json" />
+    <None Remove="Resources\Raw\river.json" />
     <None Remove="Resources\Raw\usa_state.shp" />
+    <None Remove="Resources\Raw\world-map.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -430,7 +436,10 @@
   <ItemGroup>
     <EmbeddedResource Include="appsettings.Development.json" />
     <EmbeddedResource Include="Features\Gallery\Pages\BuiltIn\AppSettingsJson\JsonFiles\appsettings.json" />
+    <EmbeddedResource Include="Resources\Raw\australia.shp" />
+    <EmbeddedResource Include="Resources\Raw\river.json" />
     <EmbeddedResource Include="Resources\Raw\usa_state.shp" />
+    <EmbeddedResource Include="Resources\Raw\world-map.json" />
   </ItemGroup>
 
   <ItemGroup>

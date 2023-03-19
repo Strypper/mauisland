@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:model="clr-namespace:MAUIsland.Gallery.Syncfusion"
     xmlns:maps="clr-namespace:Syncfusion.Maui.Maps;assembly=Syncfusion.Maui.Maps"
     Title="SfMapsView"
     Padding="10"
@@ -23,6 +24,22 @@
     </app:BasePage.ToolbarItems>
 
     <app:BasePage.Resources>
+        <DataTemplate x:Key="markerTemplate">
+            <StackLayout>
+                <Ellipse WidthRequest="8"
+                             HeightRequest="8"
+                             Fill="Red" />
+                <Label Text="{Binding Name}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           FontSize="Caption"
+                           FontAttributes="Bold" />
+                <Label Text="{Binding Time}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           FontSize="8" />
+            </StackLayout>
+        </DataTemplate>
 
         <x:String x:Key="ControlInfo">
             The .NET MAUI Maps control is a powerful data visualization component that displays statistical information for a geographical area. It has highly interactive and customizable features such as selection, tooltip, legends, markers, bubbles, and color mapping. Using the Maps control, you can generate maps for population density, sales, political boundaries, weather, elections, and routes.
@@ -98,12 +115,9 @@
                         Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
             </Frame>
-            <Label
-                FontAttributes="Bold"
-                FontSize="Title"
-                Text="Getting Started" />
-            <Label Text="This sample shows the basic maps elements such as data labels, legend, and tooltip" />
-            <!--Shape layer maps elements with data label, legend and tooltip-->
+            <Label FontAttributes="Bold"
+                FontSize="Title" Text="This sample shows the basic maps elements such as data labels, legend, and tooltip" />
+            <!--Basic Layer-->
             <Grid>
                 <maps:SfMaps>
                     <maps:SfMaps.Layer>
@@ -169,12 +183,16 @@
                     </maps:SfMaps.Layer>
                 </maps:SfMaps>
             </Grid>
-            <app:SourceCodeExpander Code="{x:Binding ShapeLayerMapsElementsSource}" CodeType="Xaml" />
+            <app:SourceCodeExpander Code="{x:Binding BasicLayerSource}" CodeType="Xaml" />
 
-            <Label Text="This sample showcases a map with simple Selection." />
-            <!--SelectionViewModel-->
+            <Label FontAttributes="Bold"
+                FontSize="Title" Text="This sample showcases a map with simple Selection." />
+            <!--Selection Layer-->
             <Grid Margin="20"
               x:Name="sampleGrid">
+                <Grid.BindingContext>
+                    <model:SelectionViewModel/>
+                </Grid.BindingContext>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
@@ -192,10 +210,10 @@
                     Margin="0,0,0,20"/>
                 <maps:SfMaps Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
                     <maps:SfMaps.Layer>
-                        <maps:MapShapeLayer x:Name="shapeLayer"
+                        <maps:MapShapeLayer x:Name="selectionLayer"
                                         DataSource="{Binding StateWiseElectionResult}"
                                         PrimaryValuePath="State"
-                                        ShapeDataField="STATE_NAME"
+                                        ShapeDataField="name"
                                         ShapeColorValuePath="SquareMiles"
                                         ShapeStroke="White"
                                         EnableSelection="True"
@@ -261,8 +279,10 @@
                     </Grid>
                 </Frame>
             </Grid>
+            <app:SourceCodeExpander Code="{x:Binding SelectionLayerSource}" CodeType="Xaml" />
 
-            <Label Text="This sample shows the rivers of the Australia using the shape sublayer support." />
+            <Label FontAttributes="Bold"
+                FontSize="Title" Text="This sample shows the rivers of the Australia using the shape sublayer support." />            
             <!--Shape Layer-->
             <Grid Margin="20">
                 <Grid.RowDefinitions>
@@ -305,6 +325,36 @@
                     </maps:SfMaps.Layer>
                 </maps:SfMaps>
             </Grid>
+            <app:SourceCodeExpander Code="{x:Binding ShapeLayerSource}" CodeType="Xaml" />
+
+            <Label FontAttributes="Bold"
+                FontSize="Title" Text="This sample showcases the world map with different time zones using markers." />
+            <!--Marker Layer-->
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0"
+                   HorizontalOptions="Center"
+                   Text="World Clock"
+                   FontSize="Subtitle"
+                   Margin="0,0,0,20" />
+                <maps:SfMaps Grid.Row="1">
+                    <maps:SfMaps.Layer>
+                        <maps:MapShapeLayer x:Name="markerLayer"
+                                        ShapeHoverFill="Transparent"
+                                        ShapeHoverStroke="Transparent"
+                                        ShapeHoverStrokeThickness="0"
+                                        ShapeFill="#dadadb"
+                                        ShapeStrokeThickness="0"
+                                        Markers="{Binding Markers}"
+                                        MarkerTemplate="{StaticResource markerTemplate}">
+                        </maps:MapShapeLayer>
+                    </maps:SfMaps.Layer>
+                </maps:SfMaps>
+            </Grid>
+            <app:SourceCodeExpander Code="{x:Binding MarkerLayerSource}" CodeType="Xaml" />
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>
