@@ -29,7 +29,8 @@
             HorizontalOptions="Start"
             Text="Back"
             VerticalOptions="Start" />
-        <Frame
+        <Border
+            Padding="10"
             HorizontalOptions="Center"
             Style="{x:StaticResource DocumentContentFrameStyle}"
             VerticalOptions="Center">
@@ -47,18 +48,16 @@
                     <RadioButton Content="Sign up" Value="Register" />
                 </HorizontalStackLayout>
 
-                <ScrollView>
-                    <Grid
-                        toolkit:StateContainer.CurrentState="{x:Binding ViewMode}"
-                        toolkit:StateContainer.ShouldAnimateOnStateChange="True"
-                        HorizontalOptions="Center">
-                        <toolkit:StateContainer.StateViews>
-                            <app:LoginFormContentView toolkit:StateView.StateKey="Login" LoginClicked="LoginFormContentView_LoginClicked" />
-                            <app:RegisterFormContentView toolkit:StateView.StateKey="Register" RegisterClick="RegisterFormContentView_RegisterClick" />
-                        </toolkit:StateContainer.StateViews>
-                    </Grid>
-                </ScrollView>
+                <Grid
+                    toolkit:StateContainer.CurrentState="{x:Binding ViewMode}"
+                    toolkit:StateContainer.ShouldAnimateOnStateChange="True"
+                    HorizontalOptions="Center">
+                    <toolkit:StateContainer.StateViews>
+                        <app:LoginFormContentView toolkit:StateView.StateKey="Login" LoginClicked="LoginFormContentView_LoginClicked" />
+                        <app:RegisterFormContentView toolkit:StateView.StateKey="Register" RegisterClick="RegisterFormContentView_RegisterClick" />
+                    </toolkit:StateContainer.StateViews>
+                </Grid>
             </VerticalStackLayout>
-        </Frame>
+        </Border>
     </Grid>
 </app:BasePopup>

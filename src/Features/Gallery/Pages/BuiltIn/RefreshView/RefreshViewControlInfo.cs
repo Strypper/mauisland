@@ -1,4 +1,5 @@
 ﻿namespace MAUIsland.Gallery.BuiltIn;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 class RefreshViewControlInfo : IControlInfo
 {

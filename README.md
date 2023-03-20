@@ -2,7 +2,27 @@
 
 ![](showcases/projectmockup.png)
 
-MAUIsland is a collection of native controls, helper functions, custom controls, and app services that come from built-in MAUI framework, Syncfusion and later MAUI Toolkit, Telerik and DevExpress will added. It simplifies and demonstrates common developer patterns when building experiences for crossplatform development. It contains components and helpers to give .NET developers have better times for what they need and interact with the real result that MAUI generated.
+NET MAUI Control Gallery is an app that showcases all the .NET MAUI controls available for developers. It allows you to easily interact with them and see how they look and behave on different platforms. It also provides guidance, tips and tricks to help you use them effectively in your own apps.
+
+[<img src="https://developer.microsoft.com/en-us/store/badges/images/English_get-it-from-MS.png" width="160">](https://www.microsoft.com/store/productId/9NLQ0J5P471L)
+
+# 🚀 Features
+
+1. Browse through over 50 .NET MAUI controls organized by categories
+2. See live previews of each control on iOS, Android, Windows and Mac
+3. Learn how to use each control with code snippets and documentation links
+4. Customize each control’s properties and styles
+5. Copy code snippets to clipboard and use them in your app
+
+# ⬇️ Installation
+To install .NET MAUI Control Gallery on your device or emulator/simulator:
+
+1. Clone or download this repository
+2. Open the solution file (.sln) in Visual Studio 2022 or later
+3. Select your target platform and device/emulator/simulator
+4. Build and run the app
+
+We will publish our application on all platforms soon enough. Stay tuned!!!
 
 # ⁉ Support
 

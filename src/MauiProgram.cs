@@ -166,11 +166,6 @@ public static class MauiProgram
         var pageTypes = assemblies.SelectMany(a => a.GetTypes().Where(a => a.Name.EndsWith(pattern) && !a.IsAbstract && !a.IsInterface));
         foreach (var pageType in pageTypes)
         {
-            if (pageType.FullName == "MAUIsland.MediaElementPage")
-            {
-
-            }
-
             var viewModelFullName = $"{pageType.FullName}ViewModel";
             var viewModelType = Type.GetType(viewModelFullName);
 

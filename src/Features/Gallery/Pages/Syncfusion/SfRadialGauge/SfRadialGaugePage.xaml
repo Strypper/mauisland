@@ -1,12 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <app:BasePage
+    x:Class="MAUIsland.SfRadialGaugePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
-    x:Class="MAUIsland.SfRadialGaugePage"
+    xmlns:gauge="clr-namespace:Syncfusion.Maui.Gauges;assembly=Syncfusion.Maui.Gauges"
+    Title="SfRadialGauge"
     Padding="10"
-    x:DataType="app:SfRadialGaugePageViewModel"
-    Title="SfRadialGauge">
+    x:DataType="app:SfRadialGaugePageViewModel">
 
     <app:BasePage.Resources>
 
@@ -50,6 +51,19 @@
 
     </app:BasePage.Resources>
 
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="syncfusionlogo.png"
+            Text="Original Document" />
+    </app:BasePage.ToolbarItems>
+
     <ScrollView>
         <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
@@ -60,6 +74,93 @@
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout>
+                    <VerticalStackLayout.Resources>
+                        <gauge:GaugeLabelStyle
+                            x:Key="labelStyle"
+                            FontAttributes="Bold"
+                            FontSize="15"
+                            TextColor="White" />
+                    </VerticalStackLayout.Resources>
+                    <Label
+                        LineBreakMode="WordWrap"
+                        Style="{x:StaticResource DocumentSectionTitleStyle}"
+                        Text="MY BOSS WHEN SEEING OUR APPLICATION BUGS LIST" />
+                    <Label
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        Text="PISSED METER BASED ON BUGS" />
+                    <gauge:SfRadialGauge
+                        BackgroundColor="Gray"
+                        HeightRequest="380"
+                        WidthRequest="380">
+                        <gauge:SfRadialGauge.Axes>
+                            <gauge:RadialAxis
+                                LabelPosition="Outside"
+                                Maximum="30"
+                                Minimum="0"
+                                ShowAxisLine="True"
+                                ShowLabels="True"
+                                ShowTicks="True">
+                                <gauge:RadialAxis.AxisLabelStyle>
+                                    <gauge:GaugeLabelStyle FontSize="11" TextColor="White" />
+                                </gauge:RadialAxis.AxisLabelStyle>
+
+                                <gauge:RadialAxis.Ranges>
+                                    <gauge:RadialRange
+                                        EndValue="6"
+                                        EndWidth="0.65"
+                                        Fill="#73d684"
+                                        Label="YO WE COOL"
+                                        LabelStyle="{StaticResource labelStyle}"
+                                        StartValue="0"
+                                        StartWidth="0.65"
+                                        WidthUnit="Factor" />
+                                    <gauge:RadialRange
+                                        EndValue="18"
+                                        EndWidth="0.65"
+                                        Fill="#fce348"
+                                        Label="YOU WAT MATE ?"
+                                        LabelStyle="{StaticResource labelStyle}"
+                                        StartValue="6"
+                                        StartWidth="0.65"
+                                        WidthUnit="Factor" />
+                                    <gauge:RadialRange
+                                        EndValue="30"
+                                        EndWidth="0.65"
+                                        Fill="#fc0203"
+                                        Label="{x:Binding RedZoneMeme}"
+                                        LabelStyle="{StaticResource labelStyle}"
+                                        StartValue="18"
+                                        StartWidth="0.65"
+                                        WidthUnit="Factor" />
+                                    <gauge:RadialRange
+                                        EndValue="99"
+                                        EndWidth="0.15"
+                                        Fill="#4D9b9b9b"
+                                        OffsetUnit="Factor"
+                                        RangeOffset="0.63"
+                                        StartValue="0"
+                                        StartWidth="0.15"
+                                        WidthUnit="Factor" />
+                                </gauge:RadialAxis.Ranges>
+
+                                <gauge:RadialAxis.Pointers>
+                                    <gauge:NeedlePointer
+                                        KnobRadius="15"
+                                        KnobSizeUnit="Pixel"
+                                        NeedleEndWidth="15"
+                                        NeedleLength="0.6"
+                                        NeedleStartWidth="2"
+                                        Value="28" />
+                                </gauge:RadialAxis.Pointers>
+                            </gauge:RadialAxis>
+                        </gauge:SfRadialGauge.Axes>
+                    </gauge:SfRadialGauge>
+                    <app:SourceCodeExpander Code="{x:Binding BossPissedMetric}" />
+                </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
     </ScrollView>

@@ -12,6 +12,9 @@ public partial class SfBusyIndicatorPageViewModel : NavigationAwareBaseViewModel
     #region [Properties]
     [ObservableProperty]
     IControlInfo controlInformation;
+
+    [ObservableProperty]
+    string simpleBusyIndicator = "<core:SfBusyIndicator x:Name=\"busyindicator\"\r\n                      AnimationType=\"CircularMaterial\"\r\n                      IsRunning=\"false\" />";
     #endregion
 
     #region [Overrides]

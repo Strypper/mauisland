@@ -15,10 +15,14 @@
                                     Dark='#eaeaea'}" />
     </ContentView.Resources>
     <VerticalStackLayout Spacing="10">
-        <Entry x:Name="UserNameEntry" Placeholder="User name" />
+        <Entry
+            x:Name="UserNameEntry"
+            MinimumWidthRequest="300"
+            Placeholder="User name" />
         <Entry
             x:Name="PasswordEntry"
             IsPassword="True"
+            MinimumWidthRequest="300"
             Placeholder="Password" />
         <Button Clicked="Login_Clicked" Text="Login" />
     </VerticalStackLayout>

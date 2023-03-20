@@ -71,18 +71,33 @@ public class RefitAuthenticationService : IAuthenticationServices
     }
 
 
-    public async Task SignUp(string phoneNumber, string userName, string email, string password, string firstName, string lastName, string profilePicUrl)
+    public async Task SignUp(string phoneNumber, string userName, string email, string password, string firstName, string lastName, FileResult? profilePicUrl)
     {
         Guard.IsNotNullOrEmpty(phoneNumber);
         Guard.IsNotNullOrEmpty(userName);
         Guard.IsNotNullOrEmpty(email);
         Guard.IsNotNullOrEmpty(password);
         Guard.IsNotNullOrEmpty(firstName);
-        Guard.IsNotNullOrEmpty(profilePicUrl);
+        //Guard.IsNotNull(profilePicUrl);
+
+        StreamPart stream = null;
+
+        if (profilePicUrl is not null)
+        {
+            using var fileStream = File.OpenRead(profilePicUrl.FullPath);
+
+            stream = new StreamPart(fileStream, profilePicUrl.FileName, profilePicUrl.ContentType);
+        }
 
         try
         {
-            var response = await this.intranetAuthenticationRefit.Register(new RegisterDTO(userName, firstName, lastName, phoneNumber, email, password, profilePicUrl));
+            var response = await this.intranetAuthenticationRefit.Register(userName,
+                                                                           firstName,
+                                                                           lastName,
+                                                                           phoneNumber,
+                                                                           email,
+                                                                           password,
+                                                                           stream ?? null);
             if (!response.IsSuccessStatusCode)
             {
                 var errorContentJson = JsonConvert.DeserializeObject<RefitErrorMessageModel>(response.Error.Content);

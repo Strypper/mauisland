@@ -4,12 +4,20 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:DataType="app:ChatPageViewModel">
-    <VerticalStackLayout>
+    <VerticalStackLayout HorizontalOptions="Center">
+        <toolkit:AvatarView
+            HeightRequest="50"
+            ImageSource="{x:Binding CurrentUser.AvatarUrl}"
+            WidthRequest="50" />
         <Label
             HorizontalOptions="Center"
             Text="{x:Binding CurrentUser.UserName,
                              Mode=OneWay}"
             VerticalOptions="Center" />
+        <Label Text="Please resize this window to Phone dimension so that chat UI can appear" />
+        <Label FontAttributes="Bold" Text="PLEASE RESIZE SLOWLY SINCE THE TOOLKIT WILL CAUSE THE APP TO CRASH IF YOU DO IT TOO FAST" />
+        <Label Text="Desktop screen will support soon enough" />
     </VerticalStackLayout>
 </ContentView>

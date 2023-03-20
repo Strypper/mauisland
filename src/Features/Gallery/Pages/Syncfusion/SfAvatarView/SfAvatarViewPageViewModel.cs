@@ -42,6 +42,12 @@ public partial class SfAvatarViewPageViewModel : NavigationAwareBaseViewModel
         TotechsMembers.Add(new SfAvatarViewTestUserModel() { Name = "Ho Dac Toan", AvatarUrl = "https://totechsintranet.blob.core.windows.net/team-members/Toan.jpg" });
     }
     #endregion
+
+    #region [Relay Commands]
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
+    #endregion
 }
 public partial class Employee : BaseModel
 {

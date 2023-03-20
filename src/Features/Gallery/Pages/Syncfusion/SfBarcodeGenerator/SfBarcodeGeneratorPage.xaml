@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<app:BasePage 
+<app:BasePage
+    x:Class="MAUIsland.SfBarcodeGeneratorPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:barcode="clr-namespace:Syncfusion.Maui.Barcode;assembly=Syncfusion.Maui.Barcode"
+    Title="SfBarcodeGenerator"
     Padding="10"
-    x:Class="MAUIsland.SfBarcodeGeneratorPage"
-    x:DataType="app:SfBarcodeGeneratorPageViewModel"
-    Title="SfBarcodeGenerator">
+    x:DataType="app:SfBarcodeGeneratorPageViewModel">
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem
@@ -18,10 +18,10 @@
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
             CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
-            IconImageSource="microsoft.png"
+            IconImageSource="syncfusionlogo.png"
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
-    
+
     <app:BasePage.Resources>
 
         <x:String x:Key="PropertiesListHeader">
@@ -73,52 +73,53 @@
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
-                    <Label Text="A simple SfBarCodeGenerator Control"
-                           FontSize="Medium"/>
-                    <barcode:SfBarcodeGenerator Value="Welcome to MAUIsland!"
-                                                HeightRequest="100"
-                                                WidthRequest="300"
-                                                BackgroundColor="White"/>
+                    <Label FontSize="Medium" Text="A simple SfBarCodeGenerator Control" />
+                    <barcode:SfBarcodeGenerator
+                        BackgroundColor="White"
+                        HeightRequest="100"
+                        WidthRequest="300"
+                        Value="Welcome to MAUIsland!" />
 
-                    <app:SourceCodeExpander Code="{x:Binding BasicSfBarcodeGeneratorXamlCode} "/>
+                    <app:SourceCodeExpander Code="{x:Binding BasicSfBarcodeGeneratorXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
-                    <Label Text="QR Code symbology"
-                           FontSize="Medium"/>
-                    <barcode:SfBarcodeGenerator Value="Welcome to MAUIsland!"
-                                                HeightRequest="100"
-                                                WidthRequest="300"
-                                                BackgroundColor="White">
+                    <Label FontSize="Medium" Text="QR Code symbology" />
+                    <barcode:SfBarcodeGenerator
+                        BackgroundColor="White"
+                        HeightRequest="100"
+                        WidthRequest="300"
+                        Value="Welcome to MAUIsland!">
                         <barcode:SfBarcodeGenerator.Symbology>
                             <barcode:QRCode />
                         </barcode:SfBarcodeGenerator.Symbology>
                     </barcode:SfBarcodeGenerator>
 
-                    <app:SourceCodeExpander Code="{x:Binding QrSfBarcodeGeneratorXamlCode} "/>
+                    <app:SourceCodeExpander Code="{x:Binding QrSfBarcodeGeneratorXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
-                    <Label Text="Customization"
-                           FontSize="Medium"/>
-                    <barcode:SfBarcodeGenerator Value="Welcome to MAUIsland!"
-                                                HeightRequest="100"
-                                                WidthRequest="300"
-                                                ShowText="True"
-                                                ForegroundColor="Purple"
-                                                BackgroundColor="LightCyan">
+                    <Label FontSize="Medium" Text="Customization" />
+                    <barcode:SfBarcodeGenerator
+                        BackgroundColor="LightCyan"
+                        ForegroundColor="Purple"
+                        HeightRequest="100"
+                        ShowText="True"
+                        WidthRequest="300"
+                        Value="Welcome to MAUIsland!">
                         <barcode:SfBarcodeGenerator.TextStyle>
-                            <barcode:BarcodeTextStyle FontAttributes="Italic" 
-                                              FontSize="16" 
-                                              TextColor="Red"/>
+                            <barcode:BarcodeTextStyle
+                                FontAttributes="Italic"
+                                FontSize="16"
+                                TextColor="Red" />
                         </barcode:SfBarcodeGenerator.TextStyle>
                     </barcode:SfBarcodeGenerator>
 
-                    <app:SourceCodeExpander Code="{x:Binding CustomSfBarcodeGeneratorXamlCode} "/>
+                    <app:SourceCodeExpander Code="{x:Binding CustomSfBarcodeGeneratorXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
 
