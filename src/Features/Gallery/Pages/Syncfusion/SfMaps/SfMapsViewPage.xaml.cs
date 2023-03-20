@@ -9,22 +9,22 @@ public partial class SfMapsViewPage : IControlPage
     public SfMapsViewPage(SfMapsViewPageViewModel vm)
     {
         InitializeComponent();
-        this.selectionLayer.ShapesSource = MapSource.FromResource("MAUIsland.Resources.Raw.usa_state.shp");
-
-        this.shapeLayer.ShapesSource = MapSource.FromResource("MAUIsland.Resources.Raw.australia.shp");
-        this.sublayer.ShapesSource = MapSource.FromResource("MAUIsland.Resources.Raw.river.json");
         this.markerLayer.ShapesSource = MapSource.FromResource("MAUIsland.Resources.Raw.world-map.json");
+        #region TODO
 
-        sampleGrid.Remove(popup);
+        //this.selectionLayer.ShapesSource = MapSource.FromResource("MAUIsland.Resources.Raw.usa_state.shp");
+        //this.shapeLayer.ShapesSource = MapSource.FromResource("MAUIsland.Resources.Raw.australia.shp");
+        //this.sublayer.ShapesSource = MapSource.FromResource("MAUIsland.Resources.Raw.river.json");
+
+        //sampleGrid.Remove(popup);
+        #endregion
         StartTimer();
-        //this.selectionLayer.BindingContext = vm.StateWiseElectionResult;
-        //this.selectionLayer.DataSource = vm.StateWiseElectionResult;
-        //this.selectionLayer.PrimaryValuePath = "Country";
-        //this.selectionLayer.ShapeDataField = "STATE_NAME";
 
-        //this.shapeLayer.BindingContext = vm.AustraliaData;
         BindingContext = vm;
     }
+    #endregion
+
+    #region Marker Layer
     private async void StartTimer()
     {
         await Task.Delay(500);
@@ -76,29 +76,31 @@ public partial class SfMapsViewPage : IControlPage
 
         return true;
     }
+    #endregion
 
-    private void shapeLayer_ShapeSelected(object sender, ShapeSelectedEventArgs e)
-    {
-        this.ClearPopup();
-        if (e.IsSelected && e.DataItem is PopulationDensityDetails selectedItem)
-        {
-            stateName.Text = selectedItem.State;
-            rankTitle.Text = "Density rank";
-            rank.Text = " : " + selectedItem.Rank.ToString();
-            kmTitle.Text = "Density per miles";
-            kilometer.Text = " : " + selectedItem.SquareMiles.ToString();
-            sampleGrid.Add(popup, row: 2, column: 1);
-        }
-    }
+    #region Selection Layer
+    //private void shapeLayer_ShapeSelected(object sender, ShapeSelectedEventArgs e)
+    //{
+    //    this.ClearPopup();
+    //    if (e.IsSelected && e.DataItem is PopulationDensityDetails selectedItem)
+    //    {
+    //        stateName.Text = selectedItem.State;
+    //        rankTitle.Text = "Density rank";
+    //        rank.Text = " : " + selectedItem.Rank.ToString();
+    //        kmTitle.Text = "Density per miles";
+    //        kilometer.Text = " : " + selectedItem.SquareMiles.ToString();
+    //        sampleGrid.Add(popup, row: 2, column: 1);
+    //    }
+    //}
 
-    private void ClearPopup()
-    {
-        stateName.Text = "";
-        kmTitle.Text = "";
-        kilometer.Text = "";
-        rankTitle.Text = "";
-        rank.Text = "";
-        sampleGrid.Remove(popup);
-    }
+    //private void ClearPopup()
+    //{
+    //    stateName.Text = "";
+    //    kmTitle.Text = "";
+    //    kilometer.Text = "";
+    //    rankTitle.Text = "";
+    //    rank.Text = "";
+    //    sampleGrid.Remove(popup);
+    //}
     #endregion
 }

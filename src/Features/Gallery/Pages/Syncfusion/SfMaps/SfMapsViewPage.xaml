@@ -184,11 +184,11 @@
                 </maps:SfMaps>
             </Grid>
             <app:SourceCodeExpander Code="{x:Binding BasicLayerSource}" CodeType="Xaml" />
-
-            <Label FontAttributes="Bold"
-                FontSize="Title" Text="This sample showcases a map with simple Selection." />
+            <!--#region BUG can't read State -->
+            <!--<Label FontAttributes="Bold"
+                FontSize="Title" Text="This sample showcases a map with simple Selection." />-->
             <!--Selection Layer-->
-            <Grid Margin="20"
+            <!--<Grid Margin="20"
               x:Name="sampleGrid">
                 <Grid.BindingContext>
                     <model:SelectionViewModel/>
@@ -282,9 +282,9 @@
             <app:SourceCodeExpander Code="{x:Binding SelectionLayerSource}" CodeType="Xaml" />
 
             <Label FontAttributes="Bold"
-                FontSize="Title" Text="This sample shows the rivers of the Australia using the shape sublayer support." />            
+                FontSize="Title" Text="This sample shows the rivers of the Australia using the shape sublayer support." />-->            
             <!--Shape Layer-->
-            <Grid Margin="20">
+            <!--<Grid Margin="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition />
@@ -325,7 +325,8 @@
                     </maps:SfMaps.Layer>
                 </maps:SfMaps>
             </Grid>
-            <app:SourceCodeExpander Code="{x:Binding ShapeLayerSource}" CodeType="Xaml" />
+            <app:SourceCodeExpander Code="{x:Binding ShapeLayerSource}" CodeType="Xaml" />-->
+            <!--#endregion-->
 
             <Label FontAttributes="Bold"
                 FontSize="Title" Text="This sample showcases the world map with different time zones using markers." />
