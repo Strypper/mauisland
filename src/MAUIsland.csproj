@@ -12,60 +12,66 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<_MauiForceXamlCForDebug>true</_MauiForceXamlCForDebug>
 
-		<!-- Display name -->
-		<ApplicationTitle>MAUIsland</ApplicationTitle>
+    <!-- Display name -->
+    <ApplicationTitle>MAUIsland</ApplicationTitle>
 
-		<!-- App Identifier -->
-		<ApplicationId>com.companyname.mauisland</ApplicationId>
-		<ApplicationIdGuid>337d7a98-7b00-487e-88d9-3b1a317456c7</ApplicationIdGuid>
+    <!-- App Identifier -->
+    <ApplicationId>com.companyname.mauisland</ApplicationId>
+    <ApplicationIdGuid>337d7a98-7b00-487e-88d9-3b1a317456c7</ApplicationIdGuid>
 
-		<!-- Versions -->
-		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-		<ApplicationVersion>1</ApplicationVersion>
+    <!-- Versions -->
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
 
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.2</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-		<GenerateAppInstallerFile>True</GenerateAppInstallerFile>
-		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-		<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
-		<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
-		<AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
-		<GenerateTestArtifacts>True</GenerateTestArtifacts>
-		<AppInstallerUri>https://totechsintranet.blob.core.windows.net/installers</AppInstallerUri>
-		<HoursBetweenUpdateChecks>1</HoursBetweenUpdateChecks>
-		<PackageCertificateKeyFile>MAUIsland_TemporaryKey.pfx</PackageCertificateKeyFile>
-	</PropertyGroup>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.2</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+    <GenerateAppInstallerFile>True</GenerateAppInstallerFile>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppInstallerUri>https://totechsintranet.blob.core.windows.net/installers</AppInstallerUri>
+    <HoursBetweenUpdateChecks>1</HoursBetweenUpdateChecks>
+    <PackageCertificateKeyFile>MAUIsland_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
 
-	<PropertyGroup Condition="'$(TargetFramework)|$(Platform)'=='net7.0-ios|AnyCPU'">
-	  <CodesignProvision>Automatic</CodesignProvision>
-	  <CodesignKey>iPhone Developer</CodesignKey>
-	  <CodesignEntitlements>Platforms/iOS/Entitlements.plist</CodesignEntitlements>
-	</PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)|$(Platform)'=='net7.0-ios|AnyCPU'">
+    <CodesignProvision>Automatic</CodesignProvision>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignEntitlements>Platforms/iOS/Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
-	  <CreatePackage>false</CreatePackage>
-	</PropertyGroup>
-	<ItemGroup>
-		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+    <CreatePackage>false</CreatePackage>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- App Icon -->
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
-		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+    <!-- Splash Screen -->
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
-		<!-- Images -->
-		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+    <!-- Images -->
+    <MauiImage Include="Resources\Images\*" />
+    <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 
-		<!-- Custom Fonts -->
-		<MauiFont Include="Resources\Fonts\*" />
+    <!-- Custom Fonts -->
+    <MauiFont Include="Resources\Fonts\*" />
 
-		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
-		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-	</ItemGroup>
+    <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+    <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+  <ItemGroup>
+    <MauiAsset Remove="Resources\Raw\australia.shp" />
+    <MauiAsset Remove="Resources\Raw\river.json" />
+    <MauiAsset Remove="Resources\Raw\usa_state.shp" />
+    <MauiAsset Remove="Resources\Raw\world-map.json" />
+  </ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="appsettings.Development.json" />
@@ -105,6 +111,9 @@
 	  <None Remove="Resources\Raw\dotnetbot.json" />
 	  <None Remove="Resources\Raw\island.json" />
 	  <None Remove="Resources\Raw\swipeupordown.json" />
+	  <None Remove="Resources\Raw\river.json" />
+	  <None Remove="Resources\Raw\usa_state.shp" />
+	  <None Remove="Resources\Raw\world-map.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -149,304 +158,314 @@
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.3.0-preview.1" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Features\Blog\" />
-	  <Folder Include="Features\Gallery\Pages\Community\" />
-	  <Folder Include="Features\QA\" />
-	  <Folder Include="Features\Gallery\Core\" />
-	  <Folder Include="Features\Gallery\Services\" />
-	  <Folder Include="Features\Gallery\Pages\BuiltIn\DatePicker\Pages\" />
-	  <Folder Include="Features\Settings\Models\" />
-	</ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\Blog\" />
+    <Folder Include="Features\Gallery\Pages\Community\" />
+    <Folder Include="Features\QA\" />
+    <Folder Include="Features\Gallery\Core\" />
+    <Folder Include="Features\Gallery\Services\" />
+    <Folder Include="Features\Gallery\Pages\BuiltIn\DatePicker\Pages\" />
+    <Folder Include="Features\Settings\Models\" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <Compile Update="Features\Chat\ContentViews\ChatBubbleContentView.xaml.cs">
-	    <DependentUpon>ChatBubbleContentView.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Features\Chat\Popups\AuthenticatePopup.xaml.cs">
-	    <DependentUpon>AuthenticatePopup.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Features\Gallery\ContentViews\BrandIconContentView.xaml.cs">
-	    <DependentUpon>BrandIconContentView.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\CommunityPage.xaml.cs">
-	    <DependentUpon>CommunityPage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Features\Gallery\Pages\Toolkit\MediaElement\MediaElementPage.xaml.cs">
-	    <DependentUpon>MediaElementPage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Features\Gallery\Syncfusion\ListView\Pages\SyncfusionListViewPage.xaml.cs">
-	    <DependentUpon>SyncfusionListViewPage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SfListView\SyncfusionListViewPage.xaml.cs">
-	    <DependentUpon>SfListViewPage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Features\Home\ContentViews\ControlActivityCardContentView.xaml.cs">
-	    <DependentUpon>ControlActivityCardContentView.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Features\Home\Pages\HomePage.xaml.cs">
-	    <DependentUpon>HomePage.xaml</DependentUpon>
-	  </Compile>
-	</ItemGroup>
+  <ItemGroup>
+    <Compile Update="Features\Chat\ContentViews\ChatBubbleContentView.xaml.cs">
+      <DependentUpon>ChatBubbleContentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Features\Chat\Popups\AuthenticatePopup.xaml.cs">
+      <DependentUpon>AuthenticatePopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Features\Gallery\ContentViews\BrandIconContentView.xaml.cs">
+      <DependentUpon>BrandIconContentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\CommunityPage.xaml.cs">
+      <DependentUpon>CommunityPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Features\Gallery\Pages\Syncfusion\SfMaps\SfMapsViewPage.xaml.cs">
+      <DependentUpon>SfMapsViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Features\Gallery\Pages\Toolkit\MediaElement\MediaElementPage.xaml.cs">
+      <DependentUpon>MediaElementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Features\Gallery\Syncfusion\ListView\Pages\SyncfusionListViewPage.xaml.cs">
+      <DependentUpon>SyncfusionListViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SfListView\SyncfusionListViewPage.xaml.cs">
+      <DependentUpon>SfListViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Features\Home\ContentViews\ControlActivityCardContentView.xaml.cs">
+      <DependentUpon>ControlActivityCardContentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Features\Home\Pages\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 
-	<ItemGroup>
-	  <MauiXaml Update="Features\Chat\ContentViews\ChatBubbleContentView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Chat\ContentViews\LoginFormContentView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Chat\ContentViews\RegisterFormContentView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Chat\Pages\ChatPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Chat\ContentViews\ChatPageDesktopLayout.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Chat\ContentViews\ChatPagePhoneLayout.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Chat\ContentViews\ChatPageTabletLayout.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Chat\Popups\AuthenticatePopup.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Chat\Styles\ChatStyles.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\ContentViews\BrandIconContentView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\ContentViews\ControlCardContentView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\ContentViews\SyncfusionCardContentView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\MAUI\Label\LabelPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\CommunityPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\NewsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\GalleryPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\Toolkit\MediaElement\MediaElementPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Styles\Colors.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Syncfusion\ListView\Pages\SyncfusionListViewPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Home\ContentViews\ControlActivityCardContentView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Settings\Pages\SettingsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="UI\Views\SourceCodeExpander.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\MAUIAllControlsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\ImageButton\ImageButtonPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\ActivityIndicator\ActivityIndicatorPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\SearchBar\Pages\SearchBarPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\TableView\Pages\TableViewPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\TimePicker\Pages\TimePickerPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\RefreshView\Pages\RefreshViewPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\CollectionView\Pages\CollectionViewPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\MenuBar\Pages\MenuBarPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\Picker\Pages\PickerPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\CarouselView\Pages\CarouselViewPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\Entry\Pages\EntryPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\DatePicker\Pages\DatePickerPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\CheckBox\Pages\CheckBoxPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\Label\Pages\LabelPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\Slider\Pages\SliderPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\Stepper\Pages\StepperPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\ProgressBar\Pages\ProgressBarPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\RaditoButton\Pages\RadioButtonPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\Button\Pages\ButtonPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\SwipeView\Pages\SwipeViewPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\Switch\Pages\SwitchPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\IndicatorView\Pages\IndicatorViewPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\B\Editor\Pages\EditorPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Button\ButtonPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\CarouselView\CarouselViewPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\CheckBox\CheckBoxPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\CollectionView\CollectionViewPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\DatePicker\DatePickerPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Editor\EditorPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Entry\EntryPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\IndicatorView\IndicatorViewPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Label\LabelPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\MenuBar\MenuBarPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Picker\PickerPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\ProgressBar\ProgressBarPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\RadioButton\RadioButtonPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\RefreshView\RefreshViewPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\SearchBar\SearchBarPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Slider\SliderPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Stepper\StepperPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\SwipeView\SwipeViewPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Switch\SwitchPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\TimePicker\Pages\TimePickerPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\TableView\TableViewPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SfListView\SyncfusionListViewPage.xaml">
-	    <SubType>Designer</SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\BuiltIn\Xxxx\XxxxPage.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	</ItemGroup>
+  <ItemGroup>
+    <MauiXaml Update="Features\Chat\ContentViews\ChatBubbleContentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Chat\ContentViews\LoginFormContentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Chat\ContentViews\RegisterFormContentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Chat\Pages\ChatPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Chat\ContentViews\ChatPageDesktopLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Chat\ContentViews\ChatPagePhoneLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Chat\ContentViews\ChatPageTabletLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Chat\Popups\AuthenticatePopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Chat\Styles\ChatStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\ContentViews\BrandIconContentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\ContentViews\ControlCardContentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\ContentViews\SyncfusionCardContentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\MAUI\Label\LabelPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\CommunityPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\NewsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\GalleryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfMaps\SfMapsViewPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\Toolkit\MediaElement\MediaElementPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Styles\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Syncfusion\ListView\Pages\SyncfusionListViewPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Home\ContentViews\ControlActivityCardContentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Settings\Pages\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="UI\Views\SourceCodeExpander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\MAUIAllControlsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\ImageButton\ImageButtonPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\ActivityIndicator\ActivityIndicatorPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\SearchBar\Pages\SearchBarPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\TableView\Pages\TableViewPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\TimePicker\Pages\TimePickerPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\RefreshView\Pages\RefreshViewPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\CollectionView\Pages\CollectionViewPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\MenuBar\Pages\MenuBarPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\Picker\Pages\PickerPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\CarouselView\Pages\CarouselViewPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\Entry\Pages\EntryPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\DatePicker\Pages\DatePickerPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\CheckBox\Pages\CheckBoxPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\Label\Pages\LabelPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\Slider\Pages\SliderPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\Stepper\Pages\StepperPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\ProgressBar\Pages\ProgressBarPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\RaditoButton\Pages\RadioButtonPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\Button\Pages\ButtonPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\SwipeView\Pages\SwipeViewPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\Switch\Pages\SwitchPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\IndicatorView\Pages\IndicatorViewPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\B\Editor\Pages\EditorPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Button\ButtonPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\CarouselView\CarouselViewPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\CheckBox\CheckBoxPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\CollectionView\CollectionViewPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\DatePicker\DatePickerPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Editor\EditorPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Entry\EntryPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\IndicatorView\IndicatorViewPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Label\LabelPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\MenuBar\MenuBarPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Picker\PickerPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\ProgressBar\ProgressBarPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\RadioButton\RadioButtonPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\RefreshView\RefreshViewPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\SearchBar\SearchBarPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Slider\SliderPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Stepper\StepperPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\SwipeView\SwipeViewPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Switch\SwitchPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\TimePicker\Pages\TimePickerPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\TableView\TableViewPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\Syncfusion\SfListView\SyncfusionListViewPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Features\Gallery\Pages\BuiltIn\Xxxx\XxxxPage.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+  </ItemGroup>
 
-	<ItemGroup>
-	  <BundleResource Include="Resources\Images\syncfusion_logo.png" />
-	  <BundleResource Include="Resources\Images\fluenticon_options_white.svg" />
-	</ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Images\syncfusion_logo.png" />
+    <BundleResource Include="Resources\Images\fluenticon_options_white.svg" />
+  </ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
-	  <PackageReference Include="AdaptiveProperties.MAUI" Version="1.0.4">
-	  </PackageReference>
-	  <PackageReference Include="Xamarin.Firebase.Messaging" Version="123.1.1">
-	  </PackageReference>
-	  <PackageReference Include="Xamarin.Google.Dagger" Version="2.44.2">
-	  </PackageReference>
-	  <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.1.0">
-	  </PackageReference>
-	</ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
+    <PackageReference Include="AdaptiveProperties.MAUI" Version="1.0.4">
+    </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Messaging" Version="123.1.1">
+    </PackageReference>
+    <PackageReference Include="Xamarin.Google.Dagger" Version="2.44.2">
+    </PackageReference>
+    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.1.0">
+    </PackageReference>
+  </ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
-	  <PackageReference Include="AdaptiveProperties.MAUI" Version="1.0.4">
-	  </PackageReference>
-	</ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
+    <PackageReference Include="AdaptiveProperties.MAUI" Version="1.0.4">
+    </PackageReference>
+  </ItemGroup>
 
-	<ItemGroup>
-	  <EmbeddedResource Include="appsettings.Development.json" />
-	  <EmbeddedResource Include="Features\Gallery\Pages\BuiltIn\AppSettingsJson\JsonFiles\appsettings.json" />
-	</ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="appsettings.Development.json" />
+    <EmbeddedResource Include="Features\Gallery\Pages\BuiltIn\AppSettingsJson\JsonFiles\appsettings.json" />
+    <EmbeddedResource Include="Resources\Raw\australia.shp" />
+    <EmbeddedResource Include="Resources\Raw\river.json" />
+    <EmbeddedResource Include="Resources\Raw\usa_state.shp" />
+    <EmbeddedResource Include="Resources\Raw\world-map.json" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <MauiImage Include="Resources\Images\banners\builtinbanner.png" />
-	  <MauiImage Include="Resources\Images\banners\mauitoolkitbanner.png" />
-	  <MauiImage Include="Resources\Images\banners\syncfusionbanner.png" />
-	  <MauiImage Include="Resources\Images\logos\androidlogo.svg" />
-	  <MauiImage Include="Resources\Images\logos\communitytoolkitlogo.png" />
-	  <MauiImage Include="Resources\Images\logos\githublogo.png" />
-	  <MauiImage Include="Resources\Images\logos\ioslogo.png" />
-	  <MauiImage Include="Resources\Images\logos\jamesmontemagnologo.png" />
-	  <MauiImage Include="Resources\Images\logos\mauilogo.png" />
-	  <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite.png" />
-	  <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite1.png" />
-	  <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite2.png" />
-	  <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite3.png" />
-	  <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite4.png" />
-	  <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite5.png" />
-	  <MauiImage Include="Resources\Images\memes\mrincrediblesmile.png" />
-	  <MauiImage Include="Resources\Images\memes\mrincrediblesmile1.png" />
-	  <MauiImage Include="Resources\Images\memes\mrincrediblesmile2.png" />
-	  <MauiImage Include="Resources\Images\memes\mrincrediblesmile3.png" />
-	  <MauiImage Include="Resources\Images\memes\mrincrediblesmile4.png" />
-	  <MauiImage Include="Resources\Images\memes\mrincrediblesmile5.png" />
-	</ItemGroup>
+  <ItemGroup>
+    <MauiImage Include="Resources\Images\banners\builtinbanner.png" />
+    <MauiImage Include="Resources\Images\banners\mauitoolkitbanner.png" />
+    <MauiImage Include="Resources\Images\banners\syncfusionbanner.png" />
+    <MauiImage Include="Resources\Images\logos\androidlogo.svg" />
+    <MauiImage Include="Resources\Images\logos\communitytoolkitlogo.png" />
+    <MauiImage Include="Resources\Images\logos\githublogo.png" />
+    <MauiImage Include="Resources\Images\logos\ioslogo.png" />
+    <MauiImage Include="Resources\Images\logos\jamesmontemagnologo.png" />
+    <MauiImage Include="Resources\Images\logos\mauilogo.png" />
+    <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite.png" />
+    <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite1.png" />
+    <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite2.png" />
+    <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite3.png" />
+    <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite4.png" />
+    <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite5.png" />
+    <MauiImage Include="Resources\Images\memes\mrincrediblesmile.png" />
+    <MauiImage Include="Resources\Images\memes\mrincrediblesmile1.png" />
+    <MauiImage Include="Resources\Images\memes\mrincrediblesmile2.png" />
+    <MauiImage Include="Resources\Images\memes\mrincrediblesmile3.png" />
+    <MauiImage Include="Resources\Images\memes\mrincrediblesmile4.png" />
+    <MauiImage Include="Resources\Images\memes\mrincrediblesmile5.png" />
+  </ItemGroup>
 
 </Project>
