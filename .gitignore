@@ -410,3 +410,4 @@ ASALocalRun/
 
 .vs
 /src/appsettings.Development.json
+/src/Features/Gallery/Pages/BuiltIn/CheckBox/CheckBoxPage.xaml

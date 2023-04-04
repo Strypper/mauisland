@@ -70,6 +70,7 @@
                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
+            
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="A simple CheckBox" />
@@ -77,7 +78,6 @@
                     <app:SourceCodeExpander Code="{x:Binding StandardCheckBoxXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
-
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
@@ -109,35 +109,30 @@
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Grid>
-                    <VerticalStackLayout Spacing="10">
-                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="No need to confuse, MAUI checkboxes still doesn't support title yet. We need to add title manually." />
-                        <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center">
-                            <Label
-                                FontAttributes="Bold"
-                                FontSize="Default"
-                                Text="CheckBox 1" />
-                            <CheckBox x:Name="checkBox1" />
-                        </HorizontalStackLayout>
+                <VerticalStackLayout Padding="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="No need to confuse, MAUI checkboxes still doesn't support title yet. We need to add title manually." />
+                    <HorizontalStackLayout>
+                        <Label VerticalTextAlignment="Center"
+                               FontAttributes="Bold" 
+                               Text="CheckBox 1"/>
+                        <CheckBox x:Name="checkBox1"/>
+                    </HorizontalStackLayout>
 
-                        <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center">
-                            <Label
-                                FontAttributes="Bold"
-                                FontSize="Default"
-                                Text="CheckBox 2" />
-                            <CheckBox x:Name="checkBox2" />
-                        </HorizontalStackLayout>
+                    <HorizontalStackLayout>
+                        <Label VerticalTextAlignment="Center"
+                               FontAttributes="Bold" 
+                               Text="CheckBox 2" />
+                        <CheckBox x:Name="checkBox2"/>
+                    </HorizontalStackLayout>
 
-                        <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center">
-                            <Label
-                                FontAttributes="Bold"
-                                FontSize="Default"
-                                Text="CheckBox 3" />
-                            <CheckBox x:Name="checkBox3" />
-                        </HorizontalStackLayout>
-                        <app:SourceCodeExpander Code="{x:Binding CheckBoxWithLabelXamlCode}" />
-                    </VerticalStackLayout>
-                </Grid>
+                    <HorizontalStackLayout>
+                        <Label VerticalTextAlignment="Center"
+                               FontAttributes="Bold"
+                               Text="CheckBox 3" />
+                        <CheckBox x:Name="checkBox3"/>
+                    </HorizontalStackLayout>
+                    <app:SourceCodeExpander Code="{x:Binding CheckBoxWithLabelXamlCode}" />
+                </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
     </ScrollView>
