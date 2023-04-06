@@ -1,4 +1,4 @@
-﻿namespace MAUIsland.Gallery.BuiltIn;
+﻿namespace MAUIsland;
 
 public class DoubleToIntConverter : IValueConverter
 {
