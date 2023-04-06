@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:converters="clr-namespace:MAUIsland.Gallery.BuiltIn"
     Title="Grid"
     Padding="10"
     x:DataType="app:GridPageViewModel"
@@ -23,6 +24,13 @@
     </app:BasePage.ToolbarItems>
 
     <app:BasePage.Resources>
+
+        <converters:DoubleToIntConverter x:Key="doubleToInt" />
+
+        <Style TargetType="Label">
+            <Setter Property="HorizontalTextAlignment"
+                    Value="Center" />
+        </Style>
 
         <x:String x:Key="PropertiesListHeader">
             The Grid class defines the following properties:
@@ -417,12 +425,12 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <Slider x:Name="redSlider" />
-                            <Label Grid.Row="1" Text="{Binding Source={x:Reference redSlider}, Path=Value, ConverterParameter=255, StringFormat='Red = {0}'}" />
-                            <Slider x:Name="greenSlider" Grid.Row="2" />
-                            <Label Grid.Row="3" Text="{Binding Source={x:Reference greenSlider}, Path=Value, ConverterParameter=255, StringFormat='Green = {0}'}" />
-                            <Slider x:Name="blueSlider" Grid.Row="4" />
-                            <Label Grid.Row="5" Text="{Binding Source={x:Reference blueSlider}, Path=Value, ConverterParameter=255, StringFormat='Blue = {0}'}" />
+                            <Slider x:Name="redSlider" ValueChanged="OnSliderValueChanged"/>
+                            <Label Grid.Row="1" Text="{Binding Source={x:Reference redSlider}, Path=Value, Converter={StaticResource doubleToInt}, ConverterParameter=255, StringFormat='Red = {0}'}" />
+                            <Slider x:Name="greenSlider" Grid.Row="2" ValueChanged="OnSliderValueChanged"/>
+                            <Label Grid.Row="3" Text="{Binding Source={x:Reference greenSlider}, Path=Value, Converter={StaticResource doubleToInt}, ConverterParameter=255, StringFormat='Green = {0}'}" />
+                            <Slider x:Name="blueSlider" Grid.Row="4" ValueChanged="OnSliderValueChanged"/>
+                            <Label Grid.Row="5" Text="{Binding Source={x:Reference blueSlider}, Path=Value, Converter={StaticResource doubleToInt}, ConverterParameter=255, StringFormat='Blue = {0}'}" />
                         </Grid>
                     </Grid>
                     <Label Text="The equivalent C# code is:" />
