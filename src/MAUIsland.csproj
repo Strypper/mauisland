@@ -184,6 +184,9 @@
 	  <Compile Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\CommunityPage.xaml.cs">
 	    <DependentUpon>CommunityPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Features\Gallery\Pages\Syncfusion\SfMaps\SfMapsViewPage.xaml.cs">
+		<DependentUpon>SfMapsViewPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Features\Gallery\Pages\Toolkit\MediaElement\MediaElementPage.xaml.cs">
 	    <DependentUpon>MediaElementPage.xaml</DependentUpon>
 	  </Compile>
@@ -252,6 +255,9 @@
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\GalleryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfMaps\SfMapsViewPage.xaml">
+		 <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\Toolkit\MediaElement\MediaElementPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
