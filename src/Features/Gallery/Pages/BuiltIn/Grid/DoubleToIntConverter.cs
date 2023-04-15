@@ -4,7 +4,7 @@ public class DoubleToIntConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
     {
-        double doubleValue = (double)value*100;
+        double doubleValue = (double)value*250;
         int intValue = (int)doubleValue;
         return intValue;
     }

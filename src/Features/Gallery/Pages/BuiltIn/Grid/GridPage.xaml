@@ -27,8 +27,7 @@
         <app:DoubleToIntConverter x:Key="doubleToInt" />
 
         <Style TargetType="Label">
-            <Setter Property="HorizontalTextAlignment"
-                    Value="Center" />
+            <Setter Property="HorizontalTextAlignment" Value="Start" />
         </Style>
 
         <x:String x:Key="PropertiesListHeader">
@@ -141,7 +140,7 @@
             <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Rows and columns" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
-                    <Label Text="By default, a Grid contains one row and one column:" />
+                    <Label Text="By default, a Grid contains one row and one column:" VerticalTextAlignment="Start" />
                     <Grid Margin="20,35,20,20">
                         <Label Text="By default, a Grid contains one row and one column." />
                     </Grid>
@@ -406,8 +405,6 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
                     <Label Text="The following XAML shows an example of nesting Grid objects:" />
-
-
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="500" />
@@ -424,17 +421,23 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <Slider x:Name="redSlider" ValueChanged="OnSliderValueChanged"/>
+                            <Slider x:Name="redSlider" ValueChanged="OnSliderValueChanged" />
                             <Label Grid.Row="1" Text="{Binding Source={x:Reference redSlider}, Path=Value, Converter={StaticResource doubleToInt}, ConverterParameter=255, StringFormat='Red = {0}'}" />
-                            <Slider x:Name="greenSlider" Grid.Row="2" ValueChanged="OnSliderValueChanged"/>
+                            <Slider
+                                x:Name="greenSlider"
+                                Grid.Row="2"
+                                ValueChanged="OnSliderValueChanged" />
                             <Label Grid.Row="3" Text="{Binding Source={x:Reference greenSlider}, Path=Value, Converter={StaticResource doubleToInt}, ConverterParameter=255, StringFormat='Green = {0}'}" />
-                            <Slider x:Name="blueSlider" Grid.Row="4" ValueChanged="OnSliderValueChanged"/>
+                            <Slider
+                                x:Name="blueSlider"
+                                Grid.Row="4"
+                                ValueChanged="OnSliderValueChanged" />
                             <Label Grid.Row="5" Text="{Binding Source={x:Reference blueSlider}, Path=Value, Converter={StaticResource doubleToInt}, ConverterParameter=255, StringFormat='Blue = {0}'}" />
                         </Grid>
                     </Grid>
+                    <app:SourceCodeExpander Code="{x:Binding GridObjectXamlCode}" CodeType="Xaml" />
                     <Label Text="The equivalent C# code is:" />
                     <app:SourceCodeExpander Code="{x:Binding GridObjectCSharpCode}" CodeType="CSharp" />
-
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
