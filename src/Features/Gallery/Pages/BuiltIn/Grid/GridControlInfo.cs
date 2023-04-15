@@ -1,4 +1,4 @@
-namespace MAUIsland.Gallery.BuiltIn;
+namespace MAUIsland;
 class GridControlInfo : IControlInfo 
 {
     public string ControlName => nameof(Grid);

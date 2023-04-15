@@ -372,7 +372,7 @@
                         Grid.Column="2"
                         AvatarShape="Circle"
                         AvatarSize="Medium"
-                        ImageSource="dotnet_bot.png"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
                         Style="{StaticResource AvatarViewStyle}" />
                     <Label
                         Grid.Row="1"
