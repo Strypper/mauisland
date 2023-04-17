@@ -9,27 +9,35 @@
     x:DataType="app:SearchBarPageViewModel">
 
     <app:BasePage.Resources>
-        <x:String x:Key="ControlInfo1">
+        <x:String x:Key="ControlInfo">
             The .NET Multi-platform App UI (.NET MAUI) SearchBar is a user input control used to initiating a search. The SearchBar control supports placeholder text, query input, search execution, and cancellation. The following iOS screenshot shows a SearchBar query with results displayed in a ListView:
         </x:String>
 
-        <x:String x:Key="ControlInfo2">
+        <x:String x:Key="PropertiesSearchEventHandlerHeader">
             A search can be executed using the SearchBar control by attaching an event handler to one of the following events:
         </x:String>
 
-        <x:String x:Key="PropertiesListHeader1">
+        <x:String x:Key="PropertiesSearchViewModelHeader">
+            A search can be executed without event handlers by binding the SearchCommand property to an ICommand implementation:
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeader">
             SearchBar defines the following properties:
         </x:String>
 
-        <x:String x:Key="PropertiesListFooter1">
+        <x:String x:Key="PropertiesSearchEventHandlerFooter">
+            The following example shows an event handler attached to the TextChanged event and uses a ListView to display search results:
+        </x:String>
+
+        <x:String x:Key="PropertiesSearchViewModelFooter">
+            The following example shows an command binding to the search command and uses a ListView to display search results:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter">
             These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
         </x:String>
 
-        <x:String x:Key="PropertiesListFooter2">
-            The following XAML example shows an event handler attached to the TextChanged event and uses a ListView to display search results:
-        </x:String>
-
-        <x:Array x:Key="PropertyItemsSource1" Type="{x:Type x:String}">
+        <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
                                 <strong style="color:blue">CancelButtonColor</strong> is a <strong style="color:blue">Color</strong> that defines the color of the cancel button.
@@ -133,7 +141,7 @@
             </x:String>
         </x:Array>
 
-        <x:Array x:Key="PropertyItemsSource2" Type="{x:Type x:String}">
+        <x:Array x:Key="PropertyEventHandlersItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
                                 <strong style="color:blue">SearchButtonPressed</strong>, which is called when the user either clicks the search button or presses the enter key.
@@ -147,6 +155,19 @@
             </x:String>
         </x:Array>
 
+        <x:Array x:Key="PropertyViewModelItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                The following example shows a viewmodel class that contains an <strong style="color:blue">ICommand</strong> property named <strong style="color:blue">SearchCommand</strong>.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                In this case the <strong style="color:blue">RelayCommand</strong> attribute help to generate the <strong style="color:blue">ICommand</strong> property named <strong style="color:blue">SearchCommand</strong> from <strong style="color:blue">SearchAsync</strong> method.
+                            ]]>
+            </x:String>
+        </x:Array>
     </app:BasePage.Resources>
     <app:BasePage.ToolbarItems>
         <ToolbarItem
@@ -163,13 +184,13 @@
     <ScrollView>
         <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource ControlInfo1}" />
+                <Label Text="{x:StaticResource ControlInfo}" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter1}"
-                    Header="{x:StaticResource PropertiesListHeader1}"
-                    ItemsSource="{x:StaticResource PropertyItemsSource1}"
+                    Footer="{x:StaticResource PropertiesListFooter}"
+                    Header="{x:StaticResource PropertiesListHeader}"
+                    ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
 
@@ -186,22 +207,102 @@
             <!--  Perform a search with event handlers  -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Perform a search with event handlers" />
-                    <Label Text="{x:StaticResource ControlInfo2}" />
-                    <CollectionView
-                        Footer="{x:StaticResource PropertiesListFooter2}"
-                        ItemsSource="{x:StaticResource PropertyItemsSource2}"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                    <app:SourceCodeExpander Code="{x:Binding PerformASearchWithEventHandlers1XamlCode}" />
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Perform a search with Event Handlers" />
+                    <CollectionView Header="{x:StaticResource PropertiesSearchEventHandlerHeader}"
+                                    Footer="{x:StaticResource PropertiesSearchEventHandlerFooter}"
+                                    ItemsSource="{x:StaticResource PropertyEventHandlersItemsSource}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+                    <SearchBar Placeholder="Search items..."
+                               x:Name="EventHandlerSearchBar"
+                               TextChanged="OnSearchAsync"/>
+                    <ListView ItemsSource="{x:Binding ControlGroupList}"
+                              Header="List Items"
+                              Footer="">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="app:IControlInfo">
+                                <ViewCell>
+                                    <Border Padding="5" Margin="0,5,0,5">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="5" />
+                                        </Border.StrokeShape>
+                                        <Grid ColumnDefinitions="0.2*, 0.2*, 0.6*" 
+                                              HeightRequest="40">
+                                            <Image Grid.Column="0"
+                                                   Source="{x:Binding ControlIcon}"
+                                                   VerticalOptions="Center"/>
+                                            <Label Grid.Column="1"
+                                                   FontAttributes="Bold"
+                                                   LineBreakMode="TailTruncation"
+                                                   FontSize="14"
+                                                   Text="{x:Binding ControlName}"
+                                                   VerticalTextAlignment="Center"/>
+                                            <Label Grid.Column="2"
+                                                   FontAttributes="Italic"
+                                                   LineBreakMode="TailTruncation"
+                                                   FontSize="12"
+                                                   Text="{x:Binding ControlDetail}"
+                                                   VerticalTextAlignment="Center">
+                                            </Label>
+                                        </Grid>
+                                    </Border>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding PerformASearchWithEventHandlersXamlCode}" />
+                    <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding PerformASearchWithEventHandlersCSCode}" />
                 </VerticalStackLayout>
             </Frame>
 
             <!--  Perform a search using a viewmodel  -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Perform a search using a viewmodel" />
-                    <Label Text="The following XAML example consumes the SearchViewModel class:" />
-                    <app:SourceCodeExpander Code="{x:Binding PerformASearchWithEventHandlers2XamlCode}" />
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Perform a search with ViewModel" />
+                    <CollectionView Header="{x:StaticResource PropertiesSearchViewModelHeader}"
+                                    Footer="{x:StaticResource PropertiesSearchViewModelFooter}"
+                                    ItemsSource="{x:StaticResource PropertyViewModelItemsSource}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+                    <SearchBar Placeholder="Search items..."
+                               x:Name="ViewModelSearchBar"
+                               SearchCommand="{x:Binding SearchCommand}"
+                               SearchCommandParameter="{Binding Text, Source={x:Reference ViewModelSearchBar}}"/>
+                    <!--<app:ListViewControlInfo></app:ListViewControlInfo>-->
+                    <ListView ItemsSource="{x:Binding ControlGroupList}"
+                              Header="List Items"
+                              Footer="">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="app:IControlInfo">
+                                <ViewCell>
+                                    <Border Padding="5" Margin="0,5,0,5">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="5" />
+                                        </Border.StrokeShape>
+                                        <Grid ColumnDefinitions="0.2*, 0.2*, 0.6*" 
+                                              HeightRequest="40">
+                                            <Image Grid.Column="0"
+                                                   Source="{x:Binding ControlIcon}"
+                                                   VerticalOptions="Center"/>
+                                            <Label Grid.Column="1"
+                                                   FontAttributes="Bold"
+                                                   LineBreakMode="TailTruncation"
+                                                   FontSize="14"
+                                                   Text="{x:Binding ControlName}"
+                                                   VerticalTextAlignment="Center"/>
+                                            <Label Grid.Column="2"
+                                                   FontAttributes="Italic"
+                                                   LineBreakMode="TailTruncation"
+                                                   FontSize="12"
+                                                   Text="{x:Binding ControlDetail}"
+                                                   VerticalTextAlignment="Center">
+                                            </Label>
+                                        </Grid>
+                                    </Border>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding PerformASearchWithViewModelXamlCode}" />
+                    <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding PerformASearchWithViewModelCSCode}" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ListView x:Class="MAUIsland.ListViewControlInfo"
+          xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:app="clr-namespace:MAUIsland"
+          x:DataType="app:IControlInfo">
+    <ListView.ItemTemplate>
+        <DataTemplate >
+            <ViewCell>
+                <Border Padding="5" Margin="0,5,0,5">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="5" />
+                    </Border.StrokeShape>
+                    <Grid ColumnDefinitions="0.2*, 0.2*, 0.6*" 
+                          HeightRequest="40">
+                        <Image Grid.Column="0"
+                               Source="{x:Binding ControlIcon}"
+                               VerticalOptions="Center"/>
+                        <Label Grid.Column="1"
+                               FontAttributes="Bold"
+                               LineBreakMode="TailTruncation"
+                               FontSize="14"
+                               Text="{x:Binding ControlName}"
+                               VerticalTextAlignment="Center"/>
+                        <Label Grid.Column="2"
+                               FontAttributes="Italic"
+                               LineBreakMode="TailTruncation"
+                               FontSize="12"
+                               Text="{x:Binding ControlDetail}"
+                               VerticalTextAlignment="Center">
+                        </Label>
+                    </Grid>
+                </Border>
+            </ViewCell>
+        </DataTemplate>
+    </ListView.ItemTemplate>
+</ListView>
