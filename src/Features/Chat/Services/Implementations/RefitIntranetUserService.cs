@@ -76,7 +76,7 @@ public class RefitIntranetUserService : IUserServices
 
         Guard.IsNotNullOrEmpty(accessToken);
 
-        using var fileStream = File.OpenRead(file.FullPath);
+        var fileStream = File.OpenRead(file.FullPath);
 
         var stream = new StreamPart(fileStream, file.FileName, file.ContentType);
 

@@ -3,7 +3,7 @@
 
 public partial class SearchBarPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [CTor]
+    #region [ CTor ]
     public SearchBarPageViewModel(IAppNavigator appNavigator)
                                 : base(appNavigator)
     {
@@ -11,7 +11,7 @@ public partial class SearchBarPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
     [ObservableProperty]
     IControlInfo controlInformation;
 
@@ -25,7 +25,7 @@ public partial class SearchBarPageViewModel : NavigationAwareBaseViewModel
     string performASearchWithEventHandlers2XamlCode = "<ContentPage ...>\r\n    <ContentPage.BindingContext>\r\n        <viewmodels:SearchViewModel />\r\n    </ContentPage.BindingContext>\r\n    <StackLayout>\r\n        <SearchBar x:Name=\"searchBar\"\r\n                   SearchCommand=\"{Binding PerformSearch}\"\r\n                   SearchCommandParameter=\"{Binding Text, Source={x:Reference searchBar}}\"/>\r\n        <ListView x:Name=\"searchResults\"\r\n                  ItemsSource=\"{Binding SearchResults}\" />\r\n    </StackLayout>\r\n</ContentPage>";
     #endregion
 
-    #region [Overrides]
+    #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
@@ -35,7 +35,7 @@ public partial class SearchBarPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Relay Commands]
+    #region [ Relay Commands ]
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);

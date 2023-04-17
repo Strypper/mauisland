@@ -1,4 +1,7 @@
-﻿namespace MAUIsland;
+﻿using Syncfusion.Maui.Charts;
+using Syncfusion.Maui.Core;
+
+namespace MAUIsland;
 
 public class HomeService : IHomeService
 {
@@ -145,16 +148,36 @@ public class HomeService : IHomeService
 
     public async Task<IEnumerable<ApplicationNew>> GetApplicationNews()
     {
-        return await Task.Run( async () =>
+        return await Task.Run(async () =>
         {
             var activites = new List<ApplicationNew>();
             var sliderControl = await this.mauiControlsService
-                                                .GetControlByNameAsync(ControlGroupInfo.BuiltInControls, 
+                                                .GetControlByNameAsync(ControlGroupInfo.BuiltInControls,
                                                                        nameof(Slider));
 
-            var imageButtonControl = await this.mauiControlsService
-                                    .GetControlByNameAsync(ControlGroupInfo.BuiltInControls,
-                                                           nameof(ImageButton));
+            var stepperControl = await this.mauiControlsService
+                                                .GetControlByNameAsync(ControlGroupInfo.BuiltInControls,
+                                                           nameof(Stepper));
+
+            var sfAvatarViewControl = await this.mauiControlsService
+                                                .GetControlByNameAsync(ControlGroupInfo.SyncfusionControls,
+                                                nameof(SfAvatarView));
+
+            var sfCircularChartControl = await this.mauiControlsService
+                                                .GetControlByNameAsync(ControlGroupInfo.SyncfusionControls,
+                                                nameof(SfCircularChart));
+
+            var switchControl = await this.mauiControlsService
+                                                .GetControlByNameAsync(ControlGroupInfo.BuiltInControls,
+                                                 nameof(Switch));
+
+            var timepickerControl = await this.mauiControlsService
+                                            .GetControlByNameAsync(ControlGroupInfo.BuiltInControls,
+                                                           nameof(TimePicker));
+
+            var labelControl = await this.mauiControlsService
+                                            .GetControlByNameAsync(ControlGroupInfo.BuiltInControls,
+                                                           nameof(Label));
 
 
             activites.Add(new ApplicationNew()
@@ -168,12 +191,58 @@ public class HomeService : IHomeService
 
             activites.Add(new ApplicationNew()
             {
-                AuthorName = "Strypper",
-                AuthorImageUrl = "https://i.imgur.com/vc9FudE.jpg",
-                Component = imageButtonControl,
-                Activity = NewActivity.Enhancement,
-                NewLog = "You can now drag and drop image from out side app in to see how will work in MAUI"
+                AuthorName = "Tuyen",
+                AuthorImageUrl = "https://totechsintranet.blob.core.windows.net/team-members/Tuyen.jpg",
+                Component = stepperControl,
+                Activity = NewActivity.AddFeature,
+                NewLog = stepperControl.ControlDetail
             });
+
+            activites.Add(new ApplicationNew()
+            {
+                AuthorName = "Viper",
+                AuthorImageUrl = "https://i.imgur.com/TcJ4QeI.png",
+                Component = sfAvatarViewControl,
+                Activity = NewActivity.AddFeature,
+                NewLog = sfAvatarViewControl.ControlDetail
+            });
+
+            activites.Add(new ApplicationNew()
+            {
+                AuthorName = "Nghia",
+                AuthorImageUrl = "https://totechsintranet.blob.core.windows.net/team-members/Nghia.jpg",
+                Component = switchControl,
+                Activity = NewActivity.AddFeature,
+                NewLog = switchControl.ControlDetail
+            });
+
+            activites.Add(new ApplicationNew()
+            {
+                AuthorName = "Hoang",
+                AuthorImageUrl = "https://totechsintranet.blob.core.windows.net/team-members/Hoang.jpg",
+                Component = sfCircularChartControl,
+                Activity = NewActivity.AddFeature,
+                NewLog = sfCircularChartControl.ControlDetail
+            });
+
+            activites.Add(new ApplicationNew()
+            {
+                AuthorName = "Tan",
+                AuthorImageUrl = "https://totechsintranet.blob.core.windows.net/team-members/Tan.jpg",
+                Component = timepickerControl,
+                Activity = NewActivity.AddFeature,
+                NewLog = timepickerControl.ControlDetail
+            });
+
+            activites.Add(new ApplicationNew()
+            {
+                AuthorName = "Dat",
+                AuthorImageUrl = "https://totechsintranet.blob.core.windows.net/team-members/Dat1.jpg",
+                Component = labelControl,
+                Activity = NewActivity.AddFeature,
+                NewLog = labelControl.ControlDetail
+            });
+
             return (IEnumerable<ApplicationNew>)activites;
         });
     }

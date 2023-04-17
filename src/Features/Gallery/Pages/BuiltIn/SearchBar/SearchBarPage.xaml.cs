@@ -2,7 +2,11 @@ namespace MAUIsland;
 
 public partial class SearchBarPage : IControlPage
 {
-    #region [CTor]
+    #region [ Fields ]
+    private readonly SearchBarPageViewModel vm;
+    #endregion
+
+    #region [ CTor ]
     public SearchBarPage(SearchBarPageViewModel vm)
     {
         InitializeComponent();

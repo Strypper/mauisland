@@ -17,7 +17,7 @@ public class ControlsService : IControlsService
         {
             Name = ControlGroupInfo.SyncfusionControls,
             Title = "Syncfusion",
-            IconUrl = "syncfusion_logo.png",
+            IconUrl = "syncfusionlogo.png",
             Banner = "syncfusionbanner.png",
             ProviderUrl = "https://help.syncfusion.com/maui/introduction/overview",
             MicrosoftStoreLink="https://www.microsoft.com/store/productId/9P2P4D2BK270"

@@ -1,6 +1,6 @@
 using Syncfusion.Maui.Charts;
 
-namespace MAUIsland.Gallery.Syncfusion;
+namespace MAUIsland;
 class SfCircularChartControlInfo : IControlInfo
 {
     public string ControlName => nameof(SfCircularChart);

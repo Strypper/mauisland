@@ -76,10 +76,7 @@
     </app:BasePage.ToolbarItems>
 
     <ScrollView>
-        <Grid
-            toolkit:StateContainer.CanStateChange="{x:Binding CanStateChange}"
-            toolkit:StateContainer.CurrentState="{x:Binding CurrentState}"
-            toolkit:StateContainer.ShouldAnimateOnStateChange="True">
+        <Grid toolkit:StateContainer.CanStateChange="{x:Binding CanStateChange}" toolkit:StateContainer.CurrentState="{x:Binding CurrentState}">
             <toolkit:StateContainer.StateViews>
                 <app:ChatPagePhoneLayout toolkit:StateView.StateKey="Phone" />
                 <app:ChatPageTabletLayout toolkit:StateView.StateKey="Tablet" />
