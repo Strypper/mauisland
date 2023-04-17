@@ -20,7 +20,8 @@ To install .NET MAUI Control Gallery on your device or emulator/simulator:
 1. Clone or download this repository
 2. Open the solution file (.sln) in Visual Studio 2022 or later
 3. Select your target platform and device/emulator/simulator
-4. Build and run the app
+4. Create the appsettings.Development.json file and this file will not contain any private key
+5. Build and run the app
 
 We will publish our application on all platforms soon enough. Stay tuned!!!
 
