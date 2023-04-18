@@ -24,11 +24,9 @@ To install .NET MAUI Control Gallery on your device or emulator/simulator:
 
 We will publish our application on all platforms soon enough. Stay tuned!!!
 
-# Create appsettings.Development.json before run App
-1. Click right MAUIsland in Solution Explorer
-2. Select Add -> New Item -> TypeScript JSON Configuration File
-3. Set Name: appsettings.Development.json
-4. Click Add and this file will not contain any private key
+# 📃 Create appsettings.Development.json before run App
+1. Change TypeScript JSON Configuration File to only JSON File
+2. Add the json settings from the issue
 
 # ⁉ Support
 
