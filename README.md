@@ -24,10 +24,16 @@ To install .NET MAUI Control Gallery on your device or emulator/simulator:
 
 We will publish our application on all platforms soon enough. Stay tuned!!!
 
-# 📃 Create appsettings.Development.json before run App
-1. Change TypeScript JSON Configuration File to only JSON File
-2. Add the json settings from the issue
+# 📃 Change TypeScript JSON Configuration File to only JSON File
+Add the json settings from the issue
+```json
 
+{
+  "AppSettings": {
+    "SyncfusionKey": "Your_syncfustion_key"
+  }
+}
+```
 # ⁉ Support
 
 If you need help with something or have an idea, feel free to start a [Discussion](https://github.com/CommunityToolkit/WindowsCommunityToolkit/discussions) or find us on [Discord](https://discord.gg/edgzveQ9KN). If you have detailed repro steps, open an [issue here instead](https://github.com/Strypper/mauisland/issues/new/choose).
