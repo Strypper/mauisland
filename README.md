@@ -6,6 +6,20 @@ NET MAUI Control Gallery is an app that showcases all the .NET MAUI controls ava
 
 [<img src="https://developer.microsoft.com/en-us/store/badges/images/English_get-it-from-MS.png" width="160">](https://www.microsoft.com/store/productId/9NLQ0J5P471L)
 
+# ⚠️ Create appsettings.Development.json before run App
+1. Click right MAUIsland in Solution Explorer
+2. Select Add -> New Item -> only JSON File
+3. Set Name: appsettings.Development.json
+4. Click Add and this file will not contain any private key
+Add the json settings from the issue:
+```json
+{
+  "AppSettings": {
+    "SyncfusionKey": "Your_syncfustion_key"
+  }
+}
+```
+
 # 🚀 Features
 
 1. Browse through over 50 .NET MAUI controls organized by categories

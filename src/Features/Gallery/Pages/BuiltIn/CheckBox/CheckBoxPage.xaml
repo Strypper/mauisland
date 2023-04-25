@@ -57,7 +57,6 @@
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
 
-
     <ScrollView>
         <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
@@ -78,7 +77,6 @@
                     <app:SourceCodeExpander Code="{x:Binding StandardCheckBoxXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
-
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="A CheckBox has some properties to be defined" />
@@ -91,7 +89,6 @@
                     <app:SourceCodeExpander Code="{x:Binding CheckBoxTrueByDefaultXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
-
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout>
                     <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
@@ -107,7 +104,6 @@
                     <app:SourceCodeExpander Code="{x:Binding CheckBoxWithBindingXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
-
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Padding="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="No need to confuse, MAUI checkboxes still doesn't support title yet. We need to add title manually." />

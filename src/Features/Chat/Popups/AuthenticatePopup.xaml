@@ -48,10 +48,7 @@
                     <RadioButton Content="Sign up" Value="Register" />
                 </HorizontalStackLayout>
 
-                <Grid
-                    toolkit:StateContainer.CurrentState="{x:Binding ViewMode}"
-                    toolkit:StateContainer.ShouldAnimateOnStateChange="True"
-                    HorizontalOptions="Center">
+                <Grid toolkit:StateContainer.CurrentState="{x:Binding ViewMode}" HorizontalOptions="Center">
                     <toolkit:StateContainer.StateViews>
                         <app:LoginFormContentView toolkit:StateView.StateKey="Login" LoginClicked="LoginFormContentView_LoginClicked" />
                         <app:RegisterFormContentView toolkit:StateView.StateKey="Register" RegisterClick="RegisterFormContentView_RegisterClick" />

@@ -15,7 +15,7 @@ public partial class SearchBarPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
     [ObservableProperty]
     IControlInfo controlInformation;
 
@@ -64,7 +64,7 @@ public partial class SearchBarPageViewModel : NavigationAwareBaseViewModel
         "}";
     #endregion
 
-    #region [Overrides]
+    #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
@@ -75,7 +75,7 @@ public partial class SearchBarPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Relay Commands]
+    #region [ Relay Commands ]
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);

@@ -24,6 +24,10 @@
     <app:BasePage.Resources>
         <app:TimeOnyToTimeSpanConverter x:Key="TimeOnyToTimeSpanConverter" />
 
+        <x:String x:Key="PropertiesListHeader">
+            TimePicker defines the following properties:
+        </x:String>
+
         <x:String x:Key="TimeOnlyDataTypeInfo">
             The TimeOnly struct is used to represent a time that is independent of the date. For example, imagine creating an alarm clock app that lets the user create a reoccurring alarm. In this situation, we want to store the time of day when the alarm should sound, but the date is irrelevant.
         </x:String>
@@ -85,7 +89,6 @@
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />

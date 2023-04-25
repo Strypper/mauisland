@@ -93,7 +93,7 @@
                                      Source={x:Reference root}}"
                     TextColor="Black" />
                 <Label
-                    MaxLines="7"
+                    MaxLines="4"
                     MaximumWidthRequest="220"
                     Text="{x:Binding ApplicationNew.NewLog,
                                      Source={x:Reference root}}"
