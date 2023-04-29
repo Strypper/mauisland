@@ -2,7 +2,7 @@
 
 ![](showcases/projectmockup.png)
 
-NET MAUI Control Gallery is an app that showcases all the .NET MAUI controls available for developers. It allows you to easily interact with them and see how they look and behave on different platforms. It also provides guidance, tips and tricks to help you use them effectively in your own apps.
+NET MAUI Control Gallery is an app that showcases all the .NET MAUI controls available for developers. It allows you to easily interact with them and see how they look and behave on different platforms. It also provides guidance, tips and tricks to help you use them effectively in your own apps. Designed by [Snow Nhi](https://github.com/SnowNhi)
 
 [<img src="https://developer.microsoft.com/en-us/store/badges/images/English_get-it-from-MS.png" width="160">](https://www.microsoft.com/store/productId/9NLQ0J5P471L)
 
