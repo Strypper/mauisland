@@ -22,7 +22,7 @@ public partial class ControlGroupInfo : BaseModel
 
     [ObservableProperty]
     string microsoftStoreLink;
-
+    internal static string ToolkitControls;
     public const string BuiltInControls = nameof(BuiltInControls);
     public const string SyncfusionControls = nameof(SyncfusionControls);
     public const string CommunityToolkit = nameof(CommunityToolkit);
