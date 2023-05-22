@@ -1,6 +1,7 @@
 using CommunityToolkit.Maui.Views;
 
 namespace MAUIsland;
+
 class DrawingViewControlInfo : IControlInfo
 {
     public string ControlName => nameof(DrawingView);
