@@ -26,4 +26,10 @@ public partial class MaterialContextMenuPageViewModel : NavigationAwareBaseViewM
 
     }
     #endregion
+
+    #region [ Relay Commands ]
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
+    #endregion
 }

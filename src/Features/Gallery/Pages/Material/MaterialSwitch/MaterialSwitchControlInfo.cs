@@ -9,7 +9,7 @@ class MaterialSwitchControlInfo : IControlInfo
         Glyph = FluentUIIcon.Ic_fluent_toggle_left_24_regular
     };
     public string ControlDetail => "Switches toggle the state of a single setting on or off.";
-    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Material/{ControlName}";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Material/MaterialSwitch";
     public string DocumentUrl => $"https://mdc-maui.github.io/switch";
     public string GroupName => ControlGroupInfo.MaterialComponent;
 }

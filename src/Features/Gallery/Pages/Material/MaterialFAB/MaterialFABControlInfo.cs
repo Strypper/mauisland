@@ -11,7 +11,7 @@ class MaterialFABControlInfo : IControlInfo
         Glyph = FluentUIIcon.Ic_fluent_add_square_24_regular
     };
     public string ControlDetail => "FABs(floating action button) represents the primary action of a screen.";
-    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Material/{ControlName}";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Material/MaterialFAB";
     public string DocumentUrl => $"https://mdc-maui.github.io/FAB";
     public string GroupName => ControlGroupInfo.MaterialComponent;
 }

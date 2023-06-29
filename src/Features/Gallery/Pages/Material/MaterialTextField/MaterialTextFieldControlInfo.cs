@@ -11,7 +11,7 @@ class MaterialTextFieldControlInfo : IControlInfo
         Glyph = FluentUIIcon.Ic_fluent_text_field_24_regular
     };
     public string ControlDetail => "Text fields allow users to enter text into a UI.";
-    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Material/{ControlName}";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Material/MaterialTextField";
     public string DocumentUrl => $"https://mdc-maui.github.io/text-field";
     public string GroupName => ControlGroupInfo.MaterialComponent;
 }

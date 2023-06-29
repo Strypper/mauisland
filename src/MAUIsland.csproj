@@ -86,6 +86,8 @@
 	  <None Remove="Resources\Images\logos\materialuibanner.png" />
 	  <None Remove="Resources\Images\logos\materialuilogo.png" />
 	  <None Remove="Resources\Images\logos\syncfusionlogo.png" />
+	  <None Remove="Resources\Images\logos\tizenlogo.svg" />
+	  <None Remove="Resources\Images\logos\windowslogo.svg" />
 	  <None Remove="Resources\Images\mauibeach.jpeg" />
 	  <None Remove="Resources\Images\mauilogo.png" />
 	  <None Remove="Resources\Images\mauitoolkitbanner.png" />
@@ -468,6 +470,8 @@
     <MauiImage Include="Resources\Images\logos\materialuilogo.png" />
     <MauiImage Include="Resources\Images\logos\mauilogo.png" />
     <MauiImage Include="Resources\Images\logos\syncfusionlogo.png" />
+    <MauiImage Include="Resources\Images\logos\tizenlogo.svg" />
+    <MauiImage Include="Resources\Images\logos\windowslogo.svg" />
     <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite.png" />
     <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite1.png" />
     <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite2.png" />
