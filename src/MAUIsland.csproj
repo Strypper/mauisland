@@ -83,6 +83,9 @@
 	  <None Remove="Resources\Images\githublogo.png" />
 	  <None Remove="Resources\Images\ioslogo.png" />
 	  <None Remove="Resources\Images\logos\jamesmontemagnologo.png" />
+	  <None Remove="Resources\Images\logos\materialuibanner.png" />
+	  <None Remove="Resources\Images\logos\materialuilogo.png" />
+	  <None Remove="Resources\Images\logos\syncfusionlogo.png" />
 	  <None Remove="Resources\Images\mauibeach.jpeg" />
 	  <None Remove="Resources\Images\mauilogo.png" />
 	  <None Remove="Resources\Images\mauitoolkitbanner.png" />
@@ -125,6 +128,7 @@
 		<PackageReference Include="CommunityToolkit.Maui.Core" Version="4.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="1.0.2" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+		<PackageReference Include="Material.Components.Maui" Version="0.1.2-beta" />
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
@@ -161,6 +165,7 @@
   <ItemGroup>
     <Folder Include="Features\Blog\" />
     <Folder Include="Features\Gallery\Pages\Community\" />
+    <Folder Include="Features\Gallery\Pages\Material\" />
     <Folder Include="Features\QA\" />
     <Folder Include="Features\Gallery\Core\" />
     <Folder Include="Features\Gallery\Services\" />
@@ -459,7 +464,10 @@
     <MauiImage Include="Resources\Images\logos\githublogo.png" />
     <MauiImage Include="Resources\Images\logos\ioslogo.png" />
     <MauiImage Include="Resources\Images\logos\jamesmontemagnologo.png" />
+    <MauiImage Include="Resources\Images\logos\materialuibanner.png" />
+    <MauiImage Include="Resources\Images\logos\materialuilogo.png" />
     <MauiImage Include="Resources\Images\logos\mauilogo.png" />
+    <MauiImage Include="Resources\Images\logos\syncfusionlogo.png" />
     <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite.png" />
     <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite1.png" />
     <MauiImage Include="Resources\Images\memes\mrincredibleblackwhite2.png" />

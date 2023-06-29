@@ -27,4 +27,5 @@ public partial class ControlGroupInfo : BaseModel
     public const string SyncfusionControls = nameof(SyncfusionControls);
     public const string CommunityToolkit = nameof(CommunityToolkit);
     public const string GitHubCommunity = nameof(GitHubCommunity);
+    public const string MaterialComponent = nameof(MaterialComponent);
 }

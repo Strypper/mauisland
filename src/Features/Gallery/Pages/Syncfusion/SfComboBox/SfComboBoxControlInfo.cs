@@ -1,5 +1,5 @@
 using Syncfusion.Maui.Inputs;
-namespace MAUIsland.Gallery.Syncfusion;
+namespace MAUIsland;
 class SfComboBoxControlInfo : IControlInfo
 {
     public string ControlName => nameof(SfComboBox);
