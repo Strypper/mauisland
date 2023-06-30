@@ -10,7 +10,7 @@ NET MAUI Control Gallery is an app that showcases all the .NET MAUI controls ava
 1. Click right MAUIsland in Solution Explorer
 2. Select Add -> New Item -> only JSON File
 3. Set Name: appsettings.Development.json
-4. Click Add and this file will not contain any private key
+4. Click Add and copy the format below (You can leave the key value empty if you don't have the syncfusion key, but this will lead to a crash if you try to view syncfusion controls)
 Add the json settings from the issue:
 ```json
 {
@@ -23,10 +23,10 @@ Add the json settings from the issue:
 # 🚀 Features
 
 1. Browse through over 50 .NET MAUI controls organized by categories
-2. See live previews of each control on iOS, Android, Windows and Mac
+2. See live previews of each control on iOS, Android, Windows, and Mac
 3. Learn how to use each control with code snippets and documentation links
 4. Customize each control’s properties and styles
-5. Copy code snippets to clipboard and use them in your app
+5. Copy code snippets to the clipboard and use them in your app
 
 # ⬇️ Installation
 To install .NET MAUI Control Gallery on your device or emulator/simulator:
@@ -34,7 +34,7 @@ To install .NET MAUI Control Gallery on your device or emulator/simulator:
 1. Clone or download this repository
 2. Open the solution file (.sln) in Visual Studio 2022 or later
 3. Select your target platform and device/emulator/simulator
-4. Create the appsettings.Development.json file and this file will not contain any private key
+4. Create the appsettings.Development.json file this file will not contain any private key
 5. Build and run the app
 
 We will publish our application on all platforms soon enough. Stay tuned!!!
