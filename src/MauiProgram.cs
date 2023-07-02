@@ -11,6 +11,7 @@ using Refit;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using Syncfusion.Maui.Core.Hosting;
 using System.Reflection;
+using Xe.AcrylicView;
 using ZXing.Net.Maui.Controls;
 
 namespace MAUIsland;
@@ -30,6 +31,7 @@ public static class MauiProgram
             .UseMauiCommunityToolkitCore()
             .UseMauiCommunityToolkitMediaElement()
             .UseSkiaSharp()
+            .UseAcrylicView()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

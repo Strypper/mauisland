@@ -122,6 +122,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="AcrylicView.Maui" Version="1.13.0" />
 		<PackageReference Include="Bogus" Version="34.0.2" />
 		<PackageReference Include="ColorCode.Core" Version="2.0.14" />
 		<PackageReference Include="CommunityToolkit.Common" Version="8.1.0" />
