@@ -8,7 +8,8 @@
     Title="MediaElement"
     Padding="10"
     x:DataType="app:MediaElementPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="ContentPage_Loaded">
 
     <app:BasePage.Resources>
 
@@ -65,6 +66,50 @@
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Get started!!!" />
                     <Label BackgroundColor="Gray" Text="{x:Binding XamlNamespace}" />
                     <app:SourceCodeExpander Code="{x:Binding XamlSimpleMediaElement}" />
+                </VerticalStackLayout>
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <toolkit:MediaElement
+                        x:Name="mediaElementDownloadSample"
+                        HeightRequest="300"
+                        ShouldAutoPlay="True"
+                        ShouldShowPlaybackControls="True"
+                        WidthRequest="400" />
+                    <ActivityIndicator
+                        x:Name="DownloadIndicator"
+                        HeightRequest="100"
+                        WidthRequest="100" />
+                    <ProgressBar x:Name="DownloadProgressBar" />
+
+                    <Label
+                        x:Name="ResultLabel"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                        SemanticProperties.HeadingLevel="Level2"
+                        Text="Start the download boiz" />
+
+                    <Label
+                        x:Name="CheckFileLabel"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="Common check the file" />
+
+                    <Button
+                        x:Name="DownloadButton"
+                        Clicked="DownloadButton_Clicked"
+                        HorizontalOptions="Center"
+                        SemanticProperties.Hint="Counts the number of times you click"
+                        Text="Download" />
+
+                    <Button
+                        x:Name="DeleteLocalVideoButton"
+                        BackgroundColor="Red"
+                        Clicked="DeleteLocalVideoButton_Clicked"
+                        Text="Delete" />
+
+                    <Button Clicked="CheckDownload_Clicked" Text="Check download" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

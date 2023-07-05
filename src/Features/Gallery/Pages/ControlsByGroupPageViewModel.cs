@@ -39,7 +39,12 @@ public partial class ControlsByGroupPageViewModel : NavigationAwareBaseViewModel
     Task NavigateToDetailInNewWindowAsync(IControlInfo control) => AppNavigator.NavigateAsync(control.ControlRoute, inNewWindow: true, args: control);
 
     [RelayCommand]
-    Task OpenUrlAsync(string url) => AppNavigator.OpenUrlAsync(url);
+    async Task OpenUrlAsync(string url)
+    {
+        IsBusy = true;
+        await AppNavigator.OpenUrlAsync(url);
+        IsBusy = false;
+    }
     #endregion
 
     #region [Overrides]

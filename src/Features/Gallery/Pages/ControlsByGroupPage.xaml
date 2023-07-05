@@ -5,12 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:ui="clr-namespace:Xe.AcrylicView;assembly=Xe.AcrylicView"
     Padding="10"
     x:DataType="app:ControlsByGroupPageViewModel"
     BackgroundColor="#272727"
     Shell.NavBarIsVisible="True"
     SizeChanged="BasePage_SizeChanged">
-    <Shell.SearchHandler>
+    <!--<Shell.SearchHandler>
         <app:CardsSearchHandler
             Cards="{x:Binding Items,
                               Mode=TwoWay}"
@@ -39,7 +40,7 @@
                 </DataTemplate>
             </app:CardsSearchHandler.ItemTemplate>
         </app:CardsSearchHandler>
-    </Shell.SearchHandler>
+    </Shell.SearchHandler>-->
     <app:BasePage.Resources>
         <DataTemplate x:Key="BuiltInCardItemTemplate" x:DataType="app:IControlInfo">
             <app:ControlCardContentView
@@ -60,8 +61,6 @@
 
         <toolkit:IsStringNotNullOrEmptyConverter x:Key="IsStringNotNullOrEmptyConverter" />
     </app:BasePage.Resources>
-
-
     <app:BasePage.ToolbarItems>
         <!--<ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
@@ -79,44 +78,46 @@
     </app:BasePage.ToolbarItems>
 
     <ScrollView VerticalScrollBarVisibility="Always">
-        <VerticalStackLayout Spacing="10">
-            <Frame
-                Grid.ColumnSpan="2"
-                Padding="0"
-                CornerRadius="4">
-                <Grid>
-                    <Image
-                        Aspect="AspectFill"
-                        HeightRequest="200"
-                        HorizontalOptions="Fill"
-                        Source="{x:Binding ControlGroup.Banner}"
-                        VerticalOptions="Fill" />
-
-                    <!--<Label
-                        Margin="20"
-                        FontAttributes="Bold"
-                        FontSize="Header"
-                        Text="{Binding ControlGroup.Title}"
-                        TextColor="{x:StaticResource White}"
-                        VerticalOptions="Center" />-->
-                </Grid>
-            </Frame>
-            <!--<Label
-                Grid.Row="1"
-                Grid.ColumnSpan="2"
-                Style="{x:StaticResource DocumentSectionTitleStyle}"
-                Text="Controls" />-->
-            <app:HorizontalWrapLayout
-                Grid.Row="1"
-                Grid.ColumnSpan="2"
-                BindableLayout.ItemTemplateSelector="{x:StaticResource BrandCardTemplateSelector}"
-                BindableLayout.ItemsSource="{x:Binding Items,
-                                                       Mode=OneWay}"
-                HorizontalOptions="{x:OnIdiom Desktop=Start,
-                                              Tablet=Start,
-                                              Default=Start,
-                                              Phone=Center}"
-                Spacing="10" />
-        </VerticalStackLayout>
+        <Grid>
+            <VerticalStackLayout Spacing="10">
+                <Frame
+                    Grid.ColumnSpan="2"
+                    Padding="0"
+                    CornerRadius="4">
+                    <Grid>
+                        <Image
+                            Aspect="AspectFill"
+                            HeightRequest="200"
+                            HorizontalOptions="Fill"
+                            Source="{x:Binding ControlGroup.Banner}"
+                            VerticalOptions="Fill" />
+                    </Grid>
+                </Frame>
+                <app:HorizontalWrapLayout
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    BindableLayout.ItemTemplateSelector="{x:StaticResource BrandCardTemplateSelector}"
+                    BindableLayout.ItemsSource="{x:Binding Items,
+                                                           Mode=OneWay}"
+                    HorizontalOptions="{x:OnIdiom Desktop=Start,
+                                                  Tablet=Start,
+                                                  Default=Start,
+                                                  Phone=Center}"
+                    Spacing="10" />
+            </VerticalStackLayout>
+            <!--<ui:AcrylicView
+                EffectStyle="Dark"
+                HorizontalOptions="Fill"
+                IsVisible="{x:Binding IsBusy}"
+                TintOpacity=".15 "
+                VerticalOptions="Fill">
+                <ActivityIndicator
+                    HeightRequest="200"
+                    HorizontalOptions="Center"
+                    IsRunning="True"
+                    VerticalOptions="Center"
+                    WidthRequest="200" />
+            </ui:AcrylicView>-->
+        </Grid>
     </ScrollView>
 </app:BasePage>
