@@ -2,11 +2,11 @@
 
 public partial class ControlsByGroupPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [Services]
+    #region [ Services ]
     private readonly IControlsService mauiControlsService;
     #endregion
 
-    #region [CTor]
+    #region [ CTor ]
     public ControlsByGroupPageViewModel(
         IAppNavigator appNavigator,
         IControlsService mauiControlsService
@@ -16,12 +16,15 @@ public partial class ControlsByGroupPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
     [ObservableProperty]
     int span = 4;
 
     [ObservableProperty]
     bool isBusy;
+
+    [ObservableProperty]
+    bool isGalleryDetailVisible;
 
     [ObservableProperty]
     ObservableCollection<IControlInfo> items;
@@ -31,7 +34,7 @@ public partial class ControlsByGroupPageViewModel : NavigationAwareBaseViewModel
 
     #endregion
 
-    #region [RelayCommand]
+    #region [ RelayCommand ]
     [RelayCommand]
     Task NavigateToDetailAsync(IControlInfo control) => AppNavigator.NavigateAsync(control.ControlRoute, args: control);
 
@@ -46,8 +49,8 @@ public partial class ControlsByGroupPageViewModel : NavigationAwareBaseViewModel
         IsBusy = false;
     }
     #endregion
-
-    #region [Overrides]
+     
+    #region [ Overrides ]
 
     protected override void OnInit(IDictionary<string, object> query)
     {
@@ -62,7 +65,7 @@ public partial class ControlsByGroupPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Methods]
+    #region [ Methods ]
 
     private async Task LoadDataAsync(bool forced)
     {

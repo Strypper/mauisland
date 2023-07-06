@@ -6,8 +6,8 @@ public partial class MediaElementPage : IControlPage
 {
     #region [ Fields ]
 
-    string videoUrl = "https://petaversestorageaccount.blob.core.windows.net/petaverse-petvideos/Taking a dumb 💩";
-    string localFilePath = System.IO.Path.Combine(FileSystem.Current.AppDataDirectory, "video.mp4");
+    string videoUrl = "https://petaversestorageaccount.blob.core.windows.net/petaverse-petvideos/Breathing 😂";
+    string localFilePath = Path.Combine(FileSystem.Current.AppDataDirectory, "video.mp4");
     #endregion
 
     #region [CTor]
@@ -60,7 +60,7 @@ public partial class MediaElementPage : IControlPage
         }
         else
         {
-            CheckFileLabel.Text = $"Nah bro";
+            CheckFileLabel.Text = $"No file exist";
         }
     }
 
@@ -69,10 +69,11 @@ public partial class MediaElementPage : IControlPage
         if (File.Exists(localFilePath))
         {
             File.Delete(localFilePath);
+            CheckFileLabel.Text = "Deleted !!";
         }
         else
         {
-            CheckFileLabel.Text = $"Nah bro";
+            CheckFileLabel.Text = $"No file exist !!!";
         }
     }
     #endregion

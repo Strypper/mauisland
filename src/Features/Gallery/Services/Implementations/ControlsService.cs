@@ -39,7 +39,7 @@ public class ControlsService : IControlsService
             Name = ControlGroupInfo.GitHubCommunity,
             Title = "Community",
             IconUrl = "githublogo.png",
-            Banner = "builtinbanner.png",
+            Banner = "githubbanner.png",
             ProviderUrl = "https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/"
         },
         new() {

@@ -83,7 +83,6 @@
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-
                 <CollectionView
                     Margin="10"
                     Footer="{x:StaticResource PropertiesListFooter}"
@@ -202,7 +201,5 @@
             </Frame>
 
         </VerticalStackLayout>
-
-
     </ScrollView>
 </app:BasePage>

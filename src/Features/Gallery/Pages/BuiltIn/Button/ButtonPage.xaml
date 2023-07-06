@@ -197,8 +197,6 @@
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
-
-
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Apply rotation to a button" />
                     <Button
                         Margin="40,0,0,0"

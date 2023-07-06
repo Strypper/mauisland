@@ -27,6 +27,8 @@
                 Fill="#7014e8"
                 HeightRequest="250"
                 HorizontalOptions="Start"
+                IsVisible="{x:OnPlatform iOS=false,
+                                         MacCatalyst=false}"
                 VerticalOptions="Start"
                 WidthRequest="270" />
             <Grid
@@ -83,7 +85,8 @@
             <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="End">
                 <ImageButton
                     Padding="{x:OnPlatform WinUI=10,
-                                           Android=5}"
+                                           Android=5,
+                                           iOS=10}"
                     BackgroundColor="Transparent"
                     Command="{x:Binding TapCommand,
                                         Source={x:Reference root}}"
@@ -95,7 +98,8 @@
                     WidthRequest="50" />
                 <ImageButton
                     Padding="{x:OnPlatform WinUI=10,
-                                           Android=5}"
+                                           Android=5,
+                                           iOS=10}"
                     BackgroundColor="Transparent"
                     Command="{x:Binding TapCommand,
                                         Source={x:Reference root}}"

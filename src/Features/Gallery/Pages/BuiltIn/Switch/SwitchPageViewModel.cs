@@ -9,7 +9,6 @@ public partial class SwitchPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-
     #region [Properties]
 
     [ObservableProperty]

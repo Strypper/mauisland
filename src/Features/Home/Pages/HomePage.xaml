@@ -3,6 +3,7 @@
     x:Class="MAUIsland.HomePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:acrylic="clr-namespace:Xe.AcrylicView;assembly=Xe.AcrylicView"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="HomePage"
@@ -65,11 +66,10 @@
             HorizontalOptions="Fill"
             RowDefinitions="0.6*, 0.4*"
             VerticalOptions="Fill">
-            <BoxView
+            <acrylic:AcrylicView
                 Grid.RowSpan="2"
-                Background="{x:StaticResource White}"
+                EffectStyle="Light"
                 HorizontalOptions="Fill"
-                Opacity="0.5"
                 VerticalOptions="Fill" />
 
             <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">

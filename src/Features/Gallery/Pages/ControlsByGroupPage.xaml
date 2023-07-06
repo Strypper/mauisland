@@ -3,9 +3,9 @@
     x:Class="MAUIsland.ControlsByGroupPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:acrylic="clr-namespace:Xe.AcrylicView;assembly=Xe.AcrylicView"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    xmlns:ui="clr-namespace:Xe.AcrylicView;assembly=Xe.AcrylicView"
     Padding="10"
     x:DataType="app:ControlsByGroupPageViewModel"
     BackgroundColor="#272727"
@@ -18,6 +18,8 @@
             ClearIcon="{x:StaticResource SearchBarDismissIcon}"
             Placeholder="Search Controls"
             QueryIcon="{x:StaticResource SearchBarSearchIcon}"
+            SearchBoxVisibility="{x:OnPlatform iOS=false,
+                                               MacCatalyst=false}"
             SelectCard="CardsSearchHandler_SelectCard"
             ShowsResults="True">
             <app:CardsSearchHandler.ItemTemplate>
@@ -77,47 +79,43 @@
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
 
-    <ScrollView VerticalScrollBarVisibility="Always">
-        <Grid>
-            <VerticalStackLayout Spacing="10">
-                <Frame
-                    Grid.ColumnSpan="2"
-                    Padding="0"
-                    CornerRadius="4">
-                    <Grid>
-                        <Image
-                            Aspect="AspectFill"
-                            HeightRequest="200"
-                            HorizontalOptions="Fill"
-                            Source="{x:Binding ControlGroup.Banner}"
-                            VerticalOptions="Fill" />
-                    </Grid>
-                </Frame>
-                <app:HorizontalWrapLayout
-                    Grid.Row="1"
-                    Grid.ColumnSpan="2"
-                    BindableLayout.ItemTemplateSelector="{x:StaticResource BrandCardTemplateSelector}"
-                    BindableLayout.ItemsSource="{x:Binding Items,
-                                                           Mode=OneWay}"
-                    HorizontalOptions="{x:OnIdiom Desktop=Start,
-                                                  Tablet=Start,
-                                                  Default=Start,
-                                                  Phone=Center}"
-                    Spacing="10" />
-            </VerticalStackLayout>
-            <!--<ui:AcrylicView
-                EffectStyle="Dark"
-                HorizontalOptions="Fill"
-                IsVisible="{x:Binding IsBusy}"
-                TintOpacity=".15 "
-                VerticalOptions="Fill">
-                <ActivityIndicator
-                    HeightRequest="200"
-                    HorizontalOptions="Center"
-                    IsRunning="True"
-                    VerticalOptions="Center"
-                    WidthRequest="200" />
-            </ui:AcrylicView>-->
+    <Grid ColumnDefinitions="*, auto">
+        <ScrollView VerticalScrollBarVisibility="Always">
+            <Grid>
+                <VerticalStackLayout Spacing="10">
+                    <Frame
+                        Grid.ColumnSpan="2"
+                        Padding="0"
+                        CornerRadius="4">
+                        <Grid>
+                            <Image
+                                Aspect="AspectFill"
+                                HeightRequest="200"
+                                HorizontalOptions="Fill"
+                                Source="{x:Binding ControlGroup.Banner}"
+                                VerticalOptions="Fill" />
+                        </Grid>
+                    </Frame>
+                    <app:HorizontalWrapLayout
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        BindableLayout.ItemTemplateSelector="{x:StaticResource BrandCardTemplateSelector}"
+                        BindableLayout.ItemsSource="{x:Binding Items,
+                                                               Mode=OneWay}"
+                        HorizontalOptions="{x:OnIdiom Desktop=Start,
+                                                      Tablet=Start,
+                                                      Default=Start,
+                                                      Phone=Center}"
+                        Spacing="10" />
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+        <Grid
+            x:Name="GalleryDetail"
+            Grid.Column="1"
+            IsVisible="{x:Binding IsGalleryDetailVisible,
+                                  Mode=OneWay}">
+            <Border />
         </Grid>
-    </ScrollView>
+    </Grid>
 </app:BasePage>
