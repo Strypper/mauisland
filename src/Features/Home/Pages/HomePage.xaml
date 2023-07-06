@@ -66,11 +66,6 @@
             HorizontalOptions="Fill"
             RowDefinitions="0.6*, 0.4*"
             VerticalOptions="Fill">
-            <acrylic:AcrylicView
-                Grid.RowSpan="2"
-                EffectStyle="Light"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill" />
 
             <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
                 <Image
@@ -94,15 +89,32 @@
             </VerticalStackLayout>
         </Grid>
 
-        <CollectionView
+        <Grid
             Grid.ColumnSpan="2"
-            Margin="0,0,0,20"
-            Header="TOP NEWS"
-            HeaderTemplate="{x:StaticResource ActivitiesHeaderTemplate}"
+            ColumnDefinitions="100,*"
+            HeightRequest="260"
             HorizontalOptions="End"
-            ItemTemplate="{x:StaticResource ActivitiesItemTemplate}"
-            ItemsLayout="{x:StaticResource ActivitiesLayout}"
-            ItemsSource="{x:Binding ApplicationNews}"
-            VerticalOptions="End" />
+            VerticalOptions="End">
+            <acrylic:AcrylicView
+                Grid.ColumnSpan="2"
+                CornerRadius="4"
+                EffectStyle="Light"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill" />
+            <Label
+                FontAttributes="Bold"
+                FontSize="18"
+                MaxLines="1"
+                Rotation="-90"
+                Text="TOP NEWS"
+                VerticalOptions="Center" />
+            <CollectionView
+                Grid.Column="1"
+                Margin="5,5,5,20"
+                ItemTemplate="{x:StaticResource ActivitiesItemTemplate}"
+                ItemsLayout="{x:StaticResource ActivitiesLayout}"
+                ItemsSource="{x:Binding ApplicationNews}"
+                VerticalOptions="End" />
+        </Grid>
     </Grid>
 </app:BasePage>
