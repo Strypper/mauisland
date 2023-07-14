@@ -58,7 +58,7 @@
             Grid.ColumnSpan="2"
             Aspect="AspectFill"
             HorizontalOptions="Fill"
-            Source="mauibeach.jpeg"
+            Source="maui_homepage_background.jpg"
             VerticalOptions="Fill" />
 
         <Grid
@@ -70,11 +70,11 @@
             <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
                 <Image
                     Margin="0,0,0,20"
-                    HeightRequest="100"
+                    HeightRequest="250"
                     HorizontalOptions="Center"
-                    Source="mauilogo.png"
-                    WidthRequest="100" />
-                <CollectionView
+                    Source="mauisland_logo.png"
+                    WidthRequest="250" />
+                <!--<CollectionView
                     x:Name="MAUIFactsCarousel"
                     HorizontalOptions="Center"
                     ItemTemplate="{x:StaticResource MAUIFactListItemTemplate}"
@@ -85,7 +85,7 @@
                     SelectionChangedCommand="{x:Binding OpenFactUrlCommand}"
                     SelectionChangedCommandParameter="{x:Binding SelectedMauiFact}"
                     SelectionMode="Single" />
-                <IndicatorView HorizontalOptions="Center" />
+                <IndicatorView HorizontalOptions="Center" />-->
             </VerticalStackLayout>
         </Grid>
 
@@ -95,12 +95,6 @@
             HeightRequest="260"
             HorizontalOptions="End"
             VerticalOptions="End">
-            <acrylic:AcrylicView
-                Grid.ColumnSpan="2"
-                CornerRadius="4"
-                EffectStyle="Light"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill" />
             <Label
                 FontAttributes="Bold"
                 FontSize="18"

@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     Shell.FlyoutBehavior="Flyout">
     <Shell.Resources>
         <FontImageSource
@@ -65,12 +66,24 @@
         </VerticalStackLayout>
     </Shell.FlyoutHeader>
     <Shell.FlyoutFooter>
-        <Label Text="Code with ☕" />
+        <Frame Margin="10" BackgroundColor="#333f54">
+            <HorizontalStackLayout Spacing="5">
+                <skia:SKLottieView
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    RepeatCount="-1"
+                    RepeatMode="Restart"
+                    Source="totechs_logo.json"
+                    VerticalOptions="Center"
+                    WidthRequest="40" />
+                <Label Text="Totechs Corp" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+        </Frame>
     </Shell.FlyoutFooter>
     <Shell.FlyoutBackdrop>
         <LinearGradientBrush EndPoint="1,0">
-            <GradientStop Offset="0.0" Color="#7014e8" />
-            <GradientStop Offset="1.0" Color="#2b0b98" />
+            <GradientStop Offset="0.0" Color="#faf8d2" />
+            <GradientStop Offset="1.0" Color="#d3724c" />
         </LinearGradientBrush>
     </Shell.FlyoutBackdrop>
 </Shell>

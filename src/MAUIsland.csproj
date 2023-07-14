@@ -78,6 +78,7 @@
 	  <None Remove="Features\Gallery\Pages\BuiltIn\AppSettingsJson\JsonFiles\appsettings.json" />
 	  <None Remove="Resources\Fonts\FluentSystemIcons-Regular.ttf" />
 	  <None Remove="Resources\Images\androidlogo.svg" />
+	  <None Remove="Resources\Images\backgrounds\maui_homepage_background.jpg" />
 	  <None Remove="Resources\Images\banners\githubbanner.png" />
 	  <None Remove="Resources\Images\builtinbanner.png" />
 	  <None Remove="Resources\Images\fluentuibackground.jpg" />
@@ -86,6 +87,7 @@
 	  <None Remove="Resources\Images\logos\jamesmontemagnologo.png" />
 	  <None Remove="Resources\Images\logos\materialuibanner.png" />
 	  <None Remove="Resources\Images\logos\materialuilogo.png" />
+	  <None Remove="Resources\Images\logos\mauisland_logo.png" />
 	  <None Remove="Resources\Images\logos\syncfusionlogo.png" />
 	  <None Remove="Resources\Images\logos\tizenlogo.svg" />
 	  <None Remove="Resources\Images\logos\windowslogo.svg" />
@@ -118,6 +120,7 @@
 	  <None Remove="Resources\Raw\island.json" />
 	  <None Remove="Resources\Raw\swipeupordown.json" />
 	  <None Remove="Resources\Raw\river.json" />
+	  <None Remove="Resources\Raw\totechs_logo.json" />
 	  <None Remove="Resources\Raw\usa_state.shp" />
 	  <None Remove="Resources\Raw\world-map.json" />
 	</ItemGroup>
@@ -459,6 +462,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <MauiImage Include="Resources\Images\backgrounds\maui_homepage_background.jpg" />
     <MauiImage Include="Resources\Images\banners\builtinbanner.png" />
     <MauiImage Include="Resources\Images\banners\githubbanner.png" />
     <MauiImage Include="Resources\Images\banners\mauitoolkitbanner.png" />
@@ -471,6 +475,7 @@
     <MauiImage Include="Resources\Images\logos\materialuibanner.png" />
     <MauiImage Include="Resources\Images\logos\materialuilogo.png" />
     <MauiImage Include="Resources\Images\logos\mauilogo.png" />
+    <MauiImage Include="Resources\Images\logos\mauisland_logo.png" />
     <MauiImage Include="Resources\Images\logos\syncfusionlogo.png" />
     <MauiImage Include="Resources\Images\logos\tizenlogo.svg" />
     <MauiImage Include="Resources\Images\logos\windowslogo.svg" />
