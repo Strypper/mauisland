@@ -8,6 +8,7 @@ class MaterialComboBoxControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_caret_down_24_regular
     };
     public string ControlDetail => "ComboBox displays a short list of items, from which the user can select an item.";

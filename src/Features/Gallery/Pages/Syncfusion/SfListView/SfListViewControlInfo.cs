@@ -8,6 +8,7 @@ class SfListViewControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_apps_list_24_regular
     };
     public string ControlDetail => "The Syncfusion .NET MAUI ListView renders set of data items using Maui views or custom templates. Data can easily be grouped, sorted, and filtered.";

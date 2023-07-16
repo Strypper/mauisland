@@ -7,6 +7,7 @@ class EntryControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_text_field_24_regular
     };
     public string ControlDetail => "Entry allows you to enter and edit a single line of text. In addition, the Entry can be used as a password field.\r\n\r\n";

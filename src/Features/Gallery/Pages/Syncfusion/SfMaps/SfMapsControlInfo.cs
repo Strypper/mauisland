@@ -8,6 +8,7 @@ class SfMapsControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_map_24_regular
     };
     public string ControlDetail => "Maps is a powerful data visualization component that displays statistical informationfor a geographical area. It has highly interactive and customizable featuressuch as selection, tooltip, legends, markers, bubbles, and color mapping. Userscan generate maps for population density, sales, political boundaries, weather,elections, and routes";

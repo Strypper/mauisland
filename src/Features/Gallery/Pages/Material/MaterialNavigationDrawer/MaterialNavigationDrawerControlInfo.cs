@@ -8,6 +8,7 @@ class MaterialNavigationDrawerControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_navigation_24_regular
     };
     public string ControlDetail => "Navigation drawers provide ergonomic access to destinations in an app.";

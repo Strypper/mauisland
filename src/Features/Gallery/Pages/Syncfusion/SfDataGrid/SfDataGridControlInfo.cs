@@ -8,6 +8,7 @@ class SfDataGridControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_table_24_regular
     };
     public string ControlDetail => "The .NET MAUI DataGrid control is used to display and manipulate data in a tabular view. It was built from the ground up to achieve the best possible performance, even when loading large amounts of data.";

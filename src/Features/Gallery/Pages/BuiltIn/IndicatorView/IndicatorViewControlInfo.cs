@@ -7,6 +7,7 @@ class IndicatorViewControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_more_horizontal_48_regular
     };
     public string ControlDetail => " IndicatorView is a control that displays indicators that represent the number of items, and current position, in a CarouselView";

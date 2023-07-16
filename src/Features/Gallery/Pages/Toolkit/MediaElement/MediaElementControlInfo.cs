@@ -9,6 +9,7 @@ class MediaElementControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_video_clip_24_regular
     };
     public string ControlDetail => "MediaElement is a control for playing video and audio.";

@@ -7,6 +7,7 @@ class DatePickerControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_calendar_ltr_24_regular
     };
     public string ControlDetail => "DatePicker invokes the platform's date-picker control and allows you to select a date.";

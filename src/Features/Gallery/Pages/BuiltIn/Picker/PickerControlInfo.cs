@@ -7,6 +7,7 @@ class PickerControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_time_picker_24_regular
     };
     public string ControlDetail => "Picker displays a short list of items, from which the user can select an item.";

@@ -8,6 +8,7 @@ class MaterialChipControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_oval_24_regular
     };
     public string ControlDetail => "Chips are compact elements that represent an input, attribute, or action.";

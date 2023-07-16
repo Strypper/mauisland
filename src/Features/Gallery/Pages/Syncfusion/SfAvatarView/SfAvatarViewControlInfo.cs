@@ -8,6 +8,7 @@ class SfAvatarViewControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_person_32_regular
     };
     public string ControlDetail => "The .NET MAUI Avatar View control provides a graphical representation of user image that allows you to customize the view by adding image, background color, icon, text, etc.";

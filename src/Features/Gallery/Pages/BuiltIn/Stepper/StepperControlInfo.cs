@@ -7,6 +7,7 @@ class StepperControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_add_24_regular
     };
     public string ControlDetail => "Stepper enables a numeric value to be selected from a range of values. It consists of two buttons labeled with minus and plus signs.";

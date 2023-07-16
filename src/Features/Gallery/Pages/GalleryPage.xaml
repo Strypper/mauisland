@@ -3,51 +3,24 @@
     x:Class="MAUIsland.GalleryPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:acrylic="clr-namespace:Xe.AcrylicView;assembly=Xe.AcrylicView"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:Name="root"
     x:DataType="app:GalleryPageViewModel"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False"
     Shell.TitleColor="Transparent">
     <app:BasePage.Resources>
         <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate" x:DataType="app:ControlGroupInfo">
             <app:BrandIconContentView
                 ComponentData="{x:Binding}"
                 DetailClicked="BrandIconContentView_DetailClicked"
-                DetailInNewWindowClicked="BrandIconContentView_DetailInNewWindowClicked" />
+                DetailInNewWindowClicked="BrandIconContentView_DetailInNewWindowClicked"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
         </DataTemplate>
     </app:BasePage.Resources>
-
-    <Shell.TitleView>
-        <Grid>
-            <Grid.Resources>
-                <OnPlatform x:Key="StackLayoutMargin" x:TypeArguments="Thickness">
-                    <On Platform="WinUI" Value="10" />
-                    <On Platform="Android" Value="0,15,5,5" />
-                </OnPlatform>
-
-                <FontImageSource
-                    x:Key="PhoneLaptopBarIcon"
-                    FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                    Glyph="{x:Static app:FluentUIIcon.Ic_fluent_phone_laptop_32_regular}"
-                    Color="#eaeaea" />
-            </Grid.Resources>
-            <HorizontalStackLayout
-                Margin="{x:StaticResource StackLayoutMargin}"
-                Spacing="10"
-                VerticalOptions="Start">
-                <Image
-                    HeightRequest="25"
-                    Source="{x:StaticResource PhoneLaptopBarIcon}"
-                    VerticalOptions="Start"
-                    WidthRequest="25" />
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="Subtitle"
-                    Text="Explore what you can do with MAUI"
-                    TextColor="White"
-                    VerticalOptions="Start" />
-            </HorizontalStackLayout>
-        </Grid>
-    </Shell.TitleView>
 
     <Grid>
         <Image
@@ -56,20 +29,44 @@
             Opacity="0.7"
             Source="fluentuibackground.jpg"
             VerticalOptions="Fill" />
-        <!--<Frame
+
+        <!--<toolkit:MediaElement
+            Aspect="AspectFill"
+            HorizontalOptions="Fill"
+            ShouldAutoPlay="True"
+            ShouldLoopPlayback="True"
+            ShouldShowPlaybackControls="False"
+            Source="embed://digital_grabe.mp4"
+            VerticalOptions="Fill" />-->
+        <acrylic:AcrylicView
             Padding="30"
-            CornerRadius="4"
-            HasShadow="True"
+            CornerRadius="5"
+            EffectStyle="Light"
             HorizontalOptions="Center"
-            Style="{x:StaticResource DocumentContentFrameStyle}"
-            VerticalOptions="Center">-->
-        <app:HorizontalWrapLayout
-            BindableLayout.ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
-            BindableLayout.ItemsSource="{x:Binding ControlGroups,
-                                                   Mode=OneWay}"
-            HorizontalOptions="Center"
-            Spacing="50"
-            VerticalOptions="Center" />
-        <!--</Frame>-->
+            MaximumHeightRequest="{x:OnIdiom Desktop=350,
+                                             Tablet=250,
+                                             Phone=250}"
+            MaximumWidthRequest="{x:OnIdiom Desktop=650,
+                                            Tablet=650,
+                                            Phone=320}"
+            VerticalOptions="Center">
+            <CollectionView
+                HorizontalOptions="Center"
+                ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
+                ItemsSource="{x:Binding ControlGroups,
+                                        Mode=OneWay}"
+                VerticalOptions="Center">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        HorizontalItemSpacing="5"
+                        Orientation="Vertical"
+                        Span="{x:OnIdiom Desktop=3,
+                                         Phone=2,
+                                         Tablet=3,
+                                         TV=4}"
+                        VerticalItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+        </acrylic:AcrylicView>
     </Grid>
 </app:BasePage>

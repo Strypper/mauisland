@@ -8,6 +8,7 @@ class MaterialContextMenuControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_list_24_regular
     };
     public string ControlDetail => "ContextMenu display a list of choices on a temporary surface, It can be included in the component that has the touch event.";

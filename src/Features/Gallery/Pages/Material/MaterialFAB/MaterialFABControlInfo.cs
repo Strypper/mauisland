@@ -8,6 +8,7 @@ class MaterialFABControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_add_square_24_regular
     };
     public string ControlDetail => "FABs(floating action button) represents the primary action of a screen.";

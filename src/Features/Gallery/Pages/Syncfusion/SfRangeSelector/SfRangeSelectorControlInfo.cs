@@ -8,6 +8,7 @@ class SfRangeSelectorControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_auto_fit_width_24_regular
     };
     public string ControlDetail => "The Syncfusion .NET MAUI Range Selector (SfRangeSelector) is a highly interactive UI control, allowing users to select a range values within a minimum and maximum limit. It provides rich features, such as track, labels, ticks, dividers, and tooltip.";

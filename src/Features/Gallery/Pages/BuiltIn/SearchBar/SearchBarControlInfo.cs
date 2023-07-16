@@ -7,6 +7,7 @@ class SearchBarControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_search_24_regular
     };
     public string ControlDetail => "SearchBar is a user input control used to initiating a search.";

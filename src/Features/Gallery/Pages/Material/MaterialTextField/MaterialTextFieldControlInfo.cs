@@ -8,6 +8,7 @@ class MaterialTextFieldControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_text_field_24_regular
     };
     public string ControlDetail => "Text fields allow users to enter text into a UI.";

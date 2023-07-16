@@ -7,6 +7,7 @@ class LabelControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_text_case_title_24_regular
     };
     public string ControlDetail => "Label displays single-line and multi-line text. Text displayed by a Label can be colored, spaced, and can have text decorations.";

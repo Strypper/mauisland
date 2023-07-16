@@ -8,6 +8,7 @@ class SfBarcodeGeneratorControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_barcode_scanner_24_regular
     };
     public string ControlDetail => "The Syncfusion .NET MAUI Barcode Generator is a data visualization control used to generate and display data in a machine-readable format. It provides a perfect approach to encode text using supported symbology types.";

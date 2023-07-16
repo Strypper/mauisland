@@ -6,6 +6,7 @@ class AppSettingsJsonControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_braces_24_regular
     };
     public string ControlDetail => "Use appsettings.json inside your application thanks to MauiAppBuilder, we can use the ConfigurationManager that is built into configure settings in our .NET MAUI app";

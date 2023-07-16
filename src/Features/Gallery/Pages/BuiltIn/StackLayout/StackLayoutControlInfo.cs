@@ -6,6 +6,7 @@ class StackLayoutControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_phone_vertical_scroll_20_regular
     };
     public string ControlDetail => "The .NET Multi-platform App UI (.NET MAUI) StackLayout organizes child views in a one-dimensional stack, either horizontally or vertically. By default, a StackLayout is oriented vertically. In addition, a StackLayout can be used as a parent layout that contains other child layouts.";

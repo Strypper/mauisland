@@ -7,6 +7,7 @@ class SwitchControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_toggle_left_24_regular
     };
     public string ControlDetail => "Switch control is a horizontal toggle button that can be manipulated by the user to toggle between on and off states, which are represented by a boolean value.";

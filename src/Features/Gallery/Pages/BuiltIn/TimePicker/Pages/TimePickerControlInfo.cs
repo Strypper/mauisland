@@ -7,6 +7,7 @@ class TimePickerControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_clock_24_regular
     };
     public string ControlDetail => "TimePicker invokes the platform's time-picker control and allows you to select a time.";

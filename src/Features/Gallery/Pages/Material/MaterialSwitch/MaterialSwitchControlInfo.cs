@@ -6,6 +6,7 @@ class MaterialSwitchControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_toggle_left_24_regular
     };
     public string ControlDetail => "Switches toggle the state of a single setting on or off.";

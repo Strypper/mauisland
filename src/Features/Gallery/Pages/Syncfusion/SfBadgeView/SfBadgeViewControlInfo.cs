@@ -8,6 +8,7 @@ class SfBadgeViewControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_mail_alert_24_regular
     };
     public string ControlDetail => "Badges are used to notify users of new or unread messages, notifications, or the status of something.";

@@ -12,10 +12,10 @@
             x:Key="OpenInNewWindowsIcon"
             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
             Glyph="{Static app:FluentUIIcon.Ic_fluent_panel_separate_window_20_regular}"
-            Color="{x:StaticResource White}" />
+            Color="#242424" />
     </ContentView.Resources>
 
-    <Frame
+    <!--<Frame
         Padding="0"
         BackgroundColor="#323232"
         CornerRadius="2"
@@ -111,5 +111,101 @@
                     WidthRequest="50" />
             </VerticalStackLayout>
         </Grid>
-    </Frame>
+    </Frame>-->
+    <Border
+        Padding="12"
+        BackgroundColor="#323232"
+        HeightRequest="290"
+        Stroke="Black"
+        StrokeShape="RoundRectangle 28,28,28,28"
+        StrokeThickness="5"
+        WidthRequest="374">
+        <Grid
+            ColumnDefinitions="266, 50"
+            ColumnSpacing="12"
+            HorizontalOptions="Center"
+            RowDefinitions="50, 134, 48"
+            RowSpacing="12"
+            VerticalOptions="Center">
+            <VerticalStackLayout Grid.RowSpan="2" Spacing="4">
+                <Label
+                    Margin="10,0,0,0"
+                    FontSize="18"
+                    Text="{x:Binding ComponentData.ControlName,
+                                     Source={x:Reference root}}"
+                    TextColor="{x:StaticResource White}" />
+                <Frame
+                    BackgroundColor="#1f1f1f"
+                    CornerRadius="12"
+                    HeightRequest="170"
+                    WidthRequest="266">
+                    <Label
+                        FontSize="14"
+                        LineBreakMode="CharacterWrap"
+                        MaxLines="10"
+                        Text="{x:Binding ComponentData.ControlDetail,
+                                         Source={x:Reference root}}"
+                        TextColor="{x:Static app:AppColors.White}"
+                        ToolTipProperties.Text="{x:Binding ComponentData.ControlDetail,
+                                                           Source={x:Reference root}}" />
+                </Frame>
+            </VerticalStackLayout>
+            <Button
+                Grid.Row="2"
+                BackgroundColor="#ac99ea"
+                Clicked="Detail_Clicked"
+                CornerRadius="12"
+                FontSize="16"
+                HorizontalOptions="Fill"
+                Text="Detail"
+                TextColor="#242424"
+                VerticalOptions="Fill" />
+            <Image
+                Grid.Column="1"
+                HeightRequest="50"
+                HorizontalOptions="Center"
+                Source="{x:Binding ComponentData.ControlIcon,
+                                   Source={x:Reference root}}"
+                VerticalOptions="Center"
+                WidthRequest="50" />
+            <VerticalStackLayout
+                Grid.Row="1"
+                Grid.Column="1"
+                Spacing="24">
+                <ImageButton
+                    Padding="{x:OnPlatform WinUI=5,
+                                           Android=0,
+                                           iOS=10}"
+                    BackgroundColor="Transparent"
+                    Command="{x:Binding TapCommand,
+                                        Source={x:Reference root}}"
+                    CommandParameter="{x:Binding ComponentData.GitHubUrl,
+                                                 Source={x:Reference root}}"
+                    HeightRequest="32"
+                    Source="githublogo.png"
+                    ToolTipProperties.Text="Github: Source code"
+                    WidthRequest="32" />
+                <ImageButton
+                    Padding="{x:OnPlatform WinUI=5,
+                                           Android=0,
+                                           iOS=10}"
+                    BackgroundColor="Transparent"
+                    Command="{x:Binding TapCommand,
+                                        Source={x:Reference root}}"
+                    CommandParameter="{x:Binding ComponentData.DocumentUrl,
+                                                 Source={x:Reference root}}"
+                    HeightRequest="32"
+                    Source="microsoft.png"
+                    ToolTipProperties.Text="Microsoft Learn: Official document"
+                    WidthRequest="32" />
+            </VerticalStackLayout>
+            <ImageButton
+                Grid.Row="2"
+                Grid.Column="1"
+                BackgroundColor="#ac99ea"
+                Clicked="DetailInNewWindow_Clicked"
+                CornerRadius="12"
+                Source="{x:StaticResource OpenInNewWindowsIcon}" />
+        </Grid>
+    </Border>
 </ContentView>

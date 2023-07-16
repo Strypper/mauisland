@@ -7,6 +7,7 @@ class TableViewControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_clipboard_bullet_list_ltr_20_regular
     };
     public string ControlDetail => "TableView displays a table of scrollable items that can be grouped into sections.";

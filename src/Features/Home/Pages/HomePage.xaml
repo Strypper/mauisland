@@ -61,6 +61,16 @@
             Source="maui_homepage_background.jpg"
             VerticalOptions="Fill" />
 
+        <!--<toolkit:MediaElement
+            Grid.ColumnSpan="2"
+            Aspect="AspectFill"
+            HorizontalOptions="Fill"
+            ShouldAutoPlay="True"
+            ShouldLoopPlayback="True"
+            ShouldShowPlaybackControls="False"
+            Source="embed://digital_grabe.mp4"
+            VerticalOptions="Fill" />-->
+
         <Grid
             Grid.Column="1"
             HorizontalOptions="Fill"

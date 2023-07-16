@@ -22,7 +22,7 @@
         <Grid>
             <Ellipse
                 Margin="-150,-150,0,0"
-                Fill="#541acf"
+                Fill="#ff8900"
                 HeightRequest="250"
                 HorizontalOptions="Start"
                 VerticalOptions="Start"

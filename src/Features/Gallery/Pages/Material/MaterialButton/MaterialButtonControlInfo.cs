@@ -6,6 +6,7 @@ class MaterialButtonControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_add_circle_24_regular
     };
     public string ControlDetail => "Buttons allow users to take actions, and make choices, with a single tap.";

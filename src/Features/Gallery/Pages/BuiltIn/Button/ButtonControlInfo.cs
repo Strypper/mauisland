@@ -5,6 +5,7 @@ class ButtonControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_add_circle_32_regular
     };
     public string ControlName => nameof(Button);

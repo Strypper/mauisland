@@ -8,6 +8,7 @@ class RefreshViewControlInfo : IControlInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_arrow_sync_24_regular
     };
     public string ControlDetail => "RefreshView is a container control that provides pull to refresh functionality for scrollable content.";
