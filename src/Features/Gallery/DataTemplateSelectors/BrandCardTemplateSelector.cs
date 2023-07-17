@@ -3,11 +3,20 @@
 public class BrandCardTemplateSelector : DataTemplateSelector
 {
     public DataTemplate BuiltInCardTemplate { get; set; }
+    public DataTemplate GithubCardTemplate { get; set; }
     public DataTemplate SyncfustionCardTemplate { get; set; }
     protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
     {
-        return ((IControlInfo)item).GroupName == ControlGroupInfo.SyncfusionControls
-            ? SyncfustionCardTemplate
-            : BuiltInCardTemplate;
+        var controlGroup = ((IControlInfo)item).GroupName;
+        switch (controlGroup)
+        {
+            case ControlGroupInfo.SyncfusionControls:
+                return SyncfustionCardTemplate;
+            case ControlGroupInfo.GitHubCommunity:
+                return GithubCardTemplate;
+            default:
+                return BuiltInCardTemplate;
+        }
     }
+
 }

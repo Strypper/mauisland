@@ -33,5 +33,16 @@ public partial class IconLabel : ContentView
         get => (string)GetValue(TextProperty);
         set => SetValue(TextProperty, value);
     }
+
+    public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor),
+                                                                               typeof(Color),
+                                                                               typeof(IconLabel),
+                                                                               default(Color),
+                                                                               BindingMode.OneWay);
+    public Color TextColor
+    {
+        get => (Color)GetValue(TextProperty);
+        set => SetValue(TextProperty, value);
+    }
     #endregion
 }

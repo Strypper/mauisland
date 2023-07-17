@@ -4,6 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:Name="root">
     <ContentView.Resources>
         <FontImageSource
@@ -11,9 +13,33 @@
             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
             Glyph="{x:Static app:FluentUIIcon.Ic_fluent_panel_separate_window_20_regular}"
             Color="{x:StaticResource White}" />
+
+        <FontImageSource
+            x:Key="GithubStarIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{x:Static app:FluentUIIcon.Ic_fluent_star_24_regular}"
+            Color="{x:StaticResource White}" />
+
+        <FontImageSource
+            x:Key="GithubLicenseIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{x:Static app:FluentUIIcon.Ic_fluent_gavel_24_regular}"
+            Color="{x:StaticResource White}" />
+
+        <FontImageSource
+            x:Key="GithubForkIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{x:Static app:FluentUIIcon.Ic_fluent_branch_fork_24_regular}"
+            Color="{x:StaticResource White}" />
+
+        <FontImageSource
+            x:Key="GithubIssueIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{x:Static app:FluentUIIcon.Ic_fluent_important_24_regular}"
+            Color="{x:StaticResource White}" />
     </ContentView.Resources>
 
-    <Frame
+    <!--<Frame
         Padding="0"
         BackgroundColor="#323232"
         CornerRadius="2"
@@ -105,5 +131,111 @@
                     WidthRequest="50" />
             </VerticalStackLayout>
         </Grid>
-    </Frame>
+    </Frame>-->
+    <Grid HeightRequest="330" WidthRequest="511">
+        <Frame
+            Padding="5"
+            HeightRequest="280"
+            VerticalOptions="End"
+            WidthRequest="511">
+            <Grid RowDefinitions="50, *, 53" RowSpacing="12">
+                <HorizontalStackLayout Margin="96,0,0,0">
+                    <app:IconLabel
+                        Margin="0,0,22,0"
+                        BackgroundColor="Transparent"
+                        PrefixIcon="{x:StaticResource GithubIssueIcon}"
+                        Text="{x:Binding ComponentData.Issues,
+                                         Source={x:Reference root}}"
+                        TextColor="{x:Static app:AppColors.White}" />
+                    <mdc:WrapLayout
+                        BindableLayout.ItemsSource="{x:Binding ComponentData.SupportedPlatformsInfo,
+                                                               Source={x:Reference root}}"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="app:PlatformInfo">
+                                <Image
+                                    Margin="0,0,11,0"
+                                    HeightRequest="25"
+                                    HorizontalOptions="Center"
+                                    Source="{x:Binding Logo}"
+                                    VerticalOptions="Center"
+                                    WidthRequest="25" />
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </mdc:WrapLayout>
+                </HorizontalStackLayout>
+                <mdc:Chip
+                    Margin="0,0,15,0"
+                    ForegroundColor="#35ff15"
+                    HorizontalOptions="End"
+                    OutlineColor="#35ff15"
+                    Text="NEW"
+                    VerticalOptions="Center" />
+                <Frame
+                    Grid.Row="1"
+                    Margin="15,0,15,0"
+                    Padding="12"
+                    BackgroundColor="#272b33"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill">
+                    <Label
+                        LineBreakMode="CharacterWrap"
+                        MaxLines="7"
+                        Text="{x:Binding ComponentData.ControlDetail,
+                                         Source={x:Reference root}}"
+                        ToolTipProperties.Text="{x:Binding ComponentData.ControlDetail,
+                                                           Source={x:Reference root}}" />
+                </Frame>
+                <Grid Grid.Row="2" ColumnDefinitions="50, 220, 96">
+                    <ImageButton
+                        Padding="{x:OnPlatform WinUI=10,
+                                               Android=5}"
+                        BackgroundColor="Transparent"
+                        Command="{x:Binding TapCommand,
+                                            Source={x:Reference root}}"
+                        CommandParameter="{x:Binding ComponentData.RepositoryUrl,
+                                                     Source={x:Reference root}}"
+                        HeightRequest="50"
+                        Source="githublogo.png"
+                        ToolTipProperties.Text="Github: Source code"
+                        WidthRequest="50" />
+                    <Button
+                        Grid.Column="1"
+                        BackgroundColor="#272b33"
+                        Clicked="Detail_Clicked"
+                        HorizontalOptions="Fill"
+                        Text="Detail"
+                        TextColor="{x:Static app:AppColors.White}"
+                        VerticalOptions="Center" />
+                    <HorizontalStackLayout
+                        Grid.Column="2"
+                        Margin="5,0,0,0"
+                        Spacing="10"
+                        VerticalOptions="Center">
+                        <app:IconLabel PrefixIcon="{x:StaticResource GithubLicenseIcon}" Text="{x:Binding ComponentData.License, Source={x:Reference root}}" />
+                        <app:IconLabel PrefixIcon="{x:StaticResource GithubForkIcon}" Text="{x:Binding ComponentData.Forks, Source={x:Reference root}}" />
+                        <app:IconLabel PrefixIcon="{x:StaticResource GithubStarIcon}" Text="{x:Binding ComponentData.Stars, Source={x:Reference root}}" />
+                    </HorizontalStackLayout>
+                </Grid>
+            </Grid>
+        </Frame>
+
+        <toolkit:AvatarView
+            Margin="15,5,5,5"
+            CornerRadius="50"
+            HeightRequest="87"
+            HorizontalOptions="Start"
+            ImageSource="{x:Binding ComponentData.AuthorAvatar,
+                                    Source={x:Reference root}}"
+            VerticalOptions="Start"
+            WidthRequest="87" />
+
+        <Label
+            Margin="110,15,0,0"
+            FontAttributes="Bold"
+            FontSize="24"
+            Text="{x:Binding ComponentData.ControlName,
+                             Source={x:Reference root}}" />
+    </Grid>
 </ContentView>

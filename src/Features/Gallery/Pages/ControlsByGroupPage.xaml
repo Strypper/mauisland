@@ -55,15 +55,25 @@
                 DetailClicked="ControlCardContentView_DetailClicked"
                 DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
         </DataTemplate>
+
+        <DataTemplate x:Key="GithubCardItemTemplate" x:DataType="app:IGithubControlInfo">
+            <app:GithubCardContentView
+                ComponentData="{x:Binding}"
+                DetailClicked="ControlCardContentView_DetailClicked"
+                DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
+        </DataTemplate>
+
         <DataTemplate x:Key="SyncfusionCardItemTemplate" x:DataType="app:IControlInfo">
             <app:SyncfusionCardContentView
                 ComponentData="{x:Binding}"
                 DetailClicked="ControlCardContentView_DetailClicked"
                 DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
         </DataTemplate>
+
         <app:BrandCardTemplateSelector
             x:Key="BrandCardTemplateSelector"
             BuiltInCardTemplate="{x:StaticResource BuiltInCardItemTemplate}"
+            GithubCardTemplate="{x:StaticResource GithubCardItemTemplate}"
             SyncfustionCardTemplate="{x:StaticResource SyncfusionCardItemTemplate}" />
 
         <toolkit:IsStringNotNullOrEmptyConverter x:Key="IsStringNotNullOrEmptyConverter" />

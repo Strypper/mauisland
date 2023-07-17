@@ -1,8 +1,19 @@
 namespace MAUIsland.Gallery.Community;
-class ZXingNetMauiControlInfo : IControlInfo
+class ZXingNetMauiControlInfo : IGithubControlInfo
 {
     public string ControlName => "ZXing.Net.Maui";
     public string ControlRoute => typeof(ZXingNetMauiPage).FullName;
+    public string RepositoryUrl => "https://github.com/Redth/ZXing.Net.Maui";
+    public string AuthorUrl => "https://github.com/Redth";
+    public string AuthorAvatar => "https://avatars.githubusercontent.com/u/271950?v=4";
+    public int Stars => 341;
+    public int Forks => 104;
+    public int Issues => 69;
+    public string License => "MIT license";
+
+    public List<PlatformInfo> SupportedPlatformsInfo => new() { new() { Id = "1", Name = "Android", Logo = "androidlogo.png" },
+                                                                new() { Id = "2", Name = "IOS", Logo = "ioslogo.png" },
+                                                                new() { Id = "3", Name = "Windows", Logo = "windowslogo.png"} };
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,

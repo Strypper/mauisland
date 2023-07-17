@@ -10,9 +10,9 @@ public partial class GithubCardContentView : ContentView
     #endregion
 
     #region [Delegates]
-    public delegate void DetailEventHandler(IControlInfo control);
+    public delegate void DetailEventHandler(IGithubControlInfo control);
 
-    public delegate void DetailInNewWindowEventHandler(IControlInfo control);
+    public delegate void DetailInNewWindowEventHandler(IGithubControlInfo control);
     #endregion
 
     #region [Event Handlers]
@@ -24,18 +24,18 @@ public partial class GithubCardContentView : ContentView
     #region [Bindable Properties]
     public static readonly BindableProperty ComponentDataProperty = BindableProperty.Create(
         nameof(ComponentData),
-        typeof(IControlInfo),
+        typeof(IGithubControlInfo),
         typeof(ControlCardContentView),
-        default(IControlInfo)
+        default(IGithubControlInfo)
     );
 
     public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
     #endregion
 
     #region [Properties]
-    public IControlInfo ComponentData
+    public IGithubControlInfo ComponentData
     {
-        get => (IControlInfo)GetValue(ComponentDataProperty);
+        get => (IGithubControlInfo)GetValue(ComponentDataProperty);
         set => SetValue(ComponentDataProperty, value);
     }
     #endregion

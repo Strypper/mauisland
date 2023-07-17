@@ -1,10 +1,20 @@
 using Xe.AcrylicView;
 
 namespace MAUIsland.Gallery.Community;
-class AcrylicViewControlInfo : IControlInfo
+class AcrylicViewControlInfo : IGithubControlInfo
 {
     public string ControlName => nameof(AcrylicView);
     public string ControlRoute => typeof(AcrylicViewPage).FullName;
+    public string RepositoryUrl => "https://github.com/sswi/AcrylicView.MAUI";
+    public string AuthorUrl => "https://github.com/sswi";
+    public string AuthorAvatar => "https://avatars.githubusercontent.com/u/39110708?v=4";
+    public int Stars => 40;
+    public int Forks => 2;
+    public int Issues => 1;
+    public string License => "MIT license";
+    public List<PlatformInfo> SupportedPlatformsInfo => new() { new() { Id = "1", Name = "Android", Logo = "androidlogo.png" },
+                                                                new() { Id = "2", Name = "IOS", Logo = "ioslogo.png" },
+                                                                new() { Id = "3", Name = "Windows", Logo = "windowslogo.png"} };
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
@@ -15,4 +25,5 @@ class AcrylicViewControlInfo : IControlInfo
     public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Community/{ControlName}";
     public string DocumentUrl => $"https://github.com/sswi/AcrylicView.MAUI";
     public string GroupName => ControlGroupInfo.GitHubCommunity;
+
 }
