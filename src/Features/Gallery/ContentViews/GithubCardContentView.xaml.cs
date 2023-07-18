@@ -25,7 +25,7 @@ public partial class GithubCardContentView : ContentView
     public static readonly BindableProperty ComponentDataProperty = BindableProperty.Create(
         nameof(ComponentData),
         typeof(IGithubControlInfo),
-        typeof(ControlCardContentView),
+        typeof(GithubCardContentView),
         default(IGithubControlInfo)
     );
 

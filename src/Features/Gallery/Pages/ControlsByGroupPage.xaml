@@ -14,7 +14,7 @@
     BackgroundColor="#272727"
     Shell.TabBarIsVisible="False"
     SizeChanged="BasePage_SizeChanged">
-    <!--<Shell.SearchHandler>
+    <Shell.SearchHandler>
         <app:CardsSearchHandler
             Cards="{x:Binding Items,
                               Mode=TwoWay}"
@@ -45,7 +45,7 @@
                 </DataTemplate>
             </app:CardsSearchHandler.ItemTemplate>
         </app:CardsSearchHandler>
-    </Shell.SearchHandler>-->
+    </Shell.SearchHandler>
     <app:BasePage.Resources>
         <app:ImageSourceToBoolConverter x:Key="ImageSourceToBoolConverter" />
 
@@ -63,6 +63,13 @@
                 DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
         </DataTemplate>
 
+        <DataTemplate x:Key="MaterialUICardItemTemplate" x:DataType="app:IMaterialUIControlInfo">
+            <app:MaterialUICardContentView
+                ComponentData="{x:Binding}"
+                DetailClicked="ControlCardContentView_DetailClicked"
+                DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
+        </DataTemplate>
+
         <DataTemplate x:Key="SyncfusionCardItemTemplate" x:DataType="app:IControlInfo">
             <app:SyncfusionCardContentView
                 ComponentData="{x:Binding}"
@@ -74,6 +81,7 @@
             x:Key="BrandCardTemplateSelector"
             BuiltInCardTemplate="{x:StaticResource BuiltInCardItemTemplate}"
             GithubCardTemplate="{x:StaticResource GithubCardItemTemplate}"
+            MaterialUICardTemplate="{x:StaticResource MaterialUICardItemTemplate}"
             SyncfustionCardTemplate="{x:StaticResource SyncfusionCardItemTemplate}" />
 
         <toolkit:IsStringNotNullOrEmptyConverter x:Key="IsStringNotNullOrEmptyConverter" />

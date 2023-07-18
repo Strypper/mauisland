@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIsland.MaterialUICardContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="root">
+    <ContentView.Resources>
+        <Style
+            x:Key="MaterialUICardStyle"
+            BaseResourceKey="{x:DynamicResource FilledCardStyle}"
+            TargetType="mdc:Card">
+            <Setter Property="HeightRequest" Value="170" />
+            <Setter Property="WidthRequest" Value="350" />
+        </Style>
+    </ContentView.Resources>
+
+    <mdc:Card Style="{x:StaticResource MaterialUICardStyle}">
+        <Grid RowDefinitions="40, 70, 60">
+            <Label
+                Margin="10,10,0,0"
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalOptions="Start"
+                Text="{x:Binding ComponentData.ControlName,
+                                 Source={x:Reference root}}"
+                VerticalOptions="Start" />
+            <mdc:IconButton HorizontalOptions="End" IconKind="{x:Binding ComponentData.MaterialIcon, Source={x:Reference root}}" />
+            <mdc:Label
+                Grid.Row="1"
+                Margin="10,5,0,0"
+                HorizontalOptions="Start"
+                MaximumWidthRequest="330"
+                Text="{x:Binding ComponentData.ControlDetail,
+                                 Source={x:Reference root}}"
+                VerticalOptions="Start" />
+            <HorizontalStackLayout
+                Grid.Row="2"
+                Margin="10"
+                Spacing="2">
+                <mdc:Button
+                    Clicked="Detail_Clicked"
+                    Style="{DynamicResource OutlinedButtonStyle}"
+                    Text="Detail" />
+                <mdc:Button
+                    Command="{x:Binding TapCommand,
+                                        Source={x:Reference root}}"
+                    CommandParameter="{x:Binding ComponentData.DocumentUrl,
+                                                 Source={x:Reference root}}"
+                    Style="{StaticResource TextButtonStyle}"
+                    Text="Original Document" />
+            </HorizontalStackLayout>
+        </Grid>
+    </mdc:Card>
+</ContentView>

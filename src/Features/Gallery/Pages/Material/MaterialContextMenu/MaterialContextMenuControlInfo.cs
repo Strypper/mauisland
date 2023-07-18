@@ -1,10 +1,15 @@
+using IconPacks.Material;
 using Material.Components.Maui;
 
 namespace MAUIsland;
-class MaterialContextMenuControlInfo : IControlInfo
+class MaterialContextMenuControlInfo : IMaterialUIControlInfo
 {
     public string ControlName => nameof(ContextMenu);
     public string ControlRoute => typeof(MaterialContextMenuPage).FullName;
+    public IconKind MaterialIcon => IconKind.List;
+    public List<PlatformInfo> SupportedPlatformsInfo => new() { new() { Id = "1", Name = "Android", Logo = "androidlogo.png" },
+                                                                new() { Id = "2", Name = "IOS", Logo = "ioslogo.png" },
+                                                                new() { Id = "3", Name = "Windows", Logo = "windowslogo.png"} };
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
@@ -15,4 +20,5 @@ class MaterialContextMenuControlInfo : IControlInfo
     public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Material/MaterialContextMenu";
     public string DocumentUrl => $"https://mdc-maui.github.io/context-menu";
     public string GroupName => ControlGroupInfo.MaterialComponent;
+
 }

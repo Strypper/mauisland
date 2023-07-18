@@ -1,8 +1,14 @@
+using IconPacks.Material;
+
 namespace MAUIsland;
-class MaterialButtonControlInfo : IControlInfo
+class MaterialButtonControlInfo : IMaterialUIControlInfo
 {
     public string ControlName => nameof(Material.Components.Maui.Button);
     public string ControlRoute => typeof(MaterialButtonPage).FullName;
+    public IconKind MaterialIcon => IconKind.Add;
+    public List<PlatformInfo> SupportedPlatformsInfo => new() { new() { Id = "1", Name = "Android", Logo = "androidlogo.png" },
+                                                                new() { Id = "2", Name = "IOS", Logo = "ioslogo.png" },
+                                                                new() { Id = "3", Name = "Windows", Logo = "windowslogo.png"} };
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
@@ -13,4 +19,5 @@ class MaterialButtonControlInfo : IControlInfo
     public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Material/MaterialButton";
     public string DocumentUrl => $"https://mdc-maui.github.io/button";
     public string GroupName => ControlGroupInfo.MaterialComponent;
+
 }

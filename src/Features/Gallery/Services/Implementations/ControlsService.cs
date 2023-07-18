@@ -85,7 +85,7 @@ public class ControlsService : IControlsService
             Author = "yiszza",
             Banner = "materialui_banner.png",
             ProviderUrl = "https://mdc-maui.github.io/",
-            Description = "Material design components for .NET MAUI"
+            Description = "Material design components for .NET MAUI. Material Design is a design language developed by Google that aims to provide a consistent user experience across all platforms and devices. It is guided by print-based design elements such as typography, grids, space, scale, color, and imagery to create hierarchy, meaning, and focus that immerse the user in the experience. Material Design adopts tools from the field of print design, like baseline grids and structural templates, encouraging consistency across environments by repeating visual elements, structural grids, and spacing across platforms and screen sizes1. These layouts scale to fit any screen size, which simplifies the process of creating scalable apps."
         }
     };
 
