@@ -54,15 +54,17 @@
                         Text="{x:Binding ComponentData.Issues,
                                          Source={x:Reference root}}"
                         TextColor="{x:Static app:AppColors.White}" />
+
+                    <!--  Spacing 10 crash the app  -->
                     <mdc:WrapLayout
                         BindableLayout.ItemsSource="{x:Binding ComponentData.SupportedPlatformsInfo,
                                                                Source={x:Reference root}}"
                         HorizontalOptions="Start"
+                        Spacing="10"
                         VerticalOptions="Center">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate x:DataType="app:PlatformInfo">
                                 <Image
-                                    Margin="0,0,11,0"
                                     HeightRequest="25"
                                     HorizontalOptions="Center"
                                     Source="{x:Binding Logo}"
