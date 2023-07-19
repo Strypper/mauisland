@@ -7,16 +7,19 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:Name="root">
     <ContentView.Resources>
-        <Style
+        <!--<Style
             x:Key="MaterialUICardStyle"
             BaseResourceKey="{x:DynamicResource FilledCardStyle}"
             TargetType="mdc:Card">
             <Setter Property="HeightRequest" Value="170" />
             <Setter Property="WidthRequest" Value="350" />
-        </Style>
+        </Style>-->
     </ContentView.Resources>
 
-    <mdc:Card Style="{x:StaticResource MaterialUICardStyle}">
+    <mdc:Card
+        HeightRequest="170"
+        Style="{x:DynamicResource FilledCardStyle}"
+        WidthRequest="350">
         <Grid RowDefinitions="40, 70, 60">
             <Label
                 Margin="10,10,0,0"
