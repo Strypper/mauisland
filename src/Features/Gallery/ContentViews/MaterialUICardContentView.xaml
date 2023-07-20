@@ -9,50 +9,81 @@
     <ContentView.Resources>
         <Style
             x:Key="MaterialUICardStyle"
-            BasedOn="{x:DynamicResource FilledCardStyle}"
+            BaseResourceKey="FilledCardStyle"
             TargetType="mdc:Card">
             <Setter Property="HeightRequest" Value="170" />
             <Setter Property="WidthRequest" Value="350" />
         </Style>
+
+        <Style x:Key="GridContainerStyle" TargetType="Grid">
+            <Setter Property="RowDefinitions">
+                <Setter.Value>
+                    <RowDefinitionCollection>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="70" />
+                        <RowDefinition Height="60" />
+                    </RowDefinitionCollection>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style x:Key="MaterialUICardTitleStyle" TargetType="Label">
+            <Setter Property="Margin" Value="10,10,0,0" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="VerticalOptions" Value="Start" />
+            <Setter Property="Text" Value="{x:Binding ComponentData.ControlName, Source={x:Reference root}}" />
+        </Style>
+
+        <Style x:Key="ControlIconStyle" TargetType="mdc:IconButton">
+            <Setter Property="HorizontalOptions" Value="End" />
+            <Setter Property="IconKind" Value="{x:Binding ComponentData.MaterialIcon, Source={x:Reference root}}" />
+        </Style>
+
+        <Style x:Key="ControlDetailStyle" TargetType="mdc:Label">
+            <Setter Property="Grid.Row" Value="1" />
+            <Setter Property="Margin" Value="10,5,0,0" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="MaximumWidthRequest" Value="330" />
+            <Setter Property="Text" Value="{Binding ComponentData.ControlDetail, Source={x:Reference root}}" />
+            <Setter Property="VerticalOptions" Value="Start" />
+        </Style>
+
+        <Style x:Key="NavigationButtonsContainerStyle" TargetType="HorizontalStackLayout">
+            <Setter Property="Grid.Row" Value="2" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Spacing" Value="2" />
+        </Style>
+
+        <Style
+            x:Key="DetailButtonStyle"
+            BaseResourceKey="OutlinedButtonStyle"
+            TargetType="mdc:Button">
+            <Setter Property="Text" Value="Detail" />
+        </Style>
+
+        <Style
+            x:Key="DocumentReferenceButtonStyle"
+            BaseResourceKey="TextButtonStyle"
+            TargetType="mdc:Button">
+            <Setter Property="Command" Value="{Binding TapCommand, Source={x:Reference root}}" />
+            <Setter Property="CommandParameter" Value="{Binding ComponentData.DocumentUrl, Source={x:Reference root}}" />
+            <Setter Property="Text" Value="Original Document" />
+        </Style>
+
+
     </ContentView.Resources>
 
-    <mdc:Card
-        HeightRequest="170"
-        Style="{x:DynamicResource FilledCardStyle}"
-        WidthRequest="350">
-        <Grid RowDefinitions="40, 70, 60">
-            <Label
-                Margin="10,10,0,0"
-                FontAttributes="Bold"
-                FontSize="20"
-                HorizontalOptions="Start"
-                Text="{x:Binding ComponentData.ControlName,
-                                 Source={x:Reference root}}"
-                VerticalOptions="Start" />
-            <mdc:IconButton HorizontalOptions="End" IconKind="{x:Binding ComponentData.MaterialIcon, Source={x:Reference root}}" />
-            <mdc:Label
-                Grid.Row="1"
-                Margin="10,5,0,0"
-                HorizontalOptions="Start"
-                MaximumWidthRequest="330"
-                Text="{x:Binding ComponentData.ControlDetail,
-                                 Source={x:Reference root}}"
-                VerticalOptions="Start" />
-            <HorizontalStackLayout
-                Grid.Row="2"
-                Margin="10"
-                Spacing="2">
-                <mdc:Button
-                    Clicked="Detail_Clicked"
-                    Style="{DynamicResource OutlinedButtonStyle}"
-                    Text="Detail" />
-                <mdc:Button
-                    Command="{x:Binding TapCommand,
-                                        Source={x:Reference root}}"
-                    CommandParameter="{x:Binding ComponentData.DocumentUrl,
-                                                 Source={x:Reference root}}"
-                    Style="{StaticResource TextButtonStyle}"
-                    Text="Original Document" />
+    <mdc:Card Style="{x:StaticResource MaterialUICardStyle}">
+        <Grid Style="{x:StaticResource GridContainerStyle}">
+            <Label Style="{x:StaticResource MaterialUICardTitleStyle}" />
+            <mdc:IconButton Style="{x:StaticResource ControlIconStyle}" />
+            <mdc:Label Style="{x:StaticResource ControlDetailStyle}" />
+            <HorizontalStackLayout Style="{x:StaticResource NavigationButtonsContainerStyle}">
+                <mdc:Button Clicked="Detail_Clicked" Style="{x:StaticResource DetailButtonStyle}" />
+                <mdc:Button Style="{x:StaticResource DocumentReferenceButtonStyle}" />
             </HorizontalStackLayout>
         </Grid>
     </mdc:Card>
