@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    x:Class="MAUIsland.CardsByGroupPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:acrylic="clr-namespace:Xe.AcrylicView;assembly=Xe.AcrylicView"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    xmlns:skiaConverters="clr-namespace:SkiaSharp.Extended.UI.Controls.Converters;assembly=SkiaSharp.Extended.UI"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Padding="10"
+    x:DataType="app:CardsByGroupPageViewModel"
+    BackgroundColor="#272727"
+    Shell.TabBarIsVisible="False"
+    SizeChanged="BasePage_SizeChanged">
+    <Shell.SearchHandler>
+        <app:CardsSearchHandler
+            Cards="{x:Binding Items,
+                              Mode=TwoWay}"
+            ClearIcon="{x:StaticResource SearchBarDismissIcon}"
+            Placeholder="Search Controls"
+            QueryIcon="{x:StaticResource SearchBarSearchIcon}"
+            SearchBoxVisibility="{x:OnPlatform iOS=false,
+                                               MacCatalyst=false}"
+            SelectCard="CardsSearchHandler_SelectCard"
+            ShowsResults="True">
+            <app:CardsSearchHandler.ItemTemplate>
+                <DataTemplate x:DataType="app:IGalleryCardInfo">
+                    <Grid
+                        Margin="5"
+                        ColumnDefinitions="40,Auto"
+                        RowDefinitions="Auto">
+                        <Image
+                            HeightRequest="15"
+                            Source="{x:Binding ControlIcon}"
+                            WidthRequest="15" />
+                        <Label
+                            Grid.Column="1"
+                            FontSize="18"
+                            HorizontalTextAlignment="Center"
+                            Text="{x:Binding ControlName}"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </app:CardsSearchHandler.ItemTemplate>
+        </app:CardsSearchHandler>
+    </Shell.SearchHandler>
+    <app:BasePage.Resources>
+        <app:ImageSourceToBoolConverter x:Key="ImageSourceToBoolConverter" />
+
+        <app:CardByGroupPage_StatusPicker_Converter x:Key="CardByGroupPage_StatusPicker_Converter" />
+
+        <DataTemplate x:Key="BuiltInCardItemTemplate" x:DataType="app:IGalleryCardInfo">
+            <app:ControlCardContentView
+                ComponentData="{x:Binding}"
+                DetailClicked="ControlCardContentView_DetailClicked"
+                DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="GithubCardItemTemplate" x:DataType="app:IGithubGalleryCardInfo">
+            <app:GithubCardContentView
+                ComponentData="{x:Binding}"
+                DetailClicked="ControlCardContentView_DetailClicked"
+                DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="MaterialUICardItemTemplate" x:DataType="app:IMaterialUIGalleryCardInfo">
+            <app:MaterialUICardContentView
+                ComponentData="{x:Binding}"
+                DetailClicked="ControlCardContentView_DetailClicked"
+                DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="SyncfusionCardItemTemplate" x:DataType="app:IGalleryCardInfo">
+            <app:SyncfusionCardContentView
+                ComponentData="{x:Binding}"
+                DetailClicked="ControlCardContentView_DetailClicked"
+                DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
+        </DataTemplate>
+
+        <app:BrandCardTemplateSelector
+            x:Key="BrandCardTemplateSelector"
+            BuiltInCardTemplate="{x:StaticResource BuiltInCardItemTemplate}"
+            GithubCardTemplate="{x:StaticResource GithubCardItemTemplate}"
+            MaterialUICardTemplate="{x:StaticResource MaterialUICardItemTemplate}"
+            SyncfustionCardTemplate="{x:StaticResource SyncfusionCardItemTemplate}" />
+
+        <toolkit:IsStringNotNullOrEmptyConverter x:Key="IsStringNotNullOrEmptyConverter" />
+    </app:BasePage.Resources>
+    <app:BasePage.ToolbarItems>
+        <!--<ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlGroup.MicrosoftStoreLink}"
+            IconImageSource="{x:StaticResource MicrosoftStoreIcon}"
+            IsEnabled="{x:Binding ControlGroup.MicrosoftStoreLink,
+                                  Mode=OneWay,
+                                  Converter={x:StaticResource IsStringNotNullOrEmptyConverter}}"
+            Text="Source code" />-->
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlGroup.ProviderUrl}"
+            IconImageSource="{x:StaticResource InfoIcon}"
+            Text="Original Document" />
+    </app:BasePage.ToolbarItems>
+
+    <Grid ColumnDefinitions="*, auto">
+        <ScrollView VerticalScrollBarVisibility="Always">
+            <Grid>
+                <VerticalStackLayout Spacing="10">
+                    <Grid Grid.ColumnSpan="2">
+                        <Frame
+                            Padding="0"
+                            CornerRadius="4"
+                            VerticalOptions="Start">
+                            <Image
+                                Aspect="AspectFill"
+                                HeightRequest="300"
+                                HorizontalOptions="Fill"
+                                Source="{x:Binding ControlGroup.Banner}"
+                                VerticalOptions="Fill" />
+                        </Frame>
+                        <Border
+                            Margin="0,100,0,0"
+                            Padding="0"
+                            HorizontalOptions="Center"
+                            Stroke="{x:Binding ControlGroup.BrandColor}"
+                            StrokeShape="RoundRectangle 12,12,12,12"
+                            StrokeThickness="5"
+                            VerticalOptions="End">
+                            <acrylic:AcrylicView
+                                Padding="15"
+                                EffectStyle="ExtraDark"
+                                HeightRequest="250"
+                                HorizontalOptions="Fill"
+                                IsVisible="{x:OnIdiom Desktop=True,
+                                                      Tablet=True,
+                                                      Phone=False}"
+                                VerticalOptions="Fill">
+                                <Grid ColumnDefinitions="100, 400, 200" ColumnSpacing="10">
+                                    <VerticalStackLayout VerticalOptions="Start">
+                                        <ImageButton
+                                            Padding="4"
+                                            BackgroundColor="Black"
+                                            CornerRadius="4"
+                                            HeightRequest="90"
+                                            IsVisible="{x:Binding ControlGroup.IconUrl,
+                                                                  Converter={x:StaticResource ImageSourceToBoolConverter}}"
+                                            Source="{x:Binding ControlGroup.IconUrl,
+                                                               Mode=OneWay}"
+                                            WidthRequest="90" />
+                                        <skia:SKLottieView
+                                            HeightRequest="90"
+                                            HorizontalOptions="Center"
+                                            IsVisible="{x:Binding ControlGroup.LottieUrl,
+                                                                  Converter={toolkit:IsStringNotNullOrEmptyConverter}}"
+                                            RepeatCount="-1"
+                                            SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                                            Source="dotnetbot.json"
+                                            WidthRequest="90" />
+                                        <Label HorizontalOptions="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Version: " />
+                                                    <Span Text="{x:Binding ControlGroup.Version}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="1" Spacing="5">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            Text="{x:Binding ControlGroup.Title}"
+                                            TextColor="{x:Static app:AppColors.White}" />
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Author: " />
+                                                    <Span Text="{x:Binding ControlGroup.Author}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label
+                                            HeightRequest="170"
+                                            LineBreakMode="CharacterWrap"
+                                            MaxLines="10"
+                                            Text="{x:Binding ControlGroup.Description}" />
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="2" Spacing="5">
+                                        <Label Text="Free" />
+                                        <Button
+                                            BackgroundColor="{x:Binding ControlGroup.BrandColor}"
+                                            Text="Get started"
+                                            TextColor="{x:Binding ControlGroup.ButtonTextColor}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </acrylic:AcrylicView>
+                        </Border>
+                    </Grid>
+                    <Grid>
+                        <Label
+                            FontSize="32"
+                            Text="Controls"
+                            TextDecorations="Underline" />
+                        <Picker
+                            x:Name="CardByGroupPage_StatusPicker"
+                            Title="Status"
+                            HorizontalOptions="End"
+                            ItemDisplayBinding="{Binding CardType}"
+                            ItemsSource="{x:Binding Items,
+                                                    Mode=OneWay,
+                                                    Converter={x:StaticResource CardByGroupPage_StatusPicker_Converter}}"
+                            VerticalOptions="Center" />
+                    </Grid>
+                    <mdc:WrapLayout
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        BindableLayout.ItemTemplateSelector="{x:StaticResource BrandCardTemplateSelector}"
+                        BindableLayout.ItemsSource="{x:Binding Items,
+                                                               Mode=OneWay}"
+                        HorizontalOptions="{x:OnIdiom Desktop=Start,
+                                                      Tablet=Start,
+                                                      Default=Start,
+                                                      Phone=Center}"
+                        Spacing="10" />
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+        <Grid
+            x:Name="GalleryDetail"
+            Grid.Column="1"
+            IsVisible="{x:Binding IsGalleryDetailVisible,
+                                  Mode=OneWay}">
+            <Border />
+        </Grid>
+    </Grid>
+</app:BasePage>

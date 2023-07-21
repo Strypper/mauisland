@@ -40,7 +40,7 @@
             VerticalOptions="Fill" />-->
         <acrylic:AcrylicView
             Padding="30"
-            CornerRadius="5"
+            CornerRadius="20"
             EffectStyle="Light"
             HorizontalOptions="Center"
             MaximumHeightRequest="{x:OnIdiom Desktop=350,

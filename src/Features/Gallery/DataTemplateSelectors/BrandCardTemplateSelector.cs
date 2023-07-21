@@ -8,7 +8,7 @@ public class BrandCardTemplateSelector : DataTemplateSelector
     public DataTemplate SyncfustionCardTemplate { get; set; }
     protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
     {
-        var controlGroup = ((IControlInfo)item).GroupName;
+        var controlGroup = ((IGalleryCardInfo)item).GroupName;
         switch (controlGroup)
         {
             case ControlGroupInfo.SyncfusionControls:

@@ -38,7 +38,7 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("FluentSystemIcons-Regular.ttf", FontNames.FluentSystemIconsRegular);
             })
-            .UseMaterialComponents(new List<string> {})
+            .UseMaterialComponents(new List<string> { })
             .ConfigureEssentials(essentials =>
             {
                 essentials.UseVersionTracking();
@@ -94,16 +94,16 @@ public static class MauiProgram
 
     static MauiAppBuilder RegisterControlInfos(this MauiAppBuilder builder)
     {
-        var assemblies = new Assembly[] { typeof(IControlInfo).Assembly };
+        var assemblies = new Assembly[] { typeof(IGalleryCardInfo).Assembly };
         var controlInfoTypes = assemblies
             .SelectMany(
                 a => a
                     .GetTypes()
-                    .Where(a => !a.IsAbstract && !a.IsInterface && a.IsAssignableTo(typeof(IControlInfo))));
+                    .Where(a => !a.IsAbstract && !a.IsInterface && a.IsAssignableTo(typeof(IGalleryCardInfo))));
 
         foreach (var controlInfoType in controlInfoTypes)
         {
-            builder.Services.AddSingleton(typeof(IControlInfo), controlInfoType);
+            builder.Services.AddSingleton(typeof(IGalleryCardInfo), controlInfoType);
         }
         return builder;
     }
@@ -178,7 +178,7 @@ public static class MauiProgram
             if (viewModelType != null)
                 builder.Services.AddTransient(viewModelType);
 
-            if (pageType.IsAssignableTo(typeof(IControlPage)))
+            if (pageType.IsAssignableTo(typeof(IGalleryPage)))
             {
                 Routing.RegisterRoute(pageType.FullName, pageType);
             }
@@ -191,7 +191,7 @@ public static class MauiProgram
     {
         var assembly = Assembly.GetExecutingAssembly();
         using var stream = assembly.GetManifestResourceStream("MAUIsland.appsettings.Development.json");
-        using var appsettingspagestream = assembly.GetManifestResourceStream("MAUIsland.Features.Gallery.Pages.BuiltIn.AppSettingsJson.JsonFiles.appsettings.json");
+        using var appsettingspagestream = assembly.GetManifestResourceStream("MAUIsland.Features.Gallery.Pages.BuiltIn.Helpers.AppSettingsJson.JsonFiles.appsettings.json");
 
         if (stream is not null && appsettingspagestream is not null)
         {

@@ -13,22 +13,22 @@ public class CardsSearchHandler : SearchHandler
 
     #region [Bindable Properties]
     public static readonly BindableProperty CardsProperty = BindableProperty.Create(nameof(Cards),
-                                                                               typeof(ObservableCollection<IControlInfo>),
+                                                                               typeof(ObservableCollection<IGalleryCardInfo>),
                                                                                typeof(CardsSearchHandler),
-                                                                               new ObservableCollection<IControlInfo>(),
+                                                                               new ObservableCollection<IGalleryCardInfo>(),
                                                                                BindingMode.OneWay);
     #endregion
 
     #region [Properties]
-    public ObservableCollection<IControlInfo> Cards
+    public ObservableCollection<IGalleryCardInfo> Cards
     {
-        get => (ObservableCollection<IControlInfo>)GetValue(CardsProperty);
+        get => (ObservableCollection<IGalleryCardInfo>)GetValue(CardsProperty);
         set => SetValue(CardsProperty, value);
     }
     #endregion
 
     #region [Delegates]
-    public delegate void SelectCardEventHandler(IControlInfo control);
+    public delegate void SelectCardEventHandler(IGalleryCardInfo control);
     #endregion
 
     #region [Event Handlers]
@@ -51,7 +51,7 @@ public class CardsSearchHandler : SearchHandler
     protected override async void OnItemSelected(object item)
     {
         base.OnItemSelected(item);
-        var selectedCard = item as IControlInfo;
+        var selectedCard = item as IGalleryCardInfo;
         SelectCard?.Invoke(selectedCard);
     }
 

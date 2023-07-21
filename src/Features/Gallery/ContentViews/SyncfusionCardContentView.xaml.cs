@@ -10,9 +10,9 @@ public partial class SyncfusionCardContentView : ContentView
     #endregion
 
     #region [Delegates]
-    public delegate void DetailEventHandler(IControlInfo control);
+    public delegate void DetailEventHandler(IGalleryCardInfo control);
 
-    public delegate void DetailInNewWindowEventHandler(IControlInfo control);
+    public delegate void DetailInNewWindowEventHandler(IGalleryCardInfo control);
     #endregion
 
     #region [Event Handlers]
@@ -24,18 +24,18 @@ public partial class SyncfusionCardContentView : ContentView
     #region [Bindable Properties]
     public static readonly BindableProperty ComponentDataProperty = BindableProperty.Create(
         nameof(ComponentData),
-        typeof(IControlInfo),
+        typeof(IGalleryCardInfo),
         typeof(ControlCardContentView),
-        default(IControlInfo)
+        default(IGalleryCardInfo)
     );
 
     public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
     #endregion
 
     #region [Properties]
-    public IControlInfo ComponentData
+    public IGalleryCardInfo ComponentData
     {
-        get => (IControlInfo)GetValue(ComponentDataProperty);
+        get => (IGalleryCardInfo)GetValue(ComponentDataProperty);
         set => SetValue(ComponentDataProperty, value);
     }
     #endregion

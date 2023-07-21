@@ -10,12 +10,12 @@ public partial class GithubCardContentView : ContentView
     #endregion
 
     #region [Delegates]
-    public delegate void DetailEventHandler(IGithubControlInfo control);
+    public delegate void DetailEventHandler(IGithubGalleryCardInfo control);
 
-    public delegate void DetailInNewWindowEventHandler(IGithubControlInfo control);
+    public delegate void DetailInNewWindowEventHandler(IGithubGalleryCardInfo control);
     #endregion
 
-    #region [Event Handlers]
+    #region [ Events ]
     public event DetailEventHandler DetailClicked;
 
     public event DetailInNewWindowEventHandler DetailInNewWindowClicked;
@@ -24,18 +24,18 @@ public partial class GithubCardContentView : ContentView
     #region [Bindable Properties]
     public static readonly BindableProperty ComponentDataProperty = BindableProperty.Create(
         nameof(ComponentData),
-        typeof(IGithubControlInfo),
+        typeof(IGithubGalleryCardInfo),
         typeof(GithubCardContentView),
-        default(IGithubControlInfo)
+        default(IGithubGalleryCardInfo)
     );
 
     public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
     #endregion
 
     #region [Properties]
-    public IGithubControlInfo ComponentData
+    public IGithubGalleryCardInfo ComponentData
     {
-        get => (IGithubControlInfo)GetValue(ComponentDataProperty);
+        get => (IGithubGalleryCardInfo)GetValue(ComponentDataProperty);
         set => SetValue(ComponentDataProperty, value);
     }
     #endregion

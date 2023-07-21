@@ -3,7 +3,7 @@
 public partial class GalleryPageViewModel : NavigationAwareBaseViewModel
 {
 
-    #region [ Services ]
+    #region [ Fields ]
     private readonly IControlsService controlsService;
     #endregion
 
@@ -45,11 +45,15 @@ public partial class GalleryPageViewModel : NavigationAwareBaseViewModel
     [RelayCommand]
     Task ViewControlsAsync(ControlGroupInfo controlGroupInfo)
         => AppNavigator.NavigateAsync(
-            AppRoutes.ControlsByGroupPage,
+            AppRoutes.CardsByGroupPage,
             args: controlGroupInfo
         );
 
     [RelayCommand]
-    Task ViewControlsInNewWindowAsync(ControlGroupInfo controlGroupInfo) => AppNavigator.NavigateAsync(AppRoutes.ControlsByGroupPage, inNewWindow: true, args: controlGroupInfo);
+    Task ViewControlsInNewWindowAsync(ControlGroupInfo controlGroupInfo)
+        => AppNavigator.NavigateAsync(
+            AppRoutes.CardsByGroupPage,
+            inNewWindow: true,
+            args: controlGroupInfo);
     #endregion
 }

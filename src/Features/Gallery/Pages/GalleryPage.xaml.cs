@@ -1,11 +1,11 @@
 namespace MAUIsland;
 partial class GalleryPage
 {
-    #region [Services]
+    #region [ Fields ]
     private readonly GalleryPageViewModel viewModel;
     #endregion
 
-    #region [CTor]
+    #region [ CTor ]
     public GalleryPage(GalleryPageViewModel vm)
     {
         InitializeComponent();
@@ -13,7 +13,6 @@ partial class GalleryPage
         BindingContext = viewModel = vm;
     }
     #endregion
-
 
     #region [Event Handlers]
     private void BrandIconContentView_DetailClicked(ControlGroupInfo control)

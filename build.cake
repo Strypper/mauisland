@@ -28,7 +28,7 @@ Task("BuiltInControlPage")
 
     Information($"\n>> Generate >> {name}ControlInfo.cs");
     FileWriteText($"{controlFolderPath}/{name}ControlInfo.cs", $@"namespace MAUIsland.Gallery.{group};
-class {name}ControlInfo : IControlInfo 
+class {name}ControlInfo : IGalleryCardInfo 
 {{
     public string ControlName => nameof({name});
     public string ControlRoute => typeof({name}Page).FullName;
@@ -111,7 +111,7 @@ class {name}ControlInfo : IControlInfo
 
     Information($"\n>> Generate >> {name}Page.xaml.cs");
     FileWriteText($"{controlFolderPath}/{name}Page.xaml.cs", $@"namespace MAUIsland;
-public partial class {name}Page : IControlPage
+public partial class {name}Page : IGalleryPage
 {{
     #region [CTor]
     public {name}Page({name}PageViewModel vm)
@@ -137,7 +137,7 @@ public partial class {name}PageViewModel : NavigationAwareBaseViewModel
 
     #region [Properties]
     [ObservableProperty]
-    IControlInfo controlInformation;
+    IGalleryCardInfo controlInformation;
     #endregion
 
     #region [Overrides]
@@ -145,7 +145,7 @@ public partial class {name}PageViewModel : NavigationAwareBaseViewModel
     {{
         base.OnInit(query);
 
-        ControlInformation = query.GetData<IControlInfo>();
+        ControlInformation = query.GetData<IGalleryCardInfo>();
 
     }}
     #endregion

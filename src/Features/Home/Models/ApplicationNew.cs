@@ -12,7 +12,7 @@ public partial class ApplicationNew : BaseModel
     DateTime date;
 
     [ObservableProperty]
-    IControlInfo? component;
+    IGalleryCardInfo? component;
 
     [ObservableProperty]
     NewActivity activity;

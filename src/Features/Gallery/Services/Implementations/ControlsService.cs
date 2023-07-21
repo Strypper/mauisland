@@ -2,10 +2,10 @@
 
 public class ControlsService : IControlsService
 {
-    private readonly IControlInfo[] controlInfos;
+    private readonly IGalleryCardInfo[] controlInfos;
 
     #region [CTor]
-    public ControlsService(IEnumerable<IControlInfo> controlInfos)
+    public ControlsService(IEnumerable<IGalleryCardInfo> controlInfos)
     {
         this.controlInfos = controlInfos.ToArray();
     }
@@ -97,11 +97,11 @@ public class ControlsService : IControlsService
         });
     }
 
-    public Task<IEnumerable<IControlInfo>> GetControlsAsync(string groupName)
+    public Task<IEnumerable<IGalleryCardInfo>> GetControlsAsync(string groupName)
     {
         return Task.Run(() =>
         {
-            IEnumerable<IControlInfo> result = controlInfos
+            IEnumerable<IGalleryCardInfo> result = controlInfos
                 .Where(x => x.GroupName == groupName);
 
             return string.IsNullOrWhiteSpace(groupName)
@@ -111,12 +111,12 @@ public class ControlsService : IControlsService
         });
     }
 
-    public Task<IControlInfo> GetControlByNameAsync(string groupName, string controlName)
+    public Task<IGalleryCardInfo> GetControlByNameAsync(string groupName, string controlName)
     {
 
         return Task.Run(() =>
         {
-            IEnumerable<IControlInfo> result = controlInfos
+            IEnumerable<IGalleryCardInfo> result = controlInfos
                 .Where(x => x.GroupName == groupName);
 
             return controlInfos

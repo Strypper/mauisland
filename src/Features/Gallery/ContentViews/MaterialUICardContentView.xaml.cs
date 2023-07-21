@@ -11,9 +11,9 @@ public partial class MaterialUICardContentView : ContentView
     #endregion
 
     #region [Delegates]
-    public delegate void DetailEventHandler(IMaterialUIControlInfo control);
+    public delegate void DetailEventHandler(IMaterialUIGalleryCardInfo control);
 
-    public delegate void DetailInNewWindowEventHandler(IMaterialUIControlInfo control);
+    public delegate void DetailInNewWindowEventHandler(IMaterialUIGalleryCardInfo control);
     #endregion
 
     #region [Event Handlers]
@@ -25,14 +25,14 @@ public partial class MaterialUICardContentView : ContentView
     #region [ Properties ]
     public static readonly BindableProperty ComponentDataProperty = BindableProperty.Create(
                     nameof(ComponentData),
-                    typeof(IMaterialUIControlInfo),
+                    typeof(IMaterialUIGalleryCardInfo),
                     typeof(MaterialUICardContentView),
-                    default(IMaterialUIControlInfo)
+                    default(IMaterialUIGalleryCardInfo)
                 );
 
-    public IMaterialUIControlInfo ComponentData
+    public IMaterialUIGalleryCardInfo ComponentData
     {
-        get => (IMaterialUIControlInfo)GetValue(ComponentDataProperty);
+        get => (IMaterialUIGalleryCardInfo)GetValue(ComponentDataProperty);
         set => SetValue(ComponentDataProperty, value);
     }
     #endregion

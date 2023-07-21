@@ -4,7 +4,7 @@ namespace MAUIsland;
 
 public partial class AppShell : Shell
 {
-    #region [Services]
+    #region [ Fields ]
     private readonly IAppInfo appInfo;
 
     private readonly AppSettings appSettings;
@@ -30,7 +30,7 @@ public partial class AppShell : Shell
     #region [Methods]
     void RegisterRoutes()
     {
-        Routing.RegisterRoute(nameof(ControlsByGroupPage), typeof(ControlsByGroupPage));
+        Routing.RegisterRoute(nameof(CardsByGroupPage), typeof(CardsByGroupPage));
     }
     void WriteAppVersion()
     {
