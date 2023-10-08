@@ -30,6 +30,9 @@ public partial class ControlGroupInfo : BaseModel
     string lottieUrl;
 
     [ObservableProperty]
+    bool isVisibile = true;
+
+    [ObservableProperty]
     Color brandColor;
 
     [ObservableProperty]

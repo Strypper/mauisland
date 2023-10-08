@@ -93,6 +93,7 @@
 	  <None Remove="Resources\Fonts\FluentSystemIcons-Regular.ttf" />
 	  <None Remove="Resources\Images\androidlogo.svg" />
 	  <None Remove="Resources\Images\backgrounds\maui_homepage_background.jpg" />
+	  <None Remove="Resources\Images\backgrounds\pattern_background_image.png" />
 	  <None Remove="Resources\Images\banners\devexpress_banner.jpg" />
 	  <None Remove="Resources\Images\banners\github_banner.png" />
 	  <None Remove="Resources\Images\banners\mauitoolkit_banner.png" />
@@ -160,6 +161,7 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="OverFlower" Version="0.0.3" />
 		<PackageReference Include="Refit" Version="7.0.0" />
 		<PackageReference Include="Refit.HttpClientFactory" Version="7.0.0" />
 		<PackageReference Include="Refit.Newtonsoft.Json" Version="6.3.2" />
@@ -191,7 +193,6 @@
   <ItemGroup>
     <Folder Include="Features\Blog\" />
     <Folder Include="Features\Gallery\Pages\BuiltIn\Layouts\" />
-    <Folder Include="Features\Gallery\Pages\Community\" />
     <Folder Include="Features\Gallery\Pages\Material\" />
     <Folder Include="Features\QA\" />
     <Folder Include="Features\Gallery\Services\" />
@@ -493,6 +494,7 @@
 
   <ItemGroup>
     <MauiImage Include="Resources\Images\backgrounds\maui_homepage_background.jpg" />
+    <MauiImage Include="Resources\Images\backgrounds\pattern_background_image.png" />
     <MauiImage Include="Resources\Images\banners\builtin_banner.png" />
     <MauiImage Include="Resources\Images\banners\devexpress_banner.jpg" />
     <MauiImage Include="Resources\Images\banners\github_banner.png" />

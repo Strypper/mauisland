@@ -37,7 +37,7 @@ public partial class GalleryPageViewModel : NavigationAwareBaseViewModel
     {
         var controlGroups = await controlsService.GetControlGroupsAsync();
 
-        ControlGroups = new ObservableCollection<ControlGroupInfo>(controlGroups);
+        ControlGroups = new ObservableCollection<ControlGroupInfo>(controlGroups.Where(x => x.IsVisibile == true));
     }
     #endregion
 

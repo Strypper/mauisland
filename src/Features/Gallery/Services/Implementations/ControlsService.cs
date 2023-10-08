@@ -22,6 +22,7 @@ public class ControlsService : IControlsService
             IconUrl = "syncfusionlogo.png",
             Author = "Syncfusion Inc.",
             Banner = "syncfusion_banner.png",
+            IsVisibile = false,
             ProviderUrl = "https://help.syncfusion.com/maui/introduction/overview",
             MicrosoftStoreLink="https://www.microsoft.com/store/productId/9P2P4D2BK270",
             Description = "Syncfusion is a company that provides a set of controls for creating beautiful cross-platform, native mobile & desktop apps using .NET Multi-platform App UI (.NET MAUI). They offer a comprehensive collection of .NET MAUI components such as Charts, Gauge, and Tab View. You can add Syncfusion .NET MAUI components to your project by installing them from nuget.org. They also have a Visual Studio extension designed to streamline the creation of .NET MAUI applications."
@@ -35,6 +36,7 @@ public class ControlsService : IControlsService
             IconUrl = "devexpress_logo.png",
             Author = "DevExpress Inc.",
             Banner = "devexpress_banner.jpg",
+            IsVisibile = false,
             ProviderUrl = "https://help.syncfusion.com/maui/introduction/overview",
             MicrosoftStoreLink="https://www.microsoft.com/store/productId/9P2P4D2BK270",
             Description = "DevExpress is a company that provides a set of high-performance UI components for Android and iOS mobile development using .NET Multi-platform App UI (.NET MAUI). Their .NET MAUI component library includes a Data Grid, Chart, Scheduler, Data Editors, CollectionView, and Tabs components. All DevExpress .NET MAUI controls are available free-of-charge. You can reserve your free copy by registering on their website. Most DevExpress components for Xamarin.Forms have counterparts in .NET MAUI"
