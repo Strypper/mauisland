@@ -69,16 +69,22 @@
   <ItemGroup>
     <AndroidResource Remove="Features\Gallery\Pages\BuiltIn\AppSettingsJson\**" />
     <AndroidResource Remove="Features\Gallery\Pages\BuiltIn\Controls\DatePicker\Pages\**" />
+    <AndroidResource Remove="Features\Gallery\Pages\DevExpress\**" />
     <Compile Remove="Features\Gallery\Pages\BuiltIn\AppSettingsJson\**" />
     <Compile Remove="Features\Gallery\Pages\BuiltIn\Controls\DatePicker\Pages\**" />
+    <Compile Remove="Features\Gallery\Pages\DevExpress\**" />
     <EmbeddedResource Remove="Features\Gallery\Pages\BuiltIn\AppSettingsJson\**" />
     <EmbeddedResource Remove="Features\Gallery\Pages\BuiltIn\Controls\DatePicker\Pages\**" />
+    <EmbeddedResource Remove="Features\Gallery\Pages\DevExpress\**" />
     <MauiCss Remove="Features\Gallery\Pages\BuiltIn\AppSettingsJson\**" />
     <MauiCss Remove="Features\Gallery\Pages\BuiltIn\Controls\DatePicker\Pages\**" />
+    <MauiCss Remove="Features\Gallery\Pages\DevExpress\**" />
     <MauiXaml Remove="Features\Gallery\Pages\BuiltIn\AppSettingsJson\**" />
     <MauiXaml Remove="Features\Gallery\Pages\BuiltIn\Controls\DatePicker\Pages\**" />
+    <MauiXaml Remove="Features\Gallery\Pages\DevExpress\**" />
     <None Remove="Features\Gallery\Pages\BuiltIn\AppSettingsJson\**" />
     <None Remove="Features\Gallery\Pages\BuiltIn\Controls\DatePicker\Pages\**" />
+    <None Remove="Features\Gallery\Pages\DevExpress\**" />
   </ItemGroup>
   <ItemGroup>
     <MauiAsset Remove="Resources\Raw\australia.shp" />
@@ -189,6 +195,10 @@
 		<PackageReference Include="ZXing.Net.Maui" Version="0.3.0-preview.1" />
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.3.0-preview.1" />
 	</ItemGroup>
+
+  <PropertyGroup>
+    <UseInterpreter>true</UseInterpreter>
+  </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="Features\Blog\" />
@@ -470,6 +480,27 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
     <PackageReference Include="AdaptiveProperties.MAUI" Version="1.0.4">
     </PackageReference>
+    <PackageReference Include="DevExpress.Maui.Charts">
+      <Version>23.1.4</Version>
+    </PackageReference>
+    <PackageReference Include="DevExpress.Maui.CollectionView">
+      <Version>23.1.4</Version>
+    </PackageReference>
+    <PackageReference Include="DevExpress.Maui.Controls">
+      <Version>23.1.4</Version>
+    </PackageReference>
+    <PackageReference Include="DevExpress.Maui.DataGrid">
+      <Version>23.1.4</Version>
+    </PackageReference>
+    <PackageReference Include="DevExpress.Maui.DataGrid.Export">
+      <Version>23.1.4</Version>
+    </PackageReference>
+    <PackageReference Include="DevExpress.Maui.Editors">
+      <Version>23.1.4</Version>
+    </PackageReference>
+    <PackageReference Include="DevExpress.Maui.Scheduler">
+      <Version>23.1.4</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Firebase.Messaging" Version="123.1.1">
     </PackageReference>
     <PackageReference Include="Xamarin.Google.Dagger" Version="2.44.2">
@@ -480,6 +511,27 @@
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
     <PackageReference Include="AdaptiveProperties.MAUI" Version="1.0.4">
+    </PackageReference>
+    <PackageReference Include="DevExpress.Maui.Charts">
+      <Version>23.1.4</Version>
+    </PackageReference>
+    <PackageReference Include="DevExpress.Maui.CollectionView">
+      <Version>23.1.4</Version>
+    </PackageReference>
+    <PackageReference Include="DevExpress.Maui.Controls">
+      <Version>23.1.4</Version>
+    </PackageReference>
+    <PackageReference Include="DevExpress.Maui.DataGrid">
+      <Version>23.1.4</Version>
+    </PackageReference>
+    <PackageReference Include="DevExpress.Maui.DataGrid.Export">
+      <Version>23.1.4</Version>
+    </PackageReference>
+    <PackageReference Include="DevExpress.Maui.Editors">
+      <Version>23.1.4</Version>
+    </PackageReference>
+    <PackageReference Include="DevExpress.Maui.Scheduler">
+      <Version>23.1.4</Version>
     </PackageReference>
   </ItemGroup>
 

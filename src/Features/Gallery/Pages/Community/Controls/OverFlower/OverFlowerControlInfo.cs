@@ -1,7 +1,7 @@
 namespace MAUIsland.Gallery.Community;
 class OverFlowerControlInfo : IGithubGalleryCardInfo
 {
-    public string ControlName => "Over Flower";
+    public string ControlName => nameof(OverFlower);
     public string ControlRoute => typeof(OverFlowerPage).FullName;
     public ImageSource ControlIcon => new FontImageSource()
     {

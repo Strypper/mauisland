@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <app:BasePage
-    x:Class="MAUIsland.OverFlowerPage"
+    x:Class="MAUIsland.DevExpressButtonPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
-    xmlns:over="clr-namespace:OverFlower;assembly=OverFlower"
-    Title="OverFlower"
+    xmlns:devExpressControls="clr-namespace:DevExpress.Maui.Controls;assembly=DevExpress.Maui.Controls"
+    Title="DevExpressButton"
     Padding="10"
-    x:DataType="app:OverFlowerPageViewModel">
+    x:DataType="app:DevExpressButtonPageViewModel">
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem
@@ -25,7 +25,7 @@
     <app:BasePage.Resources>
 
         <x:String x:Key="PropertiesListHeader">
-            OverFlower defines the following properties:
+            DevExpressButton defines the following properties:
         </x:String>
 
         <x:String x:Key="PropertiesListFooter">
@@ -35,32 +35,12 @@
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">ImageWidth</strong>, of type <strong style="color:blue">double</strong>, value that defines the width of the image inside the container.
+                                <strong style="color:blue">Color</strong>, of type <strong style="color:blue">Color </strong>, value that defines the color of the ActivityIndicator.
                             ]]>
             </x:String>
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">ImageHeight</strong>, of type <strong style="color:blue">double</strong>, value that defines the height of the image inside the container.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">ScrollDuration</strong>, of type <strong style="color:blue">double</strong>, value that defines the duration of scrolling animation inside the container.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">Reverse</strong>, of type <strong style="color:blue">bool</strong>, enable reverse scrolling at the end of the animation.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">ScrollDirection</strong>, of type <strong style="color:blue">ScrollDirection</strong>, the direction of the flow LEFT, RIGHT, DOWN and UP.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">ImageSource</strong>, of type <strong style="color:blue">ImageSource</strong>, image source of the image inside the container.
+                                <strong style="color:blue">IsRunning</strong>, of type <strong style="color:blue">bool</strong>,value that indicates whether the ActivityIndicator should be visible and animating, or hidden. The default value of this property is false, which indicates that the ActivityIndicator isn't visible.
                             ]]>
             </x:String>
         </x:Array>
@@ -68,7 +48,7 @@
 
     </app:BasePage.Resources>
 
-    <ScrollView>
+    <ScrollView IsVisible="{x:OnPlatform Android=true, WinUI=false}">
         <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <Label Text="{x:Binding ControlInformation.ControlDetail}" />
@@ -81,12 +61,9 @@
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <over:OverFlower
-                    ImageHeight="1000"
-                    ImageSource="pattern_background_image.png"
-                    ImageWidth="2500"
-                    ScrollDirection="Left"
-                    ScrollDuration="20000" />
+                <VerticalStackLayout>
+                    <devExpressControls:SimpleButton Text="Simple button" />
+                </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
     </ScrollView>

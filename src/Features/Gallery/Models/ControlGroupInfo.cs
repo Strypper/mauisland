@@ -41,7 +41,6 @@ public partial class ControlGroupInfo : BaseModel
     [ObservableProperty]
     string microsoftStoreLink;
 
-
     public const string BuiltInControls = nameof(BuiltInControls);
     public const string SyncfusionControls = nameof(SyncfusionControls);
     public const string DevExpressControls = nameof(DevExpressControls);
