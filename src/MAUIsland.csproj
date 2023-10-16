@@ -176,21 +176,21 @@
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.4-preview.84" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.4-preview.84" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.4-preview.84" />
-		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="22.1.38" />
-		<PackageReference Include="Syncfusion.Maui.Barcode" Version="22.1.38" />
-		<PackageReference Include="Syncfusion.Maui.Calendar" Version="22.1.38" />
-		<PackageReference Include="Syncfusion.Maui.Charts" Version="22.1.38" />
-		<PackageReference Include="Syncfusion.Maui.Core" Version="22.1.38" />
-		<PackageReference Include="Syncfusion.Maui.DataForm" Version="22.1.38" />
-		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="22.1.38" />
-		<PackageReference Include="Syncfusion.Maui.Gauges" Version="22.1.38" />
-		<PackageReference Include="Syncfusion.Maui.Inputs" Version="22.1.38" />
-		<PackageReference Include="Syncfusion.Maui.ListView" Version="22.1.38" />
-		<PackageReference Include="Syncfusion.Maui.Maps" Version="22.1.38" />
-		<PackageReference Include="Syncfusion.Maui.PdfViewer" Version="22.1.38" />
-		<PackageReference Include="Syncfusion.Maui.ProgressBar" Version="22.1.36" />
-		<PackageReference Include="Syncfusion.Maui.SignaturePad" Version="22.1.38" />
-		<PackageReference Include="Syncfusion.Maui.Sliders" Version="22.1.38" />
+		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="23.1.36" />
+		<PackageReference Include="Syncfusion.Maui.Barcode" Version="23.1.36" />
+		<PackageReference Include="Syncfusion.Maui.Calendar" Version="23.1.36" />
+		<PackageReference Include="Syncfusion.Maui.Charts" Version="23.1.36" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="23.1.36" />
+		<PackageReference Include="Syncfusion.Maui.DataForm" Version="23.1.36" />
+		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="23.1.36" />
+		<PackageReference Include="Syncfusion.Maui.Gauges" Version="23.1.36" />
+		<PackageReference Include="Syncfusion.Maui.Inputs" Version="23.1.36" />
+		<PackageReference Include="Syncfusion.Maui.ListView" Version="23.1.36" />
+		<PackageReference Include="Syncfusion.Maui.Maps" Version="23.1.36" />
+		<PackageReference Include="Syncfusion.Maui.PdfViewer" Version="23.1.36" />
+		<PackageReference Include="Syncfusion.Maui.ProgressBar" Version="23.1.36" />
+		<PackageReference Include="Syncfusion.Maui.SignaturePad" Version="23.1.36" />
+		<PackageReference Include="Syncfusion.Maui.Sliders" Version="23.1.36" />
 		<PackageReference Include="Syncfusion.Maui.TabView" Version="22.1.38" />
 		<PackageReference Include="ZXing.Net.Maui" Version="0.3.0-preview.1" />
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.3.0-preview.1" />
@@ -536,7 +536,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="appsettings.Development.json" />
+    <EmbeddedResource Include="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="Features\Gallery\Pages\BuiltIn\Helpers\AppSettingsJson\JsonFiles\appsettings.json" />
     <EmbeddedResource Include="Resources\Raw\australia.shp" />
     <EmbeddedResource Include="Resources\Raw\river.json" />
