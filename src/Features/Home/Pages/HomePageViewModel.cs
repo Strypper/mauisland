@@ -53,7 +53,7 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
 
         IsBusy = false;
 
-        if (MauiFacts == null && applicationNews == null)
+        if (MauiFacts == null && ApplicationNews == null)
         {
             MauiFacts = new ObservableCollection<MAUIFact>(items);
             ApplicationNews = new ObservableCollection<ApplicationNew>(news);

@@ -1,10 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+<<<<<<< Updated upstream
 		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		 <!--<TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks>--> 
+=======
+		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
+>>>>>>> Stashed changes
 		<OutputType>Exe</OutputType>
 		<RootNamespace>MAUIsland</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -23,12 +28,21 @@
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <ApplicationVersion>1</ApplicationVersion>
 
+<<<<<<< Updated upstream
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.2</SupportedOSPlatformVersion>
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+=======
+	<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+	<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+	<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+	<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+	<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+	<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+>>>>>>> Stashed changes
     <GenerateAppInstallerFile>True</GenerateAppInstallerFile>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
@@ -40,13 +54,22 @@
     <PackageCertificateKeyFile>MAUIsland_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
 
+<<<<<<< Updated upstream
   <PropertyGroup Condition="'$(TargetFramework)|$(Platform)'=='net7.0-ios|AnyCPU'">
+=======
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)|$(Platform)'=='net8.0-ios|AnyCPU'">
+>>>>>>> Stashed changes
     <CodesignProvision>Automatic</CodesignProvision>
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Platforms/iOS/Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
     <CreatePackage>false</CreatePackage>
   </PropertyGroup>
   <ItemGroup>
@@ -154,6 +177,7 @@
 	<ItemGroup>
 		<PackageReference Include="AcrylicView.Maui" Version="1.13.0" />
 		<PackageReference Include="Bogus" Version="34.0.2" />
+<<<<<<< Updated upstream
 		<PackageReference Include="ColorCode.Core" Version="2.0.14" />
 		<PackageReference Include="CommunityToolkit.Common" Version="8.2.1" />
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.0" />
@@ -166,6 +190,20 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+=======
+		<PackageReference Include="ColorCode.Core" Version="2.0.15" />
+		<PackageReference Include="CommunityToolkit.Common" Version="8.2.2" />
+		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="6.1.0" />
+		<PackageReference Include="CommunityToolkit.Maui.Core" Version="6.1.0" />
+		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="2.0.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Material.Components.Maui" Version="0.1.2-beta" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+>>>>>>> Stashed changes
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="OverFlower" Version="0.0.3" />
 		<PackageReference Include="Refit" Version="7.0.0" />
@@ -192,8 +230,8 @@
 		<PackageReference Include="Syncfusion.Maui.SignaturePad" Version="23.1.36" />
 		<PackageReference Include="Syncfusion.Maui.Sliders" Version="23.1.36" />
 		<PackageReference Include="Syncfusion.Maui.TabView" Version="22.1.38" />
-		<PackageReference Include="ZXing.Net.Maui" Version="0.3.0-preview.1" />
-		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.3.0-preview.1" />
+		<PackageReference Include="ZXing.Net.Maui" Version="0.4.0" />
+		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
 	</ItemGroup>
 
   <PropertyGroup>
@@ -207,6 +245,7 @@
     <Folder Include="Features\QA\" />
     <Folder Include="Features\Gallery\Services\" />
     <Folder Include="Features\Settings\Models\" />
+    <Folder Include="Platforms\Android\Services\" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -480,6 +519,7 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
     <PackageReference Include="AdaptiveProperties.MAUI" Version="1.0.4">
     </PackageReference>
+<<<<<<< Updated upstream
     <PackageReference Include="DevExpress.Maui.Charts">
       <Version>23.1.4</Version>
     </PackageReference>
@@ -502,10 +542,11 @@
       <Version>23.1.4</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Firebase.Messaging" Version="123.1.1">
+=======
+    <PackageReference Include="Xamarin.Google.Dagger" Version="2.47.0.1">
+>>>>>>> Stashed changes
     </PackageReference>
-    <PackageReference Include="Xamarin.Google.Dagger" Version="2.44.2">
-    </PackageReference>
-    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.1.0">
+    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.2.0.4">
     </PackageReference>
   </ItemGroup>
 
@@ -585,4 +626,19 @@
     <MauiImage Include="Resources\Images\memes\mrincrediblesmile5.png" />
   </ItemGroup>
 
+<<<<<<< Updated upstream
+=======
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows10.0.19041.0'">
+    <PackageReference Include="Microsoft.Maui.Graphics.Win2D.WinUI.Desktop">
+      <Version>8.0.3</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
+    <PackageReference Include="Xamarin.Firebase.Messaging">
+      <Version>123.2.1.1</Version>
+    </PackageReference>
+  </ItemGroup>
+
+>>>>>>> Stashed changes
 </Project>
