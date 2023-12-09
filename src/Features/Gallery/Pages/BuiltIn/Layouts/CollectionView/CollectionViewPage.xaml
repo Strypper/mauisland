@@ -114,7 +114,7 @@
                                         Grid.RowSpan="2"
                                         Aspect="AspectFill"
                                         HeightRequest="60"
-                                        Source="{Binding ImageUrl}"
+                                        Source="{Binding ImageUrl, Mode=OneWay}"
                                         WidthRequest="60" />
                                     <Label
                                         Grid.Column="1"
@@ -159,7 +159,7 @@
                                         Grid.RowSpan="2"
                                         Aspect="AspectFill"
                                         HeightRequest="60"
-                                        Source="{Binding ImageUrl}"
+                                        Source="{Binding ImageUrl, Mode=OneWay}"
                                         WidthRequest="60" />
                                     <Label
                                         Grid.Column="1"
@@ -214,7 +214,7 @@
                                             Grid.RowSpan="2"
                                             Aspect="AspectFill"
                                             HeightRequest="60"
-                                            Source="{Binding ImageUrl}"
+                                            Source="{Binding ImageUrl, Mode=OneWay}"
                                             WidthRequest="60" />
                                         <Label
                                             Grid.Column="1"
@@ -256,7 +256,7 @@
                                             Grid.RowSpan="2"
                                             Aspect="AspectFill"
                                             HeightRequest="60"
-                                            Source="{Binding ImageUrl}"
+                                            Source="{Binding ImageUrl, Mode=OneWay}"
                                             WidthRequest="60" />
                                         <Label
                                             Grid.Column="1"
@@ -299,7 +299,7 @@
                                         Grid.RowSpan="2"
                                         Aspect="AspectFill"
                                         HeightRequest="60"
-                                        Source="{Binding ImageUrl}"
+                                        Source="{Binding ImageUrl, Mode=OneWay}"
                                         WidthRequest="60" />
                                     <Label
                                         Grid.Column="1"
@@ -336,7 +336,7 @@
                                     Grid.RowSpan="2"
                                     Aspect="AspectFill"
                                     HeightRequest="60"
-                                    Source="{Binding ImageUrl}"
+                                    Source="{Binding ImageUrl, Mode=OneWay}"
                                     WidthRequest="60" />
                                 <Label
                                     Grid.Column="1"

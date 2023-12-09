@@ -30,16 +30,7 @@
             Source="fluentuibackground.jpg"
             VerticalOptions="Fill" />
 
-        <!--<toolkit:MediaElement
-            Aspect="AspectFill"
-            HorizontalOptions="Fill"
-            ShouldAutoPlay="True"
-            ShouldLoopPlayback="True"
-            ShouldShowPlaybackControls="False"
-            Source="embed://digital_grabe.mp4"
-            VerticalOptions="Fill" />-->
         <acrylic:AcrylicView
-            Padding="30"
             CornerRadius="20"
             EffectStyle="Light"
             HorizontalOptions="Center"
@@ -50,23 +41,25 @@
                                             Tablet=650,
                                             Phone=320}"
             VerticalOptions="Center">
-            <CollectionView
-                HorizontalOptions="Center"
-                ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
-                ItemsSource="{x:Binding ControlGroups,
-                                        Mode=OneWay}"
-                VerticalOptions="Center">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout
-                        HorizontalItemSpacing="5"
-                        Orientation="Vertical"
-                        Span="{x:OnIdiom Desktop=3,
-                                         Phone=2,
-                                         Tablet=3,
-                                         TV=4}"
-                        VerticalItemSpacing="5" />
-                </CollectionView.ItemsLayout>
-            </CollectionView>
+            <Border Padding="30">
+                <CollectionView
+                    HorizontalOptions="Center"
+                    ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
+                    ItemsSource="{x:Binding ControlGroups,
+                                            Mode=OneWay}"
+                    VerticalOptions="Center">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout
+                            HorizontalItemSpacing="5"
+                            Orientation="Vertical"
+                            Span="{x:OnIdiom Desktop=3,
+                                             Phone=2,
+                                             Tablet=3,
+                                             TV=4}"
+                            VerticalItemSpacing="5" />
+                    </CollectionView.ItemsLayout>
+                </CollectionView>
+            </Border>
         </acrylic:AcrylicView>
     </Grid>
 </app:BasePage>

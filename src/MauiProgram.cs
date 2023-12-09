@@ -13,9 +13,6 @@ using Syncfusion.Maui.Core.Hosting;
 using System.Reflection;
 using Xe.AcrylicView;
 using ZXing.Net.Maui.Controls;
-#if __ANDROID__
-    using DevExpress.Maui;
-#endif
 
 namespace MAUIsland;
 
@@ -30,10 +27,6 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
-#if __ANDROID__
-
-            .UseDevExpress()
-#endif
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitCore()
             .UseMauiCommunityToolkitMediaElement()

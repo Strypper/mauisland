@@ -15,14 +15,14 @@
     Shell.TabBarIsVisible="False"
     SizeChanged="BasePage_SizeChanged">
     <Shell.SearchHandler>
+        <!--SearchBoxVisibility="{x:OnPlatform iOS=false,
+                                               MacCatalyst=false, WinUI=true}"-->
         <app:CardsSearchHandler
             Cards="{x:Binding Items,
                               Mode=TwoWay}"
             ClearIcon="{x:StaticResource SearchBarDismissIcon}"
             Placeholder="Search Controls"
             QueryIcon="{x:StaticResource SearchBarSearchIcon}"
-            SearchBoxVisibility="{x:OnPlatform iOS=false,
-                                               MacCatalyst=false}"
             SelectCard="CardsSearchHandler_SelectCard"
             ShowsResults="True">
             <app:CardsSearchHandler.ItemTemplate>
@@ -129,7 +129,6 @@
                             StrokeThickness="5"
                             VerticalOptions="End">
                             <acrylic:AcrylicView
-                                Padding="15"
                                 EffectStyle="ExtraDark"
                                 HeightRequest="250"
                                 HorizontalOptions="Fill"
@@ -137,7 +136,10 @@
                                                       Tablet=True,
                                                       Phone=False}"
                                 VerticalOptions="Fill">
-                                <Grid ColumnDefinitions="100, 400, 200" ColumnSpacing="10">
+                                <Grid
+                                    Padding="15"
+                                    ColumnDefinitions="100, 400, 200"
+                                    ColumnSpacing="10">
                                     <VerticalStackLayout VerticalOptions="Start">
                                         <ImageButton
                                             Padding="4"
