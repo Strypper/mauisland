@@ -17,8 +17,8 @@
             Color="{x:Static app:AppColors.Black}" />
     </ContentView.Resources>
 
-    <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-        <toolkit:Expander IsExpanded="{x:Binding IsExpanding, Source={x:Reference root}, Mode=TwoWay}">
+    <Frame BackgroundColor="{x:Static app:AppColors.White}" Style="{x:StaticResource DocumentContentFrameStyle}">
+        <toolkit:Expander x:Name="CodeExpander" IsExpanded="{x:Binding IsExpanding, Source={x:Reference root}, Mode=TwoWay}">
             <toolkit:Expander.Header>
                 <Grid>
                     <Label

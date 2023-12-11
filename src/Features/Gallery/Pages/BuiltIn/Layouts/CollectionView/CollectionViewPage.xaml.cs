@@ -1,3 +1,5 @@
+using Syncfusion.Maui.ListView;
+
 namespace MAUIsland;
 
 public partial class CollectionViewPage : IGalleryPage
@@ -26,16 +28,9 @@ public partial class CollectionViewPage : IGalleryPage
         previousSelectedItemLabel.Text = string.IsNullOrWhiteSpace(previous) ? "[none]" : previous;
         currentSelectedItemLabel.Text = string.IsNullOrWhiteSpace(current) ? "[none]" : current;
     }
-    private void RadioButton_Checked(object sender, CheckedChangedEventArgs e)
-    {
-        RadioButton button = sender as RadioButton;
-        var layout = button.Content;
 
-        //if (layout == "Grid")
-            //CollectionViewExample.ItemsLayout = "VerticalGrid, 2" as IItemsLayout;
-        //else
-        //    CollectionViewExample.ItemsLayout = null;
+    private void Stepper_ValueChanged(object sender, ValueChangedEventArgs e)
+    {
 
     }
-
 }

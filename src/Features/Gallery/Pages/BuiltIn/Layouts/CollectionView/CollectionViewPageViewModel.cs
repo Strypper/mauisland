@@ -10,7 +10,6 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
     Monkey selectedMonkey;
     int selectionCount = 1;
 
-    public ObservableCollection<Monkey> Monkeys { get; private set; }
     public IList<Monkey> EmptyMonkeys { get; private set; }
 
     public Monkey SelectedMonkey
@@ -28,22 +27,49 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
         }
     }
 
+    #region [ Properties ]
+
+    [ObservableProperty]
+    IGalleryCardInfo controlInformation;
+
+    [ObservableProperty]
+    ObservableCollection<Monkey> monkeys;
 
     [ObservableProperty]
     ObservableCollection<object> selectedMonkeys;
 
+    [ObservableProperty]
+    int spanNumber = 1;
+
+    [ObservableProperty]
+    string collectionViewGridLayoutType = "<CollectionView\r\n x:Name=\"CollectionViewExample\"\r\n Grid.Row=\"1\"\r\n ItemTemplate=\"{x:StaticResource CollectionViewItemTemplate}\"\r\n ItemsSource=\"{x:Binding Monkeys,\r\n Mode=OneWay}\">\r\n <CollectionView.ItemsLayout>\r\n <GridItemsLayout\r\n HorizontalItemSpacing=\"30\"\r\n   Orientation=\"Vertical\"\r\n  Span=\"{x:Binding SpanNumber,\r\n                                                     Mode=OneWay}\"\r\n                                    VerticalItemSpacing=\"20\" />\r\n                            </CollectionView.ItemsLayout>\r\n                        </CollectionView>";
+
+    [ObservableProperty]
+    string collectionViewQuickLayoutConfigXAMLCode = "<CollectionView\r\n    ItemTemplate=\"{x:StaticResource CollectionViewItemTemplate}\"\r\n    ItemsLayout=\"VerticalGrid, 2\"\r\n    ItemsSource=\"{Binding Monkeys}\" />";
+
     public string SelectedMonkeyMessage { get; private set; }
+    #endregion
 
     public ICommand DeleteCommand => new Command<Monkey>(RemoveMonkey);
     public ICommand FavoriteCommand => new Command<Monkey>(FavoriteMonkey);
     public ICommand FilterCommand => new Command<string>(FilterItems);
     public ICommand MonkeySelectionChangedCommand => new Command(MonkeySelectionChanged);
 
-    #region [CTor]
+    #region [ CTor ]
     public CollectionViewPageViewModel(IAppNavigator appNavigator)
                                     : base(appNavigator)
     {
         source = new List<Monkey>();
+    }
+    #endregion
+
+    #region [ Override ]
+    protected override void OnInit(IDictionary<string, object> query)
+    {
+        base.OnInit(query);
+
+        ControlInformation = query.GetData<IGalleryCardInfo>();
+
         CreateMonkeyCollection();
 
         selectedMonkey = Monkeys.Skip(3).FirstOrDefault();
@@ -54,6 +80,8 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
             Monkeys[1], Monkeys[3], Monkeys[4]
         };
     }
+
+
     #endregion
 
     void CreateMonkeyCollection()
@@ -245,6 +273,11 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
+    #region [Relay Commands]
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
+    #endregion
 }
 
 

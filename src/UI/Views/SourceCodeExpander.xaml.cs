@@ -75,6 +75,9 @@ public partial class SourceCodeExpander : ContentView, INotifyPropertyChanged
     {
         CodeTypeLabel.Text = CodeType == CodeType.Xaml ? "Xaml Code" : "C# Code";
         ApplyColor(Code, CodeType == CodeType.Xaml ? Languages.Xml : Languages.CSharp);
+        CodeExpander.BackgroundColor = CodeType == CodeType.Xaml
+                                    ? Color.FromHex("#ffffff") // Hex color for XAML type
+                                    : Color.FromHex("#00B1EE");
     }
 
     #endregion
@@ -93,22 +96,6 @@ public partial class SourceCodeExpander : ContentView, INotifyPropertyChanged
     #endregion
 
 }
-
-
-#region [Converters]
-public class CodeTypeToStringConverter : IValueConverter
-{
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        throw new NotImplementedException();
-    }
-
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        throw new NotImplementedException();
-    }
-}
-#endregion
 
 public partial class SourceCodeForSample : BaseModel
 {

@@ -4,8 +4,10 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Collection View"
-    Padding="10">
+    Padding="10"
+    x:DataType="app:CollectionViewPageViewModel">
 
 
     <app:BasePage.Resources>
@@ -76,8 +78,52 @@
             </x:String>
         </x:Array>
 
+        <DataTemplate x:Key="CollectionViewItemTemplate" x:DataType="app:Monkey">
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <toolkit:AvatarView
+                    Grid.RowSpan="2"
+                    HeightRequest="60"
+                    ImageSource="{x:Binding ImageUrl,
+                                            Mode=OneWay}"
+                    Text="{x:Binding Name,
+                                     Mode=OneWay}"
+                    WidthRequest="60" />
+
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    Text="{x:Binding Name}" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    FontAttributes="Italic"
+                    Text="{x:Binding Location}"
+                    VerticalOptions="End" />
+            </Grid>
+        </DataTemplate>
 
     </app:BasePage.Resources>
+
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </app:BasePage.ToolbarItems>
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
@@ -98,38 +144,9 @@
                     <CollectionView
                         Footer="This is Footer"
                         Header="Header: Monkeys"
-                        ItemsSource="{Binding Monkeys}">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Padding="10">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <Image
-                                        Grid.RowSpan="2"
-                                        Aspect="AspectFill"
-                                        HeightRequest="60"
-                                        Source="{Binding ImageUrl, Mode=OneWay}"
-                                        WidthRequest="60" />
-                                    <Label
-                                        Grid.Column="1"
-                                        FontAttributes="Bold"
-                                        Text="{Binding Name}" />
-                                    <Label
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        FontAttributes="Italic"
-                                        Text="{Binding Location}"
-                                        VerticalOptions="End" />
-                                </Grid>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                        ItemTemplate="{x:StaticResource CollectionViewItemTemplate}"
+                        ItemsSource="{x:Binding Monkeys,
+                                                Mode=OneWay}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -146,35 +163,10 @@
                             Grid.Column="1" />
                     </Grid>
                     <CollectionView
+                        ItemTemplate="{x:StaticResource CollectionViewItemTemplate}"
                         ItemsSource="{x:Binding Monkeys}"
                         SelectionChanged="OnCollectionViewSelectionChanged"
-                        SelectionMode="Single">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid
-                                    Padding="10"
-                                    ColumnDefinitions="auto, auto"
-                                    RowDefinitions="auto, auto">
-                                    <Image
-                                        Grid.RowSpan="2"
-                                        Aspect="AspectFill"
-                                        HeightRequest="60"
-                                        Source="{Binding ImageUrl, Mode=OneWay}"
-                                        WidthRequest="60" />
-                                    <Label
-                                        Grid.Column="1"
-                                        FontAttributes="Bold"
-                                        Text="{Binding Name}" />
-                                    <Label
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        FontAttributes="Italic"
-                                        Text="{Binding Location}"
-                                        VerticalOptions="End" />
-                                </Grid>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                        SelectionMode="Single" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -183,7 +175,7 @@
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView with swipe support" />
                     <CollectionView x:Name="collectionView" ItemsSource="{x:Binding Monkeys}">
                         <CollectionView.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate x:DataType="app:Monkey">
                                 <SwipeView>
                                     <SwipeView.LeftItems>
                                         <SwipeItems>
@@ -201,7 +193,7 @@
                                                 Text="Delete" />
                                         </SwipeItems>
                                     </SwipeView.LeftItems>
-                                    <Grid Padding="10" BackgroundColor="White">
+                                    <Grid Padding="10">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
@@ -238,123 +230,80 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView layouts" />
-                    <Label Text="Vertical list layout" />
-                    <Grid ColumnDefinitions="*, auto">
-                        <CollectionView x:Name="CollectionViewExample" ItemsSource="{Binding Monkeys}">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Padding="10">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <Image
-                                            Grid.RowSpan="2"
-                                            Aspect="AspectFill"
-                                            HeightRequest="60"
-                                            Source="{Binding ImageUrl, Mode=OneWay}"
-                                            WidthRequest="60" />
-                                        <Label
-                                            Grid.Column="1"
-                                            FontAttributes="Bold"
-                                            Text="{Binding Name}" />
-                                        <Label
-                                            Grid.Row="1"
-                                            Grid.Column="1"
-                                            FontAttributes="Italic"
-                                            Text="{Binding Location}"
-                                            VerticalOptions="End" />
-                                    </Grid>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-
-                        <StackLayout Grid.Column="1">
-                            <Label Text="Layout" />
-
-                            <RadioButton
-                                CheckedChanged="RadioButton_Checked"
-                                Content="List"
-                                GroupName="Layout"
-                                IsChecked="True" />
-                            <RadioButton
-                                CheckedChanged="RadioButton_Checked"
-                                Content="Grid"
-                                GroupName="Layout" />
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Utilize " />
+                                <Span FontAttributes="Bold" Text="GridItemsLayout " />
+                                <Span Text=" with " />
+                                <Span FontAttributes="Bold" Text="Span" />
+                                <Span Text=" to achieve a grid-like layout in a CollectionView" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Grid RowDefinitions="*, auto, auto">
+                        <StackLayout>
+                            <Label Text="Number of Span" />
+                            <Label FontAttributes="Bold" Text="{x:Binding SpanNumber, Mode=OneWay}" />
+                            <Stepper Minimum="1" Value="{x:Binding SpanNumber, Mode=TwoWay}" />
                         </StackLayout>
 
+                        <CollectionView
+                            x:Name="CollectionViewExample"
+                            Grid.Row="1"
+                            ItemTemplate="{x:StaticResource CollectionViewItemTemplate}"
+                            ItemsSource="{x:Binding Monkeys,
+                                                    Mode=OneWay}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout
+                                    HorizontalItemSpacing="30"
+                                    Orientation="Vertical"
+                                    Span="{x:Binding SpanNumber,
+                                                     Mode=OneWay}"
+                                    VerticalItemSpacing="20" />
+                            </CollectionView.ItemsLayout>
+                        </CollectionView>
+
+                        <app:SourceCodeExpander
+                            Grid.Row="2"
+                            Code="{x:Binding CollectionViewGridLayoutType}"
+                            CodeType="Xaml" />
+
                     </Grid>
-                    <CollectionView ItemsSource="{Binding Monkeys}">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid
-                                    Padding="10"
-                                    ColumnDefinitions="auto, auto"
-                                    RowDefinitions="auto, auto">
-                                    <Image
-                                        Grid.RowSpan="2"
-                                        Aspect="AspectFill"
-                                        HeightRequest="60"
-                                        Source="{Binding ImageUrl, Mode=OneWay}"
-                                        WidthRequest="60" />
-                                    <Label
-                                        Grid.Column="1"
-                                        FontAttributes="Bold"
-                                        Text="{Binding Name}" />
-                                    <Label
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        FontAttributes="Italic"
-                                        Text="{Binding Location}"
-                                        VerticalOptions="End" />
-                                </Grid>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
                 </VerticalStackLayout>
             </Frame>
 
-            <Label Text="Vertical grid layout" />
-            <StackLayout Margin="20">
-                <CollectionView ItemsLayout="VerticalGrid, 2" ItemsSource="{Binding Monkeys}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Padding="10">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="35" />
-                                    <RowDefinition Height="35" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="70" />
-                                    <ColumnDefinition Width="80" />
-                                </Grid.ColumnDefinitions>
-                                <Image
-                                    Grid.RowSpan="2"
-                                    Aspect="AspectFill"
-                                    HeightRequest="60"
-                                    Source="{Binding ImageUrl, Mode=OneWay}"
-                                    WidthRequest="60" />
-                                <Label
-                                    Grid.Column="1"
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Quickly set the collectionview layout" />
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="You can quickly set the collectionview" />
+                                <Span
+                                    BackgroundColor="Yellow"
+                                    Text=" layout "
+                                    TextDecorations="Underline" />
+                                <Span Text="with this syntax " />
+                                <Span
+                                    BackgroundColor="LightGreen"
                                     FontAttributes="Bold"
-                                    LineBreakMode="TailTruncation"
-                                    Text="{Binding Name}" />
-                                <Label
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    FontAttributes="Italic"
-                                    LineBreakMode="TailTruncation"
-                                    Text="{Binding Location}"
-                                    VerticalOptions="End" />
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </StackLayout>
+                                    Text="ItemsLayout=" />
+                                <Span
+                                    BackgroundColor="LightGreen"
+                                    FontAttributes="Bold"
+                                    Text="VerticalGrid, 2" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <CollectionView
+                        ItemTemplate="{x:StaticResource CollectionViewItemTemplate}"
+                        ItemsLayout="VerticalGrid, 2"
+                        ItemsSource="{x:Binding Monkeys,
+                                                Mode=OneWay}" />
+                </VerticalStackLayout>
+            </Frame>
+            <app:SourceCodeExpander Code="{x:Binding CollectionViewQuickLayoutConfigXAMLCode}" CodeType="Xaml" />
         </VerticalStackLayout>
     </ScrollView>
 

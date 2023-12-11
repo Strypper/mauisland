@@ -15,8 +15,10 @@
     Shell.TabBarIsVisible="False"
     SizeChanged="BasePage_SizeChanged">
     <Shell.SearchHandler>
-        <!--SearchBoxVisibility="{x:OnPlatform iOS=false,
-                                               MacCatalyst=false, WinUI=true}"-->
+        <!--
+            SearchBoxVisibility="{x:OnPlatform iOS=false,
+            MacCatalyst=false, WinUI=true}"
+        -->
         <app:CardsSearchHandler
             Cards="{x:Binding Items,
                               Mode=TwoWay}"
@@ -160,7 +162,7 @@
                                             SemanticProperties.Description="Cute dot net bot waving hi to you!"
                                             Source="dotnetbot.json"
                                             WidthRequest="90" />
-                                        <Label HorizontalOptions="Center">
+                                        <Label HorizontalOptions="Center" TextColor="{x:Static app:AppColors.White}">
                                             <Label.FormattedText>
                                                 <FormattedString>
                                                     <Span Text="Version: " />
@@ -175,7 +177,7 @@
                                             FontSize="18"
                                             Text="{x:Binding ControlGroup.Title}"
                                             TextColor="{x:Static app:AppColors.White}" />
-                                        <Label>
+                                        <Label TextColor="{x:Static app:AppColors.White}">
                                             <Label.FormattedText>
                                                 <FormattedString>
                                                     <Span Text="Author: " />
@@ -187,10 +189,11 @@
                                             HeightRequest="170"
                                             LineBreakMode="CharacterWrap"
                                             MaxLines="10"
-                                            Text="{x:Binding ControlGroup.Description}" />
+                                            Text="{x:Binding ControlGroup.Description}"
+                                            TextColor="{x:Static app:AppColors.White}" />
                                     </VerticalStackLayout>
                                     <VerticalStackLayout Grid.Column="2" Spacing="5">
-                                        <Label Text="Free" />
+                                        <Label Text="Free" TextColor="{x:Static app:AppColors.White}" />
                                         <Button
                                             BackgroundColor="{x:Binding ControlGroup.BrandColor}"
                                             Text="Get started"
