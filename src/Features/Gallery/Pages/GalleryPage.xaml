@@ -61,5 +61,15 @@
                 </CollectionView>
             </Border>
         </acrylic:AcrylicView>
+
+        <Button
+            Clicked="NavigateToBuiltIn_Clicked"
+            HorizontalOptions="Center"
+            IsVisible="{x:OnPlatform Android=false,
+                                     iOS=true,
+                                     WinUI=false,
+                                     MacCatalyst=false}"
+            Text="Navigate to Built-in"
+            VerticalOptions="End" />
     </Grid>
 </app:BasePage>
