@@ -201,6 +201,11 @@
 		<UseInterpreter>true</UseInterpreter>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
+	  <CodesignKey>Apple Development: viet to (3NCH3BHD67)</CodesignKey>
+	  <CodesignProvision>VS: WildCard Development</CodesignProvision>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<Folder Include="Features\Blog\" />
 		<Folder Include="Features\Gallery\Pages\BuiltIn\Layouts\" />
