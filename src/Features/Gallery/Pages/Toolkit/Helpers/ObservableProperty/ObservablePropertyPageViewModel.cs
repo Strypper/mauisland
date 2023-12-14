@@ -136,7 +136,6 @@ public partial class ObservablePropertyPageViewModel : NavigationAwareBaseViewMo
     [ObservableProperty]
     IGalleryCardInfo controlInformation;
 
-
     [ObservableProperty]
     ObservableCollection<IGalleryCardInfo> controlGroupList;
 

@@ -313,6 +313,9 @@
 		<MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfMaps\SfMapsViewPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<MauiXaml Update="Features\Gallery\Pages\Toolkit\Helpers\RelayCommand\RelayCommandPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\Toolkit\MediaElement\MediaElementPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
