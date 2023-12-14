@@ -124,7 +124,6 @@ public partial class ObservablePropertyPageViewModel : NavigationAwareBaseViewMo
     #endregion
     #endregion
 
-
     #region [Properties]
     [ObservableProperty]
     bool isExpanding;
@@ -134,7 +133,6 @@ public partial class ObservablePropertyPageViewModel : NavigationAwareBaseViewMo
 
     [ObservableProperty]
     IGalleryCardInfo controlInformation;
-
 
     [ObservableProperty]
     ObservableCollection<IGalleryCardInfo> controlGroupList;
@@ -344,7 +342,6 @@ public partial class ObservablePropertyPageViewModel : NavigationAwareBaseViewMo
         LoadDataAsync().FireAndForget();
     }
     #endregion
-
 
     #region [Relay Commands]
     [RelayCommand]
