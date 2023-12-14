@@ -1,7 +1,21 @@
+using Octokit;
+
 namespace MAUIsland.Gallery.Community;
 class OverFlowerControlInfo : IGithubGalleryCardInfo
 {
-    public string ControlName => nameof(OverFlower);
+
+    private readonly Repository repository;
+
+    public OverFlowerControlInfo()
+    {
+        var owner = "nor0x";
+        var repo = "OverFlower";
+
+        var github = new GitHubClient(new ProductHeaderValue(nameof(OverFlower)));
+        repository = github.Repository.Get(owner, repo).Result;
+    }
+
+    public string ControlName => repository.Name;
     public string ControlRoute => typeof(OverFlowerPage).FullName;
     public ImageSource ControlIcon => new FontImageSource()
     {
@@ -10,32 +24,34 @@ class OverFlowerControlInfo : IGithubGalleryCardInfo
     };
     public string ControlDetail => "Simple control to display scrolling overflow content!";
     public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Community/{ControlName}";
-    public string DocumentUrl => $"https://github.com/nor0x/OverFlower";
+    public string DocumentUrl => repository.SvnUrl;
     public string GroupName => ControlGroupInfo.GitHubCommunity;
 
     public GalleryCardType CardType => GalleryCardType.Control;
 
     public GalleryCardStatus CardStatus => throw new NotImplementedException();
 
-    public DateTime LastUpdate => throw new NotImplementedException();
+    public DateTime LastUpdate => repository.UpdatedAt.DateTime;
 
     public List<string> DoList => throw new NotImplementedException();
 
     public List<string> DontList => throw new NotImplementedException();
 
-    public string RepositoryUrl => "https://github.com/nor0x/OverFlower";
+    public string RepositoryUrl => repository.SvnUrl;
 
-    public string AuthorUrl => "https://github.com/nor0x";
+    public string AuthorUrl => repository.Owner.Url;
 
-    public string AuthorAvatar => "https://avatars.githubusercontent.com/u/3210391?v=4";
+    public string AuthorAvatar => repository.Owner.AvatarUrl;
 
-    public int Stars => 21;
+    public int Stars => repository.StargazersCount;
 
-    public int Forks => 0;
+    public int Forks => repository.ForksCount;
 
-    public int Issues => 0;
+    public int Issues => repository.OpenIssuesCount;
 
-    public string License => "MIT";
+    public string License => repository.License is null 
+                                    ? "No license" 
+                                    : repository.License.Name;
 
     public List<PlatformInfo> SupportedPlatformsInfo => new() { new() { Id = "1", Name = "Android", Logo = "androidlogo.png" },
                                                                 new() { Id = "2", Name = "IOS", Logo = "ioslogo.png" },

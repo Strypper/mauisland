@@ -1,7 +1,7 @@
 namespace MAUIsland;
 public partial class AcrylicViewPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [CTor]
+    #region [ CTor ]
     public AcrylicViewPageViewModel(
         IAppNavigator appNavigator
     ) : base(appNavigator)
@@ -9,12 +9,12 @@ public partial class AcrylicViewPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
     [ObservableProperty]
     IGalleryCardInfo controlInformation;
     #endregion
 
-    #region [Overrides]
+    #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
@@ -22,5 +22,13 @@ public partial class AcrylicViewPageViewModel : NavigationAwareBaseViewModel
         ControlInformation = query.GetData<IGalleryCardInfo>();
 
     }
+    #endregion
+
+    #region [ Relay commands ]
+
+
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+        => AppNavigator.OpenUrlAsync(url);
     #endregion
 }

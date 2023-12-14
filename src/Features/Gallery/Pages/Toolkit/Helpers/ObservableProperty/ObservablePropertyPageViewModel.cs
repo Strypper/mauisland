@@ -3,11 +3,11 @@ using Bogus.DataSets;
 namespace MAUIsland;
 public partial class ObservablePropertyPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [Services]
+    #region [ Fields ]
     private readonly IControlsService MauiControlsService;
     #endregion
 
-    #region [CTor]
+    #region [ CTor ]
     public ObservablePropertyPageViewModel(
         IAppNavigator appNavigator,
         IControlsService mauiControlsService
@@ -124,7 +124,9 @@ public partial class ObservablePropertyPageViewModel : NavigationAwareBaseViewMo
     #endregion
     #endregion
 
-    #region [Properties]
+
+    #region [ Properties ]
+
     [ObservableProperty]
     bool isExpanding;
 
@@ -332,7 +334,7 @@ public partial class ObservablePropertyPageViewModel : NavigationAwareBaseViewMo
         "}";
     #endregion
 
-    #region [Overrides]
+    #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
@@ -343,7 +345,9 @@ public partial class ObservablePropertyPageViewModel : NavigationAwareBaseViewMo
     }
     #endregion
 
-    #region [Relay Commands]
+
+    #region [ Relay Commands ]
+
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
@@ -427,7 +431,7 @@ public partial class ObservablePropertyPageViewModel : NavigationAwareBaseViewMo
     #endregion
     #endregion
 
-    #region [Data]
+    #region [ Data ]
     private async Task LoadDataAsync()
     {
         ControlGroupList.Clear();

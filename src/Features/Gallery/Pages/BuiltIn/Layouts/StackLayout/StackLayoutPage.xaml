@@ -6,8 +6,7 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="StackLayout"
     Padding="10"
-    x:DataType="app:StackLayoutPageViewModel"
-    BackgroundColor="Transparent">
+    x:DataType="app:StackLayoutPageViewModel">
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem
