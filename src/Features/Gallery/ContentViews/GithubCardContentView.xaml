@@ -37,6 +37,15 @@
             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
             Glyph="{x:Static app:FluentUIIcon.Ic_fluent_important_24_regular}"
             Color="{x:StaticResource White}" />
+
+        <FontImageSource
+            x:Key="GithubLastUpdateTimeIcon"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{x:Static app:FluentUIIcon.Ic_fluent_history_24_regular}"
+            Color="{x:StaticResource White}" />
+
+
+        <app:DateTimeToSimpleDateTimeStringConverter x:Key="DateTimeToSimpleDateTimeStringConverter" />
     </ContentView.Resources>
 
     <Grid HeightRequest="330" WidthRequest="511">
@@ -74,12 +83,14 @@
                         </BindableLayout.ItemTemplate>
                     </mdc:WrapLayout>
                 </HorizontalStackLayout>
-                <mdc:Chip
+                <app:IconLabel
                     Margin="0,0,15,0"
-                    ForegroundColor="#35ff15"
                     HorizontalOptions="End"
-                    OutlineColor="#35ff15"
-                    Text="NEW"
+                    PrefixIcon="{x:StaticResource GithubLastUpdateTimeIcon}"
+                    Text="{x:Binding ComponentData.LastUpdate,
+                                     Source={x:Reference root},
+                                     Converter={x:StaticResource DateTimeToSimpleDateTimeStringConverter}}"
+                    ToolTipProperties.Text="Last updated"
                     VerticalOptions="Center" />
                 <Frame
                     Grid.Row="1"
@@ -93,10 +104,11 @@
                         MaxLines="7"
                         Text="{x:Binding ComponentData.ControlDetail,
                                          Source={x:Reference root}}"
+                        TextColor="White"
                         ToolTipProperties.Text="{x:Binding ComponentData.ControlDetail,
                                                            Source={x:Reference root}}" />
                 </Frame>
-                <Grid Grid.Row="2" ColumnDefinitions="50, 220, 96">
+                <Grid Grid.Row="2" ColumnDefinitions="50, 200, 96">
                     <ImageButton
                         Padding="{x:OnPlatform WinUI=10,
                                                Android=5}"
@@ -113,10 +125,10 @@
                         Grid.Column="1"
                         BackgroundColor="#272b33"
                         Clicked="Detail_Clicked"
-                        HorizontalOptions="Fill"
                         Text="Detail"
                         TextColor="{x:Static app:AppColors.White}"
-                        VerticalOptions="Center" />
+                        VerticalOptions="Center"
+                        WidthRequest="200" />
                     <HorizontalStackLayout
                         Grid.Column="2"
                         Margin="5,0,0,0"
@@ -145,6 +157,7 @@
             FontAttributes="Bold"
             FontSize="24"
             Text="{x:Binding ComponentData.ControlName,
-                             Source={x:Reference root}}" />
+                             Source={x:Reference root}}"
+            TextColor="White" />
     </Grid>
 </ContentView>

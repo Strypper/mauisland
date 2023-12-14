@@ -13,7 +13,7 @@
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
             CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
-            IconImageSource="github.png"
+            IconImageSource="githublogo.png"
             Text="Source code" />
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
@@ -71,30 +71,30 @@
             </x:String>
         </x:Array>
 
-        <DataTemplate x:Key="ControlInfoCollectionView" 
-                      x:DataType="app:IGalleryCardInfo">
-            <Border Padding="5" Margin="0,5,0,5">
+        <DataTemplate x:Key="ControlInfoCollectionView" x:DataType="app:IGalleryCardInfo">
+            <Border Margin="0,5,0,5" Padding="5">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="5" />
                 </Border.StrokeShape>
-                <Grid ColumnDefinitions="0.2*, 0.2*, 0.6*" 
-                      HeightRequest="40">
-                    <Image Grid.Column="0"
-                           Source="{x:Binding ControlIcon}"
-                           VerticalOptions="Center"/>
-                    <Label Grid.Column="1"
-                           FontAttributes="Bold"
-                           LineBreakMode="TailTruncation"
-                           FontSize="14"
-                           Text="{x:Binding ControlName}"
-                           VerticalTextAlignment="Center"/>
-                    <Label Grid.Column="2"
-                           FontAttributes="Italic"
-                           LineBreakMode="TailTruncation"
-                           FontSize="12"
-                           Text="{x:Binding ControlDetail}"
-                           VerticalTextAlignment="Center">
-                    </Label>
+                <Grid ColumnDefinitions="0.2*, 0.2*, 0.6*" HeightRequest="40">
+                    <Image
+                        Grid.Column="0"
+                        Source="{x:Binding ControlIcon}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="14"
+                        LineBreakMode="TailTruncation"
+                        Text="{x:Binding ControlName}"
+                        VerticalTextAlignment="Center" />
+                    <Label
+                        Grid.Column="2"
+                        FontAttributes="Italic"
+                        FontSize="12"
+                        LineBreakMode="TailTruncation"
+                        Text="{x:Binding ControlDetail}"
+                        VerticalTextAlignment="Center" />
                 </Grid>
             </Border>
         </DataTemplate>
@@ -146,14 +146,14 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <ScrollView>
                     <VerticalStackLayout Spacing="20">
-                        <Label Text="This is example for using OnPropertyChange"/>
-                        <SearchBar x:Name="SearchBar"
-                                   Text="{x:Binding SearchText}"
-                                   Placeholder="Search items..."/>
-                        <CollectionView ItemsSource="{x:Binding ControlGroupList}"
-                                        ItemTemplate="{x:StaticResource ControlInfoCollectionView}"/>
-                        <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding SearchingXamlCode}" />
-                        <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding SearchingCSharpCode}" />
+                        <Label Text="This is example for using OnPropertyChange" />
+                        <SearchBar
+                            x:Name="SearchBar"
+                            Placeholder="Search items..."
+                            Text="{x:Binding SearchText}" />
+                        <CollectionView ItemTemplate="{x:StaticResource ControlInfoCollectionView}" ItemsSource="{x:Binding ControlGroupList}" />
+                        <app:SourceCodeExpander Code="{x:Binding SearchingXamlCode}" CodeType="Xaml" />
+                        <app:SourceCodeExpander Code="{x:Binding SearchingCSharpCode}" CodeType="CSharp" />
                     </VerticalStackLayout>
                 </ScrollView>
             </Frame>
@@ -201,11 +201,9 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
                     <Label Text="This is toolkit format" />
-                    <app:SourceCodeExpander Code="{x:Binding ToolkitRequestingPropertyValidation}" 
-                                            CodeType="CSharp"/>
+                    <app:SourceCodeExpander Code="{x:Binding ToolkitRequestingPropertyValidation}" CodeType="CSharp" />
                     <Label Text="And it will generate an observable property like this:" />
-                    <app:SourceCodeExpander Code="{x:Binding BuildinGenerateRequestingPropertyValidation}" 
-                                            CodeType="CSharp"/>
+                    <app:SourceCodeExpander Code="{x:Binding BuildinGenerateRequestingPropertyValidation}" CodeType="CSharp" />
                 </VerticalStackLayout>
             </Frame>
 

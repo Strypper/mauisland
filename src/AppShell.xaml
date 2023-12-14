@@ -11,7 +11,7 @@
             x:Key="HomeIcon"
             FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
             Glyph="{Static app:FluentUIIcon.Ic_fluent_home_20_regular}"
-            Color="{AppThemeBinding Light='#15161e',
+            Color="{AppThemeBinding Light='#d3724c',
                                     Dark='#eaeaea'}" />
         <FontImageSource
             x:Key="ChatIcon"
