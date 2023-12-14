@@ -25,7 +25,7 @@ public partial class SearchBarPage : IGalleryPage
     #region [Event]
     private async void OnSearchAsync(object sender, TextChangedEventArgs args)
     {
-        ViewModel.ControlGroupList.Clear();
+        ViewModel.ControlGroupListForEventCall.Clear();
 
         var items = await mauiControlsService.GetControlsAsync(ViewModel.ControlInformation.GroupName);
 
@@ -33,7 +33,7 @@ public partial class SearchBarPage : IGalleryPage
 
         foreach (var item in filtered)
         {
-            ViewModel.ControlGroupList.Add(item);
+            ViewModel.ControlGroupListForEventCall.Add(item);
         }
     }
     #endregion

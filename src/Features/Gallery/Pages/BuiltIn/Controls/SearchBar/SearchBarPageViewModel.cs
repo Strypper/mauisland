@@ -1,9 +1,12 @@
-﻿namespace MAUIsland;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+namespace MAUIsland;
 
 public partial class SearchBarPageViewModel : NavigationAwareBaseViewModel
 {
     #region [Services]
-    private readonly IControlsService mauiControlsService;
+    private readonly IControlsService MauiControlsService;
     #endregion
 
     #region [CTor]
@@ -11,16 +14,22 @@ public partial class SearchBarPageViewModel : NavigationAwareBaseViewModel
                                   IControlsService mauiControlsService)
                                 : base(appNavigator)
     {
-        this.mauiControlsService = mauiControlsService;
+        this.MauiControlsService = mauiControlsService;
     }
     #endregion
 
     #region [ Properties ]
     [ObservableProperty]
+    string searchText = string.Empty;
+
+    [ObservableProperty]
     IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
-    ObservableCollection<IGalleryCardInfo> controlGroupList;
+    ObservableCollection<IGalleryCardInfo> controlGroupListForEventCall;
+
+    [ObservableProperty]
+    ObservableCollection<IGalleryCardInfo> controlGroupListForCommandCall;
 
     [ObservableProperty]
     string standardSearchBarXamlCode = "<SearchBar Placeholder=\"Search items...\" />";
@@ -46,18 +55,24 @@ public partial class SearchBarPageViewModel : NavigationAwareBaseViewModel
     [ObservableProperty]
     string performASearchWithViewModelXamlCode =
         "<SearchBar Placeholder=\"Search items...\"\r\n" +
-        "           x:Name=\"searchBar\"\r\n" +
-        "           SearchCommand=\"{x:Binding SearchCommand}\"\r\n" +
-        "           SearchCommandParameter=\"{Binding Text, Source={x:Reference searchBar}}\"/>";
+        "           x:Name=\"ViewModelSearchBar\"\r\n" +
+        "           Text=\"{x:Binding SearchText}\"/>";
 
     [ObservableProperty]
     string performASearchWithViewModelCSCode =
+        "[ObservableProperty]\r\n" +
+        "[NotifyCanExecuteChangedFor(nameof(SearchCommand))]\r\n" +
+        "string searchText = string.Empty;\r\n\r\n" +
+        "partial void OnSearchTextChanged(string value)\r\n" +
+        "{\r\n" +
+        "    SearchCommand.ExecuteAsync(null);\r\n" +
+        "}\r\n\r\n" +
         "[RelayCommand]\r\n" +
         "private async Task SearchAsync(string query)\r\n" +
         "{\r\n" +
         "    ControlGroupList.Clear();\r\n\r\n" +
         "    var items = await mauiControlsService.GetControlsAsync(ControlInformation.GroupName);\r\n\r\n" +
-        "    foreach (var item in items.Where(x => x.ControlName.ToLower().Contains(query.ToLower())))\r\n" +
+        "    foreach (var item in items.Where(x => x.ControlName.ToLower().Contains(SearchText.ToLower())))\r\n" +
         "    {\r\n" +
         "        ControlGroupList.Add(item);\r\n" +
         "    }\r\n" +
@@ -68,10 +83,18 @@ public partial class SearchBarPageViewModel : NavigationAwareBaseViewModel
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
-        ControlGroupList = new ObservableCollection<IGalleryCardInfo>();
+        ControlGroupListForEventCall = new ObservableCollection<IGalleryCardInfo>();
+        ControlGroupListForCommandCall = new ObservableCollection<IGalleryCardInfo>();
         ControlInformation = query.GetData<IGalleryCardInfo>();
 
         LoadDataAsync().FireAndForget();
+    }
+    #endregion
+
+    #region [ Methods ]
+    partial void OnSearchTextChanged(string value)
+    {
+        SearchCommand.ExecuteAsync(null);
     }
     #endregion
 
@@ -81,15 +104,15 @@ public partial class SearchBarPageViewModel : NavigationAwareBaseViewModel
     => AppNavigator.OpenUrlAsync(url);
 
     [RelayCommand]
-    private async Task SearchAsync(string query)
+    private async Task SearchAsync()
     {
-        ControlGroupList.Clear();
+        ControlGroupListForCommandCall.Clear();
 
-        var items = await mauiControlsService.GetControlsAsync(ControlInformation.GroupName);
+        var items = await MauiControlsService.GetControlsAsync(ControlInformation.GroupName);
 
-        foreach (var item in items.Where(x => x.ControlName.ToLower().Contains(query.ToLower())))
+        foreach (var item in items.Where(x => x.ControlName.ToLower().Contains(SearchText.ToLower())))
         {
-            ControlGroupList.Add(item);
+            ControlGroupListForCommandCall.Add(item);
         }
     }
     #endregion
@@ -97,13 +120,15 @@ public partial class SearchBarPageViewModel : NavigationAwareBaseViewModel
     #region [Data]
     private async Task LoadDataAsync()
     {
-        ControlGroupList.Clear();
+        ControlGroupListForEventCall.Clear();
+        ControlGroupListForCommandCall.Clear();
 
-        var items = await mauiControlsService.GetControlsAsync(ControlInformation.GroupName);
+        var items = await MauiControlsService.GetControlsAsync(ControlInformation.GroupName);
 
         foreach (var item in items)
         {
-            ControlGroupList.Add(item);
+            ControlGroupListForEventCall.Add(item);
+            ControlGroupListForCommandCall.Add(item);
         }
         return;
     }

@@ -228,9 +228,6 @@
 		<Compile Update="Features\Gallery\ContentViews\GithubCardContentView.xaml.cs">
 			<DependentUpon>GithubCardContentView.xaml</DependentUpon>
 		</Compile>
-		<Compile Update="Features\Gallery\Pages\BuiltIn\Controls\SearchBar\ListViewControlInfo.xaml.cs">
-			<DependentUpon>ListViewControlInfo.xaml</DependentUpon>
-		</Compile>
 		<Compile Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\CommunityPage.xaml.cs">
 			<DependentUpon>CommunityPage.xaml</DependentUpon>
 		</Compile>
@@ -301,9 +298,6 @@
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\MAUI\Label\LabelPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\Controls\SearchBar\ListViewControlInfo.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\CommunityPage.xaml">

@@ -206,104 +206,42 @@
 
             <!--  Perform a search with event handlers  -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Perform a search with Event Handlers" />
-                    <CollectionView Header="{x:StaticResource PropertiesSearchEventHandlerHeader}"
-                                    Footer="{x:StaticResource PropertiesSearchEventHandlerFooter}"
-                                    ItemsSource="{x:StaticResource PropertyEventHandlersItemsSource}"
-                                    Style="{x:StaticResource PropertiesListStyle}" />
-                    <SearchBar Placeholder="Search items..."
-                               x:Name="EventHandlerSearchBar"
-                               TextChanged="OnSearchAsync"/>
-                    <ListView ItemsSource="{x:Binding ControlGroupList}"
-                              Header="List Items"
-                              Footer="">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="app:IGalleryCardInfo">
-                                <ViewCell>
-                                    <Border Padding="5" Margin="0,5,0,5">
-                                        <Border.StrokeShape>
-                                            <RoundRectangle CornerRadius="5" />
-                                        </Border.StrokeShape>
-                                        <Grid ColumnDefinitions="0.2*, 0.2*, 0.6*" 
-                                              HeightRequest="40">
-                                            <Image Grid.Column="0"
-                                                   Source="{x:Binding ControlIcon}"
-                                                   VerticalOptions="Center"/>
-                                            <Label Grid.Column="1"
-                                                   FontAttributes="Bold"
-                                                   LineBreakMode="TailTruncation"
-                                                   FontSize="14"
-                                                   Text="{x:Binding ControlName}"
-                                                   VerticalTextAlignment="Center"/>
-                                            <Label Grid.Column="2"
-                                                   FontAttributes="Italic"
-                                                   LineBreakMode="TailTruncation"
-                                                   FontSize="12"
-                                                   Text="{x:Binding ControlDetail}"
-                                                   VerticalTextAlignment="Center">
-                                            </Label>
-                                        </Grid>
-                                    </Border>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding PerformASearchWithEventHandlersXamlCode}" />
-                    <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding PerformASearchWithEventHandlersCSCode}" />
-                </VerticalStackLayout>
+                <ScrollView>
+                    <VerticalStackLayout Spacing="20">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" 
+                               Text="Perform a search with Event Handlers using TextChanged in SearchBar" />
+                        <CollectionView Header="{x:StaticResource PropertiesSearchEventHandlerHeader}"
+                                        Footer="{x:StaticResource PropertiesSearchEventHandlerFooter}"
+                                        ItemsSource="{x:StaticResource PropertyEventHandlersItemsSource}"
+                                        Style="{x:StaticResource PropertiesListStyle}" />
+                        <SearchBar Placeholder="Search items..."
+                                   x:Name="EventHandlerSearchBar"
+                                   TextChanged="OnSearchAsync"/>
+                        <app:ControlInfoListView ItemsSource="{x:Binding ControlGroupListForEventCall}"/>
+                        <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding PerformASearchWithEventHandlersXamlCode}" />
+                        <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding PerformASearchWithEventHandlersCSCode}" />
+                    </VerticalStackLayout>
+                </ScrollView>
             </Frame>
 
             <!--  Perform a search using a viewmodel  -->
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Perform a search with ViewModel" />
-                    <CollectionView Header="{x:StaticResource PropertiesSearchViewModelHeader}"
-                                    Footer="{x:StaticResource PropertiesSearchViewModelFooter}"
-                                    ItemsSource="{x:StaticResource PropertyViewModelItemsSource}"
-                                    Style="{x:StaticResource PropertiesListStyle}" />
-                    <SearchBar Placeholder="Search items..."
-                               x:Name="ViewModelSearchBar"
-                               SearchCommand="{x:Binding SearchCommand}"
-                               SearchCommandParameter="{Binding Text, Source={x:Reference ViewModelSearchBar}}"/>
-                    <!--<app:ListViewControlInfo></app:ListViewControlInfo>-->
-                    <ListView ItemsSource="{x:Binding ControlGroupList}"
-                              Header="List Items"
-                              Footer="">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="app:IGalleryCardInfo">
-                                <ViewCell>
-                                    <Border Padding="5" Margin="0,5,0,5">
-                                        <Border.StrokeShape>
-                                            <RoundRectangle CornerRadius="5" />
-                                        </Border.StrokeShape>
-                                        <Grid ColumnDefinitions="0.2*, 0.2*, 0.6*" 
-                                              HeightRequest="40">
-                                            <Image Grid.Column="0"
-                                                   Source="{x:Binding ControlIcon}"
-                                                   VerticalOptions="Center"/>
-                                            <Label Grid.Column="1"
-                                                   FontAttributes="Bold"
-                                                   LineBreakMode="TailTruncation"
-                                                   FontSize="14"
-                                                   Text="{x:Binding ControlName}"
-                                                   VerticalTextAlignment="Center"/>
-                                            <Label Grid.Column="2"
-                                                   FontAttributes="Italic"
-                                                   LineBreakMode="TailTruncation"
-                                                   FontSize="12"
-                                                   Text="{x:Binding ControlDetail}"
-                                                   VerticalTextAlignment="Center">
-                                            </Label>
-                                        </Grid>
-                                    </Border>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding PerformASearchWithViewModelXamlCode}" />
-                    <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding PerformASearchWithViewModelCSCode}" />
-                </VerticalStackLayout>
+                <ScrollView>
+                    <VerticalStackLayout Spacing="20">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" 
+                               Text="Perform a search with ViewModel using SearchCommand in SearchBar" />
+                        <CollectionView Header="{x:StaticResource PropertiesSearchViewModelHeader}"
+                                        Footer="{x:StaticResource PropertiesSearchViewModelFooter}"
+                                        ItemsSource="{x:StaticResource PropertyViewModelItemsSource}"
+                                        Style="{x:StaticResource PropertiesListStyle}" />
+                        <SearchBar Placeholder="Search items..."
+                                   x:Name="ViewModelSearchBar"
+                                   Text="{x:Binding SearchText}"/>
+                        <app:ControlInfoListView ItemsSource="{x:Binding ControlGroupListForCommandCall}"/>
+                        <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding PerformASearchWithViewModelXamlCode}" />
+                        <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding PerformASearchWithViewModelCSCode}" />
+                    </VerticalStackLayout>
+                </ScrollView>
             </Frame>
         </VerticalStackLayout>
     </ScrollView>
