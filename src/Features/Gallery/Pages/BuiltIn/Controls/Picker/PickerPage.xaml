@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<app:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:app="clr-namespace:MAUIsland"
-             
-              x:Class="MAUIsland.PickerPage"
-              x:DataType="app:PickerPageViewModel"
-             Padding="10"
-             Title="Picker">
+<app:BasePage
+    x:Class="MAUIsland.PickerPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    Title="Picker"
+    Padding="10"
+    x:DataType="app:PickerPageViewModel">
     <app:BasePage.ToolbarItems>
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
@@ -23,7 +23,7 @@
         <x:String x:Key="ControlInfo">
             The .NET Multi-platform App UI (.NET MAUI) Picker displays short list of items, from which the user can select an item.
         </x:String>
-        
+
         <x:String x:Key="PropertiesListHeader">
             Picker defines the following properties:
         </x:String>
@@ -104,7 +104,7 @@
                             ]]>
             </x:String>
         </x:Array>
-        <x:Array x:Key ="MAUIMembers" Type="{x:Type x:String}">
+        <x:Array x:Key="MAUIMembers" Type="{x:Type x:String}">
             <x:String>Mr.Viet</x:String>
             <x:String>Nhi</x:String>
             <x:String>Linh</x:String>
@@ -119,7 +119,7 @@
     <ScrollView>
         <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource ControlInfo}"/>
+                <Label Text="{x:StaticResource ControlInfo}" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <CollectionView
@@ -131,19 +131,22 @@
             <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="A simple Picker for selecting MAUIsland members" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
-                    <Picker x:Name="picker"
-                    Title="Select a MAUIsland members" 
-                    ItemsSource="{x:StaticResource MAUIMembers}" />
-                    <Button 
-                        HorizontalOptions="Start"
+                    <Picker
+                        x:Name="picker"
+                        Title="Select a MAUIsland members"
                         BackgroundColor="Black"
-                        Text="{x:Binding Source={x:Reference picker}, Path=SelectedItem}"
+                        ItemsSource="{x:StaticResource MAUIMembers}" />
+                    <Button
+                        BackgroundColor="Black"
+                        HorizontalOptions="Start"
+                        Text="{x:Binding Source={x:Reference picker},
+                                         Path=SelectedItem}"
                         TextColor="{x:StaticResource White}" />
 
-                    <app:SourceCodeExpander Code="{x:Binding MemberPickerXamlCode}"/>
+                    <app:SourceCodeExpander Code="{x:Binding MemberPickerXamlCode}" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
     </ScrollView>
-    
- </app:BasePage>
+
+</app:BasePage>

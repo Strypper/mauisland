@@ -6,23 +6,23 @@ namespace MAUIsland;
 
 public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
 {
-    readonly IList<Monkey> source;
-    Monkey selectedMonkey;
+    readonly IList<Incredible> source;
+    Incredible selectedIncredible;
     int selectionCount = 1;
 
-    public IList<Monkey> EmptyMonkeys { get; private set; }
+    public IList<Incredible> EmptyIncredibles { get; private set; }
 
-    public Monkey SelectedMonkey
+    public Incredible SelectedIncredible
     {
         get
         {
-            return selectedMonkey;
+            return selectedIncredible;
         }
         set
         {
-            if (selectedMonkey != value)
+            if (selectedIncredible != value)
             {
-                selectedMonkey = value;
+                selectedIncredible = value;
             }
         }
     }
@@ -33,33 +33,33 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
     IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
-    ObservableCollection<Monkey> monkeys;
+    ObservableCollection<Incredible> incredibles;
 
     [ObservableProperty]
-    ObservableCollection<object> selectedMonkeys;
+    ObservableCollection<object> selectedIncredibles;
 
     [ObservableProperty]
     int spanNumber = 1;
 
     [ObservableProperty]
-    string collectionViewGridLayoutType = "<CollectionView\r\n x:Name=\"CollectionViewExample\"\r\n Grid.Row=\"1\"\r\n ItemTemplate=\"{x:StaticResource CollectionViewItemTemplate}\"\r\n ItemsSource=\"{x:Binding Monkeys,\r\n Mode=OneWay}\">\r\n <CollectionView.ItemsLayout>\r\n <GridItemsLayout\r\n HorizontalItemSpacing=\"30\"\r\n   Orientation=\"Vertical\"\r\n  Span=\"{x:Binding SpanNumber,\r\n                                                     Mode=OneWay}\"\r\n                                    VerticalItemSpacing=\"20\" />\r\n                            </CollectionView.ItemsLayout>\r\n                        </CollectionView>";
+    string collectionViewGridLayoutType = "<CollectionView\r\n x:Name=\"CollectionViewExample\"\r\n Grid.Row=\"1\"\r\n ItemTemplate=\"{x:StaticResource CollectionViewItemTemplate}\"\r\n ItemsSource=\"{x:Binding Incredibles,\r\n Mode=OneWay}\">\r\n <CollectionView.ItemsLayout>\r\n <GridItemsLayout\r\n HorizontalItemSpacing=\"30\"\r\n   Orientation=\"Vertical\"\r\n  Span=\"{x:Binding SpanNumber,\r\n                                                     Mode=OneWay}\"\r\n                                    VerticalItemSpacing=\"20\" />\r\n                            </CollectionView.ItemsLayout>\r\n                        </CollectionView>";
 
     [ObservableProperty]
-    string collectionViewQuickLayoutConfigXAMLCode = "<CollectionView\r\n    ItemTemplate=\"{x:StaticResource CollectionViewItemTemplate}\"\r\n    ItemsLayout=\"VerticalGrid, 2\"\r\n    ItemsSource=\"{Binding Monkeys}\" />";
+    string collectionViewQuickLayoutConfigXAMLCode = "<CollectionView\r\n    ItemTemplate=\"{x:StaticResource CollectionViewItemTemplate}\"\r\n    ItemsLayout=\"VerticalGrid, 2\"\r\n    ItemsSource=\"{Binding Incredibles}\" />";
 
-    public string SelectedMonkeyMessage { get; private set; }
+    public string SelectedIncredibleMessage { get; private set; }
     #endregion
 
-    public ICommand DeleteCommand => new Command<Monkey>(RemoveMonkey);
-    public ICommand FavoriteCommand => new Command<Monkey>(FavoriteMonkey);
+    public ICommand DeleteCommand => new Command<Incredible>(RemoveIncredible);
+    public ICommand FavoriteCommand => new Command<Incredible>(FavoriteIncredible);
     public ICommand FilterCommand => new Command<string>(FilterItems);
-    public ICommand MonkeySelectionChangedCommand => new Command(MonkeySelectionChanged);
+    public ICommand IncredibleSelectionChangedCommand => new Command(IncredibleSelectionChanged);
 
     #region [ CTor ]
     public CollectionViewPageViewModel(IAppNavigator appNavigator)
                                     : base(appNavigator)
     {
-        source = new List<Monkey>();
+        source = new List<Incredible>();
     }
     #endregion
 
@@ -70,198 +70,146 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
 
         ControlInformation = query.GetData<IGalleryCardInfo>();
 
-        CreateMonkeyCollection();
+        CreateIncredibleCollection();
 
-        selectedMonkey = Monkeys.Skip(3).FirstOrDefault();
-        MonkeySelectionChanged();
+        selectedIncredible = Incredibles.Skip(3).FirstOrDefault();
+        IncredibleSelectionChanged();
 
-        SelectedMonkeys = new ObservableCollection<object>()
+        SelectedIncredibles = new ObservableCollection<object>()
         {
-            Monkeys[1], Monkeys[3], Monkeys[4]
+            Incredibles[1], Incredibles[3], Incredibles[4]
         };
     }
 
 
     #endregion
 
-    void CreateMonkeyCollection()
+    void CreateIncredibleCollection()
     {
-        source.Add(new Monkey
+        source.Add(new()
         {
             Name = "Baboon",
-            Location = "Africa & Asia",
-            Details = "Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Papio_anubis_%28Serengeti%2C_2009%29.jpg/200px-Papio_anubis_%28Serengeti%2C_2009%29.jpg"
+            Details = "Baboons are African and Arabian Old World incredibles belonging to the genus Papio, part of the subfamily Cercopithecinae.",
+            ImageUrl = "mrincredibleblackwhite.png"
         });
 
-        source.Add(new Monkey
+        source.Add(new()
         {
-            Name = "Capuchin Monkey",
-            Location = "Central & South America",
-            Details = "The capuchin monkeys are New World monkeys of the subfamily Cebinae. Prior to 2011, the subfamily contained only a single genus, Cebus.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Capuchin_Costa_Rica.jpg/200px-Capuchin_Costa_Rica.jpg"
+            Name = "Capuchin Incredible",
+            Details = "The capuchin incredibles are New World incredibles of the subfamily Cebinae. Prior to 2011, the subfamily contained only a single genus, Cebus.",
+            ImageUrl = "mrincredibleblackwhite1.png"
         });
 
-        source.Add(new Monkey
+        source.Add(new()
         {
-            Name = "Blue Monkey",
-            Location = "Central and East Africa",
-            Details = "The blue monkey or diademed monkey is a species of Old World monkey native to Central and East Africa, ranging from the upper Congo River basin east to the East African Rift and south to northern Angola and Zambia",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/BlueMonkey.jpg/220px-BlueMonkey.jpg"
+            Name = "Blue Incredible",
+            Details = "The blue incredible or diademed incredible is a species of Old World incredible native to Central and East Africa, ranging from the upper Congo River basin east to the East African Rift and south to northern Angola and Zambia",
+            ImageUrl = "mrincredibleblackwhite2.png"
         });
 
-        source.Add(new Monkey
+        source.Add(new()
         {
-            Name = "Squirrel Monkey",
-            Location = "Central & South America",
-            Details = "The squirrel monkeys are the New World monkeys of the genus Saimiri. They are the only genus in the subfamily Saimirinae. The name of the genus Saimiri is of Tupi origin, and was also used as an English name by early researchers.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Saimiri_sciureus-1_Luc_Viatour.jpg/220px-Saimiri_sciureus-1_Luc_Viatour.jpg"
+            Name = "Squirrel Incredible",
+            Details = "The squirrel incredibles are the New World incredibles of the genus Saimiri. They are the only genus in the subfamily Saimirinae. The name of the genus Saimiri is of Tupi origin, and was also used as an English name by early researchers.",
+            ImageUrl = "mrincredibleblackwhite3.png"
         });
 
-        source.Add(new Monkey
+        source.Add(new()
         {
             Name = "Golden Lion Tamarin",
-            Location = "Brazil",
-            Details = "The golden lion tamarin also known as the golden marmoset, is a small New World monkey of the family Callitrichidae.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Golden_lion_tamarin_portrait3.jpg/220px-Golden_lion_tamarin_portrait3.jpg"
+            Details = "The golden lion tamarin also known as the golden marmoset, is a small New World incredible of the family Callitrichidae.",
+            ImageUrl = "mrincredibleblackwhite4.png"
         });
 
-        source.Add(new Monkey
+        source.Add(new()
         {
-            Name = "Howler Monkey",
-            Location = "South America",
-            Details = "Howler monkeys are among the largest of the New World monkeys. Fifteen species are currently recognised. Previously classified in the family Cebidae, they are now placed in the family Atelidae.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Alouatta_guariba.jpg/200px-Alouatta_guariba.jpg"
+            Name = "Howler Incredible",
+            Details = "Howler incredibles are among the largest of the New World incredibles. Fifteen species are currently recognised. Previously classified in the family Cebidae, they are now placed in the family Atelidae.",
+            ImageUrl = "mrincredibleblackwhite5.png"
         });
 
-        source.Add(new Monkey
+        source.Add(new()
         {
             Name = "Japanese Macaque",
-            Location = "Japan",
-            Details = "The Japanese macaque, is a terrestrial Old World monkey species native to Japan. They are also sometimes known as the snow monkey because they live in areas where snow covers the ground for months each",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Macaca_fuscata_fuscata1.jpg/220px-Macaca_fuscata_fuscata1.jpg"
+            Details = "The Japanese macaque, is a terrestrial Old World incredible species native to Japan. They are also sometimes known as the snow incredible because they live in areas where snow covers the ground for months each",
+            ImageUrl = "mrincrediblesmile5.png"
         });
 
-        source.Add(new Monkey
+        source.Add(new()
         {
             Name = "Mandrill",
-            Location = "Southern Cameroon, Gabon, Equatorial Guinea, and Congo",
-            Details = "The mandrill is a primate of the Old World monkey family, closely related to the baboons and even more closely to the drill. It is found in southern Cameroon, Gabon, Equatorial Guinea, and Congo.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Mandrill_at_san_francisco_zoo.jpg/220px-Mandrill_at_san_francisco_zoo.jpg"
+            Details = "The mandrill is a primate of the Old World incredible family, closely related to the baboons and even more closely to the drill. It is found in southern Cameroon, Gabon, Equatorial Guinea, and Congo.",
+            ImageUrl = "mrincrediblesmile4.png"
         });
 
-        source.Add(new Monkey
+        source.Add(new()
         {
-            Name = "Proboscis Monkey",
-            Location = "Borneo",
-            Details = "The proboscis monkey or long-nosed monkey, known as the bekantan in Malay, is a reddish-brown arboreal Old World monkey that is endemic to the south-east Asian island of Borneo.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Proboscis_Monkey_in_Borneo.jpg/250px-Proboscis_Monkey_in_Borneo.jpg"
+            Name = "Proboscis Incredible",
+            Details = "The proboscis incredible or long-nosed incredible, known as the bekantan in Malay, is a reddish-brown arboreal Old World incredible that is endemic to the south-east Asian island of Borneo.",
+            ImageUrl = "mrincrediblesmile3.png"
         });
 
-        source.Add(new Monkey
+        source.Add(new()
         {
             Name = "Red-shanked Douc",
-            Location = "Vietnam, Laos",
-            Details = "The red-shanked douc is a species of Old World monkey, among the most colourful of all primates. This monkey is sometimes called the \"costumed ape\" for its extravagant appearance. From its knees to its ankles it sports maroon-red \"stockings\", and it appears to wear white forearm length gloves. Its attire is finished with black hands and feet. The golden face is framed by a white ruff, which is considerably fluffier in males. The eyelids are a soft powder blue. The tail is white with a triangle of white hair at the base. Males of all ages have a white spot on both sides of the corners of the rump patch, and red and white genitals.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Portrait_of_a_Douc.jpg/159px-Portrait_of_a_Douc.jpg"
+            Details = "The red-shanked douc is a species of Old World incredible, among the most colourful of all primates. This incredible is sometimes called the \"costumed ape\" for its extravagant appearance. From its knees to its ankles it sports maroon-red \"stockings\", and it appears to wear white forearm length gloves. Its attire is finished with black hands and feet. The golden face is framed by a white ruff, which is considerably fluffier in males. The eyelids are a soft powder blue. The tail is white with a triangle of white hair at the base. Males of all ages have a white spot on both sides of the corners of the rump patch, and red and white genitals.",
+            ImageUrl = "mrincrediblesmile2.png"
         });
 
-        source.Add(new Monkey
+        source.Add(new()
         {
             Name = "Gray-shanked Douc",
-            Location = "Vietnam",
             Details = "The gray-shanked douc langur is a douc species native to the Vietnamese provinces of Quảng Nam, Quảng Ngãi, Bình Định, Kon Tum, and Gia Lai. The total population is estimated at 550 to 700 individuals. In 2016, Dr Benjamin Rawson, Country Director of Fauna & Flora International - Vietnam Programme, announced a discovery of an additional population of more than 500 individuals found in Central Vietnam, bringing the total population up to approximately 1000 individuals.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Cuc.Phuong.Primate.Rehab.center.jpg/320px-Cuc.Phuong.Primate.Rehab.center.jpg"
+            ImageUrl = "mrincrediblesmile1.png"
         });
 
-        source.Add(new Monkey
+        source.Add(new()
         {
-            Name = "Golden Snub-nosed Monkey",
-            Location = "China",
-            Details = "The golden snub-nosed monkey is an Old World monkey in the Colobinae subfamily. It is endemic to a small area in temperate, mountainous forests of central and Southwest China. They inhabit these mountainous forests of Southwestern China at elevations of 1,500-3,400 m above sea level. The Chinese name is Sichuan golden hair monkey. It is also widely referred to as the Sichuan snub-nosed monkey. Of the three species of snub-nosed monkeys in China, the golden snub-nosed monkey is the most widely distributed throughout China.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Golden_Snub-nosed_Monkeys%2C_Qinling_Mountains_-_China.jpg/165px-Golden_Snub-nosed_Monkeys%2C_Qinling_Mountains_-_China.jpg"
+            Name = "Golden Snub-nosed Incredible",
+            Details = "The golden snub-nosed incredible is an Old World incredible in the Colobinae subfamily. It is endemic to a small area in temperate, mountainous forests of central and Southwest China. They inhabit these mountainous forests of Southwestern China at elevations of 1,500-3,400 m above sea level. The Chinese name is Sichuan golden hair incredible. It is also widely referred to as the Sichuan snub-nosed incredible. Of the three species of snub-nosed incredibles in China, the golden snub-nosed incredible is the most widely distributed throughout China.",
+            ImageUrl = "mrincrediblesmile.png"
         });
 
-        source.Add(new Monkey
-        {
-            Name = "Black Snub-nosed Monkey",
-            Location = "China",
-            Details = "The black snub-nosed monkey, also known as the Yunnan snub-nosed monkey, is an endangered species of primate in the family Cercopithecidae. It is endemic to China, where it is known to the locals as the Yunnan golden hair monkey and the black golden hair monkey. It is threatened by habitat loss. It was named after Bishop Félix Biet.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/RhinopitecusBieti.jpg/320px-RhinopitecusBieti.jpg"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Tonkin Snub-nosed Monkey",
-            Location = "Vietnam",
-            Details = "The Tonkin snub-nosed monkey or Dollman's snub-nosed monkey is a slender-bodied arboreal Old World monkey, endemic to northern Vietnam. It is a black and white monkey with a pink nose and lips and blue patches round the eyes. It is found at altitudes of 200 to 1,200 m (700 to 3,900 ft) on fragmentary patches of forest on craggy limestone areas. First described in 1912, the monkey was rediscovered in 1990 but is exceedingly rare. In 2008, fewer than 250 individuals were thought to exist, and the species was the subject of intense conservation effort. The main threats faced by these monkeys is habitat loss and hunting, and the International Union for Conservation of Nature has rated the species as \"critically endangered\".",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Tonkin_snub-nosed_monkeys_%28Rhinopithecus_avunculus%29.jpg/320px-Tonkin_snub-nosed_monkeys_%28Rhinopithecus_avunculus%29.jpg"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Thomas's Langur",
-            Location = "Indonesia",
-            Details = "Thomas's langur is a species of primate in the family Cercopithecidae. It is endemic to North Sumatra, Indonesia. Its natural habitat is subtropical or tropical dry forests. It is threatened by habitat loss. Its native names are reungkah in Acehnese and kedih in Alas.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Thomas%27s_langur_Presbytis_thomasi.jpg/142px-Thomas%27s_langur_Presbytis_thomasi.jpg"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Purple-faced Langur",
-            Location = "Sri Lanka",
-            Details = "The purple-faced langur, also known as the purple-faced leaf monkey, is a species of Old World monkey that is endemic to Sri Lanka. The animal is a long-tailed arboreal species, identified by a mostly brown appearance, dark face (with paler lower face) and a very shy nature. The species was once highly prevalent, found in suburban Colombo and the \"wet zone\" villages (areas with high temperatures and high humidity throughout the year, whilst rain deluges occur during the monsoon seasons), but rapid urbanization has led to a significant decrease in the population level of the monkeys.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Semnopithèque_blanchâtre_mâle.JPG/192px-Semnopithèque_blanchâtre_mâle.JPG"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Gelada",
-            Location = "Ethiopia",
-            Details = "The gelada, sometimes called the bleeding-heart monkey or the gelada baboon, is a species of Old World monkey found only in the Ethiopian Highlands, with large populations in the Semien Mountains. Theropithecus is derived from the Greek root words for \"beast-ape.\" Like its close relatives the baboons, it is largely terrestrial, spending much of its time foraging in grasslands.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Gelada-Pavian.jpg/320px-Gelada-Pavian.jpg"
-        });
-
-        Monkeys = new ObservableCollection<Monkey>(source);
+        Incredibles = new ObservableCollection<Incredible>(source);
     }
 
     void FilterItems(string filter)
     {
-        var filteredItems = source.Where(monkey => monkey.Name.ToLower().Contains(filter.ToLower())).ToList();
-        foreach (var monkey in source)
+        var filteredItems = source.Where(incredible => incredible.Name.ToLower().Contains(filter.ToLower())).ToList();
+        foreach (var incredible in source)
         {
-            if (!filteredItems.Contains(monkey))
+            if (!filteredItems.Contains(incredible))
             {
-                Monkeys.Remove(monkey);
+                Incredibles.Remove(incredible);
             }
             else
             {
-                if (!Monkeys.Contains(monkey))
+                if (!Incredibles.Contains(incredible))
                 {
-                    Monkeys.Add(monkey);
+                    Incredibles.Add(incredible);
                 }
             }
         }
     }
 
-    void MonkeySelectionChanged()
+    void IncredibleSelectionChanged()
     {
-        SelectedMonkeyMessage = $"Selection {selectionCount}: {SelectedMonkey.Name}";
-        OnPropertyChanged("SelectedMonkeyMessage");
+        SelectedIncredibleMessage = $"Selection {selectionCount}: {SelectedIncredible.Name}";
+        OnPropertyChanged("SelectedIncredibleMessage");
         selectionCount++;
     }
 
-    void RemoveMonkey(Monkey monkey)
+    void RemoveIncredible(Incredible incredible)
     {
-        if (Monkeys.Contains(monkey))
+        if (Incredibles.Contains(incredible))
         {
-            Monkeys.Remove(monkey);
+            Incredibles.Remove(incredible);
         }
     }
 
-    void FavoriteMonkey(Monkey monkey)
+    void FavoriteIncredible(Incredible incredible)
     {
-        monkey.IsFavorite = !monkey.IsFavorite;
+        incredible.IsFavorite = !incredible.IsFavorite;
     }
 
     #region INotifyPropertyChanged
@@ -281,7 +229,7 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
 }
 
 
-public class Monkey
+public class Incredible
 {
     public string Name { get; set; }
     public string Location { get; set; }

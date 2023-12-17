@@ -1,5 +1,3 @@
-using Syncfusion.Maui.ListView;
-
 namespace MAUIsland;
 
 public partial class CollectionViewPage : IGalleryPage
@@ -12,7 +10,7 @@ public partial class CollectionViewPage : IGalleryPage
 
         BindingContext = vm;
 
-        UpdateSelectionData(Enumerable.Empty<Monkey>(), Enumerable.Empty<Monkey>());
+        UpdateSelectionData(Enumerable.Empty<Incredible>(), Enumerable.Empty<Incredible>());
     }
     #endregion
 
@@ -23,8 +21,8 @@ public partial class CollectionViewPage : IGalleryPage
 
     void UpdateSelectionData(IEnumerable<object> previousSelectedItems, IEnumerable<object> currentSelectedItems)
     {
-        string previous = (previousSelectedItems.FirstOrDefault() as Monkey)?.Name;
-        string current = (currentSelectedItems.FirstOrDefault() as Monkey)?.Name;
+        string previous = (previousSelectedItems.FirstOrDefault() as Incredible)?.Name;
+        string current = (currentSelectedItems.FirstOrDefault() as Incredible)?.Name;
         previousSelectedItemLabel.Text = string.IsNullOrWhiteSpace(previous) ? "[none]" : previous;
         currentSelectedItemLabel.Text = string.IsNullOrWhiteSpace(current) ? "[none]" : current;
     }

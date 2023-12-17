@@ -78,7 +78,7 @@
             </x:String>
         </x:Array>
 
-        <DataTemplate x:Key="CollectionViewItemTemplate" x:DataType="app:Monkey">
+        <DataTemplate x:Key="CollectionViewItemTemplate" x:DataType="app:Incredible">
             <Grid Padding="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -143,9 +143,9 @@
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Basic CollectionView with simple DataTemplate" />
                     <CollectionView
                         Footer="This is Footer"
-                        Header="Header: Monkeys"
+                        Header="Header: Incredibles"
                         ItemTemplate="{x:StaticResource CollectionViewItemTemplate}"
-                        ItemsSource="{x:Binding Monkeys,
+                        ItemsSource="{x:Binding Incredibles,
                                                 Mode=OneWay}" />
                 </VerticalStackLayout>
             </Frame>
@@ -164,7 +164,7 @@
                     </Grid>
                     <CollectionView
                         ItemTemplate="{x:StaticResource CollectionViewItemTemplate}"
-                        ItemsSource="{x:Binding Monkeys}"
+                        ItemsSource="{x:Binding Incredibles}"
                         SelectionChanged="OnCollectionViewSelectionChanged"
                         SelectionMode="Single" />
                 </VerticalStackLayout>
@@ -173,9 +173,9 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView with swipe support" />
-                    <CollectionView x:Name="collectionView" ItemsSource="{x:Binding Monkeys}">
+                    <CollectionView x:Name="collectionView" ItemsSource="{x:Binding Incredibles}">
                         <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="app:Monkey">
+                            <DataTemplate x:DataType="app:Incredible">
                                 <SwipeView>
                                     <SwipeView.LeftItems>
                                         <SwipeItems>
@@ -245,14 +245,18 @@
                         <StackLayout>
                             <Label Text="Number of Span" />
                             <Label FontAttributes="Bold" Text="{x:Binding SpanNumber, Mode=OneWay}" />
-                            <Stepper Minimum="1" Value="{x:Binding SpanNumber, Mode=TwoWay}" />
+                            <Stepper
+                                BackgroundColor="Black"
+                                Minimum="1"
+                                Value="{x:Binding SpanNumber,
+                                                  Mode=TwoWay}" />
                         </StackLayout>
 
                         <CollectionView
                             x:Name="CollectionViewExample"
                             Grid.Row="1"
                             ItemTemplate="{x:StaticResource CollectionViewItemTemplate}"
-                            ItemsSource="{x:Binding Monkeys,
+                            ItemsSource="{x:Binding Incredibles,
                                                     Mode=OneWay}">
                             <CollectionView.ItemsLayout>
                                 <GridItemsLayout
@@ -299,7 +303,7 @@
                     <CollectionView
                         ItemTemplate="{x:StaticResource CollectionViewItemTemplate}"
                         ItemsLayout="VerticalGrid, 2"
-                        ItemsSource="{x:Binding Monkeys,
+                        ItemsSource="{x:Binding Incredibles,
                                                 Mode=OneWay}" />
                 </VerticalStackLayout>
             </Frame>

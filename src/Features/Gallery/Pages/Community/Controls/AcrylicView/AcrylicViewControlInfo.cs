@@ -1,6 +1,4 @@
 using Octokit;
-using System.Net.Http;
-using Xe.AcrylicView;
 
 namespace MAUIsland;
 class AcrylicViewControlInfo : IGithubGalleryCardInfo
@@ -12,7 +10,7 @@ class AcrylicViewControlInfo : IGithubGalleryCardInfo
         var owner = "sswi";
         var repo = "AcrylicView.MAUI";
 
-        var github = new GitHubClient(new ProductHeaderValue(nameof(AcrylicView)));
+        var github = new GitHubClient(new ProductHeaderValue("AcrylicView.MAUI"));
         repository = github.Repository.Get(owner, repo).Result;
     }
 

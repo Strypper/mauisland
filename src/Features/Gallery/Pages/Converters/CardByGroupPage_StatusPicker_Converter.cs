@@ -8,11 +8,11 @@ public class CardByGroupPage_StatusPicker_Converter : IValueConverter
             return new List<string>();
 
         var valueType = value.GetType();
-        var items = value as ObservableCollection<IBuiltInGalleryCardInfo>;
+        var items = value as ObservableCollection<IGalleryCardInfo>;
         if (items != null)
         {
-            return Enum.GetValues(typeof(BuiltInGalleryCardStatus))
-                       .Cast<BuiltInGalleryCardStatus>()
+            return Enum.GetValues(typeof(GalleryCardType))
+                       .Cast<GalleryCardType>()
                        .ToList();
         }
         else

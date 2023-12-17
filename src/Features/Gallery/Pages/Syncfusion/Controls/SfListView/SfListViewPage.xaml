@@ -9,6 +9,19 @@
     Padding="10"
     x:DataType="app:SfListViewPageViewModel">
 
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="syncfusionlogo.png"
+            Text="Original Document" />
+
+    </app:BasePage.ToolbarItems>
     <app:BasePage.Resources>
         <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate" x:DataType="app:IGalleryCardInfo">
             <app:ControlCardContentView ComponentData="{x:Binding}" />
@@ -120,8 +133,7 @@
                 <Label Text="{x:StaticResource ControlInfo}" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <syncfusion:SfListView ItemTemplate="{x:StaticResource BulletListItemTemplate}"
-                                       ItemsSource="{x:StaticResource PropertyItemsSource}" />
+                <syncfusion:SfListView ItemTemplate="{x:StaticResource BulletListItemTemplate}" ItemsSource="{x:StaticResource PropertyItemsSource}" />
             </Frame>
 
             <syncfusion:SfListView

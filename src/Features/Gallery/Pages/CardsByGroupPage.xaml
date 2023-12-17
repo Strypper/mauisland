@@ -207,10 +207,12 @@
                         <Label
                             FontSize="32"
                             Text="Controls"
+                            TextColor="White"
                             TextDecorations="Underline" />
                         <Picker
                             x:Name="CardByGroupPage_StatusPicker"
                             Title="Status"
+                            BackgroundColor="Black"
                             HorizontalOptions="End"
                             ItemDisplayBinding="{Binding CardType}"
                             ItemsSource="{x:Binding Items,

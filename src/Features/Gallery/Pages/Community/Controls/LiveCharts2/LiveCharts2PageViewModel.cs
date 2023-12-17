@@ -23,4 +23,12 @@ public partial class LiveCharts2PageViewModel : NavigationAwareBaseViewModel
 
     }
     #endregion
+
+    #region [ Relay commands ]
+
+
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+        => AppNavigator.OpenUrlAsync(url);
+    #endregion
 }
