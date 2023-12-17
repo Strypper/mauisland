@@ -9,16 +9,18 @@ public partial class MediaElementPage : IGalleryPage
 {
     #region [ Fields ]
     readonly ILogger MediaElementLogger;
+    MediaElementPageViewModel ViewModel;
     string videoUrl = "https://petaversestorageaccount.blob.core.windows.net/petaverse-petvideos/Breathing 😂";
     string localFilePath = Path.Combine(FileSystem.Current.AppDataDirectory, "video.mp4");
     #endregion
 
     #region [CTor]
+    [Obsolete]
     public MediaElementPage(MediaElementPageViewModel vm, ILogger<MediaElementPage> mediaElementLogger)
     {
         InitializeComponent();
 
-        BindingContext = vm;
+        BindingContext = ViewModel = vm;
         this.MediaElementLogger = mediaElementLogger;
         MediaElement.PropertyChanged += MediaElementPropertyChanged;
     }
@@ -30,7 +32,7 @@ public partial class MediaElementPage : IGalleryPage
         if (e.PropertyName == MediaElement.DurationProperty.PropertyName)
         {
             MediaElementLogger.LogInformation("Duration: {newDuration}", MediaElement.Duration);
-            //PositionSlider.Maximum = MediaElement.Duration.TotalSeconds;
+            PositionSlider.Maximum = MediaElement.Duration.TotalSeconds;
         }
     }
 
@@ -45,6 +47,7 @@ public partial class MediaElementPage : IGalleryPage
             CheckFileLabel.Text = $"Nah bro";
         }
     }
+
     private void DownloadButton_Clicked(object sender, EventArgs e)
     {
         DownloadIndicator.IsRunning = true;
@@ -105,7 +108,7 @@ public partial class MediaElementPage : IGalleryPage
     void OnPositionChanged(object? sender, MediaPositionChangedEventArgs e)
     {
         MediaElementLogger.LogInformation("Position changed to {position}", e.Position);
-        //PositionSlider.Value = e.Position.TotalSeconds;
+        PositionSlider.Value = e.Position.TotalSeconds;
     }
 
     void OnSeekCompleted(object? sender, EventArgs e) 
@@ -131,12 +134,12 @@ public partial class MediaElementPage : IGalleryPage
         {
             if (MediaElement.Volume < .1)
             {
-                MediaElement.Volume = 0;
+                ViewModel.Volume = 0;
 
                 return;
             }
 
-            MediaElement.Volume -= .1;
+            ViewModel.Volume -= .1;
         }
     }
 
@@ -146,12 +149,12 @@ public partial class MediaElementPage : IGalleryPage
         {
             if (MediaElement.Volume > .9)
             {
-                MediaElement.Volume = 1;
+                ViewModel.Volume = 1;
 
                 return;
             }
 
-            MediaElement.Volume += .1;
+            ViewModel.Volume += .1;
         }
     }
 
@@ -168,5 +171,20 @@ public partial class MediaElementPage : IGalleryPage
 
     void OnMuteClicked(object? sender, EventArgs e)
         => MediaElement.ShouldMute = !MediaElement.ShouldMute;
+
+    void Slider_DragCompleted(object? sender, EventArgs e)
+    {
+        ArgumentNullException.ThrowIfNull(sender);
+
+        var newValue = ((Slider)sender).Value;
+        MediaElement.SeekTo(TimeSpan.FromSeconds(newValue));
+
+        MediaElement.Play();
+    }
+
+    void Slider_DragStarted(object sender, EventArgs e)
+    {
+        MediaElement.Pause();
+    }
     #endregion
 }

@@ -409,7 +409,7 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <toolkit:MediaElement x:Name="MediaElement" 
                                       ShouldAutoPlay="False"
-                                      Volume="{x:Binding Volume}"
+                                      Volume="{x:Binding Volume, Mode=TwoWay}" 
                                       MediaEnded="OnMediaEnded"
                                       MediaFailed="OnMediaFailed"
                                       MediaOpened="OnMediaOpened"
@@ -419,40 +419,57 @@
                                       Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"/>
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <HorizontalStackLayout BindingContext="{x:Reference MediaElement}">
+                <HorizontalStackLayout BindingContext="{x:Reference MediaElement}" HorizontalOptions="CenterAndExpand">
                     <Button Grid.Column="0" Text="Play" Clicked="OnPlayClicked" />
                     <Button Grid.Column="1" Text="Pause" Clicked="OnPauseClicked" />
                     <Button Grid.Column="2" Text="Stop" Clicked="OnStopClicked" />
                     <Button Grid.Column="3" Text="Mute" Clicked="OnMuteClicked">
                         <Button.Triggers>
                             <DataTrigger TargetType="Button"
-                                         Binding="{Binding ShouldMute, Source={x:Reference MediaElement}}"
+                                         Binding="{x:Binding ShouldMute, Source={x:Reference MediaElement}}"
                                          Value="True">
                                 <Setter Property="Text" Value="Unmute" />
                             </DataTrigger>
                             <DataTrigger TargetType="Button"
-                                         Binding="{Binding ShouldMute, Source={x:Reference MediaElement}}"
+                                         Binding="{x:Binding ShouldMute, Source={x:Reference MediaElement}}"
                                          Value="False">
                                 <Setter Property="Text" Value="Mute" />
                             </DataTrigger>
                         </Button.Triggers>
                     </Button>
+                    <Button Text=">" Clicked="OnSpeedMinusClicked" />
+                    <Button Text=">>>" Clicked="OnSpeedPlusClicked" />
+                    <Button Text="-" Clicked="OnVolumeMinusClicked" />
+                    <Button Text="+" Clicked="OnVolumePlusClicked" />
                 </HorizontalStackLayout>
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout>
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Implement a custom volume control" />
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Implement a custom volumea and video position control" />
                 </VerticalStackLayout>
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout>
-                    <Slider Maximum="1.0"
-                            Minimum="0.0"
-                            Value="{Binding Volume}"
-                            WidthRequest="100" />       
-                </VerticalStackLayout>
+                <HorizontalStackLayout>
+                    <VerticalStackLayout>
+                        <Slider x:Name="VolumeSlider"
+                                IsEnabled="True"
+                                Maximum="1.0"
+                                Minimum="0.0"
+                                MinimumTrackColor="Gray"
+                                Value="{x:Binding Volume, Mode=TwoWay}"
+                                WidthRequest="200" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+                        <Slider x:Name="PositionSlider"
+                                IsEnabled="True"
+                                MinimumTrackColor="Gray"
+                                DragStarted="Slider_DragStarted"
+                                DragCompleted="Slider_DragCompleted"
+                                WidthRequest="200" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">

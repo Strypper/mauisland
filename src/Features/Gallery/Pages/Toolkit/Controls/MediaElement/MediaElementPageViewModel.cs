@@ -99,13 +99,128 @@ public partial class MediaElementPageViewModel : NavigationAwareBaseViewModel
         "var resourceMediaSource = new ResourceMediaSource { Resource = \"YourAppName.Resources.media.mp4\" };\r\n" +
         "mediaElement.Source = resourceMediaSource;";
 
+    [ObservableProperty]
+    string aspectRatioExample =
+        "";
+
+    [ObservableProperty]
+    string xamlMediaElement =
+        "<Frame Style=\"{x:StaticResource DocumentContentFrameStyle}\">\r\n" +
+        "     <toolkit:MediaElement x:Name=\"MediaElement\" \r\n" +
+        "              ShouldAutoPlay=\"False\"\r\n" +
+        "              Volume=\"{x:Binding Volume}\"\r\n" +
+        "              MediaEnded=\"OnMediaEnded\"\r\n" +
+        "              MediaFailed=\"OnMediaFailed\"\r\n" +
+        "              MediaOpened=\"OnMediaOpened\"\r\n" +
+        "              PositionChanged=\"OnPositionChanged\"\r\n" +
+        "              StateChanged=\"OnStateChanged\"\r\n" +
+        "              SeekCompleted=\"OnSeekCompleted\"\r\n" +
+        "              Source=\"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4\"/>\r\n" +
+        "</Frame>\r\n" +
+        "<Frame Style=\"{x:StaticResource DocumentContentFrameStyle}\">\r\n" +
+        "     <HorizontalStackLayout BindingContext=\"{x:Reference MediaElement}\">\r\n" +
+        "       <Button Grid.Column=\"0\" Text=\"Play\" Clicked=\"OnPlayClicked\" />\r\n" +
+        "       <Button Grid.Column=\"1\" Text=\"Pause\" Clicked=\"OnPauseClicked\" />\r\n" +
+        "       <Button Grid.Column=\"2\" Text=\"Stop\" Clicked=\"OnStopClicked\" />\r\n" +
+        "       <Button Grid.Column=\"3\" Text=\"Mute\" Clicked=\"OnMuteClicked\">\r\n" +
+        "           <Button.Triggers>\r\n" +
+        "               <DataTrigger TargetType=\"Button\"\r\n" +
+        "                            Binding=\"{Binding ShouldMute, Source={x:Reference MediaElement}}\"\r\n" +
+        "                            Value=\"True\">\r\n" +
+        "                   <Setter Property=\"Text\" Value=\"Unmute\" />\r\n" +
+        "               </DataTrigger>\r\n" +
+        "               <DataTrigger TargetType=\"Button\"\r\n" +
+        "                            Binding=\"{Binding ShouldMute, Source={x:Reference MediaElement}}\"\r\n" +
+        "                            Value=\"False\">\r\n" +
+        "                   <Setter Property=\"Text\" Value=\"Mute\" />\r\n" +
+        "               </DataTrigger>\r\n" +
+        "           </Button.Triggers>\r\n" +
+        "     </Button>\r\n" +
+        "     <Button Text=\">\" Clicked=\"OnSpeedMinusClicked\" />\r\n" +
+        "     <Button Text=\">>>\" Clicked=\"OnSpeedPlusClicked\" />\r\n" +
+        "     <Button Text=\"-\" Clicked=\"OnVolumeMinusClicked\" />\r\n" +
+        "     <Button Text=\"+\" Clicked=\"OnVolumePlusClicked\" />\r\n" +
+        "   </HorizontalStackLayout>\r\n" +
+        "</Frame>";
+
+    [ObservableProperty]
+    string cSharpMediaElement =
+        "readonly ILogger MediaElementLogger;\r\n\r\n" +
+        "public MediaElementPage(MediaElementPageViewModel vm, ILogger<MediaElementPage> mediaElementLogger)\r\n" +
+        "{\r\n" +
+        "     InitializeComponent();\r\n\r\n" +
+        "     BindingContext = vm;\r\n" +
+        "     this.MediaElementLogger = mediaElementLogger;\r\n" +
+        "}\r\n\r\n" +
+        "void OnMediaOpened(object? sender, EventArgs e) \r\n" +
+        "   => MediaElementLogger.LogInformation(\"Media opened.\");\r\n\r\n" +
+        "void OnStateChanged(object? sender, MediaStateChangedEventArgs e) \r\n" +
+        "   => MediaElementLogger.LogInformation(\"Media State Changed. Old State: {PreviousState}, New State: {NewState}\", e.PreviousState, e.NewState);\r\n\r\n" +
+        "void OnMediaFailed(object? sender, MediaFailedEventArgs e) \r\n" +
+        "   => MediaElementLogger.LogInformation(\"Media failed. Error: {ErrorMessage}\", e.ErrorMessage);\r\n\r\n" +
+        "void OnMediaEnded(object? sender, EventArgs e) \r\n" +
+        "   => MediaElementLogger.LogInformation(\"Media ended.\");\r\n\r\n" +
+        "void OnPositionChanged(object? sender, MediaPositionChangedEventArgs e)\r\n" +
+        "   => MediaElementLogger.LogInformation(\"Position changed to {position}\", e.Position);\r\n\r\n" +
+        "void OnSeekCompleted(object? sender, EventArgs e) \r\n" +
+        "   => MediaElementLogger.LogInformation(\"Seek completed.\");\r\n\r\n" +
+        "void OnSpeedMinusClicked(object? sender, EventArgs e)\r\n" +
+        "{\r\n" +
+        "    if (MediaElement.Speed >= 1)\r\n" +
+        "    {\r\n" +
+        "        MediaElement.Speed -= 1;\r\n" +
+        "    }\r\n" +
+        "}\r\n" +
+        "void OnSpeedPlusClicked(object? sender, EventArgs e)\r\n" +
+        "{\r\n" +
+        "    if (MediaElement.Speed < 10)\r\n" +
+        "    {\r\n" +
+        "        MediaElement.Speed += 1;\r\n" +
+        "    }\r\n" +
+        "}\r\n" +
+        "void OnVolumeMinusClicked(object? sender, EventArgs e)\r\n" +
+        "{\r\n" +
+        "    if (MediaElement.Volume >= 0)\r\n" +
+        "    {\r\n" +
+        "        if (MediaElement.Volume < .1)\r\n" +
+        "        {\r\n" +
+        "            MediaElement.Volume = 0;\r\n" +
+        "            return;\r\n" +
+        "        }\r\n\r\n" +
+        "        MediaElement.Volume -= .1;\r\n" +
+        "    }\r\n" +
+        "}\r\n\r\n" +
+        "void OnVolumePlusClicked(object? sender, EventArgs e)\r\n" +
+        "{\r\n" +
+        "    if (MediaElement.Volume < 1)\r\n" +
+        "    {\r\n" +
+        "        if (MediaElement.Volume > .9)\r\n" +
+        "        {\r\n" +
+        "            MediaElement.Volume = 1;\r\n" +
+        "            return;\r\n" +
+        "        }\r\n" +
+        "        MediaElement.Volume += .1;\r\n" +
+        "    }\r\n" +
+        "}\r\n\r\n" +
+        "void OnPlayClicked(object? sender, EventArgs e)\r\n" +
+        "   => MediaElement.Play();\r\n\r\n" +
+        "void OnPauseClicked(object? sender, EventArgs e)\r\n" +
+        "   => MediaElement.Pause();\r\n\r\n" +
+        "void OnStopClicked(object? sender, EventArgs e)\r\n" +
+        "   => MediaElement.Stop();\r\n\r\n" +
+        "void OnMuteClicked(object? sender, EventArgs e)\r\n" +
+        "   => MediaElement.ShouldMute = !MediaElement.ShouldMute;";
+
+    [ObservableProperty]
+    string volumeControl =
+        "";
     #endregion
 
     #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
-
+        Volume = 0.5;
         ControlInformation = query.GetData<IGalleryCardInfo>();
     }
     #endregion
@@ -114,15 +229,6 @@ public partial class MediaElementPageViewModel : NavigationAwareBaseViewModel
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
-    #endregion
-
-    #region [ Load Data ]
-    //public Task LoadData()
-    //{
-    //    var stream = new StreamMediaSource;
-    //    var streamMediaSource = new StreamMediaSource { Stream = stream };
-    //    mediaElement.Source = streamMediaSource;
-    //}
     #endregion
 }
 
