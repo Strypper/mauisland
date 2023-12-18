@@ -101,7 +101,8 @@ public partial class MediaElementPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     string aspectRatioExample =
-        "";
+        "<toolkit:MediaElement x:Name=\"MediaElement\" \r\n" +
+        "                      Aspect=\"AspectFill\"/>";
 
     [ObservableProperty]
     string xamlMediaElement =
@@ -266,13 +267,56 @@ public partial class MediaElementPageViewModel : NavigationAwareBaseViewModel
         "{\r\n" +
         "    MediaElement.Pause();\r\n" +
         "}";
+
+    [ObservableProperty]
+    string xamlCleanUpProperty = "Unloaded=\"ContentPage_Unloaded\"";
+
+    [ObservableProperty]
+    string cleanUpOnDisappearing = "";
+
+    [ObservableProperty]
+    string xamlCleanUpMediaElementResourcesRemovedVisualTree =
+        "<app:BasePage\r\n" +
+        "    x:Class=\"MAUIsland.MediaElementPage\"\r\n" +
+        "    x:DataType=\"app:MediaElementPageViewModel\"\r\n" +
+        "    xmlns=\"http://schemas.microsoft.com/dotnet/2021/maui\"\r\n" +
+        "    xmlns:x=\"http://schemas.microsoft.com/winfx/2009/xaml\"\r\n" +
+        "    xmlns:app=\"clr-namespace:MAUIsland\"\r\n" +
+        "    xmlns:toolkit=\"http://schemas.microsoft.com/dotnet/2022/maui/toolkit\"\r\n" +
+        "    Loaded=\"ContentPage_Loaded\"\r\n" +
+        "    Unloaded=\"ContentPage_Unloaded\">\r\n" +
+        "</app:BasePage>";
+
+    [ObservableProperty]
+    string cSharpCleanUpMediaElementResourcesRemovedVisualTree =
+        "void ContentPage_Unloaded(object? sender, EventArgs e)\r\n" +
+        "{\r\n" +
+        "    MediaElementDownloadSample.Handler?.DisconnectHandler();\r\n" +
+        "    MediaElement.Handler?.DisconnectHandler();\r\n" +
+        "    SimpleMediaElement.Handler?.DisconnectHandler();\r\n" +
+        "}";
+
+    [ObservableProperty]
+    string cleanUpMediaElementResourcesPageInvisible =
+        "protected override void OnDisappearing()\r\n" +
+        "{\r\n" +
+        "     base.OnDisappearing();\r\n\r\n" +
+        "     // Disconnect the event handlers.\r\n" +
+        "     MediaElement.MediaEnded -= OnMediaEnded;\r\n" +
+        "     MediaElement.MediaFailed -= OnMediaFailed;\r\n" +
+        "     MediaElement.MediaOpened -= OnMediaOpened;\r\n" +
+        "     MediaElement.PositionChanged -= OnPositionChanged;\r\n" +
+        "     MediaElement.StateChanged -= OnStateChanged;\r\n" +
+        "     MediaElement.SeekCompleted -= OnSeekCompleted;\r\n\r\n" +
+        "     // Set the Source property to null.\r\n" +
+        "     MediaElement.Source = null;\r\n    }";
     #endregion
 
     #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
-        Volume = 5.0;
+        Volume = 0.5;
         ControlInformation = query.GetData<IGalleryCardInfo>();
     }
     #endregion
