@@ -419,29 +419,33 @@
                                       Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"/>
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <HorizontalStackLayout BindingContext="{x:Reference MediaElement}" HorizontalOptions="CenterAndExpand">
-                    <Button Grid.Column="0" Text="Play" Clicked="OnPlayClicked" />
-                    <Button Grid.Column="1" Text="Pause" Clicked="OnPauseClicked" />
-                    <Button Grid.Column="2" Text="Stop" Clicked="OnStopClicked" />
-                    <Button Grid.Column="3" Text="Mute" Clicked="OnMuteClicked">
-                        <Button.Triggers>
-                            <DataTrigger TargetType="Button"
-                                         Binding="{x:Binding ShouldMute, Source={x:Reference MediaElement}}"
-                                         Value="True">
-                                <Setter Property="Text" Value="Unmute" />
-                            </DataTrigger>
-                            <DataTrigger TargetType="Button"
-                                         Binding="{x:Binding ShouldMute, Source={x:Reference MediaElement}}"
-                                         Value="False">
-                                <Setter Property="Text" Value="Mute" />
-                            </DataTrigger>
-                        </Button.Triggers>
-                    </Button>
-                    <Button Text=">" Clicked="OnSpeedMinusClicked" />
-                    <Button Text=">>>" Clicked="OnSpeedPlusClicked" />
-                    <Button Text="-" Clicked="OnVolumeMinusClicked" />
-                    <Button Text="+" Clicked="OnVolumePlusClicked" />
-                </HorizontalStackLayout>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout BindingContext="{x:Reference MediaElement}" HorizontalOptions="CenterAndExpand">
+                        <Button Grid.Column="0" Text="Play" Clicked="OnPlayClicked" />
+                        <Button Grid.Column="1" Text="Pause" Clicked="OnPauseClicked" />
+                        <Button Grid.Column="2" Text="Stop" Clicked="OnStopClicked" />
+                        <Button Grid.Column="3" Text="Mute" Clicked="OnMuteClicked">
+                            <Button.Triggers>
+                                <DataTrigger TargetType="Button"
+                         Binding="{x:Binding ShouldMute, Source={x:Reference MediaElement}}"
+                         Value="True">
+                                    <Setter Property="Text" Value="Unmute" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Button"
+                         Binding="{x:Binding ShouldMute, Source={x:Reference MediaElement}}"
+                         Value="False">
+                                    <Setter Property="Text" Value="Mute" />
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
+                        <Button Text=">" Clicked="OnSpeedMinusClicked" />
+                        <Button Text=">>>" Clicked="OnSpeedPlusClicked" />
+                        <Button Text="-" Clicked="OnVolumeMinusClicked" />
+                        <Button Text="+" Clicked="OnVolumePlusClicked" />
+                    </HorizontalStackLayout>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlMediaElement}" />
+                    <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpMediaElement}" />
+                </VerticalStackLayout>
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
@@ -451,8 +455,9 @@
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <HorizontalStackLayout>
-                    <VerticalStackLayout>
+                <Grid ColumnDefinitions="0.5*, 0.5*" HorizontalOptions="FillAndExpand">
+                    <VerticalStackLayout Grid.Column="0">
+                        <Label Text="Video Volume"/>
                         <Slider x:Name="VolumeSlider"
                                 IsEnabled="True"
                                 Maximum="1.0"
@@ -460,16 +465,21 @@
                                 MinimumTrackColor="Gray"
                                 Value="{x:Binding Volume, Mode=TwoWay}"
                                 WidthRequest="200" />
+                        <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlVolumeControl}" />
+                        <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpVolumeControl}" />
                     </VerticalStackLayout>
-                    <VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="1">
+                        <Label Text="Video Position"/>
                         <Slider x:Name="PositionSlider"
                                 IsEnabled="True"
                                 MinimumTrackColor="Gray"
                                 DragStarted="Slider_DragStarted"
                                 DragCompleted="Slider_DragCompleted"
                                 WidthRequest="200" />
+                        <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlPositionControl}" />
+                        <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpPositionControl}" />
                     </VerticalStackLayout>
-                </HorizontalStackLayout>
+                </Grid>
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">

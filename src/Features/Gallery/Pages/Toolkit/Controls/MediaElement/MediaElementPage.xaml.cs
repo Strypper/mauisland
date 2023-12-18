@@ -15,7 +15,6 @@ public partial class MediaElementPage : IGalleryPage
     #endregion
 
     #region [CTor]
-    [Obsolete]
     public MediaElementPage(MediaElementPageViewModel vm, ILogger<MediaElementPage> mediaElementLogger)
     {
         InitializeComponent();
