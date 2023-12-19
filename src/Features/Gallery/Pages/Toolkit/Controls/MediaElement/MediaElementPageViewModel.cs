@@ -101,7 +101,8 @@ public partial class MediaElementPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     string aspectRatioExample =
-        "";
+        "<toolkit:MediaElement x:Name=\"MediaElement\" \r\n" +
+        "                      Aspect=\"AspectFill\"/>";
 
     [ObservableProperty]
     string xamlMediaElement =
@@ -145,13 +146,6 @@ public partial class MediaElementPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     string cSharpMediaElement =
-        "readonly ILogger MediaElementLogger;\r\n\r\n" +
-        "public MediaElementPage(MediaElementPageViewModel vm, ILogger<MediaElementPage> mediaElementLogger)\r\n" +
-        "{\r\n" +
-        "     InitializeComponent();\r\n\r\n" +
-        "     BindingContext = vm;\r\n" +
-        "     this.MediaElementLogger = mediaElementLogger;\r\n" +
-        "}\r\n\r\n" +
         "void OnMediaOpened(object? sender, EventArgs e) \r\n" +
         "   => MediaElementLogger.LogInformation(\"Media opened.\");\r\n\r\n" +
         "void OnStateChanged(object? sender, MediaStateChangedEventArgs e) \r\n" +
@@ -212,8 +206,110 @@ public partial class MediaElementPageViewModel : NavigationAwareBaseViewModel
         "   => MediaElement.ShouldMute = !MediaElement.ShouldMute;";
 
     [ObservableProperty]
-    string volumeControl =
-        "";
+    string xamlVolumeControl =
+        "<toolkit:MediaElement x:Name=\"MediaElement\" \r\n" +
+        "                      ShouldAutoPlay=\"False\"\r\n" +
+        "                      Volume=\"{x:Binding Volume, Mode=TwoWay}\" \r\n" +
+        "                      Source=\"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4\"/>\r\n\r\n" +
+        "<Slider x:Name=\"VolumeSlider\"\r\n" +
+        "        IsEnabled=\"True\"\r\n" +
+        "        Maximum=\"1.0\"\r\n" +
+        "        Minimum=\"0.0\"\r\n" +
+        "        MinimumTrackColor=\"Gray\"\r\n" +
+        "        Value=\"{x:Binding Volume, Mode=TwoWay}\"\r\n" +
+        "        WidthRequest=\"200\" />";
+
+    [ObservableProperty]
+    string cSharpVolumeControl =
+        "[ObservableProperty]\r\n" +
+        "double volume;\r\n ";
+
+    [ObservableProperty]
+    string xamlPositionControl =
+        "<toolkit:MediaElement x:Name=\"MediaElement\" \r\n" +
+        "                      ShouldAutoPlay=\"False\"\r\n" +
+        "                      PositionChanged=\"OnPositionChanged\"\r\n" +
+        "                      Source=\"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4\"/>\r\n\r\n" +
+        "<Slider x:Name=\"PositionSlider\"\r\n" +
+        "        IsEnabled=\"True\"\r\n" +
+        "        MinimumTrackColor=\"Gray\"\r\n" +
+        "        DragStarted=\"Slider_DragStarted\"\r\n" +
+        "        DragCompleted=\"Slider_DragCompleted\"\r\n" +
+        "        WidthRequest=\"200\" />";
+
+    [ObservableProperty]
+    string cSharpPositionControl =
+        "public MediaElementPage(MediaElementPageViewModel vm)\r\n" +
+        "{\r\n" +
+        "     InitializeComponent();\r\n\r\n" +
+        "     BindingContext = vm;\r\n" +
+        "     MediaElement.PropertyChanged += MediaElementPropertyChanged;\r\n" +
+        "}\r\n\r\n" +
+        "void MediaElementPropertyChanged(object? sender, PropertyChangedEventArgs e)\r\n" +
+        "{\r\n" +
+        "    if (e.PropertyName == MediaElement.DurationProperty.PropertyName)\r\n" +
+        "    {\r\n" +
+        "        PositionSlider.Maximum = MediaElement.Duration.TotalSeconds;\r\n" +
+        "    }\r\n" +
+        "}\r\n" +
+        "void OnPositionChanged(object? sender, MediaPositionChangedEventArgs e)\r\n" +
+        "{\r\n" +
+        "    PositionSlider.Value = e.Position.TotalSeconds;\r\n" +
+        "}\r\n" +
+        "void Slider_DragCompleted(object? sender, EventArgs e)\r\n" +
+        "{\r\n" +
+        "    ArgumentNullException.ThrowIfNull(sender);\r\n\r\n" +
+        "    var newValue = ((Slider)sender).Value;\r\n" +
+        "    MediaElement.SeekTo(TimeSpan.FromSeconds(newValue));\r\n\r\n" +
+        "    MediaElement.Play();\r\n" +
+        "}\r\n\r\n" +
+        "void Slider_DragStarted(object sender, EventArgs e)\r\n" +
+        "{\r\n" +
+        "    MediaElement.Pause();\r\n" +
+        "}";
+
+    [ObservableProperty]
+    string xamlCleanUpProperty = "Unloaded=\"ContentPage_Unloaded\"";
+
+    [ObservableProperty]
+    string cleanUpOnDisappearing = "";
+
+    [ObservableProperty]
+    string xamlCleanUpMediaElementResourcesRemovedVisualTree =
+        "<app:BasePage\r\n" +
+        "    x:Class=\"MAUIsland.MediaElementPage\"\r\n" +
+        "    x:DataType=\"app:MediaElementPageViewModel\"\r\n" +
+        "    xmlns=\"http://schemas.microsoft.com/dotnet/2021/maui\"\r\n" +
+        "    xmlns:x=\"http://schemas.microsoft.com/winfx/2009/xaml\"\r\n" +
+        "    xmlns:app=\"clr-namespace:MAUIsland\"\r\n" +
+        "    xmlns:toolkit=\"http://schemas.microsoft.com/dotnet/2022/maui/toolkit\"\r\n" +
+        "    Loaded=\"ContentPage_Loaded\"\r\n" +
+        "    Unloaded=\"ContentPage_Unloaded\">\r\n" +
+        "</app:BasePage>";
+
+    [ObservableProperty]
+    string cSharpCleanUpMediaElementResourcesRemovedVisualTree =
+        "void ContentPage_Unloaded(object? sender, EventArgs e)\r\n" +
+        "{\r\n" +
+        "    MediaElementDownloadSample.Handler?.DisconnectHandler();\r\n" +
+        "    MediaElement.Handler?.DisconnectHandler();\r\n" +
+        "    SimpleMediaElement.Handler?.DisconnectHandler();\r\n" +
+        "}";
+
+    [ObservableProperty]
+    string cleanUpMediaElementResourcesPageInvisible =
+        "protected override void OnDisappearing()\r\n" +
+        "{\r\n" +
+        "     base.OnDisappearing();\r\n\r\n" +
+        "     // Disconnect the event handlers.\r\n" +
+        "     MediaElement.MediaEnded -= OnMediaEnded;\r\n" +
+        "     MediaElement.MediaFailed -= OnMediaFailed;\r\n" +
+        "     MediaElement.MediaOpened -= OnMediaOpened;\r\n" +
+        "     MediaElement.PositionChanged -= OnPositionChanged;\r\n" +
+        "     MediaElement.StateChanged -= OnStateChanged;\r\n" +
+        "     MediaElement.SeekCompleted -= OnSeekCompleted;\r\n\r\n" +
+        "     // Set the Source property to null.\r\n" +
+        "     MediaElement.Source = null;\r\n    }";
     #endregion
 
     #region [ Overrides ]

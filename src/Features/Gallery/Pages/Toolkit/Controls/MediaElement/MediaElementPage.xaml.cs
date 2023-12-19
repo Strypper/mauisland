@@ -15,7 +15,6 @@ public partial class MediaElementPage : IGalleryPage
     #endregion
 
     #region [CTor]
-    [Obsolete]
     public MediaElementPage(MediaElementPageViewModel vm, ILogger<MediaElementPage> mediaElementLogger)
     {
         InitializeComponent();
@@ -23,6 +22,24 @@ public partial class MediaElementPage : IGalleryPage
         BindingContext = ViewModel = vm;
         this.MediaElementLogger = mediaElementLogger;
         MediaElement.PropertyChanged += MediaElementPropertyChanged;
+    }
+    #endregion
+
+    #region [ Override ]
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+
+        // Disconnect the event handlers.
+        MediaElement.MediaEnded -= OnMediaEnded;
+        MediaElement.MediaFailed -= OnMediaFailed;
+        MediaElement.MediaOpened -= OnMediaOpened;
+        MediaElement.PositionChanged -= OnPositionChanged;
+        MediaElement.StateChanged -= OnStateChanged;
+        MediaElement.SeekCompleted -= OnSeekCompleted;
+
+        // Set the Source property to null.
+        MediaElement.Source = null;
     }
     #endregion
 
@@ -40,12 +57,19 @@ public partial class MediaElementPage : IGalleryPage
     {
         if (File.Exists(localFilePath))
         {
-            mediaElementDownloadSample.Source = MediaSource.FromFile(localFilePath);
+            MediaElementDownloadSample.Source = MediaSource.FromFile(localFilePath);
         }
         else
         {
             CheckFileLabel.Text = $"Nah bro";
         }
+    }
+
+    void ContentPage_Unloaded(object? sender, EventArgs e)
+    {
+        MediaElementDownloadSample.Handler?.DisconnectHandler();
+        MediaElement.Handler?.DisconnectHandler();
+        SimpleMediaElement.Handler?.DisconnectHandler();
     }
 
     private void DownloadButton_Clicked(object sender, EventArgs e)
@@ -57,7 +81,7 @@ public partial class MediaElementPage : IGalleryPage
             {
                 DownloadIndicator.IsRunning = false;
                 ResultLabel.Text = "Video download finished!";
-                mediaElementDownloadSample.Source = MediaSource.FromFile(localFilePath);
+                MediaElementDownloadSample.Source = MediaSource.FromFile(localFilePath);
             };
             client.DownloadProgressChanged += (sender, e) =>
             {
