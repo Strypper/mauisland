@@ -327,7 +327,6 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Padding="10" Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Text and Image radio button with custom template"/>
-                    <!--  This cause app to break when in release mode - Investigation: ControlTemplate="{StaticResource RadioButtonTemplate}" cause the app to break  -->
                     <HorizontalStackLayout x:Name="EmotionalRadioButtonGroupWithCustomTemplate" 
                                            RadioButtonGroup.GroupName="Emotional" 
                                            Spacing="20">
