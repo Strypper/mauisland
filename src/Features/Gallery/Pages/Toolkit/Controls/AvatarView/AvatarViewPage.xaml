@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage 
+    x:Class="MAUIsland.AvatarViewPage"
+    x:DataType="app:AvatarViewPageViewModel"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="Avatar View"
+    BackgroundColor="Transparent"
+    Padding="10">
+
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem
+        Command="{x:Binding OpenUrlCommand}"
+        CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+        IconImageSource="githublogo.png"
+        Text="Source code" />
+        <ToolbarItem
+        Command="{x:Binding OpenUrlCommand}"
+        CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+        IconImageSource="microsoft.png"
+        Text="Original Document" />
+    </app:BasePage.ToolbarItems>
+
+    <app:BasePage.Resources>
+        <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   <strong style="color:blue">BackgroundColor</strong> property is a <strong style="color:blue">Color</strong> that determines the background color of the control. If unset, the background will be the default Color object, which renders as <strong style="color:blue">White</strong>.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">BorderColor</strong> property is a <strong style="color:blue">Color</strong> property that determines the border color of the control. If unset, the border will be the default Color object, which renders as <strong style="color:blue">Black</strong>.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">BorderWidth</strong> property is a <strong style="color:blue">double</strong> that determines the rendered width of the control border. If unset, the border width will be the default, which renders as <strong style="color:blue">1.0</strong>.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">CornerRadius</strong> property is a CornerRadius that determines the shape of the control. It can be set to a single <strong style="color:blue">double</strong> uniform corner radius value, or a CornerRadius structure defined by four <strong style="color:blue">double</strong> values that are applied to the top left, top right, bottom left, and bottom right of the control. This property is measured in device-independent units. If unset, the corner radius will be the default CornerRadius object, which renders as <strong style="color:blue">24</strong>.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">ImageSource</strong> property is an <strong style="color:blue">ImageSource</strong> that determines the image of the control. It can be set to an image retrieved from a file, embedded resource, URI, or stream. If unset, the control will render the <strong style="color:blue">Text</strong> property.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Padding</strong> property is a <strong style="color:blue">Thickness</strong> that represents the distance between control border and the <strong style="color:blue">Text</strong> or <strong style="color:blue">ImageSource</strong>. If unset, the padding will be the default <strong style="color:blue">Thickness</strong> object, which is <strong style="color:blue">1</strong>.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Text</strong> property is a string that determines the text of the control. If unset, the text will be the default, which renders as '?'.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">TextColor</strong> property is a Color that determines the text color of the control. If unset, the text will be the default Colour object.    ]]>
+            </x:String>
+        </x:Array>
+    </app:BasePage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout>
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Properties" />
+                    <CollectionView ItemsSource="{x:StaticResource PropertyItemsSource}"
+                                    Style="{x:StaticResource PropertiesListStyle}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup AvatarView" />
+                    <VerticalStackLayout>
+                        <Label Text="{x:Binding SetupDescription}"/>
+                        <Label Text="{x:Binding XamlNamespace}" TextColor="Blue"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Therefore the following:"/>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding FullNamepaceExampleBefore}" />
+                    <Label Text="Would be modified to include the xmlns as follows:"/>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding FullNamepaceExampleAfter}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="AvatarView with text" />
+                    <HorizontalStackLayout Spacing="10">
+                        <toolkit:AvatarView Text="ZS" 
+                                            BorderColor="Black"/>
+                        <toolkit:AvatarView Text="Hello" 
+                                            BorderColor="Black"/>
+                        <toolkit:AvatarView Text="Cat" 
+                                            BorderColor="Black"/>
+                    </HorizontalStackLayout>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlAvatarViewText}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="AvatarView set text color" />
+                    <HorizontalStackLayout Spacing="10">
+                        <toolkit:AvatarView BorderColor="Black" 
+                                            Text="TC" 
+                                            TextColor="Green"/>
+                        <toolkit:AvatarView BorderColor="Black" 
+                                            Text="TC" 
+                                            TextColor="{x:Static app:AppColors.BlackGrey}"/>
+                        <toolkit:AvatarView BorderColor="Black" 
+                                            Text="TC" 
+                                            TextColor="#806e41"/>
+                    </HorizontalStackLayout>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlAvatarViewTextColor}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="AvatarView with background color" />
+                    <HorizontalStackLayout Spacing="10">
+                        <toolkit:AvatarView BackgroundColor="Red"
+                                            BorderColor="Black"
+                                            Text="BC"/>
+                        <toolkit:AvatarView BackgroundColor="{x:Static app:AppColors.Green}"
+                                            BorderColor="Black"
+                                            Text="BC"/>
+                        <toolkit:AvatarView BackgroundColor="#ffe39e"
+                                            BorderColor="Black"
+                                            Text="BC"/>
+                    </HorizontalStackLayout>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlAvatarViewBackgroundColor}" />
+                </VerticalStackLayout>
+            </Frame>
+            
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="AvatarView with border color" />
+                    <HorizontalStackLayout Spacing="10">
+                        <toolkit:AvatarView BorderColor="Yellow"
+                                            Text="BC"/>
+                        <toolkit:AvatarView BorderColor="{x:Static app:AppColors.LightBlue}"
+                                            Text="BC"/>
+                        <toolkit:AvatarView BorderColor="#004b5c"
+                                            Text="BC"/>
+                    </HorizontalStackLayout>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlAvatarViewBorderColor}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="AvatarView with padding" />
+                    <HorizontalStackLayout Spacing="10">
+                        <toolkit:AvatarView BorderColor="Black"
+                                            Padding="2"
+                                            Text="PA"/>
+                        <toolkit:AvatarView BorderColor="Black"
+                                            Padding="1"
+                                            Text="PA"/>
+                        <toolkit:AvatarView BorderColor="Black"
+                                            Padding="3"
+                                            Text="PA"/>
+                    </HorizontalStackLayout>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlAvatarViewPadding}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="AvatarView border width" />
+                    <HorizontalStackLayout Spacing="10">
+                        <toolkit:AvatarView BorderWidth="2"
+                                            BorderColor="Black"
+                                            Text="BW"/>
+                        <toolkit:AvatarView BorderWidth="1"
+                                            BorderColor="Black"
+                                            Text="BW"/>
+                        <toolkit:AvatarView BorderWidth="3"
+                                            BorderColor="Black"
+                                            Text="BW"/>
+                    </HorizontalStackLayout>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlAvatarViewBorderWidth}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout>
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="AvatarView corner set" />
+                    <Grid ColumnDefinitions="0.5*, 0.5*" 
+                          ColumnSpacing="10" 
+                          HorizontalOptions="FillAndExpand">
+                        <VerticalStackLayout Grid.Column="0" Spacing="10">
+                            <Label Text="This is four corner set" />
+                            <HorizontalStackLayout Spacing="10" HeightRequest="70">
+                                <toolkit:AvatarView CornerRadius="8, 12, 16, 20" 
+                                                    HeightRequest="48" 
+                                                    WidthRequest="48"
+                                                    BorderColor="Black"
+                                                    Text="CR" />
+                                <toolkit:AvatarView CornerRadius="9, 18, 46, 7" 
+                                                    HeightRequest="48" 
+                                                    WidthRequest="48"
+                                                    BorderColor="Black"
+                                                    Text="CR" />
+                            </HorizontalStackLayout>
+                            <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlAvatarViewFourCornerSet}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="10">
+                            <Label Text="This is one corner set" />
+                            <HorizontalStackLayout Spacing="10" HeightRequest="70">
+                                <toolkit:AvatarView CornerRadius="8" 
+                                                    HeightRequest="48" 
+                                                    WidthRequest="48"
+                                                    BorderColor="Black"
+                                                    Text="CR"/>
+                                <toolkit:AvatarView CornerRadius="12" 
+                                                    HeightRequest="38" 
+                                                    WidthRequest="38"
+                                                    BorderColor="Black"
+                                                    Text="CR"/>
+                                <toolkit:AvatarView CornerRadius="5" 
+                                                    HeightRequest="58" 
+                                                    WidthRequest="58"
+                                                    BorderColor="Black"
+                                                    Text="CR"/>
+                            </HorizontalStackLayout>
+                            <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlAvatarViewSingleCornerSet}" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="AvatarView Image Source" />
+                    <HorizontalStackLayout Spacing="10">
+                        <toolkit:AvatarView BorderColor="Black"
+                                            BackgroundColor="Orange"
+                                            HeightRequest="40" 
+                                            WidthRequest="40"
+                                            Padding="-4, 0, 0, 0">
+                            <toolkit:AvatarView.ImageSource>
+                                <FontImageSource Glyph="{x:Static app:FluentUIIcon.Ic_fluent_person_circle_24_regular}" 
+                                                 FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                                                 Size="100"
+                                                 Color = "{x:Static app:AppColors.White}"/>
+                            </toolkit:AvatarView.ImageSource>
+                        </toolkit:AvatarView>
+                        <toolkit:AvatarView BorderColor="Black"
+                                            BackgroundColor="Orange"
+                                            ImageSource="{x:Binding ControlInformation.ControlIcon, Mode=OneWay}"
+                                            HeightRequest="40" 
+                                            WidthRequest="40"
+                                            Padding="-4, 0, 0, 0"/>
+
+                        <toolkit:AvatarView BorderColor="Black"
+                                            ImageSource="https://aka.ms/campus.jpg"
+                                            HeightRequest="40" 
+                                            WidthRequest="40"
+                                            Padding="-4, 0, 0, 0">
+                        </toolkit:AvatarView>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Here is the snip code" />
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlAvatarViewImageSource}"/>
+                    <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpAvatarViewViewModelImageSource}" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</app:BasePage>
