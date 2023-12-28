@@ -20,7 +20,7 @@
             MacCatalyst=false, WinUI=true}"
         -->
         <app:CardsSearchHandler
-            Cards="{x:Binding Items,
+            Cards="{x:Binding ControlGroupList,
                               Mode=TwoWay}"
             ClearIcon="{x:StaticResource SearchBarDismissIcon}"
             Placeholder="Search Controls"
@@ -212,23 +212,45 @@
                             x:Name="CardByGroupPage_StatusPicker"
                             Title="Status"
                             HorizontalOptions="End"
-                            ItemDisplayBinding="{Binding CardType}"
-                            ItemsSource="{x:Binding Items,
+                            SelectedItem="{x:Binding SelectedItem}"
+                            ItemsSource="{x:Binding ControlGroupList,
                                                     Mode=OneWay,
                                                     Converter={x:StaticResource CardByGroupPage_StatusPicker_Converter}}"
-                            VerticalOptions="Center" />
+                            VerticalOptions="Center"/>
                     </Grid>
-                    <mdc:WrapLayout
-                        Grid.Row="1"
-                        Grid.ColumnSpan="2"
-                        BindableLayout.ItemTemplateSelector="{x:StaticResource BrandCardTemplateSelector}"
-                        BindableLayout.ItemsSource="{x:Binding Items,
-                                                               Mode=OneWay}"
-                        HorizontalOptions="{x:OnIdiom Desktop=Start,
-                                                      Tablet=Start,
-                                                      Default=Start,
-                                                      Phone=Center}"
-                        Spacing="10" />
+                    <Label x:Name="EmptyLabel" 
+                           Grid.Row="1"
+                           Grid.ColumnSpan="2" 
+                           Text="No items available"
+                           TextColor="White"
+                           IsVisible="False">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" 
+                                         Binding="{x:Binding FilteredControlGroupList.Count}" 
+                                         Value="0">
+                                <Setter Property="IsVisible" Value="True" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <mdc:WrapLayout x:Name="WrapLayout"
+                                    Grid.Row="1"
+                                    Grid.ColumnSpan="2"
+                                    BindableLayout.ItemTemplateSelector="{x:StaticResource BrandCardTemplateSelector}"
+                                    BindableLayout.ItemsSource="{x:Binding FilteredControlGroupList,
+                                                                           Mode=OneWay}"
+                                    HorizontalOptions="{x:OnIdiom Desktop=Start,
+                                                                  Tablet=Start,
+                                                                  Default=Start,
+                                                                  Phone=Center}"
+                                    Spacing="10">
+                        <mdc:WrapLayout.Triggers>
+                            <DataTrigger TargetType="mdc:WrapLayout" 
+                                         Binding="{x:Binding FilteredControlGroupList.Count}" 
+                                         Value="0">
+                                <Setter Property="IsVisible" Value="False" />
+                            </DataTrigger>
+                        </mdc:WrapLayout.Triggers>
+                    </mdc:WrapLayout>
                 </VerticalStackLayout>
             </Grid>
         </ScrollView>
