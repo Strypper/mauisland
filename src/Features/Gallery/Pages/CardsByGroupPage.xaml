@@ -204,19 +204,17 @@
                         </Border>
                     </Grid>
                     <Grid>
-                        <Label
-                            FontSize="32"
-                            Text="Controls"
-                            TextDecorations="Underline" />
-                        <Picker
-                            x:Name="CardByGroupPage_StatusPicker"
-                            Title="Status"
-                            HorizontalOptions="End"
-                            SelectedItem="{x:Binding SelectedItem}"
-                            ItemsSource="{x:Binding ControlGroupList,
+                        <Label FontSize="32"
+                               Text="Controls"
+                               TextDecorations="Underline" />
+                        <Picker x:Name="CardByGroupPage_StatusPicker"
+                                Title="Status"
+                                HorizontalOptions="End"
+                                SelectedItem="{x:Binding SelectedItem}"
+                                ItemsSource="{x:Binding ControlGroupList,
                                                     Mode=OneWay,
                                                     Converter={x:StaticResource CardByGroupPage_StatusPicker_Converter}}"
-                            VerticalOptions="Center"/>
+                                VerticalOptions="Center"/>
                     </Grid>
                     <Label x:Name="EmptyLabel" 
                            Grid.Row="1"
