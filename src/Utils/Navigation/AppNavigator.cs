@@ -47,13 +47,15 @@ public class AppNavigator : IAppNavigator
 
                 return MainThread.InvokeOnMainThreadAsync(() =>
                 {
-#if WINDOWS
-                    var window = new AcrylicWindow() { Page = page };
-                    Application.Current?.OpenWindow(window);
-#else
+                    //#if WINDOWS
+                    //                    var window = new AcrylicWindow() { Page = page };
+                    //                    Application.Current?.OpenWindow(window);
+                    //#else
+                    //                    var newWindow = new Window(page);
+                    //                    Application.Current.OpenWindow(newWindow);
+                    //#endif
                     var newWindow = new Window(page);
                     Application.Current.OpenWindow(newWindow);
-#endif
                 });
             });
         }

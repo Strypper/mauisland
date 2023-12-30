@@ -30,30 +30,28 @@
             Source="fluentuibackground.jpg"
             VerticalOptions="Fill" />
 
-        <!--<acrylic:AcrylicView
-            CornerRadius="20"
-            EffectStyle="Light"
-            HorizontalOptions="Center"
-            MaximumHeightRequest="{x:OnIdiom Desktop=350,
-                                             Tablet=250,
-                                             Phone=250}"
-            MaximumWidthRequest="{x:OnIdiom Desktop=650,
-                                            Tablet=650,
-                                            Phone=320}"
-            VerticalOptions="Center">-->
-        <Border
+        <acrylic:AcrylicView
             Padding="30"
-            HorizontalOptions="Fill"
-            MinimumHeightRequest="250"
-            MinimumWidthRequest="320"
-            VerticalOptions="Fill">
+            CornerRadius="20"
+            EffectStyle="Custom"
+            HeightRequest="{x:OnIdiom Desktop=350,
+                                      Tablet=250,
+                                      Phone=550}"
+            HorizontalOptions="Center"
+            TintColor="OrangeRed"
+            TintOpacity=".15 "
+            VerticalOptions="Center"
+            WidthRequest="{x:OnIdiom Desktop=650,
+                                     Tablet=650,
+                                     Phone=320}">
             <CollectionView
+                Margin="{x:OnPlatform WinUI=30,
+                                      Android=0,
+                                      iOS=0}"
                 HorizontalOptions="Fill"
                 ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
                 ItemsSource="{x:Binding ControlGroups,
                                         Mode=OneWay}"
-                MinimumHeightRequest="250"
-                MinimumWidthRequest="320"
                 VerticalOptions="Fill">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout
@@ -66,8 +64,7 @@
                         VerticalItemSpacing="5" />
                 </CollectionView.ItemsLayout>
             </CollectionView>
-        </Border>
-        <!--</acrylic:AcrylicView>-->
+        </acrylic:AcrylicView>
 
         <Button
             Clicked="NavigateToBuiltIn_Clicked"
