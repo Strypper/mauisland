@@ -14,11 +14,13 @@
     BackgroundColor="#272727"
     Shell.TabBarIsVisible="False"
     SizeChanged="BasePage_SizeChanged">
-    <Shell.SearchHandler>
-        <!--
-            SearchBoxVisibility="{x:OnPlatform iOS=false,
-            MacCatalyst=false, WinUI=true}"
-        -->
+    <!--<Shell.SearchHandler>
+    -->
+    <!--
+        SearchBoxVisibility="{x:OnPlatform iOS=false,
+        MacCatalyst=false, WinUI=true}"
+    -->
+    <!--
         <app:CardsSearchHandler
             Cards="{x:Binding ControlGroupList,
                               Mode=TwoWay}"
@@ -47,7 +49,7 @@
                 </DataTemplate>
             </app:CardsSearchHandler.ItemTemplate>
         </app:CardsSearchHandler>
-    </Shell.SearchHandler>
+    </Shell.SearchHandler>-->
     <app:BasePage.Resources>
         <app:ImageSourceToBoolConverter x:Key="ImageSourceToBoolConverter" />
 
@@ -204,47 +206,58 @@
                         </Border>
                     </Grid>
                     <Grid>
-                        <Label FontSize="32"
-                               Text="Controls"
-                               TextDecorations="Underline" />
-                        <Picker x:Name="CardByGroupPage_StatusPicker"
-                                Title="Status"
-                                HorizontalOptions="End"
-                                SelectedItem="{x:Binding SelectedItem}"
-                                ItemsSource="{x:Binding ControlGroupList,
+                        <Label
+                            FontSize="32"
+                            Text="{x:Binding SelectedItem,
+                                             Source={x:Reference CardByGroupPage_StatusPicker},
+                                             Mode=OneWay}"
+                            TextColor="White"
+                            TextDecorations="Underline" />
+                        <Picker
+                            x:Name="CardByGroupPage_StatusPicker"
+                            Title="Status"
+                            HorizontalOptions="End"
+                            ItemsSource="{x:Binding ControlGroupList,
                                                     Mode=OneWay,
                                                     Converter={x:StaticResource CardByGroupPage_StatusPicker_Converter}}"
-                                VerticalOptions="Center"/>
+                            SelectedItem="{x:Binding SelectedItem}"
+                            TextColor="White"
+                            TitleColor="White"
+                            VerticalOptions="Center" />
                     </Grid>
-                    <Label x:Name="EmptyLabel" 
-                           Grid.Row="1"
-                           Grid.ColumnSpan="2" 
-                           Text="No items available"
-                           TextColor="White"
-                           IsVisible="False">
+                    <Label
+                        x:Name="EmptyLabel"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        IsVisible="False"
+                        Text="No items available"
+                        TextColor="White">
                         <Label.Triggers>
-                            <DataTrigger TargetType="Label" 
-                                         Binding="{x:Binding FilteredControlGroupList.Count}" 
-                                         Value="0">
+                            <DataTrigger
+                                Binding="{x:Binding FilteredControlGroupList.Count}"
+                                TargetType="Label"
+                                Value="0">
                                 <Setter Property="IsVisible" Value="True" />
                             </DataTrigger>
                         </Label.Triggers>
                     </Label>
-                    <mdc:WrapLayout x:Name="WrapLayout"
-                                    Grid.Row="1"
-                                    Grid.ColumnSpan="2"
-                                    BindableLayout.ItemTemplateSelector="{x:StaticResource BrandCardTemplateSelector}"
-                                    BindableLayout.ItemsSource="{x:Binding FilteredControlGroupList,
-                                                                           Mode=OneWay}"
-                                    HorizontalOptions="{x:OnIdiom Desktop=Start,
-                                                                  Tablet=Start,
-                                                                  Default=Start,
-                                                                  Phone=Center}"
-                                    Spacing="10">
+                    <mdc:WrapLayout
+                        x:Name="WrapLayout"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        BindableLayout.ItemTemplateSelector="{x:StaticResource BrandCardTemplateSelector}"
+                        BindableLayout.ItemsSource="{x:Binding FilteredControlGroupList,
+                                                               Mode=OneWay}"
+                        HorizontalOptions="{x:OnIdiom Desktop=Start,
+                                                      Tablet=Start,
+                                                      Default=Start,
+                                                      Phone=Center}"
+                        Spacing="10">
                         <mdc:WrapLayout.Triggers>
-                            <DataTrigger TargetType="mdc:WrapLayout" 
-                                         Binding="{x:Binding FilteredControlGroupList.Count}" 
-                                         Value="0">
+                            <DataTrigger
+                                Binding="{x:Binding FilteredControlGroupList.Count}"
+                                TargetType="mdc:WrapLayout"
+                                Value="0">
                                 <Setter Property="IsVisible" Value="False" />
                             </DataTrigger>
                         </mdc:WrapLayout.Triggers>

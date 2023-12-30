@@ -10,24 +10,10 @@
     x:DataType="app:SettingsPageViewModel">
     <VerticalStackLayout>
         <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-            <HorizontalStackLayout Spacing="10">
-                <toolkit:AvatarView
-                    HeightRequest="150"
-                    ImageSource="{x:Binding AvatarImageSource}"
-                    WidthRequest="150" />
-                <VerticalStackLayout Spacing="10" VerticalOptions="Center">
-                    <Button
-                        Command="{x:Binding OpenFileCommand}"
-                        ImageSource="{x:StaticResource UploadIcon}"
-                        Text="Change avatar" />
-                    <Button
-                        Command="{x:Binding SaveCommand}"
-                        ImageSource="{x:StaticResource SaveIcon}"
-                        IsEnabled="{x:Binding AvatarImageSource,
-                        Converter={toolkit:IsNotNullConverter}}"
-                        Text="Save" />
-                </VerticalStackLayout>
-            </HorizontalStackLayout>
+            <VerticalStackLayout>
+                <Label Text="MAUIsland" />
+                <Label Text="Version 1.1.0 - Christmas Update" />
+            </VerticalStackLayout>
         </Frame>
     </VerticalStackLayout>
 </app:BasePage>

@@ -15,6 +15,11 @@
 		<!-- Display name -->
 		<ApplicationTitle>MAUIsland</ApplicationTitle>
 
+		
+		
+		
+		
+		
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.mauisland</ApplicationId>
 		<ApplicationIdGuid>337d7a98-7b00-487e-88d9-3b1a317456c7</ApplicationIdGuid>
@@ -136,7 +141,6 @@
 		<None Remove="Features\Gallery\Services\" />
 		<None Remove="Resources\Images\syncfusionbanner.png" />
 		<None Remove="Resources\Images\syncfusionlogo.png" />
-		<None Remove="Resources\Images\fluenticon_options_white.svg" />
 		<None Remove="Features\Gallery\Pages\Syncfusion\" />
 		<None Remove="Features\Gallery\Pages\BuiltIn\Controls\DatePicker\Pages\" />
 		<None Remove="Resources\Images\tizenlogo.svg" />
@@ -203,7 +207,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
-	  <CodesignKey>Apple Development: viet to (3NCH3BHD67)</CodesignKey>
+	  <CodesignKey>Apple Development: Created via API (4CKQ785SB5)</CodesignKey>
 	  <CodesignProvision>VS: WildCard Development</CodesignProvision>
 	</PropertyGroup>
 
@@ -477,9 +481,6 @@
 		</MauiXaml>
 	</ItemGroup>
 
-	<ItemGroup>
-		<BundleResource Include="Resources\Images\fluenticon_options_white.svg" />
-	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
 		<PackageReference Include="AdaptiveProperties.MAUI" Version="1.0.4">

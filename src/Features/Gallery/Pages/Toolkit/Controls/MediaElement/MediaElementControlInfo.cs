@@ -16,7 +16,7 @@ class MediaElementControlInfo : ICommunityToolkitGalleryCardInfo
     public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Toolkit/{ControlName}";
     public string DocumentUrl => "https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/views/mediaelement";
     public string GroupName => ControlGroupInfo.CommunityToolkit;
-    public GalleryCardType CardType => throw new NotImplementedException();
+    public GalleryCardType CardType => GalleryCardType.Control;
     public GalleryCardStatus CardStatus => throw new NotImplementedException();
     public DateTime LastUpdate => throw new NotImplementedException();
     public List<string> DoList => throw new NotImplementedException();
