@@ -2,7 +2,7 @@
 
 public class AgeToMrIncreadibleTitleMemeConverter : IValueConverter
 {
-    IDictionary<double, string> memes = new Dictionary<double, string>(){
+    public IDictionary<double, string> memes = new Dictionary<double, string>(){
         { 12, "We send your IP Address to the FBI 🚓"},
         { 13, "No stop !!! 🚫"},
         { 14, "Bruh no !!! 🛑"},
