@@ -1,20 +1,20 @@
 namespace MAUIsland;
-public partial class MaterialNavigationDrawerPageViewModel : NavigationAwareBaseViewModel
+public partial class LiveCharts2PageViewModel : NavigationAwareBaseViewModel
 {
-    #region [CTor]
-    public MaterialNavigationDrawerPageViewModel(
+    #region [ CTor ]
+    public LiveCharts2PageViewModel(
         IAppNavigator appNavigator
     ) : base(appNavigator)
     {
     }
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
     [ObservableProperty]
     IGalleryCardInfo controlInformation;
     #endregion
 
-    #region [Overrides]
+    #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
@@ -22,5 +22,13 @@ public partial class MaterialNavigationDrawerPageViewModel : NavigationAwareBase
         ControlInformation = query.GetData<IGalleryCardInfo>();
 
     }
+    #endregion
+
+    #region [Relay Commands]
+
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+        => AppNavigator.OpenUrlAsync(url);
+
     #endregion
 }

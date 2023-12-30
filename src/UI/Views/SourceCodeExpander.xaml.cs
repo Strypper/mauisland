@@ -75,9 +75,10 @@ public partial class SourceCodeExpander : ContentView, INotifyPropertyChanged
     {
         CodeTypeLabel.Text = CodeType == CodeType.Xaml ? "Xaml Code" : "C# Code";
         ApplyColor(Code, CodeType == CodeType.Xaml ? Languages.Xml : Languages.CSharp);
-        CodeExpander.BackgroundColor = CodeType == CodeType.Xaml
-                                    ? Color.FromHex("#ffffff") // Hex color for XAML type
-                                    : Color.FromHex("#00B1EE");
+        //CodeExpander.BackgroundColor = CodeType == CodeType.Xaml
+        //                            ? Color.FromHex("#ffffff") // Hex color for XAML type
+        //                            : Color.FromHex("#00B1EE");
+
     }
 
     #endregion

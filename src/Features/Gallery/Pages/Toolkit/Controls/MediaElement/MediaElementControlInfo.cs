@@ -13,10 +13,10 @@ class MediaElementControlInfo : ICommunityToolkitGalleryCardInfo
         Glyph = FluentUIIcon.Ic_fluent_video_clip_24_regular
     };
     public string ControlDetail => "MediaElement is a control for playing video and audio.";
-    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Syncfusion/{ControlName}";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Toolkit/{ControlName}";
     public string DocumentUrl => "https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/views/mediaelement";
     public string GroupName => ControlGroupInfo.CommunityToolkit;
-    public GalleryCardType CardType => throw new NotImplementedException();
+    public GalleryCardType CardType => GalleryCardType.Control;
     public GalleryCardStatus CardStatus => throw new NotImplementedException();
     public DateTime LastUpdate => throw new NotImplementedException();
     public List<string> DoList => throw new NotImplementedException();

@@ -1,12 +1,8 @@
-using IconPacks.Material;
-
 namespace MAUIsland;
 class MaterialSwitchControlInfo : IMaterialUIGalleryCardInfo
 {
     public string ControlName => nameof(Material.Components.Maui.Switch);
     public string ControlRoute => typeof(MaterialSwitchPage).FullName;
-
-    public IconKind MaterialIcon => IconKind.ToggleOn;
 
     public List<PlatformInfo> SupportedPlatformsInfo => new() { new() { Id = "1", Name = "Android", Logo = "androidlogo.png" },
                                                                 new() { Id = "2", Name = "IOS", Logo = "ioslogo.png" },
@@ -31,4 +27,6 @@ class MaterialSwitchControlInfo : IMaterialUIGalleryCardInfo
     public List<string> DoList => throw new NotImplementedException();
 
     public List<string> DontList => throw new NotImplementedException();
+
+    public string MaterialIcon => IconPacks.IconKind.Material.ToggleOn;
 }

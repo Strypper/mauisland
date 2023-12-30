@@ -38,7 +38,7 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("FluentSystemIcons-Regular.ttf", FontNames.FluentSystemIconsRegular);
             })
-            .UseMaterialComponents(new List<string> { })
+            .UseMaterialComponents()
             .ConfigureEssentials(essentials =>
             {
                 essentials.UseVersionTracking();

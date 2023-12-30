@@ -158,12 +158,12 @@
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Styles" />
                     <Label Text="There are 2 styles of comboBoxs: 1. Filled. 2. Outlined." />
                     <mdc:ComboBox Style="{DynamicResource FilledComboBoxStyle}">
-                        <mdc:ComboBoxItem Text="item 1" />
-                        <mdc:ComboBoxItem Text="item 2" />
+                        <mdc:MenuItem Text="item 1" />
+                        <mdc:MenuItem Text="item 2" />
                     </mdc:ComboBox>
                     <mdc:ComboBox Style="{DynamicResource OutlinedComboBoxStyle}">
-                        <mdc:ComboBoxItem Text="item 1" />
-                        <mdc:ComboBoxItem Text="item 2" />
+                        <mdc:MenuItem Text="item 1" />
+                        <mdc:MenuItem Text="item 2" />
                     </mdc:ComboBox>
                     <app:SourceCodeExpander Code="{x:Binding ComboBoxXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>

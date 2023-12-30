@@ -2,7 +2,7 @@
 
 public class AgeToMrIncreadibleMemeConverter : IValueConverter
 {
-    IDictionary<double, ImageSource> memes = new Dictionary<double, ImageSource>(){
+    public IDictionary<double, ImageSource> memes = new Dictionary<double, ImageSource>(){
         { 12, ImageSource.FromFile("mrincredibleblackwhite.png")},
         { 13, ImageSource.FromFile("mrincredibleblackwhite1.png")},
         { 14, ImageSource.FromFile("mrincredibleblackwhite2.png")},

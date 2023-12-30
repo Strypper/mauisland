@@ -7,155 +7,7 @@
     Title="Radio Button"
     Padding="10"
     x:DataType="app:RadioButtonPageViewModel">
-    <app:BasePage.Resources>
-        <ControlTemplate x:Key="RadioButtonTemplate">
-            <Frame
-                Margin="1"
-                Padding="0"
-                BackgroundColor="Transparent"
-                BorderColor="Transparent"
-                HasShadow="False"
-                HeightRequest="60"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                WidthRequest="80">
-                <Grid
-                    Padding="0,5,0,5"
-                    HeightRequest="60"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    WidthRequest="80">
-                    <Grid
-                        Margin="3,0,3,0"
-                        HeightRequest="18"
-                        HorizontalOptions="End"
-                        VerticalOptions="Start"
-                        WidthRequest="18">
-                        <Ellipse
-                            x:Name="outcheck"
-                            Fill="#53e6a1"
-                            HeightRequest="18"
-                            HorizontalOptions="Center"
-                            Stroke="white"
-                            VerticalOptions="Center"
-                            WidthRequest="18" />
-                        <Ellipse
-                            x:Name="check"
-                            Fill="Black"
-                            HeightRequest="10"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"
-                            WidthRequest="10" />
-                    </Grid>
-                    <ContentPresenter />
-                </Grid>
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CheckedStates">
-                            <VisualState x:Name="Checked">
-                                <VisualState.Setters>
-                                    <Setter Property="BorderColor" Value="#ffffff" />
-                                    <Setter TargetName="check" Property="Opacity" Value="1" />
-                                    <Setter TargetName="outcheck" Property="Opacity" Value="1" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="Unchecked">
-                                <VisualState.Setters>
-                                    <Setter Property="BorderColor" Value="Transparent" />
-                                    <Setter TargetName="check" Property="Opacity" Value="0" />
-                                    <Setter TargetName="outcheck" Property="Opacity" Value="0" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </VisualStateManager.VisualStateGroups>
-            </Frame>
-        </ControlTemplate>
 
-        <x:String x:Key="ControlInfo">The .NET Multi-platform App UI (.NET MAUI) RadioButton is a type of button that allows users to select one option from a set. Each option is represented by one radio button, and you can only select one radio button in a group.</x:String>
-
-        <x:String x:Key="PropertiesListHeader">
-            RadioButton defines the following properties:
-        </x:String>
-
-        <x:String x:Key="PropertiesListFooter">
-            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
-        </x:String>
-
-        <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">Content</strong>, of type <strong style="color:blue">object</strong>, which defines the <strong style="color:blue">string</strong> or View to be displayed by the RadioButton.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">IsChecked</strong>, of type <strong style="color:blue">bool</strong>, which defines whether the RadioButton is checked. This property uses a <strong style="color:blue">TwoWay</strong> binding, and has a default value of <strong style="color:blue">false</strong>.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">GroupName</strong>, of type <strong style="color:blue">string</strong>, which defines the name that specifies which RadioButton controls are mutually exclusive. This property has a default value of <strong style="color:blue">null</strong>.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">Value</strong>, of type <strong style="color:blue">object</strong>, which defines an optional unique value associated with the RadioButton.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">BorderColor</strong>, of type <strong style="color:blue">Color</strong>, which defines the border stroke color.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">BorderWidth</strong>, of type <strong style="color:blue">double</strong>, which defines the width of the RadioButton border.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">CharacterSpacing</strong>, of type <strong style="color:blue">double</strong>, which defines the spacing between characters of any displayed text.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">CornerRadius</strong>, of type <strong style="color:blue">int</strong>, which defines the corner radius of the RadioButton.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">FontAttributes</strong>, of type <strong style="color:blue">FontAttributes</strong>, which determines text style.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">FontAutoScalingEnabled</strong>, of type <strong style="color:blue">bool</strong>, which defines whether an app's UI reflects text scaling preferences set in the operating system. The default value of this property is <strong style="color:blue">true</strong>.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">FontFamily</strong>, of type <strong style="color:blue">string</strong>, which defines the font family.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">FontSize</strong>, of type <strong style="color:blue">double</strong>, which defines the font size.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">TextColor</strong>, of type <strong style="color:blue">Color</strong>, which defines the color of any displayed text.
-                            ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-                                <strong style="color:blue">TextTransform</strong>, of type <strong style="color:blue">TextTransform</strong>, which defines the casing of any displayed text.
-                            ]]>
-            </x:String>
-        </x:Array>
-
-    </app:BasePage.Resources>
     <app:BasePage.ToolbarItems>
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
@@ -169,6 +21,166 @@
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
 
+    <app:BasePage.Resources>
+
+        <x:String x:Key="ControlInfo">
+            The .NET Multi-platform App UI (.NET MAUI) RadioButton is a type of button that allows users to select one option from a set. Each option is represented by one radio button, and you can only select one radio button in a group.
+        </x:String>
+
+        <x:Array x:Key="RadioButtonExplanation" Type="{x:Type x:String}">
+            <x:String >
+                <![CDATA[   In <strong style="color:blue">.NET MAUI</strong>, when you place <strong style="color:blue">RadioButton</strong> controls inside a layout (like <strong style="color:blue">HorizontalStackLayout</strong>), they automatically behave as a group, even without explicitly setting the <strong style="color:blue">GroupName</strong> property. This is why your first example works as expected.   ]]>
+            </x:String>
+            <x:String >
+                <![CDATA[   When you place <strong style="color:blue">RadioButton</strong> controls inside a layout, they are aware of each other because they share the same parent in the visual tree. So, when one <strong style="color:blue">RadioButton</strong> is selected, the others are automatically deselected, ensuring that only one <strong style="color:blue">RadioButton</strong> in the layout can be selected at a time.   ]]>
+            </x:String>
+        </x:Array>
+
+        <x:String x:Key="PropertiesListHeader">
+            RadioButton defines the following properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter">
+            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+        </x:String>
+
+        <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Content</strong>, of type <strong style="color:blue">object</strong>, which defines the <strong style="color:blue">string</strong> or View to be displayed by the RadioButton.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">IsChecked</strong>, of type <strong style="color:blue">bool</strong>, which defines whether the RadioButton is checked. This property uses a <strong style="color:blue">TwoWay</strong> binding, and has a default value of <strong style="color:blue">false</strong>.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">GroupName</strong>, of type <strong style="color:blue">string</strong>, which defines the name that specifies which RadioButton controls are mutually exclusive. This property has a default value of <strong style="color:blue">null</strong>.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Value</strong>, of type <strong style="color:blue">object</strong>, which defines an optional unique value associated with the RadioButton.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">BorderColor</strong>, of type <strong style="color:blue">Color</strong>, which defines the border stroke color.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">BorderWidth</strong>, of type <strong style="color:blue">double</strong>, which defines the width of the RadioButton border. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">CharacterSpacing</strong>, of type <strong style="color:blue">double</strong>, which defines the spacing between characters of any displayed text.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">CornerRadius</strong>, of type <strong style="color:blue">int</strong>, which defines the corner radius of the RadioButton.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">FontAttributes</strong>, of type <strong style="color:blue">FontAttributes</strong>, which determines text style.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">FontAutoScalingEnabled</strong>, of type <strong style="color:blue">bool</strong>, which defines whether an app's UI reflects text scaling preferences set in the operating system. The default value of this property is <strong style="color:blue">true</strong>.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">FontFamily</strong>, of type <strong style="color:blue">string</strong>, which defines the font family.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">FontSize</strong>, of type <strong style="color:blue">double</strong>, which defines the font size.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">TextColor</strong>, of type <strong style="color:blue">Color</strong>, which defines the color of any displayed text.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">TextTransform</strong>, of type <strong style="color:blue">TextTransform</strong>, which defines the casing of any displayed text.   ]]>
+            </x:String>
+        </x:Array>
+
+        <FontImageSource x:Key="Happy"
+                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                         Glyph="{Static app:FluentUIIcon.Ic_fluent_emoji_28_regular}"
+                         Color="Black"
+                         Size="60"/>
+        <FontImageSource x:Key="Normal" 
+                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                         Glyph="{Static app:FluentUIIcon.Ic_fluent_emoji_smile_slight_24_regular}"
+                         Color="Black" 
+                         Size="60"/>
+        <FontImageSource x:Key="Sad" 
+                         FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+                         Glyph="{Static app:FluentUIIcon.Ic_fluent_emoji_sad_24_regular}"
+                         Color="Black" 
+                         Size="60"/>
+
+        <Style x:Key="RadioButtonStyle" TargetType="RadioButton">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CheckedStates">
+                        <VisualState x:Name="Checked">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="Green" />
+                                <Setter Property="Opacity" Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Unchecked">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="Red" />
+                                <Setter Property="Opacity" Value="0.5" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="RadioButtonTemplate">
+            <Border Stroke="#F3F2F1"
+                    StrokeThickness="2"
+                    StrokeShape="RoundRectangle 10"
+                    BackgroundColor="#F3F2F1"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    Padding="5">
+                <Grid HorizontalOptions="CenterAndExpand"
+                      VerticalOptions="CenterAndExpand">
+                    <Grid HeightRequest="20"
+                          WidthRequest="20" 
+                          HorizontalOptions="End"
+                          VerticalOptions="End">
+                        <Ellipse x:Name="Outcheck"
+                                 Fill="#53e6a1"
+                                 HeightRequest="20" 
+                                 WidthRequest="20" 
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center"
+                                 Stroke="white"/>
+                        <Ellipse x:Name="Check"
+                                 Fill="Black"
+                                 HeightRequest="10"
+                                 WidthRequest="10" 
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center"/>
+                    </Grid>
+                    <ContentPresenter />
+                </Grid>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CheckedStates">
+                            <VisualState x:Name="Checked">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="#ffffff" />
+                                    <Setter TargetName="Check" Property="Opacity" Value="1" />
+                                    <Setter TargetName="Outcheck" Property="Opacity" Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Unchecked">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="Transparent" />
+                                    <Setter TargetName="Check" Property="Opacity" Value="0" />
+                                    <Setter TargetName="Outcheck" Property="Opacity" Value="0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </Border>
+        </ControlTemplate>
+
+    </app:BasePage.Resources>
+
     <ScrollView>
         <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
@@ -176,189 +188,185 @@
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout>
-                    <Label
-                        Margin="0,0,0,5"
-                        FontSize="Medium"
-                        HorizontalOptions="Start"
-                        Text="Basic radio button"
-                        VerticalOptions="Center" />
+                <ScrollView>
+                    <VerticalStackLayout Padding="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Properties"/>
+                        <CollectionView Footer="{x:StaticResource PropertiesListFooter}"
+                                    Header="{x:StaticResource PropertiesListHeader}"
+                                    ItemsSource="{x:StaticResource PropertyItemsSource}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </ScrollView>
+            </Frame>
 
-                    <Grid
-                        Background="White"
-                        HeightRequest="1"
-                        VerticalOptions="End" />
-
-                    <StackLayout>
-                        <RadioButton
-                            Margin="0,0,0,-10"
-                            Content="Cat"
-                            IsChecked="True" />
-                        <RadioButton Margin="0,0,0,-10" Content="Dog" />
-                        <RadioButton Margin="0,0,0,-10" Content="Fish" />
-                        <RadioButton Margin="0,0,0,-10" Content="Bird" />
-                    </StackLayout>
-
-                    <app:SourceCodeExpander Code="{x:Binding StandardRadioButtonXamlCode}" />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Padding="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Basic radio button" />
+                    <Label Text="What's your favorite pet?" />
+                    <!--Without GroupName-->
+                    <HorizontalStackLayout Padding="5">
+                        <RadioButton Content="Cat" IsChecked="True" />
+                        <RadioButton Content="Dog" />
+                        <RadioButton Content="Fish" />
+                        <RadioButton Content="Bird" />
+                    </HorizontalStackLayout>
+                    <Label Text="What's your favorite mode of transport?" />
+                    <!--With GroupName-->
+                    <HorizontalStackLayout Padding="5">
+                        <RadioButton GroupName="Transport" Content="Car" IsChecked="True"/>
+                        <RadioButton GroupName="Transport" Content="Bike" />
+                        <RadioButton GroupName="Transport" Content="Motocrycle" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Padding="5">
+                        <RadioButton GroupName="Transport" Content="Bus" />
+                        <RadioButton GroupName="Transport" Content="Train" />
+                        <RadioButton GroupName="Transport" Content="Walking" />
+                    </HorizontalStackLayout>
+                    <Label Text="What's your favorite type of music?" />
+                    <!--With GroupName in parent-->
+                    <HorizontalStackLayout RadioButtonGroup.GroupName="Transport" Padding="5">
+                        <RadioButton Content="Rock" IsChecked="True"/>
+                        <RadioButton Content="Pop" />
+                        <RadioButton Content="Jazz" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout RadioButtonGroup.GroupName="Transport" Padding="5">
+                        <RadioButton Content="Classical" />
+                        <RadioButton Content="Country" />
+                        <RadioButton Content="Hip Hop" />
+                    </HorizontalStackLayout>
+                    <CollectionView ItemsSource="{x:StaticResource RadioButtonExplanation}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <CollectionView
-                    Margin="10"
-                    Footer="{x:StaticResource PropertiesListFooter}"
-                    Header="{x:StaticResource PropertiesListHeader}"
-                    ItemsSource="{x:StaticResource PropertyItemsSource}"
-                    SelectionMode="Single"
-                    Style="{x:StaticResource PropertiesListStyle}"
-                    VerticalScrollBarVisibility="Never" />
+                <VerticalStackLayout Padding="10">
+                    <Label Text="This is example code:"/>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding StandardRadioButtonXamlCode}" />
+                </VerticalStackLayout>
             </Frame>
 
-            <Frame Padding="20,10,20,10" Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="0">
-                    <Label
-                        Margin="0,0,0,5"
-                        FontSize="Medium"
-                        HorizontalOptions="Start"
-                        Text="Image radio button"
-                        VerticalOptions="Center" />
-
-                    <Grid
-                        Background="White"
-                        HeightRequest="1"
-                        VerticalOptions="End" />
-
-                    <StackLayout>
-                        <StackLayout.Resources>
-                            <FontImageSource
-                                x:Key="Happy"
-                                FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                                Glyph="{Static app:FluentUIIcon.Ic_fluent_emoji_28_regular}"
-                                Color="White" />
-                            <FontImageSource
-                                x:Key="Normal"
-                                FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                                Glyph="{Static app:FluentUIIcon.Ic_fluent_emoji_smile_slight_24_regular}"
-                                Color="White" />
-                            <FontImageSource
-                                x:Key="Sad"
-                                FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                                Glyph="{Static app:FluentUIIcon.Ic_fluent_emoji_sad_24_regular}"
-                                Color="White" />
-                        </StackLayout.Resources>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Padding="10" Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Image radio button" />
+                    <VerticalStackLayout>
                         <RadioButton IsChecked="True">
                             <RadioButton.Content>
-                                <Image
-                                    HorizontalOptions="Start"
-                                    Source="{x:StaticResource Happy}"
-                                    VerticalOptions="Center"
-                                    WidthRequest="30" />
+                                <Image Source="{x:StaticResource Happy}"
+                                       WidthRequest="30" />
                             </RadioButton.Content>
                         </RadioButton>
                         <RadioButton>
                             <RadioButton.Content>
-                                <Image
-                                    HorizontalOptions="Start"
-                                    Source="{x:StaticResource Normal}"
-                                    VerticalOptions="Center"
-                                    WidthRequest="30" />
+                                <Image Source="{x:StaticResource Normal}"
+                                       WidthRequest="30" />
                             </RadioButton.Content>
                         </RadioButton>
                         <RadioButton>
                             <RadioButton.Content>
-                                <Image
-                                    HorizontalOptions="Start"
-                                    Source="{x:StaticResource Sad}"
-                                    VerticalOptions="Center"
-                                    WidthRequest="30" />
+                                <Image Source="{x:StaticResource Sad}"
+                                       WidthRequest="30" />
                             </RadioButton.Content>
                         </RadioButton>
-                    </StackLayout>
-
-                    <app:SourceCodeExpander Code="{x:Binding ImageRadioButtonXamlCode}" />
+                    </VerticalStackLayout>
+                    <Label Text="This is how you can setup your resource: "/>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlImageRadioButtonStaticResource}" />
+                    <Label Text="This is the Xaml code: "/>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlImageRadioButton}" />
                 </VerticalStackLayout>
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="0">
-                    <Label
-                        Margin="0,0,0,5"
-                        FontSize="Medium"
-                        HorizontalOptions="Start"
-                        Text="Text and Image radio button with custom template"
-                        VerticalOptions="Center" />
-                    <Grid
-                        Background="White"
-                        HeightRequest="1"
-                        VerticalOptions="End" />
+                <VerticalStackLayout Padding="10" Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Respond to RadioButton state changes" />
+                    <Label Text="What's your favorite mode of transport?" />
+                    <HorizontalStackLayout RadioButtonGroup.GroupName="{x:Binding TransportGroupName}"
+                                           RadioButtonGroup.SelectedValue="{x:Binding SelectedTransportItem}">
+                        <RadioButton Content="Car" Value="Car"
+                                     GroupName="{x:Binding TransportGroupName}"
+                                     IsChecked="True"/>
+                        <RadioButton Content="Bike" Value="Bike"
+                                     GroupName="{x:Binding TransportGroupName}"/>
+                        <RadioButton Content="Train" Value="Train"
+                                     GroupName="{x:Binding TransportGroupName}"/>
+                        <RadioButton Content="Walking" Value="Walking"
+                                     GroupName="{x:Binding TransportGroupName}"/>
+                    </HorizontalStackLayout>
+                    <Label x:Name="Label">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="You have chosen: " />
+                                <Span Text="{x:Binding SelectedTransportItem}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="This is ViewModel source code"/>
+                    <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpRadioButtonState}" />
+                    <Label Text="This is xaml source code"/>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlRadioButtonState}" />
+                </VerticalStackLayout>
+            </Frame>
 
-                    <!--  This cause app to break when in release mode - Investigation: ControlTemplate="{StaticResource RadioButtonTemplate}" cause the app to break  -->
-                    <HorizontalStackLayout HeightRequest="100" Spacing="14">
-                        <HorizontalStackLayout.Resources>
-                            <FontImageSource
-                                x:Key="Happy"
-                                FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                                Glyph="{Static app:FluentUIIcon.Ic_fluent_emoji_28_regular}"
-                                Color="White" />
-                            <FontImageSource
-                                x:Key="Normal"
-                                FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                                Glyph="{Static app:FluentUIIcon.Ic_fluent_emoji_smile_slight_24_regular}"
-                                Color="White" />
-                            <FontImageSource
-                                x:Key="Sad"
-                                FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-                                Glyph="{Static app:FluentUIIcon.Ic_fluent_emoji_sad_24_regular}"
-                                Color="White" />
-                        </HorizontalStackLayout.Resources>
-                        <RadioButton ControlTemplate="{StaticResource RadioButtonTemplate}" IsChecked="True">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Padding="10" Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="RadioButton visual states" />
+                    <Label Text="What's your favorite mode of transport?" />
+                    <HorizontalStackLayout>
+                        <RadioButton Style="{x:StaticResource RadioButtonStyle}" Content="Car" IsChecked="True"/>
+                        <RadioButton Style="{x:StaticResource RadioButtonStyle}" Content="Bike" />
+                        <RadioButton Style="{x:StaticResource RadioButtonStyle}" Content="Train" />
+                        <RadioButton Style="{x:StaticResource RadioButtonStyle}" Content="Walking" />
+                    </HorizontalStackLayout>
+                    <Label Text="This is the RadioButton style"/>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlRadioButtonVisualStateStyle}" />
+                    <Label Text="This is xaml source code"/>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlRadioButtonVisualStates}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Padding="10" Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Text and Image radio button with custom template"/>
+                    <HorizontalStackLayout x:Name="EmotionalRadioButtonGroupWithCustomTemplate" 
+                                           RadioButtonGroup.GroupName="Emotional" 
+                                           Spacing="20">
+                        <RadioButton ControlTemplate="{x:StaticResource RadioButtonTemplate}" 
+                                     IsChecked="True">
                             <RadioButton.Content>
-                                <HorizontalStackLayout>
-                                    <Image
-                                        HorizontalOptions="Center"
-                                        Source="{x:StaticResource Happy}"
-                                        VerticalOptions="Center"
-                                        WidthRequest="30" />
-                                    <Label
-                                        HorizontalOptions="Center"
-                                        Text="Happy"
-                                        VerticalOptions="End" />
-                                </HorizontalStackLayout>
+                                <VerticalStackLayout>
+                                    <Image Source="{x:StaticResource Happy}" />
+                                    <Label Text="Happy" />
+                                </VerticalStackLayout>
                             </RadioButton.Content>
                         </RadioButton>
-                        <RadioButton ControlTemplate="{StaticResource RadioButtonTemplate}">
+                        <RadioButton ControlTemplate="{x:StaticResource RadioButtonTemplate}">
                             <RadioButton.Content>
-                                <HorizontalStackLayout>
-                                    <Image
-                                        HorizontalOptions="Center"
-                                        Source="{x:StaticResource Normal}"
-                                        VerticalOptions="Center"
-                                        WidthRequest="30" />
-                                    <Label
-                                        HorizontalOptions="Center"
-                                        Text="Normal"
-                                        VerticalOptions="End" />
-                                </HorizontalStackLayout>
+                                <VerticalStackLayout>
+                                    <Image Source="{x:StaticResource Normal}"/>
+                                    <Label Text="Normal" />
+                                </VerticalStackLayout>
                             </RadioButton.Content>
                         </RadioButton>
-                        <RadioButton ControlTemplate="{StaticResource RadioButtonTemplate}">
+                        <RadioButton ControlTemplate="{x:StaticResource RadioButtonTemplate}">
                             <RadioButton.Content>
-                                <HorizontalStackLayout>
-                                    <Image
-                                        HorizontalOptions="Center"
-                                        Source="{x:StaticResource Sad}"
-                                        VerticalOptions="Center"
-                                        WidthRequest="30" />
-                                    <Label
-                                        HorizontalOptions="Center"
-                                        Text="Sad"
-                                        VerticalOptions="End" />
-                                </HorizontalStackLayout>
+                                <VerticalStackLayout>
+                                    <Image Source="{x:StaticResource Sad}"/>
+                                    <Label Text="Sad"/>
+                                </VerticalStackLayout>
                             </RadioButton.Content>
                         </RadioButton>
                     </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
 
-                    <app:SourceCodeExpander Code="{x:Binding CustomRadioButtonXamlCode}" />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Padding="10" Spacing="10">
+                    <Label Text="This is the xaml code"/>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlCustomRadioButton}" />
+                    <Label Text="This is the Resource for the image"/>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlImageRadioButtonStaticResource}" />
+                    <Label Text="This is the custom ControlTemplate"/>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlCustomRadioButtonControlTemplate}" />
                 </VerticalStackLayout>
             </Frame>
 

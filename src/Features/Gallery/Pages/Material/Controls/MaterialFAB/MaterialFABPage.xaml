@@ -40,7 +40,7 @@
             </x:String>
             <x:String>
                 <![CDATA[
-        <strong style="color:blue">IconKind</strong>, of type <strong style="color:blue">IconKind</strong>, FAB's icon from iconkind.
+        <strong style="color:blue">IconData</strong>, of type <strong style="color:blue">IconData</strong>, FAB's icon from iconkind.
     ]]>
             </x:String>
             <x:String>
@@ -151,15 +151,10 @@
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Styles" />
                     <Label Text="There are 5 Styles of buttons: 1. Elevated, 2. Filled, 3. FilledTonal , 4. Outlined, 5. Text." />
                     <app:HorizontalWrapLayout Spacing="5">
-                        <mdc:FAB IconKind="Add" Style="{DynamicResource SecondaryFABStyle}" />
-                        <mdc:FAB IconKind="Add" Style="{DynamicResource SurfaceFABStyle}" />
-                        <mdc:FAB IconKind="Add" Style="{DynamicResource TertiaryFABStyle}" />
-                        <mdc:FAB
-                            IconKind="Add"
-                            IsExtended="True"
-                            Style="{DynamicResource SecondaryFABStyle}"
-                            Text="Extended" />
-                        <mdc:FAB IconKind="Add" Style="{DynamicResource LargeSecondaryFABStyle}" />
+                        <mdc:FAB IconData="Add" Style="{DynamicResource SecondaryFABStyle}" />
+                        <mdc:FAB IconData="Add" Style="{DynamicResource SurfaceFABStyle}" />
+                        <mdc:FAB IconData="Add" Style="{DynamicResource TertiaryFABStyle}" />
+                        <mdc:FAB IconData="Add" Style="{DynamicResource LargeSecondaryFABStyle}" />
                     </app:HorizontalWrapLayout>
                     <app:SourceCodeExpander Code="{x:Binding FabXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>

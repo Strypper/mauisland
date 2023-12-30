@@ -1,7 +1,7 @@
 namespace MAUIsland;
 public partial class OverFlowerPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [CTor]
+    #region [ CTor ]
     public OverFlowerPageViewModel(
         IAppNavigator appNavigator
     ) : base(appNavigator)
@@ -9,7 +9,7 @@ public partial class OverFlowerPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
     [ObservableProperty]
     IGalleryCardInfo controlInformation;
     #endregion
@@ -22,5 +22,12 @@ public partial class OverFlowerPageViewModel : NavigationAwareBaseViewModel
         ControlInformation = query.GetData<IGalleryCardInfo>();
 
     }
+    #endregion
+
+    #region [ Relay commands ]
+
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+        => AppNavigator.OpenUrlAsync(url);
     #endregion
 }

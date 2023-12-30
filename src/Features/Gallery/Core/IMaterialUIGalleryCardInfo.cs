@@ -1,10 +1,7 @@
-﻿using IconPacks.Material;
-using Material.Components.Maui;
-
-namespace MAUIsland;
+﻿namespace MAUIsland;
 
 public interface IMaterialUIGalleryCardInfo : IGalleryCardInfo
 {
-    IconKind MaterialIcon { get; }
+    string MaterialIcon { get; }
     List<PlatformInfo> SupportedPlatformsInfo { get; }
 }

@@ -23,6 +23,11 @@ partial class GalleryPage
     {
         this.viewModel.ViewControlsInNewWindowCommand.Execute(control);
     }
+    private void NavigateToBuiltIn_Clicked(object sender, EventArgs e)
+    {
+        var controlInfo = this.viewModel.ControlGroups.FirstOrDefault(x => x.Title == "Built-in");
+        this.viewModel.ViewControlsCommand.Execute(controlInfo);
+    }
     #endregion
 
 }

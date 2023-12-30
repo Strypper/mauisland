@@ -39,10 +39,10 @@
 
         <Style x:Key="ControlIconStyle" TargetType="mdc:IconButton">
             <Setter Property="HorizontalOptions" Value="End" />
-            <Setter Property="IconKind" Value="{x:Binding ComponentData.MaterialIcon, Source={x:Reference root}}" />
+            <Setter Property="IconData" Value="{x:Binding ComponentData.MaterialIcon, Source={x:Reference root}}" />
         </Style>
 
-        <Style x:Key="ControlDetailStyle" TargetType="mdc:Label">
+        <Style x:Key="ControlDetailStyle" TargetType="Label">
             <Setter Property="Grid.Row" Value="1" />
             <Setter Property="Margin" Value="10,5,0,0" />
             <Setter Property="HorizontalOptions" Value="Start" />
@@ -80,7 +80,7 @@
         <Grid Style="{x:StaticResource GridContainerStyle}">
             <Label Style="{x:StaticResource MaterialUICardTitleStyle}" />
             <mdc:IconButton Style="{x:StaticResource ControlIconStyle}" />
-            <mdc:Label Style="{x:StaticResource ControlDetailStyle}" />
+            <Label Style="{x:StaticResource ControlDetailStyle}" />
             <HorizontalStackLayout Style="{x:StaticResource NavigationButtonsContainerStyle}">
                 <mdc:Button Clicked="Detail_Clicked" Style="{x:StaticResource DetailButtonStyle}" />
                 <mdc:Button Style="{x:StaticResource DocumentReferenceButtonStyle}" />

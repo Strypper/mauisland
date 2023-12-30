@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<app:BasePage 
+<app:BasePage
+    x:Class="MAUIsland.PopupPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    Title="Popup"
     Padding="10"
-    x:Class="MAUIsland.PopupPage"
-    x:DataType="app:PopupPageViewModel"
-    Title="Popup">
+    x:DataType="app:PopupPageViewModel">
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
             CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
-            IconImageSource="github.png"
+            IconImageSource="githublogo.png"
             Text="Source code" />
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
@@ -20,7 +20,7 @@
             IconImageSource="microsoft.png"
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
-    
+
     <app:BasePage.Resources>
 
         <x:String x:Key="PropertiesListHeader">
@@ -83,60 +83,57 @@
                 <Label Text="{x:Binding ControlInformation.ControlDetail}" />
             </Frame>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
-                   Padding="10">
+            <Frame Padding="10" Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
-                    
-                    <Label Text="Basic Popup"
-                           FontSize="Medium"/>
-                    
-                    <Grid   Background="White"
-                            HeightRequest="1"
-                            VerticalOptions="End" />
-                    
-                    <Button Text="Click me!" 
-                            WidthRequest="100"
-                            Clicked="Button_Clicked"/>
-                    <app:SourceCodeExpander CodeType="CSharp" 
-                                            Code="{x:Binding StandardPopupCSharpCode}"/>
+
+                    <Label FontSize="Medium" Text="Basic Popup" />
+
+                    <Grid
+                        Background="White"
+                        HeightRequest="1"
+                        VerticalOptions="End" />
+
+                    <Button
+                        Clicked="Button_Clicked"
+                        Text="Click me!"
+                        WidthRequest="100" />
+                    <app:SourceCodeExpander Code="{x:Binding StandardPopupCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
             </Frame>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
-                   Padding="10">
+            <Frame Padding="10" Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
 
-                    <Label Text="Capture popup response"
-                           FontSize="Medium"/>
+                    <Label FontSize="Medium" Text="Capture popup response" />
 
-                    <Grid   Background="White"
-                            HeightRequest="1"
-                            VerticalOptions="End" />
+                    <Grid
+                        Background="White"
+                        HeightRequest="1"
+                        VerticalOptions="End" />
 
-                    <Button Text="Click me!" 
-                            WidthRequest="100"
-                            Clicked="Button_Clicked_1"  />
-                    <app:SourceCodeExpander CodeType="CSharp" 
-                                            Code="{x:Binding CaptureResponsePopupCSharpCode}"/>
+                    <Button
+                        Clicked="Button_Clicked_1"
+                        Text="Click me!"
+                        WidthRequest="100" />
+                    <app:SourceCodeExpander Code="{x:Binding CaptureResponsePopupCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
             </Frame>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
-                   Padding="10">
+            <Frame Padding="10" Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
 
-                    <Label Text="An action sheet popup"
-                           FontSize="Medium"/>
+                    <Label FontSize="Medium" Text="An action sheet popup" />
 
-                    <Grid   Background="White"
-                            HeightRequest="1"
-                            VerticalOptions="End" />
+                    <Grid
+                        Background="White"
+                        HeightRequest="1"
+                        VerticalOptions="End" />
 
-                    <Button Text="Click me!" 
-                            WidthRequest="100"
-                            Clicked="Button_Clicked_2"  />
-                    <app:SourceCodeExpander CodeType="CSharp" 
-                                            Code="{x:Binding ActionSheetPopupCSharpCode}"/>
+                    <Button
+                        Clicked="Button_Clicked_2"
+                        Text="Click me!"
+                        WidthRequest="100" />
+                    <app:SourceCodeExpander Code="{x:Binding ActionSheetPopupCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -147,23 +144,22 @@
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
-            
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
-                   Padding="10">
+
+            <Frame Padding="10" Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
 
-                    <Label Text="Display a prompt"
-                           FontSize="Medium"/>
+                    <Label FontSize="Medium" Text="Display a prompt" />
 
-                    <Grid   Background="White"
-                            HeightRequest="1"
-                            VerticalOptions="End" />
+                    <Grid
+                        Background="White"
+                        HeightRequest="1"
+                        VerticalOptions="End" />
 
-                    <Button Text="Click me!" 
-                            WidthRequest="100"
-                            Clicked="Button_Clicked_3"  />
-                    <app:SourceCodeExpander CodeType="CSharp" 
-                                            Code="{x:Binding PromptPopupCSharpCode}"/>
+                    <Button
+                        Clicked="Button_Clicked_3"
+                        Text="Click me!"
+                        WidthRequest="100" />
+                    <app:SourceCodeExpander Code="{x:Binding PromptPopupCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
             </Frame>
 

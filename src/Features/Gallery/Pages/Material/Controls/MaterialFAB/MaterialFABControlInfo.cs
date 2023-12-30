@@ -1,4 +1,3 @@
-using IconPacks.Material;
 using Material.Components.Maui;
 
 namespace MAUIsland.Gallery.Material;
@@ -6,7 +5,6 @@ class MaterialFABControlInfo : IMaterialUIGalleryCardInfo
 {
     public string ControlName => nameof(FAB);
     public string ControlRoute => typeof(MaterialFABPage).FullName;
-    public IconKind MaterialIcon => IconKind.AddBox;
     public List<PlatformInfo> SupportedPlatformsInfo => new() { new() { Id = "1", Name = "Android", Logo = "androidlogo.png" },
                                                                 new() { Id = "2", Name = "IOS", Logo = "ioslogo.png" },
                                                                 new() { Id = "3", Name = "Windows", Logo = "windowslogo.png"} };
@@ -30,4 +28,6 @@ class MaterialFABControlInfo : IMaterialUIGalleryCardInfo
     public List<string> DoList => throw new NotImplementedException();
 
     public List<string> DontList => throw new NotImplementedException();
+
+    public string MaterialIcon => IconPacks.IconKind.Material.AddBox;
 }
