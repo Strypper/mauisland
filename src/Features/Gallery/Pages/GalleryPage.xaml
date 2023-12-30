@@ -30,7 +30,7 @@
             Source="fluentuibackground.jpg"
             VerticalOptions="Fill" />
 
-        <acrylic:AcrylicView
+        <!--<acrylic:AcrylicView
             CornerRadius="20"
             EffectStyle="Light"
             HorizontalOptions="Center"
@@ -40,27 +40,34 @@
             MaximumWidthRequest="{x:OnIdiom Desktop=650,
                                             Tablet=650,
                                             Phone=320}"
-            VerticalOptions="Center">
-            <Border Padding="30">
-                <CollectionView
-                    HorizontalOptions="Center"
-                    ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
-                    ItemsSource="{x:Binding ControlGroups,
-                                            Mode=OneWay}"
-                    VerticalOptions="Center">
-                    <CollectionView.ItemsLayout>
-                        <GridItemsLayout
-                            HorizontalItemSpacing="5"
-                            Orientation="Vertical"
-                            Span="{x:OnIdiom Desktop=3,
-                                             Phone=2,
-                                             Tablet=3,
-                                             TV=4}"
-                            VerticalItemSpacing="5" />
-                    </CollectionView.ItemsLayout>
-                </CollectionView>
-            </Border>
-        </acrylic:AcrylicView>
+            VerticalOptions="Center">-->
+        <Border
+            Padding="30"
+            HorizontalOptions="Fill"
+            MinimumHeightRequest="250"
+            MinimumWidthRequest="320"
+            VerticalOptions="Fill">
+            <CollectionView
+                HorizontalOptions="Fill"
+                ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
+                ItemsSource="{x:Binding ControlGroups,
+                                        Mode=OneWay}"
+                MinimumHeightRequest="250"
+                MinimumWidthRequest="320"
+                VerticalOptions="Fill">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        HorizontalItemSpacing="5"
+                        Orientation="Vertical"
+                        Span="{x:OnIdiom Desktop=3,
+                                         Phone=2,
+                                         Tablet=3,
+                                         TV=4}"
+                        VerticalItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+        </Border>
+        <!--</acrylic:AcrylicView>-->
 
         <Button
             Clicked="NavigateToBuiltIn_Clicked"

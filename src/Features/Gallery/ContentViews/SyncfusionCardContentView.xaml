@@ -81,7 +81,8 @@
             <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="End">
                 <ImageButton
                     Padding="{x:OnPlatform WinUI=10,
-                                           Android=5}"
+                                           Android=10,
+                                           iOS=5}"
                     BackgroundColor="Transparent"
                     Command="{x:Binding TapCommand,
                                         Source={x:Reference root}}"
@@ -93,7 +94,8 @@
                     WidthRequest="50" />
                 <ImageButton
                     Padding="{x:OnPlatform WinUI=10,
-                                           Android=5}"
+                                           Android=10,
+                                           iOS=5}"
                     BackgroundColor="Transparent"
                     Command="{x:Binding TapCommand,
                                         Source={x:Reference root}}"
