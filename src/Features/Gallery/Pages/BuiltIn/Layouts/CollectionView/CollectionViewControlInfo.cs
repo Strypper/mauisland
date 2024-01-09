@@ -8,7 +8,7 @@ class CollectionViewControlInfo : IBuiltInGalleryCardInfo
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
         Size = 100,
-        Glyph = FluentUIIcon.Ic_fluent_apps_list_detail_24_regular
+        Glyph = FluentUIIcon.Ic_fluent_apps_list_detail_24_regular,
     };
     public string ControlDetail => "CollectionView is a view for presenting lists of data using different layout specifications.  ";
     public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/BuiltIn/Layouts/CollectionView";
