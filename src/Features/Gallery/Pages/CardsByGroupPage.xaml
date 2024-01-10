@@ -53,7 +53,7 @@
     <app:BasePage.Resources>
         <app:ImageSourceToBoolConverter x:Key="ImageSourceToBoolConverter" />
 
-        <app:CardByGroupPage_StatusPicker_Converter x:Key="CardByGroupPage_StatusPicker_Converter" />
+        <app:CardByGroupPageTypePickerConverter x:Key="CardByGroupPageTypePickerConverter" />
 
         <DataTemplate x:Key="BuiltInCardItemTemplate" x:DataType="app:IGalleryCardInfo">
             <app:ControlCardContentView
@@ -209,17 +209,17 @@
                         <Label
                             FontSize="32"
                             Text="{x:Binding SelectedItem,
-                                             Source={x:Reference CardByGroupPage_StatusPicker},
+                                             Source={x:Reference CardByGroupPageTypePicker},
                                              Mode=OneWay}"
                             TextColor="White"
                             TextDecorations="Underline" />
                         <Picker
-                            x:Name="CardByGroupPage_StatusPicker"
-                            Title="Status"
+                            x:Name="CardByGroupPageTypePicker"
+                            Title="Types"
                             HorizontalOptions="End"
                             ItemsSource="{x:Binding ControlGroupList,
                                                     Mode=OneWay,
-                                                    Converter={x:StaticResource CardByGroupPage_StatusPicker_Converter}}"
+                                                    Converter={x:StaticResource CardByGroupPageTypePickerConverter}}"
                             SelectedItem="{x:Binding SelectedItem}"
                             TextColor="White"
                             TitleColor="White"

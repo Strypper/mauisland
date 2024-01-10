@@ -29,7 +29,7 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
     bool isGalleryDetailVisible;
 
     [ObservableProperty]
-    GalleryCardType selectedItem;
+    string selectedItem;
 
     [ObservableProperty]
     ObservableCollection<IGalleryCardInfo> controlGroupList;
@@ -102,16 +102,25 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [ Methods ]
-    partial void OnSelectedItemChanged(GalleryCardType value)
+    partial void OnSelectedItemChanged(string value)
     {
-        var controlItems = ControlGroupList.Where(x => x.CardType == value).ToObservableCollection();
-        if (controlItems.Count() == 0)
+        var trimmedValue = value.TrimEnd('s');
+
+        if (trimmedValue == "All")
         {
-            FilteredControlGroupList = new ObservableCollection<IGalleryCardInfo>();
+            FilteredControlGroupList = ControlGroupList;
         }
         else
         {
-            FilteredControlGroupList = controlItems;
+            var controlItems = ControlGroupList.Where(x => x.CardType.ToString() == trimmedValue).ToObservableCollection();
+            if (controlItems.Count() == 0)
+            {
+                FilteredControlGroupList = new ObservableCollection<IGalleryCardInfo>();
+            }
+            else
+            {
+                FilteredControlGroupList = controlItems;
+            }
         }
     }
     #endregion

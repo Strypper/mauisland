@@ -53,6 +53,8 @@ public static class MauiProgram
             .ConfigureSyncfusionCore()
             .UseBarcodeReader();
 
+        DependencyService.Register<IMrIncreadibleMemeService, MrIncreadibleMemeService>();
+
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
@@ -110,6 +112,7 @@ public static class MauiProgram
 
     static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {
+        builder.Services.AddSingleton<IMrIncreadibleMemeService, MrIncreadibleMemeService>();
         builder.Services.AddSingleton<IFilePicker, FilePicker>();
         builder.Services.AddSingleton<IHomeService, HomeService>();
         builder.Services.AddSingleton<IAppNavigator, AppNavigator>();
