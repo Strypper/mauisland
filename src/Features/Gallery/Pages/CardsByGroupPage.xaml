@@ -14,13 +14,15 @@
     BackgroundColor="#272727"
     Shell.TabBarIsVisible="False"
     SizeChanged="BasePage_SizeChanged">
-    <!--<Shell.SearchHandler>
-    -->
-    <!--
-        SearchBoxVisibility="{x:OnPlatform iOS=false,
-        MacCatalyst=false, WinUI=true}"
-    -->
-    <!--
+    <Shell.SearchHandler>
+
+
+        <!--
+            SearchBoxVisibility="{x:OnPlatform iOS=false,
+            MacCatalyst=false, WinUI=true}"
+        -->
+
+
         <app:CardsSearchHandler
             Cards="{x:Binding ControlGroupList,
                               Mode=TwoWay}"
@@ -49,7 +51,7 @@
                 </DataTemplate>
             </app:CardsSearchHandler.ItemTemplate>
         </app:CardsSearchHandler>
-    </Shell.SearchHandler>-->
+    </Shell.SearchHandler>
     <app:BasePage.Resources>
         <app:ImageSourceToBoolConverter x:Key="ImageSourceToBoolConverter" />
 

@@ -31,9 +31,6 @@
             VerticalOptions="Fill" />
 
         <acrylic:AcrylicView
-            Padding="{x:OnPlatform WinUI=0,
-                                   Android=30,
-                                   iOS=30}"
             CornerRadius="20"
             EffectStyle="Custom"
             HeightRequest="{x:OnIdiom Desktop=350,
@@ -43,29 +40,32 @@
             TintColor="OrangeRed"
             TintOpacity=".15 "
             VerticalOptions="Center"
-            WidthRequest="{x:OnIdiom Desktop=650,
+            WidthRequest="{x:OnIdiom Desktop=550,
                                      Tablet=650,
                                      Phone=320}">
-            <CollectionView
-                Margin="{x:OnPlatform WinUI=10,
-                                      Android=0,
-                                      iOS=0}"
-                HorizontalOptions="Fill"
-                ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
-                ItemsSource="{x:Binding ControlGroups,
-                                        Mode=OneWay}"
-                VerticalOptions="Fill">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout
-                        HorizontalItemSpacing="5"
-                        Orientation="Vertical"
-                        Span="{x:OnIdiom Desktop=3,
-                                         Phone=2,
-                                         Tablet=3,
-                                         TV=4}"
-                        VerticalItemSpacing="5" />
-                </CollectionView.ItemsLayout>
-            </CollectionView>
+            <Border
+                HeightRequest="300"
+                StrokeThickness="0"
+                VerticalOptions="Center"
+                WidthRequest="500">
+                <CollectionView
+                    HorizontalOptions="Fill"
+                    ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
+                    ItemsSource="{x:Binding ControlGroups,
+                                            Mode=OneWay}"
+                    VerticalOptions="Fill">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout
+                            HorizontalItemSpacing="5"
+                            Orientation="Vertical"
+                            Span="{x:OnIdiom Desktop=3,
+                                             Phone=2,
+                                             Tablet=3,
+                                             TV=4}"
+                            VerticalItemSpacing="5" />
+                    </CollectionView.ItemsLayout>
+                </CollectionView>
+            </Border>
         </acrylic:AcrylicView>
 
         <Button
