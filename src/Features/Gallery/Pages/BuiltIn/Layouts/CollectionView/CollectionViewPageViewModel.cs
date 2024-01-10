@@ -1,10 +1,6 @@
-﻿using System.ComponentModel;
+﻿using CommunityToolkit.Maui.Core.Extensions;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using CommunityToolkit.Maui.Core.Extensions;
-using CommunityToolkit.Maui.Extensions;
-using CommunityToolkit.Maui.Views;
-using ExCSS;
-using Microsoft.Maui.Graphics;
 
 namespace MAUIsland;
 
@@ -47,7 +43,7 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
     IEnumerable<object> multipleSelectedControlInformationList = new List<object>();
 
     [ObservableProperty]
-    ObservableCollection<MrIncreadible> mrIncreadibles; 
+    ObservableCollection<MrIncreadible> mrIncreadibles;
 
     [ObservableProperty]
     ObservableCollection<IGalleryCardInfo> controlGroupList;
@@ -195,7 +191,7 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
         "void Refresh()\r\n" +
         "{\r\n" +
         "    IsRefreshing = true;\r\n\r\n" +
-        "    LoadDataAsync();// Load anything you want\r\n\r\n" + 
+        "    LoadDataAsync();// Load anything you want\r\n\r\n" +
         "    IsRefreshing = false;\r\n" +
         "}";
 
@@ -415,98 +411,98 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
         "    </ContentPage.Resources>\r\n" +
         "</ContentPage>";
 
-   [ObservableProperty]
+    [ObservableProperty]
     string xamlLayoutsChangeCollectionViewTemplate =
-        "<ContentPage>\r\n" +
-        "    <ContentPage.Resources>\r\n" +
-        "        <DataTemplate x:Key=\"ControllInfoCollectionTwoItemRowTemplate\" \r\n" +
-        "                      x:DataType=\"app:IGalleryCardInfo\">\r\n" +
-        "            <Border Padding=\"5\"\r\n" +
-        "                    BackgroundColor=\"{x:Static app:AppColors.BlackGrey}\">\r\n" +
-        "                <Border.StrokeShape>\r\n" +
-        "                    <RoundRectangle CornerRadius=\"5\" />\r\n" +
-        "                </Border.StrokeShape>\r\n" +
-        "                <Grid ColumnDefinitions=\"0.2*, 0.8*\"\r\n" +
-        "                      RowDefinitions=\"0.3*, 0.7*\"\r\n" +
-        "                      HeightRequest=\"100\">\r\n" +
-        "                    <Image Grid.Column=\"0\"\r\n" +
-        "                           Grid.Row=\"0\"\r\n" +
-        "                           Source=\"{x:Binding ControlIcon}\"\r\n" +
-        "                           VerticalOptions=\"Center\"/>\r\n" +
-        "                    <Label Grid.Column=\"1\"\r\n" +
-        "                           Grid.Row=\"0\"\r\n" +
-        "                           FontAttributes=\"Bold\"\r\n" +
-        "                           LineBreakMode=\"TailTruncation\"\r\n" +
-        "                           FontSize=\"14\"\r\n" +
-        "                           VerticalTextAlignment=\"Center\" \r\n" +
-        "                           HorizontalOptions=\"Center\"\r\n" +
-        "                           Text=\"{x:Binding ControlName}\"\r\n" +
-        "                           Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
-        "                    <Border Padding=\"2\"\r\n" +
-        "                            Grid.Column=\"0\"\r\n" +
-        "                            Grid.Row=\"1\"\r\n" +
-        "                            Grid.ColumnSpan=\"2\"\r\n" +
-        "                            BackgroundColor=\"{x:Static app:AppColors.BlackGrey}\">\r\n" +
-        "                        <Border.StrokeShape>\r\n" +
-        "                            <RoundRectangle CornerRadius=\"5\" />\r\n" +
-        "                        </Border.StrokeShape>\r\n" +
-        "                        <Label FontAttributes=\"Italic\"\r\n" +
-        "                               FontSize=\"12\"\r\n" +
-        "                               Background=\"{x:Static app:AppColors.BlackGrey}\"\r\n" +
-        "                               Text=\"{x:Binding ControlDetail}\"\r\n" +
-        "                               Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
-        "                    </Border>\r\n" +
-        "                </Grid>\r\n" +
-        "            </Border>\r\n" +
-        "        </DataTemplate>\r\n\r\n" +
-        "        <DataTemplate x:Key=\"ControllInfoCollectionThreeItemRowTemplate\" \r\n" +
-        "                      x:DataType=\"app:IGalleryCardInfo\">\r\n" +
-        "            <Border Padding=\"5\"\r\n" +
-        "                    BackgroundColor=\"{x:Static app:AppColors.BlackGrey}\">\r\n" +
-        "                <Border.StrokeShape>\r\n" +
-        "                    <RoundRectangle CornerRadius=\"5\" />\r\n" +
-        "                </Border.StrokeShape>\r\n" +
-        "                <Grid ColumnDefinitions=\"0.2*, 0.8*\" \r\n" +
-        "                      HeightRequest=\"60\">\r\n" +
-        "                    <Image Grid.Column=\"0\"\r\n" +
-        "                           Source=\"{x:Binding ControlIcon}\"\r\n" +
-        "                           VerticalOptions=\"Center\"/>\r\n" +
-        "                    <Label Grid.Column=\"1\"\r\n" +
-        "                           FontAttributes=\"Bold\"\r\n" +
-        "                           LineBreakMode=\"TailTruncation\"\r\n" +
-        "                           FontSize=\"14\"\r\n" +
-        "                           VerticalTextAlignment=\"Center\" \r\n" +
-        "                           HorizontalOptions=\"Center\"\r\n" +
-        "                           Text=\"{x:Binding ControlName}\"\r\n" +
-        "                           Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
-        "                </Grid>\r\n" +
-        "            </Border>\r\n" +
-        "        </DataTemplate>\r\n\r\n" +
-        "        <DataTemplate x:Key=\"ControllInfoCollectionFourItemRowTemplate\" \r\n" +
-        "                      x:DataType=\"app:IGalleryCardInfo\">\r\n" +
-        "            <Border Padding=\"5\"\r\n" +
-        "                    BackgroundColor=\"{x:Static app:AppColors.BlackGrey}\">\r\n" +
-        "                <Border.StrokeShape>\r\n" +
-        "                    <RoundRectangle CornerRadius=\"5\" />\r\n" +
-        "                </Border.StrokeShape>\r\n" +
-        "                <Grid RowDefinitions=\"0.4*, 0.6*\" \r\n" +
-        "                      HeightRequest=\"60\">\r\n" +
-        "                    <Image Grid.Row=\"0\"\r\n" +
-        "                           Source=\"{x:Binding ControlIcon}\"\r\n" +
-        "                           VerticalOptions=\"Center\"/>\r\n" +
-        "                    <Label Grid.Row=\"1\"\r\n" +
-        "                           FontAttributes=\"Bold\"\r\n" +
-        "                           LineBreakMode=\"TailTruncation\"\r\n" +
-        "                           FontSize=\"14\"\r\n" +
-        "                           VerticalTextAlignment=\"Center\" \r\n" +
-        "                           HorizontalOptions=\"Center\"\r\n" +
-        "                           Text=\"{x:Binding ControlName}\"\r\n" +
-        "                           Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
-        "                </Grid>\r\n" +
-        "            </Border>\r\n" +
-        "        </DataTemplate>\r\n" +
-        "    </ContentPage.Resources>\r\n" +
-        "</ContentPage>";
+         "<ContentPage>\r\n" +
+         "    <ContentPage.Resources>\r\n" +
+         "        <DataTemplate x:Key=\"ControllInfoCollectionTwoItemRowTemplate\" \r\n" +
+         "                      x:DataType=\"app:IGalleryCardInfo\">\r\n" +
+         "            <Border Padding=\"5\"\r\n" +
+         "                    BackgroundColor=\"{x:Static app:AppColors.BlackGrey}\">\r\n" +
+         "                <Border.StrokeShape>\r\n" +
+         "                    <RoundRectangle CornerRadius=\"5\" />\r\n" +
+         "                </Border.StrokeShape>\r\n" +
+         "                <Grid ColumnDefinitions=\"0.2*, 0.8*\"\r\n" +
+         "                      RowDefinitions=\"0.3*, 0.7*\"\r\n" +
+         "                      HeightRequest=\"100\">\r\n" +
+         "                    <Image Grid.Column=\"0\"\r\n" +
+         "                           Grid.Row=\"0\"\r\n" +
+         "                           Source=\"{x:Binding ControlIcon}\"\r\n" +
+         "                           VerticalOptions=\"Center\"/>\r\n" +
+         "                    <Label Grid.Column=\"1\"\r\n" +
+         "                           Grid.Row=\"0\"\r\n" +
+         "                           FontAttributes=\"Bold\"\r\n" +
+         "                           LineBreakMode=\"TailTruncation\"\r\n" +
+         "                           FontSize=\"14\"\r\n" +
+         "                           VerticalTextAlignment=\"Center\" \r\n" +
+         "                           HorizontalOptions=\"Center\"\r\n" +
+         "                           Text=\"{x:Binding ControlName}\"\r\n" +
+         "                           Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
+         "                    <Border Padding=\"2\"\r\n" +
+         "                            Grid.Column=\"0\"\r\n" +
+         "                            Grid.Row=\"1\"\r\n" +
+         "                            Grid.ColumnSpan=\"2\"\r\n" +
+         "                            BackgroundColor=\"{x:Static app:AppColors.BlackGrey}\">\r\n" +
+         "                        <Border.StrokeShape>\r\n" +
+         "                            <RoundRectangle CornerRadius=\"5\" />\r\n" +
+         "                        </Border.StrokeShape>\r\n" +
+         "                        <Label FontAttributes=\"Italic\"\r\n" +
+         "                               FontSize=\"12\"\r\n" +
+         "                               Background=\"{x:Static app:AppColors.BlackGrey}\"\r\n" +
+         "                               Text=\"{x:Binding ControlDetail}\"\r\n" +
+         "                               Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
+         "                    </Border>\r\n" +
+         "                </Grid>\r\n" +
+         "            </Border>\r\n" +
+         "        </DataTemplate>\r\n\r\n" +
+         "        <DataTemplate x:Key=\"ControllInfoCollectionThreeItemRowTemplate\" \r\n" +
+         "                      x:DataType=\"app:IGalleryCardInfo\">\r\n" +
+         "            <Border Padding=\"5\"\r\n" +
+         "                    BackgroundColor=\"{x:Static app:AppColors.BlackGrey}\">\r\n" +
+         "                <Border.StrokeShape>\r\n" +
+         "                    <RoundRectangle CornerRadius=\"5\" />\r\n" +
+         "                </Border.StrokeShape>\r\n" +
+         "                <Grid ColumnDefinitions=\"0.2*, 0.8*\" \r\n" +
+         "                      HeightRequest=\"60\">\r\n" +
+         "                    <Image Grid.Column=\"0\"\r\n" +
+         "                           Source=\"{x:Binding ControlIcon}\"\r\n" +
+         "                           VerticalOptions=\"Center\"/>\r\n" +
+         "                    <Label Grid.Column=\"1\"\r\n" +
+         "                           FontAttributes=\"Bold\"\r\n" +
+         "                           LineBreakMode=\"TailTruncation\"\r\n" +
+         "                           FontSize=\"14\"\r\n" +
+         "                           VerticalTextAlignment=\"Center\" \r\n" +
+         "                           HorizontalOptions=\"Center\"\r\n" +
+         "                           Text=\"{x:Binding ControlName}\"\r\n" +
+         "                           Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
+         "                </Grid>\r\n" +
+         "            </Border>\r\n" +
+         "        </DataTemplate>\r\n\r\n" +
+         "        <DataTemplate x:Key=\"ControllInfoCollectionFourItemRowTemplate\" \r\n" +
+         "                      x:DataType=\"app:IGalleryCardInfo\">\r\n" +
+         "            <Border Padding=\"5\"\r\n" +
+         "                    BackgroundColor=\"{x:Static app:AppColors.BlackGrey}\">\r\n" +
+         "                <Border.StrokeShape>\r\n" +
+         "                    <RoundRectangle CornerRadius=\"5\" />\r\n" +
+         "                </Border.StrokeShape>\r\n" +
+         "                <Grid RowDefinitions=\"0.4*, 0.6*\" \r\n" +
+         "                      HeightRequest=\"60\">\r\n" +
+         "                    <Image Grid.Row=\"0\"\r\n" +
+         "                           Source=\"{x:Binding ControlIcon}\"\r\n" +
+         "                           VerticalOptions=\"Center\"/>\r\n" +
+         "                    <Label Grid.Row=\"1\"\r\n" +
+         "                           FontAttributes=\"Bold\"\r\n" +
+         "                           LineBreakMode=\"TailTruncation\"\r\n" +
+         "                           FontSize=\"14\"\r\n" +
+         "                           VerticalTextAlignment=\"Center\" \r\n" +
+         "                           HorizontalOptions=\"Center\"\r\n" +
+         "                           Text=\"{x:Binding ControlName}\"\r\n" +
+         "                           Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
+         "                </Grid>\r\n" +
+         "            </Border>\r\n" +
+         "        </DataTemplate>\r\n" +
+         "    </ContentPage.Resources>\r\n" +
+         "</ContentPage>";
 
     [ObservableProperty]
     string xamlLayoutsChangingCollectionView =
@@ -986,7 +982,7 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
 
     [RelayCommand]
     void MultipleSelectCollectionView()
-    { 
+    {
         if (CurrentMultipleSelectedItemLabel is not null)
             PreviousMultipleSelectedItemLabel = CurrentMultipleSelectedItemLabel;
         if (MultipleSelectedControlInformationList is not null)
@@ -1060,7 +1056,7 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
             }
             ControlGroupList.Add(item);
         }
-        return;  
+        return;
     }
     #endregion
 

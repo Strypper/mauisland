@@ -1,4 +1,3 @@
-using IconPacks.Material;
 using Material.Components.Maui;
 
 namespace MAUIsland.Gallery.Material;
@@ -6,7 +5,6 @@ class MaterialTextFieldControlInfo : IMaterialUIGalleryCardInfo
 {
     public string ControlName => nameof(TextField);
     public string ControlRoute => typeof(MaterialTextFieldPage).FullName;
-    public IconKind MaterialIcon => IconKind.TextFields;
 
     public List<PlatformInfo> SupportedPlatformsInfo => new() { new() { Id = "1", Name = "Android", Logo = "androidlogo.png" },
                                                                 new() { Id = "2", Name = "IOS", Logo = "ioslogo.png" },
@@ -31,4 +29,6 @@ class MaterialTextFieldControlInfo : IMaterialUIGalleryCardInfo
     public List<string> DoList => throw new NotImplementedException();
 
     public List<string> DontList => throw new NotImplementedException();
+
+    public string MaterialIcon => IconPacks.IconKind.Material.TextFields;
 }

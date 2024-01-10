@@ -74,12 +74,12 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Examples" />
-                    <mdc:FAB IconKind="Settings">
+                    <mdc:FAB IconData="Settings">
                         <mdc:FAB.ContextMenu>
                             <mdc:ContextMenu>
-                                <mdc:MenuItem IconKind="Menu" Text="item 1" />
-                                <mdc:MenuItem IconKind="Menu" Text="item 2" />
-                                <mdc:MenuItem IconKind="Menu" Text="item 3" />
+                                <mdc:MenuItem IconData="Menu" Text="item 1" />
+                                <mdc:MenuItem IconData="Menu" Text="item 2" />
+                                <mdc:MenuItem IconData="Menu" Text="item 3" />
                             </mdc:ContextMenu>
                         </mdc:FAB.ContextMenu>
                     </mdc:FAB>

@@ -69,7 +69,7 @@
                         BindableLayout.ItemsSource="{x:Binding ComponentData.SupportedPlatformsInfo,
                                                                Source={x:Reference root}}"
                         HorizontalOptions="Start"
-                        Spacing="10"
+                        HorizontalSpacing="10"
                         VerticalOptions="Center">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate x:DataType="app:PlatformInfo">

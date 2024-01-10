@@ -65,9 +65,9 @@
                 TextColor="#242424"
                 VerticalOptions="Fill">
                 <Button.Behaviors>
-                    <mct:AnimationBehavior>
+                    <mct:AnimationBehavior EventName="Clicked">
                         <mct:AnimationBehavior.AnimationType>
-                            <mct:FadeAnimation Opacity="0.2" />
+                            <app:SampleScaleAnimation Easing="{x:Static Easing.Linear}" Length="100" />
                         </mct:AnimationBehavior.AnimationType>
                     </mct:AnimationBehavior>
                 </Button.Behaviors>
@@ -87,7 +87,7 @@
                 <ImageButton
                     Padding="{x:OnPlatform WinUI=5,
                                            Android=0,
-                                           iOS=10}"
+                                           iOS=2}"
                     BackgroundColor="Transparent"
                     Command="{x:Binding TapCommand,
                                         Source={x:Reference root}}"
@@ -100,7 +100,7 @@
                 <ImageButton
                     Padding="{x:OnPlatform WinUI=5,
                                            Android=0,
-                                           iOS=10}"
+                                           iOS=2}"
                     BackgroundColor="Transparent"
                     Command="{x:Binding TapCommand,
                                         Source={x:Reference root}}"
@@ -114,6 +114,9 @@
             <ImageButton
                 Grid.Row="2"
                 Grid.Column="1"
+                Padding="{x:OnPlatform WinUI=0,
+                                       Android=8,
+                                       iOS=8}"
                 BackgroundColor="#ac99ea"
                 Clicked="DetailInNewWindow_Clicked"
                 CornerRadius="12"
