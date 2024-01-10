@@ -2,5 +2,5 @@
 
 public enum GalleryCardType
 {
-    Control, Converter, Layout, Behavior, Extensions, Helper, Other
+    Control, Converter, Layout, Behavior, Extension, Helper, Other
 }

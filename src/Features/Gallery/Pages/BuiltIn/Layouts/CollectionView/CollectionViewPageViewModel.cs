@@ -1,65 +1,939 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using CommunityToolkit.Maui.Core.Extensions;
+using CommunityToolkit.Maui.Extensions;
+using CommunityToolkit.Maui.Views;
+using ExCSS;
+using Microsoft.Maui.Graphics;
 
 namespace MAUIsland;
 
-
 public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
 {
-    readonly IList<Monkey> source;
-    Monkey selectedMonkey;
-    int selectionCount = 1;
-
-    public IList<Monkey> EmptyMonkeys { get; private set; }
-
-    public Monkey SelectedMonkey
-    {
-        get
-        {
-            return selectedMonkey;
-        }
-        set
-        {
-            if (selectedMonkey != value)
-            {
-                selectedMonkey = value;
-            }
-        }
-    }
+    #region [Services]
+    private readonly IControlsService MauiControlsService;
+    private readonly IMrIncreadibleMemeService MemeService;
+    #endregion
 
     #region [ Properties ]
+    [ObservableProperty]
+    string currentSingleSelectedItemLabel = string.Empty;
+
+    [ObservableProperty]
+    string previousSingleSelectedItemLabel = string.Empty;
+
+    [ObservableProperty]
+    string currentMultipleSelectedItemLabel = string.Empty;
+
+    [ObservableProperty]
+    string previousMultipleSelectedItemLabel = string.Empty;
+
+    [ObservableProperty]
+    string currentMultipleSelectedListItemLabel = string.Empty;
+
+    [ObservableProperty]
+    bool isRefreshing;
+
+    [ObservableProperty]
+    ObservableCollection<string> filterPickerItems;
 
     [ObservableProperty]
     IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
-    ObservableCollection<Monkey> monkeys;
+    IGalleryCardInfo singleSelectedControlInformation;
 
     [ObservableProperty]
-    ObservableCollection<object> selectedMonkeys;
+    IEnumerable<object> multipleSelectedControlInformationList = new List<object>();
 
     [ObservableProperty]
-    int spanNumber = 1;
+    ObservableCollection<MrIncreadible> mrIncreadibles; 
 
     [ObservableProperty]
-    string collectionViewGridLayoutType = "<CollectionView\r\n x:Name=\"CollectionViewExample\"\r\n Grid.Row=\"1\"\r\n ItemTemplate=\"{x:StaticResource CollectionViewItemTemplate}\"\r\n ItemsSource=\"{x:Binding Monkeys,\r\n Mode=OneWay}\">\r\n <CollectionView.ItemsLayout>\r\n <GridItemsLayout\r\n HorizontalItemSpacing=\"30\"\r\n   Orientation=\"Vertical\"\r\n  Span=\"{x:Binding SpanNumber,\r\n                                                     Mode=OneWay}\"\r\n                                    VerticalItemSpacing=\"20\" />\r\n                            </CollectionView.ItemsLayout>\r\n                        </CollectionView>";
+    ObservableCollection<IGalleryCardInfo> controlGroupList;
 
     [ObservableProperty]
-    string collectionViewQuickLayoutConfigXAMLCode = "<CollectionView\r\n    ItemTemplate=\"{x:StaticResource CollectionViewItemTemplate}\"\r\n    ItemsLayout=\"VerticalGrid, 2\"\r\n    ItemsSource=\"{Binding Monkeys}\" />";
+    int spanningNumber = 1;
 
-    public string SelectedMonkeyMessage { get; private set; }
+    [ObservableProperty]
+    string cSharpBasicCollectionModel =
+        "public interface IGalleryCardInfo\r\n" +
+        "{\r\n" +
+        "    ImageSource ControlIcon { get; }\r\n" +
+        "    string ControlName { get; }\r\n" +
+        "    string ControlDetail { get; }\r\n" +
+        "    GalleryCardType CardType { get; }\r\n" +
+        "    GalleryCardStatus CardStatus { get; }\r\n" +
+        "}";
+
+    [ObservableProperty]
+    string cSharpBasicCollectionViewModel =
+        "[ObservableProperty]\r\n" +
+        "ObservableCollection<IGalleryCardInfo> controlGroupList;; // How data is loaded up to you";
+
+    [ObservableProperty]
+    string xamlBasicCollectionViewTemplate =
+        "<ContentPage>\r\n" +
+        "   <ContentPage.Resources>\r\n" +
+        "       <DataTemplate x:Key=\"ControllInfoCollectionTemplate\" \r\n" +
+        "                   x:DataType=\"app:IGalleryCardInfo\">\r\n" +
+        "           <Border Padding=\"5\"\r\n" +
+        "                   BackgroundColor=\"{x:Static app:AppColors.BlackGrey}\">\r\n" +
+        "               <Border.StrokeShape>\r\n" +
+        "                   <RoundRectangle CornerRadius=\"5\" />\r\n" +
+        "               </Border.StrokeShape>\r\n" +
+        "               <Grid ColumnDefinitions=\"0.2*, 0.2*, 0.6*\" \r\n" +
+        "                     HeightRequest=\"40\">\r\n" +
+        "                   <Image Grid.Column=\"0\"\r\n" +
+        "                          Source=\"{x:Binding ControlIcon}\"\r\n" +
+        "                          VerticalOptions=\"Center\"/>\r\n" +
+        "                   <Label Grid.Column=\"1\"\r\n" +
+        "                          FontAttributes=\"Bold\"\r\n" +
+        "                          LineBreakMode=\"TailTruncation\"\r\n" +
+        "                          FontSize=\"14\"\r\n" +
+        "                          Text=\"{x:Binding ControlName}\"\r\n" +
+        "                          VerticalTextAlignment=\"Center\"/>\r\n" +
+        "                   <Label Grid.Column=\"2\"\r\n" +
+        "                          FontAttributes=\"Italic\"\r\n" +
+        "                          LineBreakMode=\"TailTruncation\"\r\n" +
+        "                          FontSize=\"12\"\r\n" +
+        "                          VerticalTextAlignment=\"Center\"\r\n" +
+        "                          Text=\"{x:Binding ControlDetail}\"/>\r\n" +
+        "               </Grid>\r\n" +
+        "           </Border>\r\n" +
+        "       </DataTemplate>\r\n" +
+        "   </ContentPage.Resources>\r\n" +
+        "</ContentPage>";
+
+    [ObservableProperty]
+    string xamlBasicCollectionView =
+        "<CollectionView ItemTemplate=\"{x:StaticResource ControllInfoCollectionTemplate}\"\r\n" +
+        "                ItemsSource=\"{x:Binding ControlGroupList}\"\r\n" +
+        "                HeightRequest=\"400\"/>\r\n" +
+        "<!-- You can make it Scroll by set HeightRequest if it is a Vertical CollectionView and WidthRequest if it is a Horizontal CollectionView -->";
+
+    [ObservableProperty]
+    string cSharpSwipeCollectionModel =
+        "public class MrIncreadible\r\n" +
+        "{\r\n" +
+        "    public double Age { get; set; }\r\n" +
+        "    public string Title { get; set; }\r\n" +
+        "    public ImageSource Image { get; set; }\r\n" +
+        "    public bool IsFavorite { get; set; }" +
+        "\r\n}";
+
+    [ObservableProperty]
+    string xamlSwipeCollectionViewTemplate =
+        "<ContentPage>\r\n" +
+        "    <ContentPage.Resources>\r\n" +
+        "        <DataTemplate x:Key=\"MrIncreadibleCollectionTemplateWithSwipe\">\r\n" +
+        "            <SwipeView Margin=\"5\" WidthRequest=\"400\">\r\n" +
+        "                <SwipeView.LeftItems>\r\n" +
+        "                    <SwipeItems>\r\n" +
+        "                        <SwipeItem BackgroundColor=\"{x:Static app:AppColors.Green}\" \r\n" +
+        "                                   Command=\"{x:Binding CollectionSwipeViewFavoriteCommand}\"\r\n" +
+        "                                   CommandParameter=\"{x:Binding}\"\r\n" +
+        "                                   IconImageSource=\"{x:Static app:FluentUIIcon.Ic_fluent_heart_24_regular}\"\r\n" +
+        "                                   Text=\"Favorite\" />\r\n" +
+        "                        <SwipeItem BackgroundColor=\"{x:Static app:AppColors.LightBlue}\"\r\n" +
+        "                                   Command=\"{x:Binding CollectionSwipeViewDeleteCommand}\"\r\n" +
+        "                                   CommandParameter=\"{x:Binding}\"\r\n" +
+        "                                   IconImageSource=\"{x:Static app:FluentUIIcon.Ic_fluent_delete_24_regular}\"\r\n" +
+        "                                   Text=\"Delete\" />\r\n" +
+        "                    </SwipeItems>\r\n" +
+        "                </SwipeView.LeftItems>\r\n" +
+        "                <Frame Style=\"{x:StaticResource DocumentContentFrameStyle}\">\r\n" +
+        "                    <Grid x:DataType=\"app:MrIncreadible\"\r\n" +
+        "                          ColumnDefinitions=\"0.1*, 0.2*, 0.6*\">\r\n" +
+        "                        <Label Grid.Column=\"0\"\r\n" +
+        "                               FontAttributes=\"Bold\"\r\n" +
+        "                               Text=\"{x:Binding Age}\"\r\n" +
+        "                               VerticalOptions=\"Center\"/>\r\n" +
+        "                        <toolkit:AvatarView Grid.Column=\"1\" \r\n" +
+        "                                            HeightRequest=\"50\"\r\n" +
+        "                                            WidthRequest=\"50\"\r\n" +
+        "                                            ImageSource=\"{x:Binding Image, Mode=OneWay}\"\r\n" +
+        "                                            Text=\"{x:Binding Age, Mode=OneWay}\"/>\r\n" +
+        "                        <Label Grid.Column=\"2\"\r\n" +
+        "                               FontAttributes=\"Italic\"\r\n" +
+        "                               Text=\"{x:Binding Title}\"\r\n" +
+        "                               VerticalOptions=\"Center\"/>\r\n" +
+        "                    </Grid>\r\n" +
+        "                </Frame>\r\n" +
+        "            </SwipeView>\r\n" +
+        "        </DataTemplate>\r\n" +
+        "    </ContentPage.Resources>\r\n" +
+        "</ContentPage>";
+
+    [ObservableProperty]
+    string xamlSwipeCollectionView =
+        "<CollectionView ItemsSource=\"{x:Binding MrIncreadibles}\"\r\n" +
+        "                ItemTemplate=\"{x:StaticResource MrIncreadibleCollectionTemplateWithSwipe}\"\r\n" +
+        "                HeightRequest=\"400\"/>";
+
+    [ObservableProperty]
+    string cSharpSwipeCollectionViewViewModel =
+        "[ObservableProperty]\r\n" +
+        "ObservableCollection<MrIncreadible> mrIncreadibles;\r\n" +
+        "[RelayCommand]\r\n" +
+        "void CollectionSwipeViewDelete(MrIncreadible mrIncreadible)\r\n" +
+        "{\r\n" +
+        "    if (MrIncreadibles.Contains(mrIncreadible))\r\n" +
+        "       MrIncreadibles.Remove(mrIncreadible);\r\n" +
+        "}\r\n\r\n" +
+        "[RelayCommand]\r\n" +
+        "void CollectionSwipeViewFavorite(MrIncreadible mrIncreadible)\r\n" +
+        "{\r\n" +
+        "    mrIncreadible.IsFavorite = !mrIncreadible.IsFavorite;\r\n" +
+        "}";
+
+    [ObservableProperty]
+    string cSharpRefreshCollectionViewViewModel =
+        "[ObservableProperty]\r\n" +
+        "bool isRefreshing;\r\n\r\n" +
+        "[RelayCommand]\r\n" +
+        "void Refresh()\r\n" +
+        "{\r\n" +
+        "    IsRefreshing = true;\r\n\r\n" +
+        "    LoadDataAsync();// Load anything you want\r\n\r\n" + 
+        "    IsRefreshing = false;\r\n" +
+        "}";
+
+    [ObservableProperty]
+    string xamlRefreshCollectionView =
+        "<RefreshView x:Name=\"RefreshView\"\r\n" +
+        "             IsRefreshing=\"{Binding IsRefreshing}\"\r\n" +
+        "             Command=\"{Binding RefreshCommand}\"\r\n" +
+        "             HeightRequest=\"400\">\r\n" +
+        "   <CollectionView ItemsSource=\"{x:Binding ControlGroupList}\"\r\n" +
+        "                   ItemTemplate=\"{x:StaticResource ControllInfoCollectionTemplate}\"/>\r\n" +
+        "</RefreshView>";
+
+    [ObservableProperty]
+    string xamlVerticalListCollectionView =
+        "<CollectionView ItemsSource=\"{x:Binding MrIncreadibles}\"\r\n" +
+        "                ItemTemplate=\"{x:StaticResource MrIncreadibleItemVerticalTemplate}\"\r\n" +
+        "                ItemsLayout=\"VerticalList\"\r\n" +
+        "                HeightRequest=\"400\"/>";
+
+    [ObservableProperty]
+    string xamlVerticalListCollectionViewTemplate =
+        "<ContentPage>\r\n" +
+        "    <ContentPage.Resources>\r\n" +
+        "        <DataTemplate x:Key=\"MrIncreadibleItemVerticalTemplate\" \r\n" +
+        "                      x:DataType=\"app:MrIncreadible\">\r\n" +
+        "            <Frame Style=\"{x:StaticResource DocumentContentFrameStyle}\"\r\n" +
+        "                   Margin=\"5\">\r\n" +
+        "                <Grid x:DataType=\"app:MrIncreadible\"\r\n" +
+        "                      ColumnDefinitions=\"0.1*, 0.2*, 0.7*\"\r\n" +
+        "                      ColumnSpacing=\"2\">\r\n" +
+        "                    <Label Grid.Column=\"0\"\r\n" +
+        "                           FontAttributes=\"Bold\"\r\n" +
+        "                           Text=\"{x:Binding Age}\"\r\n" +
+        "                           VerticalOptions=\"Center\"/>\r\n" +
+        "                    <toolkit:AvatarView Grid.Column=\"1\" \r\n" +
+        "                                        HeightRequest=\"40\"\r\n" +
+        "                                        WidthRequest=\"40\"\r\n" +
+        "                                        ImageSource=\"{x:Binding Image, Mode=OneWay}\"/>\r\n" +
+        "                    <Label Grid.Column=\"2\"\r\n" +
+        "                           FontAttributes=\"Italic\"\r\n" +
+        "                           Text=\"{x:Binding Title}\"\r\n" +
+        "                           VerticalOptions=\"Center\"/>\r\n" +
+        "                </Grid>\r\n" +
+        "            </Frame>\r\n" +
+        "        </DataTemplate>\r\n" +
+        "    </ContentPage.Resources>\r\n" +
+        "</ContentPage>";
+
+    [ObservableProperty]
+    string xamlHorizontalListCollectionView =
+        "<CollectionView ItemsSource=\"{x:Binding MrIncreadibles}\"\r\n" +
+        "                ItemTemplate=\"{x:StaticResource MrIncreadibleItemHorizontalTemplate}\"\r\n" +
+        "                ItemsLayout=\"HorizontalList\"/>";
+
+    [ObservableProperty]
+    string xamlHorizontalListCollectionViewTemplate =
+        "<ContentPage>\r\n" +
+        "    <ContentPage.Resources>\r\n" +
+        "        <DataTemplate x:Key=\"MrIncreadibleItemHorizontalTemplate\" \r\n" +
+        "                      x:DataType=\"app:MrIncreadible\">\r\n" +
+        "            <Frame Style=\"{x:StaticResource DocumentContentFrameStyle}\"\r\n" +
+        "                   Margin=\"5\" WidthRequest=\"300\">\r\n" +
+        "                <Grid x:DataType=\"app:MrIncreadible\"\r\n" +
+        "                      ColumnDefinitions=\"0.2*, 0.2*, 0.6*\"\r\n" +
+        "                      ColumnSpacing=\"2\">\r\n" +
+        "                    <Label Grid.Column=\"0\"\r\n" +
+        "                           FontAttributes=\"Bold\"\r\n" +
+        "                           Text=\"{x:Binding Age}\"\r\n" +
+        "                           VerticalOptions=\"Center\"/>\r\n" +
+        "                    <toolkit:AvatarView Grid.Column=\"1\" \r\n" +
+        "                                        HeightRequest=\"50\"\r\n" +
+        "                                        WidthRequest=\"50\"\r\n" +
+        "                                        ImageSource=\"{x:Binding Image, Mode=OneWay}\"/>\r\n" +
+        "                    <Label Grid.Column=\"2\"\r\n" +
+        "                           FontAttributes=\"Italic\"\r\n" +
+        "                           Text=\"{x:Binding Title}\"\r\n" +
+        "                           VerticalOptions=\"Center\"/>\r\n" +
+        "                </Grid>\r\n" +
+        "            </Frame>\r\n" +
+        "        </DataTemplate>\r\n" +
+        "    </ContentPage.Resources>\r\n" +
+        "</ContentPage>";
+
+    [ObservableProperty]
+    string xamlVerticalGridCollectionView =
+        "<!-- Adding HorizontalOptions=\"CenterAndExpand\" can help the Span in ItemsLayout to do it job -->\r\n" +
+        "<CollectionView ItemsSource=\"{x:Binding MrIncreadibles}\"\r\n" +
+        "                ItemTemplate=\"{x:StaticResource MrIncreadibleItemVerticalSpan2Template}\"\r\n" +
+        "                ItemsLayout=\"VerticalGrid, 2\"\r\n" +
+        "                HorizontalOptions=\"CenterAndExpand\"\r\n" +
+        "                HeightRequest=\"400\"/>";
+
+    [ObservableProperty]
+    string xamlVerticalGridCollectionViewTemplate =
+        "<ContentPage>\r\n" +
+        "    <ContentPage.Resources>\r\n" +
+        "        <DataTemplate x:Key=\"MrIncreadibleItemVerticalSpan2Template\" \r\n" +
+        "                      x:DataType=\"app:MrIncreadible\">\r\n" +
+        "            <Frame Style=\"{x:StaticResource DocumentContentFrameStyle}\"\r\n" +
+        "                   Margin=\"5\">\r\n" +
+        "                <Grid x:DataType=\"app:MrIncreadible\"\r\n" +
+        "                      ColumnDefinitions=\"0.1*, 0.2*, 0.7*\"\r\n" +
+        "                      WidthRequest=\"200\"\r\n" +
+        "                      ColumnSpacing=\"2\"\r\n" +
+        "                      Padding=\"10\"\r\n" +
+        "                      Margin=\"5\">\r\n" +
+        "                    <Label Grid.Column=\"0\"\r\n" +
+        "                           FontAttributes=\"Bold\"\r\n" +
+        "                           Text=\"{x:Binding Age}\"\r\n" +
+        "                           VerticalOptions=\"Center\"/>\r\n" +
+        "                    <toolkit:AvatarView Grid.Column=\"1\" \r\n" +
+        "                                        HeightRequest=\"40\"\r\n" +
+        "                                        WidthRequest=\"40\"\r\n" +
+        "                                        ImageSource=\"{x:Binding Image, Mode=OneWay}\"/>\r\n" +
+        "                    <Label Grid.Column=\"2\"\r\n" +
+        "                           FontAttributes=\"Italic\"\r\n" +
+        "                           Text=\"{x:Binding Title}\"\r\n" +
+        "                           VerticalOptions=\"Center\"/>\r\n" +
+        "                </Grid>\r\n" +
+        "            </Frame>\r\n" +
+        "        </DataTemplate>\r\n" +
+        "    </ContentPage.Resources>\r\n" +
+        "</ContentPage>";
+
+    [ObservableProperty]
+    string xamlHeaderFooterCollectionView =
+        "<CollectionView ItemsSource=\"{x:Binding MrIncreadibles}\"\r\n" +
+        "                ItemTemplate=\"{x:StaticResource MrIncreadibleItemTemplate}\"\r\n" +
+        "                Header=\"{x:StaticResource CollectionViewHeader}\"\r\n" +
+        "                Footer=\"{x:StaticResource CollectionViewFooter}\"\r\n" +
+        "                HeightRequest=\"400\"\r\n" +
+        "                HorizontalOptions=\"StartAndExpand\"/>";
+
+    [ObservableProperty]
+    string xamlHeaderFooterCollectionViewTemplate =
+        "<ContentPage>\r\n" +
+        "    <ContentPage.Resources>\r\n" +
+        "        <DataTemplate x:Key=\"MrIncreadibleItemTemplate\" \r\n" +
+        "                      x:DataType=\"app:MrIncreadible\">\r\n" +
+        "            <Frame Style=\"{x:StaticResource DocumentContentFrameStyle}\"\r\n" +
+        "                   Margin=\"5\" WidthRequest=\"400\">\r\n" +
+        "                <Grid x:DataType=\"app:MrIncreadible\"\r\n" +
+        "                      ColumnDefinitions=\"0.1*, 0.2*, 0.8*\"\r\n" +
+        "                      ColumnSpacing=\"5\">\r\n" +
+        "                    <Label Grid.Column=\"0\"\r\n" +
+        "                           FontAttributes=\"Bold\"\r\n" +
+        "                           Text=\"{x:Binding Age}\"\r\n" +
+        "                           VerticalOptions=\"Center\"/>\r\n" +
+        "                    <toolkit:AvatarView Grid.Column=\"1\" \r\n" +
+        "                                        HeightRequest=\"50\"\r\n" +
+        "                                        WidthRequest=\"50\"\r\n" +
+        "                                        ImageSource=\"{x:Binding Image, Mode=OneWay}\"/>\r\n" +
+        "                    <Label Grid.Column=\"2\"\r\n" +
+        "                           FontAttributes=\"Italic\"\r\n" +
+        "                           Text=\"{x:Binding Title}\"\r\n" +
+        "                           VerticalOptions=\"Center\"/>\r\n" +
+        "                </Grid>\r\n" +
+        "            </Frame>\r\n" +
+        "        </DataTemplate>\r\n" +
+        "    </ContentPage.Resources>\r\n" +
+        "</ContentPage>";
+
+    [ObservableProperty]
+    string xamlHeaderFooterCollectionViewSource =
+        "<ContentPage>\r\n" +
+        "    <ContentPage.Resources>\r\n" +
+        "        <x:String x:Key=\"CollectionViewHeader\">\r\n" +
+        "            What types of women do you like?\r\n" +
+        "        </x:String>\r\n\r\n" +
+        "        <x:String x:Key=\"CollectionViewFooter\">\r\n" +
+        "            Hope you like what you choose !!!\r\n" +
+        "        </x:String>\r\n" +
+        "    </ContentPage.Resources>\r\n" +
+        "</ContentPage>";
+
+    [ObservableProperty]
+    string xamlReverseCollectionView =
+        "<CollectionView ItemsSource=\"{x:Binding MrIncreadibles}\"\r\n" +
+        "                ItemTemplate=\"{x:StaticResource MrIncreadibleItemTemplate}\"\r\n" +
+        "                FlowDirection=\"RightToLeft\"\r\n" +
+        "                HeightRequest=\"400\"/>";
+
+    [ObservableProperty]
+    string xamlLayoutsChangeNormalCollectionViewTemplate =
+        "<ContentPage>\r\n" +
+        "    <ContentPage.Resources>\r\n" +
+        "        <DataTemplate x:Key=\"ControllInfoCollectionTemplate\" \r\n" +
+        "                      x:DataType=\"app:IGalleryCardInfo\">\r\n" +
+        "            <Border Padding=\"5\"\r\n" +
+        "                    BackgroundColor=\"{x:Static app:AppColors.BlackGrey}\">\r\n" +
+        "                <Border.StrokeShape>\r\n" +
+        "                    <RoundRectangle CornerRadius=\"5\" />\r\n" +
+        "                </Border.StrokeShape>\r\n" +
+        "                <Grid ColumnDefinitions=\"0.2*, 0.2*, 0.6*\" \r\n" +
+        "                      HeightRequest=\"40\">\r\n" +
+        "                    <Image Grid.Column=\"0\"\r\n" +
+        "                           Source=\"{x:Binding ControlIcon}\"\r\n" +
+        "                           VerticalOptions=\"Center\"/>\r\n" +
+        "                    <Label Grid.Column=\"1\"\r\n" +
+        "                           FontAttributes=\"Bold\"\r\n" +
+        "                           LineBreakMode=\"TailTruncation\"\r\n" +
+        "                           FontSize=\"14\"\r\n" +
+        "                           Text=\"{x:Binding ControlName}\"\r\n" +
+        "                           VerticalTextAlignment=\"Center\" \r\n" +
+        "                           Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
+        "                    <Label Grid.Column=\"2\"\r\n" +
+        "                           FontAttributes=\"Italic\"\r\n" +
+        "                           LineBreakMode=\"TailTruncation\"\r\n" +
+        "                           FontSize=\"12\"\r\n" +
+        "                           VerticalTextAlignment=\"Center\"\r\n" +
+        "                           Text=\"{x:Binding ControlDetail}\"\r\n" +
+        "                           Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
+        "                </Grid>\r\n" +
+        "            </Border>\r\n" +
+        "        </DataTemplate>\r\n" +
+        "    </ContentPage.Resources>\r\n" +
+        "</ContentPage>";
+
+   [ObservableProperty]
+    string xamlLayoutsChangeCollectionViewTemplate =
+        "<ContentPage>\r\n" +
+        "    <ContentPage.Resources>\r\n" +
+        "        <DataTemplate x:Key=\"ControllInfoCollectionTwoItemRowTemplate\" \r\n" +
+        "                      x:DataType=\"app:IGalleryCardInfo\">\r\n" +
+        "            <Border Padding=\"5\"\r\n" +
+        "                    BackgroundColor=\"{x:Static app:AppColors.BlackGrey}\">\r\n" +
+        "                <Border.StrokeShape>\r\n" +
+        "                    <RoundRectangle CornerRadius=\"5\" />\r\n" +
+        "                </Border.StrokeShape>\r\n" +
+        "                <Grid ColumnDefinitions=\"0.2*, 0.8*\"\r\n" +
+        "                      RowDefinitions=\"0.3*, 0.7*\"\r\n" +
+        "                      HeightRequest=\"100\">\r\n" +
+        "                    <Image Grid.Column=\"0\"\r\n" +
+        "                           Grid.Row=\"0\"\r\n" +
+        "                           Source=\"{x:Binding ControlIcon}\"\r\n" +
+        "                           VerticalOptions=\"Center\"/>\r\n" +
+        "                    <Label Grid.Column=\"1\"\r\n" +
+        "                           Grid.Row=\"0\"\r\n" +
+        "                           FontAttributes=\"Bold\"\r\n" +
+        "                           LineBreakMode=\"TailTruncation\"\r\n" +
+        "                           FontSize=\"14\"\r\n" +
+        "                           VerticalTextAlignment=\"Center\" \r\n" +
+        "                           HorizontalOptions=\"Center\"\r\n" +
+        "                           Text=\"{x:Binding ControlName}\"\r\n" +
+        "                           Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
+        "                    <Border Padding=\"2\"\r\n" +
+        "                            Grid.Column=\"0\"\r\n" +
+        "                            Grid.Row=\"1\"\r\n" +
+        "                            Grid.ColumnSpan=\"2\"\r\n" +
+        "                            BackgroundColor=\"{x:Static app:AppColors.BlackGrey}\">\r\n" +
+        "                        <Border.StrokeShape>\r\n" +
+        "                            <RoundRectangle CornerRadius=\"5\" />\r\n" +
+        "                        </Border.StrokeShape>\r\n" +
+        "                        <Label FontAttributes=\"Italic\"\r\n" +
+        "                               FontSize=\"12\"\r\n" +
+        "                               Background=\"{x:Static app:AppColors.BlackGrey}\"\r\n" +
+        "                               Text=\"{x:Binding ControlDetail}\"\r\n" +
+        "                               Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
+        "                    </Border>\r\n" +
+        "                </Grid>\r\n" +
+        "            </Border>\r\n" +
+        "        </DataTemplate>\r\n\r\n" +
+        "        <DataTemplate x:Key=\"ControllInfoCollectionThreeItemRowTemplate\" \r\n" +
+        "                      x:DataType=\"app:IGalleryCardInfo\">\r\n" +
+        "            <Border Padding=\"5\"\r\n" +
+        "                    BackgroundColor=\"{x:Static app:AppColors.BlackGrey}\">\r\n" +
+        "                <Border.StrokeShape>\r\n" +
+        "                    <RoundRectangle CornerRadius=\"5\" />\r\n" +
+        "                </Border.StrokeShape>\r\n" +
+        "                <Grid ColumnDefinitions=\"0.2*, 0.8*\" \r\n" +
+        "                      HeightRequest=\"60\">\r\n" +
+        "                    <Image Grid.Column=\"0\"\r\n" +
+        "                           Source=\"{x:Binding ControlIcon}\"\r\n" +
+        "                           VerticalOptions=\"Center\"/>\r\n" +
+        "                    <Label Grid.Column=\"1\"\r\n" +
+        "                           FontAttributes=\"Bold\"\r\n" +
+        "                           LineBreakMode=\"TailTruncation\"\r\n" +
+        "                           FontSize=\"14\"\r\n" +
+        "                           VerticalTextAlignment=\"Center\" \r\n" +
+        "                           HorizontalOptions=\"Center\"\r\n" +
+        "                           Text=\"{x:Binding ControlName}\"\r\n" +
+        "                           Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
+        "                </Grid>\r\n" +
+        "            </Border>\r\n" +
+        "        </DataTemplate>\r\n\r\n" +
+        "        <DataTemplate x:Key=\"ControllInfoCollectionFourItemRowTemplate\" \r\n" +
+        "                      x:DataType=\"app:IGalleryCardInfo\">\r\n" +
+        "            <Border Padding=\"5\"\r\n" +
+        "                    BackgroundColor=\"{x:Static app:AppColors.BlackGrey}\">\r\n" +
+        "                <Border.StrokeShape>\r\n" +
+        "                    <RoundRectangle CornerRadius=\"5\" />\r\n" +
+        "                </Border.StrokeShape>\r\n" +
+        "                <Grid RowDefinitions=\"0.4*, 0.6*\" \r\n" +
+        "                      HeightRequest=\"60\">\r\n" +
+        "                    <Image Grid.Row=\"0\"\r\n" +
+        "                           Source=\"{x:Binding ControlIcon}\"\r\n" +
+        "                           VerticalOptions=\"Center\"/>\r\n" +
+        "                    <Label Grid.Row=\"1\"\r\n" +
+        "                           FontAttributes=\"Bold\"\r\n" +
+        "                           LineBreakMode=\"TailTruncation\"\r\n" +
+        "                           FontSize=\"14\"\r\n" +
+        "                           VerticalTextAlignment=\"Center\" \r\n" +
+        "                           HorizontalOptions=\"Center\"\r\n" +
+        "                           Text=\"{x:Binding ControlName}\"\r\n" +
+        "                           Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
+        "                </Grid>\r\n" +
+        "            </Border>\r\n" +
+        "        </DataTemplate>\r\n" +
+        "    </ContentPage.Resources>\r\n" +
+        "</ContentPage>";
+
+    [ObservableProperty]
+    string xamlLayoutsChangingCollectionView =
+        "<HorizontalStackLayout VerticalOptions=\"Center\" \r\n" +
+        "                       Spacing=\"5\">\r\n" +
+        "   <Label VerticalOptions=\"Center\">\r\n" +
+        "       <Label.FormattedText>\r\n" +
+        "           <FormattedString>\r\n" +
+        "               <Span Text=\"Number of Span: \"/>\r\n" +
+        "               <Span Text=\"{x:Binding SpanningNumber, Mode=OneWay}\" FontAttributes=\"Bold\" />\r\n" +
+        "           </FormattedString>\r\n" +
+        "       </Label.FormattedText>\r\n" +
+        "   </Label>\r\n" +
+        "   <Stepper Minimum=\"1\" \r\n" +
+        "            Maximum=\"4\" \r\n" +
+        "            Value=\"{x:Binding SpanningNumber, Mode=TwoWay}\"\r\n" +
+        "            Background=\"Black\"\r\n" +
+        "            VerticalOptions=\"Center\"/>\r\n" +
+        "</HorizontalStackLayout>\r\n" +
+        "<!-- Adding HorizontalOptions=\"CenterAndExpand\" can help the Span in ItemsLayout to do it job -->\r\n" +
+        "<CollectionView x:Name=\"CollectionViewSpanningChange\"\r\n" +
+        "                ItemTemplate=\"{x:StaticResource ControllInfoCollectionTemplate}\"\r\n" +
+        "                ItemsSource=\"{x:Binding ControlGroupList, Mode=OneWay}\"\r\n" +
+        "                HorizontalOptions=\"CenterAndExpand\"\r\n" +
+        "                HeightRequest=\"400\">\r\n" +
+        "   <CollectionView.ItemsLayout>\r\n" +
+        "       <GridItemsLayout Orientation=\"Vertical\"\r\n" +
+        "                        Span=\"{x:Binding SpanningNumber, Mode=TwoWay}\"\r\n" +
+        "                        HorizontalItemSpacing=\"5\"\r\n" +
+        "                        VerticalItemSpacing=\"5\"/>\r\n" +
+        "   </CollectionView.ItemsLayout>\r\n" +
+        "</CollectionView>";
+
+    [ObservableProperty]
+    string cSharpLayoutsChangingCollectionViewCodeBehind =
+        "#region [ Service ]\r\n" +
+        "protected readonly CollectionViewPageViewModel ViewModel;\r\n" +
+        "#endregion\r\n\r\n" +
+        "#region [ CTor ]\r\n" +
+        "public CollectionViewPage(CollectionViewPageViewModel vm)\r\n" +
+        "{\r\n" +
+        "    InitializeComponent();\r\n\r\n" +
+        "    BindingContext = ViewModel = vm;\r\n" +
+        "}\r\n" +
+        "#endregion\r\n\r\n" +
+        "#region [ Override ]\r\n" +
+        "protected override void OnAppearing()\r\n" +
+        "{\r\n" +
+        "    base.OnAppearing();\r\n" +
+        "    ViewModel.SpanningNumberChanged += ViewModelSpanningNumberPropertyChanged;\r\n" +
+        "}\r\n\r\n" +
+        "protected override void OnDisappearing()\r\n" +
+        "{\r\n" +
+        "    base.OnDisappearing();\r\n" +
+        "    ViewModel.SpanningNumberChanged -= ViewModelSpanningNumberPropertyChanged;\r\n" +
+        "}\r\n" +
+        "#endregion\r\n\r\n" +
+        "#region [ Event Handler ]\r\n" +
+        "private void ViewModelSpanningNumberPropertyChanged(object sender, PropertyChangedEventArgs e)\r\n" +
+        "{\r\n" +
+        "    if (e.PropertyName == \"SpanningNumber\")\r\n" +
+        "    {\r\n" +
+        "        switch (ViewModel.SpanningNumber)\r\n" +
+        "        {\r\n" +
+        "            case 1:\r\n" +
+        "                 CollectionViewSpanningChange.ItemTemplate = (DataTemplate)Resources[\"ControllInfoCollectionTemplate\"];\r\n" +
+        "                 break;\r\n" +
+        "            case 2:\r\n" +
+        "                 CollectionViewSpanningChange.ItemTemplate = (DataTemplate)Resources[\"ControllInfoCollectionTwoItemRowTemplate\"];\r\n" +
+        "                 break;\r\n" +
+        "            case 3:\r\n" +
+        "                 CollectionViewSpanningChange.ItemTemplate = (DataTemplate)Resources[\"ControllInfoCollectionThreeItemRowTemplate\"];\r\n" +
+        "                 break;\r\n" +
+        "            case 4:\r\n" +
+        "                 CollectionViewSpanningChange.ItemTemplate = (DataTemplate)Resources[\"ControllInfoCollectionFourItemRowTemplate\"];\r\n" +
+        "                 break;\r\n" +
+        "        }\r\n" +
+        "    }\r\n" +
+        "}\r\n" +
+        "#endregion";
+
+    [ObservableProperty]
+    string cSharpLayoutsChangingCollectionViewViewModel =
+        "#region [ Properties ]\r\n" +
+        "[ObservableProperty]\r\n" +
+        "int spanningNumber = 1;\r\n" +
+        "#endregion\r\n\r\n" +
+        "#region [ Event ]\r\n" +
+        "public event PropertyChangedEventHandler SpanningNumberChanged;\r\n\r\n" +
+        "protected virtual void OnSpanningNumberChangedEvent([CallerMemberName] string propertyName = null)\r\n" +
+        "{\r\n" +
+        "    SpanningNumberChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));\r\n" +
+        "}\r\n\r\n" +
+        "#endregion\r\n\r\n" +
+        "#region [ Methods ]\r\n" +
+        "partial void OnSpanningNumberChanged(int value)\r\n" +
+        "{\r\n" +
+        "    OnSpanningNumberChangedEvent(nameof(SpanningNumber));\r\n" +
+        "}\r\n\r\n" +
+        "#endregion";
+
+    [ObservableProperty]
+    string xamlSingleSelectionCollectionView =
+        "<Label>\r\n" +
+        "   <Label.FormattedText>\r\n" +
+        "       <FormattedString>\r\n" +
+        "           <Span Text=\"Current selected item: \" />\r\n" +
+        "           <Span Text=\"{x:Binding CurrentSingleSelectedItemLabel}\"\r\n" +
+        "                 TextDecorations=\"Underline\" />\r\n" +
+        "       </FormattedString>\r\n" +
+        "   </Label.FormattedText>\r\n" +
+        "</Label>\r\n" +
+        "<Label>\r\n" +
+        "   <Label.FormattedText>\r\n" +
+        "       <FormattedString>\r\n" +
+        "           <Span Text=\"Previous selected item: \" />\r\n" +
+        "           <Span Text=\"{x:Binding PreviousSingleSelectedItemLabel}\"\r\n" +
+        "                 TextDecorations=\"Underline\" />\r\n" +
+        "       </FormattedString>\r\n" +
+        "   </Label.FormattedText>\r\n" +
+        "</Label>\r\n" +
+        "<CollectionView ItemTemplate=\"{x:StaticResource ControllInfoCollectionFourItemRowTemplate}\"\r\n" +
+        "                ItemsLayout=\"VerticalGrid, 4\"\r\n" +
+        "                ItemsSource=\"{x:Binding ControlGroupList}\"\r\n" +
+        "                SelectedItem=\"{x:Binding SingleSelectedControlInformation}\"\r\n" +
+        "                SelectionChangedCommand=\"{x:Binding SingleSelectCollectionViewCommand}\"\r\n" +
+        "                HorizontalOptions=\"CenterAndExpand\"\r\n" +
+        "                SelectionMode=\"Single\"\r\n" +
+        "                HeightRequest=\"400\"/>";
+
+    [ObservableProperty]
+    string xamlSingleSelectionCollectionViewTemplate =
+        "<ContentPage>\r\n" +
+        "    <ContentPage.Resources>\r\n" +
+        "        <DataTemplate x:Key=\"ControllInfoCollectionFourItemRowTemplate\" \r\n" +
+        "                      x:DataType=\"app:IGalleryCardInfo\">\r\n" +
+        "            <Border Padding=\"5\"\r\n" +
+        "                    BackgroundColor=\"{x:Static app:AppColors.BlackGrey}\">\r\n" +
+        "                <Border.StrokeShape>\r\n" +
+        "                    <RoundRectangle CornerRadius=\"5\" />\r\n" +
+        "                </Border.StrokeShape>\r\n" +
+        "                <Grid RowDefinitions=\"0.4*, 0.6*\" \r\n" +
+        "                      HeightRequest=\"60\">\r\n" +
+        "                    <Image Grid.Row=\"0\"\r\n" +
+        "                           Source=\"{x:Binding ControlIcon}\"\r\n" +
+        "                           VerticalOptions=\"Center\"/>\r\n" +
+        "                    <Label Grid.Row=\"1\"\r\n" +
+        "                           FontAttributes=\"Bold\"\r\n" +
+        "                           LineBreakMode=\"TailTruncation\"\r\n" +
+        "                           FontSize=\"14\"\r\n" +
+        "                           VerticalTextAlignment=\"Center\" \r\n" +
+        "                           HorizontalOptions=\"Center\"\r\n" +
+        "                           Text=\"{x:Binding ControlName}\"\r\n" +
+        "                           Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
+        "                </Grid>\r\n" +
+        "            </Border>\r\n" +
+        "        </DataTemplate>\r\n" +
+        "    </ContentPage.Resources>\r\n" +
+        "</ContentPage>";
+
+    [ObservableProperty]
+    string cSharpSingleSelectionCollectionViewViewModel =
+        "#region [ Properties ]\r\n" +
+        "[ObservableProperty]\r\n" +
+        "string currentSingleSelectedItemLabel = string.Empty;\r\n\r\n" +
+        "[ObservableProperty]\r\n" +
+        "string previousSingleSelectedItemLabel = string.Empty;\r\n\r\n" +
+        "[ObservableProperty]\r\n" +
+        "IGalleryCardInfo singleSelectedControlInformation;\r\n\r\n" +
+        "[ObservableProperty]\r\n" +
+        "ObservableCollection<IGalleryCardInfo> controlGroupList;\r\n\r\n" +
+        "#endregion\r\n" +
+        "[RelayCommand]\r\n" +
+        "void SingleSelectCollectionView()\r\n\r\n" +
+        "#region [ Relay Commands ]\r\n" +
+        "{\r\n" +
+        "    if (CurrentSingleSelectedItemLabel is not null)\r\n" +
+        "       PreviousSingleSelectedItemLabel = CurrentSingleSelectedItemLabel;\r\n" +
+        "    CurrentSingleSelectedItemLabel = SingleSelectedControlInformation.ControlName;\r\n" +
+        "}\r\n" +
+        "#endregion";
+
+    [ObservableProperty]
+    string xamlMultipleSelectionCollectionView =
+        "<Label LineBreakMode=\"HeadTruncation\">\r\n" +
+        "   <Label.FormattedText>\r\n" +
+        "       <FormattedString>\r\n" +
+        "           <Span Text=\"Selected items: \" />\r\n" +
+        "           <Span Text=\"{x:Binding CurrentMultipleSelectedListItemLabel}\"\r\n" +
+        "                 TextDecorations=\"Underline\" />\r\n" +
+        "       </FormattedString>\r\n" +
+        "   </Label.FormattedText>\r\n" +
+        "</Label>\r\n" +
+        "<Label>\r\n" +
+        "   <Label.FormattedText>\r\n" +
+        "       <FormattedString>\r\n" +
+        "           <Span Text=\"Current selected item: \" />\r\n" +
+        "           <Span Text=\"{x:Binding CurrentMultipleSelectedItemLabel}\"\r\n" +
+        "                 TextDecorations=\"Underline\" />\r\n" +
+        "       </FormattedString>\r\n" +
+        "   </Label.FormattedText>\r\n" +
+        "</Label>\r\n" +
+        "<Label>\r\n" +
+        "   <Label.FormattedText>\r\n" +
+        "       <FormattedString>\r\n" +
+        "           <Span Text=\"Previous selected item: \" />\r\n" +
+        "           <Span Text=\"{x:Binding PreviousMultipleSelectedItemLabel}\"\r\n" +
+        "                 TextDecorations=\"Underline\" />\r\n" +
+        "       </FormattedString>\r\n" +
+        "   </Label.FormattedText>\r\n" +
+        "</Label>\r\n" +
+        "<CollectionView ItemTemplate=\"{x:StaticResource ControllInfoCollectionFourItemRowTemplate}\"\r\n" +
+        "                ItemsLayout=\"VerticalGrid, 4\"\r\n" +
+        "                ItemsSource=\"{x:Binding ControlGroupList}\"\r\n" +
+        "                SelectedItems=\"{x:Binding MultipleSelectedControlInformationList, Mode=TwoWay}\"\r\n" +
+        "                SelectionChangedCommand=\"{x:Binding MultipleSelectCollectionViewCommand}\"\r\n" +
+        "                HorizontalOptions=\"CenterAndExpand\"\r\n" +
+        "                SelectionMode=\"Multiple\"\r\n" +
+        "                HeightRequest=\"400\"/>";
+
+    [ObservableProperty]
+    string xamlMultipleSelectionCollectionViewTemplate =
+        "<ContentPage>\r\n" +
+        "    <ContentPage.Resources>\r\n" +
+        "        <DataTemplate x:Key=\"ControllInfoCollectionFourItemRowTemplate\" \r\n" +
+        "              x:DataType=\"app:IGalleryCardInfo\">\r\n" +
+        "            <Border Padding=\"5\"\r\n" +
+        "                    BackgroundColor=\"{x:Static app:AppColors.BlackGrey}\">\r\n" +
+        "                <Border.StrokeShape>\r\n" +
+        "                    <RoundRectangle CornerRadius=\"5\" />\r\n" +
+        "                </Border.StrokeShape>\r\n" +
+        "                <Grid RowDefinitions=\"0.4*, 0.6*\" \r\n" +
+        "                       HeightRequest=\"60\">\r\n" +
+        "                    <Image Grid.Row=\"0\"\r\n" +
+        "                  Source=\"{x:Binding ControlIcon}\"\r\n" +
+        "                  VerticalOptions=\"Center\"/>\r\n" +
+        "                    <Label Grid.Row=\"1\"\r\n" +
+        "                           FontAttributes=\"Bold\"\r\n" +
+        "                           LineBreakMode=\"TailTruncation\"\r\n" +
+        "                           FontSize=\"14\"\r\n" +
+        "                           VerticalTextAlignment=\"Center\" \r\n" +
+        "                           HorizontalOptions=\"Center\"\r\n" +
+        "                           Text=\"{x:Binding ControlName}\"\r\n" +
+        "                           Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
+        "                </Grid>\r\n" +
+        "            </Border>\r\n" +
+        "        </DataTemplate>\r\n" +
+        "    </ContentPage.Resources>\r\n" +
+        "</ContentPage>";
+
+    [ObservableProperty]
+    string cSharpMultipleSelectionCollectionViewViewModel =
+        "#region [ Properties ]\r\n" +
+        "[ObservableProperty]\r\n" +
+        "string currentMultipleSelectedItemLabel = string.Empty;\r\n\r\n" +
+        "[ObservableProperty]\r\n" +
+        "string previousMultipleSelectedItemLabel = string.Empty;\r\n\r\n" +
+        "[ObservableProperty]\r\n" +
+        "string currentMultipleSelectedListItemLabel = string.Empty;\r\n\r\n" +
+        "[ObservableProperty]\r\n" +
+        "IEnumerable<object> multipleSelectedControlInformationList = new List<object>();\r\n\r\n" +
+        "#endregion\r\n" +
+        "[RelayCommand]\r\n" +
+        "void MultipleSelectCollectionView()\r\n" +
+        "{\r\n" +
+        "     if (CurrentMultipleSelectedItemLabel is not null)\r\n" +
+        "       PreviousMultipleSelectedItemLabel = CurrentMultipleSelectedItemLabel;\r\n" +
+        "     if (MultipleSelectedControlInformationList is not null)\r\n" +
+        "     {\r\n" +
+        "         ObservableCollection<IGalleryCardInfo> itemList = new();\r\n" +
+        "         foreach (var item in MultipleSelectedControlInformationList)\r\n" +
+        "         {\r\n" +
+        "             if (item is IGalleryCardInfo galleryCardInfo)\r\n" +
+        "             {\r\n" +
+        "                 itemList.Add(galleryCardInfo);\r\n" +
+        "             }\r\n" +
+        "         }\r\n" +
+        "         CurrentMultipleSelectedListItemLabel = string.Join(\", \", itemList.Select(item => item.ControlName.ToString()));\r\n\r\n" +
+        "         if (MultipleSelectedControlInformationList.Count() != 0)\r\n" +
+        "         {\r\n" +
+        "             CurrentMultipleSelectedItemLabel = itemList.Last().ControlName;\r\n" +
+        "         }\r\n" +
+        "     }\r\n" +
+        "}\r\n" +
+        "#endregion";
+
+    [ObservableProperty]
+    string cSharpTemplateSelectorCollectionViewEventHandler =
+        "void OnFilterItemChanged(object sender, EventArgs e)\r\n" +
+        "{\r\n" +
+        "    var picker = (Picker)sender;\r\n" +
+        "    var selectedFilter = picker.SelectedItem.ToString();\r\n\r\n" +
+        "    var collectionView = CollectionViewItemLayoutChanged;\r\n" +
+        "    var itemsSource = ViewModel.ControlGroupList;\r\n\r\n" +
+        "    var filteredItems = new ObservableCollection<IGalleryCardInfo>(itemsSource.Where(x => x.CardType.ToString() == selectedFilter));\r\n\r\n" +
+        "    var itemsToSelect = itemsSource.Where(x => x.CardType.ToString() == selectedFilter).ToList();\r\n\r\n" +
+        "    collectionView.SelectedItems.Clear();\r\n" +
+        "    foreach (var item in itemsToSelect)\r\n" +
+        "    {\r\n" +
+        "        collectionView.SelectedItems.Add(item);\r\n" +
+        "    }\r\n\r\n" +
+        "    // Refresh the CollectionView\r\n" +
+        "    collectionView.ItemsSource = null;\r\n" +
+        "    collectionView.ItemsSource = itemsSource;\r\n" +
+        "}";
+
+    [ObservableProperty]
+    string cSharpTemplateSelector =
+        "public class TemplateSelector : DataTemplateSelector\r\n" +
+        "{\r\n" +
+        "    #region [ Properties ]\r\n" +
+        "    public DataTemplate NormalTemplate { get; set; }\r\n" +
+        "    public DataTemplate SelectedTemplate { get; set; }\r\n" +
+        "    // Add more templates as needed\r\n" +
+        "    #endregion\r\n\r\n" +
+        "    #region [ CTor ]\r\n" +
+        "    public TemplateSelector()\r\n" +
+        "    {\r\n" +
+        "    }\r\n" +
+        "    #endregion\r\n\r\n" +
+        "    #region [ Override ]\\r\\n\" +" +
+        "    protected override DataTemplate OnSelectTemplate(object item, BindableObject container)\r\n" +
+        "    {\r\n" +
+        "        var collectionView = (CollectionView)container;\r\n" +
+        "        var selectedItems = collectionView.SelectedItems;\r\n\r\n" +
+        "        return selectedItems.Contains(item) ? SelectedTemplate : NormalTemplate;\r\n" +
+        "    }\r\n" +
+        "    #endregion\r\n" +
+        "}";
+
+    [ObservableProperty]
+    string cSharpTemplateSelectorCollectionViewViewModel =
+        "[ObservableProperty]\r\n" +
+        "ObservableCollection<string> filterPickerItems;";
+
+    [ObservableProperty]
+    string xamlTemplateSelectorCollectionViewTemplate =
+        "<ContentPage>\r\n" +
+        "    <ContentPage.Resources>\r\n" +
+        "        <DataTemplate x:Key=\"NormalItemTemplate\" \r\n" +
+        "                      x:DataType=\"app:IGalleryCardInfo\">\r\n" +
+        "            <Border Padding=\"5\"\r\n" +
+        "                    BackgroundColor=\"{x:Static app:AppColors.BlackGrey}\"\r\n" +
+        "                    Margin=\"5\">\r\n" +
+        "                <Border.StrokeShape>\r\n" +
+        "                    <RoundRectangle CornerRadius=\"5\" />\r\n" +
+        "                </Border.StrokeShape>\r\n" +
+        "                <Grid ColumnDefinitions=\"0.2*, 0.2*, 0.6*\" \r\n" +
+        "                      HeightRequest=\"40\">\r\n" +
+        "                    <Image Grid.Column=\"0\"\r\n" +
+        "                           Source=\"{x:Binding ControlIcon}\"\r\n" +
+        "                           VerticalOptions=\"Center\"/>\r\n" +
+        "                    <Label Grid.Column=\"1\"\r\n" +
+        "                           FontAttributes=\"Bold\"\r\n" +
+        "                           LineBreakMode=\"TailTruncation\"\r\n" +
+        "                           FontSize=\"14\"\r\n" +
+        "                           Text=\"{x:Binding ControlName}\"\r\n" +
+        "                           VerticalTextAlignment=\"Center\" \r\n" +
+        "                           Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
+        "                    <Label Grid.Column=\"2\"\r\n" +
+        "                           FontAttributes=\"Italic\"\r\n" +
+        "                           LineBreakMode=\"TailTruncation\"\r\n" +
+        "                           FontSize=\"12\"\r\n" +
+        "                           VerticalTextAlignment=\"Center\"\r\n" +
+        "                           Text=\"{x:Binding ControlDetail}\"\r\n" +
+        "                           Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
+        "                </Grid>\r\n" +
+        "            </Border>\r\n" +
+        "        </DataTemplate>\r\n\r\n" +
+        "        <DataTemplate x:Key=\"SelectedItemTemplate\" \r\n" +
+        "                      x:DataType=\"app:IGalleryCardInfo\">\r\n" +
+        "            <Border Padding=\"10\"\r\n" +
+        "                    BackgroundColor=\"{x:Static app:AppColors.MauilandPrimary}\"\r\n" +
+        "                    Margin=\"5\">\r\n" +
+        "                <Border.StrokeShape>\r\n" +
+        "                    <RoundRectangle CornerRadius=\"5\" />\r\n" +
+        "                </Border.StrokeShape>\r\n" +
+        "                <Grid ColumnDefinitions=\"0.2*, 0.2*, 0.6*\" \r\n" +
+        "                      HeightRequest=\"60\">\r\n" +
+        "                    <Image Grid.Column=\"0\"\r\n" +
+        "                           Source=\"{x:Binding ControlIcon}\"\r\n" +
+        "                           VerticalOptions=\"Center\"/>\r\n" +
+        "                    <Label Grid.Column=\"1\"\r\n" +
+        "                           FontAttributes=\"Bold\"\r\n" +
+        "                           LineBreakMode=\"TailTruncation\"\r\n" +
+        "                           FontSize=\"16\"\r\n" +
+        "                           Text=\"{x:Binding ControlName}\"\r\n" +
+        "                           VerticalTextAlignment=\"Center\" \r\n" +
+        "                           Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
+        "                    <Label Grid.Column=\"2\"\r\n" +
+        "                           FontAttributes=\"Italic\"\r\n" +
+        "                           LineBreakMode=\"TailTruncation\"\r\n" +
+        "                           FontSize=\"14\"\r\n" +
+        "                           VerticalTextAlignment=\"Center\"\r\n" +
+        "                           Text=\"{x:Binding ControlDetail}\"\r\n" +
+        "                           Style=\"{x:StaticResource ReverseTheme}\"/>\r\n" +
+        "                </Grid>\r\n" +
+        "            </Border>\r\n" +
+        "        </DataTemplate>\r\n\r\n" +
+        "        <app:TemplateSelector x:Key=\"TemplateSelector\"\r\n" +
+        "                              NormalTemplate=\"{StaticResource NormalItemTemplate}\"\r\n" +
+        "                              SelectedTemplate=\"{StaticResource SelectedItemTemplate}\" />" +
+        "    </ContentPage.Resources>\r\n" +
+        "</ContentPage>";
+
+    [ObservableProperty]
+    string xamlTemplateSelectorCollectionView =
+        "<Picker Title=\"Filter\" \r\n" +
+        "        TitleColor=\"Blue\"\r\n" +
+        "        ItemsSource=\"{x:Binding FilterPickerItems}\"\r\n" +
+        "        SelectedIndexChanged=\"OnFilterItemChanged\"\r\n" +
+        "        BackgroundColor=\"LightGray\"/>\r\n" +
+        "<CollectionView x:Name=\"CollectionViewItemLayoutChanged\" \r\n" +
+        "                ItemTemplate=\"{x:StaticResource TemplateSelector}\"\r\n" +
+        "                ItemsSource=\"{x:Binding ControlGroupList, Mode=OneWay}\"\r\n" +
+        "                SelectionMode=\"None\"\r\n" +
+        "                HeightRequest=\"400\"/>";
     #endregion
 
-    public ICommand DeleteCommand => new Command<Monkey>(RemoveMonkey);
-    public ICommand FavoriteCommand => new Command<Monkey>(FavoriteMonkey);
-    public ICommand FilterCommand => new Command<string>(FilterItems);
-    public ICommand MonkeySelectionChangedCommand => new Command(MonkeySelectionChanged);
-
     #region [ CTor ]
-    public CollectionViewPageViewModel(IAppNavigator appNavigator)
+    public CollectionViewPageViewModel(IAppNavigator appNavigator,
+                                       IControlsService mauiControlsService,
+                                       IMrIncreadibleMemeService memeService)
                                     : base(appNavigator)
     {
-        source = new List<Monkey>();
+        this.MauiControlsService = mauiControlsService;
+        this.MemeService = memeService;
     }
     #endregion
 
@@ -70,222 +944,132 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
 
         ControlInformation = query.GetData<IGalleryCardInfo>();
 
-        CreateMonkeyCollection();
-
-        selectedMonkey = Monkeys.Skip(3).FirstOrDefault();
-        MonkeySelectionChanged();
-
-        SelectedMonkeys = new ObservableCollection<object>()
-        {
-            Monkeys[1], Monkeys[3], Monkeys[4]
-        };
-    }
-
-
-    #endregion
-
-    void CreateMonkeyCollection()
-    {
-        source.Add(new Monkey
-        {
-            Name = "Baboon",
-            Location = "Africa & Asia",
-            Details = "Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Papio_anubis_%28Serengeti%2C_2009%29.jpg/200px-Papio_anubis_%28Serengeti%2C_2009%29.jpg"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Capuchin Monkey",
-            Location = "Central & South America",
-            Details = "The capuchin monkeys are New World monkeys of the subfamily Cebinae. Prior to 2011, the subfamily contained only a single genus, Cebus.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Capuchin_Costa_Rica.jpg/200px-Capuchin_Costa_Rica.jpg"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Blue Monkey",
-            Location = "Central and East Africa",
-            Details = "The blue monkey or diademed monkey is a species of Old World monkey native to Central and East Africa, ranging from the upper Congo River basin east to the East African Rift and south to northern Angola and Zambia",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/BlueMonkey.jpg/220px-BlueMonkey.jpg"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Squirrel Monkey",
-            Location = "Central & South America",
-            Details = "The squirrel monkeys are the New World monkeys of the genus Saimiri. They are the only genus in the subfamily Saimirinae. The name of the genus Saimiri is of Tupi origin, and was also used as an English name by early researchers.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Saimiri_sciureus-1_Luc_Viatour.jpg/220px-Saimiri_sciureus-1_Luc_Viatour.jpg"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Golden Lion Tamarin",
-            Location = "Brazil",
-            Details = "The golden lion tamarin also known as the golden marmoset, is a small New World monkey of the family Callitrichidae.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Golden_lion_tamarin_portrait3.jpg/220px-Golden_lion_tamarin_portrait3.jpg"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Howler Monkey",
-            Location = "South America",
-            Details = "Howler monkeys are among the largest of the New World monkeys. Fifteen species are currently recognised. Previously classified in the family Cebidae, they are now placed in the family Atelidae.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Alouatta_guariba.jpg/200px-Alouatta_guariba.jpg"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Japanese Macaque",
-            Location = "Japan",
-            Details = "The Japanese macaque, is a terrestrial Old World monkey species native to Japan. They are also sometimes known as the snow monkey because they live in areas where snow covers the ground for months each",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Macaca_fuscata_fuscata1.jpg/220px-Macaca_fuscata_fuscata1.jpg"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Mandrill",
-            Location = "Southern Cameroon, Gabon, Equatorial Guinea, and Congo",
-            Details = "The mandrill is a primate of the Old World monkey family, closely related to the baboons and even more closely to the drill. It is found in southern Cameroon, Gabon, Equatorial Guinea, and Congo.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Mandrill_at_san_francisco_zoo.jpg/220px-Mandrill_at_san_francisco_zoo.jpg"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Proboscis Monkey",
-            Location = "Borneo",
-            Details = "The proboscis monkey or long-nosed monkey, known as the bekantan in Malay, is a reddish-brown arboreal Old World monkey that is endemic to the south-east Asian island of Borneo.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Proboscis_Monkey_in_Borneo.jpg/250px-Proboscis_Monkey_in_Borneo.jpg"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Red-shanked Douc",
-            Location = "Vietnam, Laos",
-            Details = "The red-shanked douc is a species of Old World monkey, among the most colourful of all primates. This monkey is sometimes called the \"costumed ape\" for its extravagant appearance. From its knees to its ankles it sports maroon-red \"stockings\", and it appears to wear white forearm length gloves. Its attire is finished with black hands and feet. The golden face is framed by a white ruff, which is considerably fluffier in males. The eyelids are a soft powder blue. The tail is white with a triangle of white hair at the base. Males of all ages have a white spot on both sides of the corners of the rump patch, and red and white genitals.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Portrait_of_a_Douc.jpg/159px-Portrait_of_a_Douc.jpg"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Gray-shanked Douc",
-            Location = "Vietnam",
-            Details = "The gray-shanked douc langur is a douc species native to the Vietnamese provinces of Quảng Nam, Quảng Ngãi, Bình Định, Kon Tum, and Gia Lai. The total population is estimated at 550 to 700 individuals. In 2016, Dr Benjamin Rawson, Country Director of Fauna & Flora International - Vietnam Programme, announced a discovery of an additional population of more than 500 individuals found in Central Vietnam, bringing the total population up to approximately 1000 individuals.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Cuc.Phuong.Primate.Rehab.center.jpg/320px-Cuc.Phuong.Primate.Rehab.center.jpg"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Golden Snub-nosed Monkey",
-            Location = "China",
-            Details = "The golden snub-nosed monkey is an Old World monkey in the Colobinae subfamily. It is endemic to a small area in temperate, mountainous forests of central and Southwest China. They inhabit these mountainous forests of Southwestern China at elevations of 1,500-3,400 m above sea level. The Chinese name is Sichuan golden hair monkey. It is also widely referred to as the Sichuan snub-nosed monkey. Of the three species of snub-nosed monkeys in China, the golden snub-nosed monkey is the most widely distributed throughout China.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Golden_Snub-nosed_Monkeys%2C_Qinling_Mountains_-_China.jpg/165px-Golden_Snub-nosed_Monkeys%2C_Qinling_Mountains_-_China.jpg"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Black Snub-nosed Monkey",
-            Location = "China",
-            Details = "The black snub-nosed monkey, also known as the Yunnan snub-nosed monkey, is an endangered species of primate in the family Cercopithecidae. It is endemic to China, where it is known to the locals as the Yunnan golden hair monkey and the black golden hair monkey. It is threatened by habitat loss. It was named after Bishop Félix Biet.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/RhinopitecusBieti.jpg/320px-RhinopitecusBieti.jpg"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Tonkin Snub-nosed Monkey",
-            Location = "Vietnam",
-            Details = "The Tonkin snub-nosed monkey or Dollman's snub-nosed monkey is a slender-bodied arboreal Old World monkey, endemic to northern Vietnam. It is a black and white monkey with a pink nose and lips and blue patches round the eyes. It is found at altitudes of 200 to 1,200 m (700 to 3,900 ft) on fragmentary patches of forest on craggy limestone areas. First described in 1912, the monkey was rediscovered in 1990 but is exceedingly rare. In 2008, fewer than 250 individuals were thought to exist, and the species was the subject of intense conservation effort. The main threats faced by these monkeys is habitat loss and hunting, and the International Union for Conservation of Nature has rated the species as \"critically endangered\".",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Tonkin_snub-nosed_monkeys_%28Rhinopithecus_avunculus%29.jpg/320px-Tonkin_snub-nosed_monkeys_%28Rhinopithecus_avunculus%29.jpg"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Thomas's Langur",
-            Location = "Indonesia",
-            Details = "Thomas's langur is a species of primate in the family Cercopithecidae. It is endemic to North Sumatra, Indonesia. Its natural habitat is subtropical or tropical dry forests. It is threatened by habitat loss. Its native names are reungkah in Acehnese and kedih in Alas.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Thomas%27s_langur_Presbytis_thomasi.jpg/142px-Thomas%27s_langur_Presbytis_thomasi.jpg"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Purple-faced Langur",
-            Location = "Sri Lanka",
-            Details = "The purple-faced langur, also known as the purple-faced leaf monkey, is a species of Old World monkey that is endemic to Sri Lanka. The animal is a long-tailed arboreal species, identified by a mostly brown appearance, dark face (with paler lower face) and a very shy nature. The species was once highly prevalent, found in suburban Colombo and the \"wet zone\" villages (areas with high temperatures and high humidity throughout the year, whilst rain deluges occur during the monsoon seasons), but rapid urbanization has led to a significant decrease in the population level of the monkeys.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Semnopithèque_blanchâtre_mâle.JPG/192px-Semnopithèque_blanchâtre_mâle.JPG"
-        });
-
-        source.Add(new Monkey
-        {
-            Name = "Gelada",
-            Location = "Ethiopia",
-            Details = "The gelada, sometimes called the bleeding-heart monkey or the gelada baboon, is a species of Old World monkey found only in the Ethiopian Highlands, with large populations in the Semien Mountains. Theropithecus is derived from the Greek root words for \"beast-ape.\" Like its close relatives the baboons, it is largely terrestrial, spending much of its time foraging in grasslands.",
-            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Gelada-Pavian.jpg/320px-Gelada-Pavian.jpg"
-        });
-
-        Monkeys = new ObservableCollection<Monkey>(source);
-    }
-
-    void FilterItems(string filter)
-    {
-        var filteredItems = source.Where(monkey => monkey.Name.ToLower().Contains(filter.ToLower())).ToList();
-        foreach (var monkey in source)
-        {
-            if (!filteredItems.Contains(monkey))
-            {
-                Monkeys.Remove(monkey);
-            }
-            else
-            {
-                if (!Monkeys.Contains(monkey))
-                {
-                    Monkeys.Add(monkey);
-                }
-            }
-        }
-    }
-
-    void MonkeySelectionChanged()
-    {
-        SelectedMonkeyMessage = $"Selection {selectionCount}: {SelectedMonkey.Name}";
-        OnPropertyChanged("SelectedMonkeyMessage");
-        selectionCount++;
-    }
-
-    void RemoveMonkey(Monkey monkey)
-    {
-        if (Monkeys.Contains(monkey))
-        {
-            Monkeys.Remove(monkey);
-        }
-    }
-
-    void FavoriteMonkey(Monkey monkey)
-    {
-        monkey.IsFavorite = !monkey.IsFavorite;
-    }
-
-    #region INotifyPropertyChanged
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    void OnPropertyChanged([CallerMemberName] string propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        LoadDataAsync().FireAndForget();
     }
     #endregion
 
-    #region [Relay Commands]
+    #region [ Relay Commands ]
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    void CollectionSwipeViewDelete(MrIncreadible mrIncreadible)
+    {
+        if (MrIncreadibles.Contains(mrIncreadible))
+            MrIncreadibles.Remove(mrIncreadible);
+    }
+
+    [RelayCommand]
+    void CollectionSwipeViewFavorite(MrIncreadible mrIncreadible)
+    {
+        mrIncreadible.IsFavorite = !mrIncreadible.IsFavorite;
+    }
+
+    [RelayCommand]
+    void Refresh()
+    {
+        IsRefreshing = true;
+
+        LoadDataAsync().FireAndForget();
+
+        IsRefreshing = false;
+    }
+
+    [RelayCommand]
+    void SingleSelectCollectionView()
+    {
+        if (CurrentSingleSelectedItemLabel is not null)
+            PreviousSingleSelectedItemLabel = CurrentSingleSelectedItemLabel;
+        CurrentSingleSelectedItemLabel = SingleSelectedControlInformation.ControlName;
+    }
+
+    [RelayCommand]
+    void MultipleSelectCollectionView()
+    { 
+        if (CurrentMultipleSelectedItemLabel is not null)
+            PreviousMultipleSelectedItemLabel = CurrentMultipleSelectedItemLabel;
+        if (MultipleSelectedControlInformationList is not null)
+        {
+            ObservableCollection<IGalleryCardInfo> itemList = new();
+            foreach (var item in MultipleSelectedControlInformationList)
+            {
+                if (item is IGalleryCardInfo galleryCardInfo)
+                {
+                    itemList.Add(galleryCardInfo);
+                }
+            }
+            CurrentMultipleSelectedListItemLabel = string.Join(", ", itemList.Select(item => item.ControlName.ToString()));
+
+            if (MultipleSelectedControlInformationList.Count() != 0)
+            {
+                CurrentMultipleSelectedItemLabel = itemList.Last().ControlName;
+            }
+        }
+    }
     #endregion
+
+    #region [ Event ]
+    public event PropertyChangedEventHandler SpanningNumberChanged;
+
+    protected virtual void OnSpanningNumberChangedEvent([CallerMemberName] string propertyName = null)
+    {
+        SpanningNumberChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+    #endregion
+
+    #region [ Methods ]
+    partial void OnSpanningNumberChanged(int value)
+    {
+        OnSpanningNumberChangedEvent(nameof(SpanningNumber));
+    }
+    #endregion
+
+    #region [ Data ]
+    private async Task LoadDataAsync()
+    {
+        ControlGroupList = new ObservableCollection<IGalleryCardInfo>();
+        ControlGroupList.Clear();
+        FilterPickerItems = Enum.GetNames(typeof(GalleryCardType)).ToObservableCollection();
+
+        var items = await MauiControlsService.GetControlsAsync(ControlInformation.GroupName);
+        IDictionary<double, ImageSource> images = MemeService.GetAllMemeImage();
+        IDictionary<double, string> titles = MemeService.GetAllMemeTitle();
+
+        MrIncreadibles = new ObservableCollection<MrIncreadible>();
+
+        foreach (var key in titles.Keys)
+        {
+            if (images.ContainsKey(key))
+            {
+                MrIncreadibles.Add(new MrIncreadible
+                {
+                    Age = key,
+                    Title = titles[key],
+                    Image = images[key],
+                    IsFavorite = false
+                });
+            }
+        }
+
+        foreach (var item in items)
+        {
+            if (item.ControlIcon is FontImageSource fontImageSource)
+            {
+                fontImageSource.Color = Microsoft.Maui.Graphics.Color.FromRgba("#1e1e1e");
+            }
+            ControlGroupList.Add(item);
+        }
+        return;  
+    }
+    #endregion
+
 }
 
-
-public class Monkey
+public class MrIncreadible
 {
-    public string Name { get; set; }
-    public string Location { get; set; }
-    public string Details { get; set; }
-    public string ImageUrl { get; set; }
+    public double Age { get; set; }
+    public string Title { get; set; }
+    public ImageSource Image { get; set; }
     public bool IsFavorite { get; set; }
 }
