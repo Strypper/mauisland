@@ -31,7 +31,9 @@
             VerticalOptions="Fill" />
 
         <acrylic:AcrylicView
-            Padding="30"
+            Padding="{x:OnPlatform WinUI=0,
+                                   Android=30,
+                                   iOS=30}"
             CornerRadius="20"
             EffectStyle="Custom"
             HeightRequest="{x:OnIdiom Desktop=350,
@@ -45,7 +47,7 @@
                                      Tablet=650,
                                      Phone=320}">
             <CollectionView
-                Margin="{x:OnPlatform WinUI=30,
+                Margin="{x:OnPlatform WinUI=10,
                                       Android=0,
                                       iOS=0}"
                 HorizontalOptions="Fill"
