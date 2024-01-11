@@ -150,6 +150,24 @@
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
+                    <Label Text="this is how a command can be bound to a property to control its state"/>
+                    <Button Text="Example Property For Control Property State Command 2"
+                            Command="{Binding ToolKitWithEnablingDisablingCommand}"
+                            CommandParameter="{Binding ExampleForControlPropertyState2}"/>
+                    <app:SourceCodeExpander Code="{x:Binding Example2BoundPropertyToControlXaml}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding ToolkitControlPropertyState2}" CodeType="CSharp" />
+                    <app:SourceCodeExpander Code="{x:Binding ToolkitRelayCommandWithEnablingDisabling}" CodeType="CSharp" />
+                    <Button Text="Example Property For Control Property State Command 1"
+                            Command="{Binding ToolKitWithEnablingDisablingCommand}"
+                            CommandParameter="{Binding ExampleForControlPropertyState1}"/>
+                    <app:SourceCodeExpander Code="{x:Binding Example1BoundPropertyToControlXaml}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding ToolkitControlPropertyState1}" CodeType="CSharp" />
+                    <app:SourceCodeExpander Code="{x:Binding ToolkitRelayCommandWithEnablingDisabling}" CodeType="CSharp" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Handling concurrent executions" />
                     <CollectionView ItemsSource="{x:StaticResource HandlingConcurrentExecution}" Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
@@ -159,12 +177,6 @@
                 <VerticalStackLayout Spacing="20">
                     <Label Text="This is toolkit format"/>
                     <app:SourceCodeExpander Code="{x:Binding ToolkitRelayCommandWithAllowConcurrentExecution}" CodeType="CSharp" />
-                    <Label Text="this is how a command can be bound to a property to control its state"/>
-                    <Button Text="Example Property For Control Property State Command"
-                            Command="{Binding ToolKitWithEnablingDisablingCommand}"
-                            CommandParameter="{Binding ExampleForControlPropertyState}"/>
-                    <app:SourceCodeExpander Code="{x:Binding ExampleBoundPropertyToControlXaml}" CodeType="Xaml" />
-                    <app:SourceCodeExpander Code="{x:Binding ToolkitControlPropertyState}" CodeType="CSharp" />
                 </VerticalStackLayout>
             </Frame>
 
