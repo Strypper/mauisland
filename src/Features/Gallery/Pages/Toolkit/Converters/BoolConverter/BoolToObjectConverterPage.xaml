@@ -57,6 +57,25 @@
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup MediaElement" />
+                    <VerticalStackLayout>
+                        <Label Text="{x:Binding SetupDescription}"/>
+                        <Label Text="{x:Binding XamlNamespace}" TextColor="Blue"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Therefore the following:"/>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding FullNamepaceExampleBefore}" />
+                    <Label Text="Would be modified to include the xmlns as follows:"/>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding FullNamepaceExampleAfter}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Bool To Object Converter" />
                     <Label>
                         <Label.FormattedText>
