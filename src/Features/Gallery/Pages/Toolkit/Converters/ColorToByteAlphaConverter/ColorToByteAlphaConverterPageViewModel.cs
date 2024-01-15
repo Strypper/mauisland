@@ -3,10 +3,13 @@ using System.Reflection;
 
 namespace MAUIsland;
 
-public partial class ByteArrayToImageSourceConverterPageViewModel : NavigationAwareBaseViewModel
+public partial class ColorToByteAlphaConverterPageViewModel : NavigationAwareBaseViewModel
 {
+    #region [Services]
+    #endregion
+
     #region [ CTor ]
-    public ByteArrayToImageSourceConverterPageViewModel(IAppNavigator appNavigator)
+    public ColorToByteAlphaConverterPageViewModel(IAppNavigator appNavigator)
         : base(appNavigator)
     { } 
     #endregion
@@ -16,14 +19,20 @@ public partial class ByteArrayToImageSourceConverterPageViewModel : NavigationAw
     IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
-    byte[] imageByteArray;
+    ObservableCollection<IGalleryCardInfo> controlGroupList;
 
     [ObservableProperty]
-    string imageByteArrayToString;
+    Color textColor1 = Color.FromRgba(138, 43, 226, 128);
+
+    [ObservableProperty]
+    Color textColor2 = Color.FromRgba(150, 75, 0, 179);
+
+    [ObservableProperty]
+    Color textColor3 = Color.FromRgba(154, 205, 50, 200);
 
     [ObservableProperty]
     string setupDescription =
-    "In order to use the toolkit in XAML the following xmlns needs to be added into your page or view:";
+        "In order to use the toolkit in XAML the following xmlns needs to be added into your page or view:";
 
     [ObservableProperty]
     string xamlNamespace =
@@ -47,21 +56,22 @@ public partial class ByteArrayToImageSourceConverterPageViewModel : NavigationAw
         "</ContentPage>";
 
     [ObservableProperty]
-    string xamlConverterTesting =
-        "<Image Source=\"{x:Binding ImageByteArray, Converter={x:StaticResource ByteArrayToImageSourceConverter}}\"/>";
+    string xamlConverterTextTesting =
+        "<Label Text=\"{x:Binding TextColor3, Converter={x:StaticResource ColorToByteAlphaConverter}}\"\r\n" +
+        "       FontAttributes=\"Bold\"/>";
 
     [ObservableProperty]
     string xamlConverterSetup =
         "<ContentPage>\r\n" +
         "   <ContentPage.Resources>\r\n" +
-        "        <toolkit:ByteArrayToImageSourceConverter x:Key=\"ByteArrayToImageSourceConverter\"/>\r\n" +
+        "        <toolkit:ColorToByteAlphaConverter x:Key=\"ColorToByteAlphaConverter\" />\r\n" +
         "   </ContentPage.Resources>\r\n" +
         "</ContentPage>";
 
     [ObservableProperty]
     string cSharpxamlConverterTestingViewModel =
         "[ObservableProperty]\r\n" +
-        "byte[] imageByteArray;";
+        "Color textColor3 = Color.FromRgba(154, 205, 50, 200);";
     #endregion
 
     #region[ Relay Command ]
@@ -82,20 +92,9 @@ public partial class ByteArrayToImageSourceConverterPageViewModel : NavigationAw
     #region [ Data ]
     private async Task LoadDataAsync()
     {
-        ImageByteArray = await ImageUrlToByteArrayAsync("https://aka.ms/campus.jpg");
-        ImageByteArrayToString = ByteArrayToString(ImageByteArray);
     }
     #endregion
 
     #region [ Method ]
-    public async Task<byte[]> ImageUrlToByteArrayAsync(string imageUrl)
-    {
-        using var httpClient = new HttpClient();
-        return await httpClient.GetByteArrayAsync(imageUrl).ConfigureAwait(false);
-    }
-    public string ByteArrayToString(byte[] byteArray)
-    {
-        return BitConverter.ToString(byteArray);
-    }
     #endregion
 }
