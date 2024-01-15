@@ -69,16 +69,16 @@
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Bool To Object Converter" />
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Color To Black Or White Converter" />
                     <Label VerticalOptions="Center">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="The converter will turn this text color "/>
-                                <Span Text="The Text is showing in monochrome"
+                                <Span Text="Text Color"
                                       TextColor="{x:Binding TextColor}"
                                       FontAttributes="Bold"/>
                                 <Span Text=" into this text color "/>
-                                <Span Text="The Text is showing in monochrome"
+                                <Span Text="Text Color"
                                       TextColor="{x:Binding TextColor, Converter={x:StaticResource ColorToBlackOrWhiteConverter}}"
                                       FontAttributes="Bold"
                                       BackgroundColor="Gray"/>
