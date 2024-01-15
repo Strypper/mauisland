@@ -9,6 +9,20 @@
     Title="SfComboBoxPage"
     Padding="10"
     x:DataType="app:SfComboBoxPageViewModel">
+
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="syncfusionlogo.png"
+            Text="Original Document" />
+    </app:BasePage.ToolbarItems>
+
     <app:BasePage.Resources>
         <x:String x:Key="ControlInfo">
             The .NET MAUI ComboBox control is a selection component that allows users to type a value or choose an option from a list of predefined options. It has many features, such as data binding, editing, searching, clear button and dropdown button customization, and more.

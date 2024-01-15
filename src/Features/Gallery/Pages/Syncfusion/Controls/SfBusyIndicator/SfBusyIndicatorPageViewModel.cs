@@ -26,4 +26,12 @@ public partial class SfBusyIndicatorPageViewModel : NavigationAwareBaseViewModel
 
     }
     #endregion
+
+    #region [Relay Commands]
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
+    #endregion
+
+
 }
