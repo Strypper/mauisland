@@ -1,8 +1,10 @@
-﻿namespace MAUIsland;
+﻿using CommunityToolkit.Maui.Converters;
+
+namespace MAUIsland;
 
 class ByteArrayToImageSourceConverterControlInfo : ICommunityToolkitGalleryCardInfo
 {
-    public string ControlName => "Byte Array To Image Source Converter";
+    public string ControlName => nameof(ByteArrayToImageSourceConverter);
 
     public string ControlRoute => typeof(ByteArrayToImageSourceConverterPage).FullName;
     public ImageSource ControlIcon => new FontImageSource()

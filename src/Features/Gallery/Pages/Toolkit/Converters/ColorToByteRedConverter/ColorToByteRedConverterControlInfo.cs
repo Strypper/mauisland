@@ -1,8 +1,10 @@
-﻿namespace MAUIsland;
+﻿using CommunityToolkit.Maui.Converters;
+
+namespace MAUIsland;
 
 class ColorToByteRedConverterControlInfo : ICommunityToolkitGalleryCardInfo
 {
-    public string ControlName => "Color To Byte Red Converter";
+    public string ControlName => nameof(ColorToByteRedConverter);
 
     public string ControlRoute => typeof(ColorToByteRedConverterPage).FullName;
     public ImageSource ControlIcon => new FontImageSource()

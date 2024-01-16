@@ -1,8 +1,10 @@
-﻿namespace MAUIsland;
+﻿using CommunityToolkit.Maui.Converters;
+
+namespace MAUIsland;
 
 class ColorToByteAlphaConverterControlInfo : ICommunityToolkitGalleryCardInfo
 {
-    public string ControlName => "Color To Byte Alpha Converter";
+    public string ControlName => nameof(ColorToByteAlphaConverter);
 
     public string ControlRoute => typeof(ColorToByteAlphaConverterPage).FullName;
     public ImageSource ControlIcon => new FontImageSource()

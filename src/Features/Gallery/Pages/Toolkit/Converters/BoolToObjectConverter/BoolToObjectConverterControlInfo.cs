@@ -1,8 +1,10 @@
-﻿namespace MAUIsland;
+﻿using CommunityToolkit.Maui.Converters;
+
+namespace MAUIsland;
 
 class BoolToObjectConverterControlInfo : ICommunityToolkitGalleryCardInfo
 {
-    public string ControlName => "Bool To Object Converter";
+    public string ControlName => nameof(BoolToObjectConverter);
 
     public string ControlRoute => typeof(BoolToObjectConverterPage).FullName;
     public ImageSource ControlIcon => new FontImageSource()
