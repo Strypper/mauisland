@@ -3,13 +3,13 @@ using System.Reflection;
 
 namespace MAUIsland;
 
-public partial class ColorToByteAlphaConverterPageViewModel : NavigationAwareBaseViewModel
+public partial class ColorToByteGreenConverterPageViewModel : NavigationAwareBaseViewModel
 {
     #region [Services]
     #endregion
 
     #region [ CTor ]
-    public ColorToByteAlphaConverterPageViewModel(IAppNavigator appNavigator)
+    public ColorToByteGreenConverterPageViewModel(IAppNavigator appNavigator)
         : base(appNavigator)
     { } 
     #endregion
@@ -22,7 +22,7 @@ public partial class ColorToByteAlphaConverterPageViewModel : NavigationAwareBas
     ObservableCollection<IGalleryCardInfo> controlGroupList;
 
     [ObservableProperty]
-    Color textColor1 = Color.FromRgba(138, 43, 226, 128);
+    Color textColor1 = Colors.BlueViolet;
 
     [ObservableProperty]
     Color textColor2 = Color.FromRgba(150, 75, 0, 179);
@@ -62,10 +62,36 @@ public partial class ColorToByteAlphaConverterPageViewModel : NavigationAwareBas
         "       <FormattedString>\r\n" +
         "           <Span Text=\"The converter will turn this text color \"/>\r\n" +
         "           <Span Text=\"Text Color\"\r\n" +
+        "                 TextColor=\"{x:Binding TextColor1}\"\r\n" +
+        "                 FontAttributes=\"Bold\"/>\r\n" +
+        "           <Span Text=\" into this Byte Green \"/>\r\n" +
+        "           <Span Text=\"{x:Binding TextColor1, Converter={x:StaticResource ColorToByteGreenConverter}}\"\r\n" +
+        "                 FontAttributes=\"Bold\"/>\r\n" +
+        "       </FormattedString>\r\n" +
+        "   </Label.FormattedText>\r\n" +
+        "</Label>\r\n" +
+        "<Label VerticalOptions=\"Center\">\r\n" +
+        "   <Label.FormattedText>\r\n" +
+        "       <FormattedString>\r\n" +
+        "           <Span Text=\"The converter will turn this text color \"/>\r\n" +
+        "           <Span Text=\"Text Color\"\r\n" +
+        "                 TextColor=\"{x:Binding TextColor2}\"\r\n" +
+        "                 FontAttributes=\"Bold\"/>\r\n" +
+        "           <Span Text=\" into this Byte Green \"/>\r\n" +
+        "           <Span Text=\"{x:Binding TextColor2, Converter={x:StaticResource ColorToByteGreenConverter}}\"\r\n" +
+        "                 FontAttributes=\"Bold\"/>\r\n" +
+        "       </FormattedString>\r\n" +
+        "   </Label.FormattedText>\r\n" +
+        "</Label>\r\n" +
+        "<Label VerticalOptions=\"Center\">\r\n" +
+        "   <Label.FormattedText>\r\n" +
+        "       <FormattedString>\r\n" +
+        "           <Span Text=\"The converter will turn this text color \"/>\r\n" +
+        "           <Span Text=\"Text Color\"\r\n" +
         "                 TextColor=\"{x:Binding TextColor3}\"\r\n" +
         "                 FontAttributes=\"Bold\"/>\r\n" +
-        "           <Span Text=\" into this Byte Alpha (Transparency) \"/>\r\n" +
-        "           <Span Text=\"{x:Binding TextColor3, Converter={x:StaticResource ColorToByteAlphaConverter}}\"\r\n" +
+        "           <Span Text=\" into this Byte Green \"/>\r\n" +
+        "           <Span Text=\"{x:Binding TextColor3, Converter={x:StaticResource ColorToByteGreenConverter}}\"\r\n" +
         "                 FontAttributes=\"Bold\"/>\r\n" +
         "       </FormattedString>\r\n" +
         "   </Label.FormattedText>\r\n" +
@@ -75,12 +101,16 @@ public partial class ColorToByteAlphaConverterPageViewModel : NavigationAwareBas
     string xamlConverterSetup =
         "<ContentPage>\r\n" +
         "   <ContentPage.Resources>\r\n" +
-        "        <toolkit:ColorToByteAlphaConverter x:Key=\"ColorToByteAlphaConverter\" />\r\n" +
+        "        <toolkit:ColorToByteGreenConverter x:Key=\"ColorToByteGreenConverter\" />\r\n" +
         "   </ContentPage.Resources>\r\n" +
         "</ContentPage>";
 
     [ObservableProperty]
     string cSharpxamlConverterTestingViewModel =
+        "[ObservableProperty]\r\n" +
+        "Color textColor1 = Colors.BlueViolet;\r\n\r\n" +
+        "[ObservableProperty]\r\n" +
+        "Color textColor2 = Color.FromRgba(150, 75, 0, 179);\r\n\r\n" +
         "[ObservableProperty]\r\n" +
         "Color textColor3 = Color.FromRgba(154, 205, 50, 200);";
     #endregion

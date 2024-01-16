@@ -22,7 +22,7 @@ public partial class ColorToByteBlueConverterPageViewModel : NavigationAwareBase
     ObservableCollection<IGalleryCardInfo> controlGroupList;
 
     [ObservableProperty]
-    Color textColor1 = Color.FromRgba(138, 43, 226, 128);
+    Color textColor1 = Colors.BlueViolet;
 
     [ObservableProperty]
     Color textColor2 = Color.FromRgba(150, 75, 0, 179);
@@ -57,8 +57,45 @@ public partial class ColorToByteBlueConverterPageViewModel : NavigationAwareBase
 
     [ObservableProperty]
     string xamlConverterTextTesting =
-        "<Label Text=\"{x:Binding TextColor2, Converter={x:StaticResource ColorToByteBlueConverter}}\"\r\n" +
-        "       FontAttributes=\"Bold\"/>";
+        "<Label VerticalOptions=\"Center\">\r\n" +
+        "   <Label.FormattedText>\r\n" +
+        "       <FormattedString>\r\n" +
+        "           <Span Text=\"The converter will turn this text color \"/>\r\n" +
+        "           <Span Text=\"Text Color\"\r\n" +
+        "                 TextColor=\"{x:Binding TextColor1}\"\r\n" +
+        "                 FontAttributes=\"Bold\"/>\r\n" +
+        "           <Span Text=\" into this Byte Blue \"/>\r\n" +
+        "           <Span Text=\"{x:Binding TextColor1, Converter={x:StaticResource ColorToByteBlueConverter}}\"\r\n" +
+        "                 FontAttributes=\"Bold\"/>\r\n" +
+        "       </FormattedString>\r\n" +
+        "   </Label.FormattedText>\r\n" +
+        "</Label>\r\n" +
+        "<Label VerticalOptions=\"Center\">\r\n" +
+        "   <Label.FormattedText>\r\n" +
+        "       <FormattedString>\r\n" +
+        "           <Span Text=\"The converter will turn this text color \"/>\r\n" +
+        "           <Span Text=\"Text Color\"\r\n" +
+        "                 TextColor=\"{x:Binding TextColor2}\"\r\n" +
+        "                 FontAttributes=\"Bold\"/>\r\n" +
+        "           <Span Text=\" into this Byte Blue \"/>\r\n" +
+        "           <Span Text=\"{x:Binding TextColor2, Converter={x:StaticResource ColorToByteBlueConverter}}\"\r\n" +
+        "                 FontAttributes=\"Bold\"/>\r\n" +
+        "       </FormattedString>\r\n" +
+        "   </Label.FormattedText>\r\n" +
+        "</Label>\r\n" +
+        "<Label VerticalOptions=\"Center\">\r\n" +
+        "   <Label.FormattedText>\r\n" +
+        "       <FormattedString>\r\n" +
+        "           <Span Text=\"The converter will turn this text color \"/>\r\n" +
+        "           <Span Text=\"Text Color\"\r\n" +
+        "                 TextColor=\"{x:Binding TextColor3}\"\r\n" +
+        "                 FontAttributes=\"Bold\"/>\r\n" +
+        "           <Span Text=\" into this Byte Blue \"/>\r\n" +
+        "           <Span Text=\"{x:Binding TextColor3, Converter={x:StaticResource ColorToByteBlueConverter}}\"\r\n" +
+        "                 FontAttributes=\"Bold\"/>\r\n" +
+        "       </FormattedString>\r\n" +
+        "   </Label.FormattedText>\r\n" +
+        "</Label>";
 
     [ObservableProperty]
     string xamlConverterSetup =
@@ -71,7 +108,11 @@ public partial class ColorToByteBlueConverterPageViewModel : NavigationAwareBase
     [ObservableProperty]
     string cSharpxamlConverterTestingViewModel =
         "[ObservableProperty]\r\n" +
-        "Color textColor2 = Color.FromRgba(150, 75, 0, 179);";
+        "Color textColor1 = Colors.BlueViolet;\r\n\r\n" +
+        "[ObservableProperty]\r\n" +
+        "Color textColor2 = Color.FromRgba(150, 75, 0, 179);\r\n\r\n" +
+        "[ObservableProperty]\r\n" +
+        "Color textColor3 = Color.FromRgba(154, 205, 50, 200);";
     #endregion
 
     #region[ Relay Command ]
