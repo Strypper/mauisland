@@ -1,8 +1,10 @@
-﻿namespace MAUIsland;
+﻿using CommunityToolkit.Maui.Converters;
+
+namespace MAUIsland;
 
 class ColorToBlackOrWhiteConverterControlInfo : ICommunityToolkitGalleryCardInfo
 {
-    public string ControlName => "Color To Black Or White Converter";
+    public string ControlName => nameof(ColorToBlackOrWhiteConverter);
 
     public string ControlRoute => typeof(ColorToBlackOrWhiteConverterPage).FullName;
     public ImageSource ControlIcon => new FontImageSource()
