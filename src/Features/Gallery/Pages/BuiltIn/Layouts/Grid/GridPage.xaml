@@ -52,7 +52,6 @@
                                 <strong style="color:blue">Column</strong>, of type <strong style="color:blue">int </strong>,which is an attached property that indicates the column alignment of a view within a parent Grid. The default value of this property is 0. A validation callback ensures that when the property is set, its value is greater than or equal to 0.
                             ]]>
             </x:String>
-
             <x:String>
                 <![CDATA[
                                 <strong style="color:blue">ColumnDefinitions</strong>, of type <strong style="color:blue">ColumnDefinitionCollection</strong>, is a list of ColumnDefinition objects that define the width of the grid columns.
@@ -127,14 +126,14 @@
     <ScrollView>
         <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter}"
-                    Header="{x:StaticResource PropertiesListHeader}"
-                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                    Style="{x:StaticResource PropertiesListStyle}" />
+                <VerticalStackLayout>
+                    <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+                    <CollectionView
+                        Footer="{x:StaticResource PropertiesListFooter}"
+                        Header="{x:StaticResource PropertiesListHeader}"
+                        ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                </VerticalStackLayout>
             </Frame>
             <!--  Rows and Columns  -->
             <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Rows and columns" />

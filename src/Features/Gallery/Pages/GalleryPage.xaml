@@ -32,22 +32,28 @@
 
         <acrylic:AcrylicView
             CornerRadius="20"
-            EffectStyle="Light"
+            EffectStyle="Custom"
+            HeightRequest="{x:OnIdiom Desktop=350,
+                                      Tablet=250,
+                                      Phone=550}"
             HorizontalOptions="Center"
-            MaximumHeightRequest="{x:OnIdiom Desktop=350,
-                                             Tablet=250,
-                                             Phone=250}"
-            MaximumWidthRequest="{x:OnIdiom Desktop=650,
-                                            Tablet=650,
-                                            Phone=320}"
-            VerticalOptions="Center">
-            <Border Padding="30">
+            TintColor="OrangeRed"
+            TintOpacity=".15 "
+            VerticalOptions="Center"
+            WidthRequest="{x:OnIdiom Desktop=550,
+                                     Tablet=650,
+                                     Phone=320}">
+            <Border
+                HeightRequest="300"
+                StrokeThickness="0"
+                VerticalOptions="Center"
+                WidthRequest="500">
                 <CollectionView
-                    HorizontalOptions="Center"
+                    HorizontalOptions="Fill"
                     ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
                     ItemsSource="{x:Binding ControlGroups,
                                             Mode=OneWay}"
-                    VerticalOptions="Center">
+                    VerticalOptions="Fill">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout
                             HorizontalItemSpacing="5"

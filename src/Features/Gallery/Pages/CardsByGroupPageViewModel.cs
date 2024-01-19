@@ -1,4 +1,6 @@
-﻿namespace MAUIsland;
+﻿using CommunityToolkit.Maui.Core.Extensions;
+
+namespace MAUIsland;
 
 public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
 {
@@ -27,7 +29,13 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
     bool isGalleryDetailVisible;
 
     [ObservableProperty]
-    ObservableCollection<IGalleryCardInfo> items;
+    string selectedItem;
+
+    [ObservableProperty]
+    ObservableCollection<IGalleryCardInfo> controlGroupList;
+
+    [ObservableProperty]
+    ObservableCollection<IGalleryCardInfo> filteredControlGroupList;
 
     [ObservableProperty]
     ControlGroupInfo controlGroup;
@@ -60,13 +68,11 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
 
         CommunityToolkit.Diagnostics.Guard.IsNotNull(ControlGroup);
 
-        LoadDataAsync(true)
-            .FireAndForget();
+        LoadDataAsync(true).FireAndForget();
     }
     #endregion
 
-    #region [ Methods ]
-
+    #region [ Data ]
     private async Task LoadDataAsync(bool forced)
     {
         if (IsBusy) return;
@@ -76,20 +82,45 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
 
         IsBusy = false;
 
-        if (Items is null)
+        if (ControlGroupList is null)
         {
-            Items = new ObservableCollection<IGalleryCardInfo>(items);
+            ControlGroupList = new ObservableCollection<IGalleryCardInfo>(items);
+            FilteredControlGroupList = new ObservableCollection<IGalleryCardInfo>(items);
             return;
         }
 
         if (forced)
         {
-            Items.Clear();
+            ControlGroupList.Clear();
         }
 
-        foreach (var item in items)
+        //foreach (var item in items)
+        //{
+        //    ControlGroupList.Add(item);
+        //}
+    }
+    #endregion
+
+    #region [ Methods ]
+    partial void OnSelectedItemChanged(string value)
+    {
+        var trimmedValue = value.TrimEnd('s');
+
+        if (trimmedValue == "All")
         {
-            Items.Add(item);
+            FilteredControlGroupList = ControlGroupList;
+        }
+        else
+        {
+            var controlItems = ControlGroupList.Where(x => x.CardType.ToString() == trimmedValue).ToObservableCollection();
+            if (controlItems.Count() == 0)
+            {
+                FilteredControlGroupList = new ObservableCollection<IGalleryCardInfo>();
+            }
+            else
+            {
+                FilteredControlGroupList = controlItems;
+            }
         }
     }
     #endregion

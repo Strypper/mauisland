@@ -69,6 +69,8 @@
                 FontSize="Body"
                 LineBreakMode="WordWrap"
                 Text="{x:Binding}"
+                TextColor="{x:AppThemeBinding Dark='#ffffff',
+                                              Light='Black'}"
                 TextType="Html"
                 VerticalOptions="Center" />
         </Grid>

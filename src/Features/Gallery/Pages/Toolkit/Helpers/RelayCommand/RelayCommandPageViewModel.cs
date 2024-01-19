@@ -46,16 +46,28 @@ public partial class RelayCommandPageViewModel : NavigationAwareBaseViewModel
         "   => await LoadDataAsync();";
 
     [ObservableProperty]
-    string toolkitControlPropertyState =
+    string toolkitControlPropertyState1 =
+        "[ObservableProperty]\r\n" +
+        "[NotifyCanExecuteChangedFor(nameof(ToolKitWithEnablingDisablingCommand))]\r\n" +
+        "private string exampleForControlPropertyState1 = \"Hello\";";
+
+    [ObservableProperty]
+    string toolkitControlPropertyState2 =
         "[ObservableProperty]\r\n" +
         "[NotifyCanExecuteChangedFor(nameof(ToolKitWithEnablingDisablingCommand))]\r\n" +
         "private string exampleForControlPropertyStateCommand;";
 
     [ObservableProperty]
-    string exampleBoundPropertyToControlXaml =
+    string example1BoundPropertyToControlXaml =
     "<Button Text=\"Example Property For Control Property State Command\"\r\n" +
     "        Command=\"{Binding ToolKitWithEnablingDisablingCommand}\"\r\n" +
-    "        CommandParameter=\"{Binding ExampleForControlPropertyState}\"/>";
+    "        CommandParameter=\"{Binding ExampleForControlPropertyState1}\"/>";
+
+    [ObservableProperty]
+    string example2BoundPropertyToControlXaml =
+    "<Button Text=\"Example Property For Control Property State Command\"\r\n" +
+    "        Command=\"{Binding ToolKitWithEnablingDisablingCommand}\"\r\n" +
+    "        CommandParameter=\"{Binding ExampleForControlPropertyState2}\"/>";
 
     [ObservableProperty]
     string toolkitRelayCommandWithEnablingDisabling =
@@ -153,7 +165,11 @@ public partial class RelayCommandPageViewModel : NavigationAwareBaseViewModel
     #region [ Example Properties ]
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(ToolKitWithEnablingDisablingCommand))]
-    private string exampleForControlPropertyState;
+    private string exampleForControlPropertyState1 = "Hello";
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(ToolKitWithEnablingDisablingCommand))]
+    private string exampleForControlPropertyState2;
     #endregion
 
     #region [Relay Commands]

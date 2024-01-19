@@ -65,8 +65,8 @@
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Examples" />
                     <app:HorizontalWrapLayout Spacing="5">
                         <mdc:Switch />
-                        <mdc:Switch HasIcon="False" />
-                        <mdc:Switch IsChecked="True" />
+                        <mdc:Switch />
+                        <mdc:Switch IsSelected="True" />
                     </app:HorizontalWrapLayout>
                     <app:SourceCodeExpander Code="{x:Binding SwitchXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>

@@ -55,7 +55,7 @@
             </x:String>
             <x:String>
                 <![CDATA[
-        <strong style="color:blue">IconKind</strong>, of type <strong style="color:blue">IconKind</strong>, TextField's icon from iconkind.
+        <strong style="color:blue">IconData</strong>, of type <strong style="color:blue">IconData</strong>, TextField's icon from iconkind.
     ]]>
             </x:String>
             <x:String>
@@ -70,7 +70,7 @@
             </x:String>
             <x:String>
                 <![CDATA[
-        <strong style="color:blue">TrailingIcon</strong>, of type <strong style="color:blue">IconKind</strong>, TextField's trailing icon from iconkind.
+        <strong style="color:blue">TrailingIcon</strong>, of type <strong style="color:blue">IconData</strong>, TextField's trailing icon from iconkind.
     ]]>
             </x:String>
             <x:String>
@@ -201,15 +201,15 @@
                     <Label Text="There are 2 Styles of text fields: 1. Filled, 2. Outlined." />
                     <app:HorizontalWrapLayout Spacing="5">
                         <mdc:TextField
-                            IconKind="Search"
+                            IconData="Search"
                             Style="{DynamicResource FilledTextFieldStyle}"
                             WidthRequest="250" />
                         <mdc:TextField
-                            IconKind="Password"
+                            IconData="Password"
                             IsError="True"
                             Style="{DynamicResource OutlinedTextFieldStyle}"
                             SupportingText="Incorrect password"
-                            TrailingIconKind="Close"
+                            TrailingIconData="Close"
                             WidthRequest="300" />
                     </app:HorizontalWrapLayout>
                     <app:SourceCodeExpander Code="{x:Binding TextFieldXamlCode}" CodeType="Xaml" />

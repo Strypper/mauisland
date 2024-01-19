@@ -1,11 +1,8 @@
-using IconPacks.Material;
-
 namespace MAUIsland;
 class MaterialButtonControlInfo : IMaterialUIGalleryCardInfo
 {
     public string ControlName => nameof(Material.Components.Maui.Button);
     public string ControlRoute => typeof(MaterialButtonPage).FullName;
-    public IconKind MaterialIcon => IconKind.Add;
     public List<PlatformInfo> SupportedPlatformsInfo => new() { new() { Id = "1", Name = "Android", Logo = "androidlogo.png" },
                                                                 new() { Id = "2", Name = "IOS", Logo = "ioslogo.png" },
                                                                 new() { Id = "3", Name = "Windows", Logo = "windowslogo.png"} };
@@ -29,4 +26,6 @@ class MaterialButtonControlInfo : IMaterialUIGalleryCardInfo
     public List<string> DoList => throw new NotImplementedException();
 
     public List<string> DontList => throw new NotImplementedException();
+
+    public string MaterialIcon => IconPacks.IconKind.Material.Add;
 }

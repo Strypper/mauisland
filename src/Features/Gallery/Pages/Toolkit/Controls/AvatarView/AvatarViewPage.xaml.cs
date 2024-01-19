@@ -1,8 +1,9 @@
 namespace MAUIsland;
-public partial class DevExpressButtonPage : IGalleryPage
+
+public partial class AvatarViewPage : IGalleryPage
 {
     #region [CTor]
-    public DevExpressButtonPage(DevExpressButtonPageViewModel vm)
+    public AvatarViewPage(AvatarViewPageViewModel vm)
     {
         InitializeComponent();
 

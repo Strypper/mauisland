@@ -1,5 +1,5 @@
 namespace MAUIsland;
-public partial class HomePage 
+public partial class HomePage
 {
     public HomePage(HomePageViewModel vm)
     {
@@ -24,6 +24,9 @@ public partial class HomePage
 
     private void BasePage_Appearing(object sender, EventArgs e)
     {
-       ResizeWindows();
+#if WINDOWS
+            ResizeWindows();
+#else
+#endif
     }
 }

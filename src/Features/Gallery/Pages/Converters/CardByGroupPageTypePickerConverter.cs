@@ -1,6 +1,6 @@
 ﻿namespace MAUIsland;
 
-public class CardByGroupPage_StatusPicker_Converter : IValueConverter
+public class CardByGroupPageTypePickerConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
@@ -11,9 +11,11 @@ public class CardByGroupPage_StatusPicker_Converter : IValueConverter
         var items = value as ObservableCollection<IGalleryCardInfo>;
         if (items != null)
         {
-            return Enum.GetValues(typeof(GalleryCardType))
-                       .Cast<GalleryCardType>()
-                       .ToList();
+            var enumValues = Enum.GetNames(typeof(GalleryCardType))
+                                 .Select(name => name.EndsWith("s") ? name : name + "s")
+                                 .ToList();
+            enumValues.Insert(0, "All");
+            return enumValues;
         }
         else
             return new List<string>();

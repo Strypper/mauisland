@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage 
+    x:Class="MAUIsland.ByteArrayToImageSourceConverterPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="Byte Array To Image Source Converter"
+    Padding="10"
+    x:DataType="app:ByteArrayToImageSourceConverterPageViewModel">
+
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </app:BasePage.ToolbarItems>
+
+    <app:BasePage.Resources>
+        <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   <strong style="color:blue">DefaultConvertReturnValue</strong> is type of <strong style="color:blue">object?</strong> default value to return when <strong style="color:blue">IValueConverter.Convert(object?, Type, object?, CultureInfo?)</strong> throws an <strong style="color:blue">Exception</strong>. This value is used when <strong style="color:blue">CommunityToolkit.Maui.Options.ShouldSuppressExceptionsInConverters</strong> is set to true.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">DefaultConvertBackReturnValue</strong> is type of <strong style="color:blue">object?</strong> default value to return when <strong style="color:blue">IValueConverter.ConvertBack(object?, Type, object?, CultureInfo?)</strong> throws an <strong style="color:blue">Exception</strong>. This value is used when <strong style="color:blue">CommunityToolkit.Maui.Options.ShouldSuppressExceptionsInConverters</strong> is set to true.  ]]>
+            </x:String>
+        </x:Array>
+
+        <toolkit:ByteArrayToImageSourceConverter  x:Key="ByteArrayToImageSourceConverter"/>
+    </app:BasePage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Converter Properties" />
+                    <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" 
+                                    Style="{x:StaticResource PropertiesListStyle}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup MediaElement" />
+                    <VerticalStackLayout>
+                        <Label Text="{x:Binding SetupDescription}"/>
+                        <Label Text="{x:Binding XamlNamespace}" TextColor="Blue"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Therefore the following:"/>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding FullNamepaceExampleBefore}" />
+                    <Label Text="Would be modified to include the xmlns as follows:"/>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding FullNamepaceExampleAfter}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Bool To Object Converter" />
+                    <HorizontalStackLayout HeightRequest="200" 
+                                            Spacing="10">
+                        <Label VerticalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="The converter will turn the "/>
+                                    <Span Text="byte[] "
+                                          FontAttributes="Bold"/>
+                                    <Span Text=" property into a ImageSource like this"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Image Source="{x:Binding ImageByteArray, Converter={x:StaticResource ByteArrayToImageSourceConverter}}"/>
+                    </HorizontalStackLayout>
+                    <Label VerticalOptions="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Without the converter "/>
+                                <Span Text="byte[]"
+                                        FontAttributes="Bold"/>
+                                <Span Text=" value will look like this"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="{x:Binding ImageByteArrayToString}" 
+                           LineBreakMode="TailTruncation"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="This is ViewModel code" />
+                    <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpxamlConverterTestingViewModel}" />
+                    <Label Text="Here what your converter look like" />
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlConverterSetup}" />
+                    <Label Text="This Xaml code" />
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlConverterTesting}" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</app:BasePage>

@@ -1,34 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
-		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-		<!--<TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks>-->
-		<OutputType>Exe</OutputType>
-		<RootNamespace>MAUIsland</RootNamespace>
-		<UseMaui>true</UseMaui>
-		<SingleProject>true</SingleProject>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<_MauiForceXamlCForDebug>true</_MauiForceXamlCForDebug>
+    <TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<_MauiForceXamlCForDebug>true</_MauiForceXamlCForDebug>
 
-		<!-- Display name -->
-		<ApplicationTitle>MAUIsland</ApplicationTitle>
+	<!-- Display name -->
+	<ApplicationTitle>MAUIsland</ApplicationTitle>
 
-		<!-- App Identifier -->
-		<ApplicationId>com.companyname.mauisland</ApplicationId>
-		<ApplicationIdGuid>337d7a98-7b00-487e-88d9-3b1a317456c7</ApplicationIdGuid>
+	<!-- App Identifier -->
+	<ApplicationId>com.companyname.mauisland</ApplicationId>
+	<ApplicationIdGuid>337d7a98-7b00-487e-88d9-3b1a317456c7</ApplicationIdGuid>
 
-		<!-- Versions -->
-		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-		<ApplicationVersion>1</ApplicationVersion>
+	<!-- Versions -->
+	<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+	<ApplicationVersion>1</ApplicationVersion>
 
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.2</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<GenerateAppInstallerFile>True</GenerateAppInstallerFile>
 		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
 		<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
@@ -40,14 +37,17 @@
 		<PackageCertificateKeyFile>MAUIsland_TemporaryKey.pfx</PackageCertificateKeyFile>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(TargetFramework)|$(Platform)'=='net7.0-ios|AnyCPU'">
+	<PropertyGroup Condition="'$(TargetFramework)|$(Platform)'=='net8.0-ios|AnyCPU'">
 		<CodesignProvision>Automatic</CodesignProvision>
 		<CodesignKey>iPhone Developer</CodesignKey>
 		<CodesignEntitlements>Platforms/iOS/Entitlements.plist</CodesignEntitlements>
+
+		<RuntimeIdentifier>iossimulator-arm64</RuntimeIdentifier>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
-		<CreatePackage>false</CreatePackage>
+	<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
+	  <CodesignKey>Apple Development: Created via API (4CKQ785SB5)</CodesignKey>
+	  <CodesignProvision>VS: WildCard Development</CodesignProvision>
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
@@ -67,117 +67,38 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 	<ItemGroup>
-		<AndroidResource Remove="Features\Gallery\Pages\BuiltIn\AppSettingsJson\**" />
-		<AndroidResource Remove="Features\Gallery\Pages\BuiltIn\Controls\DatePicker\Pages\**" />
-		<AndroidResource Remove="Features\Gallery\Pages\DevExpress\**" />
-		<Compile Remove="Features\Gallery\Pages\BuiltIn\AppSettingsJson\**" />
-		<Compile Remove="Features\Gallery\Pages\BuiltIn\Controls\DatePicker\Pages\**" />
-		<Compile Remove="Features\Gallery\Pages\DevExpress\**" />
-		<EmbeddedResource Remove="Features\Gallery\Pages\BuiltIn\AppSettingsJson\**" />
-		<EmbeddedResource Remove="Features\Gallery\Pages\BuiltIn\Controls\DatePicker\Pages\**" />
-		<EmbeddedResource Remove="Features\Gallery\Pages\DevExpress\**" />
-		<MauiCss Remove="Features\Gallery\Pages\BuiltIn\AppSettingsJson\**" />
-		<MauiCss Remove="Features\Gallery\Pages\BuiltIn\Controls\DatePicker\Pages\**" />
-		<MauiCss Remove="Features\Gallery\Pages\DevExpress\**" />
-		<MauiXaml Remove="Features\Gallery\Pages\BuiltIn\AppSettingsJson\**" />
-		<MauiXaml Remove="Features\Gallery\Pages\BuiltIn\Controls\DatePicker\Pages\**" />
-		<MauiXaml Remove="Features\Gallery\Pages\DevExpress\**" />
-		<None Remove="Features\Gallery\Pages\BuiltIn\AppSettingsJson\**" />
-		<None Remove="Features\Gallery\Pages\BuiltIn\Controls\DatePicker\Pages\**" />
-		<None Remove="Features\Gallery\Pages\DevExpress\**" />
-	</ItemGroup>
-	<ItemGroup>
-		<MauiAsset Remove="Resources\Raw\australia.shp" />
-		<MauiAsset Remove="Resources\Raw\river.json" />
-		<MauiAsset Remove="Resources\Raw\usa_state.shp" />
-		<MauiAsset Remove="Resources\Raw\world-map.json" />
+	  <None Remove="appsettings.Development.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Remove="appsettings.Development.json" />
-		<None Remove="Features\Gallery\Pages\BuiltIn\Helpers\AppSettingsJson\JsonFiles\appsettings.json" />
-		<None Remove="Resources\Fonts\FluentSystemIcons-Regular.ttf" />
-		<None Remove="Resources\Images\androidlogo.svg" />
-		<None Remove="Resources\Images\backgrounds\maui_homepage_background.jpg" />
-		<None Remove="Resources\Images\backgrounds\pattern_background_image.png" />
-		<None Remove="Resources\Images\banners\devexpress_banner.jpg" />
-		<None Remove="Resources\Images\banners\github_banner.png" />
-		<None Remove="Resources\Images\banners\mauitoolkit_banner.png" />
-		<None Remove="Resources\Images\builtinbanner.png" />
-		<None Remove="Resources\Images\fluentuibackground.jpg" />
-		<None Remove="Resources\Images\githublogo.png" />
-		<None Remove="Resources\Images\ioslogo.png" />
-		<None Remove="Resources\Images\logos\devexpress_logo.png" />
-		<None Remove="Resources\Images\logos\jamesmontemagnologo.png" />
-		<None Remove="Resources\Images\logos\materialuibanner.png" />
-		<None Remove="Resources\Images\logos\materialuilogo.png" />
-		<None Remove="Resources\Images\logos\mauisland_logo.png" />
-		<None Remove="Resources\Images\logos\mauitoolkit_logo.png" />
-		<None Remove="Resources\Images\logos\syncfusionlogo.png" />
-		<None Remove="Resources\Images\logos\tizenlogo.svg" />
-		<None Remove="Resources\Images\logos\windowslogo.svg" />
-		<None Remove="Resources\Images\mauibeach.jpeg" />
-		<None Remove="Resources\Images\mauilogo.png" />
-		<None Remove="Resources\Images\mauitoolkitbanner.png" />
-		<None Remove="Resources\Images\memes\mrincredibleblackwhite.png" />
-		<None Remove="Resources\Images\memes\mrincredibleblackwhite1.png" />
-		<None Remove="Resources\Images\memes\mrincredibleblackwhite2.png" />
-		<None Remove="Resources\Images\memes\mrincredibleblackwhite3.png" />
-		<None Remove="Resources\Images\memes\mrincredibleblackwhite4.png" />
-		<None Remove="Resources\Images\memes\mrincredibleblackwhite5.png" />
-		<None Remove="Resources\Images\memes\mrincrediblesmile.png" />
-		<None Remove="Resources\Images\memes\mrincrediblesmile1.png" />
-		<None Remove="Resources\Images\memes\mrincrediblesmile2.png" />
-		<None Remove="Resources\Images\memes\mrincrediblesmile3.png" />
-		<None Remove="Resources\Images\memes\mrincrediblesmile4.png" />
-		<None Remove="Resources\Images\memes\mrincrediblesmile5.png" />
-		<None Remove="Resources\Images\microsoft.svg" />
-		<None Remove="Features\Gallery\Core\" />
-		<None Remove="Features\Gallery\Services\" />
-		<None Remove="Resources\Images\syncfusionbanner.png" />
-		<None Remove="Resources\Images\syncfusionlogo.png" />
-		<None Remove="Resources\Images\fluenticon_options_white.svg" />
-		<None Remove="Features\Gallery\Pages\Syncfusion\" />
-		<None Remove="Features\Gallery\Pages\BuiltIn\Controls\DatePicker\Pages\" />
-		<None Remove="Resources\Images\tizenlogo.svg" />
-		<None Remove="Resources\Images\windowslogo.svg" />
-		<None Remove="Resources\Raw\digital_grabe.mp4" />
-		<None Remove="Resources\Raw\dotnetbot.json" />
-		<None Remove="Resources\Raw\island.json" />
-		<None Remove="Resources\Raw\swipeupordown.json" />
-		<None Remove="Resources\Raw\river.json" />
-		<None Remove="Resources\Raw\totechs_logo.json" />
-		<None Remove="Resources\Raw\usa_state.shp" />
-		<None Remove="Resources\Raw\world-map.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="AcrylicView.Maui" Version="2.1.0" />
-		<PackageReference Include="Bogus" Version="34.0.2" />
+		<PackageReference Include="AcrylicView.Maui" Version="2.1.1" />
+		<PackageReference Include="Bogus" Version="35.4.0" />
 		<PackageReference Include="ColorCode.Core" Version="2.0.15" />
 		<PackageReference Include="CommunityToolkit.Common" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
-		<PackageReference Include="CommunityToolkit.Maui" Version="6.1.0" />
-		<PackageReference Include="CommunityToolkit.Maui.Core" Version="6.1.0" />
-		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="2.0.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
+		<PackageReference Include="CommunityToolkit.Maui.Core" Version="7.0.1" />
+		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="3.0.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="Material.Components.Maui" Version="0.1.2-beta" />
-		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.3" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.3" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="IconPacks.Material" Version="1.0.8779.2-build" />
+		<PackageReference Include="Material.Components.Maui" Version="0.2.1-preview" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="Octokit" Version="9.0.0" />
+		<PackageReference Include="Octokit" Version="9.1.0" />
 		<PackageReference Include="OverFlower" Version="0.0.3" />
 		<PackageReference Include="Refit" Version="7.0.0" />
 		<PackageReference Include="Refit.HttpClientFactory" Version="7.0.0" />
-		<PackageReference Include="Refit.Newtonsoft.Json" Version="6.3.2" />
-		<PackageReference Include="SkiaSharp" Version="2.88.6" />
-		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
-		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.3" />
-		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.4-preview.84" />
-		<PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.4-preview.84" />
-		<PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.4-preview.84" />
+		<PackageReference Include="Refit.Newtonsoft.Json" Version="7.0.0" />
+		<PackageReference Include="Sharpnado.MaterialFrame.Maui" Version="2.0.0" />
+		<PackageReference Include="SkiaSharp" Version="2.88.7" />
+		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.86" />
+		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.7" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.7" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.7" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.7" />
 		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="23.1.36" />
 		<PackageReference Include="Syncfusion.Maui.Barcode" Version="23.1.36" />
 		<PackageReference Include="Syncfusion.Maui.Calendar" Version="23.1.36" />
@@ -197,15 +118,6 @@
 		<PackageReference Include="ZXing.Net.Maui" Version="0.4.0" />
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
 	</ItemGroup>
-
-	<PropertyGroup>
-		<UseInterpreter>true</UseInterpreter>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
-	  <CodesignKey>Apple Development: viet to (3NCH3BHD67)</CodesignKey>
-	  <CodesignProvision>VS: WildCard Development</CodesignProvision>
-	</PropertyGroup>
 
 	<ItemGroup>
 		<Folder Include="Features\Blog\" />
@@ -477,23 +389,13 @@
 		</MauiXaml>
 	</ItemGroup>
 
-	<ItemGroup>
-		<BundleResource Include="Resources\Images\fluenticon_options_white.svg" />
-	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
-		<PackageReference Include="AdaptiveProperties.MAUI" Version="1.0.4">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
+		<PackageReference Include="Xamarin.Firebase.Messaging" Version="123.3.1.1">
 		</PackageReference>
-		<PackageReference Include="Xamarin.Firebase.Messaging" Version="123.1.1">
+		<PackageReference Include="Xamarin.Google.Dagger" Version="2.48.1.1">
 		</PackageReference>
-		<PackageReference Include="Xamarin.Google.Dagger" Version="2.44.2">
-		</PackageReference>
-		<PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.1.0">
-		</PackageReference>
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
-		<PackageReference Include="AdaptiveProperties.MAUI" Version="1.0.4">
+		<PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.2.0.5">
 		</PackageReference>
 	</ItemGroup>
 
@@ -542,6 +444,14 @@
 		<MauiImage Include="Resources\Images\memes\mrincrediblesmile3.png" />
 		<MauiImage Include="Resources\Images\memes\mrincrediblesmile4.png" />
 		<MauiImage Include="Resources\Images\memes\mrincrediblesmile5.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.Maui.Controls" Version="8.0.6" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.Maui.Controls.Compatibility" Version="8.0.6" />
 	</ItemGroup>
 
 </Project>

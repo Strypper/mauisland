@@ -1,34 +1,80 @@
+using System.ComponentModel;
+
 namespace MAUIsland;
 
 public partial class CollectionViewPage : IGalleryPage
 {
+    #region [ Service ]
+    protected readonly CollectionViewPageViewModel ViewModel;
+    #endregion
 
-    #region [CTor]
+    #region [ CTor ]
     public CollectionViewPage(CollectionViewPageViewModel vm)
     {
         InitializeComponent();
 
-        BindingContext = vm;
-
-        UpdateSelectionData(Enumerable.Empty<Incredible>(), Enumerable.Empty<Incredible>());
+        BindingContext = ViewModel = vm;
     }
     #endregion
 
-    void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+    #region [ Override ]
+    protected override void OnAppearing()
     {
-        UpdateSelectionData(e.PreviousSelection, e.CurrentSelection);
+        base.OnAppearing();
+        ViewModel.SpanningNumberChanged += ViewModelSpanningNumberPropertyChanged;
     }
 
-    void UpdateSelectionData(IEnumerable<object> previousSelectedItems, IEnumerable<object> currentSelectedItems)
+    protected override void OnDisappearing()
     {
-        string previous = (previousSelectedItems.FirstOrDefault() as Incredible)?.Name;
-        string current = (currentSelectedItems.FirstOrDefault() as Incredible)?.Name;
-        previousSelectedItemLabel.Text = string.IsNullOrWhiteSpace(previous) ? "[none]" : previous;
-        currentSelectedItemLabel.Text = string.IsNullOrWhiteSpace(current) ? "[none]" : current;
+        base.OnDisappearing();
+        ViewModel.SpanningNumberChanged -= ViewModelSpanningNumberPropertyChanged;
+    }
+    #endregion
+
+    #region [ Event Handler ]
+    private void ViewModelSpanningNumberPropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == "SpanningNumber")
+        {
+            switch (ViewModel.SpanningNumber)
+            {
+                case 1:
+                    CollectionViewSpanningChange.ItemTemplate = (DataTemplate)Resources["ControllInfoCollectionTemplate"];
+                    break;
+                case 2:
+                    CollectionViewSpanningChange.ItemTemplate = (DataTemplate)Resources["ControllInfoCollectionTwoItemRowTemplate"];
+                    break;
+                case 3:
+                    CollectionViewSpanningChange.ItemTemplate = (DataTemplate)Resources["ControllInfoCollectionThreeItemRowTemplate"];
+                    break;
+                case 4:
+                    CollectionViewSpanningChange.ItemTemplate = (DataTemplate)Resources["ControllInfoCollectionFourItemRowTemplate"];
+                    break;
+            }
+        }
     }
 
-    private void Stepper_ValueChanged(object sender, ValueChangedEventArgs e)
+    void OnFilterItemChanged(object sender, EventArgs e)
     {
+        var picker = (Picker)sender;
+        var selectedFilter = picker.SelectedItem.ToString();
 
+        var collectionView = CollectionViewItemLayoutChanged;
+        var itemsSource = ViewModel.ControlGroupList;
+
+        var filteredItems = new ObservableCollection<IGalleryCardInfo>(itemsSource.Where(x => x.CardType.ToString() == selectedFilter));
+
+        var itemsToSelect = itemsSource.Where(x => x.CardType.ToString() == selectedFilter).ToList();
+
+        collectionView.SelectedItems.Clear();
+        foreach (var item in itemsToSelect)
+        {
+            collectionView.SelectedItems.Add(item);
+        }
+
+        // Refresh the CollectionView
+        collectionView.ItemsSource = null;
+        collectionView.ItemsSource = itemsSource;
     }
+    #endregion
 }

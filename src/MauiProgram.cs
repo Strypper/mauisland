@@ -38,7 +38,7 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("FluentSystemIcons-Regular.ttf", FontNames.FluentSystemIconsRegular);
             })
-            .UseMaterialComponents(new List<string> { })
+            .UseMaterialComponents()
             .ConfigureEssentials(essentials =>
             {
                 essentials.UseVersionTracking();
@@ -52,6 +52,8 @@ public static class MauiProgram
             .GetAppSettings()
             .ConfigureSyncfusionCore()
             .UseBarcodeReader();
+
+        DependencyService.Register<IMrIncreadibleMemeService, MrIncreadibleMemeService>();
 
 #if DEBUG
         builder.Logging.AddDebug();
@@ -110,6 +112,7 @@ public static class MauiProgram
 
     static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {
+        builder.Services.AddSingleton<IMrIncreadibleMemeService, MrIncreadibleMemeService>();
         builder.Services.AddSingleton<IFilePicker, FilePicker>();
         builder.Services.AddSingleton<IHomeService, HomeService>();
         builder.Services.AddSingleton<IAppNavigator, AppNavigator>();

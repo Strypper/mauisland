@@ -12,6 +12,4 @@ public partial class RadioButtonPage : IGalleryPage
     }
 
     #endregion
-
-
 }

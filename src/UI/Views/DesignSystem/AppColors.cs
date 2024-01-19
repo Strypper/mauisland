@@ -2,9 +2,9 @@
 
 public static class AppColors
 {
-    public static readonly Color PetaversePrimary = Color.FromArgb("#53b1fd");
+    public static readonly Color MauilandPrimary = Color.FromArgb("#53b1fd");
 
-    public static readonly Color PetaverseSpecial = Color.FromArgb("#fd853a");
+    public static readonly Color BlackGrey = Color.FromArgb("#1f1f1f");
     // Tím
     public static readonly Color Purple = Color.FromRgb(0x57, 0x5F, 0xCC);
     // Hồng 

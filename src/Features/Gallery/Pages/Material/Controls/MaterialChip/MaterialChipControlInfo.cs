@@ -1,4 +1,3 @@
-using IconPacks.Material;
 using Material.Components.Maui;
 
 namespace MAUIsland;
@@ -6,7 +5,6 @@ class MaterialChipControlInfo : IMaterialUIGalleryCardInfo
 {
     public string ControlName => nameof(Chip);
     public string ControlRoute => typeof(MaterialChipPage).FullName;
-    public IconKind MaterialIcon => IconKind.VotingChip;
     public List<PlatformInfo> SupportedPlatformsInfo => new() { new() { Id = "1", Name = "Android", Logo = "androidlogo.png" },
                                                                 new() { Id = "2", Name = "IOS", Logo = "ioslogo.png" },
                                                                 new() { Id = "3", Name = "Windows", Logo = "windowslogo.png"} };
@@ -30,4 +28,6 @@ class MaterialChipControlInfo : IMaterialUIGalleryCardInfo
     public List<string> DoList => throw new NotImplementedException();
 
     public List<string> DontList => throw new NotImplementedException();
+
+    public string MaterialIcon => IconPacks.IconKind.Material.Chips;
 }
