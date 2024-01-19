@@ -66,10 +66,13 @@
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="appsettings.Development.json" />
+	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AcrylicView.Maui" Version="2.1.0" />
-		<PackageReference Include="Bogus" Version="35.2.0" />
+		<PackageReference Include="AcrylicView.Maui" Version="2.1.1" />
+		<PackageReference Include="Bogus" Version="35.4.0" />
 		<PackageReference Include="ColorCode.Core" Version="2.0.15" />
 		<PackageReference Include="CommunityToolkit.Common" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
@@ -77,25 +80,25 @@
 		<PackageReference Include="CommunityToolkit.Maui.Core" Version="7.0.1" />
 		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="3.0.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="IconPacks.Material" Version="1.0.8765.1-build" />
+		<PackageReference Include="IconPacks.Material" Version="1.0.8779.2-build" />
 		<PackageReference Include="Material.Components.Maui" Version="0.2.1-preview" />
-		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="Octokit" Version="9.0.0" />
+		<PackageReference Include="Octokit" Version="9.1.0" />
 		<PackageReference Include="OverFlower" Version="0.0.3" />
 		<PackageReference Include="Refit" Version="7.0.0" />
 		<PackageReference Include="Refit.HttpClientFactory" Version="7.0.0" />
 		<PackageReference Include="Refit.Newtonsoft.Json" Version="7.0.0" />
 		<PackageReference Include="Sharpnado.MaterialFrame.Maui" Version="2.0.0" />
-		<PackageReference Include="SkiaSharp" Version="2.88.6" />
+		<PackageReference Include="SkiaSharp" Version="2.88.7" />
 		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.86" />
-		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.6" />
-		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.6" />
-		<PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.6" />
-		<PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.6" />
+		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.7" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.7" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.7" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.7" />
 		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="23.1.36" />
 		<PackageReference Include="Syncfusion.Maui.Barcode" Version="23.1.36" />
 		<PackageReference Include="Syncfusion.Maui.Calendar" Version="23.1.36" />
@@ -441,6 +444,14 @@
 		<MauiImage Include="Resources\Images\memes\mrincrediblesmile3.png" />
 		<MauiImage Include="Resources\Images\memes\mrincrediblesmile4.png" />
 		<MauiImage Include="Resources\Images\memes\mrincrediblesmile5.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.Maui.Controls" Version="8.0.6" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.Maui.Controls.Compatibility" Version="8.0.6" />
 	</ItemGroup>
 
 </Project>
