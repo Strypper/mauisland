@@ -98,6 +98,14 @@
                                     Style="{x:StaticResource PropertiesListStyle}"/>
                 </VerticalStackLayout>
             </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="TextCaseType" />
+                    <Label Text="{x:StaticResource TextCaseTypeDescription}"/>
+                    <CollectionView ItemsSource="{x:StaticResource TextCaseTypeItemsSource}" 
+                                    Style="{x:StaticResource PropertiesListStyle}"/>
+                </VerticalStackLayout>
+            </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
