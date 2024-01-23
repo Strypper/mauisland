@@ -79,7 +79,7 @@ public partial class CompareConverterPageViewModel : NavigationAwareBaseViewMode
         "                                  ComparisonOperator=\"SmallerOrEqual\"\r\n" +
         "                                  ComparingValue=\"{x:StaticResource ComparingValue2}\"\r\n" +
         "                                  TrueObject=\"LightGreen\"\r\n" +
-        "                                  FalseObject=\"OrangeRed\"/>" +
+        "                                  FalseObject=\"OrangeRed\"/>\r\n" +
         "   </ContentPage.Resources>\r\n" +
         "</ContentPage>";
 
