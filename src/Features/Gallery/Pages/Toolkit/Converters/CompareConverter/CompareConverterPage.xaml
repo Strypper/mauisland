@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage 
+    x:Class="MAUIsland.CompareConverterPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="Compare Converter"
+    Padding="10"
+    x:DataType="app:CompareConverterPageViewModel">
+
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </app:BasePage.ToolbarItems>
+
+    <app:BasePage.Resources>
+        <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   <strong style="color:blue">DefaultConvertReturnValue</strong> is type of <strong style="color:blue">object?</strong> default value to return when <strong style="color:blue">IValueConverter.Convert(object?, Type, object?, CultureInfo?)</strong> throws an <strong style="color:blue">Exception</strong>. This value is used when <strong style="color:blue">CommunityToolkit.Maui.Options.ShouldSuppressExceptionsInConverters</strong> is set to true.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">DefaultConvertBackReturnValue</strong> is type of <strong style="color:blue">object?</strong> default value to return when <strong style="color:blue">IValueConverter.ConvertBack(object?, Type, object?, CultureInfo?)</strong> throws an <strong style="color:blue">Exception</strong>. This value is used when <strong style="color:blue">CommunityToolkit.Maui.Options.ShouldSuppressExceptionsInConverters</strong> is set to true.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">ComparisonOperator</strong> is type of <strong style="color:blue">OperatorType</strong> The type of casing to apply to the string value.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">ComparingValue</strong> is type of <strong style="color:blue">IComparable</strong> The value to compare against.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">FalseObject</strong> is type of <strong style="color:blue">object</strong> The result to return if the comparison results in a false comparison.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">TrueObject</strong> is type of <strong style="color:blue">object</strong> The result to return if the comparison results in a true comparison.  ]]>
+            </x:String>
+        </x:Array>
+
+        <x:String x:Key="TextCaseTypeDescription">
+            The OperatorType enumeration defines the following members : 
+        </x:String>
+
+        <x:Array x:Key="TextCaseTypeItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   <strong style="color:blue">NotEqual</strong>   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Smaller</strong>  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">SmallerOrEqual</strong>   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Equal</strong>  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Greater</strong>   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">GreaterOrEqual</strong>  ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Int32 x:Key="ComparingValue1">30</x:Int32>
+
+        <x:Double x:Key="ComparingValue2">40</x:Double>
+
+        <toolkit:CompareConverter x:Key="CompareConverter1"
+                                  ComparisonOperator="GreaterOrEqual"
+                                  ComparingValue="{x:StaticResource ComparingValue1}"
+                                  TrueObject="LightGreen"
+                                  FalseObject="OrangeRed"/>
+
+        <toolkit:CompareConverter x:Key="CompareConverter2"
+                                  ComparisonOperator="SmallerOrEqual"
+                                  ComparingValue="{x:StaticResource ComparingValue2}"
+                                  TrueObject="LightGreen"
+                                  FalseObject="OrangeRed"/>
+    </app:BasePage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Converter Properties" />
+                    <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" 
+                                    Style="{x:StaticResource PropertiesListStyle}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup MediaElement" />
+                    <VerticalStackLayout>
+                        <Label Text="{x:Binding SetupDescription}"/>
+                        <Label Text="{x:Binding XamlNamespace}" TextColor="Blue"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Therefore the following:"/>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding FullNamepaceExampleBefore}" />
+                    <Label Text="Would be modified to include the xmlns as follows:"/>
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding FullNamepaceExampleAfter}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Bool To Object Converter" />
+                    <Label Text="You can change the input value by this slider" />
+                    <Slider Maximum="60" Minimum="0" Value="{x:Binding SlideValue}"/>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Current input value: "/>
+                                <Span Text="{x:Binding SlideValue}" FontAttributes="Bold"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="The background of this label will be green if the value entered is higher than 30, and red otherwise." 
+                           BackgroundColor="{x:Binding TestValue1, Converter={StaticResource CompareConverter1}}"
+                           VerticalOptions="Center"
+                           FontAttributes="Bold"
+                           FontSize="14"
+                           HorizontalOptions="CenterAndExpand"/>
+                    <Label Text="The background of this label will be green if the value entered is less than 40, and red otherwise." 
+                           BackgroundColor="{x:Binding TestValue2, Converter={StaticResource CompareConverter2}}"
+                           VerticalOptions="Center"
+                           FontAttributes="Bold"
+                           FontSize="14"
+                           HorizontalOptions="CenterAndExpand"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="This is ViewModel code" />
+                    <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpxamlConverterTestingViewModel}" />
+                    <Label Text="Here what your converter look like" />
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlConverterSetup}" />
+                    <Label Text="This Xaml code" />
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlConverterTesting}" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</app:BasePage>
