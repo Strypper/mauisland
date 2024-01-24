@@ -109,7 +109,7 @@
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup MediaElement" />
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup Toolkit" />
                     <VerticalStackLayout>
                         <Label Text="{x:Binding SetupDescription}"/>
                         <Label Text="{x:Binding XamlNamespace}" TextColor="Blue"/>
