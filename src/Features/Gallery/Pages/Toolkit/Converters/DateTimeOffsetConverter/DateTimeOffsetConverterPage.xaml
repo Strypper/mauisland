@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <app:BasePage 
-    x:Class="MAUIsland.ColorToByteRedConverterPage"
+    x:Class="MAUIsland.DateTimeOffsetConverterPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    Title="Color To Byte Red Converter"
+    Title="Date Time Offset Converter"
     Padding="10"
-    x:DataType="app:ColorToByteRedConverterPageViewModel">
+    x:DataType="app:DateTimeOffsetConverterPageViewModel">
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem
@@ -32,7 +32,7 @@
             </x:String>
         </x:Array>
 
-        <toolkit:ColorToByteRedConverter x:Key="ColorToByteRedConverter" />
+        <toolkit:DateTimeOffsetConverter x:Key="DateTimeOffsetConverter" />
     </app:BasePage.Resources>
 
     <ScrollView>
@@ -50,7 +50,7 @@
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup MediaElement" />
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup Toolkit" />
                     <VerticalStackLayout>
                         <Label Text="{x:Binding SetupDescription}"/>
                         <Label Text="{x:Binding XamlNamespace}" TextColor="Blue"/>
@@ -69,46 +69,15 @@
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Color To Byte Red Converter" />
-                    <Label VerticalOptions="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="The converter will turn this text color "/>
-                                <Span Text="Text Color"
-                                      TextColor="{x:Binding TextColor1}"
-                                      FontAttributes="Bold"/>
-                                <Span Text=" into this Byte Red "/>
-                                <Span Text="{x:Binding TextColor1, Converter={x:StaticResource ColorToByteRedConverter}}"
-                                      FontAttributes="Bold"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    <Label VerticalOptions="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="The converter will turn this text color "/>
-                                <Span Text="Text Color"
-                                      TextColor="{x:Binding TextColor2}"
-                                      FontAttributes="Bold"/>
-                                <Span Text=" into this Byte Red "/>
-                                <Span Text="{x:Binding TextColor2, Converter={x:StaticResource ColorToByteRedConverter}}"
-                                      FontAttributes="Bold"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    <Label VerticalOptions="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="The converter will turn this text color "/>
-                                <Span Text="Text Color"
-                                      TextColor="{x:Binding TextColor3}"
-                                      FontAttributes="Bold"/>
-                                <Span Text=" into this Byte Red "/>
-                                <Span Text="{x:Binding TextColor3, Converter={x:StaticResource ColorToByteRedConverter}}"
-                                      FontAttributes="Bold"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Date Time Offset Converter" />
+                    <Label Text="The DatePicker below is bound to a Property of type DateTimeOffset."
+                           HorizontalOptions="Center"
+                           FontAttributes="Bold" />
+                    <DatePicker Date="{x:Binding DateTimeOffset, Converter={StaticResource DateTimeOffsetConverter}}"
+                                HorizontalOptions="Center" />
+                    <Label Text="{x:Binding DateTimeOffset}"
+                           HorizontalOptions="Center"
+                           FontAttributes="Bold" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -118,8 +87,8 @@
                     <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpxamlConverterTestingViewModel}" />
                     <Label Text="Here what your converter look like" />
                     <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlConverterSetup}" />
-                    <Label Text="This Xaml TextColor code" />
-                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlConverterTextTesting}" />
+                    <Label Text="This Xaml code" />
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlConverterTesting}" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

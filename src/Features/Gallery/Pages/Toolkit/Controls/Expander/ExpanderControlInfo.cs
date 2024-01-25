@@ -13,7 +13,7 @@ internal class ExpanderControlInfo : ICommunityToolkitGalleryCardInfo
         Glyph = FluentUIIcon.Ic_fluent_panel_top_expand_20_regular
     };
     public string ControlDetail => "The Expander control provides an expandable container to host any content. The control has two main properties to store your content.";
-    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Toolkit/{ControlName}";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Toolkit/Controls/{ControlName}";
     public string DocumentUrl => $"https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/views/expander";
     public string GroupName => ControlGroupInfo.CommunityToolkit;
     public GalleryCardType CardType => GalleryCardType.Control;

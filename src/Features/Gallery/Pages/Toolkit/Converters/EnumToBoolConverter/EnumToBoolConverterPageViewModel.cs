@@ -1,15 +1,13 @@
-﻿using Microsoft.Maui.Controls;
+﻿using Bogus.DataSets;
+using Microsoft.Maui.Controls;
 using System.Reflection;
 
 namespace MAUIsland;
 
-public partial class ColorToBlackOrWhiteConverterPageViewModel : NavigationAwareBaseViewModel
+public partial class EnumToBoolConverterPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [Services]
-    #endregion
-
     #region [ CTor ]
-    public ColorToBlackOrWhiteConverterPageViewModel(IAppNavigator appNavigator)
+    public EnumToBoolConverterPageViewModel(IAppNavigator appNavigator)
         : base(appNavigator)
     { } 
     #endregion
@@ -19,13 +17,10 @@ public partial class ColorToBlackOrWhiteConverterPageViewModel : NavigationAware
     IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
-    ObservableCollection<IGalleryCardInfo> controlGroupList;
+    ObservableCollection<GalleryCardType> galleryCardTypes;
 
     [ObservableProperty]
-    Color textColor = Colors.BlueViolet;
-
-    [ObservableProperty]
-    Color iconColor = Colors.Brown;
+    GalleryCardType selectedItem;
 
     [ObservableProperty]
     string setupDescription =
@@ -53,35 +48,23 @@ public partial class ColorToBlackOrWhiteConverterPageViewModel : NavigationAware
         "</ContentPage>";
 
     [ObservableProperty]
-    string xamlConverterTextTesting =
-        "<Label Text=\"The Text is showing in monochrome\"\r\n" +
-        "       TextColor=\"{x:Binding TextColor, Converter={x:StaticResource ColorToBlackOrWhiteConverter}}\"\r\n" +
-        "       FontAttributes=\"Bold\"\r\n" +
-        "       BackgroundColor=\"Gray\"/>";
-
-    [ObservableProperty]
-    string xamlConverterIconTesting =
-        "<Image HeightRequest=\"40\" WidthRequest=\"40\" BackgroundColor=\"Gray\">\r\n" +
-        "   <Image.Source>\r\n" +
-        "       <FontImageSource Glyph=\"{x:Static app:FluentUIIcon.Ic_fluent_person_circle_24_regular}\" \r\n" +
-        "                        Color=\"{x:Binding IconColor, Converter={x:StaticResource ColorToBlackOrWhiteConverter}}\"/>\r\n" +
-        "   </Image.Source>\r\n" +
-        "</Image>";
+    string xamlConverterTesting =
+        "<Label Text=\"Let Go!\" \r\n" +
+        "       TextColor=\"OrangeRed\"\r\n" +
+        "       IsVisible=\"{x:Binding SelectedItem, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static app:GalleryCardType.Converter}}\" />";
 
     [ObservableProperty]
     string xamlConverterSetup =
         "<ContentPage>\r\n" +
         "   <ContentPage.Resources>\r\n" +
-        "        <toolkit:ColorToBlackOrWhiteConverter x:Key=\"ColorToBlackOrWhiteConverter\" />\r\n" +
+        "        <toolkit:EnumToBoolConverter x:Key=\"EnumToBoolConverter\" />\r\n" +
         "   </ContentPage.Resources>\r\n" +
         "</ContentPage>";
 
     [ObservableProperty]
     string cSharpxamlConverterTestingViewModel =
         "[ObservableProperty]\r\n" +
-        "Color textColor = Colors.BlueViolet;\r\n\r\n" +
-        "[ObservableProperty]\r\n" +
-        "Color iconColor = Colors.Brown;";
+        "GalleryCardType selectedItem;";
     #endregion
 
     #region[ Relay Command ]
@@ -102,6 +85,7 @@ public partial class ColorToBlackOrWhiteConverterPageViewModel : NavigationAware
     #region [ Data ]
     private async Task LoadDataAsync()
     {
+        GalleryCardTypes = new ObservableCollection<GalleryCardType>(Enum.GetValues<GalleryCardType>());
     }
     #endregion
 

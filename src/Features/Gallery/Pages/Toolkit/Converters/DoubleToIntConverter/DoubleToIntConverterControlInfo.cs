@@ -2,20 +2,20 @@
 
 namespace MAUIsland;
 
-class BoolToObjectConverterControlInfo : ICommunityToolkitGalleryCardInfo
+class DoubleToIntConverterControlInfo : ICommunityToolkitGalleryCardInfo
 {
-    public string ControlName => nameof(BoolToObjectConverter);
+    public string ControlName => nameof(DoubleToIntConverter);
 
-    public string ControlRoute => typeof(BoolToObjectConverterPage).FullName;
+    public string ControlRoute => typeof(DoubleToIntConverterPage).FullName;
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
         Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_approvals_app_20_regular
     };
-    public string ControlDetail => "The BoolToObjectConverter is a converter that allows users to convert a bool value binding to a specific object. By providing both a TrueObject and a FalseObject in the converter the appropriate object will be returned depending on the value of the binding.";
+    public string ControlDetail => "The DoubleToIntConverter is a converter that allows users to convert an incoming double value to an int and vice-versa. Optionally the user can provide a multiplier to the conversion through the Ratio property.";
     public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Toolkit/Converters/{ControlName}";
-    public string DocumentUrl => $"https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/converters/bool-to-object-converter";
+    public string DocumentUrl => $"https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/converters/double-to-int-converter";
     public string GroupName => ControlGroupInfo.CommunityToolkit;
     public GalleryCardType CardType => GalleryCardType.Converter;
     public GalleryCardStatus CardStatus => throw new NotImplementedException();

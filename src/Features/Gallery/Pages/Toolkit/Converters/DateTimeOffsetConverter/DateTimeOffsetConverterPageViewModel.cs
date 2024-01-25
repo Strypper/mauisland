@@ -1,15 +1,13 @@
-﻿using Microsoft.Maui.Controls;
+﻿using Bogus.DataSets;
+using Microsoft.Maui.Controls;
 using System.Reflection;
 
 namespace MAUIsland;
 
-public partial class ColorToByteAlphaConverterPageViewModel : NavigationAwareBaseViewModel
+public partial class DateTimeOffsetConverterPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [Services]
-    #endregion
-
     #region [ CTor ]
-    public ColorToByteAlphaConverterPageViewModel(IAppNavigator appNavigator)
+    public DateTimeOffsetConverterPageViewModel(IAppNavigator appNavigator)
         : base(appNavigator)
     { } 
     #endregion
@@ -19,20 +17,11 @@ public partial class ColorToByteAlphaConverterPageViewModel : NavigationAwareBas
     IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
-    ObservableCollection<IGalleryCardInfo> controlGroupList;
-
-    [ObservableProperty]
-    Color textColor1 = Color.FromRgba(138, 43, 226, 128);
-
-    [ObservableProperty]
-    Color textColor2 = Color.FromRgba(150, 75, 0, 179);
-
-    [ObservableProperty]
-    Color textColor3 = Color.FromRgba(154, 205, 50, 200);
+    DateTimeOffset dateTimeOffset = new DateTimeOffset();
 
     [ObservableProperty]
     string setupDescription =
-        "In order to use the toolkit in XAML the following xmlns needs to be added into your page or view:";
+    "In order to use the toolkit in XAML the following xmlns needs to be added into your page or view:";
 
     [ObservableProperty]
     string xamlNamespace =
@@ -56,33 +45,22 @@ public partial class ColorToByteAlphaConverterPageViewModel : NavigationAwareBas
         "</ContentPage>";
 
     [ObservableProperty]
-    string xamlConverterTextTesting =
-        "<Label VerticalOptions=\"Center\">\r\n" +
-        "   <Label.FormattedText>\r\n" +
-        "       <FormattedString>\r\n" +
-        "           <Span Text=\"The converter will turn this text color \"/>\r\n" +
-        "           <Span Text=\"Text Color\"\r\n" +
-        "                 TextColor=\"{x:Binding TextColor3}\"\r\n" +
-        "                 FontAttributes=\"Bold\"/>\r\n" +
-        "           <Span Text=\" into this Byte Alpha (Transparency) \"/>\r\n" +
-        "           <Span Text=\"{x:Binding TextColor3, Converter={x:StaticResource ColorToByteAlphaConverter}}\"\r\n" +
-        "                 FontAttributes=\"Bold\"/>\r\n" +
-        "       </FormattedString>\r\n" +
-        "   </Label.FormattedText>\r\n" +
-        "</Label>";
+    string xamlConverterTesting =
+        "<DatePicker Date=\"{x:Binding DateTimeOffset, Converter={StaticResource DateTimeOffsetConverter}}\"\r\n" +
+        "            HorizontalOptions=\"Center\" />";
 
     [ObservableProperty]
     string xamlConverterSetup =
         "<ContentPage>\r\n" +
         "   <ContentPage.Resources>\r\n" +
-        "        <toolkit:ColorToByteAlphaConverter x:Key=\"ColorToByteAlphaConverter\" />\r\n" +
+        "        <toolkit:DateTimeOffsetConverter x:Key=\"DateTimeOffsetConverter\" />\r\n" +
         "   </ContentPage.Resources>\r\n" +
         "</ContentPage>";
 
     [ObservableProperty]
     string cSharpxamlConverterTestingViewModel =
         "[ObservableProperty]\r\n" +
-        "Color textColor3 = Color.FromRgba(154, 205, 50, 200);";
+        "DateTimeOffset dateTimeOffset = new DateTimeOffset();";
     #endregion
 
     #region[ Relay Command ]

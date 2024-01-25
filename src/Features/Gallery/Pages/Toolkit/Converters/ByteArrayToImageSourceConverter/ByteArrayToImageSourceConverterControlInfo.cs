@@ -14,7 +14,7 @@ class ByteArrayToImageSourceConverterControlInfo : ICommunityToolkitGalleryCardI
         Glyph = FluentUIIcon.Ic_fluent_approvals_app_20_regular
     };
     public string ControlDetail => "The ByteArrayToImageSourceConverter is a converter that allows the user to convert an incoming value from a byte array and returns an ImageSource. This object can then be used as the Source of an Image control.";
-    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Toolkit/{ControlName}";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Toolkit/Converters/{ControlName}";
     public string DocumentUrl => $"https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/converters/byte-array-to-image-source-converter";
     public string GroupName => ControlGroupInfo.CommunityToolkit;
     public GalleryCardType CardType => GalleryCardType.Converter;

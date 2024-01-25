@@ -13,7 +13,7 @@ class MediaElementControlInfo : ICommunityToolkitGalleryCardInfo
         Glyph = FluentUIIcon.Ic_fluent_video_clip_24_regular
     };
     public string ControlDetail => "MediaElement is a control for playing video and audio.";
-    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Toolkit/{ControlName}";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Toolkit/Controls/{ControlName}";
     public string DocumentUrl => "https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/views/mediaelement";
     public string GroupName => ControlGroupInfo.CommunityToolkit;
     public GalleryCardType CardType => GalleryCardType.Control;
