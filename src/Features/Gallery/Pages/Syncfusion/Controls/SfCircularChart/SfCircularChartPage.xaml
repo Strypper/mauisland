@@ -19,7 +19,7 @@
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
             CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
-            IconImageSource="microsoft.png"
+            IconImageSource="syncfusionlogo.png"
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
 

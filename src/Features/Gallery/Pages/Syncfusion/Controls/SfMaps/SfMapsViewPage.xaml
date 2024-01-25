@@ -4,8 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
-    xmlns:model="clr-namespace:MAUIsland.Gallery.Syncfusion"
     xmlns:maps="clr-namespace:Syncfusion.Maui.Maps;assembly=Syncfusion.Maui.Maps"
+    xmlns:model="clr-namespace:MAUIsland.Gallery.Syncfusion"
     Title="SfMapsView"
     Padding="10"
     x:DataType="app:SfMapsViewPageViewModel">
@@ -19,25 +19,28 @@
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
             CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
-            IconImageSource="syncfusion_logo.png"
+            IconImageSource="syncfusionlogo.png"
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
 
     <app:BasePage.Resources>
         <DataTemplate x:Key="markerTemplate">
             <StackLayout>
-                <Ellipse WidthRequest="8"
-                             HeightRequest="8"
-                             Fill="Red" />
-                <Label Text="{Binding Name}"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           FontSize="Caption"
-                           FontAttributes="Bold" />
-                <Label Text="{Binding Time}"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           FontSize="8" />
+                <Ellipse
+                    Fill="Red"
+                    HeightRequest="8"
+                    WidthRequest="8" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Caption"
+                    HorizontalOptions="Center"
+                    Text="{Binding Name}"
+                    VerticalOptions="Center" />
+                <Label
+                    FontSize="8"
+                    HorizontalOptions="Center"
+                    Text="{Binding Time}"
+                    VerticalOptions="Center" />
             </StackLayout>
         </DataTemplate>
 
@@ -115,79 +118,89 @@
                         Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
             </Frame>
-            <Label FontAttributes="Bold"
-                FontSize="Title" Text="This sample shows the basic maps elements such as data labels, legend, and tooltip" />
-            <!--Basic Layer-->
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="This sample shows the basic maps elements such as data labels, legend, and tooltip" />
+            <!--  Basic Layer  -->
             <Grid>
                 <maps:SfMaps>
                     <maps:SfMaps.Layer>
-                        <maps:MapShapeLayer x:Name="layer"
-                               ShapesSource="https://cdn.syncfusion.com/maps/map-data/australia.json"
-                               ShapeDataField="STATE_NAME"
-                               DataSource="{Binding Data}"
-                               PrimaryValuePath="State" 
-                               ShowDataLabels="True"
-                               ShowShapeTooltip="True"
-                               ShapeColorValuePath="ID">
+                        <maps:MapShapeLayer
+                            x:Name="layer"
+                            DataSource="{Binding Data}"
+                            PrimaryValuePath="State"
+                            ShapeColorValuePath="ID"
+                            ShapeDataField="STATE_NAME"
+                            ShapesSource="https://cdn.syncfusion.com/maps/map-data/australia.json"
+                            ShowDataLabels="True"
+                            ShowShapeTooltip="True">
 
-                            <!--Set Data Label-->
+                            <!--  Set Data Label  -->
                             <maps:MapShapeLayer.DataLabelSettings>
                                 <maps:MapDataLabelSettings DataLabelPath="StateCode" />
                             </maps:MapShapeLayer.DataLabelSettings>
 
-                            <!--Set Color mapping-->
+                            <!--  Set Color mapping  -->
                             <maps:MapShapeLayer.ColorMappings>
-                                <maps:EqualColorMapping Color="#d0b800"
-                                           Value="1"
-                                           Text="NSW" />
-                                <maps:EqualColorMapping Color="#00d5cf"
-                                           Value="2"
-                                           Text="Queensland" />
-                                <maps:EqualColorMapping Color="#ff4e42"
-                                           Value="3"
-                                           Text="NT" />
-                                <maps:EqualColorMapping Color="#cf4eee"
-                                           Value="4"
-                                           Text="Victoria" />
-                                <maps:EqualColorMapping Color="#4f93d8"
-                                           Value="5"
-                                           Text="Tasmania" />
-                                <maps:EqualColorMapping Color="#8b6adf"
-                                           Value="6"
-                                           Text="WA" />
-                                <maps:EqualColorMapping Color="#7bff67"
-                                           Value="7"
-                                           Text="SA" />
+                                <maps:EqualColorMapping
+                                    Text="NSW"
+                                    Color="#d0b800"
+                                    Value="1" />
+                                <maps:EqualColorMapping
+                                    Text="Queensland"
+                                    Color="#00d5cf"
+                                    Value="2" />
+                                <maps:EqualColorMapping
+                                    Text="NT"
+                                    Color="#ff4e42"
+                                    Value="3" />
+                                <maps:EqualColorMapping
+                                    Text="Victoria"
+                                    Color="#cf4eee"
+                                    Value="4" />
+                                <maps:EqualColorMapping
+                                    Text="Tasmania"
+                                    Color="#4f93d8"
+                                    Value="5" />
+                                <maps:EqualColorMapping
+                                    Text="WA"
+                                    Color="#8b6adf"
+                                    Value="6" />
+                                <maps:EqualColorMapping
+                                    Text="SA"
+                                    Color="#7bff67"
+                                    Value="7" />
                             </maps:MapShapeLayer.ColorMappings>
 
-                            <!--Set Markers-->
+                            <!--  Set Markers  -->
                             <maps:MapShapeLayer.Markers>
                                 <maps:MapMarkerCollection>
-                                    <maps:MapMarker x:Name="Adelaide"
-                                                   IconWidth="20"
-                                   IconHeight="20"
-                                   IconType="Triangle"
-                                   IconFill="Red"
-                                   IconStroke="Black"
-                                       Latitude="-34.928497"
-                                       Longitude="138.600739" />
+                                    <maps:MapMarker
+                                        x:Name="Adelaide"
+                                        IconFill="Red"
+                                        IconHeight="20"
+                                        IconStroke="Black"
+                                        IconType="Triangle"
+                                        IconWidth="20"
+                                        Latitude="-34.928497"
+                                        Longitude="138.600739" />
                                 </maps:MapMarkerCollection>
                             </maps:MapShapeLayer.Markers>
 
-                            <!--Set Legend-->
+                            <!--  Set Legend  -->
                             <maps:MapShapeLayer.Legend>
-                                <maps:MapLegend SourceType="Shape"
-                                   Placement="Bottom" />
+                                <maps:MapLegend Placement="Bottom" SourceType="Shape" />
                             </maps:MapShapeLayer.Legend>
                         </maps:MapShapeLayer>
                     </maps:SfMaps.Layer>
                 </maps:SfMaps>
             </Grid>
             <app:SourceCodeExpander Code="{x:Binding BasicLayerSource}" CodeType="Xaml" />
-            <!--#region BUG can't read State -->
+            <!--#region BUG can't read State-->
             <!--<Label FontAttributes="Bold"
                 FontSize="Title" Text="This sample showcases a map with simple Selection." />-->
-            <!--Selection Layer-->
+            <!--  Selection Layer  -->
             <!--<Grid Margin="20"
               x:Name="sampleGrid">
                 <Grid.BindingContext>
@@ -206,7 +219,7 @@
                    Grid.ColumnSpan="2"
                    HorizontalOptions="Center"
                    Text="2020 US Population Density"
-                   FontSize="Subtitle" 
+                   FontSize="Subtitle"
                     Margin="0,0,0,20"/>
                 <maps:SfMaps Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
                     <maps:SfMaps.Layer>
@@ -244,11 +257,11 @@
                         </maps:MapShapeLayer>
                     </maps:SfMaps.Layer>
                 </maps:SfMaps>
-                <Frame x:Name="popup" 
-                   Grid.Row="2" 
+                <Frame x:Name="popup"
+                   Grid.Row="2"
                    Grid.Column="1"
                    HorizontalOptions="End"
-                   IsClippedToBounds="True" 
+                   IsClippedToBounds="True"
                    BorderColor="#E8E8E8"
                    BackgroundColor="#F8F8F8"
                    Margin="30"
@@ -282,8 +295,8 @@
             <app:SourceCodeExpander Code="{x:Binding SelectionLayerSource}" CodeType="Xaml" />
 
             <Label FontAttributes="Bold"
-                FontSize="Title" Text="This sample shows the rivers of the Australia using the shape sublayer support." />-->            
-            <!--Shape Layer-->
+                FontSize="Title" Text="This sample shows the rivers of the Australia using the shape sublayer support." />-->
+            <!--  Shape Layer  -->
             <!--<Grid Margin="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -317,8 +330,8 @@
                             </maps:MapShapeLayer.DataLabelSettings>
 
                             <maps:MapShapeLayer.Sublayers>
-                                <maps:MapShapeSublayer x:Name="sublayer" 
-                                                   ShapeStroke="#00A7CC" 
+                                <maps:MapShapeSublayer x:Name="sublayer"
+                                                   ShapeStroke="#00A7CC"
                                                    ShapeStrokeThickness="2"/>
                             </maps:MapShapeLayer.Sublayers>
                         </maps:MapShapeLayer>
@@ -328,30 +341,33 @@
             <app:SourceCodeExpander Code="{x:Binding ShapeLayerSource}" CodeType="Xaml" />-->
             <!--#endregion-->
 
-            <Label FontAttributes="Bold"
-                FontSize="Title" Text="This sample showcases the world map with different time zones using markers." />
-            <!--Marker Layer-->
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="This sample showcases the world map with different time zones using markers." />
+            <!--  Marker Layer  -->
             <Grid Margin="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0"
-                   HorizontalOptions="Center"
-                   Text="World Clock"
-                   FontSize="Subtitle"
-                   Margin="0,0,0,20" />
+                <Label
+                    Grid.Row="0"
+                    Margin="0,0,0,20"
+                    FontSize="Subtitle"
+                    HorizontalOptions="Center"
+                    Text="World Clock" />
                 <maps:SfMaps Grid.Row="1">
                     <maps:SfMaps.Layer>
-                        <maps:MapShapeLayer x:Name="markerLayer"
-                                        ShapeHoverFill="Transparent"
-                                        ShapeHoverStroke="Transparent"
-                                        ShapeHoverStrokeThickness="0"
-                                        ShapeFill="#dadadb"
-                                        ShapeStrokeThickness="0"
-                                        Markers="{Binding Markers}"
-                                        MarkerTemplate="{StaticResource markerTemplate}">
-                        </maps:MapShapeLayer>
+                        <maps:MapShapeLayer
+                            x:Name="markerLayer"
+                            MarkerTemplate="{StaticResource markerTemplate}"
+                            Markers="{Binding Markers}"
+                            ShapeFill="#dadadb"
+                            ShapeHoverFill="Transparent"
+                            ShapeHoverStroke="Transparent"
+                            ShapeHoverStrokeThickness="0"
+                            ShapeStrokeThickness="0" />
                     </maps:SfMaps.Layer>
                 </maps:SfMaps>
             </Grid>

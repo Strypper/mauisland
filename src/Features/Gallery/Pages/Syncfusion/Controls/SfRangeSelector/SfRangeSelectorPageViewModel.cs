@@ -59,6 +59,12 @@ public partial class SfRangeSelectorPageViewModel : NavigationAwareBaseViewModel
 
     }
     #endregion
+
+    #region [Relay Commands]
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
+    #endregion
 }
 
 public class SfRangeSelectorDemoChart

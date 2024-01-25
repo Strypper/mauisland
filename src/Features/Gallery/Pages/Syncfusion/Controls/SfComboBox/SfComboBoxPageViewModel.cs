@@ -12,6 +12,9 @@ public partial class SfComboBoxPageViewModel : NavigationAwareBaseViewModel
 
     #region [Properties]
     [ObservableProperty]
+    IGalleryCardInfo controlInformation;
+
+    [ObservableProperty]
     ObservableCollection<SocialMedia> items;
 
     [ObservableProperty]
@@ -76,6 +79,13 @@ public partial class SfComboBoxPageViewModel : NavigationAwareBaseViewModel
         }
     }
     #endregion
+
+    #region [Relay Commands]
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
+    #endregion
+
 
 
 }

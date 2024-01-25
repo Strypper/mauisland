@@ -11,6 +11,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
 
     #region [Properties]
     [ObservableProperty]
+    IGalleryCardInfo controlInformation;
+
+    [ObservableProperty]
     ObservableCollection<SfCartesianChartPersonModel> persons;
 
     [ObservableProperty]
@@ -122,4 +125,11 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
 
     }
     #endregion
+
+    #region [Relay Commands]
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
+    #endregion
+
 }

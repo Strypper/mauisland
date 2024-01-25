@@ -21,7 +21,7 @@
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
             CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
-            IconImageSource="syncfusion_logo.png"
+            IconImageSource="syncfusionlogo.png"
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
 
@@ -847,7 +847,10 @@
                         HorizontalOptions="Center"
                         Text="{x:Binding Source={x:Reference NotificationCountStepper},
                                          Path=Value}" />
-                    <Stepper x:Name="NotificationCountStepper" HorizontalOptions="Center" />
+                    <Stepper
+                        x:Name="NotificationCountStepper"
+                        BackgroundColor="Black"
+                        HorizontalOptions="Center" />
                     <app:SourceCodeExpander Code="{x:Binding AnimationBasicXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>

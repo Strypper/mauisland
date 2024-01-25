@@ -32,4 +32,11 @@ public partial class SfBarcodeGeneratorPageViewModel : NavigationAwareBaseViewMo
 
     [ObservableProperty]
     string customSfBarcodeGeneratorXamlCode = "<barcode:SfBarcodeGenerator Value=\"Welcome to MAUIsland!\"\r\n                                                HeightRequest=\"100\"\r\n                                                WidthRequest=\"300\"\r\n                                                ShowText=\"True\"\r\n                                                ForegroundColor=\"Purple\"\r\n                                                BackgroundColor=\"LightCyan\">\r\n                        <barcode:SfBarcodeGenerator.TextStyle>\r\n                            <barcode:BarcodeTextStyle FontAttributes=\"Italic\" \r\n                                              FontSize=\"16\" \r\n                                              TextColor=\"Red\"/>\r\n                        </barcode:SfBarcodeGenerator.TextStyle>\r\n</barcode:SfBarcodeGenerator>";
+
+    #region [Relay Commands]
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
+    #endregion
+
 }

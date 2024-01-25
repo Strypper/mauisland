@@ -14,6 +14,9 @@ public partial class SfListViewPageViewModel : NavigationAwareBaseViewModel
 
     #region [Properties]
     [ObservableProperty]
+    IGalleryCardInfo controlInformation;
+
+    [ObservableProperty]
     int span = 5;
 
     [ObservableProperty]
@@ -29,6 +32,7 @@ public partial class SfListViewPageViewModel : NavigationAwareBaseViewModel
     #region [RelayCommand]
     [RelayCommand]
     Task NavigateToDetailAsync(string controlRoute) => AppNavigator.NavigateAsync(controlRoute);
+    
     #endregion
 
     #region [Override]
@@ -71,5 +75,11 @@ public partial class SfListViewPageViewModel : NavigationAwareBaseViewModel
             MauiAllControlsItems.Add(item);
         }
     }
+    #endregion
+
+    #region [Relay Commands]
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
     #endregion
 }

@@ -101,6 +101,7 @@
                             </Label>
                             <Stepper
                                 x:Name="AgeStepper"
+                                BackgroundColor="Black"
                                 Maximum="23"
                                 Minimum="10"
                                 Value="18" />
