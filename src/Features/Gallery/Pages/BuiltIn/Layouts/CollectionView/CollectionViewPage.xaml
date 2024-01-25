@@ -214,7 +214,7 @@
                 <![CDATA[   <strong style="color:blue">SelectedItem</strong>, of type <strong style="color:blue">object</strong>, the selected item in the list. This property has a default binding mode of <strong style="color:blue">TwoWay</strong>, and has a null value when no item is selected.    ]]>
             </x:String>
             <x:String>
-                <![CDATA[   <strong style="color:blue">SelectedItems</strong>, of type <strong style="color:blue">IList<object></strong>, the selected items in the list. This property has a default binding mode of <strong style="color:blue">OneWay</strong>, and has a null value when no items are selected.    ]]>
+                <![CDATA[   <strong style="color:blue">SelectedItems</strong>, of type <strong style="color:blue">IList</strong>, the selected items in the list. This property has a default binding mode of <strong style="color:blue">OneWay</strong>, and has a null value when no items are selected.    ]]>
             </x:String>
             <x:String>
                 <![CDATA[   <strong style="color:blue">SelectionChangedCommand</strong>, of type <strong style="color:blue">ICommand</strong>, which is executed when the selected item changes.    ]]>
@@ -871,8 +871,8 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView Item Selection Properties" />
-                    <!--<CollectionView ItemsSource="{x:StaticResource CollectionViewSelectionProperty}" 
-                                    Style="{x:StaticResource PropertiesListStyle}"/>-->
+                    <CollectionView ItemsSource="{x:StaticResource CollectionViewSelectionProperty}" 
+                                    Style="{x:StaticResource PropertiesListStyle}"/>
                 </VerticalStackLayout>
             </Frame>
 
