@@ -222,7 +222,8 @@
                             ItemsSource="{x:Binding ControlGroupList,
                                                     Mode=OneWay,
                                                     Converter={x:StaticResource CardByGroupPageTypePickerConverter}}"
-                            SelectedItem="{x:Binding SelectedItem}"
+                            SelectedItem="{x:Binding SelectedItem,
+                                                     Mode=TwoWay}"
                             TextColor="White"
                             TitleColor="White"
                             VerticalOptions="Center" />

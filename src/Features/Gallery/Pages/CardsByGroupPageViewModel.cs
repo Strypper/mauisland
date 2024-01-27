@@ -86,6 +86,7 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
         {
             ControlGroupList = new ObservableCollection<IGalleryCardInfo>(items);
             FilteredControlGroupList = new ObservableCollection<IGalleryCardInfo>(items);
+            SelectedItem = "All";
             return;
         }
 

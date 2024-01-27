@@ -99,6 +99,21 @@
         <Setter Property="FooterTemplate" Value="{x:StaticResource BulletListFooterTemplate}" />
     </Style>
 
+    <Style x:Key="MAUIslandBorderStyle" TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 4" />
+        <Setter Property="StrokeThickness" Value="4" />
+        <Setter Property="BackgroundColor" Value="#f8fafd" />
+        <Setter Property="Stroke">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Offset="0.1" Color="Orange" />
+                    <GradientStop Offset="1.0" Color="Brown" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
     <x:String x:Key="Lorem">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
     </x:String>

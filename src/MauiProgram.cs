@@ -30,7 +30,7 @@ public static class MauiProgram
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitCore()
             .UseMauiCommunityToolkitMediaElement()
-            .UseSkiaSharp()
+            .UseSkiaSharp(true)
             .UseAcrylicView()
             .ConfigureFonts(fonts =>
             {

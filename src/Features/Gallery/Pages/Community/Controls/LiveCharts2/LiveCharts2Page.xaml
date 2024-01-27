@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
     Title="LiveCharts2"
     Padding="10"
     x:DataType="app:LiveCharts2PageViewModel">
@@ -19,9 +20,17 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="15" Style="{x:StaticResource MAUIslandBorderStyle}">
                 <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
+            </Border>
+
+            <Border Style="{x:StaticResource MAUIslandBorderStyle}">
+                <lvc:CartesianChart
+                    HeightRequest="300"
+                    LegendPosition="Right"
+                    Series="{Binding Series}"
+                    XAxes="{Binding XAxes}" />
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>
