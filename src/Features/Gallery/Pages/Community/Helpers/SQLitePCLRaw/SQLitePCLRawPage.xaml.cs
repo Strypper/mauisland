@@ -1,8 +1,11 @@
 namespace MAUIsland;
-public partial class AcrylicViewPage : IGalleryPage
+
+public partial class SQLitePCLRawPage : IGalleryPage
 {
+
     #region [ CTor ]
-    public AcrylicViewPage(AcrylicViewPageViewModel vm)
+
+    public SQLitePCLRawPage(SQLitePCLRawPageViewModel vm)
     {
         InitializeComponent();
 
