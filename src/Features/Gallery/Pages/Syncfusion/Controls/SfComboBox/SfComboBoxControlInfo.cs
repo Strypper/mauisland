@@ -12,7 +12,7 @@ class SfComboBoxControlInfo : IGalleryCardInfo
         Glyph = FluentUIIcon.Ic_fluent_caret_down_24_regular
     };
     public string ControlDetail => "The .NET MAUI ComboBox control is a selection component that allows users to type a value or choose an option from a list of predefined options. It has many features, such as data binding, editing, searching, clear button and dropdown button customization, and more.";
-    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Syncfusion/Controls/SfComboBox";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/blob/main/src/Features/Gallery/Pages/Syncfusion/Controls/{ControlName}";
     public string DocumentUrl => "https://help.syncfusion.com/maui/combobox/overview";
     public string GroupName => ControlGroupInfo.SyncfusionControls;
 

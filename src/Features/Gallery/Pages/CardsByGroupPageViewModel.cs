@@ -1,4 +1,7 @@
 ﻿using CommunityToolkit.Maui.Core.Extensions;
+using Microsoft.Maui.Controls;
+using SkiaSharp;
+using System.Dynamic;
 
 namespace MAUIsland;
 
@@ -6,15 +9,20 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
 {
     #region [ Fields ]
     private readonly IControlsService mauiControlsService;
+    private readonly ICardInfoSyncService cardInfoSyncService;
+    private readonly ILocalControlService localControlService;
     #endregion
 
     #region [ CTor ]
-    public CardsByGroupPageViewModel(
-        IAppNavigator appNavigator,
-        IControlsService mauiControlsService
-    ) : base(appNavigator)
+    public CardsByGroupPageViewModel( IAppNavigator appNavigator,
+                                      IControlsService mauiControlsService,
+                                      ICardInfoSyncService cardInfoSyncService,
+                                      ILocalControlService localControlService) 
+        : base(appNavigator)
     {
         this.mauiControlsService = mauiControlsService;
+        this.localControlService = localControlService;
+        this.cardInfoSyncService = cardInfoSyncService;
     }
     #endregion
 
@@ -44,7 +52,11 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
 
     #region [ RelayCommand ]
     [RelayCommand]
-    Task NavigateToDetailAsync(IGalleryCardInfo control) => AppNavigator.NavigateAsync(control.ControlRoute, args: control);
+    Task NavigateToDetailAsync(IGalleryCardInfo control)
+    {
+        OnControlCardNavigation(control).GetAwaiter();
+        return AppNavigator.NavigateAsync(control.ControlRoute, args: control);
+    }
 
     [RelayCommand]
     Task NavigateToDetailInNewWindowAsync(IGalleryCardInfo control) => AppNavigator.NavigateAsync(control.ControlRoute, inNewWindow: true, args: control);
@@ -69,6 +81,8 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
         CommunityToolkit.Diagnostics.Guard.IsNotNull(ControlGroup);
 
         LoadDataAsync(true).FireAndForget();
+
+        RefreshAsync().GetAwaiter();
     }
     #endregion
 
@@ -123,6 +137,39 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
                 FilteredControlGroupList = controlItems;
             }
         }
+    }
+
+    async Task RefreshAsync()
+    {
+        var controls = await localControlService.GetAllAsync();
+        var hello = controls.Select(x => x.ControlName).ToList();
+    }
+    async Task OnControlCardNavigation(IGalleryCardInfo control)
+    {
+        try 
+        {
+            var source = control.ControlIcon;
+
+            var hello = new CardInfoLocalDbModel
+            {
+                ControlIcon = Convert.ToInt32(control.ControlIcon).ToString(),
+                ControlName = control.GroupName,
+                ControlDetail = control.ControlDetail,
+                ControlRoute = control.ControlRoute,
+                GitHubUrl = control.GitHubUrl,
+                DocumentUrl = control.DocumentUrl,
+                GroupName = control.GroupName,
+                CardType = Convert.ToInt32(control.CardType),
+                CardStatus = Convert.ToInt32(control.CardStatus),
+                LastUpdate = DateTime.Now
+            };
+            await localControlService.AddAsync(hello);
+        }
+        catch(Exception ex) 
+        {
+            throw ex;
+        }
+        
     }
     #endregion
 }
