@@ -1029,6 +1029,11 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
         FilterPickerItems = Enum.GetNames(typeof(GalleryCardType)).ToObservableCollection();
 
         var items = await MauiControlsService.GetControlsAsync(ControlInformation.GroupName);
+        foreach (var item in items)
+        {
+            ControlGroupList.Add(item);
+        }
+
         IDictionary<double, ImageSource> images = MemeService.GetAllMemeImage();
         IDictionary<double, string> titles = MemeService.GetAllMemeTitle();
 
@@ -1046,15 +1051,6 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
                     IsFavorite = false
                 });
             }
-        }
-
-        foreach (var item in items)
-        {
-            if (item.ControlIcon is FontImageSource fontImageSource)
-            {
-                fontImageSource.Color = Microsoft.Maui.Graphics.Color.FromRgba("#1e1e1e");
-            }
-            ControlGroupList.Add(item);
         }
         return;
     }

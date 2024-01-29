@@ -4,11 +4,18 @@
           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
           xmlns:app="clr-namespace:MAUIsland"
           x:DataType="app:SearchBarPageViewModel"
-          x:Name="Root">
+          x:Name="Root"
+          HeightRequest="400">
+    <ListView.Resources>
+        <Style x:Key="ReverseTheme" TargetType="Label">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={x:Static app:AppColors.White}, Dark={x:Static app:AppColors.Black}}" />
+        </Style>
+    </ListView.Resources>
     <ListView.ItemTemplate>
         <DataTemplate x:DataType="app:IGalleryCardInfo">
             <ViewCell>
-                <Border Padding="5" Margin="0,5,0,5">
+                <Border Padding="5"
+                        BackgroundColor="{x:Static app:AppColors.BlackGrey}">
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="5" />
                     </Border.StrokeShape>
@@ -22,14 +29,15 @@
                                LineBreakMode="TailTruncation"
                                FontSize="14"
                                Text="{x:Binding ControlName}"
-                               VerticalTextAlignment="Center"/>
+                               VerticalTextAlignment="Center" 
+                               Style="{x:StaticResource ReverseTheme}"/>
                         <Label Grid.Column="2"
                                FontAttributes="Italic"
                                LineBreakMode="TailTruncation"
                                FontSize="12"
+                               VerticalTextAlignment="Center"
                                Text="{x:Binding ControlDetail}"
-                               VerticalTextAlignment="Center">
-                        </Label>
+                               Style="{x:StaticResource ReverseTheme}"/>
                     </Grid>
                 </Border>
             </ViewCell>
