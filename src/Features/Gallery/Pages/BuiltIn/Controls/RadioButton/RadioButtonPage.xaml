@@ -200,42 +200,44 @@
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Padding="10">
+                <VerticalStackLayout Padding="10" Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Basic radio button" />
-                    <Label Text="What's your favorite pet?" />
-                    <!--Without GroupName-->
-                    <HorizontalStackLayout Padding="5">
-                        <RadioButton Content="Cat" IsChecked="True" />
-                        <RadioButton Content="Dog" />
-                        <RadioButton Content="Fish" />
-                        <RadioButton Content="Bird" />
-                    </HorizontalStackLayout>
-                    <Label Text="What's your favorite mode of transport?" />
-                    <!--With GroupName-->
-                    <HorizontalStackLayout Padding="5">
-                        <RadioButton GroupName="Transport" Content="Car" IsChecked="True"/>
-                        <RadioButton GroupName="Transport" Content="Bike" />
-                        <RadioButton GroupName="Transport" Content="Motocrycle" />
-                    </HorizontalStackLayout>
-                    <HorizontalStackLayout Padding="5">
-                        <RadioButton GroupName="Transport" Content="Bus" />
-                        <RadioButton GroupName="Transport" Content="Train" />
-                        <RadioButton GroupName="Transport" Content="Walking" />
-                    </HorizontalStackLayout>
-                    <Label Text="What's your favorite type of music?" />
-                    <!--With GroupName in parent-->
-                    <HorizontalStackLayout RadioButtonGroup.GroupName="Transport" Padding="5">
-                        <RadioButton Content="Rock" IsChecked="True"/>
-                        <RadioButton Content="Pop" />
-                        <RadioButton Content="Jazz" />
-                    </HorizontalStackLayout>
-                    <HorizontalStackLayout RadioButtonGroup.GroupName="Transport" Padding="5">
-                        <RadioButton Content="Classical" />
-                        <RadioButton Content="Country" />
-                        <RadioButton Content="Hip Hop" />
-                    </HorizontalStackLayout>
                     <CollectionView ItemsSource="{x:StaticResource RadioButtonExplanation}"
                                     Style="{x:StaticResource PropertiesListStyle}" />
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="What's your favorite pet?" />
+                        <!--Without GroupName-->
+                        <HorizontalStackLayout>
+                            <RadioButton Content="Cat" IsChecked="True" />
+                            <RadioButton Content="Dog" />
+                            <RadioButton Content="Fish" />
+                            <RadioButton Content="Bird" />
+                        </HorizontalStackLayout>
+                        <Label Text="What's your favorite mode of transport?" />
+                        <!--With GroupName-->
+                        <HorizontalStackLayout>
+                            <RadioButton GroupName="Transport" Content="Car" IsChecked="True"/>
+                            <RadioButton GroupName="Transport" Content="Bike" />
+                            <RadioButton GroupName="Transport" Content="Motocrycle" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout>
+                            <RadioButton GroupName="Transport" Content="Bus" />
+                            <RadioButton GroupName="Transport" Content="Train" />
+                            <RadioButton GroupName="Transport" Content="Walking" />
+                        </HorizontalStackLayout>
+                        <Label Text="What's your favorite type of music?" />
+                        <!--With GroupName in parent-->
+                        <HorizontalStackLayout RadioButtonGroup.GroupName="Transport">
+                            <RadioButton Content="Rock" IsChecked="True"/>
+                            <RadioButton Content="Pop" />
+                            <RadioButton Content="Jazz" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout RadioButtonGroup.GroupName="Transport">
+                            <RadioButton Content="Classical" />
+                            <RadioButton Content="Country" />
+                            <RadioButton Content="Hip Hop" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
                 </VerticalStackLayout>
             </Frame>
 
