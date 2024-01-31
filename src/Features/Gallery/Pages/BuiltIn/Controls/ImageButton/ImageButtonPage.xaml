@@ -107,32 +107,34 @@
                         <ImageButton CornerRadius="5"
                                      HeightRequest="50"
                                      VerticalOptions="Center"
-                                     Source="androidlogo.png"   
-                                     Clicked="ImageButtonClicked"
+                                     Source="androidlogo.png"
+                                     Pressed="OnButtonPressed"
+                                     Released="OnButtonReleased"
                                      Padding="5"/>
                         <ImageButton CornerRadius="5"
                                      HeightRequest="50"
                                      VerticalOptions="Center"
-                                     Source="tizenlogo.png"   
-                                     Clicked="ImageButtonClicked"
+                                     Source="tizenlogo.png"
+                                     Pressed="OnButtonPressed"
+                                     Released="OnButtonReleased"
                                      Padding="5"/>
                         <ImageButton CornerRadius="5"
                                      HeightRequest="50"
                                      VerticalOptions="Center"
-                                     Source="windowslogo.png"   
-                                     Clicked="ImageButtonClicked"
+                                     Source="windowslogo.png"
+                                     Pressed="OnButtonPressed"
+                                     Released="OnButtonReleased"
                                      Padding="5"/>
                         <ImageButton CornerRadius="5"
                                      HeightRequest="50"
                                      VerticalOptions="Center"
-                                     Source="ioslogo.png"   
-                                     Clicked="ImageButtonClicked"
+                                     Source="ioslogo.png"
+                                     Pressed="OnButtonPressed"
+                                     Released="OnButtonReleased"
                                      Padding="5"/>
                     </HorizontalStackLayout>
-                    <Label Text="This is basic CollectionView" />
-                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding }" />
-                    <Label Text="Here for the DataTemplate design" />
-                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding }" />
+                    <Label Text="This is basic ImageButton XAML" />
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlBasicImageButton}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -156,11 +158,11 @@
                                    VerticalOptions="Center"/>
                         </HorizontalStackLayout>
                     </Border>
-                    
-                    <Label Text="This is basic CollectionView" />
-                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding }" />
-                    <Label Text="Here for the DataTemplate design" />
-                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding }" />
+
+                    <Label Text="This is how this ImageButton looks like" />
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlImageButtonWithEventHandler}" />
+                    <Label Text="Here for the ImageButton EventHandler" />
+                    <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpImageButtonWithEventHandlerCodeBehind}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -171,7 +173,6 @@
                     <HorizontalStackLayout Spacing="10">
                         <ImageButton CornerRadius="10"
                                      HeightRequest="50"
-                                     HorizontalOptions="Center"
                                      VerticalOptions="Center"
                                      Source="androidlogo.png"
                                      Command="{x:Binding ClickedCountCommand}"/>
@@ -184,10 +185,10 @@
                             </Label.FormattedText>
                         </Label>
                     </HorizontalStackLayout>
-                    <Label Text="This is basic CollectionView" />
-                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding }" />
-                    <Label Text="Here for the DataTemplate design" />
-                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding }" />
+                    <Label Text="This is ImageButton with Command code" />
+                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlImageButtonWithCommand}" />
+                    <Label Text="Here for the ViewModel" />
+                    <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpImageButtonWithCommandViewModel}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -211,10 +212,6 @@
                     <Slider x:Name="ScaleSlider"
                             Maximum="1.5"
                             Minimum="0.1" />
-                    <Label Text="This is basic CollectionView" />
-                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding }" />
-                    <Label Text="Here for the DataTemplate design" />
-                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding }" />
                 </VerticalStackLayout>
             </Frame>
             
