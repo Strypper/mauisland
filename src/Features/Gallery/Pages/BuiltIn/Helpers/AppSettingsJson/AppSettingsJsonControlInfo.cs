@@ -1,4 +1,4 @@
-namespace MAUIsland.Gallery.BuiltIn;
+namespace MAUIsland.Features.Gallery.Pages.BuiltIn.Helpers.AppSettingsJson;
 class AppSettingsJsonControlInfo : IBuiltInGalleryCardInfo
 {
     public string ControlName => "Application Settings JSON";
@@ -10,7 +10,7 @@ class AppSettingsJsonControlInfo : IBuiltInGalleryCardInfo
         Glyph = FluentUIIcon.Ic_fluent_braces_24_regular
     };
     public string ControlDetail => "Use appsettings.json inside your application thanks to MauiAppBuilder, we can use the ConfigurationManager that is built into configure settings in our .NET MAUI app";
-    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/BuiltIn/AppSettingsJson";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/blob/main/src/Features/Gallery/Pages/BuiltIn/Helpers/AppSettingsJson";
     public string DocumentUrl => $"https://montemagno.com/dotnet-maui-appsettings-json-configuration/";
     public string GroupName => ControlGroupInfo.BuiltInControls;
     public BuiltInGalleryCardStatus Status => BuiltInGalleryCardStatus.Unverified;

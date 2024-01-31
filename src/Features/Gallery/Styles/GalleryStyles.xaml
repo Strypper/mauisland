@@ -55,6 +55,10 @@
         <Setter Property="TextDecorations" Value="Underline" />
     </Style>
 
+    <Style x:Key="ReverseTheme" TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={x:Static app:AppColors.White}, Dark={x:Static app:AppColors.Black}}" />
+    </Style>
+
     <DataTemplate x:Key="BulletListItemTemplate" x:DataType="x:String">
         <Grid ColumnDefinitions="10 , *">
             <Ellipse

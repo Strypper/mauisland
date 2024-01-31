@@ -11,7 +11,7 @@ class RefreshViewControlInfo : IBuiltInGalleryCardInfo
         Glyph = FluentUIIcon.Ic_fluent_arrow_sync_24_regular
     };
     public string ControlDetail => "RefreshView is a container control that provides pull to refresh functionality for scrollable content.";
-    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/BuiltIn/{ControlName}";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/blob/main/src/Features/Gallery/Pages/BuiltIn/Controls{ControlName}";
     public string DocumentUrl => $"https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/{ControlName}/?view=net-maui-7.0";
     public string GroupName => ControlGroupInfo.BuiltInControls;
     public BuiltInGalleryCardStatus Status => BuiltInGalleryCardStatus.Unverified;

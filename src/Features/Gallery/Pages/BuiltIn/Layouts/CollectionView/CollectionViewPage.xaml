@@ -23,10 +23,6 @@
     </app:BasePage.ToolbarItems>
 
     <app:BasePage.Resources>
-        <Style x:Key="ReverseTheme" TargetType="Label">
-            <Setter Property="TextColor" Value="{AppThemeBinding Light={x:Static app:AppColors.White}, Dark={x:Static app:AppColors.Black}}" />
-        </Style>
-
         <x:String x:Key="ControlInfo">
             Collection View is a view for presenting lists of data using different layout specifications. It aims to provide a more flexible, and performant alternative to ListView.
         </x:String>
@@ -253,317 +249,56 @@
 
         <DataTemplate x:Key="MrIncreadibleItemTemplate" 
                       x:DataType="app:MrIncreadible">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
-                   Margin="5" WidthRequest="400">
-                <Grid x:DataType="app:MrIncreadible"
-                      ColumnDefinitions="0.1*, 0.2*, 0.8*"
-                      ColumnSpacing="5">
-                    <Label Grid.Column="0"
-                           FontAttributes="Bold"
-                           Text="{x:Binding Age}"
-                           VerticalOptions="Center"/>
-                    <toolkit:AvatarView Grid.Column="1" 
-                                        HeightRequest="50"
-                                        WidthRequest="50"
-                                        ImageSource="{x:Binding Image, Mode=OneWay}"/>
-                    <Label Grid.Column="2"
-                           FontAttributes="Italic"
-                           Text="{x:Binding Title}"
-                           VerticalOptions="Center"/>
-                </Grid>
-            </Frame>
+            <app:MrIncreadibleItemTemplateContentView ComponentData="{x:Binding}"/>
         </DataTemplate>
 
         <DataTemplate x:Key="MrIncreadibleItemVerticalTemplate" 
                       x:DataType="app:MrIncreadible">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
-                   Margin="5">
-                <Grid x:DataType="app:MrIncreadible"
-                      ColumnDefinitions="0.1*, 0.2*, 0.7*"
-                      ColumnSpacing="2">
-                    <Label Grid.Column="0"
-                           FontAttributes="Bold"
-                           Text="{x:Binding Age}"
-                           VerticalOptions="Center"/>
-                    <toolkit:AvatarView Grid.Column="1" 
-                                        HeightRequest="40"
-                                        WidthRequest="40"
-                                        ImageSource="{x:Binding Image, Mode=OneWay}"/>
-                    <Label Grid.Column="2"
-                           FontAttributes="Italic"
-                           Text="{x:Binding Title}"
-                           VerticalOptions="Center"/>
-                </Grid>
-            </Frame>
+            <app:MrIncreadibleItemVerticalTemplateContentView ComponentData="{x:Binding}"/>
         </DataTemplate>
 
         <DataTemplate x:Key="MrIncreadibleItemHorizontalTemplate" 
                       x:DataType="app:MrIncreadible">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
-                   Margin="5" WidthRequest="300">
-                <Grid x:DataType="app:MrIncreadible"
-                      ColumnDefinitions="0.2*, 0.2*, 0.6*"
-                      ColumnSpacing="2">
-                    <Label Grid.Column="0"
-                           FontAttributes="Bold"
-                           Text="{x:Binding Age}"
-                           VerticalOptions="Center"/>
-                    <toolkit:AvatarView Grid.Column="1" 
-                                        HeightRequest="50"
-                                        WidthRequest="50"
-                                        ImageSource="{x:Binding Image, Mode=OneWay}"/>
-                    <Label Grid.Column="2"
-                           FontAttributes="Italic"
-                           Text="{x:Binding Title}"
-                           VerticalOptions="Center"/>
-                </Grid>
-            </Frame>
+            <app:MrIncreadibleItemHorizontalTemplateContentView ComponentData="{x:Binding}"/>
         </DataTemplate>
 
         <DataTemplate x:Key="MrIncreadibleItemVerticalSpan2Template" 
                       x:DataType="app:MrIncreadible">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
-                   Margin="5">
-                <Grid x:DataType="app:MrIncreadible"
-                      ColumnDefinitions="0.1*, 0.2*, 0.7*"
-                      WidthRequest="200"
-                      ColumnSpacing="2"
-                      Padding="10"
-                      Margin="5">
-                    <Label Grid.Column="0"
-                           FontAttributes="Bold"
-                           Text="{x:Binding Age}"
-                           VerticalOptions="Center"/>
-                    <toolkit:AvatarView Grid.Column="1" 
-                                        HeightRequest="40"
-                                        WidthRequest="40"
-                                        ImageSource="{x:Binding Image, Mode=OneWay}"/>
-                    <Label Grid.Column="2"
-                           FontAttributes="Italic"
-                           Text="{x:Binding Title}"
-                           VerticalOptions="Center"/>
-                </Grid>
-            </Frame>
+            <app:MrIncreadibleItemVerticalSpan2TemplateContentView ComponentData="{x:Binding}"/>
         </DataTemplate>
 
         <DataTemplate x:Key="MrIncreadibleCollectionTemplateWithSwipe">
-            <SwipeView Margin="5" WidthRequest="400">
-                <SwipeView.LeftItems>
-                    <SwipeItems>
-                        <SwipeItem BackgroundColor="{x:Static app:AppColors.Green}" 
-                                   Command="{x:Binding Path=BindingContext.CollectionSwipeViewFavoriteCommand, 
-                                                       Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
-                                   CommandParameter="{x:Binding}"
-                                   IconImageSource="{x:Static app:FluentUIIcon.Ic_fluent_heart_24_regular}"
-                                   Text="Favorite" />
-                        <SwipeItem BackgroundColor="{x:Static app:AppColors.LightBlue}"
-                                   Command="{x:Binding Path=BindingContext.CollectionSwipeViewDeleteCommand, 
-                                                       Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
-                                   CommandParameter="{x:Binding}"
-                                   IconImageSource="{x:Static app:FluentUIIcon.Ic_fluent_delete_24_regular}"
-                                   Text="Delete" />
-                    </SwipeItems>
-                </SwipeView.LeftItems>
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                    <Grid x:DataType="app:MrIncreadible"
-                          ColumnDefinitions="0.1*, 0.2*, 0.6*">
-                        <Label Grid.Column="0"
-                               FontAttributes="Bold"
-                               Text="{x:Binding Age}"
-                               VerticalOptions="Center"/>
-                        <toolkit:AvatarView Grid.Column="1" 
-                                            HeightRequest="50"
-                                            WidthRequest="50"
-                                            ImageSource="{x:Binding Image, Mode=OneWay}"
-                                            Text="{x:Binding Age, Mode=OneWay}"/>
-                        <Label Grid.Column="2"
-                               FontAttributes="Italic"
-                               Text="{x:Binding Title}"
-                               VerticalOptions="Center"/>
-                    </Grid>
-                </Frame>
-            </SwipeView>
+            <app:MrIncreadibleCollectionTemplateWithSwipeContentView ComponentData="{x:Binding}"/>
         </DataTemplate>
 
         <DataTemplate x:Key="ControllInfoCollectionTemplate" 
                       x:DataType="app:IGalleryCardInfo">
-            <Border Padding="5"
-                    BackgroundColor="{x:Static app:AppColors.BlackGrey}">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="5" />
-                </Border.StrokeShape>
-                <Grid ColumnDefinitions="0.2*, 0.2*, 0.6*" 
-                      HeightRequest="40">
-                    <Image Grid.Column="0"
-                           Source="{x:Binding ControlIcon}"
-                           VerticalOptions="Center"/>
-                    <Label Grid.Column="1"
-                           FontAttributes="Bold"
-                           LineBreakMode="TailTruncation"
-                           FontSize="14"
-                           Text="{x:Binding ControlName}"
-                           VerticalTextAlignment="Center" 
-                           Style="{x:StaticResource ReverseTheme}"/>
-                    <Label Grid.Column="2"
-                           FontAttributes="Italic"
-                           LineBreakMode="TailTruncation"
-                           FontSize="12"
-                           VerticalTextAlignment="Center"
-                           Text="{x:Binding ControlDetail}"
-                           Style="{x:StaticResource ReverseTheme}"/>
-                </Grid>
-            </Border>
+            <app:ControllInfoCollectionTemplateContentView ComponentData="{x:Binding}"/>
         </DataTemplate>
 
         <DataTemplate x:Key="ControllInfoCollectionTwoItemRowTemplate" 
                       x:DataType="app:IGalleryCardInfo">
-            <Border Padding="5"
-                    BackgroundColor="{x:Static app:AppColors.BlackGrey}">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="5" />
-                </Border.StrokeShape>
-                <Grid ColumnDefinitions="0.2*, 0.8*"
-                      RowDefinitions="0.3*, 0.7*"
-                      HeightRequest="100">
-                    <Image Grid.Column="0"
-                           Grid.Row="0"
-                           Source="{x:Binding ControlIcon}"
-                           VerticalOptions="Center"/>
-                    <Label Grid.Column="1"
-                           Grid.Row="0"
-                           FontAttributes="Bold"
-                           LineBreakMode="TailTruncation"
-                           FontSize="14"
-                           VerticalTextAlignment="Center" 
-                           HorizontalOptions="Center"
-                           Text="{x:Binding ControlName}"
-                           Style="{x:StaticResource ReverseTheme}"/>
-                    <Border Padding="2"
-                            Grid.Column="0"
-                            Grid.Row="1"
-                            Grid.ColumnSpan="2"
-                            BackgroundColor="{x:Static app:AppColors.BlackGrey}">
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="5" />
-                        </Border.StrokeShape>
-                        <Label FontAttributes="Italic"
-                               FontSize="12"
-                               Background="{x:Static app:AppColors.BlackGrey}"
-                               Text="{x:Binding ControlDetail}"
-                               Style="{x:StaticResource ReverseTheme}"/>
-                    </Border>
-                </Grid>
-            </Border>
+            <app:ControllInfoCollectionTwoItemRowTemplateContentView ComponentData="{x:Binding}"/>
         </DataTemplate>
 
         <DataTemplate x:Key="ControllInfoCollectionThreeItemRowTemplate" 
                       x:DataType="app:IGalleryCardInfo">
-            <Border Padding="5"
-                    BackgroundColor="{x:Static app:AppColors.BlackGrey}">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="5" />
-                </Border.StrokeShape>
-                <Grid ColumnDefinitions="0.2*, 0.8*" 
-                      HeightRequest="60">
-                    <Image Grid.Column="0"
-                           Source="{x:Binding ControlIcon}"
-                           VerticalOptions="Center"/>
-                    <Label Grid.Column="1"
-                           FontAttributes="Bold"
-                           LineBreakMode="TailTruncation"
-                           FontSize="14"
-                           VerticalTextAlignment="Center" 
-                           HorizontalOptions="Center"
-                           Text="{x:Binding ControlName}"
-                           Style="{x:StaticResource ReverseTheme}"/>
-                </Grid>
-            </Border>
+            <app:ControllInfoCollectionThreeItemRowTemplateContentView ComponentData="{x:Binding}"/>
         </DataTemplate>
 
         <DataTemplate x:Key="ControllInfoCollectionFourItemRowTemplate" 
                       x:DataType="app:IGalleryCardInfo">
-            <Border Padding="5"
-                    BackgroundColor="{x:Static app:AppColors.BlackGrey}">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="5" />
-                </Border.StrokeShape>
-                <Grid RowDefinitions="0.4*, 0.6*" 
-                      HeightRequest="60">
-                    <Image Grid.Row="0"
-                           Source="{x:Binding ControlIcon}"
-                           VerticalOptions="Center"/>
-                    <Label Grid.Row="1"
-                           FontAttributes="Bold"
-                           LineBreakMode="TailTruncation"
-                           FontSize="14"
-                           VerticalTextAlignment="Center" 
-                           HorizontalOptions="Center"
-                           Text="{x:Binding ControlName}"
-                           Style="{x:StaticResource ReverseTheme}"/>
-                </Grid>
-            </Border>
+            <app:ControllInfoCollectionFourItemRowTemplateContentView ComponentData="{x:Binding}"/>
         </DataTemplate>
 
         <DataTemplate x:Key="NormalItemTemplate" 
                       x:DataType="app:IGalleryCardInfo">
-            <Border Padding="5"
-                    BackgroundColor="{x:Static app:AppColors.BlackGrey}"
-                    Margin="5">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="5" />
-                </Border.StrokeShape>
-                <Grid ColumnDefinitions="0.2*, 0.2*, 0.6*" 
-                      HeightRequest="40">
-                    <Image Grid.Column="0"
-                           Source="{x:Binding ControlIcon}"
-                           VerticalOptions="Center"/>
-                    <Label Grid.Column="1"
-                           FontAttributes="Bold"
-                           LineBreakMode="TailTruncation"
-                           FontSize="14"
-                           Text="{x:Binding ControlName}"
-                           VerticalTextAlignment="Center" 
-                           Style="{x:StaticResource ReverseTheme}"/>
-                    <Label Grid.Column="2"
-                           FontAttributes="Italic"
-                           LineBreakMode="TailTruncation"
-                           FontSize="12"
-                           VerticalTextAlignment="Center"
-                           Text="{x:Binding ControlDetail}"
-                           Style="{x:StaticResource ReverseTheme}"/>
-                </Grid>
-            </Border>
+            <app:NormalItemTemplateContentView ComponentData="{x:Binding}"/>
         </DataTemplate>
 
         <DataTemplate x:Key="SelectedItemTemplate" 
                       x:DataType="app:IGalleryCardInfo">
-            <Border Padding="10"
-                    BackgroundColor="{x:Static app:AppColors.MauilandPrimary}"
-                    Margin="5">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="5" />
-                </Border.StrokeShape>
-                <Grid ColumnDefinitions="0.2*, 0.2*, 0.6*" 
-                      HeightRequest="60">
-                    <Image Grid.Column="0"
-                           Source="{x:Binding ControlIcon}"
-                           VerticalOptions="Center"/>
-                    <Label Grid.Column="1"
-                           FontAttributes="Bold"
-                           LineBreakMode="TailTruncation"
-                           FontSize="16"
-                           Text="{x:Binding ControlName}"
-                           VerticalTextAlignment="Center" 
-                           Style="{x:StaticResource ReverseTheme}"/>
-                    <Label Grid.Column="2"
-                           FontAttributes="Italic"
-                           LineBreakMode="TailTruncation"
-                           FontSize="14"
-                           VerticalTextAlignment="Center"
-                           Text="{x:Binding ControlDetail}"
-                           Style="{x:StaticResource ReverseTheme}"/>
-                </Grid>
-            </Border>
+            <app:SelectedItemTemplateContentView ComponentData="{x:Binding}"/>
         </DataTemplate>
 
         <app:TemplateSelector x:Key="TemplateSelector"

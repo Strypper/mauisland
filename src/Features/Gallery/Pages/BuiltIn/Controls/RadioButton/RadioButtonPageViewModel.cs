@@ -41,7 +41,7 @@ public partial class RadioButtonPageViewModel : NavigationAwareBaseViewModel
         "   <RadioButton GroupName=\"Transport\" Content=\"Walking\" />\r\n" +
         "</HorizontalStackLayout>\r\n" +
         "<!--With GroupName in parent-->\r\n" +
-        "<HorizontalStackLayout RadioButtonGroup.GroupName=\"Transport\" Padding=\"5\">\r\n" +
+        "<HorizontalStackLayout RadioButtonGroup.GroupName=\"Transport\">\r\n" +
         "   <RadioButton Content=\"Rock\" IsChecked=\"True\"/>\r\n" +
         "   <RadioButton Content=\"Pop\" />\r\n" +
         "   <RadioButton Content=\"Jazz\" />\r\n" +

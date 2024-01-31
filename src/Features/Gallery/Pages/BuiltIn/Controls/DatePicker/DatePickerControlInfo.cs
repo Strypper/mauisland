@@ -11,7 +11,7 @@ class DatePickerControlInfo : IBuiltInGalleryCardInfo
         Glyph = FluentUIIcon.Ic_fluent_calendar_ltr_24_regular
     };
     public string ControlDetail => "DatePicker invokes the platform's date-picker control and allows you to select a date.";
-    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/BuiltIn/{ControlName}";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/blob/main/src/Features/Gallery/Pages/BuiltIn/Controls{ControlName}";
     public string DocumentUrl => $"https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/{ControlName}/?view=net-maui-7.0";
     public string GroupName => ControlGroupInfo.BuiltInControls;
     public BuiltInGalleryCardStatus Status => BuiltInGalleryCardStatus.Stable;

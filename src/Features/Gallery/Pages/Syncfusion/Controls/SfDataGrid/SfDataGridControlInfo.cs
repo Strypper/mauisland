@@ -12,7 +12,7 @@ class SfDataGridControlInfo : IGalleryCardInfo
         Glyph = FluentUIIcon.Ic_fluent_table_24_regular
     };
     public string ControlDetail => "The .NET MAUI DataGrid control is used to display and manipulate data in a tabular view. It was built from the ground up to achieve the best possible performance, even when loading large amounts of data.";
-    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/BuiltIn/{ControlName}";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/blob/main/src/Features/Gallery/Pages/Syncfusion/Controls/{ControlName}";
     public string DocumentUrl => $"https://help.syncfusion.com/maui/datagrid/overview";
     public string GroupName => ControlGroupInfo.SyncfusionControls;
     public GalleryCardType CardType => GalleryCardType.Control;

@@ -85,7 +85,8 @@
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a Frame" />
                     <Label Text="A Frame object typically wraps another control, such as a Label:" />
                     <Frame>
-                        <Label Text="Frame wrapped around a Label" />
+                        <Label Text="Frame wrapped around a Label" 
+                               TextColor="White"/>
                     </Frame>
                     <app:SourceCodeExpander Code="{x:Binding StandardCreateFrameXamlCode}" />
                 </VerticalStackLayout>
@@ -94,10 +95,9 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
                     <Label Text="The appearance of Frame objects can be customized by setting properties:" />
-                    <Frame
-                        BackgroundColor="DimGrey"
-                        BorderColor="Grey"
-                        CornerRadius="10">
+                    <Frame BackgroundColor="DimGrey"
+                           BorderColor="Grey"
+                           CornerRadius="10">
                         <Label Text="Frame wrapped around a Label" />
                     </Frame>
                     <app:SourceCodeExpander Code="{x:Binding CreateTheSecondFrameXamlCode}" />
@@ -108,19 +108,17 @@
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a card with a Frame" />
                     <Label Text="The following XAML shows how to create a card with a Frame:" />
-                    <Frame
-                        Padding="10"
-                        BorderColor="Gray"
-                        CornerRadius="8">
+                    <Frame Padding="10"
+                           BorderColor="Gray"
+                           BackgroundColor="White"
+                           CornerRadius="8">
                         <StackLayout>
-                            <Label
-                                FontAttributes="Bold"
-                                FontSize="14"
-                                Text="Card Example" />
-                            <BoxView
-                                HeightRequest="2"
-                                HorizontalOptions="Fill"
-                                Color="Gray" />
+                            <Label FontAttributes="Bold"
+                                   FontSize="14"
+                                   Text="Card Example" />
+                            <BoxView HeightRequest="2"
+                                     HorizontalOptions="Fill"
+                                     Color="Gray" />
                             <Label Text="Frames can wrap more complex layouts to create more complex UI components, such as this card!" />
                         </StackLayout>
                     </Frame>
@@ -132,21 +130,19 @@
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Round elements" />
                     <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource2}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <Frame
-                        Margin="10"
-                        BorderColor="Black"
-                        CornerRadius="50"
-                        HeightRequest="60"
-                        HorizontalOptions="Center"
-                        IsClippedToBounds="True"
-                        VerticalOptions="Center"
-                        WidthRequest="60">
-                        <Image
-                            Margin="-20"
-                            Aspect="AspectFill"
-                            HeightRequest="100"
-                            Source="outdoors.jpg"
-                            WidthRequest="100" />
+                    <Frame BorderColor="Black"
+                           Padding="20"
+                           CornerRadius="60"
+                           HeightRequest="120"
+                           WidthRequest="120"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           IsClippedToBounds="True">
+                        <Image VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               HeightRequest="80"
+                               WidthRequest="80"
+                               Source="{x:Binding ControlInformation.ControlIcon}" />
                     </Frame>
                     <app:SourceCodeExpander Code="{x:Binding RoundElementsXamlCode}" />
                 </VerticalStackLayout>
