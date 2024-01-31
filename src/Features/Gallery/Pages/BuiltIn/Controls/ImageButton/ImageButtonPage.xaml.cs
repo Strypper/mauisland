@@ -2,35 +2,35 @@ namespace MAUIsland;
 
 public partial class ImageButtonPage : IGalleryPage
 {
+    private bool isPressed = true;
     public ImageButtonPage(ImageButtonPageViewModel vm)
     {
         InitializeComponent();
 
         BindingContext = vm;
+
     }
 
-    private void BasePage_SizeChanged(object sender, EventArgs e)
+    private void ImageButtonClicked(object sender, EventArgs e)
     {
-        if (Window is not null)
+        var imageButton = sender as ImageButton;
+        imageButton.Pressed += (s, e) => imageButton.BackgroundColor = Colors.DarkGray;
+        imageButton.Released += (s, e) => imageButton.BackgroundColor = Colors.White;
+    }
+
+    private void ImageButtonEventHandlerClicked(object sender, EventArgs e)
+    {
+        if (isPressed)
         {
-            if (Window.Width < 500)
-            {
-                rootGrid.SetColumnSpan(DocumentStack, 2);
-                SidePanel.IsVisible = false;
-                return;
-            }
-            else if (Window.Width < 900)
-            {
-                rootGrid.SetColumnSpan(DocumentStack, 2);
-                SidePanel.IsVisible = false;
-                return;
-            }
-            else if (Window.Width < 2000)
-            {
-                rootGrid.SetColumnSpan(DocumentStack, 1);
-                SidePanel.IsVisible = true;
-                return;
-            }
+            ImageButtonWithEvent.BackgroundColor = Colors.Blue;
+            ImageButtonWithEventLabel.TextColor = Colors.White;
+            isPressed = false;
+        }
+        else
+        {
+            ImageButtonWithEvent.BackgroundColor = Colors.DarkGray;
+            ImageButtonWithEventLabel.TextColor = Colors.Black;
+            isPressed = true;
         }
     }
 }

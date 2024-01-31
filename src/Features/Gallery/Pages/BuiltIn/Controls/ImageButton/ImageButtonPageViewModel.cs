@@ -16,15 +16,17 @@ public partial class ImageButtonPageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [Properties]
-
-
     [ObservableProperty]
     IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
     ImageSource imageSourceSample;
 
+    [ObservableProperty]
+    string imageButtonClickedCheck = "No Image To Click";
 
+    [ObservableProperty]
+    int imageButtonClickCount;
     #endregion
 
     #region [Overrides]
@@ -52,8 +54,19 @@ public partial class ImageButtonPageViewModel : NavigationAwareBaseViewModel
         ImageSourceSample = ImageSource.FromStream(() =>
             filePicker.ByteArrayToStream(filePicker.StringToByteBase64(imagefile?.byteBase64))
         );
+        ImageButtonClickedCheck = "Image Loaded";
     }
 
+    [RelayCommand]
+    void ClickedCheck()
+    {
+        ImageButtonClickedCheck = "You Clicked the Image";
+    }
 
+    [RelayCommand]
+    void ClickedCount()
+    {
+        ImageButtonClickCount += 1;
+    }
     #endregion
 }
