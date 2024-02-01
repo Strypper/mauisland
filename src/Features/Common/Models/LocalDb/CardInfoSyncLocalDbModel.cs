@@ -2,6 +2,7 @@
 
 namespace MAUIsland;
 
+[Table($"CardInfoSync")]
 public class CardInfoSyncLocalDbModel : BaseLocalEntity
 {
 

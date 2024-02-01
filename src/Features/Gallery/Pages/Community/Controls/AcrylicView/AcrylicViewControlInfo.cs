@@ -4,14 +4,18 @@ namespace MAUIsland;
 class AcrylicViewControlInfo : IGithubGalleryCardInfo
 {
     private readonly Repository repository;
+    private readonly IRepositorySyncService _repositorySyncService;
 
-    public AcrylicViewControlInfo()
+    public AcrylicViewControlInfo(IRepositorySyncService repositorySyncService)
     {
+        _repositorySyncService = repositorySyncService;
+
         var owner = "sswi";
         var repo = "AcrylicView.MAUI";
 
-        var github = new GitHubClient(new ProductHeaderValue("AcrylicView.MAUI"));
-        repository = github.Repository.Get(owner, repo).Result;
+        //var github = new GitHubClient(new ProductHeaderValue("AcrylicView.MAUI"));
+        //repository = github.Repository.Get(owner, repo).Result;
+        repository = _repositorySyncService.GetRepositoryAsync(owner, repo).Result;
     }
 
     public string ControlName => repository.Name;

@@ -128,7 +128,8 @@ public static class MauiProgram
 
         //Register local database
         builder.Services.AddTransient<ICardInfoSyncService, CardInfoSyncService>();
-        builder.Services.AddTransient<ILocalControlService, LocalControlService>();
+        builder.Services.AddTransient<IRepositorySyncService, RepositorySyncService>();
+        //builder.Services.AddTransient<ILocalControlService, LocalControlService>();
         return builder;
     }
 

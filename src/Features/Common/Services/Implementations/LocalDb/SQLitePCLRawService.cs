@@ -9,7 +9,8 @@ public class SQLitePCLRawService<T> : ILocalDbService<T> where T : BaseLocalEnti
 
     public SQLitePCLRawService()
     {
-        _connection = new SQLiteAsyncConnection(Path.Combine(FileSystem.AppDataDirectory, DbName));
+        var config = Path.Combine(FileSystem.AppDataDirectory, DbName);
+        _connection = new SQLiteAsyncConnection(config);
         _connection.CreateTableAsync<T>().Wait();
     }
 
