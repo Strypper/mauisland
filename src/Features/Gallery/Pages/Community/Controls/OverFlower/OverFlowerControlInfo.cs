@@ -3,16 +3,22 @@ using Octokit;
 namespace MAUIsland.Gallery.Community;
 class OverFlowerControlInfo : IGithubGalleryCardInfo
 {
-
     private readonly Repository repository;
+    private readonly IRepositorySyncService _repositorySyncService;
 
-    public OverFlowerControlInfo()
+    public OverFlowerControlInfo(IRepositorySyncService repositorySyncService)
     {
-        var owner = "nor0x";
-        var repo = "OverFlower";
+        _repositorySyncService = repositorySyncService;
 
-        var github = new GitHubClient(new ProductHeaderValue(nameof(OverFlower)));
-        repository = github.Repository.Get(owner, repo).Result;
+        var owner = "nor0x";
+        var repoName = "OverFlower";
+
+        var syncedRepo = Task.Run(async () => {
+            var repo = await _repositorySyncService.GetRepositoryAsync(owner, repoName);
+            return repo;
+        }).ConfigureAwait(false).GetAwaiter().GetResult();
+
+        repository = syncedRepo;
     }
 
     public string ControlName => repository.Name;

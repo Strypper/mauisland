@@ -44,7 +44,7 @@ public static class SyncRepositoryExtension
             .RuleFor(x => x.ForksCount, repo.ForksCount)
             .RuleFor(x => x.StargazersCount, repo.StargazersCount)
             .RuleFor(x => x.OpenIssuesCount, repo.OpenIssuesCount)
-            .RuleFor(x => x.LicenseName, repo.License.Name)
+            .RuleFor(x => x.LicenseName, repo.License is null ? string.Empty : repo.License.Name)
             .RuleFor(x => x.UpdatedAt, repo.UpdatedAt);
 
         return repoModel.Generate();

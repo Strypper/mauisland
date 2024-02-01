@@ -15,32 +15,31 @@ public class RepositorySyncService : SQLitePCLRawService<RepositoryModel>, IRepo
     #endregion
 
     #region [ Public Methods - Get Single ]
-    public async Task<Repository> GetRepositoryAsync(string ownerName, string repoName) {
+    public async Task<Repository> GetRepositoryAsync(string ownerName, string repoName, string headerValue = "") {
         try {
             // Test
             //await _cardInfoSyncService.AddAsync(new() { ApplicationLastUpdate = DateTime.UtcNow });
-
-            var lastUpdateTime = (await _cardInfoSyncService.GetAllAsync()).OrderBy(x => x.ApplicationLastUpdate).LastOrDefault();
+            var all = await _cardInfoSyncService.GetAllAsync();
+            var lastUpdateTime = all.OrderBy(x => x.ApplicationLastUpdate).LastOrDefault();
             var now = DateTime.UtcNow;
             var repository = new Repository();
 
             if (lastUpdateTime != null) {
                 // In case the time elapsed less than 1 hour => no need to call GitHub api.
                 if((now - lastUpdateTime.ApplicationLastUpdate).TotalHours < 1) {
-                    var syncRepo = (await base.GetAllAsync()).FirstOrDefault(x => x.Name.Equals(repoName, StringComparison.InvariantCultureIgnoreCase));
-                    repository = syncRepo.ToRepository();
+                    var syncedRepo = (await base.GetAllAsync()).FirstOrDefault(x => x.Name.Equals(repoName, StringComparison.InvariantCultureIgnoreCase));
+                    repository = syncedRepo.ToRepository();
                     return repository;
                 }
             }
 
             // Reach this means lastUpdateTime = null or now - lastUpdateTime > 1 hour
             var allRepos = await SyncRepositoriesAsync();
-            repository = allRepos.FirstOrDefault(x => x.Name.Equals(repoName, StringComparison.InvariantCultureIgnoreCase) &&
-                                                x.Owner.Url.Equals(ownerName, StringComparison.InvariantCultureIgnoreCase));
+            repository = allRepos.FirstOrDefault(x => x.Name.Equals(repoName, StringComparison.InvariantCultureIgnoreCase));
 
             return repository;
         }
-        catch (Exception) {
+        catch (Exception ex) {
             // This has been added with the purpose of handling errors during syncing process.
             // Currently, it does nothing :)
             return default;
@@ -52,8 +51,17 @@ public class RepositorySyncService : SQLitePCLRawService<RepositoryModel>, IRepo
     public async Task<List<Repository>> SyncRepositoriesAsync() {
         var now = DateTime.UtcNow;
         var lastUpdateTime = (await _cardInfoSyncService.GetAllAsync()).OrderBy(x => x.ApplicationLastUpdate).LastOrDefault();
-        lastUpdateTime.ApplicationLastUpdate = now;
-        await _cardInfoSyncService.UpdateAsync(lastUpdateTime);
+        if (lastUpdateTime == null) {
+            lastUpdateTime = new() {
+                ApplicationLastUpdate = now
+            };
+
+            await _cardInfoSyncService.AddAsync(lastUpdateTime);
+        }
+        else {
+            lastUpdateTime.ApplicationLastUpdate = now;
+            await _cardInfoSyncService.UpdateAsync(lastUpdateTime);
+        }
 
         var tasks = new List<Task<Repository>>() {
             SyncAcrylicViewRepoAsync(),
@@ -80,7 +88,7 @@ public class RepositorySyncService : SQLitePCLRawService<RepositoryModel>, IRepo
         var owner = "beto-rodriguez";
         var repo = "LiveCharts2";
         var headerValue = "LiveCharts2";
-        
+
         return SyncRepoAsync(owner, repo, headerValue);
     }
 
@@ -108,6 +116,7 @@ public class RepositorySyncService : SQLitePCLRawService<RepositoryModel>, IRepo
         return SyncRepoAsync(owner, repo, headerValue);
     }
 
+
     /// <summary>
     /// Get repository, update localdb and return.
     /// </summary>
@@ -120,6 +129,7 @@ public class RepositorySyncService : SQLitePCLRawService<RepositoryModel>, IRepo
             return default;
         }
 
+        var now = DateTime.UtcNow;
         var value = string.IsNullOrEmpty(repoName) ? repoName : headerValue;
         var github = new GitHubClient(new ProductHeaderValue(value));
 
@@ -127,7 +137,9 @@ public class RepositorySyncService : SQLitePCLRawService<RepositoryModel>, IRepo
 
         var newModel = repository.ToRepositoryModel();
         var oldModel = (await base.GetAllAsync()).FirstOrDefault(x => x.Name.Equals(repoName, StringComparison.InvariantCultureIgnoreCase));
-        await base.DeleteAsync(oldModel);
+        if (oldModel != null) {
+            await base.DeleteAsync(oldModel);
+        }
         await base.AddAsync(newModel);
 
         return repository;

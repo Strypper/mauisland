@@ -3,15 +3,22 @@ using Octokit;
 namespace MAUIsland;
 class ZXingNetMauIGalleryCardInfo : IGithubGalleryCardInfo
 {
-
     private readonly Repository repository;
-    public ZXingNetMauIGalleryCardInfo()
-    {
-        var owner = "Redth";
-        var repo = "ZXing.Net.Maui";
+    private readonly IRepositorySyncService _repositorySyncService;
 
-        var github = new GitHubClient(new ProductHeaderValue("ZXing.Net.Maui"));
-        repository = github.Repository.Get(owner, repo).Result;
+    public ZXingNetMauIGalleryCardInfo(IRepositorySyncService repositorySyncService)
+    {
+        _repositorySyncService = repositorySyncService;
+
+        var owner = "Redth";
+        var repoName = "ZXing.Net.Maui";
+
+        var syncedRepo = Task.Run(async () => {
+            var repo = await _repositorySyncService.GetRepositoryAsync(owner, repoName);
+            return repo;
+        }).ConfigureAwait(false).GetAwaiter().GetResult();
+
+        repository = syncedRepo;
     }
     public string ControlName => "ZXing.Net.Maui";
     public string ControlRoute => typeof(ZXingNetMauiPage).FullName;

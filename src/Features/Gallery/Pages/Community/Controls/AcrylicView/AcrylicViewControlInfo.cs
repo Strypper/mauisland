@@ -11,11 +11,15 @@ class AcrylicViewControlInfo : IGithubGalleryCardInfo
         _repositorySyncService = repositorySyncService;
 
         var owner = "sswi";
-        var repo = "AcrylicView.MAUI";
+        var repoName = "AcrylicView.MAUI";
+        var headerValue = "AcrylicView.MAUI";
 
-        //var github = new GitHubClient(new ProductHeaderValue("AcrylicView.MAUI"));
-        //repository = github.Repository.Get(owner, repo).Result;
-        repository = _repositorySyncService.GetRepositoryAsync(owner, repo).Result;
+        var syncedRepo = Task.Run(async () => {
+            var repo = await _repositorySyncService.GetRepositoryAsync(owner, repoName, headerValue);
+            return repo;
+        }).ConfigureAwait(false).GetAwaiter().GetResult();
+
+        repository = syncedRepo;
     }
 
     public string ControlName => repository.Name;
@@ -30,8 +34,7 @@ class AcrylicViewControlInfo : IGithubGalleryCardInfo
     public List<PlatformInfo> SupportedPlatformsInfo => new() { new() { Id = "1", Name = "Android", Logo = "androidlogo.png" },
                                                                 new() { Id = "2", Name = "IOS", Logo = "ioslogo.png" },
                                                                 new() { Id = "3", Name = "Windows", Logo = "windowslogo.png"} };
-    public ImageSource ControlIcon => new FontImageSource()
-    {
+    public ImageSource ControlIcon => new FontImageSource() {
         FontFamily = FontNames.FluentSystemIconsRegular,
         Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_tab_in_private_24_regular
