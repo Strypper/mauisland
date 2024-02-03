@@ -10,7 +10,7 @@ class FrameControlInfo : IBuiltInGalleryCardInfo
         Glyph = FluentUIIcon.Ic_fluent_square_shadow_20_regular
     };
     public string ControlDetail => "Frame is used to wrap a view or layout with a border that can be configured with color, shadow, and other options. Frames can be used to create borders around controls but can also be used to create more complex UI.";
-    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/BuiltIn/{ControlName}";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/blob/main/src/Features/Gallery/Pages/BuiltIn/Controls{ControlName}";
     public string DocumentUrl => $"https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/frame?view=net-maui-7.0";
     public string GroupName => ControlGroupInfo.BuiltInControls;
     public BuiltInGalleryCardStatus Status => BuiltInGalleryCardStatus.Buggy;

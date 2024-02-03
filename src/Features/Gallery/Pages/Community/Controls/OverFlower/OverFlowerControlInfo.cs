@@ -23,7 +23,7 @@ class OverFlowerControlInfo : IGithubGalleryCardInfo
         Glyph = FluentUIIcon.Ic_fluent_approvals_app_20_regular
     };
     public string ControlDetail => "Simple control to display scrolling overflow content!";
-    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Community/{ControlName}";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/blob/main/src/Features/Gallery/Pages/Community/Controls/{ControlName}";
     public string DocumentUrl => repository.SvnUrl;
     public string GroupName => ControlGroupInfo.GitHubCommunity;
 
