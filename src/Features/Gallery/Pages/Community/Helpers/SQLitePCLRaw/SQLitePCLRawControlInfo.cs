@@ -24,38 +24,13 @@ public class SQLitePCLRawControlInfo : IGithubGalleryCardInfo
     };
     public string ControlDetail => "SQLitePCL.raw is a Portable Class Library (PCL) for low-level (raw) access to SQLite. This package does not provide an API which is friendly to app developers. Rather, it provides an API which handles platform and configuration issues, upon which a friendlier API can be built. In order to use this package, you will need to also add one of the SQLitePCLRaw.provider.* packages and call SQLitePCL.raw.SetProvider(). Convenience packages are named SQLitePCLRaw.bundle_*.";
     public string GitHubUrl => $"https://github.com/Strypper/mauisland/blob/main/src/Features/Gallery/Pages/Community/Helpers/SQLitePCLRaw";
-
-    public string RepositoryUrl => repository.SvnUrl;
-
-    public string AuthorUrl => repository.Owner.Url;
-
-    public string AuthorAvatar => repository.Owner.AvatarUrl;
-
-    public int Stars => repository.StargazersCount;
-
-    public int Forks => repository.ForksCount;
-
-    public int Issues => repository.OpenIssuesCount;
-
-    public string License => repository.License is null
-                                    ? "No license"
-                                    : repository.License.Name;
-
-    public List<PlatformInfo> SupportedPlatformsInfo => new() { new() { Id = "1", Name = "Android", Logo = "androidlogo.png" },
-                                                                new() { Id = "2", Name = "IOS", Logo = "ioslogo.png" },
-                                                                new() { Id = "3", Name = "Windows", Logo = "windowslogo.png"} };
-
     public string DocumentUrl => repository.SvnUrl;
-
     public string GroupName => ControlGroupInfo.GitHubCommunity;
-
+    public string RepositoryName => repository.Name;
+    public string AuthorName => repository.Owner.Name;
     public GalleryCardType CardType => GalleryCardType.Helper;
-
     public GalleryCardStatus CardStatus => throw new NotImplementedException();
-
     public DateTime LastUpdate => repository.UpdatedAt.DateTime;
-
     public List<string> DoList => throw new NotImplementedException();
-
     public List<string> DontList => throw new NotImplementedException();
 }

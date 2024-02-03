@@ -7,8 +7,6 @@ public partial class GithubCardContentView : ContentView, INotifyPropertyChanged
 {
     #region [Field]
     public string repositoryUrl;
-    string repositoryName;
-    string authorName;
     string authorUrl;
     string authorAvatar;
     int stars;
@@ -57,21 +55,10 @@ public partial class GithubCardContentView : ContentView, INotifyPropertyChanged
         set => SetValue(ComponentDataProperty, value);
     }
 
-    public string RepositoryName
-    {
-        get => repositoryName;
-        set => GithubCardSetProperty(ref repositoryName, value);
-    }
-
     public string RepositoryUrl
     {
         get => repositoryUrl;
         set => GithubCardSetProperty(ref repositoryUrl, value);
-    }
-    string AuthorName
-    {
-        get => authorName;
-        set => GithubCardSetProperty(ref authorName, value);
     }
 
     string AuthorUrl

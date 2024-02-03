@@ -26,34 +26,11 @@ class OverFlowerControlInfo : IGithubGalleryCardInfo
     public string GitHubUrl => $"https://github.com/Strypper/mauisland/blob/main/src/Features/Gallery/Pages/Community/Controls/{ControlName}";
     public string DocumentUrl => repository.SvnUrl;
     public string GroupName => ControlGroupInfo.GitHubCommunity;
-
+    public string RepositoryName => repository.Name;
+    public string AuthorName => repository.Owner.Name;
     public GalleryCardType CardType => GalleryCardType.Control;
-
     public GalleryCardStatus CardStatus => throw new NotImplementedException();
-
     public DateTime LastUpdate => repository.UpdatedAt.DateTime;
-
     public List<string> DoList => throw new NotImplementedException();
-
     public List<string> DontList => throw new NotImplementedException();
-
-    public string RepositoryUrl => repository.SvnUrl;
-
-    public string AuthorUrl => repository.Owner.Url;
-
-    public string AuthorAvatar => repository.Owner.AvatarUrl;
-
-    public int Stars => repository.StargazersCount;
-
-    public int Forks => repository.ForksCount;
-
-    public int Issues => repository.OpenIssuesCount;
-
-    public string License => repository.License is null 
-                                    ? "No license" 
-                                    : repository.License.Name;
-
-    public List<PlatformInfo> SupportedPlatformsInfo => new() { new() { Id = "1", Name = "Android", Logo = "androidlogo.png" },
-                                                                new() { Id = "2", Name = "IOS", Logo = "ioslogo.png" },
-                                                                new() { Id = "3", Name = "Windows", Logo = "windowslogo.png"} };
 }
