@@ -60,13 +60,13 @@
                         Margin="0,0,22,0"
                         BackgroundColor="Transparent"
                         PrefixIcon="{x:StaticResource GithubIssueIcon}"
-                        Text="{x:Binding ComponentData.Issues,
+                        Text="{x:Binding Issues,
                                          Source={x:Reference root}}"
                         TextColor="{x:Static app:AppColors.White}" />
 
                     <!--  Spacing 10 crash the app  -->
                     <mdc:WrapLayout
-                        BindableLayout.ItemsSource="{x:Binding ComponentData.SupportedPlatformsInfo,
+                        BindableLayout.ItemsSource="{x:Binding SupportedPlatformsInfo,
                                                                Source={x:Reference root}}"
                         HorizontalOptions="Start"
                         HorizontalSpacing="10"
@@ -120,7 +120,7 @@
                         BackgroundColor="Transparent"
                         Command="{x:Binding TapCommand,
                                             Source={x:Reference root}}"
-                        CommandParameter="{x:Binding ComponentData.RepositoryUrl,
+                        CommandParameter="{x:Binding RepositoryUrl,
                                                      Source={x:Reference root}}"
                         HeightRequest="50"
                         Source="githublogo.png"
@@ -137,17 +137,17 @@
                     <app:IconLabel
                         Grid.Column="2"
                         PrefixIcon="{x:StaticResource GithubLicenseIcon}"
-                        Text="{x:Binding ComponentData.License,
+                        Text="{x:Binding License,
                                          Source={x:Reference root}}" />
                     <app:IconLabel
                         Grid.Column="3"
                         PrefixIcon="{x:StaticResource GithubForkIcon}"
-                        Text="{x:Binding ComponentData.Forks,
+                        Text="{x:Binding Forks,
                                          Source={x:Reference root}}" />
                     <app:IconLabel
                         Grid.Column="4"
                         PrefixIcon="{x:StaticResource GithubStarIcon}"
-                        Text="{x:Binding ComponentData.Stars,
+                        Text="{x:Binding Stars,
                                          Source={x:Reference root}}" />
                 </Grid>
             </Grid>
@@ -158,7 +158,7 @@
             CornerRadius="50"
             HeightRequest="87"
             HorizontalOptions="Start"
-            ImageSource="{x:Binding ComponentData.AuthorAvatar,
+            ImageSource="{x:Binding AuthorAvatar,
                                     Source={x:Reference root}}"
             VerticalOptions="Start"
             WidthRequest="87" />
