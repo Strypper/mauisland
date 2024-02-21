@@ -1,11 +1,12 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Octokit;
 
 namespace MAUIsland;
 
 public partial class GithubCardContentView : ContentView, INotifyPropertyChanged
 {
-    #region [Field]
+    #region [ Fields ]
     public string repositoryUrl;
     string authorUrl;
     string authorAvatar;
@@ -16,14 +17,14 @@ public partial class GithubCardContentView : ContentView, INotifyPropertyChanged
     List<PlatformInfo> supportedPlatformsInfo;
     #endregion
 
-    #region [CTor]
+    #region [ CTor ]
     public GithubCardContentView()
     {
         InitializeComponent();
     }
     #endregion
 
-    #region [Delegates]
+    #region [ Delegates ]
     public delegate void DetailEventHandler(IGithubGalleryCardInfo control);
 
     public delegate void DetailInNewWindowEventHandler(IGithubGalleryCardInfo control);
@@ -37,7 +38,7 @@ public partial class GithubCardContentView : ContentView, INotifyPropertyChanged
     public event PropertyChangedEventHandler GithubCardPropertyChanged;
     #endregion
 
-    #region [Bindable Properties]
+    #region [ Bindable Properties ]
     public static readonly BindableProperty ComponentDataProperty = BindableProperty.Create(
         nameof(ComponentData),
         typeof(IGithubGalleryCardInfo),
@@ -48,7 +49,7 @@ public partial class GithubCardContentView : ContentView, INotifyPropertyChanged
     public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
     public IGithubGalleryCardInfo ComponentData
     {
         get => (IGithubGalleryCardInfo)GetValue(ComponentDataProperty);
@@ -104,7 +105,7 @@ public partial class GithubCardContentView : ContentView, INotifyPropertyChanged
     }
     #endregion
 
-    #region [Event Handlers]
+    #region [ Event Handlers ]
     private void Detail_Clicked(object sender, EventArgs e)
     {
         DetailClicked?.Invoke(ComponentData);
@@ -117,9 +118,14 @@ public partial class GithubCardContentView : ContentView, INotifyPropertyChanged
 
     private void RaiseGithubCardPropertyChanged(string propertyName)
         => GithubCardPropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+    public async Task SyncRepoAsync() {
+        var github = new GitHubClient(new ProductHeaderValue(repositoryUrl));
+        var repository = await github.Repository.Get(authorUrl, repositoryUrl);
+    }
     #endregion
 
-    #region [Generic Methods]
+    #region [ Generic Methods ]
     protected bool GithubCardSetProperty<T>(ref T property, T value, [CallerMemberName] string propertyName = null)
     {
         if (EqualityComparer<T>.Default.Equals(property, value))
