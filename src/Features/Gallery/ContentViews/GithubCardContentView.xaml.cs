@@ -8,7 +8,6 @@ public partial class GithubCardContentView : ContentView, INotifyPropertyChanged
 {
     #region [ Fields ]
     public string repositoryUrl;
-    string authorUrl;
     string authorAvatar;
     int stars;
     int forks;
@@ -62,12 +61,6 @@ public partial class GithubCardContentView : ContentView, INotifyPropertyChanged
         set => GithubCardSetProperty(ref repositoryUrl, value);
     }
 
-    string AuthorUrl
-    {
-        get => authorUrl;
-        set => GithubCardSetProperty(ref authorUrl, value);
-    }
-
     string AuthorAvatar
     {
         get => authorAvatar;
@@ -107,22 +100,16 @@ public partial class GithubCardContentView : ContentView, INotifyPropertyChanged
 
     #region [ Event Handlers ]
     private void Detail_Clicked(object sender, EventArgs e)
-    {
-        DetailClicked?.Invoke(ComponentData);
-    }
+        => DetailClicked?.Invoke(ComponentData);
 
     private void DetailInNewWindow_Clicked(object sender, EventArgs e)
-    {
-        DetailInNewWindowClicked?.Invoke(ComponentData);
-    }
+        => DetailInNewWindowClicked?.Invoke(ComponentData);
 
     private void RaiseGithubCardPropertyChanged(string propertyName)
         => GithubCardPropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-    public async Task SyncRepoAsync() {
-        var github = new GitHubClient(new ProductHeaderValue(repositoryUrl));
-        var repository = await github.Repository.Get(authorUrl, repositoryUrl);
-    }
+    private void root_Loaded(object sender, EventArgs e)
+        => SyncRepoAsync().FireAndForget();
     #endregion
 
     #region [ Generic Methods ]
@@ -136,6 +123,20 @@ public partial class GithubCardContentView : ContentView, INotifyPropertyChanged
         property = value;
         RaiseGithubCardPropertyChanged(propertyName);
         return true;
+    }
+    #endregion
+
+    #region [ Methods ]
+    public async Task SyncRepoAsync()
+    {
+        var github = new GitHubClient(new ProductHeaderValue(ComponentData.RepositoryName));
+        var repository = await github.Repository.Get(ComponentData.AuthorName, ComponentData.RepositoryName);
+
+        this.RepositoryUrl = repository.Url;
+        this.Stars = repository.StargazersCount;
+        this.Forks = repository.ForksCount;
+        this.Issues = repository.OpenIssuesCount;
+        this.License = repository.License.Key;
     }
     #endregion
 }
