@@ -88,7 +88,7 @@
                     Margin="0,0,15,0"
                     HorizontalOptions="End"
                     PrefixIcon="{x:StaticResource GithubLastUpdateTimeIcon}"
-                    Text="{x:Binding ComponentData.LastUpdate,
+                    Text="{x:Binding UpdateAt,
                                      Source={x:Reference root},
                                      Converter={x:StaticResource DateTimeToSimpleDateTimeStringConverter}}"
                     TextColor="{x:Static app:AppColors.White}"
@@ -136,29 +136,29 @@
                         TextColor="{x:Static app:AppColors.White}"
                         VerticalOptions="Center"
                         WidthRequest="200" />
-                    <!--<app:IconLabel
+                    <app:IconLabel
                         Grid.Column="2"
                         PrefixIcon="{x:StaticResource GithubLicenseIcon}"
                         Text="{x:Binding License,
                                          Source={x:Reference root}}" 
-                        TextColor="{x:Static app:AppColors.White}"/>-->
+                        TextColor="{x:Static app:AppColors.White}"/>
                     <app:IconLabel
                         Grid.Column="3"
                         PrefixIcon="{x:StaticResource GithubForkIcon}"
                         Text="{x:Binding Forks,
-                                         Source={x:Reference root}, Mode=TwoWay}"
+                                         Source={x:Reference root}}"
                         TextColor="{x:Static app:AppColors.White}"/>
                     <app:IconLabel
                         Grid.Column="4"
                         PrefixIcon="{x:StaticResource GithubStarIcon}"
                         Text="{x:Binding Stars,
-                                         Source={x:Reference root}, Mode=TwoWay}"
+                                         Source={x:Reference root}}"
                         TextColor="{x:Static app:AppColors.White}"/>
                 </Grid>
             </Grid>
         </Frame>
 
-        <!--<toolkit:AvatarView
+        <toolkit:AvatarView
             Margin="15,5,5,5"
             CornerRadius="50"
             HeightRequest="87"
@@ -166,7 +166,7 @@
             ImageSource="{x:Binding AuthorAvatar,
                                     Source={x:Reference root}}"
             VerticalOptions="Start"
-            WidthRequest="87" />-->
+            WidthRequest="87" />
 
         <Label
             Margin="110,15,0,0"
