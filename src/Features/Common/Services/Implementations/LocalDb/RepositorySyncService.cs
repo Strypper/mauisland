@@ -33,9 +33,22 @@ public class RepositorySyncService : SQLitePCLRawService<RepositoryModel>, IRepo
                 }
             }
 
-            // Reach this means lastUpdateTime = null or now - lastUpdateTime > 1 hour
-            var allRepos = await SyncRepositoriesAsync();
-            repository = allRepos.FirstOrDefault(x => x.Name.Equals(repoName, StringComparison.InvariantCultureIgnoreCase));
+            // Reach this means lastUpdateTime = null or (now - lastUpdateTime) > 1 hour:
+            // Sync repo from GitHub
+            repository = await SyncRepoAsync(ownerName, repoName, headerValue);
+
+            // Update last update time
+            if (lastUpdateTime == null) {
+                lastUpdateTime = new() {
+                    ApplicationLastUpdate = now
+                };
+
+                await _cardInfoSyncService.AddAsync(lastUpdateTime);
+            }
+            else {
+                lastUpdateTime.ApplicationLastUpdate = now;
+                await _cardInfoSyncService.UpdateAsync(lastUpdateTime);
+            }
 
             return repository;
         }
@@ -48,75 +61,6 @@ public class RepositorySyncService : SQLitePCLRawService<RepositoryModel>, IRepo
     #endregion
 
     #region [ Methods - Sync ]
-    public async Task<List<Repository>> SyncRepositoriesAsync() {
-        var now = DateTime.UtcNow;
-        var lastUpdateTime = (await _cardInfoSyncService.GetAllAsync()).OrderBy(x => x.ApplicationLastUpdate).LastOrDefault();
-        if (lastUpdateTime == null) {
-            lastUpdateTime = new() {
-                ApplicationLastUpdate = now
-            };
-
-            await _cardInfoSyncService.AddAsync(lastUpdateTime);
-        }
-        else {
-            lastUpdateTime.ApplicationLastUpdate = now;
-            await _cardInfoSyncService.UpdateAsync(lastUpdateTime);
-        }
-
-        var tasks = new List<Task<Repository>>() {
-            SyncAcrylicViewRepoAsync(),
-            SyncLiveCharts2RepoAsync(),
-            SyncOverFlowerRepoAsync(),
-            SyncSQLitePCLRawRepoAsync(),
-            SyncZXingNetMauiRepoAsync()
-        };
-
-        await Task.WhenAll(tasks);
-
-        return tasks.Select(x => x.Result).ToList();
-    }
-
-    private Task<Repository> SyncAcrylicViewRepoAsync() {
-        var owner = "sswi";
-        var repo = "AcrylicView.MAUI";
-        var headerValue = "AcrylicView.MAUI";
-
-        return SyncRepoAsync(owner, repo, headerValue);
-    }
-
-    private Task<Repository> SyncLiveCharts2RepoAsync() {
-        var owner = "beto-rodriguez";
-        var repo = "LiveCharts2";
-        var headerValue = "LiveCharts2";
-
-        return SyncRepoAsync(owner, repo, headerValue);
-    }
-
-    private Task<Repository> SyncOverFlowerRepoAsync() {
-        var owner = "nor0x";
-        var repo = "OverFlower";
-        var headerValue = "OverFlower";
-
-        return SyncRepoAsync(owner, repo, headerValue);
-    }
-
-    private Task<Repository> SyncSQLitePCLRawRepoAsync() {
-        var owner = "ericsink";
-        var repo = "SQLitePCL.raw";
-        var headerValue = "SQLitePCLRaw";
-
-        return SyncRepoAsync(owner, repo, headerValue);
-    }
-
-    private Task<Repository> SyncZXingNetMauiRepoAsync() {
-        var owner = "Redth";
-        var repo = "ZXing.Net.Maui";
-        var headerValue = "ZXing.Net.Maui";
-
-        return SyncRepoAsync(owner, repo, headerValue);
-    }
-
-
     /// <summary>
     /// Get repository, update localdb and return.
     /// </summary>
@@ -129,9 +73,8 @@ public class RepositorySyncService : SQLitePCLRawService<RepositoryModel>, IRepo
             return default;
         }
 
-        var now = DateTime.UtcNow;
-        var value = string.IsNullOrEmpty(repoName) ? repoName : headerValue;
-        var github = new GitHubClient(new ProductHeaderValue(value));
+        headerValue = string.IsNullOrEmpty(headerValue) ? headerValue : repoName;
+        var github = new GitHubClient(new ProductHeaderValue(headerValue));
 
         var repository = await github.Repository.Get(ownerName, repoName);
 

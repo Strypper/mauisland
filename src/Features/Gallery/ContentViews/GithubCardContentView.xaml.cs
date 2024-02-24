@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Octokit;
 
 namespace MAUIsland;
 
@@ -173,8 +172,16 @@ public partial class GithubCardContentView : ContentView
     #region [ Methods ]
     public async Task SyncRepoAsync()
     {
-        var github = new GitHubClient(new ProductHeaderValue(ComponentData.RepositoryName));
-        var repository = await github.Repository.Get(ComponentData.AuthorName, ComponentData.RepositoryName);
+        //var github = new GitHubClient(new ProductHeaderValue(ComponentData.RepositoryName));
+        //var repository = await github.Repository.Get(ComponentData.AuthorName, ComponentData.RepositoryName);
+
+        var syncService = ServiceHelper.GetService<IRepositorySyncService>();
+
+        var repository = await syncService?.GetRepositoryAsync(ComponentData.AuthorName, ComponentData.RepositoryName, ComponentData.RepositoryName);
+
+        if (repository == null) {
+            return;
+        }
 
         this.RepositoryUrl = repository.Url;
         this.AuthorAvatar = repository.Owner.AvatarUrl;

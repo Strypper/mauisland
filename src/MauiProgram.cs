@@ -127,6 +127,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
 
         //Register local database
+        builder.Services.AddTransient<IRepositorySyncService, RepositorySyncService>();
         builder.Services.AddTransient<ICardInfoSyncService, CardInfoSyncService>();
         builder.Services.AddTransient<ILocalControlService, LocalControlService>();
         return builder;
