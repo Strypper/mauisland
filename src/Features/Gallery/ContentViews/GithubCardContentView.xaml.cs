@@ -175,7 +175,7 @@ public partial class GithubCardContentView : ContentView
         //var github = new GitHubClient(new ProductHeaderValue(ComponentData.RepositoryName));
         //var repository = await github.Repository.Get(ComponentData.AuthorName, ComponentData.RepositoryName);
 
-        var syncService = ServiceHelper.GetService<IRepositorySyncService>();
+        var syncService = ServiceHelper.GetService<IGitHubRepositorySyncService>();
 
         var repository = await syncService?.GetRepositoryAsync(ComponentData.AuthorName, ComponentData.RepositoryName, ComponentData.RepositoryName);
 

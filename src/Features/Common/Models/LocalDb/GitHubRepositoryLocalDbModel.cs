@@ -3,10 +3,10 @@
 namespace MAUIsland;
 
 [Table("RepositoryModel")]
-public class RepositoryModel : BaseLocalEntity
+public class GitHubRepositoryLocalDbModel : BaseLocalEntity
 {
     #region [ CTor ]
-    public RepositoryModel() {
+    public GitHubRepositoryLocalDbModel() {
 
     }
     #endregion

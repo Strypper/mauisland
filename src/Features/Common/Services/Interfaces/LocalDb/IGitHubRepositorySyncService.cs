@@ -2,7 +2,7 @@
 
 namespace MAUIsland;
 
-public interface IRepositorySyncService : ILocalDbService<RepositoryModel>
+public interface IGitHubRepositorySyncService : ILocalDbService<GitHubRepositoryLocalDbModel>
 {
     #region [ Public Methods - Get Single ]
     Task<Repository> GetRepositoryAsync(string ownerUrl, string repoName, string headerValue = "");

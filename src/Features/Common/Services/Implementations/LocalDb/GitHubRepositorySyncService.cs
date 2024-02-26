@@ -2,14 +2,14 @@
 
 namespace MAUIsland;
 
-public class RepositorySyncService : SQLitePCLRawService<RepositoryModel>, IRepositorySyncService
+public class GitHubRepositorySyncService : SQLitePCLRawService<GitHubRepositoryLocalDbModel>, IGitHubRepositorySyncService
 {
     #region [ Private Fields ]
     private readonly ICardInfoSyncService _cardInfoSyncService;
     #endregion
 
     #region [ CTor ]
-    public RepositorySyncService(ICardInfoSyncService cardInfoSyncService) {
+    public GitHubRepositorySyncService(ICardInfoSyncService cardInfoSyncService) {
         _cardInfoSyncService = cardInfoSyncService;
     }
     #endregion

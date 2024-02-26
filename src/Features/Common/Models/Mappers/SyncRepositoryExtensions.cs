@@ -6,7 +6,7 @@ namespace MAUIsland;
 public static class SyncRepositoryExtensions
 {
     #region [ Public Static Methods - Map To Repository ]
-    public static Repository ToRepository(this RepositoryModel model) {
+    public static Repository ToRepository(this GitHubRepositoryLocalDbModel model) {
         if (model == null) {
             return default;
         }
@@ -30,12 +30,12 @@ public static class SyncRepositoryExtensions
     #endregion
 
     #region [ Public Methods - Map To Model ]
-    public static RepositoryModel ToRepositoryModel(this Repository repo) {
+    public static GitHubRepositoryLocalDbModel ToRepositoryModel(this Repository repo) {
         if (repo == null) {
             return default;
         }
 
-        var repoModel = new Faker<RepositoryModel>()
+        var repoModel = new Faker<GitHubRepositoryLocalDbModel>()
             .RuleFor(x => x.SvnUrl, repo.SvnUrl)
             .RuleFor(x => x.OwnerUrl, repo.Owner.Url)
             .RuleFor(x => x.OwnerAvatarUrl, repo.Owner.AvatarUrl)

@@ -10,18 +10,15 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
     #region [ Fields ]
     private readonly IControlsService mauiControlsService;
     private readonly ICardInfoSyncService cardInfoSyncService;
-    private readonly ILocalControlService localControlService;
     #endregion
 
     #region [ CTor ]
     public CardsByGroupPageViewModel( IAppNavigator appNavigator,
                                       IControlsService mauiControlsService,
-                                      ICardInfoSyncService cardInfoSyncService,
-                                      ILocalControlService localControlService) 
+                                      ICardInfoSyncService cardInfoSyncService) 
         : base(appNavigator)
     {
         this.mauiControlsService = mauiControlsService;
-        this.localControlService = localControlService;
         this.cardInfoSyncService = cardInfoSyncService;
     }
     #endregion
@@ -134,29 +131,13 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
 
     async Task RefreshAsync()
     {
-        var controls = await localControlService.GetAllAsync();
-        var hello = controls.Select(x => x.ControlName).ToList();
+
     }
     async Task OnControlCardNavigation(IGalleryCardInfo control)
     {
         try 
         {
             var source = control.ControlIcon;
-
-            var hello = new CardInfoLocalDbModel
-            {
-                ControlIcon = Convert.ToInt32(control.ControlIcon).ToString(),
-                ControlName = control.GroupName,
-                ControlDetail = control.ControlDetail,
-                ControlRoute = control.ControlRoute,
-                GitHubUrl = control.GitHubUrl,
-                DocumentUrl = control.DocumentUrl,
-                GroupName = control.GroupName,
-                CardType = Convert.ToInt32(control.CardType),
-                CardStatus = Convert.ToInt32(control.CardStatus),
-                LastUpdate = DateTime.Now
-            };
-            await localControlService.AddAsync(hello);
         }
         catch(Exception ex) 
         {

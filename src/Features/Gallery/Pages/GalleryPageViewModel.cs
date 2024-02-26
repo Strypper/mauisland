@@ -5,17 +5,14 @@ public partial class GalleryPageViewModel : NavigationAwareBaseViewModel
 
     #region [ Fields ]
     private readonly IControlsService controlsService;
-    private readonly ILocalControlService localControlService;
     #endregion
 
     #region [ CTor ]
-    public GalleryPageViewModel(IControlsService controlsService, 
-                                ILocalControlService localControlService,
+    public GalleryPageViewModel(IControlsService controlsService,
                                 IAppNavigator appNavigator) 
         : base(appNavigator)
     {
         this.controlsService = controlsService;
-        this.localControlService = localControlService;
     }
     #endregion
 
