@@ -41,8 +41,8 @@ public partial class IconLabel : ContentView
                                                                                BindingMode.OneWay);
     public Color TextColor
     {
-        get => (Color)GetValue(TextProperty);
-        set => SetValue(TextProperty, value);
+        get => (Color)GetValue(TextColorProperty);
+        set => SetValue(TextColorProperty, value);
     }
     #endregion
 }

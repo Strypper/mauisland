@@ -8,17 +8,15 @@ public partial class GalleryPageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [ CTor ]
-    public GalleryPageViewModel(
-        IControlsService controlsService,
-        IAppNavigator appNavigator
-    ) : base(appNavigator)
+    public GalleryPageViewModel(IControlsService controlsService,
+                                IAppNavigator appNavigator) 
+        : base(appNavigator)
     {
         this.controlsService = controlsService;
     }
     #endregion
 
     #region [ Properties ]
-
     [ObservableProperty]
     ObservableCollection<ControlGroupInfo> controlGroups;
     #endregion

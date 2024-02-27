@@ -3,27 +3,16 @@ using System.Runtime.CompilerServices;
 
 namespace MAUIsland;
 
-public partial class GithubCardContentView : ContentView, INotifyPropertyChanged
+public partial class GithubCardContentView : ContentView
 {
-    #region [Field]
-    public string repositoryUrl;
-    string authorUrl;
-    string authorAvatar;
-    int stars;
-    int forks;
-    int issues;
-    string license;
-    List<PlatformInfo> supportedPlatformsInfo;
-    #endregion
-
-    #region [CTor]
+    #region [ CTor ]
     public GithubCardContentView()
     {
         InitializeComponent();
     }
     #endregion
 
-    #region [Delegates]
+    #region [ Delegates ]
     public delegate void DetailEventHandler(IGithubGalleryCardInfo control);
 
     public delegate void DetailInNewWindowEventHandler(IGithubGalleryCardInfo control);
@@ -37,7 +26,7 @@ public partial class GithubCardContentView : ContentView, INotifyPropertyChanged
     public event PropertyChangedEventHandler GithubCardPropertyChanged;
     #endregion
 
-    #region [Bindable Properties]
+    #region [ Bindable Properties ]
     public static readonly BindableProperty ComponentDataProperty = BindableProperty.Create(
         nameof(ComponentData),
         typeof(IGithubGalleryCardInfo),
@@ -45,10 +34,59 @@ public partial class GithubCardContentView : ContentView, INotifyPropertyChanged
         default(IGithubGalleryCardInfo)
     );
 
+    public static readonly BindableProperty RepositoryUrlProperty = BindableProperty.Create(
+        nameof(RepositoryUrl),
+        typeof(string),
+        typeof(GithubCardContentView),
+        default(string)
+    );
+
+    public static readonly BindableProperty AuthorAvatarProperty = BindableProperty.Create(
+        nameof(AuthorAvatar),
+        typeof(string),
+        typeof(GithubCardContentView),
+        default(string)
+    );
+
+    public static readonly BindableProperty IssuesCountProperty = BindableProperty.Create(
+        nameof(Issues),
+        typeof(int),
+        typeof(GithubCardContentView),
+        default(int)
+    );
+
+    public static readonly BindableProperty ForksCountProperty = BindableProperty.Create(
+        nameof(Forks),
+        typeof(int),
+        typeof(GithubCardContentView),
+        default(int)
+    );
+
+    public static readonly BindableProperty StargazersCountProperty = BindableProperty.Create(
+        nameof(Stars),
+        typeof(int),
+        typeof(GithubCardContentView),
+        default(int)
+    );
+
+    public static readonly BindableProperty LicenseProperty = BindableProperty.Create(
+        nameof(License),
+        typeof(string),
+        typeof(GithubCardContentView),
+        default(string)
+    );
+
+    public static readonly BindableProperty UpdateAtProperty = BindableProperty.Create(
+        nameof(UpdateAt),
+        typeof(DateTime),
+        typeof(GithubCardContentView),
+        default(DateTime)
+    );
+
     public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
     public IGithubGalleryCardInfo ComponentData
     {
         get => (IGithubGalleryCardInfo)GetValue(ComponentDataProperty);
@@ -57,69 +95,67 @@ public partial class GithubCardContentView : ContentView, INotifyPropertyChanged
 
     public string RepositoryUrl
     {
-        get => repositoryUrl;
-        set => GithubCardSetProperty(ref repositoryUrl, value);
+        get => (string)GetValue(RepositoryUrlProperty);
+        set => SetValue(RepositoryUrlProperty, value);
     }
 
-    string AuthorUrl
+    public string AuthorAvatar
     {
-        get => authorUrl;
-        set => GithubCardSetProperty(ref authorUrl, value);
+        get => (string)GetValue(AuthorAvatarProperty);
+        set => SetValue(AuthorAvatarProperty, value);
     }
-
-    string AuthorAvatar
+    public int Issues
     {
-        get => authorAvatar;
-        set => GithubCardSetProperty(ref authorAvatar, value);
+        get => (int)GetValue(IssuesCountProperty);
+        set => SetValue(IssuesCountProperty, value);
     }
 
-    int Stars
+    public int Stars
     {
-        get => stars;
-        set => GithubCardSetProperty(ref stars, value);
+        get => (int)GetValue(StargazersCountProperty);
+        set => SetValue(StargazersCountProperty, value);
     }
 
-    int Forks
+    public int Forks
     {
-        get => forks;
-        set => GithubCardSetProperty(ref forks, value);
+        get => (int)GetValue(ForksCountProperty);
+        set => SetValue(ForksCountProperty, value);
     }
 
-    int Issues
+    public string License
     {
-        get => issues;
-        set => GithubCardSetProperty(ref issues, value);
+        get => (string)GetValue(LicenseProperty);
+        set => SetValue(LicenseProperty, value);
     }
-
-    string License
+    public DateTime UpdateAt
     {
-        get => license;
-        set => GithubCardSetProperty(ref license, value);
+        get => (DateTime)GetValue(UpdateAtProperty);
+        set => SetValue(UpdateAtProperty, value);
     }
 
-    List<PlatformInfo> SupportedPlatformsInfo
+    private List<PlatformInfo> supportedPlatformsInfo;
+    public List<PlatformInfo> SupportedPlatformsInfo
     {
         get => supportedPlatformsInfo;
         set => GithubCardSetProperty(ref supportedPlatformsInfo, value);
     }
     #endregion
 
-    #region [Event Handlers]
+    #region [ Event Handlers ]
     private void Detail_Clicked(object sender, EventArgs e)
-    {
-        DetailClicked?.Invoke(ComponentData);
-    }
+        => DetailClicked?.Invoke(ComponentData);
 
     private void DetailInNewWindow_Clicked(object sender, EventArgs e)
-    {
-        DetailInNewWindowClicked?.Invoke(ComponentData);
-    }
+        => DetailInNewWindowClicked?.Invoke(ComponentData);
 
     private void RaiseGithubCardPropertyChanged(string propertyName)
         => GithubCardPropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+    private void root_Loaded(object sender, EventArgs e)
+        => SyncRepoAsync().FireAndForget();
     #endregion
 
-    #region [Generic Methods]
+    #region [ Generic Methods ]
     protected bool GithubCardSetProperty<T>(ref T property, T value, [CallerMemberName] string propertyName = null)
     {
         if (EqualityComparer<T>.Default.Equals(property, value))
@@ -130,6 +166,34 @@ public partial class GithubCardContentView : ContentView, INotifyPropertyChanged
         property = value;
         RaiseGithubCardPropertyChanged(propertyName);
         return true;
+    }
+    #endregion
+
+    #region [ Methods ]
+    public async Task SyncRepoAsync()
+    {
+        //var github = new GitHubClient(new ProductHeaderValue(ComponentData.RepositoryName));
+        //var repository = await github.Repository.Get(ComponentData.AuthorName, ComponentData.RepositoryName);
+
+        var syncService = ServiceHelper.GetService<IGitHubRepositorySyncService>();
+
+        var repository = await syncService?.GetRepositoryAsync(ComponentData.AuthorName, ComponentData.RepositoryName, ComponentData.RepositoryName);
+
+        if (repository == null) {
+            return;
+        }
+
+        this.RepositoryUrl = repository.Url;
+        this.AuthorAvatar = repository.Owner.AvatarUrl;
+        this.Stars = repository.StargazersCount;
+        this.Forks = repository.ForksCount;
+        this.Issues = repository.OpenIssuesCount;
+        this.License = "No License";
+        if (repository.License != null) 
+        {
+            this.License = repository.License.Name;
+        }
+        this.UpdateAt = repository.UpdatedAt.UtcDateTime;
     }
     #endregion
 }
