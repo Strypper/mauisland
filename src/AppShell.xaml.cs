@@ -42,5 +42,9 @@ public partial class AppShell : Shell
         Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(appSettings.SyncfusionKey);
     }
 
+    void GetCurrentMicrosoftMauiControls()
+    {
+
+    }
     #endregion
 }
