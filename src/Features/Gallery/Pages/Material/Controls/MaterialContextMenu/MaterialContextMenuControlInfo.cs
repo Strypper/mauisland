@@ -29,5 +29,5 @@ class MaterialContextMenuControlInfo : IMaterialUIGalleryCardInfo
 
     public List<string> DontList => throw new NotImplementedException();
 
-    string IMaterialUIGalleryCardInfo.MaterialIcon => IconPacks.IconKind.Material.List;
+    public string MaterialIcon => IconPacks.IconKind.Material.List;
 }

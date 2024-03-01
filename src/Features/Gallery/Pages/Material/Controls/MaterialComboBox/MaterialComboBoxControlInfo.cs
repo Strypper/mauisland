@@ -29,5 +29,5 @@ class MaterialComboBoxControlInfo : IMaterialUIGalleryCardInfo
 
     public List<string> DontList => throw new NotImplementedException();
 
-    string IMaterialUIGalleryCardInfo.MaterialIcon => IconPacks.IconKind.Material.ArrowDropDown;
+    public string MaterialIcon => IconPacks.IconKind.Material.ArrowDropDown;
 }

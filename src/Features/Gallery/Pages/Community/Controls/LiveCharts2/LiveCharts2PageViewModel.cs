@@ -15,6 +15,7 @@ public partial class LiveCharts2PageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [ Properties ]
+
     [ObservableProperty]
     IGalleryCardInfo controlInformation;
 

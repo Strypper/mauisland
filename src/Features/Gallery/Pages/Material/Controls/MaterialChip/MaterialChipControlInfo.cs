@@ -29,5 +29,5 @@ class MaterialChipControlInfo : IMaterialUIGalleryCardInfo
 
     public List<string> DontList => throw new NotImplementedException();
 
-    public string MaterialIcon => IconPacks.IconKind.Material.Chips;
+    public string MaterialIcon => IconPacks.IconKind.Material.Label;
 }

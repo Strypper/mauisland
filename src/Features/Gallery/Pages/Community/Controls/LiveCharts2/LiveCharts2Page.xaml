@@ -9,12 +9,26 @@
     Padding="10"
     x:DataType="app:LiveCharts2PageViewModel">
 
+    <app:BasePage.Resources>
+
+        <FontImageSource
+            x:Key="LiveCharts2PageChartMultiple20"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_chart_multiple_20_regular}"
+            Color="White" />
+    </app:BasePage.Resources>
+
     <app:BasePage.ToolbarItems>
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
             CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
-            IconImageSource="github.png"
+            IconImageSource="githublogo.png"
             Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="{x:StaticResource LiveCharts2PageChartMultiple20}"
+            Text="Original Document" />
     </app:BasePage.ToolbarItems>
 
 

@@ -11,8 +11,8 @@
             x:Key="MaterialUICardStyle"
             BaseResourceKey="FilledCardStyle"
             TargetType="mdc:Card">
-            <Setter Property="HeightRequest" Value="170" />
-            <Setter Property="WidthRequest" Value="350" />
+            <Setter Property="HeightRequest" Value="200" />
+            <Setter Property="WidthRequest" Value="370" />
         </Style>
 
         <Style x:Key="GridContainerStyle" TargetType="Grid">
@@ -85,6 +85,11 @@
                 <mdc:Button Clicked="Detail_Clicked" Style="{x:StaticResource DetailButtonStyle}" />
                 <mdc:Button Style="{x:StaticResource DocumentReferenceButtonStyle}" />
             </HorizontalStackLayout>
+            <mdc:IconButton
+                HorizontalOptions="End"
+                IconData="{x:Binding ComponentData.MaterialIcon,
+                                     Source={x:Reference root}}"
+                VerticalOptions="Start" />
         </Grid>
     </mdc:Card>
 </ContentView>
