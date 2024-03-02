@@ -1,7 +1,4 @@
 ﻿using CommunityToolkit.Maui.Core.Extensions;
-using Microsoft.Maui.Controls;
-using SkiaSharp;
-using System.Dynamic;
 
 namespace MAUIsland;
 
@@ -13,9 +10,9 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [ CTor ]
-    public CardsByGroupPageViewModel( IAppNavigator appNavigator,
+    public CardsByGroupPageViewModel(IAppNavigator appNavigator,
                                       IControlsService mauiControlsService,
-                                      ICardInfoSyncService cardInfoSyncService) 
+                                      ICardInfoSyncService cardInfoSyncService)
         : base(appNavigator)
     {
         this.mauiControlsService = mauiControlsService;
@@ -53,7 +50,7 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
         => AppNavigator.NavigateAsync(control.ControlRoute, args: control);
 
     [RelayCommand]
-    Task NavigateToDetailInNewWindowAsync(IGalleryCardInfo control) 
+    Task NavigateToDetailInNewWindowAsync(IGalleryCardInfo control)
         => AppNavigator.NavigateAsync(control.ControlRoute, inNewWindow: true, args: control);
 
     [RelayCommand]
@@ -135,15 +132,15 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
     }
     async Task OnControlCardNavigation(IGalleryCardInfo control)
     {
-        try 
+        try
         {
             var source = control.ControlIcon;
         }
-        catch(Exception ex) 
+        catch (Exception ex)
         {
             throw ex;
         }
-        
+
     }
     #endregion
 }

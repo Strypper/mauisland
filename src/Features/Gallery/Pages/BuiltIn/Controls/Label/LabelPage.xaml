@@ -154,7 +154,7 @@
                         <Picker
                             x:Name="LineBreakModePicker"
                             Title="Line Break Mode"
-                            BackgroundColor="Black"
+                            BackgroundColor="{x:StaticResource Primary}"
                             ItemsSource="{x:Binding LineBreakModes}"
                             SelectedIndex="{x:Binding SelectedLineBreakModeIndex,
                                                       Converter={x:StaticResource LineBreakModeEnumToStringConverter},
@@ -165,7 +165,7 @@
                             <HorizontalStackLayout Spacing="5">
                                 <Stepper
                                     x:Name="MaximumLineStepper"
-                                    BackgroundColor="Black"
+                                    BackgroundColor="{x:StaticResource Primary}"
                                     Increment="1"
                                     Maximum="5"
                                     Minimum="1"
@@ -177,7 +177,7 @@
                         <Picker
                             x:Name="LabelColorPicker"
                             Title="Change Text Color"
-                            BackgroundColor="Black"
+                            BackgroundColor="{x:StaticResource Primary}"
                             ItemsSource="{x:StaticResource LabelColorResource}" />
                     </HorizontalStackLayout>
 

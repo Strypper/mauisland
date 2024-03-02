@@ -34,16 +34,68 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Border Padding="15" Style="{x:StaticResource MAUIslandBorderStyle}">
+            <Border Padding="20" Style="{x:StaticResource MAUIslandBorderStyle}">
                 <Label Text="{x:Binding ControlInformation.ControlDetail}" />
             </Border>
 
-            <Border Style="{x:StaticResource MAUIslandBorderStyle}">
-                <lvc:CartesianChart
-                    HeightRequest="300"
-                    LegendPosition="Right"
-                    Series="{Binding Series}"
-                    XAxes="{Binding XAxes}" />
+            <Border Padding="20" Style="{x:StaticResource MAUIslandBorderStyle}">
+                <VerticalStackLayout Spacing="5">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding BasicBarsTitle}" />
+                    <lvc:CartesianChart
+                        HeightRequest="300"
+                        LegendPosition="Right"
+                        Series="{Binding BasicBarsSeries}"
+                        XAxes="{Binding BasicBarsXAxes}" />
+                    <app:SourceCodeExpander Code="{x:Binding BasicBarsCSharpCode}" CodeType="CSharp" />
+                    <app:SourceCodeExpander Code="{x:Binding BasicBarsXamlCode}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" Style="{x:StaticResource MAUIslandBorderStyle}">
+                <VerticalStackLayout Spacing="5">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding BarsWithBackgroundTitle}" />
+                    <lvc:CartesianChart
+                        HeightRequest="300"
+                        Series="{Binding BarsWithBackgroundSeries}"
+                        YAxes="{Binding BarsWithBackgroundYAxes}" />
+                    <app:SourceCodeExpander Code="{x:Binding BarsWithBackgroundCSharpCode}" CodeType="CSharp" />
+                    <app:SourceCodeExpander Code="{x:Binding BarsWithBackgroundXamlCode}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" Style="{x:StaticResource MAUIslandBorderStyle}">
+                <VerticalStackLayout Spacing="5">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding RacingBarsTitle}" />
+                    <lvc:CartesianChart
+                        HeightRequest="300"
+                        Series="{Binding RacingSeries}"
+                        TooltipPosition="Hidden"
+                        XAxes="{Binding XRacingAxes}"
+                        YAxes="{Binding YRacingAxes}" />
+                    <app:SourceCodeExpander Code="{x:Binding RacingBarsCSharpCode}" CodeType="CSharp" />
+                    <app:SourceCodeExpander Code="{x:Binding RacingBarsXamlCode}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" Style="{x:StaticResource MAUIslandBorderStyle}">
+                <VerticalStackLayout Spacing="5">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding LineSeriesTitle}" />
+                    <lvc:CartesianChart
+                        Title="{Binding LineSeriesVisualTitle}"
+                        HeightRequest="300"
+                        Series="{Binding LineSeries}" />
+                    <app:SourceCodeExpander Code="{x:Binding LineSeriesCSharpCode}" CodeType="CSharp" />
+                    <app:SourceCodeExpander Code="{x:Binding LineSeriesXamlCode}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" Style="{x:StaticResource MAUIslandBorderStyle}">
+                <VerticalStackLayout Spacing="5">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding StackedBarsTitle}" />
+                    <lvc:CartesianChart HeightRequest="300" Series="{Binding StackedSeries}" />
+                    <app:SourceCodeExpander Code="{x:Binding StackBarsCSharpCode}" CodeType="CSharp" />
+                    <app:SourceCodeExpander Code="{x:Binding StackBarsXamlCode}" CodeType="Xaml" />
+                </VerticalStackLayout>
             </Border>
         </VerticalStackLayout>
     </ScrollView>

@@ -13,7 +13,7 @@ class ZXingNetMauIGalleryCardInfo : IGithubGalleryCardInfo
     public string ControlDetail => "The successor to ZXing.Net.Mobile is a C#/.NET library based on the open source Barcode Library: ZXing (Zebra Crossing), using the ZXing.Net Port. It works with Xamarin.iOS, Xamarin.Android, Tizen, and UWP. The goal of ZXing.Net.Mobile is to make scanning barcodes as effortless and painless as possible in your own applications.";
     public string ControlRoute => typeof(ZXingNetMauiPage).FullName;
     public string GitHubUrl => $"https://github.com/Strypper/mauisland/blob/main/src/Features/Gallery/Pages/Community/Helpers/ZXingNetMaui";
-    public string DocumentUrl => throw new NotImplementedException();  //SvnUrl
+    public string DocumentUrl => "https://github.com/Redth/ZXing.Net.Maui";  //SvnUrl
     public string GroupName => ControlGroupInfo.GitHubCommunity;
     public GalleryCardType CardType => GalleryCardType.Helper;
     public GalleryCardStatus CardStatus => GalleryCardStatus.Completed;

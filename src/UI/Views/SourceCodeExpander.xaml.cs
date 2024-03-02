@@ -5,16 +5,23 @@ namespace MAUIsland;
 
 public partial class SourceCodeExpander : ContentView, INotifyPropertyChanged
 {
-    #region [CTor]
+    #region [ Fields ]
+
+    private IAppNavigator appNavigator;
+
+    private FormattedString outputFormattedString;
+    #endregion
+
+    #region [ CTor ]
     public SourceCodeExpander()
     {
         InitializeComponent();
+
+
+        appNavigator = ServiceHelper.GetService<IAppNavigator>();
     }
     #endregion
 
-    #region [Fields]
-    private FormattedString outputFormattedString;
-    #endregion
 
     #region [Properties]
     public FormattedString OutputFormattedString
@@ -69,8 +76,11 @@ public partial class SourceCodeExpander : ContentView, INotifyPropertyChanged
 
     #region [Event Handlers]
 
-    private async void Copy_Clicked(object sender, EventArgs e) =>
+    private async void Copy_Clicked(object sender, EventArgs e)
+    {
         await Clipboard.Default.SetTextAsync(Code);
+        await appNavigator.ShowSnackbarAsync("Code copied to clipboard", null, null);
+    }
     private void root_Loaded(object sender, EventArgs e)
     {
         CodeTypeLabel.Text = CodeType == CodeType.Xaml ? "Xaml Code" : "C# Code";

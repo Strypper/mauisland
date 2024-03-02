@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
+    xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
     xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
     Title="MaterialContextMenu"
     Padding="10"
@@ -18,7 +19,7 @@
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
             CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
-            IconImageSource="microsoft.png"
+            IconImageSource="materialuilogo.png"
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
 
@@ -74,7 +75,7 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Examples" />
-                    <mdc:FAB IconData="Settings">
+                    <mdc:FAB IconData="{Static icon:Material.Settings}">
                         <mdc:FAB.ContextMenu>
                             <mdc:ContextMenu>
                                 <mdc:MenuItem IconData="Menu" Text="item 1" />

@@ -14,7 +14,7 @@ public partial class MaterialTextFieldPageViewModel : NavigationAwareBaseViewMod
     IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
-    string textFieldXamlCode = "<mdc:TextField IconKind=\"Search\" WidthRequest=\"250\" Style=\"{DynamicResource FilledTextFieldStyle}\"/>\r\n<mdc:TextField IconKind=\"Password\" IsError=\"True\" WidthRequest=\"300\" SupportingText=\"Incorrect password\" TextChanged=\"OnTextChanged\" TrailingIconKind=\"Close\" TrailingIconClicked=\"OnTrailingIconClicked\" Style=\"{DynamicResource OutlinedTextFieldStyle}\" />\r\n";
+    string textFieldXamlCode = "<mdc:TextField\r\n IconData=\"{Static icon:Material.Search}\"\r\n Style=\"{DynamicResource FilledTextFieldStyle}\"\r\n WidthRequest=\"250\" />\r\n     <mdc:TextField\r\n   IconData=\"{Static icon:Material.Password}\"\r\n  IsError=\"True\"\r\n  Style=\"{DynamicResource OutlinedTextFieldStyle}\"\r\n  SupportingText=\"Incorrect password\"\r\n                            TrailingIconData=\"Close\"\r\n                            WidthRequest=\"300\" />";
     #endregion
 
     #region [Overrides]
@@ -30,6 +30,6 @@ public partial class MaterialTextFieldPageViewModel : NavigationAwareBaseViewMod
     #region [ Relay Commands ]
     [RelayCommand]
     Task OpenUrlAsync(string url)
-    => AppNavigator.OpenUrlAsync(url);
+        => AppNavigator.OpenUrlAsync(url);
     #endregion
 }
