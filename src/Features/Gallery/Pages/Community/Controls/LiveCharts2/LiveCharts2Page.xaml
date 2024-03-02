@@ -97,6 +97,34 @@
                     <app:SourceCodeExpander Code="{x:Binding StackBarsXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Border>
+
+            <Border Padding="20" Style="{x:StaticResource MAUIslandBorderStyle}">
+                <VerticalStackLayout Spacing="5">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding PieChartTitle}" />
+                    <Grid ColumnDefinitions="*,*,*">
+                        <lvc:PieChart
+                            Title="{x:Binding PieChartVisualTitle}"
+                            HeightRequest="300"
+                            HorizontalOptions="Center"
+                            Series="{Binding PieSeries}"
+                            WidthRequest="300" />
+                        <lvc:PieChart
+                            Title="{x:Binding DoughnutPieChartVisualTitle}"
+                            Grid.Column="1"
+                            HeightRequest="300"
+                            Series="{Binding PieSeries2}"
+                            WidthRequest="300" />
+                        <lvc:PieChart
+                            Title="{x:Binding PushoutPieChartVisualTitle}"
+                            Grid.Column="2"
+                            HeightRequest="300"
+                            Series="{Binding PieSeries3}"
+                            WidthRequest="300" />
+                    </Grid>
+                    <app:SourceCodeExpander Code="{x:Binding PieChartCSharpCode}" CodeType="CSharp" />
+                    <app:SourceCodeExpander Code="{x:Binding PieChartXamlCode}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

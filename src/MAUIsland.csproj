@@ -86,7 +86,6 @@
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.7" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.7" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.141-beta" />
-		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.8" />
 		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="23.1.36" />
 		<PackageReference Include="Syncfusion.Maui.Barcode" Version="23.1.36" />
 		<PackageReference Include="Syncfusion.Maui.Calendar" Version="23.1.36" />
@@ -134,6 +133,9 @@
 		</Compile>
 		<Compile Update="Features\Gallery\Pages\CardsByGroupPage.xaml.cs">
 			<DependentUpon>CardsByGroupPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Features\Gallery\Pages\Community\Helpers\SQLite-net\SQLiteNETPage.xaml.cs">
+		  <DependentUpon>SQLiteNETPage.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Features\Gallery\Pages\Syncfusion\SfMaps\SfMapsViewPage.xaml.cs">
 			<DependentUpon>SfMapsViewPage.xaml</DependentUpon>
@@ -207,7 +209,7 @@
 		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\NewsPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Features\Gallery\Pages\Community\Helpers\SQLitePCLRaw\SQLitePCLRawPage.xaml">
+		<MauiXaml Update="Features\Gallery\Pages\Community\Helpers\SQLite-net\SQLiteNETPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\GalleryPage.xaml">

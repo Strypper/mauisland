@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <app:BasePage
-    x:Class="MAUIsland.SQLitePCLRawPage"
+    x:Class="MAUIsland.SQLiteNETPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
-    Title="SQLitePCLRawPage"
+    Title="sqlite-net"
     Padding="10">
     <VerticalStackLayout>
         <Label

@@ -1,9 +1,9 @@
 ﻿namespace MAUIsland;
 
-public partial class SQLitePCLRawPageViewModel : NavigationAwareBaseViewModel
+public partial class SQLiteNETPageViewModel : NavigationAwareBaseViewModel
 {
     #region [ CTor ]
-    public SQLitePCLRawPageViewModel(
+    public SQLiteNETPageViewModel(
     IAppNavigator appNavigator
 ) : base(appNavigator)
     {

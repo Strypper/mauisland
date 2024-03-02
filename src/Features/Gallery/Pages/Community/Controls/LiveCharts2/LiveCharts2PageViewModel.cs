@@ -2,6 +2,7 @@ using LiveChartsCore;
 using LiveChartsCore.ConditionalDraw;
 using LiveChartsCore.Measure;
 using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Extensions;
 using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.SkiaSharpView.VisualElements;
 using LiveChartsCore.Themes;
@@ -174,10 +175,10 @@ public partial class LiveCharts2PageViewModel : NavigationAwareBaseViewModel
         };
     #endregion
 
-    #region [ Stacked Bars ]
+    #region [ Stacked Column Bars ]
 
     [ObservableProperty]
-    string stackedBarsTitle = "Stacked Bars";
+    string stackedBarsTitle = "Stacked Column Bars";
 
     [ObservableProperty]
     string stackBarsCSharpCode = "public ISeries[] StackedSeries { get; set; } =\r\n    {\r\n        new StackedColumnSeries<int>\r\n        {\r\n            Values = new List<int> { 3, 5, -3, 2, 5, -4, -2 },\r\n            Stroke = null,\r\n            DataLabelsPaint = new SolidColorPaint(new SKColor(45, 45, 45)),\r\n            DataLabelsSize = 14,\r\n            DataLabelsPosition = DataLabelsPosition.Middle\r\n        },\r\n        new StackedColumnSeries<int>\r\n        {\r\n            Values = new List<int> { 4, 2, -3, 2, 3, 4, -2 },\r\n            Stroke = null,\r\n            DataLabelsPaint = new SolidColorPaint(new SKColor(45, 45, 45)),\r\n            DataLabelsSize = 14,\r\n            DataLabelsPosition = DataLabelsPosition.Middle\r\n        },\r\n        new StackedColumnSeries<int>\r\n        {\r\n            Values = new List<int> { -2, 6, 6, 5, 4, 3, -2 },\r\n            Stroke = null,\r\n            DataLabelsPaint = new SolidColorPaint(new SKColor(45, 45, 45)),\r\n            DataLabelsSize = 14,\r\n            DataLabelsPosition = DataLabelsPosition.Middle\r\n        }\r\n    };";
@@ -211,6 +212,64 @@ public partial class LiveCharts2PageViewModel : NavigationAwareBaseViewModel
             DataLabelsSize = 14,
             DataLabelsPosition = DataLabelsPosition.Middle
         }
+    };
+    #endregion
+
+    #region [ Pie Chart ]
+
+    [ObservableProperty]
+    string pieChartTitle = "Pie Chart";
+
+    [ObservableProperty]
+    string pieChartCSharpCode = "";
+
+    [ObservableProperty]
+    string pieChartXamlCode = "";
+
+    // you can convert any array, list or IEnumerable<T> to a pie series collection:
+    public IEnumerable<ISeries> PieSeries { get; set; } =
+        new[] { 2, 4, 1, 4, 3 }.AsPieSeries();
+
+    // the expression above is equivalent to the next series collection:
+    public IEnumerable<ISeries> PieSeries2 { get; set; } =
+        new[] { 2, 4, 1, 4, 3 }.AsPieSeries((value, series) =>
+        {
+            series.MaxRadialColumnWidth = 60;
+        });
+
+    public IEnumerable<ISeries> PieSeries3 { get; set; } =
+    new[] { 6, 5, 4, 3, 2 }.AsPieSeries((value, series) =>
+    {
+        // pushes out the slice with the value of 6 to 30 pixels.
+        if (value != 6) return;
+
+        series.Pushout = 30;
+    });
+
+    public LabelVisual PieChartVisualTitle { get; set; } =
+        new LabelVisual
+        {
+            Text = "My pie chart title",
+            TextSize = 25,
+            Padding = new LiveChartsCore.Drawing.Padding(15),
+            Paint = new SolidColorPaint(SKColors.DarkSlateGray)
+        };
+
+    public LabelVisual DoughnutPieChartVisualTitle { get; set; } =
+    new LabelVisual
+    {
+        Text = "My doughnut chart title",
+        TextSize = 25,
+        Padding = new LiveChartsCore.Drawing.Padding(15),
+        Paint = new SolidColorPaint(SKColors.DarkSlateGray)
+    };
+    public LabelVisual PushoutPieChartVisualTitle { get; set; } =
+    new LabelVisual
+    {
+        Text = "My push out style chart title",
+        TextSize = 25,
+        Padding = new LiveChartsCore.Drawing.Padding(15),
+        Paint = new SolidColorPaint(SKColors.DarkSlateGray)
     };
     #endregion
 
