@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    x:Class="MAUIsland.BorderPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    Title="Border"
+    Padding="10"
+    x:DataType="app:BorderPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
+
+    <app:BasePage.Resources>
+        <x:String x:Key="ControlInfo">
+            The .NET Multi-platform App UI (.NET MAUI) Button displays text and responds to a tap or click that directs the app to carry out a task. A Button usually displays a short text string indicating a command, but it can also display a bitmap image, or a combination of text and an image. When the Button is pressed with a finger or clicked with a mouse it initiates that command.
+        </x:String>
+
+        <x:String x:Key="CreateBorder1">
+            Alternatively, the StrokeShape property value can be specified using property tag syntax:
+        </x:String>
+
+        <x:String x:Key="CreateBorder2">
+            To draw a border, create a Border object and set its properties to define its appearance. Then, set its child to the control to which the border should be added. The following XAML example shows how to draw a border around a Label:
+        </x:String>
+
+        <x:String x:Key="CreateBorder3">
+            The equivalent C# code is:
+        </x:String>
+
+        <x:String x:Key="CreateBorder4">
+            In this example, a border with rounded top-left and bottom-right corners is drawn around a Label. The border shape is defined as a RoundRectangle object, whose CornerRadius property is set to a Thickness value that enables independent control of each corner of the rectangle:
+        </x:String>
+
+        <x:String x:Key="CreateBorder5">
+            Because the Stroke property is of type Brush, borders can also be drawn using gradients:
+        </x:String>
+
+        <x:String x:Key="CreateBorder6">
+            In this example, a border that uses a linear gradient is drawn around a Label:
+        </x:String>
+
+        <x:String x:Key="DefineBorderShapeTitle">
+            Define the border shape with a string
+        </x:String>
+
+        <x:String x:Key="DefineBorderShapeDescription">
+            In XAML, the value of the StrokeShape property can be defined using property-tag syntax, or as a string. Valid string values for the StrokeShape property are:
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeader">
+            Border defines the following properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter">
+            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+        </x:String>
+
+        <x:String x:Key="ImageButtonControlInfo">
+            The .NET Multi-platform App UI (.NET MAUI) Border is a container control that draws a border, background, or both, around another control. A Border can only contain one child object. If you want to put a border around multiple objects, wrap them in a container object such as a layout.
+        </x:String>
+
+        <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Content</strong>, of type <strong style="color:blue">IView</strong>, represents the content to display in the border. This property is the ContentProperty of the Border class, and therefore does not need to be explicitly set from XAML.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Padding</strong>, of type <strong style="color:blue">Thickness</strong>, represents the distance between the border and its child element.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">StrokeShape</strong>, of type <strong style="color:blue">IShape</strong>, describes the shape of the border. This property has a type converter applied to it that can convert a string to its equivalent IShape. It's default value is Rectangle. Therefore, a Border will be rectangular by default.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Stroke</strong>, of type <strong style="color:blue">Brush</strong>, indicates the brush used to paint the border.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">StrokeThickness</strong>, of type <strong style="color:blue">double</strong>, indicates the width of the border. The default value of this property is 1.0.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">StrokeDashArray</strong>, of type <strong style="color:blue">DoubleCollection</strong>, which represents a collection of double values that indicate the pattern of dashes and gaps that make up the border.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">StrokeDashOffset</strong>, of type <strong style="color:blue">double</strong>, specifies the distance within the dash pattern where a dash begins. The default value of this property is 0.0.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">StrokeLineCap</strong>, of type <strong style="color:blue">PenLineCap</strong>, describes the shape at the start and end of its line. The default value of this property is PenLineCap.Flat.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">StrokeLineJoin</strong>, of type <strong style="color:blue">PenLineJoin</strong>, specifies the type of join that is used at the vertices of the stroke shape. The default value of this property is PenLineJoin.Miter.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">StrokeMiterLimit</strong>, of type <strong style="color:blue">double</strong>, specifies the limit on the ratio of the miter length to half the stroke thickness. The default value of this property is 10.0.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">FontSize</strong>, of type <strong style="color:blue">double</strong>, defines the font size.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">ImageSource</strong>, of type <strong style="color:blue">ImageSource</strong>, specifies a bitmap image to display as the content of the button.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">LineBreakMode</strong>, of type <strong style="color:blue">LineBreakMode</strong>, determines how text should be handled when it can't fit on one line.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Padding</strong>, of type <strong style="color:blue">Thickness</strong>, determines the button's padding.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Text</strong>, of type <strong style="color:blue">string</strong>, defines the text displayed as the content of the button.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">TextColor</strong>, of type <strong style="color:blue">Color</strong>, describes the color of the button's text.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">TextTransform</strong>, of type <strong style="color:blue">TextTransform</strong>, defines the casing of the button's text.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="BorderShapePropertyItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                        <strong style="color:blue">Ellipse</strong>
+                    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                        <strong style="color:blue">Rectangle</strong>
+                    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                        <strong style="color:blue">Line</strong>, followed by one or two x- and y-coordinate pairs. For example, Line 10 20 draws a line from (10,20) to (0,0), and Line 10 20, 100 120 draws a line from (10,20) to (100,120).
+                    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                        <strong style="color:blue">Path</strong>, followed by path markup syntax data. For example, Path M 10,100 L 100,100 100,50Z will draw a triangular border. For more information about path markup syntax, see Path markup syntax.
+                    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                        <strong style="color:blue">Polygon</strong>, followed by a collection of x- and y-coordinate pairs. For example, Polygon 40 10, 70 80, 10 50.
+                    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                        <strong style="color:blue">Polyline</strong>, followed by a collection x- and y-coordinate pairs. For example, Polyline 0,0 10,30 15,0 18,60 23,30 35,30 40,0 43,60 48,30 100,30.
+                    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                        <strong style="color:blue">RoundRectangle</strong>, optionally followed by a corner radius. For example, RoundRectangle 40 or RoundRectangle 40,0,0,40.
+                    ]]>
+            </x:String>
+        </x:Array>
+    </app:BasePage.Resources>
+
+    <app:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </app:BasePage.ToolbarItems>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:StaticResource ControlInfo}" />
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Looking for the rounded syntax again 🤣🤣?" />
+                    <Label Text="Here you go" />
+                    <app:SourceCodeExpander Code="{x:Binding RoundedRectangleXamlCode}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding RoundedRectangle2XamlCode}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CollectionView
+                    Footer="{x:StaticResource PropertiesListFooter}"
+                    Header="{x:StaticResource PropertiesListHeader}"
+                    ItemsSource="{x:StaticResource PropertyItemsSource}"
+                    Style="{x:StaticResource PropertiesListStyle}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a Border" />
+                    <Label Text="{x:StaticResource CreateBorder1}" />
+                    <Border
+                        Padding="16,8"
+                        Background="#2B0B98"
+                        HorizontalOptions="Center"
+                        Stroke="#C49B33"
+                        StrokeShape="RoundRectangle 40,0,0,40"
+                        StrokeThickness="4">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text=".NET MAUI"
+                            TextColor="White" />
+                    </Border>
+                    <app:SourceCodeExpander Code="{x:Binding CreateBorderXamlCode}" CodeType="Xaml" />
+                    <Label Text="{x:StaticResource CreateBorder1}" />
+                    <Border
+                        Padding="16,8"
+                        Background="#2B0B98"
+                        HorizontalOptions="Center"
+                        Stroke="#C49B33"
+                        StrokeShape="RoundRectangle 40,0,0,40"
+                        StrokeThickness="4">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text=".NET MAUI"
+                            TextColor="White" />
+                    </Border>
+                    <app:SourceCodeExpander Code="{x:Binding CreateBorder2XamlCode}" CodeType="Xaml" />
+                    <Label Text="{x:StaticResource CreateBorder2}" />
+                    <Label Text="{x:StaticResource CreateBorder3}" />
+                    <app:SourceCodeExpander Code="{x:Binding CreateBorder3CSharpCode}" CodeType="CSharp" />
+                    <Label Text="{x:StaticResource CreateBorder4}" />
+                    <Grid x:Name="CreateBorderExampleGrid" />
+                    <Label Text="{x:StaticResource CreateBorder5}" />
+                    <app:SourceCodeExpander Code="{x:Binding CreateBorder4XamlCode}" CodeType="Xaml" />
+                    <Label Text="{x:StaticResource CreateBorder3}" />
+                    <app:SourceCodeExpander Code="{x:Binding CreateBorder4CSharpCode}" CodeType="CSharp" />
+                    <Label Text="{x:StaticResource CreateBorder6}" />
+                    <Border
+                        Padding="16,8"
+                        Background="#2B0B98"
+                        HorizontalOptions="Center"
+                        StrokeShape="RoundRectangle 40,0,0,40"
+                        StrokeThickness="4">
+                        <Border.Stroke>
+                            <LinearGradientBrush EndPoint="0,1">
+                                <GradientStop Offset="0.1" Color="Orange" />
+                                <GradientStop Offset="1.0" Color="Brown" />
+                            </LinearGradientBrush>
+                        </Border.Stroke>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text=".NET MAUI"
+                            TextColor="White" />
+                    </Border>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:StaticResource DefineBorderShapeTitle}" />
+                    <Label Text="{x:StaticResource DefineBorderShapeDescription}" />
+                    <CollectionView
+                        Footer="{x:StaticResource PropertiesListFooter}"
+                        Header="{x:StaticResource PropertiesListHeader}"
+                        ItemsSource="{x:StaticResource BorderShapePropertyItemsSource}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</app:BasePage>

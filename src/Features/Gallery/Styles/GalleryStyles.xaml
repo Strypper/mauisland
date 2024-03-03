@@ -85,7 +85,7 @@
             Margin="0,0,0,15"
             LineBreakMode="WordWrap"
             Style="{x:StaticResource DocumentSectionTitleStyle}"
-            Text="{x:Binding}"
+            Text="{x:Binding Mode=OneWay}"
             TextType="Html" />
     </DataTemplate>
 
@@ -94,7 +94,7 @@
             Margin="0,10,0,0"
             FontSize="Subtitle"
             LineBreakMode="WordWrap"
-            Text="{x:Binding}" />
+            Text="{x:Binding Mode=OneWay}" />
     </DataTemplate>
 
     <Style x:Key="PropertiesListStyle" TargetType="CollectionView">
