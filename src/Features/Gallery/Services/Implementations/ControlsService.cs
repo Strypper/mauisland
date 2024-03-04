@@ -60,7 +60,14 @@ public class ControlsService : IControlsService
             Author = "Community",
             Banner = "github_banner.png",
             ProviderUrl = "https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/",
-            Description = "Explore what the community is building with .NET MAUI. We collect a wide range of repositories and gather them here for you to easily explore and experiment with a variety of controls and capabilities, all in one convenient location. Whether you’re looking to build a new app from scratch or enhance an existing project"
+            Description = "Explore what the community is building with .NET MAUI. We collect a wide range of repositories and gather them here for you to easily explore and experiment with a variety of controls and capabilities, all in one convenient location. Whether you’re looking to build a new app from scratch or enhance an existing project",
+            Important = new()
+            {
+                Level = ControlGroupInfoImportantLevel.Warning,
+                AttachImage = "project_githubcard_bug.png",
+                AdditionalLink = "https://github.com/dotnet/maui/issues/20965?fbclid=IwAR1wu8ajUGJcsYrF-RMJm3DuntnyuG9xPL0MVy4dM3xJzRO0IzUKkJipnXM",
+                Content = "We’ve identified a bug with the detail button, which requires a specific click on its top left corner to function. This issue has been reported to the MAUI team for resolution. For updates, please refer to the provided link. Thank you for your patience."
+            }
         },
         new() {
             Name = ControlGroupInfo.MaterialComponent,

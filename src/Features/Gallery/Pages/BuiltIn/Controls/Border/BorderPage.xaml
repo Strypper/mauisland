@@ -59,6 +59,14 @@
             The .NET Multi-platform App UI (.NET MAUI) Border is a container control that draws a border, background, or both, around another control. A Border can only contain one child object. If you want to put a border around multiple objects, wrap them in a container object such as a layout.
         </x:String>
 
+        <x:String x:Key="Important1">
+            When creating a border using a shape, such as a Rectangle or Polygon, only closed shapes should be used. Therefore, open shapes such as Line are unsupported.
+        </x:String>
+
+        <x:String x:Key="Important2">
+            While Line is a valid string value for the StrokeShape property, its use is not supported.
+        </x:String>
+
         <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
@@ -221,6 +229,18 @@
                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
+            <Border
+                Padding="10"
+                BackgroundColor="#004173"
+                StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout>
+                    <Label
+                        Style="{x:StaticResource DocumentSectionTitleStyle}"
+                        Text="Important"
+                        TextColor="White" />
+                    <Label Text="{x:StaticResource Important1}" TextColor="White" />
+                </VerticalStackLayout>
+            </Border>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a Border" />
@@ -296,6 +316,19 @@
                         Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
             </Frame>
+
+            <Border
+                Padding="10"
+                BackgroundColor="#004173"
+                StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout>
+                    <Label
+                        Style="{x:StaticResource DocumentSectionTitleStyle}"
+                        Text="Important"
+                        TextColor="White" />
+                    <Label Text="{x:StaticResource Important2}" TextColor="White" />
+                </VerticalStackLayout>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

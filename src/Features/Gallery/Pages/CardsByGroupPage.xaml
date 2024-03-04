@@ -208,6 +208,46 @@
                             </acrylic:AcrylicView>
                         </Border>
                     </Grid>
+                    <Border
+                        Padding="10"
+                        BackgroundColor="#004173"
+                        IsVisible="{x:Binding ControlGroup.Important,
+                                              Mode=OneWay,
+                                              Converter={toolkit:IsNotNullConverter}}"
+                        StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout>
+                            <Label
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Important"
+                                TextColor="White" />
+                            <Label
+                                MaxLines="4"
+                                Text="{x:Binding ControlGroup.Important.Content}"
+                                TextColor="White" />
+                            <BoxView
+                                BackgroundColor="Transparent"
+                                HeightRequest="10"
+                                Color="Transparent" />
+                            <Image
+                                Aspect="AspectFill"
+                                HeightRequest="370"
+                                HorizontalOptions="Start"
+                                Source="{x:Binding ControlGroup.Important.AttachImage,
+                                                   Mode=OneWay}"
+                                VerticalOptions="Start"
+                                WidthRequest="500" />
+                            <BoxView
+                                BackgroundColor="Transparent"
+                                HeightRequest="10"
+                                Color="Transparent" />
+                            <Button
+                                Command="{x:Binding OpenUrlCommand}"
+                                CommandParameter="{x:Binding ControlGroup.Important.AdditionalLink}"
+                                HeightRequest="30"
+                                HorizontalOptions="Start"
+                                Text="Link" />
+                        </VerticalStackLayout>
+                    </Border>
                     <Grid>
                         <Label
                             FontSize="32"

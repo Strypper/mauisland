@@ -49,8 +49,17 @@
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
+	  <EmbeddedResource Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
+	  <MauiCss Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
+	  <MauiXaml Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
+	  <None Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
+	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="appsettings.Development.json" />
+	  <None Remove="Resources\Images\project_githubcard_bug.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -109,7 +118,6 @@
 	<ItemGroup>
 		<Folder Include="Features\Blog\" />
 		<Folder Include="Features\Gallery\Pages\BuiltIn\Layouts\" />
-		<Folder Include="Features\Gallery\Pages\Material\" />
 		<Folder Include="Features\QA\" />
 		<Folder Include="Features\Gallery\Services\" />
 		<Folder Include="Features\Settings\Models\" />
@@ -139,6 +147,12 @@
 		</Compile>
 		<Compile Update="Features\Gallery\Pages\Community\Helpers\SQLite-net\SQLiteNETPage.xaml.cs">
 		  <DependentUpon>SQLiteNETPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Features\Gallery\Pages\Material\Controls\MaterialProgressIndicator\MaterialProgressIndicatorPage.xaml.cs">
+		  <DependentUpon>MaterialProgressIndicatorPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Features\Gallery\Pages\Material\Controls\MaterialRadioButton\MaterialRadioButtonPage.xaml.cs">
+		  <DependentUpon>MaterialRadioButtonPage.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Features\Gallery\Pages\Syncfusion\SfMaps\SfMapsViewPage.xaml.cs">
 			<DependentUpon>SfMapsViewPage.xaml</DependentUpon>
@@ -220,6 +234,12 @@
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\GalleryPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Gallery\Pages\Material\Controls\MaterialRadioButton\MaterialRadioButtonPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Gallery\Pages\Material\Controls\MaterialProgressIndicator\MaterialProgressIndicatorPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfMaps\SfMapsViewPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
@@ -434,6 +454,10 @@
 		<MauiImage Include="Resources\Images\memes\mrincrediblesmile3.png" />
 		<MauiImage Include="Resources\Images\memes\mrincrediblesmile4.png" />
 		<MauiImage Include="Resources\Images\memes\mrincrediblesmile5.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PRIResource Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
 	</ItemGroup>
 
 

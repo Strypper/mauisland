@@ -39,6 +39,9 @@ public partial class ControlGroupInfo : BaseModel
     Color buttonTextColor;
 
     [ObservableProperty]
+    ControlGroupInfoImportant? important;
+
+    [ObservableProperty]
     string microsoftStoreLink;
 
     public const string BuiltInControls = nameof(BuiltInControls);
