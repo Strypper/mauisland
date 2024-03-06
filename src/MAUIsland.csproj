@@ -157,6 +157,15 @@
 		<Compile Update="Features\Gallery\Pages\Syncfusion\SfMaps\SfMapsViewPage.xaml.cs">
 			<DependentUpon>SfMapsViewPage.xaml</DependentUpon>
 		</Compile>
+		<Compile Update="Features\Gallery\Pages\Toolkit\Layouts\DockLayout\DockLayoutPage.xaml.cs">
+		  <DependentUpon>DockLayoutPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Features\Gallery\Pages\Toolkit\Layouts\StateContainer\StateContainerPage.xaml.cs">
+		  <DependentUpon>StateContainerPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Features\Gallery\Pages\Toolkit\Layouts\UniformLayout\UniformItemsLayoutPage.xaml.cs">
+		  <DependentUpon>UniformItemsLayoutPage.xaml</DependentUpon>
+		</Compile>
 		<Compile Update="Features\Gallery\Pages\Toolkit\MediaElement\MediaElementPage.xaml.cs">
 			<DependentUpon>MediaElementPage.xaml</DependentUpon>
 		</Compile>
@@ -245,6 +254,15 @@
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\Toolkit\Helpers\RelayCommand\RelayCommandPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Gallery\Pages\Toolkit\Layouts\DockLayout\DockLayoutPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Gallery\Pages\Toolkit\Layouts\StateContainer\StateContainerPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Gallery\Pages\Toolkit\Layouts\UniformLayout\UniformItemsLayoutPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\Toolkit\MediaElement\MediaElementPage.xaml">

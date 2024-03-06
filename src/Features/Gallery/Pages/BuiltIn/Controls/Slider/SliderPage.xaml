@@ -125,21 +125,21 @@
                         <Picker
                             x:Name="ThumbColorPicker"
                             Title="Thumb Color"
-                            BackgroundColor="Black"
+                            BackgroundColor="#512bd4"
                             ItemsSource="{x:StaticResource SliderColorResource}"
                             SelectedIndex="0" />
 
                         <Picker
                             x:Name="MinimumTrackColorPicker"
                             Title="Minimum Track Color"
-                            BackgroundColor="Black"
+                            BackgroundColor="#512bd4"
                             ItemsSource="{x:StaticResource SliderColorResource}"
                             SelectedIndex="1" />
 
                         <Picker
                             x:Name="MaximumTrackColorPicker"
                             Title="Maximum Track Color"
-                            BackgroundColor="Black"
+                            BackgroundColor="#512bd4"
                             ItemsSource="{x:StaticResource SliderColorResource}"
                             SelectedIndex="2" />
                     </HorizontalStackLayout>

@@ -186,7 +186,7 @@
                     <Picker
                         x:Name="EditorColorPicker"
                         Title="Change Text Color"
-                        BackgroundColor="Black"
+                        BackgroundColor="#512bd4"
                         ItemsSource="{x:StaticResource LabelColorResource}" />
                     <Editor
                         x:Name="CharacterSpacingEditor"

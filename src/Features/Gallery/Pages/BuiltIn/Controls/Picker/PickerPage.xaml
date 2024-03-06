@@ -134,7 +134,7 @@
                     <Picker
                         x:Name="picker"
                         Title="Select a MAUIsland members"
-                        BackgroundColor="Black"
+                        BackgroundColor="#512bd4"
                         ItemsSource="{x:StaticResource MAUIMembers}" />
                     <Button
                         BackgroundColor="Black"

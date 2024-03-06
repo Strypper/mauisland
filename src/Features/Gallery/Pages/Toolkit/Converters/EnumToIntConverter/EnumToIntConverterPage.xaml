@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<app:BasePage 
+<app:BasePage
     x:Class="MAUIsland.EnumToIntConverterPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -43,8 +43,7 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Converter Properties" />
-                    <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" 
-                                    Style="{x:StaticResource PropertiesListStyle}"/>
+                    <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -52,18 +51,18 @@
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup ToolKit" />
                     <VerticalStackLayout>
-                        <Label Text="{x:Binding SetupDescription}"/>
-                        <Label Text="{x:Binding XamlNamespace}" TextColor="Blue"/>
+                        <Label Text="{x:Binding SetupDescription}" />
+                        <Label Text="{x:Binding XamlNamespace}" TextColor="Blue" />
                     </VerticalStackLayout>
                 </VerticalStackLayout>
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
-                    <Label Text="Therefore the following:"/>
-                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding FullNamepaceExampleBefore}" />
-                    <Label Text="Would be modified to include the xmlns as follows:"/>
-                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding FullNamepaceExampleAfter}" />
+                    <Label Text="Therefore the following:" />
+                    <app:SourceCodeExpander Code="{x:Binding FullNamepaceExampleBefore}" CodeType="Xaml" />
+                    <Label Text="Would be modified to include the xmlns as follows:" />
+                    <app:SourceCodeExpander Code="{x:Binding FullNamepaceExampleAfter}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -72,15 +71,16 @@
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Enum To Int Converter" />
                     <Label Text="The EnumToIntConverter is a converter that allows users to convert a standard enum (extending int) to its underlying primitive int type." />
                     <Label Text="Selecting a value from the picker will change the enum property(GalleryCardType type in this case) in the ViewModel" />
-                    <Picker ItemsSource="{x:Binding GalleryCardTypes}" 
-                            SelectedIndex="{Binding SelectedItem, Converter={StaticResource EnumToIntConverter}, ConverterParameter={x:Type app:GalleryCardType}}"
-                            BackgroundColor="LightGray"/>
-                    <Label Text="This label binds to the SelectedIndex property of the picker, both use EnumToIntConverter, so no int properties are necessary in ViewModel"/>
+                    <Picker
+                        BackgroundColor="#512bd4"
+                        ItemsSource="{x:Binding GalleryCardTypes}"
+                        SelectedIndex="{Binding SelectedItem, Converter={StaticResource EnumToIntConverter}, ConverterParameter={x:Type app:GalleryCardType}}" />
+                    <Label Text="This label binds to the SelectedIndex property of the picker, both use EnumToIntConverter, so no int properties are necessary in ViewModel" />
                     <Label>
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="This is the index of the item that you have chosen:  "/>
-                                <Span Text="{x:Binding SelectedItem, Converter={StaticResource EnumToIntConverter}}"/>
+                                <Span Text="This is the index of the item that you have chosen:  " />
+                                <Span Text="{x:Binding SelectedItem, Converter={StaticResource EnumToIntConverter}}" />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
@@ -90,11 +90,11 @@
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="This is ViewModel code" />
-                    <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpxamlConverterTestingViewModel}" />
+                    <app:SourceCodeExpander Code="{x:Binding CSharpxamlConverterTestingViewModel}" CodeType="CSharp" />
                     <Label Text="Here what your converter look like" />
-                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlConverterSetup}" />
+                    <app:SourceCodeExpander Code="{x:Binding XamlConverterSetup}" CodeType="Xaml" />
                     <Label Text="This Xaml code" />
-                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlConverterTesting}" />
+                    <app:SourceCodeExpander Code="{x:Binding XamlConverterTesting}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

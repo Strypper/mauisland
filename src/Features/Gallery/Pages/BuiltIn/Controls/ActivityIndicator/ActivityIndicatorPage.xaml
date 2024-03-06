@@ -94,7 +94,7 @@
                         <Picker
                             x:Name="ActivityIndicatorColorPicker"
                             Title="Choose Color"
-                            BackgroundColor="Black"
+                            BackgroundColor="#512bd4"
                             ItemsSource="{x:StaticResource ActivityIndicatorColorResource}"
                             VerticalOptions="Center" />
                         <Switch

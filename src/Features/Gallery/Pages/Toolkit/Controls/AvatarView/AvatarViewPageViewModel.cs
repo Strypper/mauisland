@@ -1,6 +1,6 @@
 ﻿namespace MAUIsland;
 
-public partial class AvatarViewPageViewModel: NavigationAwareBaseViewModel
+public partial class AvatarViewPageViewModel : NavigationAwareBaseViewModel
 {
     #region [ CTor ]
     public AvatarViewPageViewModel(IAppNavigator appNavigator) : base(appNavigator)
@@ -25,7 +25,7 @@ public partial class AvatarViewPageViewModel: NavigationAwareBaseViewModel
         "<ContentPage\r\n" +
         "    x:Class=\"MAUIsland.MediaElementPage\"\r\n" +
         "    xmlns=\"http://schemas.microsoft.com/dotnet/2021/maui\"\r\n" +
-        "    xmlns:x=\"http://schemas.microsoft.com/winfx/2009/xaml\"\r\n" +
+        "    xmlns:x=\"http://schemas.microsoft.com/winfx/2009/xaml\">\"\r\n" +
         "</ContentPage>";
 
     [ObservableProperty]
