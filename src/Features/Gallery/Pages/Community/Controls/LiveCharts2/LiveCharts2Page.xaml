@@ -39,32 +39,36 @@
                 <Label Text="{x:Binding ControlInformation.ControlDetail}" />
             </Border>
 
-            <Border Padding="20" Style="{x:StaticResource MAUIslandBorderStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="5">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding BasicBarsTitle}" />
                     <lvc:CartesianChart
                         HeightRequest="300"
                         LegendPosition="Right"
                         Series="{Binding BasicBarsSeries}"
-                        XAxes="{Binding BasicBarsXAxes}" />
+                        XAxes="{Binding BasicBarsXAxes}" 
+                        YAxes="{Binding BasicBarsYAxes}" 
+                        LegendBackgroundPaint="{Binding LegendBackgroundPaint}"
+                        LegendTextPaint="{Binding LegendTextPaint}"/>
                     <app:SourceCodeExpander Code="{x:Binding BasicBarsCSharpCode}" CodeType="CSharp" />
                     <app:SourceCodeExpander Code="{x:Binding BasicBarsXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Border>
 
-            <Border Padding="20" Style="{x:StaticResource MAUIslandBorderStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="5">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding BarsWithBackgroundTitle}" />
                     <lvc:CartesianChart
                         HeightRequest="300"
                         Series="{Binding BarsWithBackgroundSeries}"
+                        XAxes="{Binding BarsWithBackgroundXAxes}"
                         YAxes="{Binding BarsWithBackgroundYAxes}" />
                     <app:SourceCodeExpander Code="{x:Binding BarsWithBackgroundCSharpCode}" CodeType="CSharp" />
                     <app:SourceCodeExpander Code="{x:Binding BarsWithBackgroundXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Border>
 
-            <Border Padding="20" Style="{x:StaticResource MAUIslandBorderStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="5">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding RacingBarsTitle}" />
                     <lvc:CartesianChart

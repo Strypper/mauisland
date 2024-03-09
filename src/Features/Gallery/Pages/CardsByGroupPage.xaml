@@ -194,6 +194,7 @@
                                             HeightRequest="170"
                                             LineBreakMode="CharacterWrap"
                                             MaxLines="10"
+                                            LineHeight="1.55"
                                             Text="{x:Binding ControlGroup.Description}"
                                             TextColor="{x:Static app:AppColors.White}" />
                                     </VerticalStackLayout>
