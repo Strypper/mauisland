@@ -22,8 +22,7 @@ public partial class SourceCodeExpander : ContentView, INotifyPropertyChanged
     }
     #endregion
 
-
-    #region [Properties]
+    #region [ Properties ]
     public FormattedString OutputFormattedString
     {
         get { return outputFormattedString; }
@@ -31,7 +30,7 @@ public partial class SourceCodeExpander : ContentView, INotifyPropertyChanged
     }
     #endregion
 
-    #region [Bindable Properties]
+    #region [ Bindable Properties ]
     public static readonly BindableProperty CodeProperty = BindableProperty.Create(nameof(Code),
                                                                                            typeof(string),
                                                                                            typeof(SourceCodeExpander),
@@ -74,7 +73,7 @@ public partial class SourceCodeExpander : ContentView, INotifyPropertyChanged
     }
     #endregion
 
-    #region [Event Handlers]
+    #region [ Event Handlers ]
 
     private async void Copy_Clicked(object sender, EventArgs e)
     {
@@ -85,6 +84,9 @@ public partial class SourceCodeExpander : ContentView, INotifyPropertyChanged
     {
         CodeTypeLabel.Text = CodeType == CodeType.Xaml ? "Xaml Code" : "C# Code";
         ApplyColor(Code, CodeType == CodeType.Xaml ? Languages.Xml : Languages.CSharp);
+        ComponentFrame.BackgroundColor = CodeType == CodeType.Xaml
+                                        ? Color.FromRgba("#ffffff") // Hex color for XAML type
+                                        : Color.FromRgba("#2f2f2f");
         //CodeExpander.BackgroundColor = CodeType == CodeType.Xaml
         //                            ? Color.FromHex("#ffffff") // Hex color for XAML type
         //                            : Color.FromHex("#00B1EE");

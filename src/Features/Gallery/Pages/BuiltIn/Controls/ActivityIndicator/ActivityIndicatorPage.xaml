@@ -77,11 +77,8 @@
                 <VerticalStackLayout Spacing="10">
                     <HorizontalStackLayout HorizontalOptions="Start" Spacing="10">
                         <ActivityIndicator IsRunning="True" />
-
                         <ActivityIndicator IsRunning="True" Color="Green" />
-
                         <ActivityIndicator IsRunning="True" Color="Red" />
-
                         <ActivityIndicator IsRunning="true" Color="Aqua" />
                     </HorizontalStackLayout>
                     <app:SourceCodeExpander Code="{x:Binding GroupOfActivityIndicators}" />
@@ -94,8 +91,8 @@
                         <Picker
                             x:Name="ActivityIndicatorColorPicker"
                             Title="Choose Color"
-                            BackgroundColor="#512bd4"
                             ItemsSource="{x:StaticResource ActivityIndicatorColorResource}"
+                            SelectedIndex="0"
                             VerticalOptions="Center" />
                         <Switch
                             x:Name="ActivityIndicatorSwitch"

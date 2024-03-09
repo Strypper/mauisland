@@ -15,7 +15,7 @@ public partial class ImageButtonPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
     [ObservableProperty]
     IGalleryCardInfo controlInformation;
 
@@ -37,7 +37,7 @@ public partial class ImageButtonPageViewModel : NavigationAwareBaseViewModel
         "             Padding=\"5\"/>";
 
     [ObservableProperty]
-    string xamlImageButtonWithEventHandler=
+    string xamlImageButtonWithEventHandler =
         "<Border Padding=\"5\"\r\n" +
         "        BackgroundColor=\"DarkGray\"\r\n" +
         "        x:Name=\"ImageButtonWithEvent\">\r\n" +

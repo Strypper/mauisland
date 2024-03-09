@@ -2,7 +2,7 @@
 
 public partial class BorderPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [CTor]
+    #region [ CTor ]
     public BorderPageViewModel(IAppNavigator appNavigator)
                                     : base(appNavigator)
     {
@@ -10,7 +10,8 @@ public partial class BorderPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
+
     [ObservableProperty]
     bool isEnable = true;
 
@@ -42,7 +43,7 @@ public partial class BorderPageViewModel : NavigationAwareBaseViewModel
     string buttonWithImageXamlCode = "<Frame>\r\n                <Frame.Resources>\r\n                    <FontImageSource x:Key=\"HomeIcon\"\r\n                                     Color=\"{x:StaticResource Primary }\"\r\n                                     FontFamily=\"{x:Static app:FontNames.FluentSystemIconsRegular}\"\r\n                                     Glyph=\"{Static app:FluentUIIcon.Ic_fluent_home_20_regular}\"/>\r\n\r\n                    <FontImageSource x:Key=\"DownloadIcon\"\r\n                                     Color=\"{x:StaticResource Primary }\"\r\n                                     FontFamily=\"{x:Static app:FontNames.FluentSystemIconsRegular}\"\r\n                                     Glyph=\"{Static app:FluentUIIcon.Ic_fluent_arrow_download_20_regular}\"/>\r\n                </Frame.Resources>\r\n\r\n                <HorizontalStackLayout Spacing=\"10\">\r\n                    <Button Text=\"Home\"\r\n                            ImageSource=\"{x:StaticResource HomeIcon}\"/>\r\n\r\n                    <Button Text=\"Download\"\r\n                            ImageSource=\"{x:StaticResource DownloadIcon}\"/>\r\n                </HorizontalStackLayout>\r\n            </Frame>";
     #endregion
 
-    #region [Overrides]
+    #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
@@ -52,9 +53,16 @@ public partial class BorderPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Relay Commands]
+    #region [ Relay Commands ]
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    async Task CopyToClipboardAsync(string text)
+    {
+        await Clipboard.Default.SetTextAsync(text);
+        await AppNavigator.ShowSnackbarAsync("Code copied to clipboard", null, null);
+    }
     #endregion
 }

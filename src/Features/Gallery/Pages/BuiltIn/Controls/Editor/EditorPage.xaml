@@ -171,7 +171,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <app:SourceCodeExpander Code="{x:Binding SimpleEditXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding SimpleEditXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
 
@@ -196,6 +196,8 @@
                         TextColor="{x:Binding Source={x:Reference EditorColorPicker},
                                               Path=SelectedItem,
                                               Converter={x:StaticResource StringToColorConverter}}" />
+
+                    <app:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

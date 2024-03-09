@@ -5,11 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    Title="Avatar View"
+    Title="Uniform Items Layout"
     Padding="10"
     x:DataType="app:UniformItemsLayoutPageViewModel"
-    BackgroundColor="#181417"
-    Shell.NavBarIsVisible="False">
+    BackgroundColor="#181417">
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem

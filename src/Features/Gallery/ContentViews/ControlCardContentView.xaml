@@ -39,13 +39,15 @@
                                      Source={x:Reference root}}"
                     TextColor="{x:StaticResource White}" />
                 <Frame
+                    Padding="10"
                     BackgroundColor="#1f1f1f"
                     CornerRadius="12"
-                    HeightRequest="170"
+                    HeightRequest="165"
                     WidthRequest="266">
                     <Label
                         FontSize="14"
                         LineBreakMode="CharacterWrap"
+                        LineHeight="1.55"
                         MaxLines="10"
                         Text="{x:Binding ComponentData.ControlDetail,
                                          Source={x:Reference root}}"
