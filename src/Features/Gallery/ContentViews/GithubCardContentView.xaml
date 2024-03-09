@@ -87,6 +87,7 @@
                         MaxLines="7"
                         Text="{x:Binding ComponentData.ControlDetail,
                                          Source={x:Reference root}}"
+                        LineHeight="1.55"
                         TextColor="White"
                         ToolTipProperties.Text="{x:Binding ComponentData.ControlDetail,
                                                            Source={x:Reference root}}" />
@@ -142,12 +143,12 @@
         <toolkit:AvatarView
             Margin="15,5,5,5"
             CornerRadius="50"
-            HeightRequest="87"
+            HeightRequest="75"
             HorizontalOptions="Start"
             ImageSource="{x:Binding AuthorAvatar,
                                     Source={x:Reference root}}"
             VerticalOptions="Start"
-            WidthRequest="87" />
+            WidthRequest="75" />
 
         <Label
             Margin="110,15,0,0"

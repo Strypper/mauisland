@@ -94,14 +94,12 @@
                     FontSize="Subtitle"
                     HorizontalOptions="Start"
                     Text="{x:Binding ApplicationNew.Component.ControlName,
-                                     Source={x:Reference root}}"
-                    TextColor="Black" />
+                                     Source={x:Reference root}}"/>
                 <Label
                     MaxLines="4"
                     MaximumWidthRequest="220"
                     Text="{x:Binding ApplicationNew.NewLog,
-                                     Source={x:Reference root}}"
-                    TextColor="Black" />
+                                     Source={x:Reference root}}" />
             </VerticalStackLayout>
             <Button
                 Grid.Column="1"
