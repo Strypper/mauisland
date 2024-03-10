@@ -1,6 +1,4 @@
-﻿
-
-namespace MAUIsland;
+﻿namespace MAUIsland;
 
 public partial class LabelPageViewModel : NavigationAwareBaseViewModel
 {
@@ -40,15 +38,15 @@ public partial class LabelPageViewModel : NavigationAwareBaseViewModel
         ControlInformation = query.GetData<IGalleryCardInfo>();
 
         LoadDataAsync(true).FireAndForget();
-    } 
+    }
     #endregion
 
     #region [Relay Commands]
+
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
     #endregion
-
 
     #region [Methods]
     private async Task LoadDataAsync(bool forced)

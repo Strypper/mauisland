@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="Label"
     Padding="10"
-    x:DataType="app:LabelPageViewModel">
+    x:DataType="app:LabelPageViewModel"
+    BackgroundColor="Transparent">
     <app:BasePage.Resources>
         <app:LineBreakModeEnumToStringConverter x:Key="LineBreakModeEnumToStringConverter" />
         <app:StringToColorConverter x:Key="StringToColorConverter" />
@@ -136,7 +137,7 @@
     <ScrollView>
         <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource ControlInfo}" />
+                <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
@@ -148,13 +149,45 @@
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Grid ColumnDefinitions="*, *" RowDefinitions="*,*">
+                    <VerticalStackLayout Grid.RowSpan="2" Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Built-in font sizes" />
+                        <Label FontSize="Caption" Text="Caption" />
+                        <Label FontSize="Body" Text="Body" />
+                        <Label FontSize="Default" Text="Default" />
+                        <Label FontSize="Micro" Text="Micro" />
+                        <Label FontSize="Small" Text="Small" />
+                        <Label FontSize="Subtitle" Text="Subtitle" />
+                        <Label FontSize="Title" Text="Title" />
+                        <Label FontSize="Medium" Text="Medium" />
+                        <Label FontSize="Large" Text="Large" />
+                        <Label FontSize="Header" Text="Header" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="1" Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Built-in font attributes" />
+                        <Label FontAttributes="None" Text="None" />
+                        <Label FontAttributes="Bold" Text="Bold" />
+                        <Label FontAttributes="Italic" Text="Italic" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Text decorations" />
+                        <Label Text="None" TextDecorations="None" />
+                        <Label Text="Strikethrough" TextDecorations="Strikethrough" />
+                        <Label Text="Underline" TextDecorations="Underline" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Control text truncation and wrapping" />
                     <HorizontalStackLayout Spacing="10">
                         <Picker
                             x:Name="LineBreakModePicker"
                             Title="Line Break Mode"
-                            BackgroundColor="{x:StaticResource Primary}"
                             ItemsSource="{x:Binding LineBreakModes}"
                             SelectedIndex="{x:Binding SelectedLineBreakModeIndex,
                                                       Converter={x:StaticResource LineBreakModeEnumToStringConverter},
@@ -165,7 +198,6 @@
                             <HorizontalStackLayout Spacing="5">
                                 <Stepper
                                     x:Name="MaximumLineStepper"
-                                    BackgroundColor="{x:StaticResource Primary}"
                                     Increment="1"
                                     Maximum="5"
                                     Minimum="1"
@@ -177,8 +209,8 @@
                         <Picker
                             x:Name="LabelColorPicker"
                             Title="Change Text Color"
-                            BackgroundColor="{x:StaticResource Primary}"
-                            ItemsSource="{x:StaticResource LabelColorResource}" />
+                            ItemsSource="{x:StaticResource LabelColorResource}"
+                            SelectedIndex="1" />
                     </HorizontalStackLayout>
 
                     <VerticalStackLayout MinimumWidthRequest="200" Spacing="8">
@@ -231,9 +263,9 @@
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Code style label" />
                     <Label FormattedText="{x:Binding FormatedStringByCsharpCode}" />
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Test your code format" />
+                    <!--<Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Test your code format" />
                     <Editor />
-                    <Label />
+                    <Label />-->
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

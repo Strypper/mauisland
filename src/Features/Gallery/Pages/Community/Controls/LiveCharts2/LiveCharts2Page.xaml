@@ -36,7 +36,7 @@
     <ScrollView>
         <VerticalStackLayout Spacing="20">
             <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+                <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
             </Border>
 
             <Border Padding="20" StrokeShape="RoundRectangle 4">
@@ -44,12 +44,12 @@
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding BasicBarsTitle}" />
                     <lvc:CartesianChart
                         HeightRequest="300"
-                        LegendPosition="Right"
-                        Series="{Binding BasicBarsSeries}"
-                        XAxes="{Binding BasicBarsXAxes}" 
-                        YAxes="{Binding BasicBarsYAxes}" 
                         LegendBackgroundPaint="{Binding LegendBackgroundPaint}"
-                        LegendTextPaint="{Binding LegendTextPaint}"/>
+                        LegendPosition="Right"
+                        LegendTextPaint="{Binding LegendTextPaint}"
+                        Series="{Binding BasicBarsSeries}"
+                        XAxes="{Binding BasicBarsXAxes}"
+                        YAxes="{Binding BasicBarsYAxes}" />
                     <app:SourceCodeExpander Code="{x:Binding BasicBarsCSharpCode}" CodeType="CSharp" />
                     <app:SourceCodeExpander Code="{x:Binding BasicBarsXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>

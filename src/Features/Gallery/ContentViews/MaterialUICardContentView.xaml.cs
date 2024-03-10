@@ -10,13 +10,13 @@ public partial class MaterialUICardContentView : ContentView
     }
     #endregion
 
-    #region [Delegates]
+    #region [ Delegates ]
     public delegate void DetailEventHandler(IMaterialUIGalleryCardInfo control);
 
     public delegate void DetailInNewWindowEventHandler(IMaterialUIGalleryCardInfo control);
     #endregion
 
-    #region [Event Handlers]
+    #region [ Event Handlers ]
     public event DetailEventHandler DetailClicked;
 
     public event DetailInNewWindowEventHandler DetailInNewWindowClicked;
@@ -37,9 +37,9 @@ public partial class MaterialUICardContentView : ContentView
     }
     #endregion
 
-    #region [Event Handlers]
+    #region [ Event Handlers ]
 
-    private void Detail_Clicked(object sender, SkiaSharp.Views.Maui.SKTouchEventArgs e)
+    private void Detail_Clicked(object sender, TouchEventArgs e)
     {
         DetailClicked?.Invoke(ComponentData);
     }
@@ -51,4 +51,5 @@ public partial class MaterialUICardContentView : ContentView
 
     public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
     #endregion
+
 }

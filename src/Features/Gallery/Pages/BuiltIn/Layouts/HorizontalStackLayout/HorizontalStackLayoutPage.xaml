@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="HorizontalStackLayout"
     Padding="10"
-    x:DataType="app:HorizontalStackLayoutPageViewModel">
+    x:DataType="app:HorizontalStackLayoutPageViewModel"
+    BackgroundColor="Transparent">
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem
@@ -75,7 +76,7 @@
     <ScrollView>
         <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+                <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
             </Frame>
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
@@ -98,9 +99,9 @@
                 </VerticalStackLayout>
             </Frame>
             <!--  Space between child views  -->
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Space between child views" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Space between child views" />
                     <HorizontalStackLayout Margin="20" Spacing="10">
                         <Rectangle
                             Fill="Red"
@@ -115,9 +116,9 @@
                 </VerticalStackLayout>
             </Frame>
             <!--  Position and size child views  -->
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Position and size child views" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Position and size child views" />
                     <HorizontalStackLayout Margin="20" HeightRequest="200">
                         <Label
                             BackgroundColor="Gray"
@@ -148,9 +149,9 @@
                 </VerticalStackLayout>
             </Frame>
             <!--  Nest HorizontalStackLayout objects  -->
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Nest HorizontalStackLayout objects" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Nest HorizontalStackLayout objects" />
                     <HorizontalStackLayout Margin="20" Spacing="6">
                         <Label Text="Primary colors:" TextColor="Blue" />
                         <VerticalStackLayout Spacing="6">

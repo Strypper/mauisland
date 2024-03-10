@@ -67,7 +67,7 @@
     <ScrollView>
         <VerticalStackLayout Spacing="20">
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource ControlInfo}" />
+                <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
             </Frame>
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
@@ -80,20 +80,55 @@
 
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="10">
-                    <skia:SKLottieView
-                        HeightRequest="500"
-                        HorizontalOptions="Center"
-                        RepeatCount="-1"
-                        RepeatMode="Restart"
-                        Source="swipeupordown.json"
-                        WidthRequest="500" />
-                    <RefreshView
-                        Command="{Binding RefreshCommand}"
-                        HorizontalOptions="Center"
-                        IsRefreshing="{x:Binding IsBusy}"
-                        MaximumWidthRequest="300">
-                        <CollectionView ItemTemplate="{x:StaticResource DemoItemTemplate}" ItemsSource="{x:Binding Items}" />
-                    </RefreshView>
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Swipe to add more items" />
+                    <Grid ColumnDefinitions="*, *,*">
+
+                        <RefreshView
+                            Command="{Binding RefreshCommand}"
+                            HorizontalOptions="Start"
+                            IsRefreshing="{x:Binding IsBusy}"
+                            MaximumWidthRequest="300">
+                            <CollectionView ItemTemplate="{x:StaticResource DemoItemTemplate}" ItemsSource="{x:Binding Items}" />
+                        </RefreshView>
+                        <VerticalStackLayout Grid.Column="1" Spacing="10">
+                            <Label
+                                FontAttributes="Bold"
+                                Text="Requirements (Laptops and PC)"
+                                TextDecorations="Underline" />
+                            <Label
+                                Padding="10"
+                                BackgroundColor="Green"
+                                HorizontalOptions="Start"
+                                Text="This work on laptop or 3rd parties touchpad devices THAT SUPPORT PRECISION TOUCH from Windows 10 and 11"
+                                TextColor="White" />
+                            <Label
+                                Padding="10"
+                                BackgroundColor="Green"
+                                HorizontalOptions="Start"
+                                Text="This will work on Macbooks that no hardware requirements needed"
+                                TextColor="White" />
+                            <Label
+                                Padding="10"
+                                BackgroundColor="Red"
+                                HorizontalOptions="Start"
+                                Text="You can't perform swipe using a mouse"
+                                TextColor="White" />
+                            <Label
+                                Padding="10"
+                                BackgroundColor="Red"
+                                HorizontalOptions="Start"
+                                Text="Laptop that does not support precision touchpad from Windows 10 or 11"
+                                TextColor="White" />
+                        </VerticalStackLayout>
+                        <skia:SKLottieView
+                            Grid.Column="2"
+                            HeightRequest="500"
+                            HorizontalOptions="Center"
+                            RepeatCount="-1"
+                            RepeatMode="Restart"
+                            Source="swipeupordown.json"
+                            WidthRequest="500" />
+                    </Grid>
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

@@ -1,7 +1,7 @@
 namespace MAUIsland;
 public partial class HorizontalStackLayoutPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [CTor]
+    #region [ CTor ]
     public HorizontalStackLayoutPageViewModel(
         IAppNavigator appNavigator
     ) : base(appNavigator)
@@ -9,7 +9,7 @@ public partial class HorizontalStackLayoutPageViewModel : NavigationAwareBaseVie
     }
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
     [ObservableProperty]
     IGalleryCardInfo controlInformation;
 
@@ -26,7 +26,7 @@ public partial class HorizontalStackLayoutPageViewModel : NavigationAwareBaseVie
     string nestHorizontalStackLayoutObjectXamlCode = "<HorizontalStackLayout Margin=\"20\" Spacing=\"6\">\r\n                        <Label Text=\"Primary colors:\" TextColor=\"Blue\" />\r\n                        <VerticalStackLayout Spacing=\"6\">\r\n                            <Rectangle\r\n                                Fill=\"Red\"\r\n                                HeightRequest=\"30\"\r\n                                WidthRequest=\"30\" />\r\n                            <Rectangle\r\n                                Fill=\"Yellow\"\r\n                                HeightRequest=\"30\"\r\n                                WidthRequest=\"30\" />\r\n                            <Rectangle\r\n                                Fill=\"Blue\"\r\n                                HeightRequest=\"30\"\r\n                                WidthRequest=\"30\" />\r\n                        </VerticalStackLayout>\r\n                        <Label Text=\"Secondary colors:\" TextColor=\"Blue\" />\r\n                        <VerticalStackLayout Spacing=\"6\">\r\n                            <Rectangle\r\n                                Fill=\"Green\"\r\n                                HeightRequest=\"30\"\r\n                                WidthRequest=\"30\" />\r\n                            <Rectangle\r\n                                Fill=\"Orange\"\r\n                                HeightRequest=\"30\"\r\n                                WidthRequest=\"30\" />\r\n                            <Rectangle\r\n                                Fill=\"Purple\"\r\n                                HeightRequest=\"30\"\r\n                                WidthRequest=\"30\" />\r\n                        </VerticalStackLayout>\r\n                    </HorizontalStackLayout>";
     #endregion
 
-    #region [Overrides]
+    #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
@@ -34,5 +34,12 @@ public partial class HorizontalStackLayoutPageViewModel : NavigationAwareBaseVie
         ControlInformation = query.GetData<IGalleryCardInfo>();
 
     }
+    #endregion
+
+    #region [Relay Commands]
+
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
     #endregion
 }

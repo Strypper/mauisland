@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="VerticalStackLayout"
     Padding="10"
-    x:DataType="app:VerticalStackLayoutPageViewModel">
+    x:DataType="app:VerticalStackLayoutPageViewModel"
+    BackgroundColor="Transparent">
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem
@@ -117,9 +118,9 @@
                 </VerticalStackLayout>
             </Frame>
             <!--  Space between child views  -->
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Space between child views" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Space between child views" />
                     <VerticalStackLayout Margin="20" Spacing="8">
                         <Label Text="Primary colors" TextColor="Blue" />
                         <Rectangle
@@ -152,9 +153,9 @@
                 </VerticalStackLayout>
             </Frame>
             <!--  Position and size child views  -->
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Position and size child views" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Position and size child views" />
                     <VerticalStackLayout Margin="20" Spacing="6">
                         <Label
                             BackgroundColor="Gray"
@@ -185,9 +186,9 @@
                 </VerticalStackLayout>
             </Frame>
             <!--  Nest VerticalStackLayout objects  -->
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Nest VerticalStackLayout objects" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Nest VerticalStackLayout objects" />
                     <VerticalStackLayout Margin="20" Spacing="8">
                         <Label Text="Primary colors" TextColor="Blue" />
                         <Frame Padding="8" BorderColor="white">

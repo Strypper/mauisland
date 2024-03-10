@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="StackLayout"
     Padding="10"
-    x:DataType="app:StackLayoutPageViewModel">
+    x:DataType="app:StackLayoutPageViewModel"
+    BackgroundColor="Transparent">
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem
@@ -94,9 +95,9 @@
                     Style="{x:StaticResource PropertiesListStyle}" />
             </Frame>
             <!--  Vertical orientation  -->
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Vertical orientation" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Vertical orientation" />
                     <StackLayout Margin="20">
                         <Label Text="Primary colors" />
                         <BoxView HeightRequest="40" Color="Red" />
@@ -113,9 +114,9 @@
                 </VerticalStackLayout>
             </Frame>
             <!--  Horizontal orientation  -->
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Horizontal orientation" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Horizontal orientation" />
                     <StackLayout
                         Margin="20"
                         HorizontalOptions="Center"
@@ -151,9 +152,9 @@
                 </VerticalStackLayout>
             </Frame>
             <!--  Space between child views  -->
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Space between child views" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Space between child views" />
                     <StackLayout Margin="20" Spacing="8">
                         <Label Text="Primary colors" />
                         <BoxView HeightRequest="40" Color="Red" />
@@ -170,9 +171,9 @@
                 </VerticalStackLayout>
             </Frame>
             <!--  Position and size of child views  -->
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Position and size of child views" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Position and size of child views" />
                     <StackLayout Margin="20" Spacing="6">
                         <Label
                             BackgroundColor="Gray"
@@ -201,9 +202,9 @@
                 </VerticalStackLayout>
             </Frame>
             <!--  Nested StackLayout objects  -->
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Nested StackLayout objects" />
             <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
                 <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Nested StackLayout objects" />
                     <StackLayout Margin="20" Spacing="8">
                         <Label Text="Primary colors" />
                         <Frame Padding="8" BorderColor="white">
