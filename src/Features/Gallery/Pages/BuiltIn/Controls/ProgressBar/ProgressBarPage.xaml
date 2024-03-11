@@ -4,7 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
-    Title="Progress Bar">
+    Title="Progress Bar"
+    Padding="20"
+    BackgroundColor="Transparent">
     <app:BasePage.Resources>
 
         <x:String x:Key="introduce">The .NET Multi-platform App UI (.NET MAUI) ProgressBar indicates to users that the app is progressing through a lengthy activity. The progress bar is a horizontal bar that is filled to a percentage represented by a double value.</x:String>
@@ -44,15 +46,16 @@
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
     <ScrollView>
-        <VerticalStackLayout Margin="10" Spacing="10">
+        <VerticalStackLayout Spacing="10">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label
+                    FontSize="Subtitle"
+                    HorizontalOptions="Start"
+                    Text="{x:StaticResource introduce}"
+                    VerticalOptions="Center" />
+            </Border>
 
-            <Label
-                Padding="10"
-                HorizontalOptions="Start"
-                Text="{x:StaticResource introduce}"
-                VerticalOptions="Center" />
-
-            <Frame Padding="20,10,20,10" Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout>
 
                     <Grid Margin="0,0,0,5">
@@ -92,18 +95,21 @@
 
                     <app:SourceCodeExpander Code="{x:Binding StandardProgressBarXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <CollectionView
-                Margin="10"
-                Footer="{x:StaticResource PropertiesListFooter}"
-                Header="{x:StaticResource PropertiesListHeader}"
-                ItemsSource="{x:StaticResource PropertyItemsSource}"
-                SelectionMode="Single"
-                Style="{x:StaticResource PropertiesListStyle}"
-                VerticalScrollBarVisibility="Never" />
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
 
-            <Frame Padding="20,10,20,10" Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CollectionView
+                    Margin="10"
+                    Footer="{x:StaticResource PropertiesListFooter}"
+                    Header="{x:StaticResource PropertiesListHeader}"
+                    ItemsSource="{x:StaticResource PropertyItemsSource}"
+                    SelectionMode="Single"
+                    Style="{x:StaticResource PropertiesListStyle}"
+                    VerticalScrollBarVisibility="Never" />
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout>
 
                     <Grid Margin="0,0,0,5">
@@ -151,7 +157,7 @@
 
                     <app:SourceCodeExpander Code="{x:Binding AnimateProgressBarXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
         </VerticalStackLayout>
     </ScrollView>

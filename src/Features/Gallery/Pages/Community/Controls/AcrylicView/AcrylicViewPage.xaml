@@ -10,7 +10,8 @@
     xmlns:ui="clr-namespace:Xe.AcrylicView;assembly=Xe.AcrylicView"
     Title="Acrylic View"
     Padding="10"
-    x:DataType="app:AcrylicViewPageViewModel">
+    x:DataType="app:AcrylicViewPageViewModel"
+    BackgroundColor="Transparent">
 
     <app:BasePage.Resources>
         <x:String x:Key="NugetUrl">
@@ -33,11 +34,11 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Get Started" />
                     <Label Text="1. Install the nuget" />
@@ -61,9 +62,9 @@
                     <Label Text="2. Register in MauiProgram.cs" />
                     <app:SourceCodeExpander Code="{x:Binding GetStartedCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Basic Usage" />
                     <Grid>
@@ -97,35 +98,44 @@
                     </Grid>
                     <app:SourceCodeExpander Code="{x:Binding AcrylicViewXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Bug" />
+                    <Grid>
+                        <toolkit:MediaElement
+                            Aspect="AspectFill"
+                            HorizontalOptions="Fill"
+                            ShouldAutoPlay="True"
+                            ShouldLoopPlayback="True"
+                            ShouldShowPlaybackControls="False"
+                            Source="embed://digital_grabe.mp4"
+                            VerticalOptions="Fill" />
 
-
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Grid>
-                    <toolkit:MediaElement
-                        Aspect="AspectFill"
-                        HorizontalOptions="Fill"
-                        ShouldAutoPlay="True"
-                        ShouldLoopPlayback="True"
-                        ShouldShowPlaybackControls="False"
-                        Source="embed://digital_grabe.mp4"
-                        VerticalOptions="Fill" />
-
-                    <ui:AcrylicView
-                        EffectStyle="Dark"
-                        HeightRequest="200"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        WidthRequest="200" />
-                    <Label
-                        HorizontalOptions="Start"
-                        MaximumWidthRequest="300"
-                        Text="Seem like the acrylic or the media toolkit having some issue while usign together"
-                        VerticalOptions="Start" />
-                </Grid>
-            </Frame>
+                        <ui:AcrylicView
+                            EffectStyle="Dark"
+                            HeightRequest="200"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="200" />
+                        <Label
+                            Margin="0,50,0,0"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            MaximumWidthRequest="300"
+                            Text="Seem like the acrylic or the media toolkit having some issue while usign together"
+                            VerticalOptions="Start" />
+                        <Label
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="This is an acrylic view element"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center"
+                            WidthRequest="130" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

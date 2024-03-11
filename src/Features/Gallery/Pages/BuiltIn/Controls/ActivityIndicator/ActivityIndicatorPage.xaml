@@ -63,17 +63,17 @@
     </app:BasePage.Resources>
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource ControlInfo}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <HorizontalStackLayout HorizontalOptions="Start" Spacing="10">
                         <ActivityIndicator IsRunning="True" />
@@ -84,8 +84,8 @@
                     <app:SourceCodeExpander Code="{x:Binding GroupOfActivityIndicators}" />
                 </VerticalStackLayout>
 
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="5">
                     <HorizontalStackLayout Spacing="10">
                         <Picker
@@ -108,7 +108,7 @@
                                           Converter={x:StaticResource StringToColorConverter}}" />
                     <app:SourceCodeExpander Code="{x:Binding BindingActivityIndicators}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

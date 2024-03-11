@@ -82,7 +82,7 @@
                 </VerticalStackLayout>
             </Border>
 
-            <Border Padding="20" Style="{x:StaticResource MAUIslandBorderStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="5">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding LineSeriesTitle}" />
                     <lvc:CartesianChart
@@ -94,7 +94,7 @@
                 </VerticalStackLayout>
             </Border>
 
-            <Border Padding="20" Style="{x:StaticResource MAUIslandBorderStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="5">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding StackedBarsTitle}" />
                     <lvc:CartesianChart HeightRequest="300" Series="{Binding StackedSeries}" />
@@ -103,7 +103,7 @@
                 </VerticalStackLayout>
             </Border>
 
-            <Border Padding="20" Style="{x:StaticResource MAUIslandBorderStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="5">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding PieChartTitle}" />
                     <Grid ColumnDefinitions="*,*,*">

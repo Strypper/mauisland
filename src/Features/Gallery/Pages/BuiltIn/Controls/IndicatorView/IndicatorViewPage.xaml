@@ -7,7 +7,8 @@
     x:Name="root"
     Title="Indicator View"
     Padding="10"
-    x:DataType="app:IndicatorViewPageViewModel">
+    x:DataType="app:IndicatorViewPageViewModel"
+    BackgroundColor="Transparent">
     <app:BasePage.Resources>
 
         <x:String x:Key="ControlInfo">The .NET Multi-platform App UI (.NET MAUI) IndicatorView is a control that displays indicators that represent the number of items, and current position, in a CarouselView:</x:String>
@@ -112,10 +113,10 @@
     </app:BasePage.ToolbarItems>
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource ControlInfo}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Margin="10"
                     Footer="{x:StaticResource PropertiesListFooter}"
@@ -124,8 +125,8 @@
                     SelectionMode="Single"
                     Style="{x:StaticResource PropertiesListStyle}"
                     VerticalScrollBarVisibility="Never" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label
                         Margin="0,0,0,10"
@@ -152,7 +153,7 @@
                     </StackLayout>
                     <app:SourceCodeExpander Code="{x:Binding StandardIndicatorViewXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

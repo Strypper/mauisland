@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="Entry"
     Padding="10"
-    x:DataType="app:EntryPageViewModel">
+    x:DataType="app:EntryPageViewModel"
+    BackgroundColor="Transparent">
     <app:BasePage.Resources>
         <x:String x:Key="ControlInfo">
             The .NET Multi-platform App UI (.NET MAUI) Entry allows you to enter and edit a single line of text. In addition, the Entry can be used as a password field.
@@ -155,18 +156,18 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource ControlInfo}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create Entry With Place Holder" />
                     <Grid>
@@ -179,20 +180,20 @@
                     </Grid>
                     <app:SourceCodeExpander Code="{x:Binding StandardEntryXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="We used entry for chatting" />
                     <Label Text="With the support of ReturnCommand you can fire an event with the return key and this also work for windows Enter key" />
-                    <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
                         <CollectionView
                             EmptyView="Send some messages"
                             ItemTemplate="{x:StaticResource ChatCollectionViewItemTemplate}"
                             ItemsLayout="{x:StaticResource ChatLayout}"
                             ItemsSource="{x:Binding Messages}"
                             ItemsUpdatingScrollMode="KeepLastItemInView" />
-                    </Frame>
+                    </Border>
                     <Label
                         BackgroundColor="{x:StaticResource Primary}"
                         HorizontalOptions="Center"
@@ -205,7 +206,7 @@
                         ReturnCommandParameter="{x:Binding Source={x:Reference ChatboxEntry},
                                                            Path=Text}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

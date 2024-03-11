@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="Picker"
     Padding="10"
-    x:DataType="app:PickerPageViewModel">
+    x:DataType="app:PickerPageViewModel"
+    BackgroundColor="Transparent">
     <app:BasePage.ToolbarItems>
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
@@ -118,24 +119,24 @@
     </app:BasePage.Resources>
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource ControlInfo}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="A simple Picker for selecting MAUIsland members" />
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="A simple Picker for selecting MAUIsland members" />
                     <Picker
                         x:Name="picker"
                         Title="Select a MAUIsland members"
-                        BackgroundColor="#512bd4"
-                        ItemsSource="{x:StaticResource MAUIMembers}" />
+                        ItemsSource="{x:StaticResource MAUIMembers}"
+                        SelectedIndex="3" />
                     <Button
                         BackgroundColor="Black"
                         HorizontalOptions="Start"
@@ -143,9 +144,9 @@
                                          Path=SelectedItem}"
                         TextColor="{x:StaticResource White}" />
 
-                    <app:SourceCodeExpander Code="{x:Binding MemberPickerXamlCode}" />
+                    <app:SourceCodeExpander Code="{x:Binding MemberPickerXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 

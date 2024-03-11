@@ -210,11 +210,11 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Label Text="{x:StaticResource ControlInfo}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Looking for the rounded syntax again 🤣🤣?" />
                     <Label Text="Here you go" />
@@ -237,15 +237,15 @@
                     </Label>
                     <app:SourceCodeExpander Code="{x:Binding RoundedRectangle2XamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
+            </Border>
             <Border
                 Padding="10"
                 BackgroundColor="#004173"
@@ -258,7 +258,7 @@
                     <Label Text="{x:StaticResource Important1}" TextColor="White" />
                 </VerticalStackLayout>
             </Border>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a Border" />
                     <Label Text="{x:StaticResource CreateBorder1}" />
@@ -320,9 +320,9 @@
                             TextColor="White" />
                     </Border>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:StaticResource DefineBorderShapeTitle}" />
                     <Label Text="{x:StaticResource DefineBorderShapeDescription}" />
@@ -332,7 +332,7 @@
                         ItemsSource="{x:StaticResource BorderShapePropertyItemsSource}"
                         Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <Border
                 Padding="10"

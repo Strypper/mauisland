@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="ImageButton"
     Padding="10"
-    x:DataType="app:ImageButtonPageViewModel">
+    x:DataType="app:ImageButtonPageViewModel"
+    BackgroundColor="Transparent">
     <app:BasePage.ToolbarItems>
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
@@ -90,18 +91,18 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource ControlInfo}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Basic ImageButton" />
                     <HorizontalStackLayout Spacing="10">
@@ -141,9 +142,9 @@
                     <Label Text="This is basic ImageButton XAML" />
                     <app:SourceCodeExpander Code="{x:Binding XamlBasicImageButton}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="ImageButton with EventHandler" />
                     <Label Text="Click the Image Please" />
@@ -172,9 +173,9 @@
                     <Label Text="Here for the ImageButton EventHandler" />
                     <app:SourceCodeExpander Code="{x:Binding CSharpImageButtonWithEventHandlerCodeBehind}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="ImageButton with Command" />
                     <Label Text="Click the Image Please" />
@@ -199,9 +200,9 @@
                     <Label Text="Here for the ViewModel" />
                     <app:SourceCodeExpander Code="{x:Binding CSharpImageButtonWithCommandViewModel}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="ImageButton can act like a Clickable Image" />
                     <ImageButton
@@ -227,14 +228,14 @@
                         Minimum="0.1"
                         Value="1" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="ImageButton visual states" />
                     <Label Text="Visual states currently did not work on ImageButton." TextColor="OrangeRed" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 

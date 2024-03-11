@@ -2,7 +2,7 @@ namespace MAUIsland;
 
 public partial class MenuBarPage : IGalleryPage
 {
-    public MenuBarPage(EditorPageViewModel vm)
+    public MenuBarPage(MenuBarPageViewModel vm)
     {
         InitializeComponent();
 

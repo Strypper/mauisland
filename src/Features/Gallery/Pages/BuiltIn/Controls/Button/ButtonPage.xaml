@@ -133,10 +133,10 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource ControlInfo}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="A simple button with text content" />
                     <Grid>
@@ -152,15 +152,15 @@
                     </Grid>
                     <app:SourceCodeExpander Code="{x:Binding StandardButtonXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label
                         FontAttributes="Bold"
@@ -194,8 +194,8 @@
                     </ScrollView>
                     <app:SourceCodeExpander Code="{x:Binding ButtonsChangedBackgroundGroupXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Apply rotation to a button" />
                     <Button
@@ -218,8 +218,8 @@
                         WidthRequest="250" />
                     <app:SourceCodeExpander Code="{x:Binding RotationButtonXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Frame.Resources>
                     <FontImageSource
                         x:Key="HomeIcon"
@@ -245,7 +245,7 @@
                     </HorizontalStackLayout>
                     <app:SourceCodeExpander Code="{x:Binding ButtonWithImageXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

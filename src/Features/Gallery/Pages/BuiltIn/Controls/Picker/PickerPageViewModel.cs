@@ -3,7 +3,7 @@
 
 public partial class PickerPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [CTor]
+    #region [ CTor ]
     public PickerPageViewModel(IAppNavigator appNavigator)
                                     : base(appNavigator)
     {
@@ -11,12 +11,13 @@ public partial class PickerPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
+
     [ObservableProperty]
     IGalleryCardInfo controlInformation;
     #endregion
 
-    #region [Overrides]
+    #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
@@ -26,7 +27,8 @@ public partial class PickerPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Relay Commands]
+    #region [ Relay Commands ]
+
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
@@ -34,9 +36,23 @@ public partial class PickerPageViewModel : NavigationAwareBaseViewModel
 
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
 
     [ObservableProperty]
-    string memberPickerXamlCode = "<Picker x:Name=\"picker\"\r\n                    Title=\"Select a MAUIsland members\" \r\n                    ItemsSource=\"{x:StaticResource MAUIMembers}\" />\r\n                    <Button \r\n                        HorizontalOptions=\"Start\"\r\n                        BackgroundColor=\"Black\"\r\n                        Text=\"{x:Binding Source={x:Reference picker}, Path=SelectedItem}\"\r\n                        TextColor=\"{x:StaticResource White}\" />";
+    string memberPickerXamlCode =
+        "<VerticalStackLayout Spacing=\"10\">\r\n" +
+        "    <Label Style=\"{x:StaticResource DocumentSectionTitleStyle}\" Text=\"A simple Picker for selecting MAUIsland members\" />\r\n" +
+        "    <Picker\r\n" +
+        "        x:Name=\"picker\"\r\n" +
+        "        Title=\"Select a MAUIsland members\"\r\n" +
+        "        ItemsSource=\"{x:StaticResource MAUIMembers}\"\r\n" +
+        "        SelectedIndex=\"3\" />\r\n" +
+        "    <Button BackgroundColor=\"Black\"\r\n" +
+        "        HorizontalOptions=\"Start\"\r\n" +
+        "        Text=\"{x:Binding Source={x:Reference picker},\r\n" +
+        "                     Path=SelectedItem}\"\r\n" +
+        "        TextColor=\"{x:StaticResource White}\" />\r\n" +
+        "    <app:SourceCodeExpander Code=\"{x:Binding MemberPickerXamlCode}\" />\r\n" +
+        "</VerticalStackLayout>";
     #endregion
 }

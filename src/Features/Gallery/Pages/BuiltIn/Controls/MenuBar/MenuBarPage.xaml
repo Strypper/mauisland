@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="MenuBar"
     Padding="10"
-    x:DataType="app:MenuBarPageViewModel">
+    x:DataType="app:MenuBarPageViewModel"
+    BackgroundColor="Transparent">
     <app:BasePage.ToolbarItems>
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
@@ -19,6 +20,54 @@
             IconImageSource="microsoft.png"
             Text="Original Document" />
     </app:BasePage.ToolbarItems>
+
+    <app:BasePage.MenuBarItems>
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem
+                Command="{Binding OpenSnackBarCommand}"
+                CommandParameter="Exit"
+                Text="Exit" />
+        </MenuBarItem>
+        <MenuBarItem Text="Locations">
+            <MenuFlyoutSubItem Text="Change Location">
+                <MenuFlyoutItem
+                    Command="{Binding OpenSnackBarCommand}"
+                    CommandParameter="Redmond"
+                    Text="Redmond, USA" />
+                <MenuFlyoutItem
+                    Command="{Binding OpenSnackBarCommand}"
+                    CommandParameter="London"
+                    Text="London, UK" />
+                <MenuFlyoutItem
+                    Command="{Binding OpenSnackBarCommand}"
+                    CommandParameter="Berlin"
+                    Text="Berlin, DE" />
+            </MenuFlyoutSubItem>
+            <MenuFlyoutSeparator />
+            <MenuFlyoutItem
+                Command="{Binding OpenSnackBarCommand}"
+                CommandParameter="Add Location"
+                Text="Add Location" />
+            <MenuFlyoutItem
+                Command="{Binding OpenSnackBarCommand}"
+                CommandParameter="Edit Location"
+                Text="Edit Location" />
+            <MenuFlyoutItem
+                Command="{Binding OpenSnackBarCommand}"
+                CommandParameter="Remove Location"
+                Text="Remove Location" />
+        </MenuBarItem>
+        <MenuBarItem Text="View">
+            <MenuFlyoutItem
+                Command="{Binding OpenSnackBarCommand}"
+                CommandParameter="Refresh"
+                Text="Refresh" />
+            <MenuFlyoutItem
+                Command="{Binding OpenSnackBarCommand}"
+                CommandParameter="Change Theme"
+                Text="Change Theme" />
+        </MenuBarItem>
+    </app:BasePage.MenuBarItems>
 
     <app:BasePage.Resources>
         <FontImageSource
@@ -40,15 +89,30 @@
             These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
         </x:String>
 
+        <x:String x:Key="PropertiesListHeader1">
+            A MenuBarItem can consist of the following children:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter1">
+            MenuFlyoutSubItem derives from MenuFlyoutItem, which in turn derives from MenuItem. MenuItem defines multiple properties that enable the appearance and behavior of a menu item to be specified. The appearance of a menu item, or sub-item, can be defined by setting the Text, and IconImageSource properties. The response to a menu item, or sub-item, click can be defined by setting the Clicked, Command, and CommandParameter properties. For more information about menu items, see Display menu items.
+        </x:String>
 
         <x:String x:Key="ImageButtonControlInfo">
             The Button class defines an ImageSource property that allows you to display a small bitmap image on the Button, either alone or in combination with text. You can also specify how the text and image are arranged. The ImageSource property is of type ImageSource, which means that the bitmaps can be loaded from a file, embedded resource, URI, or stream.
         </x:String>
 
+        <x:String x:Key="CreateMenuBarItems">
+            MenuBarItem objects can be added to the MenuBarItems collection, of type IListMenuBarItem, on a ContentPage. .NET MAUI desktop apps will display a menu bar, containing menu items, when they are added to any ContentPage that's hosted in a NavigationPage or a Shell app.
+        </x:String>
+
+        <x:String x:Key="CreateMenuBarItems2">
+            This example defines three top-level menus. Each top-level menu has menu items, and the second top-level menu has a sub-menu and a separator:
+        </x:String>
+
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">Text </strong>, of type <strong style="color:blue">string</strong>, defines the menu text.
+                                <strong style="color:blue">Text</strong>, which represents a menu item that can be clicked.
                             ]]>
             </x:String>
             <x:String>
@@ -58,24 +122,67 @@
             </x:String>
         </x:Array>
 
+        <x:Array x:Key="Properties1ItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">MenuFlyoutItem</strong>, of type <strong style="color:blue">string</strong>, defines the menu text.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">MenuFlyoutSubItem</strong>, which represents a sub-menu item that can be clicked.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">MenuFlyoutSeparator</strong>, which is a horizontal line that separates items in the menu.
+                            ]]>
+            </x:String>
+        </x:Array>
+
     </app:BasePage.Resources>
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource ControlInfo}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <CollectionView
+                    Footer="{x:StaticResource PropertiesListFooter1}"
+                    Header="{x:StaticResource PropertiesListHeader1}"
+                    ItemsSource="{x:StaticResource Properties1ItemsSource}"
+                    Style="{x:StaticResource PropertiesListStyle}" />
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create menu bar items" />
+                    <Label
+                        Padding="8"
+                        BackgroundColor="Yellow"
+                        HorizontalOptions="Start"
+                        Text="Check on the top left of this page (on the left of the MenuBar text)"
+                        TextColor="Black" />
+                    <Label Text="{x:StaticResource CreateMenuBarItems}" />
+                    <app:SourceCodeExpander Code="{x:Binding ContentPageWithMenuBar}" CodeType="Xaml" />
+                    <Label Text="{x:StaticResource CreateMenuBarItems2}" />
+                </VerticalStackLayout>
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="You can stick menu bar everywhere" />
-                    <Label Text="Button:" />
+                    <Label Text="Right click these below elements to trigger menu bars" />
+                    <Label
+                        FontAttributes="Bold"
+                        Text="Button:"
+                        TextDecorations="Underline" />
                     <Button
                         HorizontalOptions="Start"
                         Text="&#x25B6;&#xFE0F; Play"
@@ -95,7 +202,11 @@
                             </MenuFlyout>
                         </FlyoutBase.ContextFlyout>
                     </Button>
-                    <Label Text="Image:" />
+                    <app:SourceCodeExpander Code="{x:Binding ButtonWithMenuBar}" CodeType="Xaml" />
+                    <Label
+                        FontAttributes="Bold"
+                        Text="Image:"
+                        TextDecorations="Underline" />
                     <Image
                         HeightRequest="100"
                         HorizontalOptions="Start"
@@ -107,8 +218,9 @@
                             </MenuFlyout>
                         </FlyoutBase.ContextFlyout>
                     </Image>
+                    <app:SourceCodeExpander Code="{x:Binding ImageWithMenuBar}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

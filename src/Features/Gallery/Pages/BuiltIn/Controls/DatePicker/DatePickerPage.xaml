@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="Date Picker"
     Padding="10"
-    x:DataType="app:DatePickerPageViewModel">
+    x:DataType="app:DatePickerPageViewModel"
+    BackgroundColor="Transparent">
     <app:BasePage.Resources>
         <app:FulldateToDateOnlyConverter x:Key="FulldateToDateOnlyConverter" />
 
@@ -81,31 +82,32 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="5">
                     <Label
+                        FontSize="Subtitle"
                         HorizontalOptions="Start"
                         Text="{x:StaticResource ControlInfo}"
                         VerticalOptions="Center" />
                     <DatePicker />
                 </VerticalStackLayout>
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="A simple date picker" />
                     <Label Text="The default format with be month/day/year" />
                     <DatePicker />
                     <app:SourceCodeExpander Code="{x:Binding SimpleDatePickerXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Control the date picker minimum date - maximum date" />
                     <HorizontalStackLayout Spacing="10">
@@ -129,9 +131,9 @@
                     </HorizontalStackLayout>
                     <Label Text="{x:Binding Source={x:Reference CurrentDatePicker}, Path=Date}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Get the date only" />
                     <DatePicker x:Name="DateOnlyDatePicker" />
@@ -141,7 +143,7 @@
                     <Label FontAttributes="Bold" Text="Converter" />
                     <app:SourceCodeExpander Code="{x:Binding FulldateToDateOnlyConverterCsharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

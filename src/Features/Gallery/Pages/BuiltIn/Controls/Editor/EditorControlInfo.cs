@@ -10,7 +10,7 @@ class EditorControlInfo : IBuiltInGalleryCardInfo
         Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_code_text_edit_20_regular
     };
-    public string ControlDetail => "ActivityIndicator displays an animation to show that the application is engaged in a lengthy activity. Unlike ProgressBar, ActivityIndicator gives no indication of progress.";
+    public string ControlDetail => "The .NET Multi-platform App UI (.NET MAUI) Editor allows you to enter and edit multiple lines of text.";
     public string GitHubUrl => $"https://github.com/Strypper/mauisland/blob/main/src/Features/Gallery/Pages/BuiltIn/Controls{ControlName}";
     public string DocumentUrl => $"https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/{ControlName}/?view=net-maui-7.0";
     public string GroupName => ControlGroupInfo.BuiltInControls;

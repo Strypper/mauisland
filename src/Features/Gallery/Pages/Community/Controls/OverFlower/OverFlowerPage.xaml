@@ -7,7 +7,8 @@
     xmlns:over="clr-namespace:OverFlower;assembly=OverFlower"
     Title="OverFlower"
     Padding="10"
-    x:DataType="app:OverFlowerPageViewModel">
+    x:DataType="app:OverFlowerPageViewModel"
+    BackgroundColor="Transparent">
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem
@@ -65,24 +66,24 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <over:OverFlower
                     ImageHeight="1000"
                     ImageSource="pattern_background_image.png"
                     ImageWidth="2500"
                     ScrollDirection="Left"
                     ScrollDuration="20000" />
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

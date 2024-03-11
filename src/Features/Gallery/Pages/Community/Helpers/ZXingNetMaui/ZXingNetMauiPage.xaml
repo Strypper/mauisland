@@ -7,7 +7,8 @@
     xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
     Title="ZXingNetMaui"
     Padding="10"
-    x:DataType="app:ZXingNetMauiPageViewModel">
+    x:DataType="app:ZXingNetMauiPageViewModel"
+    BackgroundColor="Transparent">
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem
@@ -20,10 +21,10 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="5">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Installation" />
                     <Label
@@ -75,9 +76,9 @@
                         TextColor="White" />
                     <Label Text="Make sure that you enter a clear and valid reason for your app to access the camera. This description will be shown to the user." />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="5">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Usage" />
                     <Label Text="If you're using the controls from XAML, make sure to add the right XML namespace in the root of your file, e.g:" />
@@ -95,11 +96,12 @@
                     <Label Text="Handle detected barcode(s)" />
                     <app:SourceCodeExpander Code="{x:Binding DetectBarCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <zxing:CameraBarcodeReaderView x:Name="cameraBarcodeReaderView" BarcodesDetected="BarcodesDetected" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="5">
                     <zxing:BarcodeGeneratorView
                         Margin="3"
@@ -110,7 +112,7 @@
                         Value="https://dotnet.microsoft.com" />
                     <app:SourceCodeExpander Code="{x:Binding BarCodeGeneratorView}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>
