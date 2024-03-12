@@ -4,9 +4,9 @@
              xmlns:app="clr-namespace:MAUIsland"
              x:Class="MAUIsland.NormalItemTemplateContentView"
              x:Name="root">
-    <Border Padding="5"
-            BackgroundColor="{x:Static app:AppColors.BlackGrey}"
-            Margin="5">
+    <Border Padding="5" 
+            Margin="5"
+            BackgroundColor="{x:Static app:AppColors.BlackGrey}">
         <Border.StrokeShape>
             <RoundRectangle CornerRadius="5" />
         </Border.StrokeShape>
@@ -20,15 +20,13 @@
                    LineBreakMode="TailTruncation"
                    FontSize="14"
                    Text="{x:Binding ComponentData.ControlName, Source={x:Reference root}}"
-                   VerticalTextAlignment="Center" 
-                   Style="{x:StaticResource ReverseTheme}"/>
+                   VerticalTextAlignment="Center" />
             <Label Grid.Column="2"
                    FontAttributes="Italic"
                    LineBreakMode="TailTruncation"
                    FontSize="12"
                    VerticalTextAlignment="Center"
-                   Text="{x:Binding ComponentData.ControlDetail, Source={x:Reference root}}"
-                   Style="{x:StaticResource ReverseTheme}"/>
+                   Text="{x:Binding ComponentData.ControlDetail, Source={x:Reference root}}"/>
         </Grid>
     </Border>
 </ContentView>
