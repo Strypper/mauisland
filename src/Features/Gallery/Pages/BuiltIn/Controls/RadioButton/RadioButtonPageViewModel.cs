@@ -75,22 +75,25 @@ public partial class RadioButtonPageViewModel : NavigationAwareBaseViewModel
     [ObservableProperty]
     string xamlImageRadioButton =
         "<VerticalStackLayout>\r\n" +
-        "   <RadioButton IsChecked=\"True\">\r\n" +
+        "   <RadioButton IsChecked=\"True\" BackgroundColor=\"White\" CornerRadius=\"5\">\r\n" +
         "       <RadioButton.Content>\r\n" +
-        "           <Image Source=\"{x:StaticResource Happy}\"\r\n" +
-        "                  WidthRequest=\"30\" />\r\n" +
-        "       </RadioButton.Content>\r\n" +
-        "   </RadioButton>\r\n                        " +
-        "   <RadioButton>\r\n" +
-        "       <RadioButton.Content>\r\n" +
-        "           <Image Source=\"{x:StaticResource Normal}\"\r\n" +
-        "                  WidthRequest=\"30\" />\r\n" +
+        "           <ContentView Padding=\"5,0,5,0\">\r\n" +
+        "               <Image Source=\"{x:StaticResource Happy}\" WidthRequest=\"30\"/>\r\n" +
+        "           </ContentView>\r\n" +
         "       </RadioButton.Content>\r\n" +
         "   </RadioButton>\r\n" +
-        "   <RadioButton>\r\n" +
+        "   <RadioButton BackgroundColor=\"White\" CornerRadius=\"5\">\r\n" +
         "       <RadioButton.Content>\r\n" +
-        "           <Image Source=\"{x:StaticResource Sad}\"\r\n" +
-        "                  WidthRequest=\"30\" />\r\n" +
+        "           <ContentView Padding=\"5,0,5,0\">\r\n" +
+        "               <Image Source=\"{x:StaticResource Normal}\" WidthRequest=\"30\"/>\r\n" +
+        "           </ContentView>\r\n" +
+        "       </RadioButton.Content>\r\n" +
+        "   </RadioButton>\r\n" +
+        "   <RadioButton BackgroundColor=\"White\" CornerRadius=\"5\">\r\n" +
+        "       <RadioButton.Content>\r\n" +
+        "           <ContentView Padding=\"5,0,5,0\">\r\n" +
+        "               <Image Source=\"{x:StaticResource Sad}\" WidthRequest=\"30\"/>\r\n" +
+        "           </ContentView>\r\n" +
         "       </RadioButton.Content>\r\n" +
         "   </RadioButton>\r\n" +
         "</VerticalStackLayout>";
@@ -140,7 +143,7 @@ public partial class RadioButtonPageViewModel : NavigationAwareBaseViewModel
         "                   </VisualState>\r\n" +
         "                   <VisualState x:Name=\"Unchecked\">\r\n" +
         "                       <VisualState.Setters>\r\n" +
-        "                           <Setter Property=\"TextColor\" Value=\"Red\" />\r\n" +
+        "                           <Setter Property=\"TextColor\" Value=\"OrangeRed\" />\r\n" +
         "                           <Setter Property=\"Opacity\" Value=\"0.5\" />\r\n" +
         "                       </VisualState.Setters>\r\n" +
         "                   </VisualState>\r\n" +
@@ -161,31 +164,33 @@ public partial class RadioButtonPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     string xamlCustomRadioButton =
-        "<HorizontalStackLayout x:Name=\"EmotionalRadioButtonGroupWithCustomTemplate\" \r\n" +
-        "                       RadioButtonGroup.GroupName=\"Emotional\" \r\n" +
+        "<HorizontalStackLayout x:Name=\"EmotionalRadioButtonGroupWithCustomTemplate\"\r\n" +
+        "                       RadioButtonGroup.GroupName=\"Emotional\"\r\n" +
         "                       Spacing=\"20\">\r\n" +
-        "   <RadioButton ControlTemplate=\"{x:StaticResource RadioButtonTemplate}\" \r\n" +
-        "                IsChecked=\"True\">\r\n" +
+        "   <RadioButton ControlTemplate=\"{x:StaticResource RadioButtonTemplate}\" IsChecked=\"True\">\r\n" +
         "       <RadioButton.Content>\r\n" +
         "           <VerticalStackLayout>\r\n" +
-        "               <Image Source=\"{x:StaticResource Happy}\"\r\n" +
-        "               <Label Text=\"Happy\"\r\n" +
+        "               <Image Source=\"{x:StaticResource Happy}\" />\r\n" +
+        "               <Label Text=\"Happy\" \r\n" +
+        "                      TextColor=\"Black\"/>\r\n" +
         "           </VerticalStackLayout>\r\n" +
         "       </RadioButton.Content>\r\n" +
         "   </RadioButton>\r\n" +
         "   <RadioButton ControlTemplate=\"{x:StaticResource RadioButtonTemplate}\">\r\n" +
         "       <RadioButton.Content>\r\n" +
         "           <VerticalStackLayout>\r\n" +
-        "               <Image Source=\"{x:StaticResource Normal}\"\r\n" +
-        "               <Label Text=\"Normal\"\r\n" +
+        "               <Image Source=\"{x:StaticResource Normal}\" />\r\n" +
+        "               <Label Text=\"Normal\" \r\n" +
+        "                      TextColor=\"Black\"/>\r\n" +
         "           </VerticalStackLayout>\r\n" +
         "       </RadioButton.Content>\r\n" +
         "   </RadioButton>\r\n" +
         "   <RadioButton ControlTemplate=\"{x:StaticResource RadioButtonTemplate}\">\r\n" +
         "       <RadioButton.Content>\r\n" +
         "           <VerticalStackLayout>\r\n" +
-        "               <Image Source=\"{x:StaticResource Sad}\"\r\n" +
-        "               <Label Text=\"Sad\"\r\n" +
+        "               <Image Source=\"{x:StaticResource Sad}\" />\r\n" +
+        "               <Label Text=\"Sad\" \r\n" +
+        "                      TextColor=\"Black\"/>\r\n" +
         "           </VerticalStackLayout>\r\n" +
         "       </RadioButton.Content>\r\n" +
         "   </RadioButton>\r\n" +

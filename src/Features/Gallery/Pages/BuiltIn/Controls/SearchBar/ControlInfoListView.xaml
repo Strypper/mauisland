@@ -29,15 +29,13 @@
                                LineBreakMode="TailTruncation"
                                FontSize="14"
                                Text="{x:Binding ControlName}"
-                               VerticalTextAlignment="Center" 
-                               Style="{x:StaticResource ReverseTheme}"/>
+                               VerticalTextAlignment="Center"/>
                         <Label Grid.Column="2"
                                FontAttributes="Italic"
                                LineBreakMode="TailTruncation"
                                FontSize="12"
                                VerticalTextAlignment="Center"
-                               Text="{x:Binding ControlDetail}"
-                               Style="{x:StaticResource ReverseTheme}"/>
+                               Text="{x:Binding ControlDetail}"/>
                     </Grid>
                 </Border>
             </ViewCell>

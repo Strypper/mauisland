@@ -121,7 +121,7 @@
                         </VisualState>
                         <VisualState x:Name="Unchecked">
                             <VisualState.Setters>
-                                <Setter Property="TextColor" Value="Red" />
+                                <Setter Property="TextColor" Value="OrangeRed" />
                                 <Setter Property="Opacity" Value="0.5" />
                             </VisualState.Setters>
                         </VisualState>
@@ -257,19 +257,25 @@
                 <VerticalStackLayout Padding="10" Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Image radio button" />
                     <VerticalStackLayout>
-                        <RadioButton IsChecked="True">
+                        <RadioButton IsChecked="True" BackgroundColor="White" CornerRadius="5">
                             <RadioButton.Content>
-                                <Image Source="{x:StaticResource Happy}" WidthRequest="30" />
+                                <ContentView Padding="5,0,5,0">
+                                    <Image Source="{x:StaticResource Happy}" WidthRequest="30"/>
+                                </ContentView>
                             </RadioButton.Content>
                         </RadioButton>
-                        <RadioButton>
+                        <RadioButton BackgroundColor="White" CornerRadius="5">
                             <RadioButton.Content>
-                                <Image Source="{x:StaticResource Normal}" WidthRequest="30" />
+                                <ContentView Padding="5,0,5,0">
+                                    <Image Source="{x:StaticResource Normal}" WidthRequest="30"/>
+                                </ContentView>
                             </RadioButton.Content>
                         </RadioButton>
-                        <RadioButton>
+                        <RadioButton BackgroundColor="White" CornerRadius="5">
                             <RadioButton.Content>
-                                <Image Source="{x:StaticResource Sad}" WidthRequest="30" />
+                                <ContentView Padding="5,0,5,0">
+                                    <Image Source="{x:StaticResource Sad}" WidthRequest="30"/>
+                                </ContentView>
                             </RadioButton.Content>
                         </RadioButton>
                     </VerticalStackLayout>
@@ -349,7 +355,8 @@
                             <RadioButton.Content>
                                 <VerticalStackLayout>
                                     <Image Source="{x:StaticResource Happy}" />
-                                    <Label Text="Happy" />
+                                    <Label Text="Happy" 
+                                           TextColor="Black"/>
                                 </VerticalStackLayout>
                             </RadioButton.Content>
                         </RadioButton>
@@ -357,7 +364,8 @@
                             <RadioButton.Content>
                                 <VerticalStackLayout>
                                     <Image Source="{x:StaticResource Normal}" />
-                                    <Label Text="Normal" />
+                                    <Label Text="Normal" 
+                                           TextColor="Black"/>
                                 </VerticalStackLayout>
                             </RadioButton.Content>
                         </RadioButton>
@@ -365,7 +373,8 @@
                             <RadioButton.Content>
                                 <VerticalStackLayout>
                                     <Image Source="{x:StaticResource Sad}" />
-                                    <Label Text="Sad" />
+                                    <Label Text="Sad" 
+                                           TextColor="Black"/>
                                 </VerticalStackLayout>
                             </RadioButton.Content>
                         </RadioButton>
