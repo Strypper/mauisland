@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     Title="AppSettingsJson"
-    Padding="10"
+    Padding="20"
     x:DataType="app:AppSettingsJsonPageViewModel"
     BackgroundColor="Transparent">
 
@@ -34,15 +34,15 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource Intro}" />
-            </Frame>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:StaticResource Intro}" />
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:StaticResource AddFile}" />
                     <app:SourceCodeExpander
@@ -62,9 +62,9 @@
                         </Label.FormattedText>
                     </Label>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Next, let's create a few classes that represent these configuration settings anywhere in the project:" />
                     <app:SourceCodeExpander Code="{x:Binding AppSettingsCSharpClasses}" CodeType="CSharp" />
@@ -74,9 +74,9 @@
                         IsExpanding="True"
                         ShowCodeType="False" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Now, let's read in our json file, and add it to our builder.Configuration in our CreateMauiApp method after we create the builder:" />
                     <app:SourceCodeExpander Code="{x:Binding SetUpConfigBuilder}" CodeType="CSharp" />
@@ -86,9 +86,9 @@
                     <Label Text="Now we can adjust our App.xaml.cs to inject our MainPage:" />
                     <app:SourceCodeExpander Code="{x:Binding InjectMainPageService}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Then over on our MainPage, we can inject our IConfiguration and then use it when our button is clicked to read in our Settings and bind them together:" />
                     <app:SourceCodeExpander Code="{x:Binding MainPageWithCounterClickEvent}" CodeType="CSharp" />
@@ -107,9 +107,9 @@
                     </Label>
                     <Label Text="Either way, you are good to go and you have access to these settings!!!" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Let's try it out !!!" />
                     <Button
@@ -117,7 +117,7 @@
                         Clicked="SettingsButton_Clicked"
                         Text="Show me those settings" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

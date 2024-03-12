@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     Title="StackLayout"
-    Padding="10"
+    Padding="20"
     x:DataType="app:StackLayoutPageViewModel"
     BackgroundColor="Transparent">
 
@@ -84,18 +84,18 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
+            </Border>
             <!--  Vertical orientation  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Vertical orientation" />
                     <StackLayout Margin="20">
@@ -112,9 +112,9 @@
                     <Label Text="The equivalent C# code is:" />
                     <app:SourceCodeExpander Code="{x:Binding VerticalOrientationCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Horizontal orientation  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Horizontal orientation" />
                     <StackLayout
@@ -150,9 +150,9 @@
                     <Label Text="The equivalent C# code is:" />
                     <app:SourceCodeExpander Code="{x:Binding HorizontalOrientationCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Space between child views  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Space between child views" />
                     <StackLayout Margin="20" Spacing="8">
@@ -169,9 +169,9 @@
                     <Label Text="The equivalent C# code is:" />
                     <app:SourceCodeExpander Code="{x:Binding SpaceBetweenChildViewsXamlCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Position and size of child views  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Position and size of child views" />
                     <StackLayout Margin="20" Spacing="6">
@@ -200,9 +200,9 @@
                         Style="{x:StaticResource PropertiesListStyle}" />
                     <app:SourceCodeExpander Code="{x:Binding PositionAndSizeOfChildViewsCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Nested StackLayout objects  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Nested StackLayout objects" />
                     <StackLayout Margin="20" Spacing="8">
@@ -269,7 +269,7 @@
                     <Label Text="The equivalent C# code is:" />
                     <app:SourceCodeExpander Code="{x:Binding NestedStackLayoutObjectCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

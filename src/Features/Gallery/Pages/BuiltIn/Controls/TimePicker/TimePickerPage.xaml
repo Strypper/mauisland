@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     Title="Time Picker"
-    Padding="10"
+    Padding="20"
     x:DataType="app:TimePickerPageViewModel"
     BackgroundColor="Transparent">
     <app:BasePage.ToolbarItems>
@@ -26,6 +26,10 @@
 
         <x:String x:Key="PropertiesListHeader">
             TimePicker defines the following properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter">
+            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
         </x:String>
 
         <x:String x:Key="TimeOnlyDataTypeInfo">
@@ -83,18 +87,19 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
+                    Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Simple date picker" />
                     <TimePicker Time="4:15:26" />
@@ -102,9 +107,9 @@
                     <Label Text="You can also you use C# to create it" />
                     <app:SourceCodeExpander Code="{x:Binding SimpleTimePickerCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="TIMEONLY in .NET 6" />
                     <Label Text="{x:StaticResource TimeOnlyDataTypeInfo}" />
@@ -119,7 +124,7 @@
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="TimeOnyToTimeSpanConverter" />
                     <app:SourceCodeExpander Code="{x:Binding TimeOnyToTimeSpanConverterCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

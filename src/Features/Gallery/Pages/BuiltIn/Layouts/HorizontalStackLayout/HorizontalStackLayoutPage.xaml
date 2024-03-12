@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     Title="HorizontalStackLayout"
-    Padding="10"
+    Padding="20"
     x:DataType="app:HorizontalStackLayoutPageViewModel"
     BackgroundColor="Transparent">
 
@@ -75,10 +75,10 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <CollectionView
                         Footer="{x:StaticResource PropertiesListFooter}"
@@ -97,9 +97,9 @@
                     </HorizontalStackLayout>
                     <app:SourceCodeExpander Code="{x:Binding HorizontalStackLayoutRectangleLabelXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Space between child views  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Space between child views" />
                     <HorizontalStackLayout Margin="20" Spacing="10">
@@ -114,9 +114,9 @@
                     </HorizontalStackLayout>
                     <app:SourceCodeExpander Code="{x:Binding SpaceBetweenChildViewsXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Position and size child views  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Position and size child views" />
                     <HorizontalStackLayout Margin="20" HeightRequest="200">
@@ -147,9 +147,9 @@
                         ItemsSource="{x:StaticResource PropertiesItemsSourcePositionAndSizeChildViews}"
                         Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Nest HorizontalStackLayout objects  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Nest HorizontalStackLayout objects" />
                     <HorizontalStackLayout Margin="20" Spacing="6">
@@ -186,7 +186,7 @@
                     </HorizontalStackLayout>
                     <app:SourceCodeExpander Code="{x:Binding NestHorizontalStackLayoutObjectXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

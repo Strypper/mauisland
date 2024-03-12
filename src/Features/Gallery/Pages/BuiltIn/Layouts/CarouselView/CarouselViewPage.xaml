@@ -5,12 +5,25 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     Title="Carousel View"
-    Padding="10"
-    x:DataType="app:CarouselViewPageViewModel">
+    Padding="20"
+    x:DataType="app:CarouselViewPageViewModel"
+    BackgroundColor="Transparent">
 
     <app:BasePage.Resources>
         <x:String x:Key="ControlInfo">
             The .NET Multi-platform App UI (.NET MAUI) CarouselView is a view for presenting data in a scrollable layout, where users can swipe to move through a collection of items.
+        </x:String>
+
+        <x:String x:Key="ControlInfo1">
+            By default, CarouselView will display its items in a horizontal orientation. A single item will be displayed on screen, with swipe gestures resulting in forwards and backwards navigation through the collection of items. In addition, indicators can be displayed that represent each item in the CarouselView:
+        </x:String>
+
+        <x:String x:Key="ControlInfo2">
+            By default, CarouselView provides looped access to its collection of items. Therefore, swiping backwards from the first item in the collection will display the last item in the collection. Similarly, swiping forwards from the last item in the collection will return to the first item in the collection.
+        </x:String>
+
+        <x:String x:Key="ControlInfo3">
+            CarouselView shares much of its implementation with CollectionView. However, the two controls have different use cases. CollectionView is typically used to present lists of data of any length, whereas CarouselView is typically used to highlight information in a list of limited length. For more information about CollectionView, see CollectionView.
         </x:String>
 
         <DataTemplate x:Key="OtherDataTemplate" x:DataType="app:CarouselItem">
@@ -77,7 +90,7 @@
             Highlighted="{StaticResource HighlightedDataTemplate}"
             Other="{StaticResource OtherDataTemplate}" />
 
-        <x:Array x:Key="StringArray" Type="{x:Type x:String}">
+        <x:Array x:Key="StringArrayExample" Type="{x:Type x:String}">
             <x:String>
                 Number one
             </x:String>
@@ -111,73 +124,34 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource ControlInfo}" />
-            </Frame>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout>
-                    <Label Text="First of all, a .NET MAUI CarouselView needs a collection of items to be displayed." />
-                    <Label Text="This set of items can be specified via the property ItemSource, of type IEnumerable." />
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Overview" />
+                    <Label Text="{x:StaticResource ControlInfo1}" />
+                    <CarouselView
+                        HorizontalOptions="Start"
+                        ItemTemplate="{x:StaticResource OtherDataTemplate}"
+                        ItemsSource="{x:Binding Items}" />
+                    <Label Text="{x:StaticResource ControlInfo2}" />
+                    <Label Text="{x:StaticResource ControlInfo3}" />
                 </VerticalStackLayout>
-            </Frame>
-            <Frame BackgroundColor="Gray">
-                <CarouselView ItemsSource="{x:StaticResource StringArray}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout>
-                    <Label Text="As you can see, CarouselView provides looped access to its collection of items. Therefore, swiping (scrolling) backwards from the first item in the collection will display the last item in the collection. Similarly, swiping forwards from the last item in the collection will return to the first item in the collection." />
-                    <Label Text="And as you can also see, the above example is ugly, right? We need to decorate it a little bit!" />
-                    <Label Text="Carousel view has a property called ItemTemplate, of type DataTemplate, specifies the template to apply to each item in the collection of items to be displayed." />
-                </VerticalStackLayout>
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <CarouselView ItemTemplate="{x:StaticResource OtherDataTemplate}" ItemsSource="{x:Binding Items}">
-                    <!--<CarouselView.ItemTemplate>
-                        <DataTemplate x:DataType="app:CarouselItem">
-                            <StackLayout>
-                                <Frame
-                                    Margin="20"
-                                    BorderColor="DarkGray"
-                                    CornerRadius="5"
-                                    HasShadow="True"
-                                    HeightRequest="300"
-                                    HorizontalOptions="Center"
-                                    VerticalOptions="Center">
-                                    <StackLayout>
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="20"
-                                            HorizontalOptions="Center"
-                                            Text="{Binding Title}"
-                                            VerticalOptions="Center" />
-                                        <Image
-                                            Aspect="AspectFill"
-                                            HeightRequest="150"
-                                            HorizontalOptions="Center"
-                                            Source="microsoft.png"
-                                            WidthRequest="150" />
-                                        <Label HorizontalOptions="Center" Text="{Binding Content}" />
-                                    </StackLayout>
-                                </Frame>
-                            </StackLayout>
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>-->
-                </CarouselView>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout>
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="ItemTemplate" />
                     <Label Text="The appearance of each item in the CarouselView can be chosen at runtime, based on the item value, and by using converter." />
                     <Label Text="Set the CarouselView.ItemTemplate property to a DataTemplateSelector object. DataTemplateSelector class defines DataTemplate properties that are set to different data templates. Apply logic to return the desired template in slector class." />
                     <Label Text="*CarouselView with first item highlighted:" />
                 </VerticalStackLayout>
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CarouselView ItemTemplate="{StaticResource ItemDataTemplateSelector}" ItemsSource="{Binding Items}" />
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

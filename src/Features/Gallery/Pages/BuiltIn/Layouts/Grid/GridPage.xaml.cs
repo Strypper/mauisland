@@ -1,7 +1,7 @@
 namespace MAUIsland;
 public partial class GridPage : IGalleryPage
 {
-    #region [CTor]
+    #region [ CTor ]
     public GridPage(GridPageViewModel vm)
     {
         InitializeComponent();

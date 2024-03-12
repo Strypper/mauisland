@@ -572,8 +572,7 @@
                         Title="Filter"
                         BackgroundColor="LightGray"
                         ItemsSource="{x:Binding FilterPickerItems}"
-                        SelectedIndexChanged="OnFilterItemChanged"
-                        TitleColor="#512bd4" />
+                        SelectedIndexChanged="OnFilterItemChanged" />
                     <CollectionView
                         x:Name="CollectionViewItemLayoutChanged"
                         HeightRequest="400"

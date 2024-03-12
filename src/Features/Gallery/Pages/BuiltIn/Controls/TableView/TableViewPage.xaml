@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="Table View"
     Padding="20"
-    x:DataType="app:TableViewPageViewModel">
+    x:DataType="app:TableViewPageViewModel"
+    BackgroundColor="Transparent">
     <app:BasePage.Resources>
         <x:String x:Key="ControlInfo">
             The .NET Multi-platform App UI (.NET MAUI) TableView displays a table of scrollable items that can be grouped into sections. A TableView is typically used for displaying items where each row has a different appearance, such as presenting a table of settings.
@@ -269,27 +270,27 @@
     </app:BasePage.ToolbarItems>
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Header="{x:StaticResource PropertiesListHeader1}"
                     ItemsSource="{x:StaticResource PropertyItemsSource1}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
+            </Border>
 
             <!--  Create a TableView  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a TableView" />
                     <Label Text="{x:StaticResource ControlInfo1}" />
@@ -307,19 +308,19 @@
                     </TableView>
                     <app:SourceCodeExpander Code="{x:Binding StandardTableViewXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!--  Define cell appearance  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Define cell appearance" />
                     <Label Text="{x:StaticResource ControlInfo2}" />
                     <CollectionView ItemsSource="{x:StaticResource PropertyItemsSource2}" Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!--  Text cell  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <CollectionView
                         Footer="{x:StaticResource PropertiesListFooter2}"
@@ -340,10 +341,10 @@
                     </TableView>
                     <app:SourceCodeExpander Code="{x:Binding TextCellXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!--  Image cell  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Image cell" />
                     <Label Text="{x:StaticResource ControlInfo3}" />
@@ -372,10 +373,10 @@
                     </TableView>
                     <app:SourceCodeExpander Code="{x:Binding ImageCellXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!--  Switch cell  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Switch cell" />
                     <CollectionView
@@ -394,10 +395,10 @@
                     </TableView>
                     <app:SourceCodeExpander Code="{x:Binding SwitchCellXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!--  Entry cell  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Entry cell" />
                     <CollectionView ItemsSource="{x:StaticResource PropertyItemsSource5}" Style="{x:StaticResource PropertiesListStyle}" />
@@ -412,10 +413,10 @@
                     </TableView>
                     <app:SourceCodeExpander Code="{x:Binding EntryCellXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!--  View cell  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="View cell" />
                     <Label Text="{x:StaticResource ControlInfo4}" />
@@ -441,17 +442,17 @@
                     </TableView>
                     <app:SourceCodeExpander Code="{x:Binding ViewCellXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!--  Right-to-left layout  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Right-to-left layout" />
                     <Label Text="{x:StaticResource ControlInfo5}" />
                     <app:SourceCodeExpander Code="{x:Binding RightToLeftLayoutXamlCode}" CodeType="Xaml" />
                     <Label Text="The default FlowDirection for an element with a parent is MatchParent. Therefore, the TableView inherits the FlowDirection property value from the ContentPage." />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

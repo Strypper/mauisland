@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     Title="Grid"
-    Padding="10"
+    Padding="20"
     x:DataType="app:GridPageViewModel"
     BackgroundColor="Transparent">
 
@@ -26,10 +26,6 @@
 
         <app:DoubleToIntConverter x:Key="doubleToInt" />
 
-        <Style TargetType="Label">
-            <Setter Property="HorizontalTextAlignment" Value="Start" />
-        </Style>
-
         <x:String x:Key="PropertiesListHeader">
             The Grid class defines the following properties:
         </x:String>
@@ -49,7 +45,7 @@
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">Column</strong>, of type <strong style="color:blue">int </strong>,which is an attached property that indicates the column alignment of a view within a parent Grid. The default value of this property is 0. A validation callback ensures that when the property is set, its value is greater than or equal to 0.
+                                <strong style="color:blue">Column</strong>, of type <strong style="color:blue">int</strong>,which is an attached property that indicates the column alignment of a view within a parent Grid. The default value of this property is 0. A validation callback ensures that when the property is set, its value is greater than or equal to 0.
                             ]]>
             </x:String>
             <x:String>
@@ -121,42 +117,31 @@
             </x:String>
         </x:Array>
 
+
     </app:BasePage.Resources>
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout>
-                    <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-                    <CollectionView
-                        Footer="{x:StaticResource PropertiesListFooter}"
-                        Header="{x:StaticResource PropertiesListHeader}"
-                        ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <CollectionView
+                    Footer="{x:StaticResource PropertiesListFooter}"
+                    Header="{x:StaticResource PropertiesListHeader}"
+                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                    Style="{x:StaticResource PropertiesListStyle}" />
+            </Border>
             <!--  Rows and Columns  -->
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Rows and columns" />
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Rows and columns" />
                     <Label Text="By default, a Grid contains one row and one column:" VerticalTextAlignment="Start" />
-                    <Grid Margin="20,35,20,20">
-                        <Label Text="By default, a Grid contains one row and one column." />
-                    </Grid>
                     <app:SourceCodeExpander Code="{x:Binding GridWithOneRowOneColumnXamlCode}" CodeType="Xaml" />
                     <Label Text="The following XAML shows how to create a Grid with three rows and two columns:" />
                     <app:SourceCodeExpander Code="{x:Binding GridWithThreeRowsTwoColumsXamlCode}" CodeType="Xaml" />
                     <Label Text="The following XAML shows the same Grid definition, and also positions child views in specific Grid cells:" />
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="2*" />
-                            <RowDefinition />
-                            <RowDefinition Height="300" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
+                    <Grid ColumnDefinitions="*, *" RowDefinitions="2*, *, 300">
                         <BoxView HeightRequest="400" Color="Green" />
                         <Label
                             HorizontalOptions="Center"
@@ -206,17 +191,17 @@
                     <Label Text="The equivalent C# code is:" />
                     <app:SourceCodeExpander Code="{x:Binding GridCellsCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Simplify row and column definitions" />
             <!--  Simplify row and column definitions  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <app:SourceCodeExpander Code="{x:Binding GridCellsXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Space between rows and columns  -->
             <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Space between rows and columns" />
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Grid ColumnSpacing="8" RowSpacing="8">
                         <Grid.RowDefinitions>
@@ -277,10 +262,10 @@
                     <Label Text="The equivalent C# code is:" />
                     <app:SourceCodeExpander Code="{x:Binding GridSpaceBetweenRowColumnXamlCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Alignment  -->
             <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Alignment" />
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <CollectionView
                         Footer="{x:StaticResource PropertiesListFooter1}"
@@ -398,10 +383,10 @@
                     <Label Text="The equivalent C# code is:" />
                     <app:SourceCodeExpander Code="{x:Binding GridWithNineCellsCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Nested Grid objects  -->
             <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Nested Grid objects " />
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Text="The following XAML shows an example of nesting Grid objects:" />
                     <Grid>
@@ -438,7 +423,7 @@
                     <Label Text="The equivalent C# code is:" />
                     <app:SourceCodeExpander Code="{x:Binding GridObjectCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

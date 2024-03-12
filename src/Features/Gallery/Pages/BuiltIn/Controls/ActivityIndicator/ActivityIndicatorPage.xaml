@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     Title="Activity Indicator"
-    Padding="10"
+    Padding="20"
     x:DataType="app:ActivityIndicatorPageViewModel"
     BackgroundColor="Transparent">
 
@@ -46,6 +46,13 @@
             <x:String>Cyan</x:String>
         </x:Array>
 
+        <x:Array x:Key="MockGitHubIssueData" Type="{x:Type x:String}">
+            <x:String>[iOS] RTL not working for ActivityIndicator</x:String>
+            <x:String>Activity Indicator and Absolute Layout issue</x:String>
+            <x:String>Pull to refresh on RefreshView does not hide the refresh indicator.</x:String>
+            <x:String>ActivityIndicator is not running second time navigating to page when page is singleton</x:String>
+        </x:Array>
+
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
@@ -62,53 +69,123 @@
 
     </app:BasePage.Resources>
     <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
-            </Border>
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter}"
-                    Header="{x:StaticResource PropertiesListHeader}"
-                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                    Style="{x:StaticResource PropertiesListStyle}" />
-            </Border>
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="10">
-                    <HorizontalStackLayout HorizontalOptions="Start" Spacing="10">
-                        <ActivityIndicator IsRunning="True" />
-                        <ActivityIndicator IsRunning="True" Color="Green" />
-                        <ActivityIndicator IsRunning="True" Color="Red" />
-                        <ActivityIndicator IsRunning="true" Color="Aqua" />
-                    </HorizontalStackLayout>
-                    <app:SourceCodeExpander Code="{x:Binding GroupOfActivityIndicators}" />
-                </VerticalStackLayout>
+        <Grid ColumnDefinitions="*, 300" ColumnSpacing="20">
+            <VerticalStackLayout Spacing="20">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <CollectionView
+                        Footer="{x:StaticResource PropertiesListFooter}"
+                        Header="{x:StaticResource PropertiesListHeader}"
+                        ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <HorizontalStackLayout HorizontalOptions="Start" Spacing="10">
+                            <ActivityIndicator IsRunning="True" />
+                            <ActivityIndicator IsRunning="True" Color="Green" />
+                            <ActivityIndicator IsRunning="True" Color="Red" />
+                            <ActivityIndicator IsRunning="true" Color="Aqua" />
+                        </HorizontalStackLayout>
+                        <app:SourceCodeExpander Code="{x:Binding GroupOfActivityIndicators}" />
+                    </VerticalStackLayout>
 
-            </Border>
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="5">
-                    <HorizontalStackLayout Spacing="10">
-                        <Picker
-                            x:Name="ActivityIndicatorColorPicker"
-                            Title="Choose Color"
-                            ItemsSource="{x:StaticResource ActivityIndicatorColorResource}"
-                            SelectedIndex="0"
-                            VerticalOptions="Center" />
-                        <Switch
-                            x:Name="ActivityIndicatorSwitch"
-                            IsToggled="True"
-                            VerticalOptions="End" />
-                    </HorizontalStackLayout>
-                    <ActivityIndicator
-                        HorizontalOptions="Start"
-                        IsRunning="{x:Binding Source={x:Reference ActivityIndicatorSwitch},
-                                              Path=IsToggled}"
-                        Color="{x:Binding Source={x:Reference ActivityIndicatorColorPicker},
-                                          Path=SelectedItem,
-                                          Converter={x:StaticResource StringToColorConverter}}" />
-                    <app:SourceCodeExpander Code="{x:Binding BindingActivityIndicators}" />
-                </VerticalStackLayout>
-            </Border>
-        </VerticalStackLayout>
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="5">
+                        <HorizontalStackLayout Spacing="10">
+                            <Picker
+                                x:Name="ActivityIndicatorColorPicker"
+                                Title="Choose Color"
+                                ItemsSource="{x:StaticResource ActivityIndicatorColorResource}"
+                                SelectedIndex="0"
+                                VerticalOptions="Center" />
+                            <Switch
+                                x:Name="ActivityIndicatorSwitch"
+                                IsToggled="True"
+                                VerticalOptions="End" />
+                        </HorizontalStackLayout>
+                        <ActivityIndicator
+                            HorizontalOptions="Start"
+                            IsRunning="{x:Binding Source={x:Reference ActivityIndicatorSwitch},
+                                                  Path=IsToggled}"
+                            Color="{x:Binding Source={x:Reference ActivityIndicatorColorPicker},
+                                              Path=SelectedItem,
+                                              Converter={x:StaticResource StringToColorConverter}}" />
+                        <app:SourceCodeExpander Code="{x:Binding BindingActivityIndicators}" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+
+            <CollectionView
+                Grid.Column="1"
+                ItemsSource="{x:StaticResource MockGitHubIssueData}"
+                SelectionChangedCommand="{x:Binding OpenUrlCommand}"
+                SelectionChangedCommandParameter="https://github.com/dotnet/maui/issues/15411"
+                SelectionMode="Single">
+                <CollectionView.Header>
+                    <Border
+                        Margin="0,0,0,10"
+                        Padding="20"
+                        BackgroundColor="#272b33"
+                        StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout>
+                            <Grid>
+                                <HorizontalStackLayout Spacing="10">
+                                    <Image
+                                        HeightRequest="25"
+                                        Source="githublogo.png"
+                                        VerticalOptions="Center"
+                                        WidthRequest="25" />
+
+                                    <Label
+                                        HorizontalOptions="Start"
+                                        Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                        Text="Issues"
+                                        VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                                <Border
+                                    BackgroundColor="OrangeRed"
+                                    HeightRequest="40"
+                                    HorizontalOptions="End"
+                                    StrokeShape="RoundRectangle 20"
+                                    VerticalOptions="Center"
+                                    WidthRequest="40">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="Center"
+                                        Text="30"
+                                        VerticalOptions="Center" />
+                                </Border>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+                </CollectionView.Header>
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            Padding="20"
+                            BackgroundColor="#0a0c10"
+                            StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Micro"
+                                    LineBreakMode="CharacterWrap"
+                                    MaxLines="2"
+                                    Text="{x:Binding}"
+                                    TextDecorations="Underline" />
+                                <Label Text="Jun 2, 2023 by PureWeen" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </ScrollView>
 </app:BasePage>
