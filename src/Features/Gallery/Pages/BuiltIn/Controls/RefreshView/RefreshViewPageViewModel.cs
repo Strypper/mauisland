@@ -3,7 +3,7 @@
 
 public partial class RefreshViewPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [CTor]
+    #region [ CTor ]
     public RefreshViewPageViewModel(IAppNavigator appNavigator)
                                     : base(appNavigator)
     {
@@ -11,7 +11,8 @@ public partial class RefreshViewPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
+
     [ObservableProperty]
     IGalleryCardInfo controlInformation;
 
@@ -21,9 +22,30 @@ public partial class RefreshViewPageViewModel : NavigationAwareBaseViewModel
     [ObservableProperty]
     ObservableCollection<DemoItem> items;
 
+    [ObservableProperty]
+    string refreshViewXamlCode =
+    "<RefreshView\r\n" +
+    "    Command=\"{Binding RefreshCommand}\"\r\n" +
+    "    HorizontalOptions=\"Start\"\r\n" +
+    "    IsRefreshing=\"{x:Binding IsBusy}\"\r\n" +
+    "    MaximumWidthRequest=\"300\">\r\n" +
+    "    <CollectionView ItemTemplate=\"{x:StaticResource DemoItemTemplate}\" ItemsSource=\"{x:Binding Items}\" />\r\n" +
+    "</RefreshView>";
+
+    [ObservableProperty]
+    string refreshCommandCSharpCode =
+    "[RelayCommand]\n" +
+    "async Task RefreshAsync()\n" +
+    "{\n" +
+    "    IsBusy = true;\n" +
+    "    Items.Add(new DemoItem(\"new Item\", DateTime.Now));\n" +
+    "    await AppNavigator.ShowSnackbarAsync(\"You triggered refresh\", null, \"Ok\");\n" +
+    "    IsBusy = false;\n" +
+    "}";
+
     #endregion
 
-    #region [Overrides]
+    #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
@@ -35,7 +57,8 @@ public partial class RefreshViewPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Relay Commands]
+    #region [ Relay Commands ]
+
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);

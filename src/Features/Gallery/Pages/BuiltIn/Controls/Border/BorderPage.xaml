@@ -211,7 +211,7 @@
     <ScrollView>
         <VerticalStackLayout Spacing="20">
             <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <Label Text="{x:StaticResource ControlInfo}" />
+                <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
             </Border>
 
             <Border Padding="20" StrokeShape="RoundRectangle 4">

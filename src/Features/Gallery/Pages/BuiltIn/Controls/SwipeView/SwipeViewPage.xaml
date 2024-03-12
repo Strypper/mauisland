@@ -6,7 +6,8 @@
     xmlns:app="clr-namespace:MAUIsland"
     Title="Swipe View"
     Padding="20"
-    x:DataType="app:SwipeViewPageViewModel">
+    x:DataType="app:SwipeViewPageViewModel"
+    BackgroundColor="Transparent">
     <app:BasePage.ToolbarItems>
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
@@ -96,33 +97,47 @@
             </x:String>
         </x:Array>
 
+
+        <FontImageSource
+            x:Key="SwipeViewPageFluentStart48Regular"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_star_48_regular}"
+            Color="Black" />
+
+        <FontImageSource
+            x:Key="SwipeViewPageFluentDelete16Regular"
+            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static app:FluentUIIcon.Ic_fluent_delete_16_regular}"
+            Color="Black" />
+
     </app:BasePage.Resources>
+
     <ScrollView>
         <VerticalStackLayout Spacing="20">
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource ContronInfo1}" />
-            </Frame>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:StaticResource ContronInfo1}" />
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter1}"
                     Header="{x:StaticResource PropertiesListHeader1}"
                     ItemsSource="{x:StaticResource PropertyItemsSource1}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter2}"
                     Header="{x:StaticResource PropertiesListHeader2}"
                     ItemsSource="{x:StaticResource PropertyItemsSource2}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
+            </Border>
 
 
             <!--  Create Swipe View  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a SwipeView" />
                     <Label Text="{x:StaticResource ContronInfo2}" />
@@ -133,12 +148,12 @@
                                 <SwipeItem
                                     BackgroundColor="LightGreen"
                                     Command="{x:Binding FavoriteCommand}"
-                                    IconImageSource="favorite.png"
+                                    IconImageSource="{x:StaticResource SwipeViewPageFluentStart48Regular}"
                                     Text="Favorite" />
                                 <SwipeItem
                                     BackgroundColor="LightPink"
                                     Command="{x:Binding DeleteCommand}"
-                                    IconImageSource="delete.png"
+                                    IconImageSource="{x:StaticResource SwipeViewPageFluentDelete16Regular}"
                                     Text="Delete" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
@@ -155,10 +170,10 @@
                     <Label FontSize="Micro" Text="Once a swipe item has been executed the swipe items are hidden and the SwipeView content is re-displayed. However, this behavior can be changed. For more information, see Swipe behavior." />
                     <app:SourceCodeExpander Code="{x:Binding StandardSwipeViewXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!--  Swipe items  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Swipe items" />
                     <SwipeView>
@@ -166,11 +181,11 @@
                             <SwipeItems>
                                 <SwipeItem
                                     BackgroundColor="LightGreen"
-                                    IconImageSource="favorite.png"
+                                    IconImageSource="{x:StaticResource SwipeViewPageFluentStart48Regular}"
                                     Text="Favorite" />
                                 <SwipeItem
                                     BackgroundColor="LightPink"
-                                    IconImageSource="delete.png"
+                                    IconImageSource="{x:StaticResource SwipeViewPageFluentDelete16Regular}"
                                     Text="Delete" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
@@ -186,10 +201,10 @@
                     </SwipeView>
                     <app:SourceCodeExpander Code="{x:Binding SwipeItemsXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!--  Swipe direction  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Swipe direction" />
                     <SwipeView>
@@ -198,7 +213,7 @@
                                 <SwipeItem
                                     BackgroundColor="LightPink"
                                     Command="{x:Binding DeleteCommand}"
-                                    IconImageSource="delete.png"
+                                    IconImageSource="{x:StaticResource SwipeViewPageFluentDelete16Regular}"
                                     Text="Delete" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
@@ -207,7 +222,7 @@
                                 <SwipeItem
                                     BackgroundColor="LightGreen"
                                     Command="{x:Binding FavoriteCommand}"
-                                    IconImageSource="favorite.png"
+                                    IconImageSource="{x:StaticResource SwipeViewPageFluentStart48Regular}"
                                     Text="Favorite" />
                                 <SwipeItem
                                     BackgroundColor="LightYellow"
@@ -228,10 +243,10 @@
                     </SwipeView>
                     <app:SourceCodeExpander Code="{x:Binding SwipeDirectionXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!--  Swipe threshold  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Swipe threshold" />
                     <SwipeView Threshold="200">
@@ -239,7 +254,7 @@
                             <SwipeItems>
                                 <SwipeItem
                                     BackgroundColor="LightGreen"
-                                    IconImageSource="favorite.png"
+                                    IconImageSource="{x:StaticResource SwipeViewPageFluentStart48Regular}"
                                     Text="Favorite" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
@@ -255,10 +270,10 @@
                     </SwipeView>
                     <app:SourceCodeExpander Code="{x:Binding SwipeThresholdXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!--  Swipe mode  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Swipe mode" />
                     <SwipeView>
@@ -267,7 +282,7 @@
                                 <SwipeItem
                                     BackgroundColor="LightPink"
                                     Command="{x:Binding DeleteCommand}"
-                                    IconImageSource="delete.png"
+                                    IconImageSource="{x:StaticResource SwipeViewPageFluentDelete16Regular}"
                                     Text="Delete" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
@@ -283,10 +298,10 @@
                     </SwipeView>
                     <app:SourceCodeExpander Code="{x:Binding SwipeModeXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!--  Swipe behavior  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Swipe behavior" />
                     <SwipeView>
@@ -294,11 +309,11 @@
                             <SwipeItems SwipeBehaviorOnInvoked="RemainOpen">
                                 <SwipeItem
                                     BackgroundColor="LightGreen"
-                                    IconImageSource="favorite.png"
+                                    IconImageSource="{x:StaticResource SwipeViewPageFluentStart48Regular}"
                                     Text="Favorite" />
                                 <SwipeItem
                                     BackgroundColor="LightPink"
-                                    IconImageSource="delete.png"
+                                    IconImageSource="{x:StaticResource SwipeViewPageFluentDelete16Regular}"
                                     Text="Delete" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
@@ -314,7 +329,7 @@
                     </SwipeView>
                     <app:SourceCodeExpander Code="{x:Binding SwipeBehaviorXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

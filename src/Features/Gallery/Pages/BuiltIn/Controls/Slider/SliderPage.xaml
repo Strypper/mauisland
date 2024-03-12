@@ -90,23 +90,23 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource ControlInfo}" VerticalOptions="Center" />
-            </Frame>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Slider />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout>
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a slider" />
 
@@ -114,9 +114,9 @@
 
                     <app:SourceCodeExpander Code="{x:Binding SimpleCreateSliderXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Customize the slider" />
 
@@ -125,21 +125,18 @@
                         <Picker
                             x:Name="ThumbColorPicker"
                             Title="Thumb Color"
-                            BackgroundColor="#512bd4"
                             ItemsSource="{x:StaticResource SliderColorResource}"
                             SelectedIndex="0" />
 
                         <Picker
                             x:Name="MinimumTrackColorPicker"
                             Title="Minimum Track Color"
-                            BackgroundColor="#512bd4"
                             ItemsSource="{x:StaticResource SliderColorResource}"
                             SelectedIndex="1" />
 
                         <Picker
                             x:Name="MaximumTrackColorPicker"
                             Title="Maximum Track Color"
-                            BackgroundColor="#512bd4"
                             ItemsSource="{x:StaticResource SliderColorResource}"
                             SelectedIndex="2" />
                     </HorizontalStackLayout>
@@ -160,8 +157,8 @@
                     <Slider MinimumTrackColor="#6e50db" ThumbImageSource="dotnet_bot.png" />
                     <app:SourceCodeExpander Code="{x:Binding SliderWithCustomThumbImageXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout>
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="LET'S HAVE A LITTLE FUN!!!!" />
                     <Slider
@@ -180,7 +177,7 @@
                             VerticalTextAlignment="Center" />
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

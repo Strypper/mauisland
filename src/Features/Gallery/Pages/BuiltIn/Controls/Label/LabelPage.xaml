@@ -136,19 +136,19 @@
     </app:BasePage.ToolbarItems>
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Grid ColumnDefinitions="*, *" RowDefinitions="*,*">
                     <VerticalStackLayout Grid.RowSpan="2" Spacing="10">
                         <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Built-in font sizes" />
@@ -179,9 +179,9 @@
                         <Label Text="Underline" TextDecorations="Underline" />
                     </VerticalStackLayout>
                 </Grid>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Control text truncation and wrapping" />
                     <HorizontalStackLayout Spacing="10">
@@ -237,9 +237,9 @@
                                               Path=SelectedItem,
                                               Converter={x:StaticResource StringToColorConverter}}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Control the text using FormattedString and Span" />
                     <Label>
@@ -257,9 +257,9 @@
                     </Label>
                     <app:SourceCodeExpander Code="{x:Binding LabelXamlCodeExample}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Code style label" />
                     <Label FormattedText="{x:Binding FormatedStringByCsharpCode}" />
@@ -267,7 +267,7 @@
                     <Editor />
                     <Label />-->
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     Title="Switch"
-    Padding="10"
+    Padding="20"
     x:DataType="app:SwitchPageViewModel"
     BackgroundColor="Transparent">
     <app:BasePage.Resources>
@@ -54,7 +54,7 @@
     <ScrollView>
         <VerticalStackLayout Spacing="20">
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="{x:StaticResource ControlInfo}" />
 
@@ -80,9 +80,9 @@
 
                     <app:SourceCodeExpander Code="{x:Binding StandardSwitchXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Margin="10"
                     Footer="{x:StaticResource PropertiesListFooter}"
@@ -91,9 +91,9 @@
                     SelectionMode="Single"
                     Style="{x:StaticResource PropertiesListStyle}"
                     VerticalScrollBarVisibility="Never" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <HorizontalStackLayout Spacing="10">
                         <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="⚠️ Warning Zone" />
@@ -135,12 +135,11 @@
                         </VerticalStackLayout>
                     </Frame>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
 
-            <Frame Padding="20,10,20,10" Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout>
-
                     <Grid Margin="0,0,0,5">
                         <Label
                             Margin="0,0,0,10"
@@ -198,7 +197,7 @@
 
                     <app:SourceCodeExpander Code="{x:Binding AdvanceSwitchXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
         </VerticalStackLayout>
     </ScrollView>

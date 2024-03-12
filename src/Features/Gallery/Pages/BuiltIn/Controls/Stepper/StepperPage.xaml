@@ -69,10 +69,10 @@
     </app:BasePage.ToolbarItems>
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource ControlInfo}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <CollectionView
                         Header="{x:StaticResource PropertiesListHeader1}"
@@ -84,8 +84,8 @@
                         Text="Stepper defines a ValueChanged event that's raised when the Value changes, either through user manipulation of the Stepper or when the application sets the Value property directly. A ValueChanged event is also raised when the Value property is coerced as previously described. The ValueChangedEventArgs object that accompanies the ValueChanged event has OldValue and NewValue, of type double. At the time the event is raised, the value of NewValue is the same as the Value property of the Stepper object."
                         VerticalTextAlignment="Start" />
                 </VerticalStackLayout>
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="What types of women do you like?" />
                     <Label Text="{x:Binding Source={x:Reference AgeStepper}, Path=Value, Mode=OneWay, Converter={x:StaticResource AgeToMrIncreadibleMemeTitleConverter}}" />
@@ -117,67 +117,73 @@
                             WidthRequest="100" />
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Create a Stepper  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a Stepper" />
                     <CollectionView Header="{x:StaticResource PropertiesListHeader2}" Style="{x:StaticResource PropertiesListStyle}" />
                     <StackLayout Margin="20">
-                        <Label x:Name="RotatingLabel"
-                               Text="ROTATING TEXT"
-                               FontSize="18"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center" />
-                        <Stepper HorizontalOptions="Center" 
-                                 Increment="30"
-                                 Maximum="360"
-                                 ValueChanged="OnStepperValueChanged" />
-                        <Label x:Name="DisplayLabel"
-                               Text="(uninitialized)"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center" />
+                        <Label
+                            x:Name="RotatingLabel"
+                            FontSize="18"
+                            HorizontalOptions="Center"
+                            Text="ROTATING TEXT"
+                            VerticalOptions="Center" />
+                        <Stepper
+                            HorizontalOptions="Center"
+                            Increment="30"
+                            Maximum="360"
+                            ValueChanged="OnStepperValueChanged" />
+                        <Label
+                            x:Name="DisplayLabel"
+                            HorizontalOptions="Center"
+                            Text="(uninitialized)"
+                            VerticalOptions="Center" />
                     </StackLayout>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Here is the Xaml Code for the Stepper and 2 Labels" />
-                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlStandardStepper}" />
+                    <app:SourceCodeExpander Code="{x:Binding XamlStandardStepper}" CodeType="Xaml" />
                     <Label Text="This is the code behind for the OnStepperValueChanged" />
-                    <app:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CsharpStandardStepper}" />
+                    <app:SourceCodeExpander Code="{x:Binding CsharpStandardStepper}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!--  Data bind a Stepper  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Data bind a Stepper" />
                     <CollectionView Header="{x:StaticResource PropertiesListHeader3}" Style="{x:StaticResource PropertiesListStyle}" />
                     <StackLayout Margin="20">
-                        <Label Rotation="{Binding Source={x:Reference MyStepper}, Path=Value}"
-                               Text="ROTATING TEXT"
-                               FontSize="18"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center" />
-                        <Stepper x:Name="MyStepper"
-                                 HorizontalOptions="Center"
-                                 Increment="30"
-                                 Maximum="360" />
-                        <Label Text="{Binding Source={x:Reference MyStepper}, Path=Value, StringFormat='The Stepper value is {0:F0}'}"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center" />
+                        <Label
+                            FontSize="18"
+                            HorizontalOptions="Center"
+                            Rotation="{Binding Source={x:Reference MyStepper}, Path=Value}"
+                            Text="ROTATING TEXT"
+                            VerticalOptions="Center" />
+                        <Stepper
+                            x:Name="MyStepper"
+                            HorizontalOptions="Center"
+                            Increment="30"
+                            Maximum="360" />
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="{Binding Source={x:Reference MyStepper}, Path=Value, StringFormat='The Stepper value is {0:F0}'}"
+                            VerticalOptions="Center" />
                     </StackLayout>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Here is how it should look like" />
-                    <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlDataBindAStepper}" />
+                    <app:SourceCodeExpander Code="{x:Binding XamlDataBindAStepper}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
         </VerticalStackLayout>
     </ScrollView>

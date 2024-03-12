@@ -6,8 +6,9 @@
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Collection View"
-    Padding="10"
-    x:DataType="app:CollectionViewPageViewModel">
+    Padding="20"
+    x:DataType="app:CollectionViewPageViewModel"
+    BackgroundColor="Transparent">
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem
@@ -300,18 +301,18 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:StaticResource ControlInfo}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Basic CollectionView with simple DataTemplate" />
                     <Label Text="There are 3 element to create a collection view " />
@@ -321,9 +322,9 @@
                         ItemTemplate="{x:StaticResource ControllInfoCollectionTemplate}"
                         ItemsSource="{x:Binding ControlGroupList}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="This is our Model" />
                     <app:SourceCodeExpander Code="{x:Binding CSharpBasicCollectionModel}" CodeType="CSharp" />
@@ -334,9 +335,9 @@
                     <Label Text="Here for the DataTemplate design" />
                     <app:SourceCodeExpander Code="{x:Binding XamlBasicCollectionViewTemplate}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView with swipe items" />
                     <CollectionView ItemsSource="{x:StaticResource SwipeViewCollectionView}" Style="{x:StaticResource PropertiesListStyle}" />
@@ -345,9 +346,9 @@
                         ItemTemplate="{x:StaticResource MrIncreadibleCollectionTemplateWithSwipe}"
                         ItemsSource="{x:Binding MrIncreadibles}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="This is MrIncreadible Model" />
                     <app:SourceCodeExpander Code="{x:Binding CSharpSwipeCollectionModel}" CodeType="CSharp" />
@@ -358,9 +359,9 @@
                     <Label Text="Here is the ViewModel code" />
                     <app:SourceCodeExpander Code="{x:Binding CSharpSwipeCollectionViewViewModel}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView pull to refresh" />
                     <CollectionView ItemsSource="{x:StaticResource RefreshViewCollectionView}" Style="{x:StaticResource PropertiesListStyle}" />
@@ -372,18 +373,18 @@
                         <CollectionView ItemTemplate="{x:StaticResource ControllInfoCollectionTemplate}" ItemsSource="{x:Binding ControlGroupList}" />
                     </RefreshView>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="This CollectionView with refresh" />
                     <app:SourceCodeExpander Code="{x:Binding XamlRefreshCollectionView}" CodeType="Xaml" />
                     <Label Text="Here is the ViewModel code" />
                     <app:SourceCodeExpander Code="{x:Binding CSharpRefreshCollectionViewViewModel}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Padding="5,5,5,30" Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView Linear Layouts" />
                     <CollectionView ItemsSource="{x:StaticResource CollectionViewVerticalListLayout}" Style="{x:StaticResource PropertiesListStyle}" />
@@ -398,9 +399,9 @@
                         ItemsLayout="HorizontalList"
                         ItemsSource="{x:Binding MrIncreadibles}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Grid ColumnDefinitions="0.5*, 0.5*" ColumnSpacing="10">
                         <VerticalStackLayout Grid.Column="0">
@@ -417,9 +418,9 @@
                         </VerticalStackLayout>
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView Grid Layouts" />
                     <CollectionView ItemsSource="{x:StaticResource CollectionViewVerticalGridLayout}" Style="{x:StaticResource PropertiesListStyle}" />
@@ -432,18 +433,18 @@
                         ItemsSource="{x:Binding MrIncreadibles}" />
                     <Label Text="In 2021, .NET MAUI’s CollectionView does not support HorizontalGrid in the ItemsLayout property" TextColor="OrangeRed" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Here is the Template" />
                     <app:SourceCodeExpander Code="{x:Binding XamlVerticalGridCollectionViewTemplate}" CodeType="Xaml" />
                     <Label Text="This is CollectionView Grid Layouts" />
                     <app:SourceCodeExpander Code="{x:Binding XamlVerticalGridCollectionView}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Headers and footers" />
                     <CollectionView ItemsSource="{x:StaticResource CollectionViewHeadersFootersProperty}" Style="{x:StaticResource PropertiesListStyle}" />
@@ -461,9 +462,9 @@
                     </Frame>
                     <Label Text="It’s unfortunate that the an issue with the CollectionView header and footer from Xamarin.Forms haven’t been resolved yet. Because of the issue, HeaderTemplate and FooterTemplate can not be used properly" TextColor="OrangeRed" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Header and footer source" />
                     <app:SourceCodeExpander Code="{x:Binding XamlHeaderFooterCollectionViewSource}" CodeType="Xaml" />
@@ -472,9 +473,9 @@
                     <Label Text="This is how CollectionView look like" />
                     <app:SourceCodeExpander Code="{x:Binding XamlHeaderFooterCollectionView}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView Reverse Layout" />
                     <CollectionView ItemsSource="{x:StaticResource CollectionViewReverseLayout}" Style="{x:StaticResource PropertiesListStyle}" />
@@ -484,16 +485,16 @@
                         ItemTemplate="{x:StaticResource MrIncreadibleItemTemplate}"
                         ItemsSource="{x:Binding MrIncreadibles}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="This is how CollectionView look like" />
                     <app:SourceCodeExpander Code="{x:Binding XamlReverseCollectionView}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView Layouts Changing" />
                     <VerticalStackLayout>
@@ -545,9 +546,9 @@
                         </CollectionView>
                     </VerticalStackLayout>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="CollectionView with setup" />
                     <app:SourceCodeExpander Code="{x:Binding XamlLayoutsChangingCollectionView}" CodeType="Xaml" />
@@ -560,9 +561,9 @@
                     <Label Text="This is what code behind look like" />
                     <app:SourceCodeExpander Code="{x:Binding CSharpLayoutsChangingCollectionViewCodeBehind}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView Template Selector with Event" />
                     <Label Text="{x:StaticResource CollectionViewDataTemplateSelectorHeader}" />
@@ -581,9 +582,9 @@
                                                 Mode=OneWay}"
                         SelectionMode="None" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Template Selector" />
                     <app:SourceCodeExpander Code="{x:Binding CSharpTemplateSelector}" CodeType="CSharp" />
@@ -596,16 +597,16 @@
                     <Label Text="Code behind with EventHandler" />
                     <app:SourceCodeExpander Code="{x:Binding CSharpTemplateSelectorCollectionViewEventHandler}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView Item Selection Properties" />
                     <CollectionView ItemsSource="{x:StaticResource CollectionViewSelectionProperty}" Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView with single selection" />
                     <CollectionView ItemsSource="{x:StaticResource CollectionViewSingleSelection}" Style="{x:StaticResource PropertiesListStyle}" />
@@ -635,9 +636,9 @@
                         SelectionChangedCommand="{x:Binding SingleSelectCollectionViewCommand}"
                         SelectionMode="Single" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Template for this CollectionView" />
                     <app:SourceCodeExpander Code="{x:Binding XamlSingleSelectionCollectionViewTemplate}" CodeType="Xaml" />
@@ -646,9 +647,9 @@
                     <Label Text="This is ViewModel code" />
                     <app:SourceCodeExpander Code="{x:Binding CSharpSingleSelectionCollectionViewViewModel}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView with multiple selection" />
                     <CollectionView ItemsSource="{x:StaticResource CollectionViewMultipleSelection}" Style="{x:StaticResource PropertiesListStyle}" />
@@ -687,9 +688,9 @@
                         SelectionChangedCommand="{x:Binding MultipleSelectCollectionViewCommand}"
                         SelectionMode="Multiple" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="CollectionView with setup" />
                     <app:SourceCodeExpander Code="{x:Binding XamlMultipleSelectionCollectionView}" CodeType="Xaml" />
@@ -698,7 +699,7 @@
                     <Label Text="This is all we need in ViewModel" />
                     <app:SourceCodeExpander Code="{x:Binding CSharpMultipleSelectionCollectionViewViewModel}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 

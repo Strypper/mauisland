@@ -6,8 +6,9 @@
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     Title="Refresh View"
-    Padding="10"
-    x:DataType="app:RefreshViewPageViewModel">
+    Padding="20"
+    x:DataType="app:RefreshViewPageViewModel"
+    BackgroundColor="Transparent">
     <app:BasePage.Resources>
         <x:String x:Key="ControlInfo">
             The .NET Multi-platform App UI (.NET MAUI) RefreshView is a container control that provides pull to refresh functionality for scrollable content. Therefore, the child of a RefreshView must be a scrollable control, such as ScrollView, CollectionView, or ListView.
@@ -20,6 +21,15 @@
         <x:String x:Key="PropertiesListFooter">
             These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
         </x:String>
+
+        <x:Array x:Key="RefreshViewPageColorResource" Type="{x:Type x:String}">
+            <x:String>Red</x:String>
+            <x:String>Blue</x:String>
+            <x:String>Green</x:String>
+            <x:String>White</x:String>
+            <x:String>Black</x:String>
+            <x:String>Cyan</x:String>
+        </x:Array>
 
         <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
             <x:String>
@@ -66,34 +76,36 @@
     </app:BasePage.ToolbarItems>
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Swipe to add more items" />
                     <Grid ColumnDefinitions="*, *,*">
-
                         <RefreshView
                             Command="{Binding RefreshCommand}"
                             HorizontalOptions="Start"
                             IsRefreshing="{x:Binding IsBusy}"
-                            MaximumWidthRequest="300">
+                            MaximumWidthRequest="300"
+                            RefreshColor="{x:Binding Source={x:Reference RefreshViewRefreshColorPicker},
+                                                     Path=SelectedItem,
+                                                     Converter={x:StaticResource StringToColorConverter}}">
                             <CollectionView ItemTemplate="{x:StaticResource DemoItemTemplate}" ItemsSource="{x:Binding Items}" />
                         </RefreshView>
                         <VerticalStackLayout Grid.Column="1" Spacing="10">
                             <Label
                                 FontAttributes="Bold"
-                                Text="Requirements (Laptops and PC)"
+                                Text="Requirements for laptops and PC"
                                 TextDecorations="Underline" />
                             <Label
                                 Padding="10"
@@ -129,8 +141,16 @@
                             Source="swipeupordown.json"
                             WidthRequest="500" />
                     </Grid>
+                    <Picker
+                        x:Name="RefreshViewRefreshColorPicker"
+                        Title="Choose color and then perform refresh again"
+                        ItemsSource="{x:StaticResource RefreshViewPageColorResource}"
+                        SelectedIndex="0"
+                        VerticalOptions="Center" />
+                    <app:SourceCodeExpander Code="{x:Binding RefreshViewXamlCode}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding RefreshCommandCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>
