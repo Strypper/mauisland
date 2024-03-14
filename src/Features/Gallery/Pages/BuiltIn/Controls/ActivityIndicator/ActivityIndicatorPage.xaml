@@ -124,7 +124,7 @@
                 ItemsSource="{x:StaticResource MockGitHubIssueData}"
                 SelectionChangedCommand="{x:Binding OpenUrlCommand}"
                 SelectionChangedCommandParameter="https://github.com/dotnet/maui/issues/15411"
-                SelectionMode="Single">
+                SelectionMode="Single" >
                 <CollectionView.Header>
                     <Border
                         Margin="0,0,0,10"

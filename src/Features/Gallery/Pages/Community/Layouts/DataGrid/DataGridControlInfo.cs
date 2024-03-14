@@ -1,7 +1,7 @@
 namespace MAUIsland.Gallery.Community;
 class DataGridControlInfo : IGithubGalleryCardInfo
 {
-    public string RepositoryName => "DataGrid";
+    public string RepositoryName => "Maui.DataGrid";
     public string AuthorName => "akgulebubekir";
     public ImageSource ControlIcon => new FontImageSource()
     {
