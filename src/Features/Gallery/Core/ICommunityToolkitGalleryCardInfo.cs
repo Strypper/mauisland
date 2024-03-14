@@ -1,5 +1,5 @@
 ﻿namespace MAUIsland;
 
-interface ICommunityToolkitGalleryCardInfo : IGalleryCardInfo
+public interface ICommunityToolkitGalleryCardInfo : IGalleryCardInfo
 {
 }
