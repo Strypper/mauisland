@@ -8,7 +8,7 @@ class LiveCharts2ControlInfo : IGithubGalleryCardInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
-        Glyph = FluentUIIcon.Ic_fluent_approvals_app_20_regular
+        Glyph = FluentUIIcon.Ic_fluent_chart_multiple_24_regular
     };
     public string ControlName => "LiveCharts2";
     public string ControlDetail => "LiveCharts2 is a library developed by beto-rodriguez. It’s a simple, flexible, interactive, and powerful tool for creating charts, maps, and gauges in .Net. It’s designed to run on multiple platforms including Maui, Uno Platform, Blazor-wasm, WPF, WinForms, Xamarin, Avalonia, WinUI, and UWP. The library is designed to be highly flexible and can be easily moved to any other drawing engine. It also supports high-performance data visualization.";

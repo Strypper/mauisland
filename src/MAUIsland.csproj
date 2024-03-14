@@ -149,6 +149,9 @@
 		<Compile Update="Features\Gallery\Pages\Community\Helpers\SQLite-net\SQLiteNETPage.xaml.cs">
 		  <DependentUpon>SQLiteNETPage.xaml</DependentUpon>
 		</Compile>
+		<Compile Update="Features\Gallery\Pages\Community\Layouts\DataGrid\DataGridPage.xaml.cs">
+		  <DependentUpon>DataGridPage.xaml</DependentUpon>
+		</Compile>
 		<Compile Update="Features\Gallery\Pages\Material\Controls\MaterialProgressIndicator\MaterialProgressIndicatorPage.xaml.cs">
 		  <DependentUpon>MaterialProgressIndicatorPage.xaml</DependentUpon>
 		</Compile>
@@ -240,6 +243,9 @@
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\Community\Helpers\SQLite-net\SQLiteNETPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Gallery\Pages\Community\Layouts\DataGrid\DataGridPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\GalleryPage.xaml">
