@@ -6,7 +6,7 @@ class OverFlowerControlInfo : IGithubGalleryCardInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
-        Glyph = FluentUIIcon.Ic_fluent_approvals_app_20_regular
+        Glyph = FluentUIIcon.Ic_fluent_approvals_app_24_regular
     };
     public string ControlName => "OverFlower";
     public string ControlDetail => "Simple control to display scrolling overflow content!";

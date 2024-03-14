@@ -6,7 +6,7 @@ public class SQLiteNETControlInfo : IGithubGalleryCardInfo
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
-        Glyph = FluentUIIcon.Ic_fluent_database_search_20_regular
+        Glyph = FluentUIIcon.Ic_fluent_database_search_24_regular
     };
     public string ControlName => "sqlite-net";
     public string ControlDetail => "SQLite-net is an open source, minimal library to allow .NET, .NET Core, and Mono applications to store data in SQLite 3 databases. It was first designed to work with Xamarin.iOS, but has since grown up to work on all the platforms (Xamarin.*, .NET, UWP, Azure, etc.).";
