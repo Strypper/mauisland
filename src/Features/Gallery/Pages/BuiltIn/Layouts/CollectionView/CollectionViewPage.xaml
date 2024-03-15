@@ -370,7 +370,8 @@
                         Command="{Binding RefreshCommand}"
                         HeightRequest="400"
                         IsRefreshing="{Binding IsRefreshing}">
-                        <CollectionView ItemTemplate="{x:StaticResource ControllInfoCollectionTemplate}" ItemsSource="{x:Binding ControlGroupList}" />
+                        <CollectionView ItemTemplate="{x:StaticResource ControllInfoCollectionTemplate}" 
+                                        ItemsSource="{x:Binding ControlGroupList}"/>
                     </RefreshView>
                 </VerticalStackLayout>
             </Border>
@@ -449,7 +450,6 @@
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Headers and footers" />
                     <CollectionView ItemsSource="{x:StaticResource CollectionViewHeadersFootersProperty}" Style="{x:StaticResource PropertiesListStyle}" />
                     <Frame
-                        BackgroundColor="LightGray"
                         HorizontalOptions="StartAndExpand"
                         Style="{x:StaticResource DocumentContentFrameStyle}">
                         <CollectionView

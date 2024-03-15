@@ -4,7 +4,8 @@
              xmlns:app="clr-namespace:MAUIsland"
              x:Class="MAUIsland.ControllInfoCollectionTwoItemRowTemplateContentView"
              x:Name="root">
-    <Border Padding="5"
+    <Border Padding="5" 
+            Margin="5"
             BackgroundColor="{x:Static app:AppColors.BlackGrey}">
         <Border.StrokeShape>
             <RoundRectangle CornerRadius="5" />
@@ -23,8 +24,7 @@
                    FontSize="14"
                    VerticalTextAlignment="Center" 
                    HorizontalOptions="Center"
-                   Text="{x:Binding ComponentData.ControlName, Source={x:Reference root}}"
-                   Style="{x:StaticResource ReverseTheme}"/>
+                   Text="{x:Binding ComponentData.ControlName, Source={x:Reference root}}"/>
             <Border Padding="2"
                     Grid.Column="0"
                     Grid.Row="1"
@@ -36,8 +36,7 @@
                 <Label FontAttributes="Italic"
                        FontSize="12"
                        Background="{x:Static app:AppColors.BlackGrey}"
-                       Text="{x:Binding ComponentData.ControlDetail, Source={x:Reference root}}"
-                       Style="{x:StaticResource ReverseTheme}"/>
+                       Text="{x:Binding ComponentData.ControlDetail, Source={x:Reference root}}"/>
             </Border>
         </Grid>
     </Border>

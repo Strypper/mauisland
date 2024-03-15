@@ -6,7 +6,7 @@
              x:Class="MAUIsland.MrIncreadibleItemVerticalTemplateContentView"
              x:Name="root">
     <Frame Style="{x:StaticResource DocumentContentFrameStyle}"
-           Margin="5">
+           Margin="5" BorderColor="White">
         <Grid x:DataType="app:MrIncreadible"
               ColumnDefinitions="0.1*, 0.2*, 0.7*"
               ColumnSpacing="2">

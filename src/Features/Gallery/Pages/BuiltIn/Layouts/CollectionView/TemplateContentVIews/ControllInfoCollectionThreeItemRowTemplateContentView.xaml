@@ -5,6 +5,7 @@
              x:Class="MAUIsland.ControllInfoCollectionThreeItemRowTemplateContentView"
              x:Name="root">
     <Border Padding="5"
+            Margin="5"
             BackgroundColor="{x:Static app:AppColors.BlackGrey}">
         <Border.StrokeShape>
             <RoundRectangle CornerRadius="5" />
@@ -20,8 +21,7 @@
                    FontSize="14"
                    VerticalTextAlignment="Center" 
                    HorizontalOptions="Center"
-                   Text="{x:Binding ComponentData.ControlName, Source={x:Reference root}}"
-                   Style="{x:StaticResource ReverseTheme}"/>
+                   Text="{x:Binding ComponentData.ControlName, Source={x:Reference root}}"/>
         </Grid>
     </Border>
 </ContentView>
