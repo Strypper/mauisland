@@ -1,23 +1,14 @@
 namespace MAUIsland;
 
-public class PercentageConverter<T> : IValueConverter
-{
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        double _temp = (double)value * 100;
-        return $"{_temp:N1}%";
-    }
-
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        double _temp = (double)value / 100;
-        return $"{_temp:N1}%";
-    }
-}
 
 public partial class ProgressBarPage : IGalleryPage
 {
-    double _progress = 0;
+    private double progress;
+    public double Progress
+    {
+        get { return progress; }
+        set { progress = value; }
+    }
 
     #region [CTor]
     public ProgressBarPage(ProgressBarPageViewModel vm)
@@ -27,36 +18,47 @@ public partial class ProgressBarPage : IGalleryPage
     }
     #endregion
 
-    private async void button1_Clicked(object sender, EventArgs e)
+    private async void ProgressBarLoadButtonClicked(object sender, EventArgs e)
     {
-        button1.IsEnabled = false;
-        button1.WidthRequest = 80;
+        Progress = 0;
 
-        await runProgressBar();
-    }
-
-    async Task runProgressBar()
-    {
-        _progress = 0;
-
-        while (_progress < 1)
+        while (Progress < 1)
         {
-            _progress += 0.003;
+            if(Progress == 0)
+            {
+                ProgressBar1.ProgressColor = Colors.Red;
+            }
+            Progress += 0.01;
             await Task.Delay(1);
-            button1.Text = $"{_progress * 100:N1}%";
-            progress_bar1.Progress = _progress;
+            var progressIntValue = Progress * 100;
+            ProgressLabel.Text = $"{progressIntValue:N1}%";
+            switch ((int)progressIntValue)
+            {
+                case 30:
+                    ProgressBar1.ProgressColor = Colors.OrangeRed;
+                    break;
+                case 50:
+                    ProgressBar1.ProgressColor = Colors.Orange;
+                    break;
+                case 80:
+                    ProgressBar1.ProgressColor = Colors.Yellow;
+                    break;
+                case 90:
+                    ProgressBar1.ProgressColor = Colors.YellowGreen;
+                    break;
+                case 100:
+                    ProgressBar1.ProgressColor = Colors.Green;
+                    break;
+            }
+            ProgressBar1.Progress = Progress;
         }
-
-        button1.IsEnabled = true;
-        button1.Text = "Load";
-        button1.WidthRequest = 60;
     }
 
-    private async void button2_Clicked(object sender, EventArgs e)
+    private async void ProgressBarRunButtonClicked(object sender, EventArgs e)
     {
-        progress_bar2.Progress = 0;
-        button2.IsEnabled= false;
-        await progress_bar2.ProgressTo(0.999, 5000, Easing.BounceIn);
-        button2.IsEnabled= true;
+        ProgressBar2.Progress = 0;
+        ProgressBarRunButton.IsEnabled= false;
+        await ProgressBar2.ProgressTo(0.999, 5000, Easing.BounceIn);
+        ProgressBarRunButton.IsEnabled= true;
     }
 }
