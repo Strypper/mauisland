@@ -6,6 +6,7 @@ namespace MAUIsland;
 public class GitHubIssueLocalDbModel : BaseLocalEntity
 {
     #region [ CTor ]
+
     public GitHubIssueLocalDbModel()
     {
 
@@ -13,6 +14,8 @@ public class GitHubIssueLocalDbModel : BaseLocalEntity
     #endregion
 
     #region [ Properties ]
+
+    // control name
 
     [Column("issue_id")]
     public long IssueId { get; set; }

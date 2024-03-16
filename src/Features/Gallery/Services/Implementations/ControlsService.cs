@@ -126,7 +126,7 @@ public class ControlsService : IControlsService
         });
     }
 
-    public Task<ControlIssueModel> GetControlIssues(IEnumerable<string> labels)
+    public Task<ControlIssueModel> GetControlIssues(string controlGroup, IEnumerable<string> labels)
     {
         // Perform get control issues by labels
         // Save down to local db
