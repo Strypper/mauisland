@@ -2,14 +2,20 @@
 
 public class ControlsService : IControlsService
 {
-    private readonly IGalleryCardInfo[] controlInfos;
 
-    #region [CTor]
+    #region [ Fields ]
+
+    private readonly IGalleryCardInfo[] controlInfos;
+    #endregion
+
+    #region [ CTor ]
     public ControlsService(IEnumerable<IGalleryCardInfo> controlInfos)
     {
         this.controlInfos = controlInfos.ToArray();
     }
     #endregion
+
+    #region [ Methods ]
 
     private readonly IList<ControlGroupInfo> controlGroupInfos = new List<ControlGroupInfo>()
     {
@@ -119,4 +125,12 @@ public class ControlsService : IControlsService
                         .FirstOrDefault();
         });
     }
+
+    public Task<ControlIssueModel> GetControlIssues(string controlGroup, IEnumerable<string> labels)
+    {
+        // Perform get control issues by labels
+        // Save down to local db
+        throw new NotImplementedException();
+    }
+    #endregion
 }

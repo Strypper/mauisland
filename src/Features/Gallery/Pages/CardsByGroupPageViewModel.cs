@@ -21,6 +21,7 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [ Properties ]
+
     [ObservableProperty]
     int span = 4;
 
@@ -45,6 +46,7 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [ RelayCommand ]
+
     [RelayCommand]
     Task NavigateToDetailAsync(IGalleryCardInfo control)
         => AppNavigator.NavigateAsync(control.ControlRoute, args: control);

@@ -33,6 +33,10 @@
             ActivityIndicator defines the following properties:
         </x:String>
 
+        <x:String x:Key="ReportIssueToMauiTeamLink">
+            https://github.com/dotnet/maui/issues/new/choose
+        </x:String>
+
         <x:String x:Key="PropertiesListFooter">
             These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
         </x:String>
@@ -118,13 +122,13 @@
                     </VerticalStackLayout>
                 </Border>
             </VerticalStackLayout>
-
             <CollectionView
                 Grid.Column="1"
+                Margin="0,0,20,0"
                 ItemsSource="{x:StaticResource MockGitHubIssueData}"
                 SelectionChangedCommand="{x:Binding OpenUrlCommand}"
                 SelectionChangedCommandParameter="https://github.com/dotnet/maui/issues/15411"
-                SelectionMode="Single" >
+                SelectionMode="Single">
                 <CollectionView.Header>
                     <Border
                         Margin="0,0,0,10"
@@ -185,6 +189,26 @@
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+                <CollectionView.Footer>
+                    <Border
+                        Margin="0,0,0,10"
+                        Padding="20"
+                        BackgroundColor="#272b33"
+                        StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="5">
+                            <Label
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="Found a new bug?"
+                                TextColor="White"
+                                TextDecorations="Underline" />
+                            <Button
+                                Command="{x:Binding OpenUrlCommand}"
+                                CommandParameter="{x:StaticResource ReportIssueToMauiTeamLink}"
+                                Text="Report to the MAUI team" />
+                        </VerticalStackLayout>
+                    </Border>
+                </CollectionView.Footer>
             </CollectionView>
         </Grid>
     </ScrollView>

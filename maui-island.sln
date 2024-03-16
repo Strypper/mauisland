@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MAUIsland", "src\MAUIsland.csproj", "{8F2E1887-0EA7-4653-919A-FB737B8BD6E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAUIsland.GitHubProvider.IntegrationTests", "MAUIsland.IntegrationTests\MAUIsland.GitHubProvider.IntegrationTests.csproj", "{33E5A903-87C3-4391-A5A5-787B82FFBFF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAUIsland.GitHubProvider", "MAUIsland.GitHubProvider\MAUIsland.GitHubProvider.csproj", "{85B67FAC-6B7B-4557-955A-5C21812ACE79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +21,14 @@ Global
 		{8F2E1887-0EA7-4653-919A-FB737B8BD6E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F2E1887-0EA7-4653-919A-FB737B8BD6E8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8F2E1887-0EA7-4653-919A-FB737B8BD6E8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{33E5A903-87C3-4391-A5A5-787B82FFBFF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33E5A903-87C3-4391-A5A5-787B82FFBFF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33E5A903-87C3-4391-A5A5-787B82FFBFF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33E5A903-87C3-4391-A5A5-787B82FFBFF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85B67FAC-6B7B-4557-955A-5C21812ACE79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85B67FAC-6B7B-4557-955A-5C21812ACE79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85B67FAC-6B7B-4557-955A-5C21812ACE79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85B67FAC-6B7B-4557-955A-5C21812ACE79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -193,8 +193,8 @@
                                         <Label
                                             HeightRequest="170"
                                             LineBreakMode="CharacterWrap"
-                                            MaxLines="10"
                                             LineHeight="1.55"
+                                            MaxLines="10"
                                             Text="{x:Binding ControlGroup.Description}"
                                             TextColor="{x:Static app:AppColors.White}" />
                                     </VerticalStackLayout>
@@ -252,11 +252,16 @@
                     <Grid>
                         <Label
                             FontSize="32"
-                            Text="{x:Binding SelectedItem,
-                                             Source={x:Reference CardByGroupPageTypePicker},
-                                             Mode=OneWay}"
                             TextColor="White"
-                            TextDecorations="Underline" />
+                            TextDecorations="Underline">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Binding SelectedItem, Source={x:Reference CardByGroupPageTypePicker}, Mode=OneWay}" />
+                                    <Span Text=": " />
+                                    <Span Text="{x:Binding FilteredControlGroupList.Count, Mode=OneWay}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                         <Picker
                             x:Name="CardByGroupPageTypePicker"
                             Title="Types"

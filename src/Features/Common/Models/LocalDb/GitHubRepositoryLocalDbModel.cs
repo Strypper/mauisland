@@ -6,12 +6,14 @@ namespace MAUIsland;
 public class GitHubRepositoryLocalDbModel : BaseLocalEntity
 {
     #region [ CTor ]
-    public GitHubRepositoryLocalDbModel() {
+    public GitHubRepositoryLocalDbModel()
+    {
 
     }
     #endregion
 
     #region [ Properties ]
+
     [Column("name")]
     public string Name { get; set; }
 
