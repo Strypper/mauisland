@@ -16,7 +16,9 @@ public partial class ProgressBarPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     string xamlStandardProgressBar =
-        "<ProgressBar Progress=\"0\"/>";
+        "<ProgressBar Progress=\"0\"/>\r\n" +
+        "<ProgressBar Progress=\"0.5\"/>\r\n" +
+        "<ProgressBar Progress=\"1\"/>\r\n";
 
     [ObservableProperty]
     string xamlColorProgressBar =
