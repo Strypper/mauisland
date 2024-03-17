@@ -58,15 +58,11 @@
 
             <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
-                    <Label FontSize="Medium"
-                           HorizontalOptions="Start"
-                           VerticalOptions="Center"
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}"
                            Text="Basic Progress Bar" />
-                    <BoxView Background="White"
-                             HeightRequest="1"
-                             VerticalOptions="End"/>
                     <Grid ColumnDefinitions="0.25*, 0.75*" 
-                          RowDefinitions="auto, auto, auto">
+                          RowDefinitions="auto, auto, auto"
+                          RowSpacing="5">
                         <Label Grid.Column="0" 
                                Grid.Row="0"
                                Text="This ProgressBar prepersent 0%"/>
@@ -94,37 +90,35 @@
 
             <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
-                    <Label FontSize="Medium"
-                           HorizontalOptions="Start"
-                           VerticalOptions="Center"
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}"
                            Text="Progress Bar with Color Changing" />
-                    <BoxView Background="White"
-                             HeightRequest="1"
-                             VerticalOptions="End"/>
                     <CollectionView Footer="{x:StaticResource PropertiesListFooter}"
                                     Header="{x:StaticResource PropertiesListHeader}"
                                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                                     Style="{x:StaticResource PropertiesListStyle}"/>
+                    <Frame BackgroundColor="#313131" 
+                           BorderColor="#313131" 
+                           Padding="5" >
+                        <Grid ColumnDefinitions="0.1*, 0.6*, 0.1*, 0.2*">
+                            <Label Grid.Column="0"
+                                   Text="0%" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center"/>
+                            <ProgressBar x:Name="ProgressBar1"
+                                         Grid.Column="1"
+                                         Progress="0"/>
+                            <Label x:Name="ProgressLabel" 
+                                   Grid.Column="2"
+                                   Text="0%" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center"/>
+                            <Button x:Name="ProgressBarLoadButton"
+                                    Grid.Column="3"
+                                    Clicked="ProgressBarLoadButtonClicked"
+                                    Text="Load"/>       
+                        </Grid>
+                    </Frame>
                     
-                    <Grid ColumnDefinitions="0.1*, 0.6*, 0.1*, 0.2*">
-                        <Label Grid.Column="0"
-                               Text="0%" 
-                               VerticalOptions="Center" 
-                               HorizontalOptions="Center"/>
-                        <ProgressBar x:Name="ProgressBar1"
-                                     Grid.Column="1"
-                                     Progress="0"/>
-                        <Label x:Name="ProgressLabel" 
-                               Grid.Column="2"
-                               Text="0%" 
-                               VerticalOptions="Center" 
-                               HorizontalOptions="Center"/>
-                        <Button x:Name="ProgressBarLoadButton"
-                                Grid.Column="3"
-                                Clicked="ProgressBarLoadButtonClicked"
-                                Text="Load"/>
-                    </Grid>
-
                     <Label Text="This is xaml for the design" />
                     <app:SourceCodeExpander  CodeType="Xaml" Code="{x:Binding XamlColorProgressBar}"/>
                     <Label Text="This is code behind" />
@@ -134,37 +128,36 @@
 
             <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
-                    <Label FontSize="Medium"
-                           HorizontalOptions="Start"
-                           Text="ProgressBar with Progress Animated"
-                           VerticalOptions="Center" />
-                    <BoxView Background="White"
-                             HeightRequest="1"
-                             VerticalOptions="End"/>
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}"
+                           Text="ProgressBar with Progress Animation" />
                     <CollectionView ItemsSource="{x:StaticResource AnimatedProgressBar}"
                                     Style="{x:StaticResource PropertiesListStyle}"/>
-                    <Grid  ColumnDefinitions="0.1*, 0.6*, 0.1*, 0.2*">
-                        <Label Grid.Column="0" 
-                               Text="{Binding Path=Progress, 
-                                              Source={x:Reference ProgressBar2}, 
-                                              Converter={StaticResource ProgressBarPercentageConverter}, 
-                                              ConverterParameter={x:Type x:String}}" 
-                               VerticalOptions="Center" 
-                               HorizontalOptions="Center"/>
-                        <ProgressBar x:Name="ProgressBar2"
-                                     Grid.Column="1"
-                                     Margin="10"
-                                     Progress="0"
-                                     ProgressColor="Red"/>
-                        <Label Grid.Column="2"
-                               Text="100%" 
-                               VerticalOptions="Center" 
-                               HorizontalOptions="Center"/>
-                        <Button x:Name="ProgressBarRunButton"
-                                Grid.Column="3"
-                                Clicked="ProgressBarRunButtonClicked"
-                                Text="Run" />
-                    </Grid>
+                    <Frame BackgroundColor="#313131" 
+                           BorderColor="#313131" 
+                           Padding="5">
+                        <Grid  ColumnDefinitions="0.1*, 0.6*, 0.1*, 0.2*">
+                            <Label Grid.Column="0" 
+                                   Text="{Binding Path=Progress, 
+                                                  Source={x:Reference ProgressBar2}, 
+                                                  Converter={StaticResource ProgressBarPercentageConverter}, 
+                                                  ConverterParameter={x:Type x:String}}" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center"/>
+                            <ProgressBar x:Name="ProgressBar2"
+                                         Grid.Column="1"
+                                         Margin="10"
+                                         Progress="0"
+                                         ProgressColor="Red"/>
+                            <Label Grid.Column="2"
+                                   Text="100%" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center"/>
+                            <Button x:Name="ProgressBarRunButton"
+                                    Grid.Column="3"
+                                    Clicked="ProgressBarRunButtonClicked"
+                                    Text="Run" />
+                        </Grid>
+                    </Frame>
 
                     <Label Text="This is xaml code" />
                     <app:SourceCodeExpander CodeType="Xaml" Code="{x:Binding }"  />
