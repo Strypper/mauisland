@@ -12,9 +12,6 @@ public partial class GitHubIssueModel : GitHubBaseModel
     string repositoryUrl;
 
     [ObservableProperty]
-    string labelsUrl;
-
-    [ObservableProperty]
     string commentsUrl;
 
     [ObservableProperty]
@@ -63,5 +60,5 @@ public partial class GitHubIssueModel : GitHubBaseModel
     DateTimeOffset createdAt;
 
     [ObservableProperty]
-    DateTimeOffset updatedAt;
+    DateTimeOffset? updatedAt;
 }
