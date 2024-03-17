@@ -122,6 +122,7 @@
                 BackgroundColor="#ac99ea"
                 Clicked="DetailInNewWindow_Clicked"
                 CornerRadius="12"
+                IsEnabled="False"
                 Source="{x:StaticResource OpenInNewWindowsIcon}" />
         </Grid>
     </Border>

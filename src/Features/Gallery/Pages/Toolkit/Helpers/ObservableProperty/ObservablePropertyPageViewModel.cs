@@ -1,5 +1,3 @@
-using Bogus.DataSets;
-
 namespace MAUIsland;
 public partial class ObservablePropertyPageViewModel : NavigationAwareBaseViewModel
 {
@@ -239,34 +237,34 @@ public partial class ObservablePropertyPageViewModel : NavigationAwareBaseViewMo
         "     set => SetProperty(ref generatedNotifyPropertyChangedRecipients, value, broadcast: true);\r\n" +
         "}";
 
-   [ObservableProperty]
-    string buildinCodeSetup = 
-        "public string buildinCode;\r\n" +
-        "public string BuildinCode\r\n" +
-        "{\r\n" +
-        "      get => buildinCode;\r\n" +
-        "      set\r\n" +
-        "      {\r\n" +
-        "            if (!EqualityComparer<string>.Default.Equals(buildinCode, value))\r\n" +
-        "            {\r\n" +
-        "                  string oldValue = buildinCode;\r\n"+
-        "                  OnBuildinCodeChanging(value);\r\n" +
-        "                  OnBuildinCodeChanging(oldValue, value);\r\n" +
-        "                  OnPropertyChanging();\r\n" +
-        "                  buildinCode = value;\r\n" +
-        "                  OnBuildinCodeChanged(value);\r\n" +
-        "                  OnBuildinCodeChanged(oldValue, value);\r\n" +
-        "                  OnPropertyChanged();\r\n" +
-        "            }\r\n" +
-        "      }\r\n" +
-        "}\r\n\r\n" +
-        "partial void OnBuildinCodeChanging(string value);\r\n" +
-        "partial void OnBuildinCodeChanged(string value);\r\n\r\n" +
-        "partial void OnBuildinCodeChanging(string oldValue, string newValue);\r\n" +
-        "partial void OnBuildinCodeChanged(string oldValue, string newValue);";
+    [ObservableProperty]
+    string buildinCodeSetup =
+         "public string buildinCode;\r\n" +
+         "public string BuildinCode\r\n" +
+         "{\r\n" +
+         "      get => buildinCode;\r\n" +
+         "      set\r\n" +
+         "      {\r\n" +
+         "            if (!EqualityComparer<string>.Default.Equals(buildinCode, value))\r\n" +
+         "            {\r\n" +
+         "                  string oldValue = buildinCode;\r\n" +
+         "                  OnBuildinCodeChanging(value);\r\n" +
+         "                  OnBuildinCodeChanging(oldValue, value);\r\n" +
+         "                  OnPropertyChanging();\r\n" +
+         "                  buildinCode = value;\r\n" +
+         "                  OnBuildinCodeChanged(value);\r\n" +
+         "                  OnBuildinCodeChanged(oldValue, value);\r\n" +
+         "                  OnPropertyChanged();\r\n" +
+         "            }\r\n" +
+         "      }\r\n" +
+         "}\r\n\r\n" +
+         "partial void OnBuildinCodeChanging(string value);\r\n" +
+         "partial void OnBuildinCodeChanged(string value);\r\n\r\n" +
+         "partial void OnBuildinCodeChanging(string oldValue, string newValue);\r\n" +
+         "partial void OnBuildinCodeChanged(string oldValue, string newValue);";
 
     [ObservableProperty]
-    string toolkitCodeSetup = 
+    string toolkitCodeSetup =
         "[ObservableProperty]\r\n" +
         "string toolkitCode;";
 
@@ -278,7 +276,7 @@ public partial class ObservablePropertyPageViewModel : NavigationAwareBaseViewMo
         "}\r\n" +
         "partial void OnBuildinCodeChanging(string oldValue, string newValue)\r\n" +
         "{\r\n" +
-        "     //Implement your code here\r\n" +     
+        "     //Implement your code here\r\n" +
         "}\r\n" +
         "partial void OnBuildinCodeChanged(string value)\r\n" +
         "{\r\n" +
@@ -315,7 +313,7 @@ public partial class ObservablePropertyPageViewModel : NavigationAwareBaseViewMo
         "           Text=\"{x:Binding SearchText}\"/>";
 
     [ObservableProperty]
-    string searchingCSharpCode = 
+    string searchingCSharpCode =
         "[ObservableProperty]\r\n" +
         "string searchText = string.Empty;\r\n\r\n" +
         "partial void OnSearchTextChanged(string value)\r\n" +
@@ -435,6 +433,9 @@ public partial class ObservablePropertyPageViewModel : NavigationAwareBaseViewMo
     private async Task LoadDataAsync()
     {
         ControlGroupList.Clear();
+
+        if (ControlInformation is null || ControlInformation.GroupName is null)
+            return;
 
         var items = await MauiControlsService.GetControlsAsync(ControlInformation.GroupName);
 

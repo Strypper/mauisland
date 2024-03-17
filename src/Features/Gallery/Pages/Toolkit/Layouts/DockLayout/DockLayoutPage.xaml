@@ -67,16 +67,16 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout>
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Properties" />
                     <CollectionView ItemsSource="{x:StaticResource PropertyItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <Border
                 Padding="10"
@@ -91,7 +91,7 @@
                 </VerticalStackLayout>
             </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Using the DockLayout" />
                     <toolkit:DockLayout>
@@ -116,32 +116,32 @@
                     <app:SourceCodeExpander Code="{x:Binding XamlDockLayout}" CodeType="Xaml" />
                     <Label Text="{x:StaticResource UsingDockLayout}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="C#" />
                     <Label Text="{x:StaticResource UsingDockLayoutWithC#}" />
                     <app:SourceCodeExpander Code="{x:Binding CsharpDockLayout}" CodeType="CSharp" />
                     <Label Text="{x:StaticResource UsingDockLayoutWithC#1}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setting the dock position" />
                     <Label Text="{x:StaticResource SettingDockPosition}" />
                     <app:SourceCodeExpander Code="{x:Binding SettingDockLayoutPosition}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Customizing a DockLayout" />
                     <Label Text="{x:StaticResource Customizing}" />
                     <app:SourceCodeExpander Code="{x:Binding XamlCustomizeDockLayout}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>

@@ -8,7 +8,7 @@
     Title="Uniform Items Layout"
     Padding="10"
     x:DataType="app:UniformItemsLayoutPageViewModel"
-    BackgroundColor="#181417">
+    BackgroundColor="Transparent">
 
     <app:BasePage.ToolbarItems>
         <ToolbarItem
@@ -41,11 +41,11 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame BackgroundColor="#302d2e" Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" TextColor="White" />
-            </Frame>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+            </Border>
 
-            <Frame BackgroundColor="#302d2e" Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout>
                     <Label
                         Style="{x:StaticResource DocumentSectionTitleStyle}"
@@ -53,9 +53,9 @@
                         TextColor="White" />
                     <CollectionView ItemsSource="{x:StaticResource PropertyItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame BackgroundColor="#302d2e" Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label
                         Style="{x:StaticResource DocumentSectionTitleStyle}"
@@ -100,9 +100,9 @@
                     <Label Text="C#" TextColor="White" />
                     <app:SourceCodeExpander Code="{x:Binding CsharpUniformItemsLayout}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame BackgroundColor="#302d2e" Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label
                         Style="{x:StaticResource DocumentSectionTitleStyle}"
@@ -142,7 +142,7 @@
                     <app:SourceCodeExpander Code="{x:Binding XamlCustomizingUniformItemsLayout}" CodeType="Xaml" />
                     <app:SourceCodeExpander Code="{x:Binding CsharpCustomizingUniformItemsLayout}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </app:BasePage>
