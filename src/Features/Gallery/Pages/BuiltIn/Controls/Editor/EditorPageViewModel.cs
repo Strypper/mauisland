@@ -11,6 +11,11 @@ public partial class EditorPageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [ Properties ]
+    [ObservableProperty]
+    int editorCharacterLimit = 10;
+
+    [ObservableProperty]
+    EditorAutoSizeOption autoSizeMode;
 
     [ObservableProperty]
     IGalleryCardInfo controlInformation;
@@ -66,5 +71,9 @@ public partial class EditorPageViewModel : NavigationAwareBaseViewModel
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    void ChangeAutoSizeMode()
+        => AutoSizeMode = AutoSizeMode == EditorAutoSizeOption.TextChanges ? EditorAutoSizeOption.Disabled : EditorAutoSizeOption.TextChanges;
     #endregion
 }
