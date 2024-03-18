@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIsland.MrIncreadibleCollectionTemplateWithSwipeContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="root">
+    <SwipeView Margin="5" WidthRequest="400">
+        <SwipeView.LeftItems>
+            <SwipeItems x:DataType="app:CollectionViewPage">
+                <SwipeItem
+                    BackgroundColor="{x:Static core:AppColors.Green}"
+                    Command="{x:Binding Path=BindingContext.CollectionSwipeViewFavoriteCommand,
+                                        Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
+                    CommandParameter="{x:Binding}"
+                    IconImageSource="{x:Static core:FluentUIIcon.Ic_fluent_heart_24_regular}"
+                    Text="Favorite" />
+                <SwipeItem
+                    BackgroundColor="{x:Static core:AppColors.LightBlue}"
+                    Command="{x:Binding Path=BindingContext.CollectionSwipeViewDeleteCommand,
+                                        Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
+                    CommandParameter="{x:Binding}"
+                    IconImageSource="{x:Static core:FluentUIIcon.Ic_fluent_delete_24_regular}"
+                    Text="Delete" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <Frame BorderColor="White" Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Grid x:DataType="app:MrIncreadible" ColumnDefinitions="0.1*, 0.2*, 0.6*">
+                <Label
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    Text="{x:Binding ComponentData.Age,
+                                     Source={x:Reference root}}"
+                    VerticalOptions="Center" />
+                <toolkit:AvatarView
+                    Grid.Column="1"
+                    HeightRequest="50"
+                    ImageSource="{x:Binding ComponentData.Image,
+                                            Source={x:Reference root},
+                                            Mode=OneWay}"
+                    Text="{x:Binding ComponentData.Age,
+                                     Source={x:Reference root},
+                                     Mode=OneWay}"
+                    WidthRequest="50" />
+                <Label
+                    Grid.Column="2"
+                    FontAttributes="Italic"
+                    Text="{x:Binding ComponentData.Title,
+                                     Source={x:Reference root}}"
+                    VerticalOptions="Center" />
+            </Grid>
+        </Frame>
+    </SwipeView>
+</ContentView>

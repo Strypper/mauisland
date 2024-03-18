@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIsland.Core.HorizontalIconButton"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MAUIsland.Core"
+    x:Name="root"
+    x:DataType="local:HorizontalIconButton">
+
+    <Frame Padding="10,5,10,5">
+        <HorizontalStackLayout>
+            <Image Source="{x:Binding PrefixIcon, Source={x:Reference root}}" />
+            <Label
+                HorizontalOptions="Center"
+                Text="{x:Binding Text,
+                                 Source={x:Reference root}}"
+                TextColor="{x:Static local:AppColors.Black}"
+                VerticalOptions="Center" />
+        </HorizontalStackLayout>
+    </Frame>
+</ContentView>

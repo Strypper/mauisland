@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<core:BasePage
+    x:Class="MAUIsland.SfRadialGaugePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:gauge="clr-namespace:Syncfusion.Maui.Gauges;assembly=Syncfusion.Maui.Gauges"
+    Title="SfRadialGauge"
+    Padding="10"
+    x:DataType="app:SfRadialGaugePageViewModel">
+
+    <core:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="syncfusionlogo.png"
+            Text="Original Document" />
+    </core:BasePage.ToolbarItems>
+
+    <core:BasePage.Resources>
+
+        <x:String x:Key="PropertiesListHeader">
+            Key features:
+        </x:String>
+
+        <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Axes</strong>, the radial gauge axis is a circular arc in which a set of values are displayed along a linear or custom scale based on the design requirements. Axis elements, such as labels, ticks, and axis line, can be easily customized with built-in properties.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Ranges</strong>, radial range is a visual element that helps to quickly visualize a value where it falls on the axis.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Pointers</strong>, pointer is used to indicate values on an axis. Radial gauge has three types of pointers: needle pointer, shape pointer, content pointer and range pointer. All the pointers can be customized as needed.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Pointer animation</strong>, animates the pointer in a visually appealing way when the pointer moves from one value to another.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Pointer interaction</strong>, radial gauge provides an option to drag a pointer from one value to another. It is used to change the value at run time.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Annotations</strong>, add multiple views such as text and image as an annotation to a specific point of interest in a radial gauge.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+
+    </core:BasePage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CollectionView
+                    Header="{x:StaticResource PropertiesListHeader}"
+                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                    Style="{x:StaticResource PropertiesListStyle}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout>
+                    <VerticalStackLayout.Resources>
+                        <gauge:GaugeLabelStyle
+                            x:Key="labelStyle"
+                            FontAttributes="Bold"
+                            FontSize="15"
+                            TextColor="White" />
+                    </VerticalStackLayout.Resources>
+                    <Label
+                        LineBreakMode="WordWrap"
+                        Style="{x:StaticResource DocumentSectionTitleStyle}"
+                        Text="MY BOSS WHEN SEEING OUR APPLICATION BUGS LIST" />
+                    <Label
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        Text="PISSED METER BASED ON BUGS" />
+                    <gauge:SfRadialGauge
+                        BackgroundColor="Gray"
+                        HeightRequest="380"
+                        WidthRequest="380">
+                        <gauge:SfRadialGauge.Axes>
+                            <gauge:RadialAxis
+                                LabelPosition="Outside"
+                                Maximum="30"
+                                Minimum="0"
+                                ShowAxisLine="True"
+                                ShowLabels="True"
+                                ShowTicks="True">
+                                <gauge:RadialAxis.AxisLabelStyle>
+                                    <gauge:GaugeLabelStyle FontSize="11" TextColor="White" />
+                                </gauge:RadialAxis.AxisLabelStyle>
+
+                                <gauge:RadialAxis.Ranges>
+                                    <gauge:RadialRange
+                                        EndValue="6"
+                                        EndWidth="0.65"
+                                        Fill="#73d684"
+                                        Label="YO WE COOL"
+                                        LabelStyle="{StaticResource labelStyle}"
+                                        StartValue="0"
+                                        StartWidth="0.65"
+                                        WidthUnit="Factor" />
+                                    <gauge:RadialRange
+                                        EndValue="18"
+                                        EndWidth="0.65"
+                                        Fill="#fce348"
+                                        Label="YOU WAT MATE ?"
+                                        LabelStyle="{StaticResource labelStyle}"
+                                        StartValue="6"
+                                        StartWidth="0.65"
+                                        WidthUnit="Factor" />
+                                    <gauge:RadialRange
+                                        EndValue="30"
+                                        EndWidth="0.65"
+                                        Fill="#fc0203"
+                                        Label="{x:Binding RedZoneMeme}"
+                                        LabelStyle="{StaticResource labelStyle}"
+                                        StartValue="18"
+                                        StartWidth="0.65"
+                                        WidthUnit="Factor" />
+                                    <gauge:RadialRange
+                                        EndValue="99"
+                                        EndWidth="0.15"
+                                        Fill="#4D9b9b9b"
+                                        OffsetUnit="Factor"
+                                        RangeOffset="0.63"
+                                        StartValue="0"
+                                        StartWidth="0.15"
+                                        WidthUnit="Factor" />
+                                </gauge:RadialAxis.Ranges>
+
+                                <gauge:RadialAxis.Pointers>
+                                    <gauge:NeedlePointer
+                                        KnobRadius="15"
+                                        KnobSizeUnit="Pixel"
+                                        NeedleEndWidth="15"
+                                        NeedleLength="0.6"
+                                        NeedleStartWidth="2"
+                                        Value="28" />
+                                </gauge:RadialAxis.Pointers>
+                            </gauge:RadialAxis>
+                        </gauge:SfRadialGauge.Axes>
+                    </gauge:SfRadialGauge>
+                    <core:SourceCodeExpander Code="{x:Binding BossPissedMetric}" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</core:BasePage>

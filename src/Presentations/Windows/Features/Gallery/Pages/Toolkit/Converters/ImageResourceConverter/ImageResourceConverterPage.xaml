@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<core:BasePage
+    x:Class="MAUIsland.ImageResourceConverterPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="Image Resource Converter"
+    Padding="10"
+    x:DataType="app:ImageResourceConverterPageViewModel">
+
+    <core:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </core:BasePage.ToolbarItems>
+
+    <core:BasePage.Resources>
+        <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   <strong style="color:blue">DefaultConvertReturnValue</strong> is type of <strong style="color:blue">object?</strong> default value to return when <strong style="color:blue">IValueConverter.Convert(object?, Type, object?, CultureInfo?)</strong> throws an <strong style="color:blue">Exception</strong>. This value is used when <strong style="color:blue">CommunityToolkit.Maui.Options.ShouldSuppressExceptionsInConverters</strong> is set to true.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">DefaultConvertBackReturnValue</strong> is type of <strong style="color:blue">object?</strong> default value to return when <strong style="color:blue">IValueConverter.ConvertBack(object?, Type, object?, CultureInfo?)</strong> throws an <strong style="color:blue">Exception</strong>. This value is used when <strong style="color:blue">CommunityToolkit.Maui.Options.ShouldSuppressExceptionsInConverters</strong> is set to true.  ]]>
+            </x:String>
+        </x:Array>
+
+        <toolkit:ImageResourceConverter x:Key="ImageResourceConverter" />
+    </core:BasePage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Converter Properties" />
+                    <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup ToolKit" />
+                    <VerticalStackLayout>
+                        <Label Text="{x:Binding SetupDescription}" />
+                        <Label Text="{x:Binding XamlNamespace}" TextColor="Blue" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Therefore the following:" />
+                    <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleBefore}" CodeType="Xaml" />
+                    <Label Text="Would be modified to include the xmlns as follows:" />
+                    <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleAfter}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Image Resource Converter" />
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="The Converter need a path like this " />
+                                <Span FontAttributes="Bold" Text=" [YourProjectNameSpace] + [SetOfProjectNestedFolders] + [ImageNamed] " />
+                                <Span Text=" it will not work with .svg " TextColor="OrangeRed" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="It will convert this path " />
+                                <Span FontAttributes="Bold" Text="{x:Binding ImageResource}" />
+                                <Span Text=" To this image " />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Image Source="{x:Binding ImageResource, Converter={StaticResource ImageResourceConverter}}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="This is ViewModel code" />
+                    <core:SourceCodeExpander Code="{x:Binding CSharpxamlConverterTestingViewModel}" CodeType="CSharp" />
+                    <Label Text="Here what your converter look like" />
+                    <core:SourceCodeExpander Code="{x:Binding XamlConverterSetup}" CodeType="Xaml" />
+                    <Label Text="This Xaml code" />
+                    <core:SourceCodeExpander Code="{x:Binding XamlConverterTesting}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</core:BasePage>

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core">
+
+    <FontImageSource
+        x:Key="CameraIcon"
+        FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+        Glyph="{Static core:FluentUIIcon.Ic_fluent_camera_24_regular}"
+        Color="{x:StaticResource Primary}" />
+
+    <FontImageSource
+        x:Key="UploadIcon"
+        FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+        Glyph="{Static core:FluentUIIcon.Ic_fluent_arrow_upload_24_regular}"
+        Color="{x:StaticResource Primary}" />
+
+    <FontImageSource
+        x:Key="BeachIcon"
+        FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+        Glyph="{x:Static core:FluentUIIcon.Ic_fluent_beach_48_regular}"
+        Color="{AppThemeBinding Light='#15161e',
+                                Dark='#eaeaea'}" />
+    <FontImageSource
+        x:Key="SendIcon"
+        FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+        Glyph="{x:Static core:FluentUIIcon.Ic_fluent_send_28_regular}"
+        Color="{x:OnPlatform WinUI={x:StaticResource Primary},
+                             Android={x:AppThemeBinding Dark={x:StaticResource Primary},
+                                                        Light={x:StaticResource White}}}" />
+
+
+    <x:Array x:Key="DumbMessagesItemSource" Type="{x:Type app:ChatMessageModel}">
+        <app:ChatMessageModel
+            AuthorImage="https://totechsintranet.blob.core.windows.net/team-members/Me(ver 2019).jpg"
+            AuthorName="Strypper"
+            ChatMessageContent="Địt mẹ PR đâu ?"
+            SentTime="1/28/2023 17:23PM" />
+
+        <app:ChatMessageModel
+            AuthorImage="https://totechsintranet.blob.core.windows.net/team-members/Hoang.jpg"
+            AuthorName="Hoàng"
+            ChatMessageContent="Vâng, vâng em đẩy lên liền"
+            SentTime="1/28/2023 17:24PM" />
+
+        <app:ChatMessageModel
+            AuthorImage="https://totechsintranet.blob.core.windows.net/team-members/Me(ver 2019).jpg"
+            AuthorName="Strypper"
+            ChatMessageContent="Không hoàn thành vào 8:00PM tối nay bố mày thông đít"
+            SentTime="1/28/2023 17:25PM" />
+
+        <app:ChatMessageModel
+            AuthorImage="https://totechsintranet.blob.core.windows.net/team-members/Hoang.jpg"
+            AuthorName="Hoàng"
+            ChatMessageContent="Vâng 😥"
+            SentTime="1/28/2023 17:25PM" />
+
+        <app:ChatMessageModel
+            AuthorImage="https://totechsintranet.blob.core.windows.net/team-members/Hoang.jpg"
+            AuthorName="Hoàng"
+            ChatMessageContent="Anh review giúp em review PR nha 🚀"
+            SentTime="1/28/2023 19:30PM" />
+
+        <app:ChatMessageModel
+            AuthorImage="https://totechsintranet.blob.core.windows.net/team-members/Me(ver 2019).jpg"
+            AuthorName="Strypper"
+            ChatMessageContent="Hên đấy không 30 phút nữa rát đít"
+            SentTime="1/28/2023 19:31PM" />
+    </x:Array>
+</ResourceDictionary>

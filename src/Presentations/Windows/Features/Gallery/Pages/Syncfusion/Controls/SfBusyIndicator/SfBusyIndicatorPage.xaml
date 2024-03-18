@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<core:BasePage
+    x:Class="MAUIsland.SfBusyIndicatorPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:syncfusion-core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    Title="SfBusyIndicator"
+    Padding="10"
+    x:DataType="app:SfBusyIndicatorPageViewModel"
+    BackgroundColor="Transparent">
+
+    <core:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="syncfusionlogo.png"
+            Text="Original Document" />
+    </core:BasePage.ToolbarItems>
+
+    <core:BasePage.Resources>
+
+        <x:String x:Key="PropertiesListHeader">
+            SfBusyIndicator defines the following properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter">
+            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+        </x:String>
+
+        <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                Comes with three different animation types [Circular Material, Linear Material and Cupertino].
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                Supports customizing the indicator color, and overlay background.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                The animation duration can be customized.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                Size of the indicator can be customized.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                Supports displaying a title with font customizations.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+
+    </core:BasePage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <CollectionView
+                    Footer="{x:StaticResource PropertiesListFooter}"
+                    Header="{x:StaticResource PropertiesListHeader}"
+                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                    Style="{x:StaticResource PropertiesListStyle}" />
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <HorizontalStackLayout Spacing="10">
+                    <syncfusion-core:SfBusyIndicator
+                        AnimationType="CircularMaterial"
+                        HeightRequest="30"
+                        IsRunning="True"
+                        WidthRequest="30" />
+                    <syncfusion-core:SfBusyIndicator
+                        AnimationType="Cupertino"
+                        HeightRequest="30"
+                        IsRunning="True"
+                        WidthRequest="30" />
+                    <syncfusion-core:SfBusyIndicator
+                        AnimationType="SingleCircle"
+                        HeightRequest="30"
+                        IsRunning="True"
+                        WidthRequest="30" />
+                    <syncfusion-core:SfBusyIndicator
+                        AnimationType="DoubleCircle"
+                        HeightRequest="30"
+                        IsRunning="True"
+                        WidthRequest="30" />
+                    <syncfusion-core:SfBusyIndicator
+                        AnimationType="LinearMaterial"
+                        HeightRequest="5"
+                        IsRunning="True"
+                        WidthRequest="100" />
+                </HorizontalStackLayout>
+            </Frame>
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <syncfusion-core:SfBusyIndicator
+                        Title="Spinning..."
+                        FontSize="16"
+                        HeightRequest="30"
+                        IsRunning="True"
+                        TitlePlacement="Bottom"
+                        WidthRequest="30" />
+                    <core:SourceCodeExpander Code="{x:Binding SimpleBusyIndicator}" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</core:BasePage>
