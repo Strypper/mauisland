@@ -6,8 +6,9 @@
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="Popup"
-    Padding="10"
-    x:DataType="app:PopupPageViewModel">
+    Padding="20"
+    x:DataType="app:PopupPageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -80,11 +81,11 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
+            </Border>
 
-            <Frame Padding="10" Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
 
                     <Label FontSize="Medium" Text="Basic Popup" />
@@ -100,9 +101,9 @@
                         WidthRequest="100" />
                     <core:SourceCodeExpander Code="{x:Binding StandardPopupCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Padding="10" Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
 
                     <Label FontSize="Medium" Text="Capture popup response" />
@@ -118,9 +119,9 @@
                         WidthRequest="100" />
                     <core:SourceCodeExpander Code="{x:Binding CaptureResponsePopupCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Padding="10" Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
 
                     <Label FontSize="Medium" Text="An action sheet popup" />
@@ -136,17 +137,17 @@
                         WidthRequest="100" />
                     <core:SourceCodeExpander Code="{x:Binding ActionSheetPopupCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
+            </Border>
 
-            <Frame Padding="10" Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
 
                     <Label FontSize="Medium" Text="Display a prompt" />
@@ -162,7 +163,7 @@
                         WidthRequest="100" />
                     <core:SourceCodeExpander Code="{x:Binding PromptPopupCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
 
         </VerticalStackLayout>
