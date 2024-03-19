@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIsland.Core.BrandIconContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    xmlns:skiaConverters="clr-namespace:SkiaSharp.Extended.UI.Controls.Converters;assembly=SkiaSharp.Extended.UI"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="root"
+    x:DataType="core:BrandIconContentView">
+
+    <ContentView.Resources>
+        <FontImageSource
+            x:Key="OpenInNewWindowsIcon"
+            FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+            Glyph="{x:Static core:FluentUIIcon.Ic_fluent_panel_separate_window_20_regular}"
+            Color="{x:StaticResource White}" />
+
+        <skiaConverters:SKLottieImageSourceConverter x:Key="SKLottieImageSourceConverter" />
+
+        <core:ImageSourceToBoolConverter x:Key="ImageSourceToBoolConverter" />
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="10">
+        <ImageButton
+            Padding="4"
+            BackgroundColor="Black"
+            Clicked="Detail_Clicked"
+            CornerRadius="4"
+            HeightRequest="80"
+            IsVisible="{x:Binding ComponentData.IconUrl,
+                                  Source={x:Reference root},
+                                  Converter={x:StaticResource ImageSourceToBoolConverter}}"
+            Source="{x:Binding ComponentData.IconUrl,
+                               Source={x:Reference root},
+                               Mode=OneWay}"
+            WidthRequest="80">
+            <!--<FlyoutBase.ContextFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem
+                        Clicked="DetailInNewWindow_Clicked"
+                        IconImageSource="{x:StaticResource OpenNewWindowIcon}"
+                        IsEnabled="False"
+                        Text="Open in new window" />
+                </MenuFlyout>
+            </FlyoutBase.ContextFlyout>-->
+        </ImageButton>
+        <!--
+            Source="{x:Binding ComponentData.LottieUrl,
+            Source={x:Reference root},
+            Mode=OneWay,
+            Converter={x:StaticResource SKLottieImageSourceConverter}}"
+        -->
+        <Frame
+            Padding="5"
+            BackgroundColor="Black"
+            CornerRadius="4"
+            IsVisible="{x:Binding ComponentData.LottieUrl,
+                                  Source={x:Reference root},
+                                  Converter={toolkit:IsStringNotNullOrEmptyConverter}}"
+            MaximumHeightRequest="80"
+            MaximumWidthRequest="80">
+            <skia:SKLottieView
+                HeightRequest="68"
+                HorizontalOptions="Center"
+                RepeatCount="-1"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                Source="dotnetbot.json"
+                WidthRequest="68">
+                <skia:SKLottieView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </skia:SKLottieView.GestureRecognizers>
+                <!--<FlyoutBase.ContextFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem
+                        Clicked="DetailInNewWindow_Clicked"
+                        IconImageSource="{x:StaticResource OpenNewWindowIcon}"
+                        IsEnabled="False"
+                        Text="Open in new window" />
+                </MenuFlyout>
+            </FlyoutBase.ContextFlyout>-->
+            </skia:SKLottieView>
+        </Frame>
+        <Label
+            FontSize="12"
+            HorizontalOptions="Center"
+            Text="{x:Binding ComponentData.Title,
+                             Source={x:Reference root},
+                             Mode=OneWay}"
+            TextColor="{x:Static core:AppColors.White}" />
+    </VerticalStackLayout>
+</ContentView>
