@@ -18,6 +18,12 @@ public partial class EditorPageViewModel : NavigationAwareBaseViewModel
     EditorAutoSizeOption autoSizeMode;
 
     [ObservableProperty]
+    TextTransform selectedTextTransform;
+
+    [ObservableProperty]
+    ObservableCollection<TextTransform> textTransformList;
+
+    [ObservableProperty]
     IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
@@ -64,10 +70,11 @@ public partial class EditorPageViewModel : NavigationAwareBaseViewModel
 
         ControlInformation = query.GetData<IGalleryCardInfo>();
 
+        LoadDataAsync().FireAndForget();
     }
     #endregion
 
-    #region [Relay Commands]
+    #region [ Relay Commands ]
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
@@ -75,5 +82,19 @@ public partial class EditorPageViewModel : NavigationAwareBaseViewModel
     [RelayCommand]
     void ChangeAutoSizeMode()
         => AutoSizeMode = AutoSizeMode == EditorAutoSizeOption.TextChanges ? EditorAutoSizeOption.Disabled : EditorAutoSizeOption.TextChanges;
+    #endregion
+
+    #region [ Data ]
+    private async Task LoadDataAsync()
+    {
+        TextTransformList = new ObservableCollection<TextTransform>
+        {
+            TextTransform.None,
+            TextTransform.Default,
+            TextTransform.Lowercase,
+            TextTransform.Uppercase
+        };
+        SelectedTextTransform = TextTransform.None;
+    }
     #endregion
 }

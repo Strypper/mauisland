@@ -216,13 +216,13 @@
                                     MaxLength="{x:Binding EditorCharacterLimit}"
                                     TextChanged="OnEditorGetTextLength"/>
                             <VerticalStackLayout Grid.Column="1"
-                                                 Grid.Row="0" 
                                                  Spacing="5">
                                 <Label Text="Limit Your Editor"/>
                                 <Frame BackgroundColor="#4d4d4d" 
                                        BorderColor="#4d4d4d" 
                                        Padding="10">
-                                    <Grid ColumnDefinitions="0.7*, 0.2*" ColumnSpacing="10">
+                                    <Grid ColumnDefinitions="0.7*, 0.2*" 
+                                          ColumnSpacing="10">
                                         <Slider x:Name="CharacterLimitSlider" 
                                                 Grid.Column="0" 
                                                 Maximum="1000" 
@@ -237,6 +237,65 @@
                                 <Label Text="Change AutoSize Mode"/>
                                 <Button Text="{x:Binding AutoSizeMode}"
                                         Command="{x:Binding ChangeAutoSizeModeCommand}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Frame>
+
+                    <!--<app:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />-->
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Editor Transform Text" />
+                    <Frame BackgroundColor="#313131" 
+                           BorderColor="#313131">
+                        <Grid ColumnDefinitions="0.8*, 0.2*"
+                              ColumnSpacing="10">
+                            <Editor Grid.Column="0"
+                                    Text="Enter text here"
+                                    TextTransform="{x:Binding SelectedTextTransform}"/>
+                            <Picker Grid.Column="1"
+                                    SelectedIndex="0"
+                                    ItemsSource="{x:Binding TextTransformList, Mode=OneWay}"
+                                    SelectedItem="{x:Binding SelectedTextTransform, Mode=TwoWay}"/>
+                        </Grid>
+                    </Frame>
+
+                    <!--<app:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />
+                    <app:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />-->
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Editor with Custom Keyboard" />
+                    <Frame BackgroundColor="#313131" 
+                           BorderColor="#313131">
+                        <Grid ColumnDefinitions="0.8*, 0.2*"
+                              ColumnSpacing="10">
+                            <Editor Grid.Column="0"
+                                    Text="Enter text here">
+                                <Editor.Keyboard>
+                                    <Keyboard x:FactoryMethod="Create">
+                                        <x:Arguments>
+                                            <KeyboardFlags>Suggestions,CapitalizeCharacter</KeyboardFlags>
+                                        </x:Arguments>
+                                    </Keyboard>
+                                </Editor.Keyboard>
+                            </Editor>
+                            <VerticalStackLayout Grid.Column="1">
+                                <Picker SelectedIndex="0"
+                                        ItemsSource="{x:Binding TextTransformList, Mode=OneWay}"
+                                        SelectedItem="{x:Binding SelectedTextTransform, Mode=TwoWay}"/>
+                                <Picker SelectedIndex="0"
+                                        ItemsSource="{x:Binding TextTransformList, Mode=OneWay}"
+                                        SelectedItem="{x:Binding SelectedTextTransform, Mode=TwoWay}"/>
                             </VerticalStackLayout>
                         </Grid>
                     </Frame>

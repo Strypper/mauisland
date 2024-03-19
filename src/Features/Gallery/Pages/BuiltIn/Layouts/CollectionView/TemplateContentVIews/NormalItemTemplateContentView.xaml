@@ -10,23 +10,18 @@
         <Border.StrokeShape>
             <RoundRectangle CornerRadius="5" />
         </Border.StrokeShape>
-        <Grid ColumnDefinitions="0.2*, 0.2*, 0.6*" 
-              HeightRequest="40">
-            <Image Grid.Column="0"
+        <Grid RowDefinitions="0.4*, 0.6*" 
+              HeightRequest="60">
+            <Image Grid.Row="0"
                    Source="{x:Binding ComponentData.ControlIcon, Source={x:Reference root}}"
                    VerticalOptions="Center"/>
-            <Label Grid.Column="1"
+            <Label Grid.Row="1"
                    FontAttributes="Bold"
                    LineBreakMode="TailTruncation"
                    FontSize="14"
-                   Text="{x:Binding ComponentData.ControlName, Source={x:Reference root}}"
-                   VerticalTextAlignment="Center" />
-            <Label Grid.Column="2"
-                   FontAttributes="Italic"
-                   LineBreakMode="TailTruncation"
-                   FontSize="12"
-                   VerticalTextAlignment="Center"
-                   Text="{x:Binding ComponentData.ControlDetail, Source={x:Reference root}}"/>
+                   VerticalTextAlignment="Center" 
+                   HorizontalOptions="Center"
+                   Text="{x:Binding ComponentData.ControlName, Source={x:Reference root}}"/>
         </Grid>
     </Border>
 </ContentView>

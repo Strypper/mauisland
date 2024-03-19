@@ -4,7 +4,7 @@ namespace MAUIsland;
 
 public partial class CarouselViewPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [CTor]
+    #region [ CTor ]
     public CarouselViewPageViewModel(IAppNavigator appNavigator)
                                     : base(appNavigator)
     {
@@ -12,45 +12,79 @@ public partial class CarouselViewPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
+    [ObservableProperty]
+    bool isRefreshing;
+
     [ObservableProperty]
     IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
-    public ObservableCollection<CarouselItem> items;
+    CarouselItem currentSelectedItem;
+
+    [ObservableProperty]
+    ObservableCollection<CarouselItem> items;
+
+    [ObservableProperty]
+    ObservableCollection<CarouselItem> itemEmptyList;
     #endregion
 
-    #region [Overrides]
+    #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
 
         ControlInformation = query.GetData<IGalleryCardInfo>();
 
-        LoadDataAsync(true);
+        LoadDataAsync(true).FireAndForget();
     }
     #endregion
 
-    #region [Relay Commands]
+    #region [ Relay Commands ]
     [RelayCommand]
     Task OpenUrlAsync(string url)
-    => AppNavigator.OpenUrlAsync(url);
+        => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    void SwipeViewFavorite(CarouselItem carouselItem)
+    {
+        carouselItem.IsFavorite = !carouselItem.IsFavorite;
+    }
+
+    [RelayCommand]
+    void SwipeViewDelete(CarouselItem carouselItem)
+    {
+        if (Items.Contains(carouselItem))
+            Items.Remove(carouselItem);
+    }
+
+    [RelayCommand]
+    void Refresh()
+    {
+        IsRefreshing = true;
+
+        LoadDataAsync(true).FireAndForget();
+
+        IsRefreshing = false;
+    }
     #endregion
 
-    #region [Methods]
+    #region [ Methods ]
     private async Task LoadDataAsync(bool forced)
     {
         var items = new List<CarouselItem>()
         {
             new()
             {
+                Id = "1",
                 Title = "CarouselView Item",
                 Content = "Number 1"
-
+                
             },
 
             new()
             {
+                Id = "2",
                 Title = "CarouselView Item",
                 Content = "Number 2"
 
@@ -58,6 +92,7 @@ public partial class CarouselViewPageViewModel : NavigationAwareBaseViewModel
 
             new()
             {
+                Id = "3",
                 Title = "CarouselView Item",
                 Content = "Number 3"
 
@@ -65,6 +100,7 @@ public partial class CarouselViewPageViewModel : NavigationAwareBaseViewModel
 
             new()
             {
+                Id = "4",
                 Title = "CarouselView Item",
                 Content = "Number 4"
 
@@ -72,21 +108,25 @@ public partial class CarouselViewPageViewModel : NavigationAwareBaseViewModel
 
             new()
             {
+                Id = "5",
                 Title = "CarouselView Item",
                 Content = "Number 5"
 
             }
         };
 
-        if (forced || Items is null)
+        if (forced || Items is null || ItemEmptyList is null)
         {
             Items = new();
+            ItemEmptyList = new();
         }
 
         foreach (var item in items)
         {
             Items.Add(item);
         }
+
+        CurrentSelectedItem = Items.First();
     }
     #endregion
 }

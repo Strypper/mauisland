@@ -7,7 +7,6 @@ public class TemplateSelector : DataTemplateSelector
     #region [ Properties ]
     public DataTemplate NormalTemplate { get; set; }
     public DataTemplate SelectedTemplate { get; set; }
-    // Add more templates as needed
     #endregion
 
     #region [ CTor ]

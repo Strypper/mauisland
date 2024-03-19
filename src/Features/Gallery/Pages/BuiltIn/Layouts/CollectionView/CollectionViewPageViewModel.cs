@@ -31,6 +31,9 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
     bool isRefreshing;
 
     [ObservableProperty]
+    string selectedFilterPickerItem;
+
+    [ObservableProperty]
     ObservableCollection<string> filterPickerItems;
 
     [ObservableProperty]
@@ -1027,6 +1030,8 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
         ControlGroupList = new ObservableCollection<IGalleryCardInfo>();
         ControlGroupList.Clear();
         FilterPickerItems = Enum.GetNames(typeof(GalleryCardType)).ToObservableCollection();
+        FilterPickerItems.Add("None");
+        SelectedFilterPickerItem = FilterPickerItems.Last();
 
         var items = await MauiControlsService.GetControlsAsync(ControlInformation.GroupName);
         foreach (var item in items)

@@ -7,7 +7,7 @@
              x:Name="root">
     <SwipeView Margin="5" WidthRequest="400" >
         <SwipeView.LeftItems>
-            <SwipeItems x:DataType="app:CollectionViewPage">
+            <SwipeItems x:DataType="app:MrIncreadibleCollectionTemplateWithSwipeContentView">
                 <SwipeItem BackgroundColor="{x:Static app:AppColors.Green}" 
                            Command="{x:Binding Path=BindingContext.CollectionSwipeViewFavoriteCommand, 
                                                Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
@@ -24,7 +24,7 @@
         </SwipeView.LeftItems>
         <Frame Style="{x:StaticResource DocumentContentFrameStyle}" BorderColor="White">
             <Grid x:DataType="app:MrIncreadible"
-              ColumnDefinitions="0.1*, 0.2*, 0.6*">
+                  ColumnDefinitions="0.1*, 0.2*, 0.6*" >
                 <Label Grid.Column="0"
                        FontAttributes="Bold"
                        Text="{x:Binding ComponentData.Age, Source={x:Reference root}}"
