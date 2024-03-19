@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIsland.ControllInfoCollectionTemplateContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    x:Name="root">
+    <Border
+        Margin="5"
+        Padding="5"
+        BackgroundColor="{x:Static core:AppColors.BlackGrey}">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="5" />
+        </Border.StrokeShape>
+        <Grid ColumnDefinitions="0.2*, 0.2*, 0.6*" HeightRequest="40">
+            <Image
+                Grid.Column="0"
+                Source="{x:Binding ComponentData.ControlIcon,
+                                   Source={x:Reference root}}"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="14"
+                LineBreakMode="TailTruncation"
+                Text="{x:Binding ComponentData.ControlName,
+                                 Source={x:Reference root}}"
+                VerticalTextAlignment="Center" />
+            <Label
+                Grid.Column="2"
+                FontAttributes="Italic"
+                FontSize="12"
+                LineBreakMode="TailTruncation"
+                Text="{x:Binding ComponentData.ControlDetail,
+                                 Source={x:Reference root}}"
+                VerticalTextAlignment="Center" />
+        </Grid>
+    </Border>
+</ContentView>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<core:BasePage
+    x:Class="MAUIsland.AppSettingsJsonPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    Title="AppSettingsJson"
+    Padding="20"
+    x:DataType="app:AppSettingsJsonPageViewModel"
+    BackgroundColor="Transparent">
+
+    <core:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="jamesmontemagnologo.png"
+            Text="Original Document" />
+    </core:BasePage.ToolbarItems>
+
+    <core:BasePage.Resources>
+        <x:String x:Key="Intro">
+            This example is based on James Montemagnologo blog you can find the original link by click the logo on the top, huge thanks for his contribution
+        </x:String>
+
+        <x:String x:Key="AddFile">
+            Let's add the appsettings.json file
+        </x:String>
+    </core:BasePage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:StaticResource Intro}" />
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:StaticResource AddFile}" />
+                    <core:SourceCodeExpander
+                        Code="{x:Binding AppSettingsJsonContent}"
+                        CodeType="CSharp"
+                        IsExpanding="True"
+                        ShowCodeType="False" />
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Make it as " />
+                                <Span
+                                    BackgroundColor="#f8f8f8"
+                                    Text="EmbeddedResource"
+                                    TextColor="Black" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Next, let's create a few classes that represent these configuration settings anywhere in the project:" />
+                    <core:SourceCodeExpander Code="{x:Binding AppSettingsCSharpClasses}" CodeType="CSharp" />
+                    <Label Text="We will now need to configure our json file with a few Microsoft.Extensions.Configuration NuGet packages. Added the following into your .csproj:" />
+                    <core:SourceCodeExpander
+                        Code="{x:Binding PackageReferencesCode}"
+                        IsExpanding="True"
+                        ShowCodeType="False" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Now, let's read in our json file, and add it to our builder.Configuration in our CreateMauiApp method after we create the builder:" />
+                    <core:SourceCodeExpander Code="{x:Binding SetUpConfigBuilder}" CodeType="CSharp" />
+                    <Label Text="The code above reads in the manifest resource from the assembly into a stream. You will want to change the MauiApp27 to whatever your assembly name is for your project. After that we load it up and add our new configuration to the builder's main ConfigurationManager. We do this so we can dependency inject our IConfiguration anywhere we want." />
+                    <Label Text="We will want to add our MainPage as a Transient into our IServiceCollection in our CreateMauiApp method:" />
+                    <core:SourceCodeExpander Code="{x:Binding RegisterMainPageToServiceCollection}" CodeType="CSharp" />
+                    <Label Text="Now we can adjust our App.xaml.cs to inject our MainPage:" />
+                    <core:SourceCodeExpander Code="{x:Binding InjectMainPageService}" CodeType="CSharp" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Then over on our MainPage, we can inject our IConfiguration and then use it when our button is clicked to read in our Settings and bind them together:" />
+                    <core:SourceCodeExpander Code="{x:Binding MainPageWithCounterClickEvent}" CodeType="CSharp" />
+                    <Label Text="Now, if you aren't using constructor injection don't worry as you can still access it manually by exposing the IServiceProvider in our MauiProgram.cs:" />
+                    <core:SourceCodeExpander Code="{x:Binding ServiceProviderExample}" CodeType="CSharp" />
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Then you can access it via: " />
+                                <Span
+                                    BackgroundColor="Grey"
+                                    Text="MauiProgram.Services.GetService();"
+                                    TextColor="White" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="Either way, you are good to go and you have access to these settings!!!" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Let's try it out !!!" />
+                    <Button
+                        x:Name="SettingsButton"
+                        Clicked="SettingsButton_Clicked"
+                        Text="Show me those settings" />
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</core:BasePage>

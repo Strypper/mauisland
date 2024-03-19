@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<core:BasePage
+    x:Class="MAUIsland.SfAvatarViewPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:badge="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+    xmlns:sfavatar="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+    Title="SfAvatarView"
+    Padding="10"
+    x:DataType="app:SfAvatarViewPageViewModel">
+
+    <core:BasePage.Resources>
+
+        <x:String x:Key="ControlInfo">
+            The .NET MAUI Avatar View control provides a graphical representation of user image that allows you to customize the view by adding image, background color, icon, text, etc.
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeader">
+            Key features:
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeader1">
+            You can directly set value to the circle in the SfAvatarView using the following styles:
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeader2">
+            You can directly set value to the square in the SfAvatarView using the following styles:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter1">
+            The following code sample demonstrates how to define visual style of circle AvatarView.
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter2">
+            The following code sample demonstrates how to define visual style of square AvatarView.
+        </x:String>
+        <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                Supports for adding image and initials.
+                ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                Customizes the height, width, Stroke, BackgroundColor, and CornerRadius of the view.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">GroupView</strong>: Supports to add maximum three custom images or initials in a single view.
+                ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                Supports different types of visual styles.
+                ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                Supports <strong style="color:blue">BadgeView</strong>.
+                ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="PropertiesItemsSource1" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                ExtraLargeCircle
+                ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                LargeCircle
+                ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                MediumCircle
+                ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                SmallCircle
+                ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                ExtraSmallCircle
+                ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="PropertiesItemsSource2" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                ExtraLargeSquare
+                ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                LargeSquare
+                ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                MediumSquare
+                ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                SmallSquare
+                ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                ExtraSmallSquare
+                ]]>
+            </x:String>
+        </x:Array>
+
+        <Style x:Key="AvatarViewStyle" TargetType="sfavatar:SfAvatarView">
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="ContentType" Value="Custom" />
+            <Setter Property="ImageSource" Value="ellanaa.png" />
+        </Style>
+    </core:BasePage.Resources>
+
+    <core:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="syncfusionlogo.png"
+            Text="Original Document" />
+    </core:BasePage.ToolbarItems>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Label Text="{x:StaticResource ControlInfo}" />
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <CollectionView
+                        Header="{x:StaticResource PropertiesListHeader}"
+                        ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Adding the .NET MAUI Avatar View control" />
+                    <Grid>
+                        <sfavatar:SfAvatarView
+                            ContentType="Custom"
+                            CornerRadius="30"
+                            HeightRequest="60"
+                            HorizontalOptions="Center"
+                            ImageSource="https://i.imgur.com/fixi8ti.jpg"
+                            VerticalOptions="Center"
+                            WidthRequest="60" />
+                    </Grid>
+                </VerticalStackLayout>
+
+            </Frame>
+
+            <!--  Content Types in SfAvatarView  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="5">
+                    <inputs:SfComboBox
+                        x:Name="comboBox"
+                        DisplayMemberPath="Name"
+                        ItemsSource="{x:Binding TotechsMembers}"
+                        SelectedItem="{x:Binding SelectedTotechsMember,
+                                                 Mode=TwoWay}" />
+                    <sfavatar:SfAvatarView
+                        ContentType="Default"
+                        HeightRequest="60"
+                        ImageSource="{x:Binding SelectedTotechsMember.AvatarUrl,
+                                                Mode=OneWay}"
+                        WidthRequest="60" />
+                    <Label HorizontalOptions="Center" Text="{x:Binding SelectedTotechsMember.Name}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="Content Types in SfAvatarView" />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Default" />
+                    <Label Text="Default type avatar view is used for displaying the default vector image when initializing without the initials, custom, or group view types." />
+                    <sfavatar:SfAvatarView
+                        BackgroundColor="OrangeRed"
+                        ContentType="Default"
+                        CornerRadius="30"
+                        HeightRequest="60"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="60" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="SingleCharacter" />
+                    <Label Text="The SingleCharacter is used for displaying the first character in the string you have set in the InitialsType property." />
+                    <sfavatar:SfAvatarView
+                        AvatarName="Alex"
+                        BackgroundColor="Bisque"
+                        ContentType="Initials"
+                        CornerRadius="30"
+                        FontAttributes="Bold"
+                        HeightRequest="60"
+                        HorizontalOptions="Center"
+                        InitialsColor="Black"
+                        InitialsType="SingleCharacter"
+                        VerticalOptions="Center"
+                        WidthRequest="60" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="DoubleCharacter" />
+                    <Label Text="The DoubleCharacter is used for displaying a two-characters text you have set in the InitialsType property. If the initials contain one word, it shows the first and last letters of the single string. If it contains two or more words, it displays the first letter of the first string and first letter of the last string." />
+                    <sfavatar:SfAvatarView
+                        AvatarName="Alex"
+                        BackgroundColor="Bisque"
+                        ContentType="Initials"
+                        CornerRadius="30"
+                        FontAttributes="Bold"
+                        HeightRequest="60"
+                        InitialsColor="Black"
+                        InitialsType="DoubleCharacter"
+                        WidthRequest="60" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Avatar characters" />
+                    <Label Text="You can set the default vector images that already present in avatar view by setting the AvatarCharacter property." />
+                    <sfavatar:SfAvatarView
+                        AvatarCharacter="Avatar8"
+                        BackgroundColor="DeepSkyBlue"
+                        ContentType="AvatarCharacter"
+                        CornerRadius="30"
+                        HeightRequest="60"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="60" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="GroupView" />
+                    <Label Text="You can add maximum three images or initials in the same view using a GroupView type.  Set the InitialsMemberPath for displaying the initials in the group view. For image, set the ImageSourceMemberPath. The following code sample demonstrates how to add images using the GroupSource property." />
+                    <sfavatar:SfAvatarView
+                        BackgroundColorMemberPath="Colors"
+                        ContentType="Group"
+                        CornerRadius="30"
+                        GroupSource="{Binding CollectionImages}"
+                        HeightRequest="60"
+                        HorizontalOptions="Center"
+                        ImageSourceMemberPath="ImageSource"
+                        VerticalOptions="Center"
+                        WidthRequest="60" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Add initials only in GroupView" />
+                    <Label Text="You can set the initials only in the group view by setting the InitialsMemberPath alone. It is demonstrated in the following code sample." />
+                    <sfavatar:SfAvatarView
+                        BackgroundColorMemberPath="Colors"
+                        ContentType="Group"
+                        CornerRadius="30"
+                        GroupSource="{Binding CollectionImages}"
+                        HeightRequest="60"
+                        HorizontalOptions="Center"
+                        InitialsMemberPath="Name"
+                        VerticalOptions="Center"
+                        WidthRequest="60" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!--  Visual Style in .NET MAUI Avatar View(SfAvatarView)  -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="Visual Style in .NET MAUI Avatar View(SfAvatarView)" />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Circle" />
+                    <CollectionView
+                        Footer="{x:StaticResource PropertiesListFooter1}"
+                        Header="{x:StaticResource PropertiesListHeader1}"
+                        ItemsSource="{x:StaticResource PropertiesItemsSource1}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Grid
+                    ColumnDefinitions="*,*,*,*,*"
+                    ColumnSpacing="5"
+                    RowDefinitions="*, *"
+                    RowSpacing="5">
+                    <sfavatar:SfAvatarView
+                        Grid.Row="0"
+                        Grid.Column="4"
+                        AvatarShape="Circle"
+                        AvatarSize="ExtraLarge"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
+                        Style="{StaticResource AvatarViewStyle}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="4"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="ExtraLargeCircle"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+
+                    <sfavatar:SfAvatarView
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        AvatarShape="Circle"
+                        AvatarSize="Large"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
+                        Style="{StaticResource AvatarViewStyle}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="LargeCircle"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+
+                    <sfavatar:SfAvatarView
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        AvatarShape="Circle"
+                        AvatarSize="Medium"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
+                        Style="{StaticResource AvatarViewStyle}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="MediumCircle"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+
+                    <sfavatar:SfAvatarView
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        AvatarShape="Circle"
+                        AvatarSize="Small"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
+                        Style="{StaticResource AvatarViewStyle}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="SmallCircle"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+
+                    <sfavatar:SfAvatarView
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        AvatarShape="Circle"
+                        AvatarSize="ExtraSmall"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
+                        Style="{StaticResource AvatarViewStyle}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="ExtraSmallCircle"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </Grid>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Square" />
+                    <CollectionView
+                        Footer="{x:StaticResource PropertiesListFooter2}"
+                        Header="{x:StaticResource PropertiesListHeader2}"
+                        ItemsSource="{x:StaticResource PropertiesItemsSource2}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Grid
+                    ColumnDefinitions="*,*,*,*,*"
+                    ColumnSpacing="5"
+                    RowDefinitions="*, *"
+                    RowSpacing="5">
+
+                    <sfavatar:SfAvatarView
+                        Grid.Row="0"
+                        Grid.Column="4"
+                        AvatarShape="Square"
+                        AvatarSize="ExtraLarge"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
+                        Style="{StaticResource AvatarViewStyle}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="4"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="ExtraLargeSquare"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+
+                    <sfavatar:SfAvatarView
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        AvatarShape="Square"
+                        AvatarSize="Large"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
+                        Style="{StaticResource AvatarViewStyle}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="LargeSquare"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+
+                    <sfavatar:SfAvatarView
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        AvatarShape="Square"
+                        AvatarSize="Medium"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
+                        Style="{StaticResource AvatarViewStyle}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="MediumSquare"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+
+                    <sfavatar:SfAvatarView
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        AvatarShape="Square"
+                        AvatarSize="Small"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
+                        Style="{StaticResource AvatarViewStyle}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="SmallSquare"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+
+                    <sfavatar:SfAvatarView
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        AvatarShape="Square"
+                        AvatarSize="ExtraSmall"
+                        ImageSource="https://i.imgur.com/mauGXij.png"
+                        Style="{StaticResource AvatarViewStyle}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="ExtraSmallSquare"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+
+                </Grid>
+            </Frame>
+
+            <!--  Customization in SfAvatarView  -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="Customization in SfAvatarView" />
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Stroke" />
+                    <Label Text="The Stroke property is used for setting color to the stroke of SfAvatarView." />
+                    <Grid>
+                        <sfavatar:SfAvatarView
+                            AvatarShape="Circle"
+                            AvatarSize="Large"
+                            ContentType="Default"
+                            HorizontalOptions="Center"
+                            ImageSource="https://i.imgur.com/O9SgXez.jpg"
+                            Stroke="Tomato"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Default background color" />
+                    <Label Text="The background color for the SfAvatarView control can be set using the AvatarColorMode property. When the AvatarColorMode property is set to default, it displays the background color set in the BackgroundColor property." />
+                    <Grid>
+                        <sfavatar:SfAvatarView
+                            AvatarColorMode="Default"
+                            AvatarName="Alex"
+                            AvatarShape="Circle"
+                            AvatarSize="Large"
+                            BackgroundColor="Bisque"
+                            ContentType="Initials"
+                            HorizontalOptions="Center"
+                            Stroke="Black"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Dark color" />
+                    <Label Text="The dark background color can be set using DarkBackground in the AvatarColorMode property." />
+                    <Grid>
+                        <sfavatar:SfAvatarView
+                            AvatarColorMode="DarkBackground"
+                            AvatarName="Alex"
+                            AvatarShape="Circle"
+                            AvatarSize="Large"
+                            ContentType="Initials"
+                            HorizontalOptions="Center"
+                            InitialsType="DoubleCharacter"
+                            Stroke="Black"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Light color" />
+                    <Label Text="The light background color can be set using LightBackground in the AvatarColorMode property." />
+                    <Grid>
+                        <sfavatar:SfAvatarView
+                            AvatarColorMode="LightBackground"
+                            AvatarName="Alex"
+                            AvatarShape="Circle"
+                            AvatarSize="Large"
+                            ContentType="Initials"
+                            HorizontalOptions="Center"
+                            InitialsType="DoubleCharacter"
+                            Stroke="Black"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Gradients" />
+                    <Label Text="You can also specify a range of colors using LinearGradientBrush in Background Property as demonstrated in the following code example." />
+                    <sfavatar:SfAvatarView
+                        AvatarName="Alex"
+                        AvatarShape="Circle"
+                        AvatarSize="Large"
+                        ContentType="Initials"
+                        HorizontalOptions="Center"
+                        InitialsType="DoubleCharacter"
+                        VerticalOptions="Center">
+                        <sfavatar:SfAvatarView.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Offset="0" Color="#2F9BDF" />
+                                <GradientStop Offset="1" Color="#51F1F2" />
+                            </LinearGradientBrush>
+                        </sfavatar:SfAvatarView.Background>
+                    </sfavatar:SfAvatarView>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Stroke Thickness" />
+                    <Label Text="You can customize the thickness of the avatar view using the StrokeThickness property." />
+                    <Grid>
+                        <sfavatar:SfAvatarView
+                            AvatarShape="Circle"
+                            AvatarSize="Large"
+                            ContentType="Default"
+                            HorizontalOptions="Center"
+                            ImageSource="https://i.imgur.com/mauGXij.png"
+                            Stroke="LightGreen"
+                            StrokeThickness="4"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Corner radius" />
+                    <Label Text="You can customize the corner radius of the avatar view using the CornerRadius property." />
+                    <Grid>
+                        <sfavatar:SfAvatarView
+                            ContentType="Default"
+                            CornerRadius="20"
+                            HeightRequest="60"
+                            HorizontalOptions="Center"
+                            ImageSource="https://i.imgur.com/fixi8ti.jpg"
+                            VerticalOptions="Center"
+                            WidthRequest="60" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!--  Set badge view to avatar  -->
+            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <VerticalStackLayout Spacing="20">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Set badge view to avatar" />
+                    <Label Text="The SfAvatarView control provides support for BadgeView to notify users of new or unread messages, notifications, or the status of something." />
+                    <badge:SfBadgeView HorizontalOptions="Center" VerticalOptions="Center">
+                        <badge:SfBadgeView.Content>
+                            <sfavatar:SfAvatarView
+                                ContentType="Custom"
+                                CornerRadius="30"
+                                HeightRequest="60"
+                                HorizontalOptions="Center"
+                                ImageSource="https://i.imgur.com/O9SgXez.jpg"
+                                VerticalOptions="Center"
+                                WidthRequest="60" />
+                        </badge:SfBadgeView.Content>
+                        <badge:SfBadgeView.BadgeSettings>
+                            <badge:BadgeSettings
+                                Animation="Scale"
+                                Icon="Available"
+                                Position="BottomRight"
+                                Type="Success"
+                                Offset="-2,-2" />
+                        </badge:SfBadgeView.BadgeSettings>
+                    </badge:SfBadgeView>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</core:BasePage>

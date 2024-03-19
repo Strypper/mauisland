@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<core:BasePage
+    x:Class="MAUIsland.ImageButtonPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    Title="ImageButton"
+    Padding="10"
+    x:DataType="app:ImageButtonPageViewModel"
+    BackgroundColor="Transparent">
+    <core:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </core:BasePage.ToolbarItems>
+
+    <core:BasePage.Resources>
+        <x:String x:Key="ControlInfo">
+            The .NET Multi-platform App UI (.NET MAUI) Button displays text and responds to a tap or click that directs the app to carry out a task. A Button usually displays a short text string indicating a command, but it can also display a bitmap image, or a combination of text and an image. When the Button is pressed with a finger or clicked with a mouse it initiates that command.
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeader">
+            Button defines the following properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter">
+            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+        </x:String>
+
+        <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   <strong style="color:blue">BorderColor</strong>, of type <strong style="color:blue">Color</strong>, describes the border color of the button.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">BorderWidth</strong>, of type <strong style="color:blue">double</strong>, defines the width of the button's border.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">CharacterSpacing</strong>, of type <strong style="color:blue">double</strong>, defines the spacing between characters of the button's text.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Command</strong>, of type <strong style="color:blue">ICommand</strong>, defines the command that's executed when the button is tapped.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">CommandParameter</strong>, of type <strong style="color:blue">object</strong>, is the parameter that's passed to Command.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">ContentLayout</strong>, of type <strong style="color:blue">ButtonContentLayout</strong>, defines the object that controls the position of the button image and the spacing between the button's image and text.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">CornerRadius</strong>, of type <strong style="color:blue">int</strong>, describes the corner radius of the button's border.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">FontAttributes</strong>, of type <strong style="color:blue">FontAttributes</strong>, determines text style.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">FontAutoScalingEnabled</strong>, of type <strong style="color:blue">bool</strong>, defines whether the button text will reflect scaling preferences set in the operating system. The default value of this property is true. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">FontFamily</strong>, of type <strong style="color:blue">string</strong>, defines the font family.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">FontSize</strong>, of type <strong style="color:blue">double</strong>, defines the font size.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">ImageSource</strong>, of type <strong style="color:blue">ImageSource</strong>, specifies a bitmap image to display as the content of the button. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">LineBreakMode</strong>, of type <strong style="color:blue">LineBreakMode</strong>, determines how text should be handled when it can't fit on one line.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Padding</strong>, of type <strong style="color:blue">Thickness</strong>, determines the button's padding.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Text</strong>, of type <strong style="color:blue">string</strong>, defines the text displayed as the content of the button.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">TextColor</strong>, of type <strong style="color:blue">Color</strong>, describes the color of the button's text. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">TextTransform</strong>, of type <strong style="color:blue">TextTransform</strong>, defines the casing of the button's text.  ]]>
+            </x:String>
+        </x:Array>
+    </core:BasePage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <CollectionView
+                    Footer="{x:StaticResource PropertiesListFooter}"
+                    Header="{x:StaticResource PropertiesListHeader}"
+                    ItemsSource="{x:StaticResource PropertyItemsSource}"
+                    Style="{x:StaticResource PropertiesListStyle}" />
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Basic ImageButton" />
+                    <HorizontalStackLayout Spacing="10">
+                        <ImageButton
+                            Padding="5"
+                            CornerRadius="5"
+                            HeightRequest="50"
+                            Pressed="OnButtonPressed"
+                            Released="OnButtonReleased"
+                            Source="androidlogo.png"
+                            VerticalOptions="Center" />
+                        <ImageButton
+                            Padding="5"
+                            CornerRadius="5"
+                            HeightRequest="50"
+                            Pressed="OnButtonPressed"
+                            Released="OnButtonReleased"
+                            Source="tizenlogo.png"
+                            VerticalOptions="Center" />
+                        <ImageButton
+                            Padding="5"
+                            CornerRadius="5"
+                            HeightRequest="50"
+                            Pressed="OnButtonPressed"
+                            Released="OnButtonReleased"
+                            Source="windowslogo.png"
+                            VerticalOptions="Center" />
+                        <ImageButton
+                            Padding="5"
+                            CornerRadius="5"
+                            HeightRequest="50"
+                            Pressed="OnButtonPressed"
+                            Released="OnButtonReleased"
+                            Source="ioslogo.png"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <Label Text="This is basic ImageButton XAML" />
+                    <core:SourceCodeExpander Code="{x:Binding XamlBasicImageButton}" CodeType="Xaml" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="ImageButton with EventHandler" />
+                    <Label Text="Click the Image Please" />
+                    <Border
+                        x:Name="ImageButtonWithEvent"
+                        Padding="5"
+                        BackgroundColor="DarkGray">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5" StrokeThickness="1" />
+                        </Border.StrokeShape>
+                        <HorizontalStackLayout Spacing="10">
+                            <ImageButton
+                                Clicked="ImageButtonEventHandlerClicked"
+                                HeightRequest="50"
+                                Source="androidlogo.png"
+                                VerticalOptions="Center" />
+                            <Label
+                                x:Name="ImageButtonWithEventLabel"
+                                Text="ImageButton with Click Event"
+                                VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </Border>
+
+                    <Label Text="This is how this ImageButton looks like" />
+                    <core:SourceCodeExpander Code="{x:Binding XamlImageButtonWithEventHandler}" CodeType="Xaml" />
+                    <Label Text="Here for the ImageButton EventHandler" />
+                    <core:SourceCodeExpander Code="{x:Binding CSharpImageButtonWithEventHandlerCodeBehind}" CodeType="CSharp" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="ImageButton with Command" />
+                    <Label Text="Click the Image Please" />
+                    <HorizontalStackLayout Spacing="10">
+                        <ImageButton
+                            Command="{x:Binding ClickedCountCommand}"
+                            CornerRadius="10"
+                            HeightRequest="50"
+                            Source="androidlogo.png"
+                            VerticalOptions="Center" />
+                        <Label VerticalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="You just click the button: " />
+                                    <Span Text="{x:Binding ImageButtonClickCount}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </HorizontalStackLayout>
+                    <Label Text="This is ImageButton with Command code" />
+                    <core:SourceCodeExpander Code="{x:Binding XamlImageButtonWithCommand}" CodeType="Xaml" />
+                    <Label Text="Here for the ViewModel" />
+                    <core:SourceCodeExpander Code="{x:Binding CSharpImageButtonWithCommandViewModel}" CodeType="CSharp" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="ImageButton can act like a Clickable Image" />
+                    <ImageButton
+                        Padding="0"
+                        Command="{x:Binding ClickedCheckCommand}"
+                        CornerRadius="{x:Binding Source={x:Reference RoundedCornerSlider},
+                                                 Path=Value}"
+                        HorizontalOptions="Center"
+                        Scale="{x:Binding Source={x:Reference ScaleSlider},
+                                          Path=Value}"
+                        Source="{x:Binding ImageSourceSample}"
+                        VerticalOptions="Center" />
+                    <Button Command="{x:Binding OpenFileCommand}" Text="Upload image" />
+                    <Label Text="Adjust the corner radius" />
+                    <Slider
+                        x:Name="RoundedCornerSlider"
+                        Maximum="100"
+                        Minimum="0" />
+                    <Label Text="Adjust the Scale" />
+                    <Slider
+                        x:Name="ScaleSlider"
+                        Maximum="1.5"
+                        Minimum="0.1"
+                        Value="1" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="ImageButton visual states" />
+                    <Label Text="Visual states currently did not work on ImageButton." TextColor="OrangeRed" />
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</core:BasePage>

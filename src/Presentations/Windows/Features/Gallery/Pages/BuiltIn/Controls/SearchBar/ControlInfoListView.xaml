@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ListView
+    x:Class="MAUIsland.ControlInfoListView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    x:Name="Root"
+    x:DataType="app:SearchBarPageViewModel"
+    HeightRequest="400">
+    <ListView.Resources>
+        <Style x:Key="ReverseTheme" TargetType="Label">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={x:Static core:AppColors.White}, Dark={x:Static core:AppColors.Black}}" />
+        </Style>
+    </ListView.Resources>
+    <ListView.ItemTemplate>
+        <DataTemplate x:DataType="app:IGalleryCardInfo">
+            <ViewCell>
+                <Border Padding="5" BackgroundColor="{x:Static core:AppColors.BlackGrey}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="5" />
+                    </Border.StrokeShape>
+                    <Grid ColumnDefinitions="0.2*, 0.2*, 0.6*" HeightRequest="40">
+                        <Image
+                            Grid.Column="0"
+                            Source="{x:Binding ControlIcon}"
+                            VerticalOptions="Center" />
+                        <Label
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            LineBreakMode="TailTruncation"
+                            Text="{x:Binding ControlName}"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Column="2"
+                            FontAttributes="Italic"
+                            FontSize="12"
+                            LineBreakMode="TailTruncation"
+                            Text="{x:Binding ControlDetail}"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                </Border>
+            </ViewCell>
+        </DataTemplate>
+    </ListView.ItemTemplate>
+</ListView>
