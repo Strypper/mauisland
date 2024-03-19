@@ -14,8 +14,8 @@ public class GitHubIssueLocalDbModel : BaseLocalEntity
     #endregion
 
     #region [ Properties ]
-
-    // control name
+    [Column("control_name")]
+    public long ControlName { get; set; }
 
     [Column("issue_id")]
     public long IssueId { get; set; }
