@@ -62,7 +62,7 @@ public class GitHubServiceIntegrationTest
     [Fact]
     public async Task GetGitHubIssueByIdTest()
     {
-        string issueId = "Provide a valid issue id";
+        string issueId = "1";
 
         var gitHubService = serviceProvider!.GetRequiredService<IGitHubService>();
         await gitHubService.GetGitHubIssueById(owner, repositoryName, issueId);

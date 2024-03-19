@@ -27,7 +27,7 @@ public partial class GitHubAuthorModel : GitHubBaseModel
     int following;
 
     [ObservableProperty]
-    bool hireable;
+    bool? hireable;
 
     [ObservableProperty]
     string htmlUrl;
