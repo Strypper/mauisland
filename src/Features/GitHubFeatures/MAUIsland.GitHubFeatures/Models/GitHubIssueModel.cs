@@ -42,13 +42,13 @@ public partial class GitHubIssueModel : GitHubBaseModel
     IReadOnlyList<GitHubLabelModel> labels;
 
     [ObservableProperty]
-    GitHubAuthorModel assignee;
+    GitHubAuthorModel? assignee;
 
     [ObservableProperty]
     IReadOnlyList<GitHubAuthorModel> assignees;
 
     [ObservableProperty]
-    GitHubMilestoneModel milestone;
+    GitHubMilestoneModel? milestone;
 
     [ObservableProperty]
     bool locked;
@@ -63,5 +63,5 @@ public partial class GitHubIssueModel : GitHubBaseModel
     DateTimeOffset createdAt;
 
     [ObservableProperty]
-    DateTimeOffset updatedAt;
+    DateTimeOffset? updatedAt;
 }

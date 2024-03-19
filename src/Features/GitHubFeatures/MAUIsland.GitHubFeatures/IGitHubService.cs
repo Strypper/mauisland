@@ -10,5 +10,5 @@ public interface IGitHubService
 
     Task<IEnumerable<GitHubIssueModel>> GetGitHubIssuesByLabels(string owner, string repository, IEnumerable<string> labels);
 
-    Task<GitHubIssueModel> GetGitHubIssueById(string owner, string repository, string issueNumber);
+    Task<GitHubIssueModel> GetGitHubIssueByNo(string owner, string repository, int issueNumber);
 }

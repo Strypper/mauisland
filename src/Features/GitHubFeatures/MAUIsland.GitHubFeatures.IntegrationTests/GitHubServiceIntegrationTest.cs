@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace MAUIsland.GitHubFeatures.IntegrationTests;
 
 public class GitHubServiceIntegrationTest
@@ -31,21 +33,27 @@ public class GitHubServiceIntegrationTest
         var repositoryModel = await gitHubService.GetRepository(owner, repositoryName);
 
         //Assert
-
+        Assert.NotNull(repositoryModel);
     }
 
     [Fact]
     public async Task GetAuthorTest()
     {
         var gitHubService = serviceProvider!.GetRequiredService<IGitHubService>();
-        await gitHubService.GetAuthor(owner);
+        var authorModel = await gitHubService.GetAuthor(owner);
+
+        //Assert
+        Assert.NotNull(authorModel);
     }
 
     [Fact]
     public async Task GetGitHubIssuesTest()
     {
         var gitHubService = serviceProvider!.GetRequiredService<IGitHubService>();
-        await gitHubService.GetGitHubIssues(owner, repositoryName);
+        var githubIssueModels = await gitHubService.GetGitHubIssues(owner, repositoryName);
+
+        //Assert
+        Assert.NotNull(githubIssueModels);
     }
 
     [Fact]
@@ -56,17 +64,50 @@ public class GitHubServiceIntegrationTest
         List<string> labelsList = new() { issueLabel, questionLabel };
 
         var gitHubService = serviceProvider!.GetRequiredService<IGitHubService>();
-        await gitHubService.GetGitHubIssuesByLabels(owner, repositoryName, labelsList);
+        var githubIssueModels = await gitHubService.GetGitHubIssuesByLabels(owner, repositoryName, labelsList);
+
+        //Assert
+        Assert.NotNull(githubIssueModels);
     }
 
     [Fact]
-    public async Task GetGitHubIssueByIdTest()
+    public async Task GetGitHubIssueByNoTest()
     {
-        string issueId = "Provide a valid issue id";
+        int issueNo = 1;
 
         var gitHubService = serviceProvider!.GetRequiredService<IGitHubService>();
-        await gitHubService.GetGitHubIssueById(owner, repositoryName, issueId);
+        var githubIssueModel = await gitHubService.GetGitHubIssueByNo(owner, repositoryName, issueNo);
+
+        //Assert
+        Assert.NotNull(githubIssueModel);
+        Assert.NotEmpty(githubIssueModel.Title);
     }
 
+    #endregion
+
+    #region [ Private Methods ]
+    private void AssertStringPropertyNotNullOrEmpty<T>(T model)
+    {
+        PropertyInfo[] properties = typeof(T).GetProperties();
+
+        foreach (var property in properties)
+        {
+            if (property.PropertyType == typeof(string))
+            {
+                if (IsNullable(property.PropertyType))
+                    continue;
+
+                object? valueObj = property.GetValue(model);
+                string value = valueObj is not null ? valueObj.ToString() : null;
+
+                Assert.False(string.IsNullOrEmpty(value), $"Property {property.Name} must not be null or empty.");
+            }
+        }
+    }
+
+    private bool IsNullable(Type type)
+    {
+        return Nullable.GetUnderlyingType(type) != null;
+    }
     #endregion
 }

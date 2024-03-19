@@ -29,4 +29,13 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.10" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Features\GitHubFeatures\MAUIsland.GitHubFeatures\MAUIsland.GitHubFeatures.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Features\Chat\" />
+	  <Folder Include="Features\Gallery\Core\" />
+	</ItemGroup>
+
 </Project>
