@@ -1,4 +1,5 @@
 using ColorCode;
+using CommunityToolkit.Maui.Views;
 using System.ComponentModel;
 
 namespace MAUIsland.Core;
@@ -92,10 +93,23 @@ public partial class SourceCodeExpander : ContentView, INotifyPropertyChanged
         //                            : Color.FromHex("#00B1EE");
 
     }
+    private async void CodeExpander_ExpandedChanged(object sender, CommunityToolkit.Maui.Core.ExpandedChangedEventArgs e)
+    {
+        var expander = (Expander)sender;
+        if (expander.Content is not null)
+        {
+            var lazyView = (LazyViewSourceCodeExpanderContent)expander.Content;
+            if (expander.IsExpanded)
+            {
+                var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+                await lazyView.LoadViewAsync(cts.Token);
+            }
+        }
+    }
 
     #endregion
 
-    #region [Methods]
+    #region [ Methods ]
     private void ApplyColor(string code, ILanguage language)
     {
         var formatter = new FormattedStringFormatter();
