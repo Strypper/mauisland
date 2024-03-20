@@ -21,7 +21,12 @@
         x:Name="ComponentFrame"
         BackgroundColor="{x:Static app:AppColors.White}"
         Style="{x:StaticResource DocumentContentFrameStyle}">
-        <toolkit:Expander x:Name="CodeExpander" IsExpanded="{x:Binding IsExpanding, Source={x:Reference root}, Mode=TwoWay}">
+        <toolkit:Expander
+            x:Name="CodeExpander"
+            ExpandedChanged="CodeExpander_ExpandedChanged"
+            IsExpanded="{x:Binding IsExpanding,
+                                   Source={x:Reference root},
+                                   Mode=TwoWay}">
             <toolkit:Expander.Header>
                 <Grid>
                     <Label
@@ -42,8 +47,7 @@
                         WidthRequest="25" />
                 </Grid>
             </toolkit:Expander.Header>
-            <!--<Editor IsReadOnly="True" Text="{x:Binding XamlCode, Source={x:Reference root}}" />-->
-            <Label FormattedText="{x:Binding OutputFormattedString, Source={x:Reference root}}" />
+            <app:LazyViewSourceCodeExpanderContent BindingContext="{x:Binding OutputFormattedString, Source={x:Reference root}}" />
         </toolkit:Expander>
     </Frame>
 </ContentView>

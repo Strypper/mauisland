@@ -44,4 +44,10 @@
 	  <Folder Include="Features\Chat\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiXaml Update="Views\SourceCodeExpanderContent.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>
