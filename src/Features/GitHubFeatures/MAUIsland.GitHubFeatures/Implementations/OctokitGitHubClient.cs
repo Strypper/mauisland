@@ -200,6 +200,10 @@ public class OctokitGitHubClient : IGitHubService
             User = new GitHubAuthorModel
             {
                 Id = issue.User.Id,
+                Name = issue.User.Name,
+                Bio = issue.User.Bio,
+                Email = issue.User.Email,
+                Location = issue.User.Location,
                 Login = issue.User.Login,
                 AvatarUrl = issue.User.AvatarUrl,
                 Url = issue.User.Url,
@@ -213,23 +217,23 @@ public class OctokitGitHubClient : IGitHubService
                 Description = label.Description,
                 IsDefault = label.Default
             }).ToList(),
-            Assignee = new GitHubAuthorModel
+            Assignee = issue.Assignee is not null ? new GitHubAuthorModel
             {
                 Id = issue.Assignee.Id,
                 Login = issue.Assignee.Login,
                 AvatarUrl = issue.Assignee.AvatarUrl,
                 Url = issue.Assignee.Url,
                 HtmlUrl = issue.Assignee.HtmlUrl
-            },
-            Assignees = issue.Assignees.Select(assignee => new GitHubAuthorModel
+            } : null,
+            Assignees = issue.Assignees.Any() ? issue.Assignees.Select(assignee => new GitHubAuthorModel
             {
                 Id = assignee.Id,
                 Login = assignee.Login,
                 AvatarUrl = assignee.AvatarUrl,
                 Url = assignee.Url,
                 HtmlUrl = assignee.HtmlUrl
-            }).ToList(),
-            Milestone = new GitHubMilestoneModel
+            }).ToList() : new List<GitHubAuthorModel>(),
+            Milestone = issue.Milestone is not null ? new GitHubMilestoneModel
             {
                 Id = issue.Milestone.Id,
                 Number = issue.Milestone.Number,
@@ -239,7 +243,7 @@ public class OctokitGitHubClient : IGitHubService
                 CreatedAt = issue.Milestone.CreatedAt,
                 UpdatedAt = issue.Milestone.UpdatedAt,
                 ClosedAt = issue.Milestone.ClosedAt
-            },
+            } : null,
             Locked = issue.Locked,
             Comments = issue.Comments,
             ClosedAt = issue.ClosedAt,

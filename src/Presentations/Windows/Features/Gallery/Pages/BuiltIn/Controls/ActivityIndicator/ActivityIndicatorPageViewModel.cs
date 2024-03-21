@@ -1,18 +1,35 @@
-﻿namespace MAUIsland;
+﻿using MAUIsland.GitHubFeatures;
+
+namespace MAUIsland;
 
 public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewModel
 {
+    #region [ Fields ]
+
+    private readonly IGitHubService gitHubService;
+    #endregion
+
     #region [ CTor ]
-    public ActivityIndicatorPageViewModel(IAppNavigator appNavigator)
+    public ActivityIndicatorPageViewModel(IAppNavigator appNavigator,
+                                          IGitHubService gitHubService)
                                                 : base(appNavigator)
     {
-
+        this.gitHubService = gitHubService;
     }
     #endregion
 
     #region [ Properties ]
     [ObservableProperty]
     IGalleryCardInfo controlInformation;
+
+    [ObservableProperty]
+    bool isBusy;
+
+    [ObservableProperty]
+    ObservableCollection<ControlIssueModel> controlIssues;
+
+    [ObservableProperty]
+    ControlIssueModel selectedControlIssue;
 
     [ObservableProperty]
     string groupOfActivityIndicators =
@@ -62,11 +79,57 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
         ControlInformation = query.GetData<IGalleryCardInfo>();
 
     }
+
+    public override async Task OnAppearingAsync()
+    {
+        await base.OnAppearingAsync();
+        RefreshControlIssues(true)
+            .FireAndForget();
+    }
+
+
     #endregion
 
     #region [ Relay Commands ]
+
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
+    #endregion
+
+    #region [ Methods ]
+
+    async Task RefreshControlIssues(bool forced)
+    {
+        if (IsBusy)
+            return;
+
+        IsBusy = true;
+
+        var items = await gitHubService.GetGitHubIssuesByLabels("dotnet", "maui", new List<string>() { "control-activityindicator" });
+
+        IsBusy = false;
+
+        if (ControlIssues is null || forced)
+            ControlIssues = new(items.Select(x => new ControlIssueModel()
+            {
+                IssueId = x.Id,
+                Title = x.Title,
+                IssueLinkUrl = x.HtmlUrl,
+                MileStone = x.Milestone is null ? "No mile stone" : x.Milestone.Title,
+                OwnerName = x.User.Login,
+                AvatarUrl = x.User.AvatarUrl,
+                CreatedDate = x.CreatedAt.DateTime,
+                LastUpdated = x.UpdatedAt is null ? x.CreatedAt.DateTime : x.UpdatedAt.Value.DateTime
+            }));
+
+        //if (CachedItems is null || forced)
+        //    CachedItems = new(items);
+
+        //if (Items.Any())
+        //    Title = $"Billing statement";
+        //else
+        //    Title = "All paid up";
+    }
     #endregion
 }

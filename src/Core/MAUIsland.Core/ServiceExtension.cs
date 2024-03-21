@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
+using MAUIsland.GitHubFeatures;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using Xe.AcrylicView;
 
@@ -14,6 +15,8 @@ public static class ServicesExtension
         builder.UseMauiCommunityToolkit();
         builder.UseMauiCommunityToolkitCore();
         builder.UseMauiCommunityToolkitMediaElement();
+
+        builder.Services.RegisterLogicProvider();
         return builder;
     }
 }
