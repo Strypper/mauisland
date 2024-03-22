@@ -126,9 +126,6 @@
 		<Compile Update="Features\Gallery\ContentViews\GithubCardContentView.xaml.cs">
 			<DependentUpon>GithubCardContentView.xaml</DependentUpon>
 		</Compile>
-		<Compile Update="Features\Gallery\Pages\BuiltIn\Controls\Border\BorderPage.xaml.cs">
-		  <DependentUpon>BorderPage.xaml</DependentUpon>
-		</Compile>
 		<Compile Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\CommunityPage.xaml.cs">
 			<DependentUpon>CommunityPage.xaml</DependentUpon>
 		</Compile>
@@ -223,6 +220,21 @@
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\Controls\Border\BorderPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\Controls\Button\ButtonPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\Controls\CheckBox\CheckBoxPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\Controls\DatePicker\DatePickerPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\Controls\Editor\EditorPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\Controls\Entry\EntryPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\CommunityPage.xaml">
@@ -348,25 +360,10 @@
 		<MauiXaml Update="Features\Gallery\Pages\B\Editor\Pages\EditorPage.xaml">
 			<SubType></SubType>
 		</MauiXaml>
-		<MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Controls\Button\ButtonPage.xaml">
-			<SubType>Designer</SubType>
-		</MauiXaml>
 		<MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\CarouselView\CarouselViewPage.xaml">
 			<SubType>Designer</SubType>
 		</MauiXaml>
-		<MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Controls\CheckBox\CheckBoxPage.xaml">
-			<SubType>Designer</SubType>
-		</MauiXaml>
 		<MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\CollectionView\CollectionViewPage.xaml">
-			<SubType>Designer</SubType>
-		</MauiXaml>
-		<MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Controls\DatePicker\DatePickerPage.xaml">
-			<SubType>Designer</SubType>
-		</MauiXaml>
-		<MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Controls\Editor\EditorPage.xaml">
-			<SubType>Designer</SubType>
-		</MauiXaml>
-		<MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Controls\Entry\EntryPage.xaml">
 			<SubType>Designer</SubType>
 		</MauiXaml>
 		<MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Features\Gallery\Pages\BuiltIn\Controls\IndicatorView\IndicatorViewPage.xaml">

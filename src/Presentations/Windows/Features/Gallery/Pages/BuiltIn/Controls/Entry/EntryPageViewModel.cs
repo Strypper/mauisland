@@ -86,6 +86,7 @@ public partial class EntryPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
+
     #region [ Methods ]
 
     async Task RefreshControlIssues(bool forced)
@@ -95,25 +96,36 @@ public partial class EntryPageViewModel : NavigationAwareBaseViewModel
 
         IsBusy = true;
 
-        var items = await gitHubService.GetGitHubIssuesByLabels(ControlInformation.GitHubAuthorIssueName,
-                                                                ControlInformation.GitHubRepositoryIssueName,
-                                                                ControlInformation.GitHubIssueLabels);
-
+        var result = await gitHubService.GetGitHubIssuesByLabels(ControlInformation.GitHubAuthorIssueName,
+                                                                 ControlInformation.GitHubRepositoryIssueName,
+                                                                 ControlInformation.GitHubIssueLabels);
 
         IsBusy = false;
 
-        if (ControlIssues is null || forced)
-            ControlIssues = new(items.Select(x => new ControlIssueModel()
+        if (result.IsT0) // Check if result is ServiceSuccess
+        {
+            var items = result.AsT0.AttachedData as IEnumerable<GitHubIssueModel>;
+
+            if (ControlIssues is null || forced)
             {
-                IssueId = x.Id,
-                Title = x.Title,
-                IssueLinkUrl = x.HtmlUrl,
-                MileStone = x.Milestone is null ? "No mile stone" : x.Milestone.Title,
-                OwnerName = x.User.Login,
-                AvatarUrl = x.User.AvatarUrl,
-                CreatedDate = x.CreatedAt.DateTime,
-                LastUpdated = x.UpdatedAt is null ? x.CreatedAt.DateTime : x.UpdatedAt.Value.DateTime
-            }));
+                ControlIssues = new(items.Select(x => new ControlIssueModel()
+                {
+                    IssueId = x.Id,
+                    Title = x.Title,
+                    IssueLinkUrl = x.HtmlUrl,
+                    MileStone = x.Milestone is null ? "No mile stone" : x.Milestone.Title,
+                    OwnerName = x.User.Login,
+                    AvatarUrl = x.User.AvatarUrl,
+                    CreatedDate = x.CreatedAt.DateTime,
+                    LastUpdated = x.UpdatedAt is null ? x.CreatedAt.DateTime : x.UpdatedAt.Value.DateTime
+                }));
+            }
+        }
+        else
+        {
+            var error = result.AsT1;
+            await AppNavigator.ShowSnackbarAsync(error.ErrorMessage, null, null);
+        }
     }
     #endregion
 }

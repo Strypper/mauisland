@@ -278,7 +278,6 @@
                             ItemsSource="{x:StaticResource PropertiesItemsSource}"
                             Style="{x:StaticResource PropertiesListStyle}" />
                     </Border>
-
                     <Border Padding="20" StrokeShape="RoundRectangle 4">
                         <VerticalStackLayout Spacing="10">
                             <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create Entry With Place Holder" />
@@ -293,7 +292,6 @@
                             <core:SourceCodeExpander Code="{x:Binding StandardEntryXamlCode}" CodeType="Xaml" />
                         </VerticalStackLayout>
                     </Border>
-
                     <Border Padding="20" StrokeShape="RoundRectangle 4">
                         <VerticalStackLayout Spacing="10">
                             <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="We used entry for chatting" />
