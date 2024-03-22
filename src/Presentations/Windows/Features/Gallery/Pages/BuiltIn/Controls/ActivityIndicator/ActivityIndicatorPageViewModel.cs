@@ -19,8 +19,9 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
     #endregion
 
     #region [ Properties ]
+
     [ObservableProperty]
-    IGalleryCardInfo controlInformation;
+    IBuiltInGalleryCardInfo controlInformation;
 
     [ObservableProperty]
     bool isBusy;
@@ -76,17 +77,15 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
     {
         base.OnInit(query);
 
-        ControlInformation = query.GetData<IGalleryCardInfo>();
+        ControlInformation = query.GetData<IBuiltInGalleryCardInfo>();
 
     }
 
     public override async Task OnAppearingAsync()
     {
         await base.OnAppearingAsync();
-        RefreshControlIssues(true)
-            .FireAndForget();
+        await RefreshAsync();
     }
-
 
     #endregion
 
@@ -95,6 +94,12 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    async Task RefreshAsync()
+    {
+        await RefreshControlIssues(true);
+    }
     #endregion
 
     #region [ Methods ]
@@ -106,7 +111,10 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
 
         IsBusy = true;
 
-        var items = await gitHubService.GetGitHubIssuesByLabels("dotnet", "maui", new List<string>() { "control-activityindicator" });
+        var items = await gitHubService.GetGitHubIssuesByLabels(ControlInformation.GitHubAuthorIssueName,
+                                                                ControlInformation.GitHubRepositoryIssueName,
+                                                                ControlInformation.GitHubIssueLabels);
+
 
         IsBusy = false;
 
@@ -122,14 +130,6 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
                 CreatedDate = x.CreatedAt.DateTime,
                 LastUpdated = x.UpdatedAt is null ? x.CreatedAt.DateTime : x.UpdatedAt.Value.DateTime
             }));
-
-        //if (CachedItems is null || forced)
-        //    CachedItems = new(items);
-
-        //if (Items.Any())
-        //    Title = $"Billing statement";
-        //else
-        //    Title = "All paid up";
     }
     #endregion
 }

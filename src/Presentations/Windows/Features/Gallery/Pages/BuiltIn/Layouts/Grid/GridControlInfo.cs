@@ -19,4 +19,7 @@ class GridControlInfo : IBuiltInGalleryCardInfo
     public DateTime LastUpdate => throw new NotImplementedException();
     public List<string> DoList => throw new NotImplementedException();
     public List<string> DontList => throw new NotImplementedException();
+    public string GitHubAuthorIssueName => "dotnet";
+    public string GitHubRepositoryIssueName => "maui";
+    public List<string> GitHubIssueLabels => new List<string>() { "layout-grid" };
 }
