@@ -120,7 +120,6 @@ public partial class MenuBarPageViewModel : NavigationAwareBaseViewModel
         base.OnInit(query);
 
         ControlInformation = query.GetData<IBuiltInGalleryCardInfo>();
-
     }
 
     public override async Task OnAppearingAsync()
