@@ -64,12 +64,6 @@ public partial class SliderPageViewModel : NavigationAwareBaseViewModel
         ControlInformation = query.GetData<IBuiltInGalleryCardInfo>();
 
     }
-
-    public override async Task OnAppearingAsync()
-    {
-        await base.OnAppearingAsync();
-        await RefreshAsync();
-    }
     #endregion
 
     #region [Relay Commands]
