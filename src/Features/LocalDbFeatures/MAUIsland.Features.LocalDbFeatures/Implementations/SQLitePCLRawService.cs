@@ -2,7 +2,7 @@
 
 public class SQLitePCLRawService<T> : ILocalDbService<T> where T : BaseLocalEntity, new()
 {
-    private readonly SQLiteAsyncConnection _connection;
+    protected readonly SQLiteAsyncConnection _connection;
 
     public SQLitePCLRawService(DatabaseSettings databaseSettings)
     {

@@ -15,7 +15,7 @@ public class GitHubIssueLocalDbModel : BaseLocalEntity
 
     #region [ Properties ]
     [Column("control_name")]
-    public long ControlName { get; set; }
+    public string ControlName { get; set; }
 
     [Column("issue_id")]
     public long IssueId { get; set; }
@@ -31,6 +31,9 @@ public class GitHubIssueLocalDbModel : BaseLocalEntity
 
     [Column("owner_name")]
     public string OwnerName { get; set; }
+
+    [Column("user_avatar_url")]
+    public string UserAvatarUrl { get; set; }
 
     [Column("created_date")]
     public DateTime CreatedDate { get; set; }
