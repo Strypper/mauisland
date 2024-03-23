@@ -142,6 +142,8 @@
                     <CollectionView
                         Grid.Row="1"
                         Margin="0,0,0,0"
+                        EmptyView="{x:Binding EmptyViewText,
+                                              Mode=OneWay}"
                         ItemTemplate="{x:StaticResource ControlIssueItemTemplate}"
                         ItemsLayout="{x:StaticResource ControlIssueLayout}"
                         ItemsSource="{x:Binding ControlIssues,

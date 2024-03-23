@@ -37,6 +37,13 @@ public partial class CheckBoxPageViewModel : NavigationAwareBaseViewModel
     #region [ Properties ]
 
     [ObservableProperty]
+    string emptyViewText = "No issues found for this control";
+
+    [ObservableProperty]
+    string gitHubAPIRateLimit = "https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28";
+
+
+    [ObservableProperty]
     bool isChecked;
 
     [ObservableProperty]
@@ -122,7 +129,13 @@ public partial class CheckBoxPageViewModel : NavigationAwareBaseViewModel
         else
         {
             var error = result.AsT1;
-            await AppNavigator.ShowSnackbarAsync(error.ErrorMessage, null, null);
+            EmptyViewText = error.ErrorDetail;
+            await AppNavigator.ShowSnackbarAsync(error.ErrorDetail,
+                                                 async () =>
+                                                 {
+                                                     await AppNavigator.OpenUrlAsync(GitHubAPIRateLimit);
+                                                 },
+                                                 "Visit GitHub API Rate Limits Policies");
         }
     }
     #endregion

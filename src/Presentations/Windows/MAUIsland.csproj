@@ -52,10 +52,30 @@
 
 	<ItemGroup>
 	  <Compile Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
+	  <Compile Remove="Platforms\Android\**" />
+	  <Compile Remove="Platforms\iOS\**" />
+	  <Compile Remove="Platforms\MacCatalyst\**" />
+	  <Compile Remove="Platforms\Tizen\**" />
 	  <EmbeddedResource Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
+	  <EmbeddedResource Remove="Platforms\Android\**" />
+	  <EmbeddedResource Remove="Platforms\iOS\**" />
+	  <EmbeddedResource Remove="Platforms\MacCatalyst\**" />
+	  <EmbeddedResource Remove="Platforms\Tizen\**" />
 	  <MauiCss Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
+	  <MauiCss Remove="Platforms\Android\**" />
+	  <MauiCss Remove="Platforms\iOS\**" />
+	  <MauiCss Remove="Platforms\MacCatalyst\**" />
+	  <MauiCss Remove="Platforms\Tizen\**" />
 	  <MauiXaml Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
+	  <MauiXaml Remove="Platforms\Android\**" />
+	  <MauiXaml Remove="Platforms\iOS\**" />
+	  <MauiXaml Remove="Platforms\MacCatalyst\**" />
+	  <MauiXaml Remove="Platforms\Tizen\**" />
 	  <None Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
+	  <None Remove="Platforms\Android\**" />
+	  <None Remove="Platforms\iOS\**" />
+	  <None Remove="Platforms\MacCatalyst\**" />
+	  <None Remove="Platforms\Tizen\**" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="appsettings.Development.json" />
@@ -470,6 +490,22 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Core\MAUIsland.Core\MAUIsland.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PRIResource Remove="Platforms\Android\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PRIResource Remove="Platforms\iOS\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PRIResource Remove="Platforms\MacCatalyst\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PRIResource Remove="Platforms\Tizen\**" />
 	</ItemGroup>
 
 
