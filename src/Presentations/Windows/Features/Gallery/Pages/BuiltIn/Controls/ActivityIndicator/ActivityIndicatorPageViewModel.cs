@@ -7,14 +7,17 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
     #region [ Fields ]
 
     private readonly IGitHubService gitHubService;
+    private readonly Features.LocalDbFeatures.GitHub.IGitHubIssueLocalDbService gitHubIssueLocalDbService;
     #endregion
 
     #region [ CTor ]
     public ActivityIndicatorPageViewModel(IAppNavigator appNavigator,
-                                          IGitHubService gitHubService)
+                                          IGitHubService gitHubService,
+                                          Features.LocalDbFeatures.GitHub.IGitHubIssueLocalDbService gitHubIssueLocalDbService)
                                                 : base(appNavigator)
     {
         this.gitHubService = gitHubService;
+        this.gitHubIssueLocalDbService = gitHubIssueLocalDbService;
     }
     #endregion
 
@@ -117,6 +120,8 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
             return;
 
         IsBusy = true;
+
+        await gitHubIssueLocalDbService.GetAllAsync();
 
         var result = await gitHubService.GetGitHubIssuesByLabels(ControlInformation.GitHubAuthorIssueName,
                                                                  ControlInformation.GitHubRepositoryIssueName,

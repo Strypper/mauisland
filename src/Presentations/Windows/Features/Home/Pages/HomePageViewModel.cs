@@ -1,12 +1,14 @@
 namespace MAUIsland;
 public partial class HomePageViewModel : NavigationAwareBaseViewModel
 {
-    #region [Services]
+    #region [ Fields ]
+
     private readonly IHomeService homeService;
     private readonly IConversationService conversationService;
     #endregion
 
-    #region [CTor]
+    #region [ CTor ]
+
     public HomePageViewModel(
         IAppNavigator appNavigator,
         IHomeService homeService,
@@ -18,7 +20,8 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
+
     [ObservableProperty]
     MAUIFact selectedMauiFact;
 
@@ -32,7 +35,7 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
     bool isBusy;
     #endregion
 
-    #region [Methods]
+    #region [ Methods ]
 
     protected override void OnInit(IDictionary<string, object> query)
     {
@@ -78,7 +81,8 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [RelayCommands]
+    #region [ RelayCommands ]
+
     [RelayCommand]
     Task OpenFactUrlAsync(MAUIFact fact) => AppNavigator.OpenUrlAsync(fact.FactUrl);
     #endregion

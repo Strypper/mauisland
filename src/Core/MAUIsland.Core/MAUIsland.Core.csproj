@@ -38,6 +38,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Features\GitHubFeatures\MAUIsland.GitHubFeatures\MAUIsland.GitHubFeatures.csproj" />
+	  <ProjectReference Include="..\..\Features\LocalDbFeatures\GitHub\MAUIsland.Features.LocalDbFeatures.GitHub\MAUIsland.Features.LocalDbFeatures.GitHub.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
