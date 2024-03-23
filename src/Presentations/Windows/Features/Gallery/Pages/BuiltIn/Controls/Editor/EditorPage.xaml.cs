@@ -24,12 +24,4 @@ public partial class EditorPage : IGalleryPage
     {
         string text = ((Editor)sender).Text;
     }
-
-    void OnEntryTextChanged(object sender, TextChangedEventArgs e)
-    {
-        if (!int.TryParse(e.NewTextValue, out _))
-        {
-            ((Entry)sender).Text = e.OldTextValue;
-        }
-    }
 }

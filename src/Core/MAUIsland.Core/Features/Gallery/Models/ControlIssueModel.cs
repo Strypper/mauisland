@@ -9,6 +9,9 @@ public partial class ControlIssueModel : BaseModel
     string title;
 
     [ObservableProperty]
+    string avatarUrl;
+
+    [ObservableProperty]
     string issueLinkUrl;
 
     [ObservableProperty]

@@ -1,4 +1,4 @@
-namespace MAUIsland.Features.Gallery.Pages.BuiltIn.Helpers.AppSettingsJson;
+﻿namespace MAUIsland.Features.Gallery.Pages.BuiltIn.Helpers.AppSettingsJson;
 class AppSettingsJsonControlInfo : IBuiltInGalleryCardInfo
 {
     public string ControlName => "Application Settings JSON";
@@ -19,4 +19,7 @@ class AppSettingsJsonControlInfo : IBuiltInGalleryCardInfo
     public DateTime LastUpdate => throw new NotImplementedException();
     public List<string> DoList => throw new NotImplementedException();
     public List<string> DontList => throw new NotImplementedException();
+    public string GitHubAuthorIssueName => "dotnet";
+    public string GitHubRepositoryIssueName => "maui";
+    public List<string> GitHubIssueLabels => new List<string>() { "area/hosting 🧩" };
 }

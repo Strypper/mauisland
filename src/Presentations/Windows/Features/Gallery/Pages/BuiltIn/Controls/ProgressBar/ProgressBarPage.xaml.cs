@@ -10,13 +10,17 @@ public partial class ProgressBarPage : IGalleryPage
         set { progress = value; }
     }
 
-    #region [CTor]
+    #region [ CTor ]
+
     public ProgressBarPage(ProgressBarPageViewModel vm)
     {
         InitializeComponent();
-        BindingContext= vm;
+        BindingContext = vm;
     }
     #endregion
+
+    #region [ Event Handlers ]
+
 
     private async void ProgressBarLoadButtonClicked(object sender, EventArgs e)
     {
@@ -24,7 +28,7 @@ public partial class ProgressBarPage : IGalleryPage
 
         while (Progress < 1)
         {
-            if(Progress == 0)
+            if (Progress == 0)
             {
                 ProgressBar1.ProgressColor = Colors.Red;
             }
@@ -57,8 +61,9 @@ public partial class ProgressBarPage : IGalleryPage
     private async void ProgressBarRunButtonClicked(object sender, EventArgs e)
     {
         ProgressBar2.Progress = 0;
-        ProgressBarRunButton.IsEnabled= false;
+        ProgressBarRunButton.IsEnabled = false;
         await ProgressBar2.ProgressTo(0.999, 5000, Easing.BounceIn);
-        ProgressBarRunButton.IsEnabled= true;
+        ProgressBarRunButton.IsEnabled = true;
     }
+    #endregion
 }
