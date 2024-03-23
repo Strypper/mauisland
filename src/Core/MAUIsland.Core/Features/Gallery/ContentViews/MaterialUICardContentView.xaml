@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIsland.Core.MaterialUICardContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="root">
+    <ContentView.Resources>
+        <Style
+            x:Key="MaterialUICardStyle"
+            BaseResourceKey="FilledCardStyle"
+            TargetType="mdc:Card">
+            <Setter Property="HeightRequest" Value="200" />
+            <Setter Property="WidthRequest" Value="370" />
+        </Style>
+
+        <Style x:Key="GridContainerStyle" TargetType="Grid">
+            <Setter Property="RowDefinitions">
+                <Setter.Value>
+                    <RowDefinitionCollection>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="70" />
+                        <RowDefinition Height="60" />
+                    </RowDefinitionCollection>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style x:Key="MaterialUICardTitleStyle" TargetType="Label">
+            <Setter Property="Margin" Value="10,10,0,0" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="VerticalOptions" Value="Start" />
+            <Setter Property="Text" Value="{x:Binding ComponentData.ControlName, Source={x:Reference root}}" />
+        </Style>
+
+        <Style x:Key="ControlIconStyle" TargetType="mdc:IconButton">
+            <Setter Property="HorizontalOptions" Value="End" />
+            <Setter Property="IconData" Value="{x:Binding ComponentData.MaterialIcon, Source={x:Reference root}}" />
+        </Style>
+
+        <Style x:Key="ControlDetailStyle" TargetType="Label">
+            <Setter Property="Grid.Row" Value="1" />
+            <Setter Property="Margin" Value="10,5,0,0" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="MaximumWidthRequest" Value="330" />
+            <Setter Property="Text" Value="{Binding ComponentData.ControlDetail, Source={x:Reference root}}" />
+            <Setter Property="VerticalOptions" Value="Start" />
+        </Style>
+
+        <Style x:Key="NavigationButtonsContainerStyle" TargetType="HorizontalStackLayout">
+            <Setter Property="Grid.Row" Value="2" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Spacing" Value="2" />
+        </Style>
+
+        <Style
+            x:Key="DetailButtonStyle"
+            BaseResourceKey="OutlinedButtonStyle"
+            TargetType="mdc:Button">
+            <Setter Property="Text" Value="Detail" />
+        </Style>
+
+        <Style
+            x:Key="DocumentReferenceButtonStyle"
+            BaseResourceKey="TextButtonStyle"
+            TargetType="mdc:Button">
+            <Setter Property="Command" Value="{Binding TapCommand, Source={x:Reference root}}" />
+            <Setter Property="CommandParameter" Value="{Binding ComponentData.DocumentUrl, Source={x:Reference root}}" />
+            <Setter Property="Text" Value="Original Document" />
+        </Style>
+
+
+    </ContentView.Resources>
+
+    <mdc:Card Style="{x:StaticResource MaterialUICardStyle}">
+        <Grid Style="{x:StaticResource GridContainerStyle}">
+            <Label Style="{x:StaticResource MaterialUICardTitleStyle}" />
+            <mdc:IconButton Style="{x:StaticResource ControlIconStyle}" />
+            <Label Style="{x:StaticResource ControlDetailStyle}" />
+            <HorizontalStackLayout Style="{x:StaticResource NavigationButtonsContainerStyle}">
+                <mdc:Button Clicked="Detail_Clicked" Style="{x:StaticResource DetailButtonStyle}" />
+                <mdc:Button Style="{x:StaticResource DocumentReferenceButtonStyle}" />
+            </HorizontalStackLayout>
+            <mdc:IconButton
+                HorizontalOptions="End"
+                IconData="{x:Binding ComponentData.MaterialIcon,
+                                     Source={x:Reference root}}"
+                VerticalOptions="Start" />
+        </Grid>
+    </mdc:Card>
+</ContentView>

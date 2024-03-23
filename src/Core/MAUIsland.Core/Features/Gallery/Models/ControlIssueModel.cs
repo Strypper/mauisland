@@ -1,4 +1,4 @@
-﻿namespace MAUIsland;
+﻿namespace MAUIsland.Core;
 
 public partial class ControlIssueModel : BaseModel
 {
@@ -7,6 +7,9 @@ public partial class ControlIssueModel : BaseModel
 
     [ObservableProperty]
     string title;
+
+    [ObservableProperty]
+    string avatarUrl;
 
     [ObservableProperty]
     string issueLinkUrl;

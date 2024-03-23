@@ -1,14 +1,16 @@
-﻿namespace MAUIsland.GitHubFeatures;
+﻿using OneOf;
+
+namespace MAUIsland.GitHubFeatures;
 
 public interface IGitHubService
 {
-    Task<GitHubRepositoryModel> GetRepository(string owner, string repository);
+    Task<OneOf<ServiceSuccess, SerivceError>> GetRepository(string owner, string repository);
 
-    Task<GitHubAuthorModel> GetAuthor(string owner);
+    Task<OneOf<ServiceSuccess, SerivceError>> GetAuthor(string owner);
 
-    Task<IEnumerable<GitHubIssueModel>> GetGitHubIssues(string owner, string repository);
+    Task<OneOf<ServiceSuccess, SerivceError>> GetGitHubIssues(string owner, string repository);
 
-    Task<IEnumerable<GitHubIssueModel>> GetGitHubIssuesByLabels(string owner, string repository, IEnumerable<string> labels);
+    Task<OneOf<ServiceSuccess, SerivceError>> GetGitHubIssuesByLabels(string owner, string repository, IEnumerable<string> labels);
 
-    Task<GitHubIssueModel> GetGitHubIssueByNo(string owner, string repository, int issueNumber);
+    Task<OneOf<ServiceSuccess, SerivceError>> GetGitHubIssueByNo(string owner, string repository, int issueNumber);
 }
