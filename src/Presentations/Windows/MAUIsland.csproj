@@ -79,6 +79,8 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="appsettings.Development.json" />
+	  <None Remove="Resources\Images\members\member_long.png" />
+	  <None Remove="Resources\Images\members\member_tan.png" />
 	  <None Remove="Resources\Images\project_githubcard_bug.png" />
 	</ItemGroup>
 
@@ -470,6 +472,8 @@
 		<MauiImage Include="Resources\Images\logos\syncfusionlogo.png" />
 		<MauiImage Include="Resources\Images\logos\tizenlogo.svg" />
 		<MauiImage Include="Resources\Images\logos\windowslogo.svg" />
+		<MauiImage Include="Resources\Images\members\member_long.png" />
+		<MauiImage Include="Resources\Images\members\member_tan.png" />
 		<MauiImage Include="Resources\Images\memes\mrincredibleblackwhite.png" />
 		<MauiImage Include="Resources\Images\memes\mrincredibleblackwhite1.png" />
 		<MauiImage Include="Resources\Images\memes\mrincredibleblackwhite2.png" />

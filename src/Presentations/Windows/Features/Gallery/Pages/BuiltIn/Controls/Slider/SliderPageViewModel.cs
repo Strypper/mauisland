@@ -21,7 +21,7 @@ public partial class SliderPageViewModel : NavigationAwareBaseViewModel
     #region [ Properties ]
 
     [ObservableProperty]
-    string emptyViewText = "No issues found for this control";
+    string emptyViewText = "Fetching issues";
 
     [ObservableProperty]
     string gitHubAPIRateLimit = "https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28";
@@ -84,7 +84,6 @@ public partial class SliderPageViewModel : NavigationAwareBaseViewModel
         await RefreshControlIssues(true);
     }
     #endregion
-
 
     #region [ Methods ]
 

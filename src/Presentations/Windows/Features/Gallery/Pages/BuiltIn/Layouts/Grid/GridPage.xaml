@@ -31,6 +31,10 @@
             The Grid class defines the following properties:
         </x:String>
 
+        <x:String x:Key="ReportIssueToMauiTeamLink">
+            https://github.com/dotnet/maui/issues/new/choose
+        </x:String>
+
         <x:String x:Key="PropertiesListHeader1">
             Child views in a Grid can be positioned within their cells by the HorizontalOptions and VerticalOptions properties. These properties can be set to the following fields from the LayoutOptions struct:
         </x:String>
@@ -118,313 +122,423 @@
             </x:String>
         </x:Array>
 
+        <DataTemplate x:Key="ControlIssueItemTemplate" x:DataType="core:ControlIssueModel">
+            <Border
+                Padding="20"
+                BackgroundColor="#0a0c10"
+                StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Micro"
+                        LineBreakMode="CharacterWrap"
+                        MaxLines="2"
+                        Text="{x:Binding Title,
+                                         Mode=OneWay}"
+                        TextDecorations="Underline"
+                        ToolTipProperties.Text="{x:Binding Title,
+                                                           Mode=OneWay}" />
+                    <HorizontalStackLayout Spacing="8">
+                        <ImageButton
+                            CornerRadius="25"
+                            HeightRequest="10"
+                            Source="{x:Binding AvatarUrl,
+                                               Mode=OneWay}"
+                            VerticalOptions="Center"
+                            WidthRequest="10" />
+                        <Label Text="{x:Binding OwnerName, Mode=OneWay}" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <Label HorizontalOptions="End" Text="{x:Binding CreatedDate, Mode=OneWay}" />
+                </VerticalStackLayout>
+            </Border>
+        </DataTemplate>
+
+        <LinearItemsLayout
+            x:Key="ControlIssueLayout"
+            ItemSpacing="5"
+            Orientation="Vertical" />
 
     </core:BasePage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Border>
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter}"
-                    Header="{x:StaticResource PropertiesListHeader}"
-                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                    Style="{x:StaticResource PropertiesListStyle}" />
-            </Border>
-            <!--  Rows and Columns  -->
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Rows and columns" />
-                    <Label Text="By default, a Grid contains one row and one column:" VerticalTextAlignment="Start" />
-                    <core:SourceCodeExpander Code="{x:Binding GridWithOneRowOneColumnXamlCode}" CodeType="Xaml" />
-                    <Label Text="The following XAML shows how to create a Grid with three rows and two columns:" />
-                    <core:SourceCodeExpander Code="{x:Binding GridWithThreeRowsTwoColumsXamlCode}" CodeType="Xaml" />
-                    <Label Text="The following XAML shows the same Grid definition, and also positions child views in specific Grid cells:" />
-                    <Grid ColumnDefinitions="*, *" RowDefinitions="2*, *, 300">
-                        <BoxView HeightRequest="400" Color="Green" />
-                        <Label
-                            HorizontalOptions="Center"
-                            Text="Row 0, Column 0"
-                            VerticalOptions="Center" />
-                        <BoxView
-                            Grid.Column="1"
-                            HeightRequest="400"
-                            Color="Blue" />
-                        <Label
-                            Grid.Column="1"
-                            HorizontalOptions="Center"
-                            Text="Row 0, Column 1"
-                            VerticalOptions="Center" />
-                        <BoxView
-                            Grid.Row="1"
-                            HeightRequest="200"
-                            Color="Teal" />
-                        <Label
-                            Grid.Row="1"
-                            HorizontalOptions="Center"
-                            Text="Row 1, Column 0"
-                            VerticalOptions="Center" />
-                        <BoxView
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            HeightRequest="200"
-                            Color="Purple" />
-                        <Label
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            HorizontalOptions="Center"
-                            Text="Row1, Column 1"
-                            VerticalOptions="Center" />
-                        <BoxView
-                            Grid.Row="2"
-                            Grid.ColumnSpan="2"
-                            Color="Red" />
-                        <Label
-                            Grid.Row="2"
-                            Grid.ColumnSpan="2"
-                            HorizontalOptions="Center"
-                            Text="Row 2, Columns 0 and 1"
-                            VerticalOptions="Center" />
-                    </Grid>
-                    <core:SourceCodeExpander Code="{x:Binding GridCellsXamlCode}" CodeType="Xaml" />
-                    <Label Text="The equivalent C# code is:" />
-                    <core:SourceCodeExpander Code="{x:Binding GridCellsCSharpCode}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Border>
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Simplify row and column definitions" />
-            <!--  Simplify row and column definitions  -->
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="10">
-                    <core:SourceCodeExpander Code="{x:Binding GridCellsXamlCode}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Border>
-            <!--  Space between rows and columns  -->
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Space between rows and columns" />
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="20">
-                    <Grid ColumnSpacing="8" RowSpacing="8">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="2*" />
-                            <RowDefinition />
-                            <RowDefinition Height="300" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <BoxView HeightRequest="400" Color="Green" />
-                        <Label
-                            HorizontalOptions="Center"
-                            Text="Row 0, Column 0"
-                            VerticalOptions="Center" />
-                        <BoxView
-                            Grid.Column="1"
-                            HeightRequest="400"
-                            Color="Blue" />
-                        <Label
-                            Grid.Column="1"
-                            HorizontalOptions="Center"
-                            Text="Row 0, Column 1"
-                            VerticalOptions="Center" />
-                        <BoxView
-                            Grid.Row="1"
-                            HeightRequest="200"
-                            Color="Teal" />
-                        <Label
-                            Grid.Row="1"
-                            HorizontalOptions="Center"
-                            Text="Row 1, Column 0"
-                            VerticalOptions="Center" />
-                        <BoxView
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            HeightRequest="200"
-                            Color="Purple" />
-                        <Label
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            HorizontalOptions="Center"
-                            Text="Row1, Column 1"
-                            VerticalOptions="Center" />
-                        <BoxView
-                            Grid.Row="2"
-                            Grid.ColumnSpan="2"
-                            Color="Red" />
-                        <Label
-                            Grid.Row="2"
-                            Grid.ColumnSpan="2"
-                            HorizontalOptions="Center"
-                            Text="Row 2, Columns 0 and 1"
-                            VerticalOptions="Center" />
-                    </Grid>
-                    <core:SourceCodeExpander Code="{x:Binding GridSpaceBetweenRowColumnXamlCode}" CodeType="Xaml" />
-                    <Label Text="The equivalent C# code is:" />
-                    <core:SourceCodeExpander Code="{x:Binding GridSpaceBetweenRowColumnXamlCode}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Border>
-            <!--  Alignment  -->
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Alignment" />
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="20">
-                    <CollectionView
-                        Footer="{x:StaticResource PropertiesListFooter1}"
-                        Header="{x:StaticResource PropertiesListHeader1}"
-                        ItemsSource="{x:StaticResource PropertiesItemsSource1}"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
+    <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy, Mode=OneWay}">
+        <ScrollView>
+            <Grid ColumnDefinitions="310, *" ColumnSpacing="20">
+                <Grid RowDefinitions="90, 540, 120" RowSpacing="10">
+                    <Border
+                        Padding="20"
+                        BackgroundColor="#272b33"
+                        StrokeShape="RoundRectangle 4">
+                        <Grid>
+                            <HorizontalStackLayout Spacing="10">
+                                <Image
+                                    HeightRequest="25"
+                                    Source="githublogo.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="25" />
 
-                        <BoxView HeightRequest="300" Color="AliceBlue" />
-                        <Label
-                            HorizontalOptions="Start"
-                            Text="Upper left"
-                            TextColor="Black"
-                            VerticalOptions="Start" />
-                        <BoxView
-                            Grid.Column="1"
-                            HeightRequest="300"
-                            Color="LightSkyBlue" />
-                        <Label
-                            Grid.Column="1"
-                            HorizontalOptions="Center"
-                            Text="Upper center"
-                            TextColor="Black"
-                            VerticalOptions="Start" />
-                        <BoxView
-                            Grid.Column="2"
-                            HeightRequest="300"
-                            Color="CadetBlue" />
-                        <Label
-                            Grid.Column="2"
-                            HorizontalOptions="End"
-                            Text="Upper right"
-                            TextColor="Black"
-                            VerticalOptions="Start" />
-                        <BoxView
-                            Grid.Row="1"
-                            HeightRequest="300"
-                            Color="CornflowerBlue" />
-                        <Label
-                            Grid.Row="1"
-                            HorizontalOptions="Start"
-                            Text="Center left"
-                            TextColor="Black"
-                            VerticalOptions="Center" />
-                        <BoxView
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            HeightRequest="300"
-                            Color="DodgerBlue" />
-                        <Label
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            HorizontalOptions="Center"
-                            Text="Center center"
-                            TextColor="Black"
-                            VerticalOptions="Center" />
-                        <BoxView
-                            Grid.Row="1"
-                            Grid.Column="2"
-                            HeightRequest="300"
-                            Color="DarkSlateBlue" />
-                        <Label
-                            Grid.Row="1"
-                            Grid.Column="2"
-                            HorizontalOptions="End"
-                            Text="Center right"
-                            TextColor="Black"
-                            VerticalOptions="Center" />
-                        <BoxView
-                            Grid.Row="2"
-                            HeightRequest="300"
-                            Color="SteelBlue" />
-                        <Label
-                            Grid.Row="2"
-                            HorizontalOptions="Start"
-                            Text="Lower left"
-                            TextColor="Black"
-                            VerticalOptions="End" />
-                        <BoxView
-                            Grid.Row="2"
-                            Grid.Column="1"
-                            HeightRequest="300"
-                            Color="LightBlue" />
-                        <Label
-                            Grid.Row="2"
-                            Grid.Column="1"
-                            HorizontalOptions="Center"
-                            Text="Lower center"
-                            TextColor="Black"
-                            VerticalOptions="End" />
-                        <BoxView
-                            Grid.Row="2"
-                            Grid.Column="2"
-                            HeightRequest="300"
-                            Color="BlueViolet" />
-                        <Label
-                            Grid.Row="2"
-                            Grid.Column="2"
-                            HorizontalOptions="End"
-                            Text="Lower right"
-                            TextColor="Black"
-                            VerticalOptions="End" />
-                    </Grid>
-                    <core:SourceCodeExpander Code="{x:Binding GridWithNineCellsXamlCode}" CodeType="Xaml" />
-                    <Label Text="The equivalent C# code is:" />
-                    <core:SourceCodeExpander Code="{x:Binding GridWithNineCellsCSharpCode}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Border>
-            <!--  Nested Grid objects  -->
-            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Nested Grid objects " />
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="20">
-                    <Label Text="The following XAML shows an example of nesting Grid objects:" />
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="500" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-
-                        <BoxView x:Name="boxView" Color="Black" />
-                        <Grid Grid.Row="1" Margin="20">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <Slider x:Name="redSlider" ValueChanged="OnSliderValueChanged" />
-                            <Label Grid.Row="1" Text="{Binding Source={x:Reference redSlider}, Path=Value, Converter={StaticResource doubleToInt}, ConverterParameter=255, StringFormat='Red = {0}'}" />
-                            <Slider
-                                x:Name="greenSlider"
-                                Grid.Row="2"
-                                ValueChanged="OnSliderValueChanged" />
-                            <Label Grid.Row="3" Text="{Binding Source={x:Reference greenSlider}, Path=Value, Converter={StaticResource doubleToInt}, ConverterParameter=255, StringFormat='Green = {0}'}" />
-                            <Slider
-                                x:Name="blueSlider"
-                                Grid.Row="4"
-                                ValueChanged="OnSliderValueChanged" />
-                            <Label Grid.Row="5" Text="{Binding Source={x:Reference blueSlider}, Path=Value, Converter={StaticResource doubleToInt}, ConverterParameter=255, StringFormat='Blue = {0}'}" />
+                                <Label
+                                    HorizontalOptions="Start"
+                                    Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                    Text="Issues"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                            <Border
+                                BackgroundColor="OrangeRed"
+                                HeightRequest="40"
+                                HorizontalOptions="End"
+                                StrokeShape="RoundRectangle 20"
+                                VerticalOptions="Center"
+                                WidthRequest="40">
+                                <Label
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    Text="{x:Binding ControlIssues.Count,
+                                                     Mode=OneWay}"
+                                    VerticalOptions="Center" />
+                            </Border>
                         </Grid>
-                    </Grid>
-                    <core:SourceCodeExpander Code="{x:Binding GridObjectXamlCode}" CodeType="Xaml" />
-                    <Label Text="The equivalent C# code is:" />
-                    <core:SourceCodeExpander Code="{x:Binding GridObjectCSharpCode}" CodeType="CSharp" />
+                    </Border>
+                    <CollectionView
+                        Grid.Row="1"
+                        Margin="0,0,0,0"
+                        EmptyView="{x:Binding EmptyViewText,
+                                              Mode=OneWay}"
+                        ItemTemplate="{x:StaticResource ControlIssueItemTemplate}"
+                        ItemsLayout="{x:StaticResource ControlIssueLayout}"
+                        ItemsSource="{x:Binding ControlIssues,
+                                                Mode=OneWay}"
+                        SelectedItem="{x:Binding SelectedControlIssue,
+                                                 Mode=TwoWay}"
+                        SelectionChangedCommand="{x:Binding OpenUrlCommand}"
+                        SelectionChangedCommandParameter="{x:Binding SelectedControlIssue.IssueLinkUrl,
+                                                                     Mode=OneWay}"
+                        SelectionMode="Single"
+                        VerticalOptions="Start" />
+                    <Border
+                        Grid.Row="2"
+                        Margin="0,0,0,10"
+                        Padding="20"
+                        BackgroundColor="#272b33"
+                        StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="5">
+                            <Label
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="Found a new bug?"
+                                TextColor="White"
+                                TextDecorations="Underline" />
+                            <Button
+                                Command="{x:Binding OpenUrlCommand}"
+                                CommandParameter="{x:StaticResource ReportIssueToMauiTeamLink}"
+                                Text="Report to the MAUI team" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+                <VerticalStackLayout Grid.Column="1" Spacing="20">
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                    </Border>
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <CollectionView
+                            Footer="{x:StaticResource PropertiesListFooter}"
+                            Header="{x:StaticResource PropertiesListHeader}"
+                            ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                            Style="{x:StaticResource PropertiesListStyle}" />
+                    </Border>
+                    <!--  Rows and Columns  -->
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="20">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Rows and columns" />
+                            <Label Text="By default, a Grid contains one row and one column:" VerticalTextAlignment="Start" />
+                            <core:SourceCodeExpander Code="{x:Binding GridWithOneRowOneColumnXamlCode}" CodeType="Xaml" />
+                            <Label Text="The following XAML shows how to create a Grid with three rows and two columns:" />
+                            <core:SourceCodeExpander Code="{x:Binding GridWithThreeRowsTwoColumsXamlCode}" CodeType="Xaml" />
+                            <Label Text="The following XAML shows the same Grid definition, and also positions child views in specific Grid cells:" />
+                            <Grid ColumnDefinitions="*, *" RowDefinitions="2*, *, 300">
+                                <BoxView HeightRequest="400" Color="Green" />
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Text="Row 0, Column 0"
+                                    VerticalOptions="Center" />
+                                <BoxView
+                                    Grid.Column="1"
+                                    HeightRequest="400"
+                                    Color="Blue" />
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalOptions="Center"
+                                    Text="Row 0, Column 1"
+                                    VerticalOptions="Center" />
+                                <BoxView
+                                    Grid.Row="1"
+                                    HeightRequest="200"
+                                    Color="Teal" />
+                                <Label
+                                    Grid.Row="1"
+                                    HorizontalOptions="Center"
+                                    Text="Row 1, Column 0"
+                                    VerticalOptions="Center" />
+                                <BoxView
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    HeightRequest="200"
+                                    Color="Purple" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    HorizontalOptions="Center"
+                                    Text="Row1, Column 1"
+                                    VerticalOptions="Center" />
+                                <BoxView
+                                    Grid.Row="2"
+                                    Grid.ColumnSpan="2"
+                                    Color="Red" />
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalOptions="Center"
+                                    Text="Row 2, Columns 0 and 1"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                            <core:SourceCodeExpander Code="{x:Binding GridCellsXamlCode}" CodeType="Xaml" />
+                            <Label Text="The equivalent C# code is:" />
+                            <core:SourceCodeExpander Code="{x:Binding GridCellsCSharpCode}" CodeType="CSharp" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Simplify row and column definitions" />
+                    <!--  Simplify row and column definitions  -->
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="10">
+                            <core:SourceCodeExpander Code="{x:Binding GridCellsXamlCode}" CodeType="Xaml" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <!--  Space between rows and columns  -->
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Space between rows and columns" />
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="20">
+                            <Grid ColumnSpacing="8" RowSpacing="8">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*" />
+                                    <RowDefinition />
+                                    <RowDefinition Height="300" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <BoxView HeightRequest="400" Color="Green" />
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Text="Row 0, Column 0"
+                                    VerticalOptions="Center" />
+                                <BoxView
+                                    Grid.Column="1"
+                                    HeightRequest="400"
+                                    Color="Blue" />
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalOptions="Center"
+                                    Text="Row 0, Column 1"
+                                    VerticalOptions="Center" />
+                                <BoxView
+                                    Grid.Row="1"
+                                    HeightRequest="200"
+                                    Color="Teal" />
+                                <Label
+                                    Grid.Row="1"
+                                    HorizontalOptions="Center"
+                                    Text="Row 1, Column 0"
+                                    VerticalOptions="Center" />
+                                <BoxView
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    HeightRequest="200"
+                                    Color="Purple" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    HorizontalOptions="Center"
+                                    Text="Row1, Column 1"
+                                    VerticalOptions="Center" />
+                                <BoxView
+                                    Grid.Row="2"
+                                    Grid.ColumnSpan="2"
+                                    Color="Red" />
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalOptions="Center"
+                                    Text="Row 2, Columns 0 and 1"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                            <core:SourceCodeExpander Code="{x:Binding GridSpaceBetweenRowColumnXamlCode}" CodeType="Xaml" />
+                            <Label Text="The equivalent C# code is:" />
+                            <core:SourceCodeExpander Code="{x:Binding GridSpaceBetweenRowColumnXamlCode}" CodeType="CSharp" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <!--  Alignment  -->
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Alignment" />
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="20">
+                            <CollectionView
+                                Footer="{x:StaticResource PropertiesListFooter1}"
+                                Header="{x:StaticResource PropertiesListHeader1}"
+                                ItemsSource="{x:StaticResource PropertiesItemsSource1}"
+                                Style="{x:StaticResource PropertiesListStyle}" />
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <BoxView HeightRequest="300" Color="AliceBlue" />
+                                <Label
+                                    HorizontalOptions="Start"
+                                    Text="Upper left"
+                                    TextColor="Black"
+                                    VerticalOptions="Start" />
+                                <BoxView
+                                    Grid.Column="1"
+                                    HeightRequest="300"
+                                    Color="LightSkyBlue" />
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalOptions="Center"
+                                    Text="Upper center"
+                                    TextColor="Black"
+                                    VerticalOptions="Start" />
+                                <BoxView
+                                    Grid.Column="2"
+                                    HeightRequest="300"
+                                    Color="CadetBlue" />
+                                <Label
+                                    Grid.Column="2"
+                                    HorizontalOptions="End"
+                                    Text="Upper right"
+                                    TextColor="Black"
+                                    VerticalOptions="Start" />
+                                <BoxView
+                                    Grid.Row="1"
+                                    HeightRequest="300"
+                                    Color="CornflowerBlue" />
+                                <Label
+                                    Grid.Row="1"
+                                    HorizontalOptions="Start"
+                                    Text="Center left"
+                                    TextColor="Black"
+                                    VerticalOptions="Center" />
+                                <BoxView
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    HeightRequest="300"
+                                    Color="DodgerBlue" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    HorizontalOptions="Center"
+                                    Text="Center center"
+                                    TextColor="Black"
+                                    VerticalOptions="Center" />
+                                <BoxView
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    HeightRequest="300"
+                                    Color="DarkSlateBlue" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    HorizontalOptions="End"
+                                    Text="Center right"
+                                    TextColor="Black"
+                                    VerticalOptions="Center" />
+                                <BoxView
+                                    Grid.Row="2"
+                                    HeightRequest="300"
+                                    Color="SteelBlue" />
+                                <Label
+                                    Grid.Row="2"
+                                    HorizontalOptions="Start"
+                                    Text="Lower left"
+                                    TextColor="Black"
+                                    VerticalOptions="End" />
+                                <BoxView
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    HeightRequest="300"
+                                    Color="LightBlue" />
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    HorizontalOptions="Center"
+                                    Text="Lower center"
+                                    TextColor="Black"
+                                    VerticalOptions="End" />
+                                <BoxView
+                                    Grid.Row="2"
+                                    Grid.Column="2"
+                                    HeightRequest="300"
+                                    Color="BlueViolet" />
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="2"
+                                    HorizontalOptions="End"
+                                    Text="Lower right"
+                                    TextColor="Black"
+                                    VerticalOptions="End" />
+                            </Grid>
+                            <core:SourceCodeExpander Code="{x:Binding GridWithNineCellsXamlCode}" CodeType="Xaml" />
+                            <Label Text="The equivalent C# code is:" />
+                            <core:SourceCodeExpander Code="{x:Binding GridWithNineCellsCSharpCode}" CodeType="CSharp" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <!--  Nested Grid objects  -->
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Nested Grid objects " />
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="20">
+                            <Label Text="The following XAML shows an example of nesting Grid objects:" />
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="500" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <BoxView x:Name="boxView" Color="Black" />
+                                <Grid Grid.Row="1" Margin="20">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Slider x:Name="redSlider" ValueChanged="OnSliderValueChanged" />
+                                    <Label Grid.Row="1" Text="{Binding Source={x:Reference redSlider}, Path=Value, Converter={StaticResource doubleToInt}, ConverterParameter=255, StringFormat='Red = {0}'}" />
+                                    <Slider
+                                        x:Name="greenSlider"
+                                        Grid.Row="2"
+                                        ValueChanged="OnSliderValueChanged" />
+                                    <Label Grid.Row="3" Text="{Binding Source={x:Reference greenSlider}, Path=Value, Converter={StaticResource doubleToInt}, ConverterParameter=255, StringFormat='Green = {0}'}" />
+                                    <Slider
+                                        x:Name="blueSlider"
+                                        Grid.Row="4"
+                                        ValueChanged="OnSliderValueChanged" />
+                                    <Label Grid.Row="5" Text="{Binding Source={x:Reference blueSlider}, Path=Value, Converter={StaticResource doubleToInt}, ConverterParameter=255, StringFormat='Blue = {0}'}" />
+                                </Grid>
+                            </Grid>
+                            <core:SourceCodeExpander Code="{x:Binding GridObjectXamlCode}" CodeType="Xaml" />
+                            <Label Text="The equivalent C# code is:" />
+                            <core:SourceCodeExpander Code="{x:Binding GridObjectCSharpCode}" CodeType="CSharp" />
+                        </VerticalStackLayout>
+                    </Border>
                 </VerticalStackLayout>
-            </Border>
-        </VerticalStackLayout>
-    </ScrollView>
+            </Grid>
+        </ScrollView>
+    </RefreshView>
 </core:BasePage>

@@ -1,16 +1,14 @@
-﻿using Syncfusion.Maui.Charts;
-using Syncfusion.Maui.Core;
-
-namespace MAUIsland;
+﻿namespace MAUIsland;
 
 public class HomeService : IHomeService
 {
-    #region [Services]
+    #region [ Fields ]
+
     private readonly IControlsService mauiControlsService;
     #endregion
 
+    #region [ CTor ]
 
-    #region [CTor]
     public HomeService(IControlsService mauiControlsService)
     {
         this.mauiControlsService = mauiControlsService;
@@ -151,96 +149,67 @@ public class HomeService : IHomeService
         return await Task.Run(async () =>
         {
             var activites = new List<ApplicationNew>();
-            var sliderControl = await this.mauiControlsService
-                                                .GetControlByNameAsync(ControlGroupInfo.BuiltInControls,
-                                                                       nameof(Slider));
 
-            var stepperControl = await this.mauiControlsService
-                                                .GetControlByNameAsync(ControlGroupInfo.BuiltInControls,
-                                                           nameof(Stepper));
+            var controlGroups = await mauiControlsService.GetControlGroupsAsync();
 
-            var sfAvatarViewControl = await this.mauiControlsService
-                                                .GetControlByNameAsync(ControlGroupInfo.SyncfusionControls,
-                                                nameof(SfAvatarView));
+            string issuesListNews = "Every control and layout now comes with an included GitHub Issues List, enabling quick tracking of issues related to the control or layout you are exploring on the official MAUI repository.";
 
-            var sfCircularChartControl = await this.mauiControlsService
-                                                .GetControlByNameAsync(ControlGroupInfo.SyncfusionControls,
-                                                nameof(SfCircularChart));
+            string mauiToolkitNews = "The .NET MAUI Community Toolkit now include 4 new controls, 9 converters and 3 layouts";
 
-            var switchControl = await this.mauiControlsService
-                                                .GetControlByNameAsync(ControlGroupInfo.BuiltInControls,
-                                                 nameof(Switch));
+            string repoCachedNews = "The Community gallery has been cached locally to provide a faster and more responsive experience when browsing controls and layouts. This cache is updated every 1 hours to ensure you have the latest information available.";
 
-            var timepickerControl = await this.mauiControlsService
-                                            .GetControlByNameAsync(ControlGroupInfo.BuiltInControls,
-                                                           nameof(TimePicker));
-
-            var labelControl = await this.mauiControlsService
-                                            .GetControlByNameAsync(ControlGroupInfo.BuiltInControls,
-                                                           nameof(Label));
-
+            string materialUINews = "The Material Component group has been added to MAUIsland with 9 controls to explore";
 
             activites.Add(new ApplicationNew()
             {
+                Title = "Issues List",
                 AuthorName = "Strypper",
                 AuthorImageUrl = "https://i.imgur.com/vc9FudE.jpg",
-                Component = sliderControl,
+                SecondImage = "dotnet_bot.png",
                 Activity = NewActivity.AddFeature,
-                NewLog = sliderControl.ControlDetail
+                NewLog = issuesListNews,
+                Date = new DateTime(2024, 3, 22),
+                NewsRoute = AppRoutes.CardsByGroupPage,
+                Arg = controlGroups.FirstOrDefault(x => x.Name == ControlGroupInfo.BuiltInControls)
             });
 
             activites.Add(new ApplicationNew()
             {
-                AuthorName = "Tuyen",
-                AuthorImageUrl = "https://totechsintranet.blob.core.windows.net/team-members/Tuyen.jpg",
-                Component = stepperControl,
+                Title = "Community Toolkit",
+                AuthorName = "Long",
+                AuthorImageUrl = "member_long.png",
+                SecondImage = "mauitoolkit_logo.png",
                 Activity = NewActivity.AddFeature,
-                NewLog = stepperControl.ControlDetail
+                NewLog = mauiToolkitNews,
+                Date = new DateTime(2024, 2, 01),
+                NewsRoute = AppRoutes.CardsByGroupPage,
+                Arg = controlGroups.FirstOrDefault(x => x.Name == ControlGroupInfo.CommunityToolkit)
             });
 
             activites.Add(new ApplicationNew()
             {
-                AuthorName = "Viper",
-                AuthorImageUrl = "https://i.imgur.com/TcJ4QeI.png",
-                Component = sfAvatarViewControl,
+                Title = "Repository Cache",
+                AuthorName = "Tân",
+                AuthorImageUrl = "member_tan.png",
+                SecondImage = "githublogo.png",
                 Activity = NewActivity.AddFeature,
-                NewLog = sfAvatarViewControl.ControlDetail
+                Date = new DateTime(2024, 2, 18),
+                NewLog = repoCachedNews,
+                NewsRoute = AppRoutes.CardsByGroupPage,
+                Arg = controlGroups.FirstOrDefault(x => x.Name == ControlGroupInfo.GitHubCommunity)
             });
 
             activites.Add(new ApplicationNew()
             {
-                AuthorName = "Nghia",
-                AuthorImageUrl = "https://totechsintranet.blob.core.windows.net/team-members/Nghia.jpg",
-                Component = switchControl,
+                Title = "Material Components",
+                AuthorName = "Strypper",
+                AuthorImageUrl = "https://i.imgur.com/vc9FudE.jpg",
+                SecondImage = "materialuilogo.png",
                 Activity = NewActivity.AddFeature,
-                NewLog = switchControl.ControlDetail
-            });
-
-            activites.Add(new ApplicationNew()
-            {
-                AuthorName = "Hoang",
-                AuthorImageUrl = "https://totechsintranet.blob.core.windows.net/team-members/Hoang.jpg",
-                Component = sfCircularChartControl,
-                Activity = NewActivity.AddFeature,
-                NewLog = sfCircularChartControl.ControlDetail
-            });
-
-            activites.Add(new ApplicationNew()
-            {
-                AuthorName = "Tan",
-                AuthorImageUrl = "https://totechsintranet.blob.core.windows.net/team-members/Tan.jpg",
-                Component = timepickerControl,
-                Activity = NewActivity.AddFeature,
-                NewLog = timepickerControl.ControlDetail
-            });
-
-            activites.Add(new ApplicationNew()
-            {
-                AuthorName = "Dat",
-                AuthorImageUrl = "https://totechsintranet.blob.core.windows.net/team-members/Dat1.jpg",
-                Component = labelControl,
-                Activity = NewActivity.AddFeature,
-                NewLog = labelControl.ControlDetail
+                Date = new DateTime(2023, 11, 10),
+                NewLog = materialUINews,
+                NewsRoute = AppRoutes.CardsByGroupPage,
+                Arg = controlGroups.FirstOrDefault(x => x.Name == ControlGroupInfo.MaterialComponent)
             });
 
             return (IEnumerable<ApplicationNew>)activites;

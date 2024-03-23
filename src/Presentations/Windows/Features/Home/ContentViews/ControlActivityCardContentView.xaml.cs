@@ -1,26 +1,24 @@
-using Microsoft.Maui;
-
 namespace MAUIsland;
 
 public partial class ControlActivityCardContentView : ContentView
 {
-    #region [CTor]
+    #region [ CTor ]
     public ControlActivityCardContentView()
     {
         InitializeComponent();
     }
     #endregion
 
-    #region [Bindable Properties]
+    #region [ Bindable Properties ]
     public static readonly BindableProperty ApplicationNewProperty = BindableProperty.Create(
-    nameof(ApplicationNew),
-    typeof(ApplicationNew),
-    typeof(RoundedEntry),
-    default(ApplicationNew)
+            nameof(ApplicationNew),
+            typeof(ApplicationNew),
+            typeof(RoundedEntry),
+            default(ApplicationNew)
     );
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
     public ApplicationNew ApplicationNew
     {
         get => (ApplicationNew)GetValue(ApplicationNewProperty);
@@ -28,6 +26,12 @@ public partial class ControlActivityCardContentView : ContentView
     }
     #endregion
 
-    private void Detail_Clicked(object sender, EventArgs e)
-       => Shell.Current.GoToAsync(ApplicationNew.Component.ControlRoute);
+    private async void Detail_Clicked(object sender, EventArgs e)
+    {
+        var appNavigator = ServiceHelper.GetService<IAppNavigator>();
+        if (ApplicationNew.Arg is null)
+            await appNavigator.NavigateAsync(ApplicationNew.NewsRoute);
+        else
+            await appNavigator.NavigateAsync(ApplicationNew.NewsRoute, args: ApplicationNew.Arg);
+    }
 }

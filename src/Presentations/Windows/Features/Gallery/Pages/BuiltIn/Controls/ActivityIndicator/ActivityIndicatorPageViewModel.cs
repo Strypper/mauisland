@@ -108,7 +108,6 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
     }
     #endregion
 
-
     #region [ Methods ]
 
     async Task RefreshControlIssues(bool forced)
