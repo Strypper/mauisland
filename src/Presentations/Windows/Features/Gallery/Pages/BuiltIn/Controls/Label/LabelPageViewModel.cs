@@ -1,21 +1,58 @@
-﻿namespace MAUIsland;
+﻿using MAUIsland.GitHubFeatures;
+
+namespace MAUIsland;
 
 public partial class LabelPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [CTor]
-    public LabelPageViewModel(IAppNavigator appNavigator)
-                                    : base(appNavigator)
-    {
+    #region [ Fields ]
 
+    private readonly IGitHubService gitHubService;
+    #endregion
+
+    #region [ CTor ]
+    public LabelPageViewModel(IAppNavigator appNavigator,
+                                          IGitHubService gitHubService)
+                                                : base(appNavigator)
+    {
+        this.gitHubService = gitHubService;
     }
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
+
+    [ObservableProperty]
+    string emptyViewText = "No issues found for this control";
+
+    [ObservableProperty]
+    string gitHubAPIRateLimit = "https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28";
+
+    [ObservableProperty]
+    IBuiltInGalleryCardInfo controlInformation;
+
+    [ObservableProperty]
+    bool isBusy;
+
+    [ObservableProperty]
+    ObservableCollection<ControlIssueModel> controlIssues;
+
+    [ObservableProperty]
+    ControlIssueModel selectedControlIssue;
+
     [ObservableProperty]
     string labelSpanBinding = "as well as binding the label to a state";
 
     [ObservableProperty]
-    string labelXamlCodeExample = "<Label>\r\n                        <Label.FormattedText>\r\n                            <FormattedString>\r\n                                <Span Text=\"Sometimes we only want to use one label to display a complex line of text rather than using multiples labels and arrange them inside a layout ex: \" />\r\n                                <Span\r\n                                    BackgroundColor=\"Gray\"\r\n                                    Text=\"HorizontalStackLayout\"\r\n                                    TextColor=\"Blue\" />\r\n                                <Span Text=\", You can also apply color to Span \" TextColor=\"Violet\" />\r\n                                <Span Text=\"{x:Binding LabelSpanBinding}\" TextColor=\"#e89e4e\" />\r\n                            </FormattedString>\r\n                        </Label.FormattedText>\r\n                    </Label>";
+    string labelXamlCodeExample =
+    "<Label>\r\n" +
+    "    <Label.FormattedText>\r\n" +
+    "        <FormattedString>\r\n" +
+    "            <Span Text=\"Sometimes we only want to use one label to display a complex line of text rather than using multiples labels and arrange them inside a layout ex: \" />\r\n" +
+    "            <Span BackgroundColor=\"Gray\" Text=\"HorizontalStackLayout\" TextColor=\"Blue\" />\r\n" +
+    "            <Span Text=\", You can also apply color to Span \" TextColor=\"Violet\" />\r\n" +
+    "            <Span Text=\"{x:Binding LabelSpanBinding}\" TextColor=\"#e89e4e\" />\r\n" +
+    "        </FormattedString>\r\n" +
+    "    </Label.FormattedText>\r\n" +
+    "</Label>";
 
     [ObservableProperty]
     FormattedString formatedStringByCsharpCode;
@@ -24,31 +61,41 @@ public partial class LabelPageViewModel : NavigationAwareBaseViewModel
     int selectedLineBreakModeIndex;
 
     [ObservableProperty]
-    IGalleryCardInfo controlInformation;
-
-    [ObservableProperty]
     List<string> lineBreakModes = Enum.GetNames(typeof(LineBreakMode)).ToList();
     #endregion
 
-    #region [Overrides]
+    #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
 
-        ControlInformation = query.GetData<IGalleryCardInfo>();
+        ControlInformation = query.GetData<IBuiltInGalleryCardInfo>();
 
         LoadDataAsync(true).FireAndForget();
     }
+
+    public override async Task OnAppearingAsync()
+    {
+        await base.OnAppearingAsync();
+        await RefreshAsync();
+    }
+
     #endregion
 
-    #region [Relay Commands]
+    #region [ Relay Commands ]
 
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    async Task RefreshAsync()
+    {
+        await RefreshControlIssues(true);
+    }
     #endregion
 
-    #region [Methods]
+    #region [ Methods ]
     private async Task LoadDataAsync(bool forced)
     {
         FormatedStringByCsharpCode = GenerateCodeMarkUp();
@@ -144,6 +191,51 @@ public partial class LabelPageViewModel : NavigationAwareBaseViewModel
         formattedString.Spans.Add(span37);
         formattedString.Spans.Add(span38);
         return formattedString;
+    }
+
+    async Task RefreshControlIssues(bool forced)
+    {
+        if (IsBusy)
+            return;
+
+        IsBusy = true;
+
+        var result = await gitHubService.GetGitHubIssuesByLabels(ControlInformation.GitHubAuthorIssueName,
+                                                                 ControlInformation.GitHubRepositoryIssueName,
+                                                                 ControlInformation.GitHubIssueLabels);
+
+        IsBusy = false;
+
+        if (result.IsT0) // Check if result is ServiceSuccess
+        {
+            var items = result.AsT0.AttachedData as IEnumerable<GitHubIssueModel>;
+
+            if (ControlIssues is null || forced)
+            {
+                ControlIssues = new(items.Select(x => new ControlIssueModel()
+                {
+                    IssueId = x.Id,
+                    Title = x.Title,
+                    IssueLinkUrl = x.HtmlUrl,
+                    MileStone = x.Milestone is null ? "No mile stone" : x.Milestone.Title,
+                    OwnerName = x.User.Login,
+                    AvatarUrl = x.User.AvatarUrl,
+                    CreatedDate = x.CreatedAt.DateTime,
+                    LastUpdated = x.UpdatedAt is null ? x.CreatedAt.DateTime : x.UpdatedAt.Value.DateTime
+                }));
+            }
+        }
+        else
+        {
+            var error = result.AsT1;
+            EmptyViewText = error.ErrorDetail;
+            await AppNavigator.ShowSnackbarAsync(error.ErrorDetail,
+                                                 async () =>
+                                                 {
+                                                     await AppNavigator.OpenUrlAsync(GitHubAPIRateLimit);
+                                                 },
+                                                 "Visit GitHub API Rate Limits Policies");
+        }
     }
     #endregion
 }

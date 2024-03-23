@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Refit;
-using SkiaSharp.Views.Maui.Controls.Hosting;
 using Syncfusion.Maui.Core.Hosting;
 using System.Reflection;
 using ZXing.Net.Maui.Controls;
@@ -26,7 +25,6 @@ public static class MauiProgram
         builder
             .InitCore()
             .UseMauiApp<App>()
-            .UseSkiaSharp(true)
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

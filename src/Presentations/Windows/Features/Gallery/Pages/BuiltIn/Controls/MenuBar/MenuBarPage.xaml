@@ -9,66 +9,6 @@
     Padding="10"
     x:DataType="app:MenuBarPageViewModel"
     BackgroundColor="Transparent">
-    <core:BasePage.ToolbarItems>
-        <ToolbarItem
-            Command="{x:Binding OpenUrlCommand}"
-            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
-            IconImageSource="githublogo.png"
-            Text="Source code" />
-        <ToolbarItem
-            Command="{x:Binding OpenUrlCommand}"
-            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
-            IconImageSource="microsoft.png"
-            Text="Original Document" />
-    </core:BasePage.ToolbarItems>
-
-    <core:BasePage.MenuBarItems>
-        <MenuBarItem Text="File">
-            <MenuFlyoutItem
-                Command="{Binding OpenSnackBarCommand}"
-                CommandParameter="Exit"
-                Text="Exit" />
-        </MenuBarItem>
-        <MenuBarItem Text="Locations">
-            <MenuFlyoutSubItem Text="Change Location">
-                <MenuFlyoutItem
-                    Command="{Binding OpenSnackBarCommand}"
-                    CommandParameter="Redmond"
-                    Text="Redmond, USA" />
-                <MenuFlyoutItem
-                    Command="{Binding OpenSnackBarCommand}"
-                    CommandParameter="London"
-                    Text="London, UK" />
-                <MenuFlyoutItem
-                    Command="{Binding OpenSnackBarCommand}"
-                    CommandParameter="Berlin"
-                    Text="Berlin, DE" />
-            </MenuFlyoutSubItem>
-            <MenuFlyoutSeparator />
-            <MenuFlyoutItem
-                Command="{Binding OpenSnackBarCommand}"
-                CommandParameter="Add Location"
-                Text="Add Location" />
-            <MenuFlyoutItem
-                Command="{Binding OpenSnackBarCommand}"
-                CommandParameter="Edit Location"
-                Text="Edit Location" />
-            <MenuFlyoutItem
-                Command="{Binding OpenSnackBarCommand}"
-                CommandParameter="Remove Location"
-                Text="Remove Location" />
-        </MenuBarItem>
-        <MenuBarItem Text="View">
-            <MenuFlyoutItem
-                Command="{Binding OpenSnackBarCommand}"
-                CommandParameter="Refresh"
-                Text="Refresh" />
-            <MenuFlyoutItem
-                Command="{Binding OpenSnackBarCommand}"
-                CommandParameter="Change Theme"
-                Text="Change Theme" />
-        </MenuBarItem>
-    </core:BasePage.MenuBarItems>
 
     <core:BasePage.Resources>
         <FontImageSource
@@ -80,6 +20,10 @@
 
         <x:String x:Key="ControlInfo">
             A .NET Multi-platform App UI (.NET MAUI) menu bar is a container that presents a set of menus in a horizontal row, at the top of an app on Mac Catalyst and Windows.
+        </x:String>
+
+        <x:String x:Key="ReportIssueToMauiTeamLink">
+            https://github.com/dotnet/maui/issues/new/choose
         </x:String>
 
         <x:String x:Key="PropertiesListHeader">
@@ -141,87 +85,259 @@
             </x:String>
         </x:Array>
 
+        <DataTemplate x:Key="ControlIssueItemTemplate" x:DataType="core:ControlIssueModel">
+            <Border
+                Padding="20"
+                BackgroundColor="#0a0c10"
+                StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Micro"
+                        LineBreakMode="CharacterWrap"
+                        MaxLines="2"
+                        Text="{x:Binding Title,
+                                         Mode=OneWay}"
+                        TextDecorations="Underline"
+                        ToolTipProperties.Text="{x:Binding Title,
+                                                           Mode=OneWay}" />
+                    <HorizontalStackLayout Spacing="8">
+                        <ImageButton
+                            CornerRadius="25"
+                            HeightRequest="10"
+                            Source="{x:Binding AvatarUrl,
+                                               Mode=OneWay}"
+                            VerticalOptions="Center"
+                            WidthRequest="10" />
+                        <Label Text="{x:Binding OwnerName, Mode=OneWay}" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <Label HorizontalOptions="End" Text="{x:Binding CreatedDate, Mode=OneWay}" />
+                </VerticalStackLayout>
+            </Border>
+        </DataTemplate>
+
+        <LinearItemsLayout
+            x:Key="ControlIssueLayout"
+            ItemSpacing="5"
+            Orientation="Vertical" />
+
     </core:BasePage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
-            </Border>
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter}"
-                    Header="{x:StaticResource PropertiesListHeader}"
-                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                    Style="{x:StaticResource PropertiesListStyle}" />
-            </Border>
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter1}"
-                    Header="{x:StaticResource PropertiesListHeader1}"
-                    ItemsSource="{x:StaticResource Properties1ItemsSource}"
-                    Style="{x:StaticResource PropertiesListStyle}" />
-            </Border>
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create menu bar items" />
-                    <Label
-                        Padding="8"
-                        BackgroundColor="Yellow"
-                        HorizontalOptions="Start"
-                        Text="Check on the top left of this page (on the left of the MenuBar text)"
-                        TextColor="Black" />
-                    <Label Text="{x:StaticResource CreateMenuBarItems}" />
-                    <core:SourceCodeExpander Code="{x:Binding ContentPageWithMenuBar}" CodeType="Xaml" />
-                    <Label Text="{x:StaticResource CreateMenuBarItems2}" />
+    <core:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </core:BasePage.ToolbarItems>
+
+    <core:BasePage.MenuBarItems>
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem
+                Command="{Binding OpenSnackBarCommand}"
+                CommandParameter="Exit"
+                Text="Exit" />
+        </MenuBarItem>
+        <MenuBarItem Text="Locations">
+            <MenuFlyoutSubItem Text="Change Location">
+                <MenuFlyoutItem
+                    Command="{Binding OpenSnackBarCommand}"
+                    CommandParameter="Redmond"
+                    Text="Redmond, USA" />
+                <MenuFlyoutItem
+                    Command="{Binding OpenSnackBarCommand}"
+                    CommandParameter="London"
+                    Text="London, UK" />
+                <MenuFlyoutItem
+                    Command="{Binding OpenSnackBarCommand}"
+                    CommandParameter="Berlin"
+                    Text="Berlin, DE" />
+            </MenuFlyoutSubItem>
+            <MenuFlyoutSeparator />
+            <MenuFlyoutItem
+                Command="{Binding OpenSnackBarCommand}"
+                CommandParameter="Add Location"
+                Text="Add Location" />
+            <MenuFlyoutItem
+                Command="{Binding OpenSnackBarCommand}"
+                CommandParameter="Edit Location"
+                Text="Edit Location" />
+            <MenuFlyoutItem
+                Command="{Binding OpenSnackBarCommand}"
+                CommandParameter="Remove Location"
+                Text="Remove Location" />
+        </MenuBarItem>
+        <MenuBarItem Text="View">
+            <MenuFlyoutItem
+                Command="{Binding OpenSnackBarCommand}"
+                CommandParameter="Refresh"
+                Text="Refresh" />
+            <MenuFlyoutItem
+                Command="{Binding OpenSnackBarCommand}"
+                CommandParameter="Change Theme"
+                Text="Change Theme" />
+        </MenuBarItem>
+    </core:BasePage.MenuBarItems>
+
+    <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy, Mode=OneWay}">
+        <ScrollView>
+            <Grid ColumnDefinitions="310, *" ColumnSpacing="20">
+                <Grid RowDefinitions="90, 540, 120" RowSpacing="10">
+                    <Border
+                        Padding="20"
+                        BackgroundColor="#272b33"
+                        StrokeShape="RoundRectangle 4">
+                        <Grid>
+                            <HorizontalStackLayout Spacing="10">
+                                <Image
+                                    HeightRequest="25"
+                                    Source="githublogo.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="25" />
+
+                                <Label
+                                    HorizontalOptions="Start"
+                                    Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                    Text="Issues"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                            <Border
+                                BackgroundColor="OrangeRed"
+                                HeightRequest="40"
+                                HorizontalOptions="End"
+                                StrokeShape="RoundRectangle 20"
+                                VerticalOptions="Center"
+                                WidthRequest="40">
+                                <Label
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    Text="{x:Binding ControlIssues.Count,
+                                                     Mode=OneWay}"
+                                    VerticalOptions="Center" />
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <CollectionView
+                        Grid.Row="1"
+                        Margin="0,0,0,0"
+                        EmptyView="{x:Binding EmptyViewText,
+                                              Mode=OneWay}"
+                        ItemTemplate="{x:StaticResource ControlIssueItemTemplate}"
+                        ItemsLayout="{x:StaticResource ControlIssueLayout}"
+                        ItemsSource="{x:Binding ControlIssues,
+                                                Mode=OneWay}"
+                        SelectedItem="{x:Binding SelectedControlIssue,
+                                                 Mode=TwoWay}"
+                        SelectionChangedCommand="{x:Binding OpenUrlCommand}"
+                        SelectionChangedCommandParameter="{x:Binding SelectedControlIssue.IssueLinkUrl,
+                                                                     Mode=OneWay}"
+                        SelectionMode="Single"
+                        VerticalOptions="Start" />
+                    <Border
+                        Grid.Row="2"
+                        Margin="0,0,0,10"
+                        Padding="20"
+                        BackgroundColor="#272b33"
+                        StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="5">
+                            <Label
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="Found a new bug?"
+                                TextColor="White"
+                                TextDecorations="Underline" />
+                            <Button
+                                Command="{x:Binding OpenUrlCommand}"
+                                CommandParameter="{x:StaticResource ReportIssueToMauiTeamLink}"
+                                Text="Report to the MAUI team" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+                <VerticalStackLayout Grid.Column="1" Spacing="20">
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
+                    </Border>
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <CollectionView
+                            Footer="{x:StaticResource PropertiesListFooter}"
+                            Header="{x:StaticResource PropertiesListHeader}"
+                            ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                            Style="{x:StaticResource PropertiesListStyle}" />
+                    </Border>
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <CollectionView
+                            Footer="{x:StaticResource PropertiesListFooter1}"
+                            Header="{x:StaticResource PropertiesListHeader1}"
+                            ItemsSource="{x:StaticResource Properties1ItemsSource}"
+                            Style="{x:StaticResource PropertiesListStyle}" />
+                    </Border>
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create menu bar items" />
+                            <Label
+                                Padding="8"
+                                BackgroundColor="Yellow"
+                                HorizontalOptions="Start"
+                                Text="Check on the top left of this page (on the left of the MenuBar text)"
+                                TextColor="Black" />
+                            <Label Text="{x:StaticResource CreateMenuBarItems}" />
+                            <core:SourceCodeExpander Code="{x:Binding ContentPageWithMenuBar}" CodeType="Xaml" />
+                            <Label Text="{x:StaticResource CreateMenuBarItems2}" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="You can stick menu bar everywhere" />
+                            <Label Text="Right click these below elements to trigger menu bars" />
+                            <Label
+                                FontAttributes="Bold"
+                                Text="Button:"
+                                TextDecorations="Underline" />
+                            <Button
+                                HorizontalOptions="Start"
+                                Text="&#x25B6;&#xFE0F; Play"
+                                WidthRequest="80">
+                                <FlyoutBase.ContextFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem Text="Pause">
+                                            <MenuFlyoutItem.IconImageSource>
+                                                <FontImageSource FontFamily="Arial" Glyph="&#x23F8;" />
+                                            </MenuFlyoutItem.IconImageSource>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem Text="Stop">
+                                            <MenuFlyoutItem.IconImageSource>
+                                                <FontImageSource FontFamily="Arial" Glyph="&#x23F9;" />
+                                            </MenuFlyoutItem.IconImageSource>
+                                        </MenuFlyoutItem>
+                                    </MenuFlyout>
+                                </FlyoutBase.ContextFlyout>
+                            </Button>
+                            <core:SourceCodeExpander Code="{x:Binding ButtonWithMenuBar}" CodeType="Xaml" />
+                            <Label
+                                FontAttributes="Bold"
+                                Text="Image:"
+                                TextDecorations="Underline" />
+                            <Image
+                                HeightRequest="100"
+                                HorizontalOptions="Start"
+                                Source="dotnet_bot.png"
+                                WidthRequest="100">
+                                <FlyoutBase.ContextFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem IconImageSource="{x:StaticResource DownloadIcon}" Text="Save Image" />
+                                    </MenuFlyout>
+                                </FlyoutBase.ContextFlyout>
+                            </Image>
+                            <core:SourceCodeExpander Code="{x:Binding ImageWithMenuBar}" CodeType="Xaml" />
+                        </VerticalStackLayout>
+                    </Border>
                 </VerticalStackLayout>
-            </Border>
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="You can stick menu bar everywhere" />
-                    <Label Text="Right click these below elements to trigger menu bars" />
-                    <Label
-                        FontAttributes="Bold"
-                        Text="Button:"
-                        TextDecorations="Underline" />
-                    <Button
-                        HorizontalOptions="Start"
-                        Text="&#x25B6;&#xFE0F; Play"
-                        WidthRequest="80">
-                        <FlyoutBase.ContextFlyout>
-                            <MenuFlyout>
-                                <MenuFlyoutItem Text="Pause">
-                                    <MenuFlyoutItem.IconImageSource>
-                                        <FontImageSource FontFamily="Arial" Glyph="&#x23F8;" />
-                                    </MenuFlyoutItem.IconImageSource>
-                                </MenuFlyoutItem>
-                                <MenuFlyoutItem Text="Stop">
-                                    <MenuFlyoutItem.IconImageSource>
-                                        <FontImageSource FontFamily="Arial" Glyph="&#x23F9;" />
-                                    </MenuFlyoutItem.IconImageSource>
-                                </MenuFlyoutItem>
-                            </MenuFlyout>
-                        </FlyoutBase.ContextFlyout>
-                    </Button>
-                    <core:SourceCodeExpander Code="{x:Binding ButtonWithMenuBar}" CodeType="Xaml" />
-                    <Label
-                        FontAttributes="Bold"
-                        Text="Image:"
-                        TextDecorations="Underline" />
-                    <Image
-                        HeightRequest="100"
-                        HorizontalOptions="Start"
-                        Source="dotnet_bot.png"
-                        WidthRequest="100">
-                        <FlyoutBase.ContextFlyout>
-                            <MenuFlyout>
-                                <MenuFlyoutItem IconImageSource="{x:StaticResource DownloadIcon}" Text="Save Image" />
-                            </MenuFlyout>
-                        </FlyoutBase.ContextFlyout>
-                    </Image>
-                    <core:SourceCodeExpander Code="{x:Binding ImageWithMenuBar}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Border>
-        </VerticalStackLayout>
-    </ScrollView>
+            </Grid>
+        </ScrollView>
+    </RefreshView>
 </core:BasePage>

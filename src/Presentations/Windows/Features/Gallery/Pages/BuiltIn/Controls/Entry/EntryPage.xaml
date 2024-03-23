@@ -14,6 +14,10 @@
             The .NET Multi-platform App UI (.NET MAUI) Entry allows you to enter and edit a single line of text. In addition, the Entry can be used as a password field.
         </x:String>
 
+        <x:String x:Key="ReportIssueToMauiTeamLink">
+            https://github.com/dotnet/maui/issues/new/choose
+        </x:String>
+
         <x:String x:Key="PropertiesListHeader">
             Entry defines the following properties:
         </x:String>
@@ -132,6 +136,42 @@
             </x:String>
         </x:Array>
 
+        <DataTemplate x:Key="ControlIssueItemTemplate" x:DataType="core:ControlIssueModel">
+            <Border
+                Padding="20"
+                BackgroundColor="#0a0c10"
+                StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Micro"
+                        LineBreakMode="CharacterWrap"
+                        MaxLines="2"
+                        Text="{x:Binding Title,
+                                         Mode=OneWay}"
+                        TextDecorations="Underline"
+                        ToolTipProperties.Text="{x:Binding Title,
+                                                           Mode=OneWay}" />
+                    <HorizontalStackLayout Spacing="8">
+                        <ImageButton
+                            CornerRadius="25"
+                            HeightRequest="10"
+                            Source="{x:Binding AvatarUrl,
+                                               Mode=OneWay}"
+                            VerticalOptions="Center"
+                            WidthRequest="10" />
+                        <Label Text="{x:Binding OwnerName, Mode=OneWay}" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <Label HorizontalOptions="End" Text="{x:Binding CreatedDate, Mode=OneWay}" />
+                </VerticalStackLayout>
+            </Border>
+        </DataTemplate>
+
+        <LinearItemsLayout
+            x:Key="ControlIssueLayout"
+            ItemSpacing="5"
+            Orientation="Vertical" />
+
         <LinearItemsLayout
             x:Key="ChatLayout"
             ItemSpacing="10"
@@ -155,59 +195,130 @@
             Text="Original Document" />
     </core:BasePage.ToolbarItems>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
-            </Border>
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter}"
-                    Header="{x:StaticResource PropertiesListHeader}"
-                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                    Style="{x:StaticResource PropertiesListStyle}" />
-            </Border>
+    <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy, Mode=OneWay}">
+        <ScrollView>
+            <Grid ColumnDefinitions="310, *" ColumnSpacing="20">
+                <Grid RowDefinitions="90, 540, 120" RowSpacing="10">
+                    <Border
+                        Padding="20"
+                        BackgroundColor="#272b33"
+                        StrokeShape="RoundRectangle 4">
+                        <Grid>
+                            <HorizontalStackLayout Spacing="10">
+                                <Image
+                                    HeightRequest="25"
+                                    Source="githublogo.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="25" />
 
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create Entry With Place Holder" />
-                    <Grid>
-                        <Entry
-                            x:Name="Entry"
-                            HorizontalTextAlignment="Start"
-                            Placeholder="Enter text here"
-                            PlaceholderColor="LightSlateGray"
-                            VerticalTextAlignment="Center" />
-                    </Grid>
-                    <core:SourceCodeExpander Code="{x:Binding StandardEntryXamlCode}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Border>
-
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="We used entry for chatting" />
-                    <Label Text="With the support of ReturnCommand you can fire an event with the return key and this also work for windows Enter key" />
+                                <Label
+                                    HorizontalOptions="Start"
+                                    Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                    Text="Issues"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                            <Border
+                                BackgroundColor="OrangeRed"
+                                HeightRequest="40"
+                                HorizontalOptions="End"
+                                StrokeShape="RoundRectangle 20"
+                                VerticalOptions="Center"
+                                WidthRequest="40">
+                                <Label
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    Text="{x:Binding ControlIssues.Count,
+                                                     Mode=OneWay}"
+                                    VerticalOptions="Center" />
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <CollectionView
+                        Grid.Row="1"
+                        Margin="0,0,0,0"
+                        ItemTemplate="{x:StaticResource ControlIssueItemTemplate}"
+                        ItemsLayout="{x:StaticResource ControlIssueLayout}"
+                        ItemsSource="{x:Binding ControlIssues,
+                                                Mode=OneWay}"
+                        SelectedItem="{x:Binding SelectedControlIssue,
+                                                 Mode=TwoWay}"
+                        SelectionChangedCommand="{x:Binding OpenUrlCommand}"
+                        SelectionChangedCommandParameter="{x:Binding SelectedControlIssue.IssueLinkUrl,
+                                                                     Mode=OneWay}"
+                        SelectionMode="Single"
+                        VerticalOptions="Start" />
+                    <Border
+                        Grid.Row="2"
+                        Margin="0,0,0,10"
+                        Padding="20"
+                        BackgroundColor="#272b33"
+                        StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="5">
+                            <Label
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="Found a new bug?"
+                                TextColor="White"
+                                TextDecorations="Underline" />
+                            <Button
+                                Command="{x:Binding OpenUrlCommand}"
+                                CommandParameter="{x:StaticResource ReportIssueToMauiTeamLink}"
+                                Text="Report to the MAUI team" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+                <VerticalStackLayout Grid.Column="1" Spacing="20">
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
+                    </Border>
                     <Border Padding="20" StrokeShape="RoundRectangle 4">
                         <CollectionView
-                            EmptyView="Send some messages"
-                            ItemTemplate="{x:StaticResource ChatCollectionViewItemTemplate}"
-                            ItemsLayout="{x:StaticResource ChatLayout}"
-                            ItemsSource="{x:Binding Messages}"
-                            ItemsUpdatingScrollMode="KeepLastItemInView" />
+                            Footer="{x:StaticResource PropertiesListFooter}"
+                            Header="{x:StaticResource PropertiesListHeader}"
+                            ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                            Style="{x:StaticResource PropertiesListStyle}" />
                     </Border>
-                    <Label
-                        BackgroundColor="{x:StaticResource Primary}"
-                        HorizontalOptions="Center"
-                        Text="No need for a send button just hit enter"
-                        TextColor="{x:StaticResource White}" />
-                    <Entry
-                        x:Name="ChatboxEntry"
-                        Placeholder="Type in some message and press Enter !!!"
-                        ReturnCommand="{x:Binding SendMessageCommand}"
-                        ReturnCommandParameter="{x:Binding Source={x:Reference ChatboxEntry},
-                                                           Path=Text}" />
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create Entry With Place Holder" />
+                            <Grid>
+                                <Entry
+                                    x:Name="Entry"
+                                    HorizontalTextAlignment="Start"
+                                    Placeholder="Enter text here"
+                                    PlaceholderColor="LightSlateGray"
+                                    VerticalTextAlignment="Center" />
+                            </Grid>
+                            <core:SourceCodeExpander Code="{x:Binding StandardEntryXamlCode}" CodeType="Xaml" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="We used entry for chatting" />
+                            <Label Text="With the support of ReturnCommand you can fire an event with the return key and this also work for windows Enter key" />
+                            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                                <CollectionView
+                                    EmptyView="Send some messages"
+                                    ItemTemplate="{x:StaticResource ChatCollectionViewItemTemplate}"
+                                    ItemsLayout="{x:StaticResource ChatLayout}"
+                                    ItemsSource="{x:Binding Messages}"
+                                    ItemsUpdatingScrollMode="KeepLastItemInView" />
+                            </Border>
+                            <Label
+                                BackgroundColor="{x:StaticResource Primary}"
+                                HorizontalOptions="Center"
+                                Text="No need for a send button just hit enter"
+                                TextColor="{x:StaticResource White}" />
+                            <Entry
+                                x:Name="ChatboxEntry"
+                                Placeholder="Type in some message and press Enter !!!"
+                                ReturnCommand="{x:Binding SendMessageCommand}"
+                                ReturnCommandParameter="{x:Binding Source={x:Reference ChatboxEntry},
+                                                                   Path=Text}" />
+                        </VerticalStackLayout>
+                    </Border>
                 </VerticalStackLayout>
-            </Border>
-        </VerticalStackLayout>
-    </ScrollView>
+            </Grid>
+        </ScrollView>
+    </RefreshView>
 </core:BasePage>

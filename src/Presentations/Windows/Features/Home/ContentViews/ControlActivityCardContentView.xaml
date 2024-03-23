@@ -29,7 +29,7 @@
     <acrylic:AcrylicView
         Padding="0"
         CornerRadius="5"
-        EffectStyle="Light"
+        EffectStyle="Dark"
         HeightRequest="190"
         HorizontalOptions="Fill"
         VerticalOptions="Fill"
