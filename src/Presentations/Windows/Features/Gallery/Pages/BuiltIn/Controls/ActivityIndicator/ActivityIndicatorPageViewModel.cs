@@ -112,7 +112,6 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
     }
     #endregion
 
-
     #region [ Methods ]
 
     async Task RefreshControlIssues(bool forced)
@@ -126,13 +125,15 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
 
         // First: sync from local db.
         // TODO: how to get control name?
-        var allLocalDbIssues = await GetIssueByControlNameFromLocalDb("");
+        var allLocalDbIssues = await GetIssueByControlNameFromLocalDb(ControlInformation.ControlName);
 
         // If localdb version is not null & not outdated => use local version.
         if (allLocalDbIssues != null && allLocalDbIssues.Any() && !allLocalDbIssues.Any(x => (now - x.LastUpdated).TotalHours > 1))
         {
-            if (ControlIssues is null || forced) {
-                ControlIssues = new(allLocalDbIssues.Select(x => new ControlIssueModel() {
+            if (ControlIssues is null || forced)
+            {
+                ControlIssues = new(allLocalDbIssues.Select(x => new ControlIssueModel()
+                {
                     IssueId = x.IssueId,
                     Title = x.Title,
                     IssueLinkUrl = x.IssueLinkUrl,
@@ -143,6 +144,7 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
                     LastUpdated = x.LastUpdated
                 }));
             }
+            IsBusy = false;
 
             // Done.
             return;
@@ -159,7 +161,8 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
             var issues = result.AsT0.AttachedData as IEnumerable<GitHubIssueModel>;
 
             // Save to localdb.
-            foreach(var issue in issues) {
+            foreach (var issue in issues)
+            {
                 await UpdateLocalIssue(issue);
             }
 
@@ -171,6 +174,7 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
                 {
                     IssueId = x.Id,
                     Title = x.Title,
+
                     IssueLinkUrl = x.HtmlUrl,
                     MileStone = x.Milestone is null ? "No mile stone" : x.Milestone.Title,
                     OwnerName = x.User.Login,
@@ -197,30 +201,37 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
     #endregion
 
     #region [ Methods - GitHub Issues - LocalDb ]
-    private async Task<IEnumerable<GitHubIssueLocalDbModel>> GetIssueByControlNameFromLocalDb(string controlName) {
-        try {
+    private async Task<IEnumerable<GitHubIssueLocalDbModel>> GetIssueByControlNameFromLocalDb(string controlName)
+    {
+        try
+        {
             var now = DateTime.UtcNow;
 
             return await gitHubIssueLocalDbService.GetByControlNameAsync(controlName);
         }
-        catch (Exception) {
+        catch (Exception)
+        {
             // Treat as nothing found.
             return default;
         }
     }
 
-    private async Task UpdateLocalIssue(GitHubIssueModel issue) {
-        try {
+    private async Task UpdateLocalIssue(GitHubIssueModel issue)
+    {
+        try
+        {
             var now = DateTime.UtcNow;
 
             var localIssue = await gitHubIssueLocalDbService.GetByIssueUrlAsync(issue.Url);
 
-            if(localIssue is null) {
-                await gitHubIssueLocalDbService.AddAsync(new() {
+            if (localIssue is null)
+            {
+                await gitHubIssueLocalDbService.AddAsync(new()
+                {
                     IssueId = issue.Id,
                     Title = issue.Title,
                     IssueLinkUrl = issue.Url,
-                    ControlName = "",
+                    ControlName = ControlInformation.ControlName,
                     MileStone = issue.Milestone?.Title,
                     OwnerName = issue.User?.Login,
                     UserAvatarUrl = issue.User?.AvatarUrl,
@@ -236,7 +247,8 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
 
             await gitHubIssueLocalDbService.UpdateAsync(localIssue);
         }
-        catch (Exception) {
+        catch (Exception)
+        {
             // TODO: should do something.
             return;
         }

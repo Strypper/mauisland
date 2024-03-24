@@ -25,6 +25,10 @@
 
     <core:BasePage.Resources>
 
+        <x:String x:Key="ReportIssueToMauiTeamLink">
+            https://github.com/dotnet/maui/issues/new/choose
+        </x:String>
+
         <x:String x:Key="PropertiesListHeader">
             The full argument list for the DisplayPromptAsync method is:
         </x:String>
@@ -76,96 +80,207 @@
             </x:String>
         </x:Array>
 
+        <DataTemplate x:Key="ControlIssueItemTemplate" x:DataType="core:ControlIssueModel">
+            <Border
+                Padding="20"
+                BackgroundColor="#0a0c10"
+                StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Micro"
+                        LineBreakMode="CharacterWrap"
+                        MaxLines="2"
+                        Text="{x:Binding Title,
+                                         Mode=OneWay}"
+                        TextDecorations="Underline"
+                        ToolTipProperties.Text="{x:Binding Title,
+                                                           Mode=OneWay}" />
+                    <HorizontalStackLayout Spacing="8">
+                        <ImageButton
+                            CornerRadius="25"
+                            HeightRequest="10"
+                            Source="{x:Binding AvatarUrl,
+                                               Mode=OneWay}"
+                            VerticalOptions="Center"
+                            WidthRequest="10" />
+                        <Label Text="{x:Binding OwnerName, Mode=OneWay}" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <Label HorizontalOptions="End" Text="{x:Binding CreatedDate, Mode=OneWay}" />
+                </VerticalStackLayout>
+            </Border>
+        </DataTemplate>
+
+        <LinearItemsLayout
+            x:Key="ControlIssueLayout"
+            ItemSpacing="5"
+            Orientation="Vertical" />
+
 
     </core:BasePage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Border>
+    <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy, Mode=OneWay}">
+        <ScrollView>
+            <Grid ColumnDefinitions="310, *" ColumnSpacing="20">
+                <Grid RowDefinitions="90, 540, 120" RowSpacing="10">
+                    <Border
+                        Padding="20"
+                        BackgroundColor="#272b33"
+                        StrokeShape="RoundRectangle 4">
+                        <Grid>
+                            <HorizontalStackLayout Spacing="10">
+                                <Image
+                                    HeightRequest="25"
+                                    Source="githublogo.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="25" />
 
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="10">
+                                <Label
+                                    HorizontalOptions="Start"
+                                    Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                    Text="Issues"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                            <Border
+                                BackgroundColor="OrangeRed"
+                                HeightRequest="40"
+                                HorizontalOptions="End"
+                                StrokeShape="RoundRectangle 20"
+                                VerticalOptions="Center"
+                                WidthRequest="40">
+                                <Label
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    Text="{x:Binding ControlIssues.Count,
+                                                     Mode=OneWay}"
+                                    VerticalOptions="Center" />
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <CollectionView
+                        Grid.Row="1"
+                        Margin="0,0,0,0"
+                        EmptyView="{x:Binding EmptyViewText,
+                                              Mode=OneWay}"
+                        ItemTemplate="{x:StaticResource ControlIssueItemTemplate}"
+                        ItemsLayout="{x:StaticResource ControlIssueLayout}"
+                        ItemsSource="{x:Binding ControlIssues,
+                                                Mode=OneWay}"
+                        SelectedItem="{x:Binding SelectedControlIssue,
+                                                 Mode=TwoWay}"
+                        SelectionChangedCommand="{x:Binding OpenUrlCommand}"
+                        SelectionChangedCommandParameter="{x:Binding SelectedControlIssue.IssueLinkUrl,
+                                                                     Mode=OneWay}"
+                        SelectionMode="Single"
+                        VerticalOptions="Start" />
+                    <Border
+                        Grid.Row="2"
+                        Margin="0,0,0,10"
+                        Padding="20"
+                        BackgroundColor="#272b33"
+                        StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="5">
+                            <Label
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="Found a new bug?"
+                                TextColor="White"
+                                TextDecorations="Underline" />
+                            <Button
+                                Command="{x:Binding OpenUrlCommand}"
+                                CommandParameter="{x:StaticResource ReportIssueToMauiTeamLink}"
+                                Text="Report to the MAUI team" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+                <VerticalStackLayout Grid.Column="1" Spacing="20">
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+                    </Border>
 
-                    <Label FontSize="Medium" Text="Basic Popup" />
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="10">
 
-                    <Grid
-                        Background="White"
-                        HeightRequest="1"
-                        VerticalOptions="End" />
+                            <Label FontSize="Medium" Text="Basic Popup" />
 
-                    <Button
-                        Clicked="Button_Clicked"
-                        Text="Click me!"
-                        WidthRequest="100" />
-                    <core:SourceCodeExpander Code="{x:Binding StandardPopupCSharpCode}" CodeType="CSharp" />
+                            <Grid
+                                Background="White"
+                                HeightRequest="1"
+                                VerticalOptions="End" />
+
+                            <Button
+                                Clicked="Button_Clicked"
+                                Text="Click me!"
+                                WidthRequest="100" />
+                            <core:SourceCodeExpander Code="{x:Binding StandardPopupCSharpCode}" CodeType="CSharp" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="10">
+
+                            <Label FontSize="Medium" Text="Capture popup response" />
+
+                            <Grid
+                                Background="White"
+                                HeightRequest="1"
+                                VerticalOptions="End" />
+
+                            <Button
+                                Clicked="Button_Clicked_1"
+                                Text="Click me!"
+                                WidthRequest="100" />
+                            <core:SourceCodeExpander Code="{x:Binding CaptureResponsePopupCSharpCode}" CodeType="CSharp" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="10">
+
+                            <Label FontSize="Medium" Text="An action sheet popup" />
+
+                            <Grid
+                                Background="White"
+                                HeightRequest="1"
+                                VerticalOptions="End" />
+
+                            <Button
+                                Clicked="Button_Clicked_2"
+                                Text="Click me!"
+                                WidthRequest="100" />
+                            <core:SourceCodeExpander Code="{x:Binding ActionSheetPopupCSharpCode}" CodeType="CSharp" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <CollectionView
+                            Footer="{x:StaticResource PropertiesListFooter}"
+                            Header="{x:StaticResource PropertiesListHeader}"
+                            ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                            Style="{x:StaticResource PropertiesListStyle}" />
+                    </Border>
+
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="10">
+
+                            <Label FontSize="Medium" Text="Display a prompt" />
+
+                            <Grid
+                                Background="White"
+                                HeightRequest="1"
+                                VerticalOptions="End" />
+
+                            <Button
+                                Clicked="Button_Clicked_3"
+                                Text="Click me!"
+                                WidthRequest="100" />
+                            <core:SourceCodeExpander Code="{x:Binding PromptPopupCSharpCode}" CodeType="CSharp" />
+                        </VerticalStackLayout>
+                    </Border>
+
+
                 </VerticalStackLayout>
-            </Border>
-
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="10">
-
-                    <Label FontSize="Medium" Text="Capture popup response" />
-
-                    <Grid
-                        Background="White"
-                        HeightRequest="1"
-                        VerticalOptions="End" />
-
-                    <Button
-                        Clicked="Button_Clicked_1"
-                        Text="Click me!"
-                        WidthRequest="100" />
-                    <core:SourceCodeExpander Code="{x:Binding CaptureResponsePopupCSharpCode}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Border>
-
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="10">
-
-                    <Label FontSize="Medium" Text="An action sheet popup" />
-
-                    <Grid
-                        Background="White"
-                        HeightRequest="1"
-                        VerticalOptions="End" />
-
-                    <Button
-                        Clicked="Button_Clicked_2"
-                        Text="Click me!"
-                        WidthRequest="100" />
-                    <core:SourceCodeExpander Code="{x:Binding ActionSheetPopupCSharpCode}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Border>
-
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter}"
-                    Header="{x:StaticResource PropertiesListHeader}"
-                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                    Style="{x:StaticResource PropertiesListStyle}" />
-            </Border>
-
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="10">
-
-                    <Label FontSize="Medium" Text="Display a prompt" />
-
-                    <Grid
-                        Background="White"
-                        HeightRequest="1"
-                        VerticalOptions="End" />
-
-                    <Button
-                        Clicked="Button_Clicked_3"
-                        Text="Click me!"
-                        WidthRequest="100" />
-                    <core:SourceCodeExpander Code="{x:Binding PromptPopupCSharpCode}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Border>
-
-
-        </VerticalStackLayout>
-    </ScrollView>
+            </Grid>
+        </ScrollView>
+    </RefreshView>
 </core:BasePage>

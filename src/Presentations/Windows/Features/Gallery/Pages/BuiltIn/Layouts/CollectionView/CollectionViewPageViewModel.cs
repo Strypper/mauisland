@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui.Core.Extensions;
+using MAUIsland.GitHubFeatures;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -6,12 +7,33 @@ namespace MAUIsland;
 
 public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [Services]
+    #region [ Fields ]
+
+    private readonly IGitHubService gitHubService;
     private readonly IControlsService MauiControlsService;
     private readonly IMrIncreadibleMemeService MemeService;
     #endregion
 
     #region [ Properties ]
+
+    [ObservableProperty]
+    string emptyViewText = "Fetching issues";
+
+    [ObservableProperty]
+    string gitHubAPIRateLimit = "https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28";
+
+    [ObservableProperty]
+    IBuiltInGalleryCardInfo controlInformation;
+
+    [ObservableProperty]
+    bool isBusy;
+
+    [ObservableProperty]
+    ObservableCollection<ControlIssueModel> controlIssues;
+
+    [ObservableProperty]
+    ControlIssueModel selectedControlIssue;
+
     [ObservableProperty]
     string currentSingleSelectedItemLabel = string.Empty;
 
@@ -32,9 +54,6 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     ObservableCollection<string> filterPickerItems;
-
-    [ObservableProperty]
-    IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
     IGalleryCardInfo singleSelectedControlInformation;
@@ -924,11 +943,13 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
 
     #region [ CTor ]
     public CollectionViewPageViewModel(IAppNavigator appNavigator,
+                                       IGitHubService gitHubService,
                                        IControlsService mauiControlsService,
                                        IMrIncreadibleMemeService memeService)
                                     : base(appNavigator)
     {
         this.MauiControlsService = mauiControlsService;
+        this.gitHubService = gitHubService;
         this.MemeService = memeService;
     }
     #endregion
@@ -938,13 +959,20 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
     {
         base.OnInit(query);
 
-        ControlInformation = query.GetData<IGalleryCardInfo>();
+        ControlInformation = query.GetData<IBuiltInGalleryCardInfo>();
 
         LoadDataAsync().FireAndForget();
+    }
+
+    public override async Task OnAppearingAsync()
+    {
+        await base.OnAppearingAsync();
+        await RefreshPageAsync();
     }
     #endregion
 
     #region [ Relay Commands ]
+
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
@@ -1003,6 +1031,12 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
             }
         }
     }
+
+    [RelayCommand]
+    async Task RefreshPageAsync()
+    {
+        await RefreshControlIssues(true);
+    }
     #endregion
 
     #region [ Event ]
@@ -1018,6 +1052,51 @@ public partial class CollectionViewPageViewModel : NavigationAwareBaseViewModel
     partial void OnSpanningNumberChanged(int value)
     {
         OnSpanningNumberChangedEvent(nameof(SpanningNumber));
+    }
+
+    async Task RefreshControlIssues(bool forced)
+    {
+        if (IsBusy)
+            return;
+
+        IsBusy = true;
+
+        var result = await gitHubService.GetGitHubIssuesByLabels(ControlInformation.GitHubAuthorIssueName,
+                                                                 ControlInformation.GitHubRepositoryIssueName,
+                                                                 ControlInformation.GitHubIssueLabels);
+
+        IsBusy = false;
+
+        if (result.IsT0) // Check if result is ServiceSuccess
+        {
+            var items = result.AsT0.AttachedData as IEnumerable<GitHubIssueModel>;
+
+            if (ControlIssues is null || forced)
+            {
+                ControlIssues = new(items.Select(x => new ControlIssueModel()
+                {
+                    IssueId = x.Id,
+                    Title = x.Title,
+                    IssueLinkUrl = x.HtmlUrl,
+                    MileStone = x.Milestone is null ? "No mile stone" : x.Milestone.Title,
+                    OwnerName = x.User.Login,
+                    AvatarUrl = x.User.AvatarUrl,
+                    CreatedDate = x.CreatedAt.DateTime,
+                    LastUpdated = x.UpdatedAt is null ? x.CreatedAt.DateTime : x.UpdatedAt.Value.DateTime
+                }));
+            }
+        }
+        else
+        {
+            var error = result.AsT1;
+            EmptyViewText = error.ErrorDetail;
+            await AppNavigator.ShowSnackbarAsync(error.ErrorDetail,
+                                                 async () =>
+                                                 {
+                                                     await AppNavigator.OpenUrlAsync(GitHubAPIRateLimit);
+                                                 },
+                                                 "Visit GitHub API Rate Limits Policies");
+        }
     }
     #endregion
 

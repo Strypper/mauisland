@@ -9,6 +9,7 @@
     Padding="10"
     x:DataType="app:ImageButtonPageViewModel"
     BackgroundColor="Transparent">
+
     <core:BasePage.ToolbarItems>
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
@@ -25,6 +26,10 @@
     <core:BasePage.Resources>
         <x:String x:Key="ControlInfo">
             The .NET Multi-platform App UI (.NET MAUI) Button displays text and responds to a tap or click that directs the app to carry out a task. A Button usually displays a short text string indicating a command, but it can also display a bitmap image, or a combination of text and an image. When the Button is pressed with a finger or clicked with a mouse it initiates that command.
+        </x:String>
+
+        <x:String x:Key="ReportIssueToMauiTeamLink">
+            https://github.com/dotnet/maui/issues/new/choose
         </x:String>
 
         <x:String x:Key="PropertiesListHeader">
@@ -200,7 +205,7 @@
                         </VerticalStackLayout>
                     </Border>
                 </Grid>
-                <VerticalStackLayout Spacing="20">
+                <VerticalStackLayout Grid.Column="1" Spacing="20">
                     <Border Padding="20" StrokeShape="RoundRectangle 4">
                         <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
                     </Border>

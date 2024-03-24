@@ -26,6 +26,10 @@
             The .NET Multi-platform App UI (.NET MAUI) SwipeView is a container control that wraps around an item of content, and provides context menu items that are revealed by a swipe gesture:
         </x:String>
 
+        <x:String x:Key="ReportIssueToMauiTeamLink">
+            https://github.com/dotnet/maui/issues/new/choose
+        </x:String>
+
         <x:String x:Key="ContronInfo2">
             A SwipeView must define the content that the SwipeView wraps around, and the swipe items that are revealed by the swipe gesture. The swipe items are one or more SwipeItem objects that are placed in one of the four SwipeView directional collections - LeftItems, RightItems, TopItems, or BottomItems.
         </x:String>
@@ -98,6 +102,42 @@
             </x:String>
         </x:Array>
 
+        <DataTemplate x:Key="ControlIssueItemTemplate" x:DataType="core:ControlIssueModel">
+            <Border
+                Padding="20"
+                BackgroundColor="#0a0c10"
+                StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Micro"
+                        LineBreakMode="CharacterWrap"
+                        MaxLines="2"
+                        Text="{x:Binding Title,
+                                         Mode=OneWay}"
+                        TextDecorations="Underline"
+                        ToolTipProperties.Text="{x:Binding Title,
+                                                           Mode=OneWay}" />
+                    <HorizontalStackLayout Spacing="8">
+                        <ImageButton
+                            CornerRadius="25"
+                            HeightRequest="10"
+                            Source="{x:Binding AvatarUrl,
+                                               Mode=OneWay}"
+                            VerticalOptions="Center"
+                            WidthRequest="10" />
+                        <Label Text="{x:Binding OwnerName, Mode=OneWay}" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <Label HorizontalOptions="End" Text="{x:Binding CreatedDate, Mode=OneWay}" />
+                </VerticalStackLayout>
+            </Border>
+        </DataTemplate>
+
+        <LinearItemsLayout
+            x:Key="ControlIssueLayout"
+            ItemSpacing="5"
+            Orientation="Vertical" />
+
 
         <FontImageSource
             x:Key="SwipeViewPageFluentStart48Regular"
@@ -113,224 +153,300 @@
 
     </core:BasePage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
+    <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy, Mode=OneWay}">
 
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <Label FontSize="Subtitle" Text="{x:StaticResource ContronInfo1}" />
-            </Border>
+        <ScrollView>
+            <Grid ColumnDefinitions="310, *" ColumnSpacing="20">
+                <Grid RowDefinitions="90, 540, 120" RowSpacing="10">
+                    <Border
+                        Padding="20"
+                        BackgroundColor="#272b33"
+                        StrokeShape="RoundRectangle 4">
+                        <Grid>
+                            <HorizontalStackLayout Spacing="10">
+                                <Image
+                                    HeightRequest="25"
+                                    Source="githublogo.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="25" />
 
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter1}"
-                    Header="{x:StaticResource PropertiesListHeader1}"
-                    ItemsSource="{x:StaticResource PropertyItemsSource1}"
-                    Style="{x:StaticResource PropertiesListStyle}" />
-            </Border>
-
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter2}"
-                    Header="{x:StaticResource PropertiesListHeader2}"
-                    ItemsSource="{x:StaticResource PropertyItemsSource2}"
-                    Style="{x:StaticResource PropertiesListStyle}" />
-            </Border>
-
-
-            <!--  Create Swipe View  -->
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a SwipeView" />
-                    <Label Text="{x:StaticResource ContronInfo2}" />
-                    <Label FontSize="Micro" Text="The following example shows how to instantiate a SwipeView in XAML:" />
-                    <SwipeView>
-                        <SwipeView.LeftItems>
-                            <SwipeItems>
-                                <SwipeItem
-                                    BackgroundColor="LightGreen"
-                                    Command="{x:Binding FavoriteCommand}"
-                                    IconImageSource="{x:StaticResource SwipeViewPageFluentStart48Regular}"
-                                    Text="Favorite" />
-                                <SwipeItem
-                                    BackgroundColor="LightPink"
-                                    Command="{x:Binding DeleteCommand}"
-                                    IconImageSource="{x:StaticResource SwipeViewPageFluentDelete16Regular}"
-                                    Text="Delete" />
-                            </SwipeItems>
-                        </SwipeView.LeftItems>
-                        <Grid
-                            BackgroundColor="DimGray"
-                            HeightRequest="60"
-                            WidthRequest="300">
+                                <Label
+                                    HorizontalOptions="Start"
+                                    Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                    Text="Issues"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                            <Border
+                                BackgroundColor="OrangeRed"
+                                HeightRequest="40"
+                                HorizontalOptions="End"
+                                StrokeShape="RoundRectangle 20"
+                                VerticalOptions="Center"
+                                WidthRequest="40">
+                                <Label
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    Text="{x:Binding ControlIssues.Count,
+                                                     Mode=OneWay}"
+                                    VerticalOptions="Center" />
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <CollectionView
+                        Grid.Row="1"
+                        Margin="0,0,0,0"
+                        EmptyView="{x:Binding EmptyViewText,
+                                              Mode=OneWay}"
+                        ItemTemplate="{x:StaticResource ControlIssueItemTemplate}"
+                        ItemsLayout="{x:StaticResource ControlIssueLayout}"
+                        ItemsSource="{x:Binding ControlIssues,
+                                                Mode=OneWay}"
+                        SelectedItem="{x:Binding SelectedControlIssue,
+                                                 Mode=TwoWay}"
+                        SelectionChangedCommand="{x:Binding OpenUrlCommand}"
+                        SelectionChangedCommandParameter="{x:Binding SelectedControlIssue.IssueLinkUrl,
+                                                                     Mode=OneWay}"
+                        SelectionMode="Single"
+                        VerticalOptions="Start" />
+                    <Border
+                        Grid.Row="2"
+                        Margin="0,0,0,10"
+                        Padding="20"
+                        BackgroundColor="#272b33"
+                        StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="5">
                             <Label
                                 HorizontalOptions="Center"
-                                Text="Swipe right"
-                                VerticalOptions="Center" />
-                        </Grid>
-                    </SwipeView>
-                    <Label FontSize="Micro" Text="Once a swipe item has been executed the swipe items are hidden and the SwipeView content is re-displayed. However, this behavior can be changed. For more information, see Swipe behavior." />
-                    <core:SourceCodeExpander Code="{x:Binding StandardSwipeViewXamlCode}" />
-                </VerticalStackLayout>
-            </Border>
-
-            <!--  Swipe items  -->
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Swipe items" />
-                    <SwipeView>
-                        <SwipeView.LeftItems>
-                            <SwipeItems>
-                                <SwipeItem
-                                    BackgroundColor="LightGreen"
-                                    IconImageSource="{x:StaticResource SwipeViewPageFluentStart48Regular}"
-                                    Text="Favorite" />
-                                <SwipeItem
-                                    BackgroundColor="LightPink"
-                                    IconImageSource="{x:StaticResource SwipeViewPageFluentDelete16Regular}"
-                                    Text="Delete" />
-                            </SwipeItems>
-                        </SwipeView.LeftItems>
-                        <Grid
-                            BackgroundColor="ForestGreen"
-                            HeightRequest="60"
-                            WidthRequest="300">
-                            <Label
-                                HorizontalOptions="Center"
-                                Text="Swipe right"
-                                VerticalOptions="Center" />
-                        </Grid>
-                    </SwipeView>
-                    <core:SourceCodeExpander Code="{x:Binding SwipeItemsXamlCode}" />
-                </VerticalStackLayout>
-            </Border>
-
-            <!--  Swipe direction  -->
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Swipe direction" />
-                    <SwipeView>
-                        <SwipeView.LeftItems>
-                            <SwipeItems Mode="Execute">
-                                <SwipeItem
-                                    BackgroundColor="LightPink"
-                                    Command="{x:Binding DeleteCommand}"
-                                    IconImageSource="{x:StaticResource SwipeViewPageFluentDelete16Regular}"
-                                    Text="Delete" />
-                            </SwipeItems>
-                        </SwipeView.LeftItems>
-                        <SwipeView.RightItems>
-                            <SwipeItems Mode="Reveal">
-                                <SwipeItem
-                                    BackgroundColor="LightGreen"
-                                    Command="{x:Binding FavoriteCommand}"
-                                    IconImageSource="{x:StaticResource SwipeViewPageFluentStart48Regular}"
-                                    Text="Favorite" />
-                                <SwipeItem
-                                    BackgroundColor="LightYellow"
-                                    Command="{x:Binding ShareCommand}"
-                                    IconImageSource="share.png"
-                                    Text="Share" />
-                            </SwipeItems>
-                        </SwipeView.RightItems>
-                        <Grid
-                            BackgroundColor="BlueViolet"
-                            HeightRequest="60"
-                            WidthRequest="300">
-                            <Label
                                 HorizontalTextAlignment="Center"
-                                Text="Swipe Right Or Left"
-                                VerticalOptions="Center" />
-                        </Grid>
-                    </SwipeView>
-                    <core:SourceCodeExpander Code="{x:Binding SwipeDirectionXamlCode}" />
-                </VerticalStackLayout>
-            </Border>
-
-            <!--  Swipe threshold  -->
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                                Text="Found a new bug?"
+                                TextColor="White"
+                                TextDecorations="Underline" />
+                            <Button
+                                Command="{x:Binding OpenUrlCommand}"
+                                CommandParameter="{x:StaticResource ReportIssueToMauiTeamLink}"
+                                Text="Report to the MAUI team" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
                 <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Swipe threshold" />
-                    <SwipeView Threshold="200">
-                        <SwipeView.LeftItems>
-                            <SwipeItems>
-                                <SwipeItem
-                                    BackgroundColor="LightGreen"
-                                    IconImageSource="{x:StaticResource SwipeViewPageFluentStart48Regular}"
-                                    Text="Favorite" />
-                            </SwipeItems>
-                        </SwipeView.LeftItems>
-                        <Grid
-                            BackgroundColor="Tomato"
-                            HeightRequest="60"
-                            WidthRequest="300">
-                            <Label
-                                HorizontalTextAlignment="Center"
-                                Text="Swipe Right"
-                                VerticalOptions="Center" />
-                        </Grid>
-                    </SwipeView>
-                    <core:SourceCodeExpander Code="{x:Binding SwipeThresholdXamlCode}" />
-                </VerticalStackLayout>
-            </Border>
 
-            <!--  Swipe mode  -->
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Swipe mode" />
-                    <SwipeView>
-                        <SwipeView.LeftItems>
-                            <SwipeItems Mode="Execute">
-                                <SwipeItem
-                                    BackgroundColor="LightPink"
-                                    Command="{x:Binding DeleteCommand}"
-                                    IconImageSource="{x:StaticResource SwipeViewPageFluentDelete16Regular}"
-                                    Text="Delete" />
-                            </SwipeItems>
-                        </SwipeView.LeftItems>
-                        <Grid
-                            BackgroundColor="LightCoral"
-                            HeightRequest="60"
-                            WidthRequest="300">
-                            <Label
-                                HorizontalTextAlignment="Center"
-                                Text="Swipe Right"
-                                VerticalOptions="Center" />
-                        </Grid>
-                    </SwipeView>
-                    <core:SourceCodeExpander Code="{x:Binding SwipeModeXamlCode}" />
-                </VerticalStackLayout>
-            </Border>
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <Label FontSize="Subtitle" Text="{x:StaticResource ContronInfo1}" />
+                    </Border>
 
-            <!--  Swipe behavior  -->
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Swipe behavior" />
-                    <SwipeView>
-                        <SwipeView.LeftItems>
-                            <SwipeItems SwipeBehaviorOnInvoked="RemainOpen">
-                                <SwipeItem
-                                    BackgroundColor="LightGreen"
-                                    IconImageSource="{x:StaticResource SwipeViewPageFluentStart48Regular}"
-                                    Text="Favorite" />
-                                <SwipeItem
-                                    BackgroundColor="LightPink"
-                                    IconImageSource="{x:StaticResource SwipeViewPageFluentDelete16Regular}"
-                                    Text="Delete" />
-                            </SwipeItems>
-                        </SwipeView.LeftItems>
-                        <Grid
-                            BackgroundColor="Orchid"
-                            HeightRequest="60"
-                            WidthRequest="300">
-                            <Label
-                                HorizontalTextAlignment="Center"
-                                Text="Swipe Right"
-                                VerticalOptions="Center" />
-                        </Grid>
-                    </SwipeView>
-                    <core:SourceCodeExpander Code="{x:Binding SwipeBehaviorXamlCode}" />
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <CollectionView
+                            Footer="{x:StaticResource PropertiesListFooter1}"
+                            Header="{x:StaticResource PropertiesListHeader1}"
+                            ItemsSource="{x:StaticResource PropertyItemsSource1}"
+                            Style="{x:StaticResource PropertiesListStyle}" />
+                    </Border>
+
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <CollectionView
+                            Footer="{x:StaticResource PropertiesListFooter2}"
+                            Header="{x:StaticResource PropertiesListHeader2}"
+                            ItemsSource="{x:StaticResource PropertyItemsSource2}"
+                            Style="{x:StaticResource PropertiesListStyle}" />
+                    </Border>
+
+
+                    <!--  Create Swipe View  -->
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="20">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a SwipeView" />
+                            <Label Text="{x:StaticResource ContronInfo2}" />
+                            <Label FontSize="Micro" Text="The following example shows how to instantiate a SwipeView in XAML:" />
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                            BackgroundColor="LightGreen"
+                                            Command="{x:Binding FavoriteCommand}"
+                                            IconImageSource="{x:StaticResource SwipeViewPageFluentStart48Regular}"
+                                            Text="Favorite" />
+                                        <SwipeItem
+                                            BackgroundColor="LightPink"
+                                            Command="{x:Binding DeleteCommand}"
+                                            IconImageSource="{x:StaticResource SwipeViewPageFluentDelete16Regular}"
+                                            Text="Delete" />
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <Grid
+                                    BackgroundColor="DimGray"
+                                    HeightRequest="60"
+                                    WidthRequest="300">
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        Text="Swipe right"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </SwipeView>
+                            <Label FontSize="Micro" Text="Once a swipe item has been executed the swipe items are hidden and the SwipeView content is re-displayed. However, this behavior can be changed. For more information, see Swipe behavior." />
+                            <core:SourceCodeExpander Code="{x:Binding StandardSwipeViewXamlCode}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!--  Swipe items  -->
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="20">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Swipe items" />
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                            BackgroundColor="LightGreen"
+                                            IconImageSource="{x:StaticResource SwipeViewPageFluentStart48Regular}"
+                                            Text="Favorite" />
+                                        <SwipeItem
+                                            BackgroundColor="LightPink"
+                                            IconImageSource="{x:StaticResource SwipeViewPageFluentDelete16Regular}"
+                                            Text="Delete" />
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <Grid
+                                    BackgroundColor="ForestGreen"
+                                    HeightRequest="60"
+                                    WidthRequest="300">
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        Text="Swipe right"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </SwipeView>
+                            <core:SourceCodeExpander Code="{x:Binding SwipeItemsXamlCode}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!--  Swipe direction  -->
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="20">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Swipe direction" />
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems Mode="Execute">
+                                        <SwipeItem
+                                            BackgroundColor="LightPink"
+                                            Command="{x:Binding DeleteCommand}"
+                                            IconImageSource="{x:StaticResource SwipeViewPageFluentDelete16Regular}"
+                                            Text="Delete" />
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <SwipeView.RightItems>
+                                    <SwipeItems Mode="Reveal">
+                                        <SwipeItem
+                                            BackgroundColor="LightGreen"
+                                            Command="{x:Binding FavoriteCommand}"
+                                            IconImageSource="{x:StaticResource SwipeViewPageFluentStart48Regular}"
+                                            Text="Favorite" />
+                                        <SwipeItem
+                                            BackgroundColor="LightYellow"
+                                            Command="{x:Binding ShareCommand}"
+                                            IconImageSource="share.png"
+                                            Text="Share" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Grid
+                                    BackgroundColor="BlueViolet"
+                                    HeightRequest="60"
+                                    WidthRequest="300">
+                                    <Label
+                                        HorizontalTextAlignment="Center"
+                                        Text="Swipe Right Or Left"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </SwipeView>
+                            <core:SourceCodeExpander Code="{x:Binding SwipeDirectionXamlCode}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!--  Swipe threshold  -->
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="20">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Swipe threshold" />
+                            <SwipeView Threshold="200">
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                            BackgroundColor="LightGreen"
+                                            IconImageSource="{x:StaticResource SwipeViewPageFluentStart48Regular}"
+                                            Text="Favorite" />
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <Grid
+                                    BackgroundColor="Tomato"
+                                    HeightRequest="60"
+                                    WidthRequest="300">
+                                    <Label
+                                        HorizontalTextAlignment="Center"
+                                        Text="Swipe Right"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </SwipeView>
+                            <core:SourceCodeExpander Code="{x:Binding SwipeThresholdXamlCode}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!--  Swipe mode  -->
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="20">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Swipe mode" />
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems Mode="Execute">
+                                        <SwipeItem
+                                            BackgroundColor="LightPink"
+                                            Command="{x:Binding DeleteCommand}"
+                                            IconImageSource="{x:StaticResource SwipeViewPageFluentDelete16Regular}"
+                                            Text="Delete" />
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <Grid
+                                    BackgroundColor="LightCoral"
+                                    HeightRequest="60"
+                                    WidthRequest="300">
+                                    <Label
+                                        HorizontalTextAlignment="Center"
+                                        Text="Swipe Right"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </SwipeView>
+                            <core:SourceCodeExpander Code="{x:Binding SwipeModeXamlCode}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!--  Swipe behavior  -->
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="20">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Swipe behavior" />
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems SwipeBehaviorOnInvoked="RemainOpen">
+                                        <SwipeItem
+                                            BackgroundColor="LightGreen"
+                                            IconImageSource="{x:StaticResource SwipeViewPageFluentStart48Regular}"
+                                            Text="Favorite" />
+                                        <SwipeItem
+                                            BackgroundColor="LightPink"
+                                            IconImageSource="{x:StaticResource SwipeViewPageFluentDelete16Regular}"
+                                            Text="Delete" />
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <Grid
+                                    BackgroundColor="Orchid"
+                                    HeightRequest="60"
+                                    WidthRequest="300">
+                                    <Label
+                                        HorizontalTextAlignment="Center"
+                                        Text="Swipe Right"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </SwipeView>
+                            <core:SourceCodeExpander Code="{x:Binding SwipeBehaviorXamlCode}" />
+                        </VerticalStackLayout>
+                    </Border>
                 </VerticalStackLayout>
-            </Border>
-        </VerticalStackLayout>
-    </ScrollView>
+            </Grid>
+        </ScrollView>
+    </RefreshView>
 </core:BasePage>

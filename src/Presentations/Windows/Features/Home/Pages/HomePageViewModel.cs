@@ -23,6 +23,9 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
     #region [ Properties ]
 
     [ObservableProperty]
+    string projectRepo = "https://github.com/Strypper/mauisland";
+
+    [ObservableProperty]
     MAUIFact selectedMauiFact;
 
     [ObservableProperty]
@@ -85,5 +88,11 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
 
     [RelayCommand]
     Task OpenFactUrlAsync(MAUIFact fact) => AppNavigator.OpenUrlAsync(fact.FactUrl);
+
+    [RelayCommand]
+    async Task OpenUrlAsync(string url)
+    {
+        await AppNavigator.OpenUrlAsync(url);
+    }
     #endregion
 }
