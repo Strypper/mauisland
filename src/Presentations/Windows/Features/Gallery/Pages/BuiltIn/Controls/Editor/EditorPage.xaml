@@ -25,7 +25,8 @@
 
     <core:BasePage.Resources>
         <core:StringToColorConverter x:Key="StringToColorConverter" />
-
+        <app:EditorTextTransformPickerConverter x:Key="TextTransformConverter" />
+        
         <x:String x:Key="ReportIssueToMauiTeamLink">
             https://github.com/dotnet/maui/issues/new/choose
         </x:String>
@@ -50,88 +51,59 @@
             <x:String>Black</x:String>
             <x:String>Cyan</x:String>
         </x:Array>
+        
         <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
             <x:String>
-                <![CDATA[
-                                <strong style="color:blue">AutoSize</strong>, of type <strong style="color:blue">EditorAutoSizeOption</strong>, defines whether the editor will change size to accommodate user input. By default, the editor doesn't auto size.
-                            ]]>
+                <![CDATA[   <strong style="color:blue">AutoSize</strong>, of type <strong style="color:blue">EditorAutoSizeOption</strong>, defines whether the editor will change size to accommodate user input. By default, the editor doesn't auto size.    ]]>
             </x:String>
             <x:String>
-                <![CDATA[
-                                <strong style="color:blue">CharacterSpacing</strong>, of type <strong style="color:blue">double</strong>, sets the spacing between characters in the entered text.
-                            ]]>
+                <![CDATA[   <strong style="color:blue">CharacterSpacing</strong>, of type <strong style="color:blue">double</strong>, sets the spacing between characters in the entered text.  ]]>
             </x:String>
             <x:String>
-                <![CDATA[
-                                <strong style="color:blue">CursorPosition</strong>, of type <strong style="color:blue">int</strong>, defines the position of the cursor within the editor.
-                            ]]>
+                <![CDATA[   <strong style="color:blue">CursorPosition</strong>, of type <strong style="color:blue">int</strong>, defines the position of the cursor within the editor.  ]]>
             </x:String>
             <x:String>
-                <![CDATA[
-                                <strong style="color:blue">FontAttributes</strong>, of type <strong style="color:blue">FontAttributes</strong>, determines text style.
-                            ]]>
+                <![CDATA[   <strong style="color:blue">FontAttributes</strong>, of type <strong style="color:blue">FontAttributes</strong>, determines text style.  ]]>
             </x:String>
             <x:String>
-                <![CDATA[
-                                <strong style="color:blue">FontAutoScalingEnabled</strong>, of type <strong style="color:blue">bool</strong>, defines whether the text will reflect scaling preferences set in the operating system. The default value of this property is true.
-                            ]]>
+                <![CDATA[   <strong style="color:blue">FontAutoScalingEnabled</strong>, of type <strong style="color:blue">bool</strong>, defines whether the text will reflect scaling preferences set in the operating system. The default value of this property is true.    ]]>
             </x:String>
             <x:String>
-                <![CDATA[
-                                <strong style="color:blue">FontFamily</strong>, of type <strong style="color:blue">string</strong>, defines the font family.
-                            ]]>
+                <![CDATA[   <strong style="color:blue">FontFamily</strong>, of type <strong style="color:blue">string</strong>, defines the font family.    ]]>
             </x:String>
             <x:String>
-                <![CDATA[
-                                <strong style="color:blue">FontSize</strong>, of type <strong style="color:blue">double</strong>, defines the font size.
-                            ]]>
+                <![CDATA[   <strong style="color:blue">FontSize</strong>, of type <strong style="color:blue">double</strong>, defines the font size.    ]]>
             </x:String>
             <x:String>
-                <![CDATA[
-                                <strong style="color:blue">HorizontalTextAlignment</strong>, of type <strong style="color:blue">TextAlignment</strong>, defines the horizontal alignment of the text.
-                            ]]>
+                <![CDATA[   <strong style="color:blue">HorizontalTextAlignment</strong>, of type <strong style="color:blue">TextAlignment</strong>, defines the horizontal alignment of the text.   ]]>
             </x:String>
 
             <x:String>
-                <![CDATA[
-                                <strong style="color:blue">IsTextPredictionEnabled</strong>, of type <strong style="color:blue">bool</strong>, controls whether text prediction and automatic text correction is enabled.
-                            ]]>
+                <![CDATA[   <strong style="color:blue">IsTextPredictionEnabled</strong>, of type <strong style="color:blue">bool</strong>, controls whether text prediction and automatic text correction is enabled.   ]]>
             </x:String>
 
             <x:String>
-                <![CDATA[
-                                <strong style="color:blue">Placeholder</strong>, of type <strong style="color:blue">string</strong>, defines the text that's displayed when the control is empty.
-                            ]]>
+                <![CDATA[   <strong style="color:blue">Placeholder</strong>, of type <strong style="color:blue">string</strong>, defines the text that's displayed when the control is empty.   ]]>
             </x:String>
 
             <x:String>
-                <![CDATA[
-                                <strong style="color:blue">PlaceholderColor</strong>, of type <strong style="color:blue">Color</strong>, defines the color of the placeholder text.
-                            ]]>
+                <![CDATA[   <strong style="color:blue">PlaceholderColor</strong>, of type <strong style="color:blue">Color</strong>, defines the color of the placeholder text. ]]>
             </x:String>
 
             <x:String>
-                <![CDATA[
-                                <strong style="color:blue">SelectionLength</strong>, of type <strong style="color:blue">int</strong>, represents the length of selected text within the editor.
-                            ]]>
+                <![CDATA[   <strong style="color:blue">SelectionLength</strong>, of type <strong style="color:blue">int</strong>, represents the length of selected text within the editor. ]]>
             </x:String>
 
             <x:String>
-                <![CDATA[
-                                <strong style="color:blue">Text</strong>, of type <strong style="color:blue">string</strong>, defines the text entered into the editor.
-                            ]]>
+                <![CDATA[   <strong style="color:blue">Text</strong>, of type <strong style="color:blue">string</strong>, defines the text entered into the editor. ]]>
             </x:String>
 
             <x:String>
-                <![CDATA[
-                                <strong style="color:blue">TextColor</strong>, of type <strong style="color:blue">Color</strong>, defines the color of the entered text.
-                            ]]>
+                <![CDATA[   <strong style="color:blue">TextColor</strong>, of type <strong style="color:blue">Color</strong>, defines the color of the entered text.    ]]>
             </x:String>
 
             <x:String>
-                <![CDATA[
-                                <strong style="color:blue">VerticalTextAlignment</strong>, of type <strong style="color:blue">TextAlignment</strong>, defines the vertical alignment of the text.
-                            ]]>
+                <![CDATA[   <strong style="color:blue">VerticalTextAlignment</strong>, of type <strong style="color:blue">TextAlignment</strong>, defines the vertical alignment of the text.   ]]>
             </x:String>
         </x:Array>
 
@@ -213,6 +185,7 @@
                     <CollectionView
                         Grid.Row="1"
                         Margin="0,0,0,0"
+                        EmptyView="Looks like this control is stable !!!"
                         ItemTemplate="{x:StaticResource ControlIssueItemTemplate}"
                         ItemsLayout="{x:StaticResource ControlIssueLayout}"
                         ItemsSource="{x:Binding ControlIssues,
@@ -246,77 +219,210 @@
                 </Grid>
                 <VerticalStackLayout Grid.Column="1" Spacing="20">
                     <Border Padding="20" StrokeShape="RoundRectangle 4">
-                        <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
+                        <Label FontSize="Subtitle" 
+                               Text="{x:StaticResource ControlInfo}" />
                     </Border>
-                    <Border Padding="20" StrokeShape="RoundRectangle 4">
-                        <CollectionView
-                            Footer="{x:StaticResource PropertiesListFooter}"
-                            Header="{x:StaticResource PropertiesListHeader}"
-                            ItemsSource="{x:StaticResource PropertyItemsSource}"
-                            Style="{x:StaticResource PropertiesListStyle}" />
+                    <Border Padding="20" 
+                            StrokeShape="RoundRectangle 4">
+                        <CollectionView Footer="{x:StaticResource PropertiesListFooter}"
+                                Header="{x:StaticResource PropertiesListHeader}"
+                                ItemsSource="{x:StaticResource PropertyItemsSource}"
+                                Style="{x:StaticResource PropertiesListStyle}" />
                     </Border>
-                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    
+                    <Border Padding="20" 
+                            StrokeShape="RoundRectangle 4">
                         <VerticalStackLayout Spacing="10">
-                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Simple editor" />
-                            <Editor
-                                x:Name="editor"
-                                Completed="OnEditorCompleted"
-                                HeightRequest="250"
-                                Placeholder="Enter your response here"
-                                TextChanged="OnEditorTextChanged" />
-                            <Label
-                                FontAttributes="Bold"
-                                Text="Let's watch the behavior of how old text and new text change:"
-                                TextDecorations="Underline" />
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Simple Editor" />
+                            <Editor HeightRequest="150"
+                                    Placeholder="Enter your response here"
+                                    TextChanged="OnEditorTextChanged"
+                                    Completed="OnEditorCompleted"/>
+                            <Label FontAttributes="Bold"
+                                   Text="Here is the behavior of old text and new text:"
+                                   TextDecorations="Underline" />
                             <Label>
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="Old Text:" />
-                                        <Span x:Name="OldTextSpan" />
+                                        <Span Text="Old Text: " />
+                                        <Span x:Name="OldTextSpan" Text="Your old text"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
                             <Label>
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="New Text:" />
-                                        <Span x:Name="NewTextSpan" />
+                                        <Span Text="New Text: " />
+                                        <Span x:Name="NewTextSpan" Text="Your new text"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <core:SourceCodeExpander Code="{x:Binding SimpleEditXamlCode}" CodeType="Xaml" />
+                            <Label Text=""/>
+                            <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlSimpleEditor}" />
+                            <Label Text=""/>
+                            <core:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpSimpleEditorCodeBehind}" />
                         </VerticalStackLayout>
                     </Border>
 
                     <Border Padding="20" StrokeShape="RoundRectangle 4">
                         <VerticalStackLayout Spacing="10">
-                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Set character spacing" />
-                            <Slider
-                                x:Name="EditorCharacterSpacingSlider"
-                                Maximum="50"
-                                Minimum="0" />
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Editor With TextColor and CharacterSpacing" />
+                            <Frame BackgroundColor="#313131" 
+                                   BorderColor="#313131">
+                                <Grid ColumnDefinitions="0.7*, 0.3*" 
+                                      RowDefinitions="0.3*, 0.7*" 
+                                      ColumnSpacing="10"
+                                      RowSpacing="10"
+                                      HeightRequest="200">
+                                    <VerticalStackLayout Grid.Row="0"
+                                                 Grid.Column="0">
+                                        <Label Text="Set character spacing" TextColor="#bfbfbf"/>
+                                        <Slider x:Name="EditorCharacterSpacingSlider"
+                                                Maximum="50"
+                                                Minimum="0"/>
+                                    </VerticalStackLayout>
+                                    <Picker x:Name="EditorColorPicker"
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Title="Text Color"
+                                            ItemsSource="{x:StaticResource LabelColorResource}"
+                                            SelectedIndex="5"/>
+                                    <Editor Grid.Row="1"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="2"
+                                            CharacterSpacing="{x:Binding Source={x:Reference EditorCharacterSpacingSlider},
+                                                                         Path=Value,
+                                                                         Mode=TwoWay}"
+                                            Placeholder="Type something in buddy"
+                                            TextColor="{x:Binding Source={x:Reference EditorColorPicker},
+                                                                  Path=SelectedItem,
+                                                                  Converter={x:StaticResource StringToColorConverter}}"/>
+                                </Grid>
+                            </Frame>
+                            <Label Text="This is how the Xaml look like"/>
+                            <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlEditorDecoration}"/>
+                            <Label Text="Here is the String To Color Converter"/>
+                            <core:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpEditorDecorationConverter}" />
+                            <Label Text="This is how the converter setup"/>
+                            <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlEditorDecorationConverterDeclare}" />
+                        </VerticalStackLayout>
+                    </Border>
 
-                            <Picker
-                                x:Name="EditorColorPicker"
-                                Title="Change Text Color"
-                                ItemsSource="{x:StaticResource LabelColorResource}"
-                                SelectedIndex="5" />
-                            <Editor
-                                x:Name="CharacterSpacingEditor"
-                                CharacterSpacing="{x:Binding Source={x:Reference EditorCharacterSpacingSlider},
-                                                             Path=Value,
-                                                             Mode=TwoWay}"
-                                Placeholder="Type something in buddy"
-                                TextColor="{x:Binding Source={x:Reference EditorColorPicker},
-                                                      Path=SelectedItem,
-                                                      Converter={x:StaticResource StringToColorConverter}}" />
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Editor With Input Length and AutoSize" />
+                            <Frame BackgroundColor="#313131" 
+                                   BorderColor="#313131">
+                                <Grid ColumnDefinitions="0.7*, 0.3*"
+                                      ColumnSpacing="10">
+                                    <Label Grid.Column="0" IsVisible="{x:Binding Source={x:Reference Editor2}, Path=IsFocused}" 
+                                           VerticalOptions="End" 
+                                           HorizontalOptions="End"
+                                           Margin="5">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span x:Name="Editor2TextLenghtLabelSpan" 
+                                                      Text="{x:Binding Source={x:Reference Editor2}, 
+                                                                       Path= Text.Length}"/>
+                                                <Span Text="/"/>
+                                                <Span Text="{x:Binding EditorCharacterLimit}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Editor x:Name="Editor2" Grid.Column="0"
+                                            Text="Enter text here"
+                                            AutoSize="{x:Binding AutoSizeMode}"
+                                            MaxLength="{x:Binding EditorCharacterLimit}"
+                                            TextChanged="OnEditorGetTextLength"/>
+                                    <VerticalStackLayout Grid.Column="1"
+                                                         Spacing="5">
+                                        <Label Text="Limit Your Editor"/>
+                                        <Frame BackgroundColor="#4d4d4d" 
+                                               BorderColor="#4d4d4d" 
+                                               Padding="10">
+                                            <Grid ColumnDefinitions="0.7*, 0.2*" 
+                                                  ColumnSpacing="10">
+                                                <Slider x:Name="CharacterLimitSlider" 
+                                                        Grid.Column="0" 
+                                                        Maximum="1000" 
+                                                        Minimum="1" 
+                                                        Value="{x:Binding EditorCharacterLimit}"/>
+                                                <Label Grid.Column="1" 
+                                                       Text="{x:Binding EditorCharacterLimit}" 
+                                                       VerticalOptions="Center"
+                                                       HorizontalOptions="Center"/>
+                                            </Grid>
+                                        </Frame>
+                                        <Label Text="Change AutoSize Mode"/>
+                                        <Button Text="{x:Binding AutoSizeMode}"
+                                                Command="{x:Binding ChangeAutoSizeModeCommand}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
 
-                            <core:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />
+                            <Label Text="This is how the Xaml"/>
+                            <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlEditorTextLengthAndAutoSize}"/>
+                            <Label Text="Here is the ViewModel content"/>
+                            <core:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpEditorTextLengthAndAutoSize}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Editor Transform Text" />
+                            <Frame BackgroundColor="#313131" 
+                                   BorderColor="#313131">
+                                <Grid ColumnDefinitions="0.8*, 0.2*"
+                                      ColumnSpacing="10">
+                                    <Editor Grid.Column="0"
+                                            Text="Enter text here"
+                                            TextTransform="{x:Binding SelectedTextTransform}"/>
+                                    <Picker Grid.Column="1"
+                                            SelectedIndex="0"
+                                            ItemsSource="{x:Binding TextTransformList, Mode=OneWay}"
+                                            SelectedItem="{x:Binding SelectedTextTransform, Mode=TwoWay, Converter={StaticResource TextTransformConverter}}"/>
+                                </Grid>
+                            </Frame>
+
+                            <Label Text="This is Xaml code"/>
+                            <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlEditorTransformText}"/>
+                            <Label Text="Here is the Text Transform Picker Converter"/>
+                            <core:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpEditorTransformTextConverter}" />
+                            <Label Text="This is how the converter setup"/>
+                            <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlEditorTransformTextConverterDeclare}" />
+                            <Label Text="Here is ViewModel code"/>
+                            <core:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpEditorTransformTextViewModel}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Editor with Prediction and Prevent Text Entry" />
+                            <Frame BackgroundColor="#313131" 
+                                   BorderColor="#313131">
+                                <Grid ColumnDefinitions="0.8*, 0.2*"
+                                      ColumnSpacing="10">
+                                    <Editor Grid.Column="0"
+                                            Text="Enter text here"
+                                            IsTextPredictionEnabled="{x:Binding IsTextPrediction}"
+                                            IsReadOnly="{x:Binding IsReadOnly}"/>
+                                    <VerticalStackLayout Grid.Column="1">
+                                        <Label Text="Text Prediction" />
+                                        <Switch IsToggled="{x:Binding IsTextPrediction, Mode=TwoWay}"/>
+                                        <Label Text="Read Only" />
+                                        <Switch IsToggled="{x:Binding IsReadOnly, Mode=TwoWay}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+
+                            <Label Text="This is Xaml code"/>
+                            <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlEditorPredictionReadOnly}"/>
+                            <Label Text="Here is ViewModel code"/>
+                            <core:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpEditorPredictionReadOnlyViewModel}" />
                         </VerticalStackLayout>
                     </Border>
                 </VerticalStackLayout>
             </Grid>
         </ScrollView>
     </RefreshView>
-
 </core:BasePage>

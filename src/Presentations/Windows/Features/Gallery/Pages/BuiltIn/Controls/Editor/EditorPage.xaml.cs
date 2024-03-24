@@ -9,6 +9,11 @@ public partial class EditorPage : IGalleryPage
 		BindingContext = vm;
 	}
 
+    void OnEditorGetTextLength(object sender, TextChangedEventArgs e)
+    {
+        Editor2TextLenghtLabelSpan.Text = e.NewTextValue.Length.ToString();
+    }
+
     void OnEditorTextChanged(object sender, TextChangedEventArgs e)
     {
         OldTextSpan.Text = e.OldTextValue;

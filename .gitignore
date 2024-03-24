@@ -410,3 +410,4 @@ ASALocalRun/
 
 .vs
 /src/appsettings.Development.json
+/src/Presentations/Windows/appsettings.Development.json

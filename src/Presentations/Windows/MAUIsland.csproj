@@ -129,7 +129,6 @@
 
 	<ItemGroup>
 		<Folder Include="Features\Blog\" />
-		<Folder Include="Features\Gallery\Pages\BuiltIn\Layouts\" />
 		<Folder Include="Features\QA\" />
 		<Folder Include="Features\Gallery\Services\" />
 		<Folder Include="Features\Settings\Models\" />

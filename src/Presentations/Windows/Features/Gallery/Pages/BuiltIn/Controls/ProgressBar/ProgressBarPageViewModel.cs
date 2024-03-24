@@ -104,12 +104,28 @@ public partial class ProgressBarPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     string xamlAnimateProgressBar =
-    "<ProgressBar\r\n" +
-    "    x:Name=\"ProgressBar2\"\r\n" +
-    "    Grid.Column=\"1\"\r\n" +
-    "    Margin=\"10\"\r\n" +
-    "    Progress=\"0\"\r\n" +
-    "    ProgressColor=\"Red\" />";
+        "<Grid ColumnDefinitions=\"0.1*, 0.6*, 0.1*, 0.2*\">\r\n" +
+        "   <Label Grid.Column=\"0\" \r\n" +
+        "          Text=\"{Binding Path=Progress, \r\n" +
+        "                          Source={x:Reference ProgressBar2}, \r\n" +
+        "                          Converter={x:StaticResource ProgressBarPercentageConverter}, \r\n" +
+        "                          ConverterParameter={x:Type x:String}}\" \r\n" +
+        "          VerticalOptions=\"Center\" \r\n" +
+        "          HorizontalOptions=\"Center\"/>\r\n" +
+        "   <ProgressBar x:Name=\"ProgressBar2\"\r\n" +
+        "                Grid.Column=\"1\"\r\n" +
+        "                Margin=\"10\"\r\n" +
+        "                Progress=\"0\"\r\n" +
+        "                ProgressColor=\"Red\"/>\r\n" +
+        "   <Label Grid.Column=\"2\"\r\n" +
+        "          Text=\"100%\" \r\n" +
+        "          VerticalOptions=\"Center\" \r\n" +
+        "          HorizontalOptions=\"Center\"/>\r\n" +
+        "   <Button x:Name=\"ProgressBarRunButton\"\r\n" +
+        "           Grid.Column=\"3\"\r\n" +
+        "           Clicked=\"ProgressBarRunButtonClicked\"\r\n" +
+        "           Text=\"Run\" />\r\n" +
+        "</Grid>";
 
     [ObservableProperty]
     string cSharpAnimateProgressBarCodeBehind =
