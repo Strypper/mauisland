@@ -1,4 +1,5 @@
-﻿using MAUIsland.GitHubFeatures;
+﻿using MAUIsland.Features.LocalDbFeatures.GitHub;
+using MAUIsland.GitHubFeatures;
 
 namespace MAUIsland;
 
@@ -7,14 +8,17 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
     #region [ Fields ]
 
     private readonly IGitHubService gitHubService;
+    private readonly IGitHubIssueLocalDbService gitHubIssueLocalDbService;
     #endregion
 
     #region [ CTor ]
     public ActivityIndicatorPageViewModel(IAppNavigator appNavigator,
-                                          IGitHubService gitHubService)
+                                          IGitHubService gitHubService,
+                                          IGitHubIssueLocalDbService gitHubIssueLocalDbService)
                                                 : base(appNavigator)
     {
         this.gitHubService = gitHubService;
+        this.gitHubIssueLocalDbService = gitHubIssueLocalDbService;
     }
     #endregion
 
@@ -117,22 +121,60 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
 
         IsBusy = true;
 
+        var now = DateTime.UtcNow;
+
+        // First: sync from local db.
+        // TODO: how to get control name?
+        var allLocalDbIssues = await GetIssueByControlNameFromLocalDb(ControlInformation.ControlName);
+
+        // If localdb version is not null & not outdated => use local version.
+        if (allLocalDbIssues != null && allLocalDbIssues.Any() && !allLocalDbIssues.Any(x => (now - x.LastUpdated).TotalHours > 1))
+        {
+            if (ControlIssues is null || forced)
+            {
+                ControlIssues = new(allLocalDbIssues.Select(x => new ControlIssueModel()
+                {
+                    IssueId = x.IssueId,
+                    Title = x.Title,
+                    IssueLinkUrl = x.IssueLinkUrl,
+                    MileStone = x.MileStone,
+                    OwnerName = x.OwnerName,
+                    AvatarUrl = x.UserAvatarUrl,
+                    CreatedDate = x.CreatedDate,
+                    LastUpdated = x.LastUpdated
+                }));
+            }
+            IsBusy = false;
+
+            // Done.
+            return;
+        }
+
+        // If localdb does not have issue info, or info outdated => sync from GitHub & save.
         var result = await gitHubService.GetGitHubIssuesByLabels(ControlInformation.GitHubAuthorIssueName,
                                                                  ControlInformation.GitHubRepositoryIssueName,
                                                                  ControlInformation.GitHubIssueLabels);
 
-        IsBusy = false;
 
         if (result.IsT0) // Check if result is ServiceSuccess
         {
-            var items = result.AsT0.AttachedData as IEnumerable<GitHubIssueModel>;
+            var issues = result.AsT0.AttachedData as IEnumerable<GitHubIssueModel>;
+
+            // Save to localdb.
+            foreach (var issue in issues)
+            {
+                await UpdateLocalIssue(issue);
+            }
+
+            IsBusy = false;
 
             if (ControlIssues is null || forced)
             {
-                ControlIssues = new(items.Select(x => new ControlIssueModel()
+                ControlIssues = new(issues.Select(x => new ControlIssueModel()
                 {
                     IssueId = x.Id,
                     Title = x.Title,
+
                     IssueLinkUrl = x.HtmlUrl,
                     MileStone = x.Milestone is null ? "No mile stone" : x.Milestone.Title,
                     OwnerName = x.User.Login,
@@ -144,6 +186,8 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
         }
         else
         {
+            IsBusy = false;
+
             var error = result.AsT1;
             EmptyViewText = error.ErrorDetail;
             await AppNavigator.ShowSnackbarAsync(error.ErrorDetail,
@@ -152,6 +196,61 @@ public partial class ActivityIndicatorPageViewModel : NavigationAwareBaseViewMod
                                                      await AppNavigator.OpenUrlAsync(GitHubAPIRateLimit);
                                                  },
                                                  "Visit GitHub API Rate Limits Policies");
+        }
+    }
+    #endregion
+
+    #region [ Methods - GitHub Issues - LocalDb ]
+    private async Task<IEnumerable<GitHubIssueLocalDbModel>> GetIssueByControlNameFromLocalDb(string controlName)
+    {
+        try
+        {
+            var now = DateTime.UtcNow;
+
+            return await gitHubIssueLocalDbService.GetByControlNameAsync(controlName);
+        }
+        catch (Exception)
+        {
+            // Treat as nothing found.
+            return default;
+        }
+    }
+
+    private async Task UpdateLocalIssue(GitHubIssueModel issue)
+    {
+        try
+        {
+            var now = DateTime.UtcNow;
+
+            var localIssue = await gitHubIssueLocalDbService.GetByIssueUrlAsync(issue.Url);
+
+            if (localIssue is null)
+            {
+                await gitHubIssueLocalDbService.AddAsync(new()
+                {
+                    IssueId = issue.Id,
+                    Title = issue.Title,
+                    IssueLinkUrl = issue.Url,
+                    ControlName = ControlInformation.ControlName,
+                    MileStone = issue.Milestone?.Title,
+                    OwnerName = issue.User?.Login,
+                    UserAvatarUrl = issue.User?.AvatarUrl,
+                    CreatedDate = issue.CreatedAt.DateTime,
+                    LastUpdated = now
+                });
+                return;
+            }
+
+            // Update fields: milestone (TODO: what else?).
+            localIssue.MileStone = issue.Milestone?.Title;
+            localIssue.LastUpdated = now;
+
+            await gitHubIssueLocalDbService.UpdateAsync(localIssue);
+        }
+        catch (Exception)
+        {
+            // TODO: should do something.
+            return;
         }
     }
     #endregion

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MAUIsland;
+namespace MAUIsland.Features.LocalDbFeatures.GitHub;
 
 [Table("IssueModel")]
 public class GitHubIssueLocalDbModel : BaseLocalEntity
@@ -14,8 +14,8 @@ public class GitHubIssueLocalDbModel : BaseLocalEntity
     #endregion
 
     #region [ Properties ]
-
-    // control name
+    [Column("control_name")]
+    public string ControlName { get; set; }
 
     [Column("issue_id")]
     public long IssueId { get; set; }
@@ -31,6 +31,9 @@ public class GitHubIssueLocalDbModel : BaseLocalEntity
 
     [Column("owner_name")]
     public string OwnerName { get; set; }
+
+    [Column("user_avatar_url")]
+    public string UserAvatarUrl { get; set; }
 
     [Column("created_date")]
     public DateTime CreatedDate { get; set; }
