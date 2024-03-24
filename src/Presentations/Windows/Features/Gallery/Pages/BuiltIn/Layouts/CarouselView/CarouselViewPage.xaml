@@ -216,20 +216,21 @@
 
         <DataTemplate x:Key="CollectionViewDataTemplate" x:DataType="app:CarouselItem">
             <StackLayout>
-                <Frame BorderColor="DarkGray"
+                <Frame BorderColor="Transparent"
                        CornerRadius="5"
                        HasShadow="True"
                        VerticalOptions="Center"
-                       Margin="5">
+                       Margin="5"
+                       Background="DarkGray">
                     <HorizontalStackLayout HorizontalOptions="Center">
-                        <Label Text="{Binding Content}" />
+                        <Label Text="{Binding Content}" TextColor="White"/>
                     </HorizontalStackLayout>
                 </Frame>
             </StackLayout>
         </DataTemplate>
 
-        <app:ItemDataTemplateSelector
-            x:Key="ItemDataTemplateSelector"
+        <app:CarouselViewItemDataTemplateSelector
+            x:Key="CarouselViewItemDataTemplateSelector"
             HighlightedTemplate ="{x:StaticResource HighlightedDataTemplate}"
             NormalTemplate ="{x:StaticResource NormalDataTemplate}" />
 
@@ -264,22 +265,38 @@
                     <CarouselView ItemTemplate="{x:StaticResource NormalDataTemplate}"
                                   ItemsSource="{x:Binding Items}" />
 
-                    <!--<app:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />-->
+                    <Label Text="This is the Model that will be used for ths page"/>
+                    <core:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpCarouselItemModel}"  />
+                    <Label Text="Here is the Xaml code"/>
+                    <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlCarouselViewBasic}"  />
+                    <Label Text="Basic CarouselView DataTemplate"/>
+                    <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlCarouselViewBasicDataTemplate}"  />
+                    <Label Text="Here is the ViewMOdel"/>
+                    <core:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpCarouselViewBasicViewModel}"  />
                 </VerticalStackLayout>
             </Border>
 
             <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CarouselView with DataTemplateSelector" />
-                    <CollectionView ItemsSource="{x:StaticResource CarouselViewDataTemplateSelector}"
+                    <CollectionView ItemsSource="{x:StaticResource CollectionViewDataTemplate}"
                                     Style="{x:StaticResource PropertiesListStyle}" />
                     <Label Text="CarouselView with first item highlighted:" />
                     <CarouselView x:Name="TemplateSelectorCarouselView" 
                                   ItemsSource="{x:Binding Items}" 
-                                  ItemTemplate="{x:StaticResource ItemDataTemplateSelector}"
+                                  ItemTemplate="{x:StaticResource CarouselViewItemDataTemplateSelector}"
                                   Loop="False"/>
-
-                    <!--<app:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />-->
+                    <Label Text="Note that: It work well with Loop disabled" 
+                           TextColor="OrangeRed" 
+                           Margin="5"/>
+                    <Label Text="This is the Xaml code" />
+                    <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlCarouselViewDataTemplateSelector}"  />
+                    <Label Text="Here is DataTemplate Selector" />
+                    <core:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpCarouselViewDataTemplateSelector}"/>
+                    <Label Text="Here is Selector setup" />
+                    <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlCarouselViewDataTemplateSelectorSetup}"/>
+                    <Label Text="This is the ViewModel" />
+                    <core:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpCarouselViewDataTemplateSelectorViewModel}"/>
                 </VerticalStackLayout>
             </Border>
 
@@ -293,8 +310,8 @@
                                    IndicatorColor="LightGray"
                                    SelectedIndicatorColor="Aqua"
                                    HorizontalOptions="Center" />
-
-                    <!--<app:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />-->
+                    <Label Text="Here is the code"/>
+                    <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlCarouselViewIndicatorView}"/>
                 </VerticalStackLayout>
             </Border>
 
@@ -304,7 +321,10 @@
                     <CarouselView ItemsSource="{x:Binding Items}" 
                                   ItemTemplate="{x:StaticResource CarouselSwipeViewItemTemplate}"/>
 
-                    <!--<app:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />-->
+                    <Label Text="Xaml Code here"/>
+                    <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlCarouselViewSwipeView}"/>
+                    <Label Text="This is the CarouselView DataTemplate containt SwipeView"/>
+                    <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlCarouselViewSwipeViewDataTemplate}"/>
                 </VerticalStackLayout>
             </Border>
 
@@ -316,68 +336,124 @@
                         <CarouselView ItemsSource="{x:Binding Items}" 
                                       ItemTemplate="{x:StaticResource NormalDataTemplate}"/>
                     </RefreshView>
-
-                    <!--<app:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />-->
+                    <Label Text="Here for Xaml code"/>
+                    <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlCarouselViewRefreshView}"/>
+                    <Label Text="Here for ViewModel"/>
+                    <core:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpCarouselViewRefreshViewViewModel}"/>
                 </VerticalStackLayout>
             </Border>
 
             <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CarouselView Layout" />
-                    <CarouselView 
-                                  ItemsSource="{x:Binding Items}" 
-                                  ItemTemplate="{x:StaticResource CarouselSwipeViewItemTemplate}"
+                    <Label Text="This is CarouselView with horizontal layout"/>
+                    <CarouselView ItemsSource="{x:Binding Items}" 
+                                  ItemTemplate="{x:StaticResource NormalDataTemplate}"
                                   HorizontalOptions="FillAndExpand">
                         <CarouselView.ItemsLayout>
                             <LinearItemsLayout Orientation="Horizontal"/>
                         </CarouselView.ItemsLayout>
                     </CarouselView>
-                    <Label Text="Note for the error: Vertical LinearItemsLayout and ItemSpacing are doom"/>
-
-                    <!--<app:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />-->
+                    <Label Text="This is CarouselView with vertical layout"/>
+                    <Label Text="Note for the error: Vertical LinearItemsLayout and ItemSpacing are not working" 
+                           TextColor="OrangeRed" 
+                           Margin="5"/>
+                    <Label Text="Here is the Xaml code"/>
+                    <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlCarouselViewHorizontalLayout}"/>
+                    <!--Right-to-left layout-->
+                    <Label Text="This is CarouselView with Right-to-left dlow direction layout"/>
+                    <CarouselView ItemsSource="{x:Binding Items}" 
+                                  ItemTemplate="{x:StaticResource NormalDataTemplate}"
+                                  HorizontalOptions="FillAndExpand"
+                                  FlowDirection="RightToLeft"/>
+                    <Label Text="Here is the Xaml code"/>
+                    <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlCarouselViewRightToLeftLayout}"/>
                 </VerticalStackLayout>
             </Border>
 
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
+            <!--<Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CarouselView Visible Adjacent Items" />
                     <CarouselView ItemsSource="{x:Binding Items}" 
                                   ItemTemplate="{x:StaticResource NormalDataTemplate}"/>
                     <Label Text="PeekAreaInsets ? doom"/>
-
-                    <!--<app:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />-->
                 </VerticalStackLayout>
-            </Border>
+            </Border>-->
 
             <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CarouselView Current Item Changing Respondsibility" />
-                    <Grid ColumnDefinitions="0.3*, 0.7*" Padding="5" >
-
-                        <CollectionView Grid.Column="0"
-                                        ItemsSource="{x:Binding Items}"
-                                        ItemTemplate="{x:StaticResource CollectionViewDataTemplate}"
-                                        SelectedItem="{x:Binding CurrentSelectedItem}" 
-                                        VerticalOptions="Center"/>
-                        <CarouselView Grid.Column="1"
-                                        ItemsSource="{x:Binding Items}" 
-                                        ItemTemplate="{x:StaticResource NormalDataTemplate}"
-                                        CurrentItem="{x:Binding CurrentSelectedItem}"
-                                        VerticalOptions="Center"/>
-                    </Grid>
-
-                    <!--<app:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />-->
+                    <Label Text="Item Changing With EventHandler" />
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="This is the Current Item Content that you selected: "/>
+                                <Span x:Name="ItemChangingEventHandlerLabelSpan"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="And its Position: "/>
+                                <Span x:Name="PositionItemChangingEventHandlerLabelSpan"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <CarouselView Grid.Column="1"
+                                  ItemsSource="{x:Binding Items}" 
+                                  ItemTemplate="{x:StaticResource NormalDataTemplate}"
+                                  CurrentItemChanged="CarouselViewCurrentItemChanged"
+                                  VerticalOptions="Center"/>
+                    <Label Text="This is xaml code"/>
+                    <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlCarouselViewItemChangingEvent}"/>
+                    <Label Text="This is code behind"/>
+                    <core:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpCarouselViewItemChangingEventCodeBehind}"/>
+                    <Label Text="Item Changing With Command" />
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="This is the Current Item Content that you selected: "/>
+                                <Span Text="{x:Binding CommandCurrentSelectedItemSpan}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="And its Position: "/>
+                                <Span Text="{x:Binding CommandCurrentSelectedItemPositionSpan}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <CarouselView x:Name="CarouselViewCommandItemChanging" Grid.Column="1"
+                                  ItemsSource="{x:Binding Items}" 
+                                  ItemTemplate="{x:StaticResource NormalDataTemplate}"
+                                  CurrentItem="{x:Binding CommandCurrentSelectedItem}"
+                                  CurrentItemChangedCommand="{x:Binding CarouselViewCurrentItemChangedCommand}"
+                                  CurrentItemChangedCommandParameter="{x:Binding Path=CurrentItem.Content, Source={x:Reference CarouselViewCommandItemChanging}}"
+                                  Position="{x:Binding CommandCurrentSelectedItemPositionSpan, Mode=TwoWay}"
+                                  VerticalOptions="Center"/>
+                    <Label Text="This is xaml code"/>
+                    <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlCarouselViewItemChangingCommand}"/>
+                    <Label Text="This is ViewModel"/>
+                    <core:SourceCodeExpander CodeType="CSharp" Code="{x:Binding CSharpCarouselViewItemChangingCommandViewModel}"/>
                 </VerticalStackLayout>
             </Border>
 
             <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CarouselView EmptyView" />
+                    <Label Text="This is CarouselView with List"/>
                     <CarouselView ItemsSource="{x:Binding ItemEmptyList}" 
                                   ItemTemplate="{x:StaticResource NormalDataTemplate}"
-                                  EmptyView="No items to display."/>
-
-                    <!--<app:SourceCodeExpander Code="{x:Binding ControlTextInEditorXamlCode}" CodeType="Xaml" />-->
+                                  EmptyView="Nothing to show here !!!." 
+                                  Loop="False"/>
+                    <Label Text="EmptyView work well with none looping carousel" 
+                           TextColor="OrangeRed" 
+                           Margin="5"/>
+                    <Label Text="Here is the Xaml code"/>
+                    <core:SourceCodeExpander CodeType="Xaml" Code="{x:Binding XamlCarouselViewEmptyView}"/>
                 </VerticalStackLayout>
             </Border>
         </VerticalStackLayout>

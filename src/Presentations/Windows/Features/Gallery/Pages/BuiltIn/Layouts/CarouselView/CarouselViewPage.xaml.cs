@@ -14,4 +14,12 @@ public partial class CarouselViewPage : IGalleryPage
         BindingContext = ViewModel = vm;
     }
     #endregion
+
+    private void CarouselViewCurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
+    {
+        var carouselItem = (CarouselItem)e.CurrentItem;
+        var carouselView = (CarouselView)sender;
+        ItemChangingEventHandlerLabelSpan.Text = carouselItem.Content;
+        PositionItemChangingEventHandlerLabelSpan.Text = carouselView.Position.ToString();
+    }
 }
