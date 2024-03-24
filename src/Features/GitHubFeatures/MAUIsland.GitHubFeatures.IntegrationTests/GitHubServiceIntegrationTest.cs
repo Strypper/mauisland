@@ -19,7 +19,7 @@ public class GitHubServiceIntegrationTest
     public GitHubServiceIntegrationTest()
     {
         var services = new ServiceCollection();
-        services.RegisterLogicProvider();
+        services.RegisterGitHubFeatures();
         serviceProvider = services.BuildServiceProvider();
     }
     #endregion
