@@ -13,26 +13,19 @@
         <Border.StrokeShape>
             <RoundRectangle CornerRadius="5" />
         </Border.StrokeShape>
-        <Grid ColumnDefinitions="0.2*, 0.2*, 0.6*" HeightRequest="40">
+        <Grid HeightRequest="60" RowDefinitions="0.4*, 0.6*">
             <Image
-                Grid.Column="0"
+                Grid.Row="0"
                 Source="{x:Binding ComponentData.ControlIcon,
                                    Source={x:Reference root}}"
                 VerticalOptions="Center" />
             <Label
-                Grid.Column="1"
+                Grid.Row="1"
                 FontAttributes="Bold"
                 FontSize="14"
+                HorizontalOptions="Center"
                 LineBreakMode="TailTruncation"
                 Text="{x:Binding ComponentData.ControlName,
-                                 Source={x:Reference root}}"
-                VerticalTextAlignment="Center" />
-            <Label
-                Grid.Column="2"
-                FontAttributes="Italic"
-                FontSize="12"
-                LineBreakMode="TailTruncation"
-                Text="{x:Binding ComponentData.ControlDetail,
                                  Source={x:Reference root}}"
                 VerticalTextAlignment="Center" />
         </Grid>

@@ -29,6 +29,10 @@
             The VerticalStackLayout defines the following properties:
         </x:String>
 
+        <x:String x:Key="ReportIssueToMauiTeamLink">
+            https://github.com/dotnet/maui/issues/new/choose
+        </x:String>
+
         <x:String x:Key="PropertiesListHeaderPositionAndSizeChildViews">
             A VerticalStackLayout only respects the alignment preferences on child views that are in the opposite direction to the orientation of the layout. Therefore, the Label child views within the VerticalStackLayout set their HorizontalOptions properties to one of the alignment fields:
         </x:String>
@@ -73,165 +77,276 @@
 
         </x:Array>
 
+        <DataTemplate x:Key="ControlIssueItemTemplate" x:DataType="core:ControlIssueModel">
+            <Border
+                Padding="20"
+                BackgroundColor="#0a0c10"
+                StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Micro"
+                        LineBreakMode="CharacterWrap"
+                        MaxLines="2"
+                        Text="{x:Binding Title,
+                                         Mode=OneWay}"
+                        TextDecorations="Underline"
+                        ToolTipProperties.Text="{x:Binding Title,
+                                                           Mode=OneWay}" />
+                    <HorizontalStackLayout Spacing="8">
+                        <ImageButton
+                            CornerRadius="25"
+                            HeightRequest="10"
+                            Source="{x:Binding AvatarUrl,
+                                               Mode=OneWay}"
+                            VerticalOptions="Center"
+                            WidthRequest="10" />
+                        <Label Text="{x:Binding OwnerName, Mode=OneWay}" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <Label HorizontalOptions="End" Text="{x:Binding CreatedDate, Mode=OneWay}" />
+                </VerticalStackLayout>
+            </Border>
+        </DataTemplate>
+
+        <LinearItemsLayout
+            x:Key="ControlIssueLayout"
+            ItemSpacing="5"
+            Orientation="Vertical" />
+
     </core:BasePage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="20">
+    <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy, Mode=OneWay}">
+        <ScrollView>
+            <Grid ColumnDefinitions="310, *" ColumnSpacing="20">
+                <Grid RowDefinitions="90, 540, 120" RowSpacing="10">
+                    <Border
+                        Padding="20"
+                        BackgroundColor="#272b33"
+                        StrokeShape="RoundRectangle 4">
+                        <Grid>
+                            <HorizontalStackLayout Spacing="10">
+                                <Image
+                                    HeightRequest="25"
+                                    Source="githublogo.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="25" />
+
+                                <Label
+                                    HorizontalOptions="Start"
+                                    Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                    Text="Issues"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                            <Border
+                                BackgroundColor="OrangeRed"
+                                HeightRequest="40"
+                                HorizontalOptions="End"
+                                StrokeShape="RoundRectangle 20"
+                                VerticalOptions="Center"
+                                WidthRequest="40">
+                                <Label
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    Text="{x:Binding ControlIssues.Count,
+                                                     Mode=OneWay}"
+                                    VerticalOptions="Center" />
+                            </Border>
+                        </Grid>
+                    </Border>
                     <CollectionView
-                        Footer="{x:StaticResource PropertiesListFooter}"
-                        Header="{x:StaticResource PropertiesListHeader}"
-                        ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="20">
-                        <Label Text="Primary colors" TextColor="Blue" />
-                        <Rectangle
-                            Fill="Red"
-                            HeightRequest="30"
-                            WidthRequest="300" />
-                        <Rectangle
-                            Fill="Yellow"
-                            HeightRequest="30"
-                            WidthRequest="300" />
-                        <Rectangle
-                            Fill="Blue"
-                            HeightRequest="30"
-                            WidthRequest="300" />
-                        <Label Text="Secondary colors" TextColor="Blue" />
-                        <Rectangle
-                            Fill="Green"
-                            HeightRequest="30"
-                            WidthRequest="300" />
-                        <Rectangle
-                            Fill="Orange"
-                            HeightRequest="30"
-                            WidthRequest="300" />
-                        <Rectangle
-                            Fill="Purple"
-                            HeightRequest="30"
-                            WidthRequest="300" />
-                    </VerticalStackLayout>
-                    <core:SourceCodeExpander Code="{x:Binding VerticalStackLayoutLabelRectangleXamlCode}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Frame>
-            <!--  Space between child views  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Space between child views" />
-                    <VerticalStackLayout Margin="20" Spacing="8">
-                        <Label Text="Primary colors" TextColor="Blue" />
-                        <Rectangle
-                            Fill="Red"
-                            HeightRequest="30"
-                            WidthRequest="300" />
-                        <Rectangle
-                            Fill="Yellow"
-                            HeightRequest="30"
-                            WidthRequest="300" />
-                        <Rectangle
-                            Fill="Blue"
-                            HeightRequest="30"
-                            WidthRequest="300" />
-                        <Label Text="Secondary colors" TextColor="Blue" />
-                        <Rectangle
-                            Fill="Green"
-                            HeightRequest="30"
-                            WidthRequest="300" />
-                        <Rectangle
-                            Fill="Orange"
-                            HeightRequest="30"
-                            WidthRequest="300" />
-                        <Rectangle
-                            Fill="Purple"
-                            HeightRequest="30"
-                            WidthRequest="300" />
-                    </VerticalStackLayout>
-                    <core:SourceCodeExpander Code="{x:Binding SpaceBetweenChildViewsXamlCode}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Frame>
-            <!--  Position and size child views  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Position and size child views" />
-                    <VerticalStackLayout Margin="20" Spacing="6">
-                        <Label
-                            BackgroundColor="Gray"
-                            HorizontalOptions="Start"
-                            Text="Start"
-                            TextColor="blue" />
-                        <Label
-                            BackgroundColor="Gray"
-                            HorizontalOptions="Center"
-                            Text="Center"
-                            TextColor="blue" />
-                        <Label
-                            BackgroundColor="Gray"
-                            HorizontalOptions="End"
-                            Text="End"
-                            TextColor="blue" />
-                        <Label
-                            BackgroundColor="Gray"
-                            HorizontalOptions="Fill"
-                            Text="Fill"
-                            TextColor="blue" />
-                    </VerticalStackLayout>
-                    <CollectionView
-                        Header="{x:StaticResource PropertiesListHeaderPositionAndSizeChildViews}"
-                        ItemsSource="{x:StaticResource PropertiesItemsSourcePositionAndSizeChildViews}"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                    <core:SourceCodeExpander Code="{x:Binding SpaceBetweenChildViewsXamlCode}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Frame>
-            <!--  Nest VerticalStackLayout objects  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Nest VerticalStackLayout objects" />
-                    <VerticalStackLayout Margin="20" Spacing="8">
-                        <Label Text="Primary colors" TextColor="Blue" />
-                        <Frame Padding="8" BorderColor="white">
-                            <HorizontalStackLayout Spacing="15">
+                        Grid.Row="1"
+                        Margin="0,0,0,0"
+                        EmptyView="{x:Binding EmptyViewText,
+                                              Mode=OneWay}"
+                        ItemTemplate="{x:StaticResource ControlIssueItemTemplate}"
+                        ItemsLayout="{x:StaticResource ControlIssueLayout}"
+                        ItemsSource="{x:Binding ControlIssues,
+                                                Mode=OneWay}"
+                        SelectedItem="{x:Binding SelectedControlIssue,
+                                                 Mode=TwoWay}"
+                        SelectionChangedCommand="{x:Binding OpenUrlCommand}"
+                        SelectionChangedCommandParameter="{x:Binding SelectedControlIssue.IssueLinkUrl,
+                                                                     Mode=OneWay}"
+                        SelectionMode="Single"
+                        VerticalOptions="Start" />
+                    <Border
+                        Grid.Row="2"
+                        Margin="0,0,0,10"
+                        Padding="20"
+                        BackgroundColor="#272b33"
+                        StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="5">
+                            <Label
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="Found a new bug?"
+                                TextColor="White"
+                                TextDecorations="Underline" />
+                            <Button
+                                Command="{x:Binding OpenUrlCommand}"
+                                CommandParameter="{x:StaticResource ReportIssueToMauiTeamLink}"
+                                Text="Report to the MAUI team" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+                <VerticalStackLayout Grid.Column="1" Spacing="20">
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+                    </Border>
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="20">
+                            <CollectionView
+                                Footer="{x:StaticResource PropertiesListFooter}"
+                                Header="{x:StaticResource PropertiesListHeader}"
+                                ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                                Style="{x:StaticResource PropertiesListStyle}" />
+                            <VerticalStackLayout Margin="20">
+                                <Label Text="Primary colors" TextColor="Blue" />
                                 <Rectangle
                                     Fill="Red"
                                     HeightRequest="30"
-                                    WidthRequest="30" />
-                                <Label
-                                    FontSize="18"
-                                    Text="Red"
-                                    TextColor="Blue" />
-                            </HorizontalStackLayout>
-                        </Frame>
-                        <Frame Padding="8" BorderColor="white">
-                            <HorizontalStackLayout Spacing="15">
+                                    WidthRequest="300" />
                                 <Rectangle
                                     Fill="Yellow"
                                     HeightRequest="30"
-                                    WidthRequest="30" />
-                                <Label
-                                    FontSize="18"
-                                    Text="Yellow"
-                                    TextColor="Blue" />
-                            </HorizontalStackLayout>
-                        </Frame>
-                        <Frame Padding="8" BorderColor="white">
-                            <HorizontalStackLayout Spacing="15">
+                                    WidthRequest="300" />
                                 <Rectangle
                                     Fill="Blue"
                                     HeightRequest="30"
-                                    WidthRequest="30" />
+                                    WidthRequest="300" />
+                                <Label Text="Secondary colors" TextColor="Blue" />
+                                <Rectangle
+                                    Fill="Green"
+                                    HeightRequest="30"
+                                    WidthRequest="300" />
+                                <Rectangle
+                                    Fill="Orange"
+                                    HeightRequest="30"
+                                    WidthRequest="300" />
+                                <Rectangle
+                                    Fill="Purple"
+                                    HeightRequest="30"
+                                    WidthRequest="300" />
+                            </VerticalStackLayout>
+                            <core:SourceCodeExpander Code="{x:Binding VerticalStackLayoutLabelRectangleXamlCode}" CodeType="Xaml" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <!--  Space between child views  -->
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="20">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Space between child views" />
+                            <VerticalStackLayout Margin="20" Spacing="8">
+                                <Label Text="Primary colors" TextColor="Blue" />
+                                <Rectangle
+                                    Fill="Red"
+                                    HeightRequest="30"
+                                    WidthRequest="300" />
+                                <Rectangle
+                                    Fill="Yellow"
+                                    HeightRequest="30"
+                                    WidthRequest="300" />
+                                <Rectangle
+                                    Fill="Blue"
+                                    HeightRequest="30"
+                                    WidthRequest="300" />
+                                <Label Text="Secondary colors" TextColor="Blue" />
+                                <Rectangle
+                                    Fill="Green"
+                                    HeightRequest="30"
+                                    WidthRequest="300" />
+                                <Rectangle
+                                    Fill="Orange"
+                                    HeightRequest="30"
+                                    WidthRequest="300" />
+                                <Rectangle
+                                    Fill="Purple"
+                                    HeightRequest="30"
+                                    WidthRequest="300" />
+                            </VerticalStackLayout>
+                            <core:SourceCodeExpander Code="{x:Binding SpaceBetweenChildViewsXamlCode}" CodeType="Xaml" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <!--  Position and size child views  -->
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="20">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Position and size child views" />
+                            <VerticalStackLayout Margin="20" Spacing="6">
                                 <Label
-                                    FontSize="18"
-                                    Text="Blue"
-                                    TextColor="Blue" />
-                            </HorizontalStackLayout>
-                        </Frame>
-                    </VerticalStackLayout>
-                    <core:SourceCodeExpander Code="{x:Binding SpaceBetweenChildViewsXamlCode}" CodeType="Xaml" />
+                                    BackgroundColor="Gray"
+                                    HorizontalOptions="Start"
+                                    Text="Start"
+                                    TextColor="blue" />
+                                <Label
+                                    BackgroundColor="Gray"
+                                    HorizontalOptions="Center"
+                                    Text="Center"
+                                    TextColor="blue" />
+                                <Label
+                                    BackgroundColor="Gray"
+                                    HorizontalOptions="End"
+                                    Text="End"
+                                    TextColor="blue" />
+                                <Label
+                                    BackgroundColor="Gray"
+                                    HorizontalOptions="Fill"
+                                    Text="Fill"
+                                    TextColor="blue" />
+                            </VerticalStackLayout>
+                            <CollectionView
+                                Header="{x:StaticResource PropertiesListHeaderPositionAndSizeChildViews}"
+                                ItemsSource="{x:StaticResource PropertiesItemsSourcePositionAndSizeChildViews}"
+                                Style="{x:StaticResource PropertiesListStyle}" />
+                            <core:SourceCodeExpander Code="{x:Binding SpaceBetweenChildViewsXamlCode}" CodeType="Xaml" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <!--  Nest VerticalStackLayout objects  -->
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="20">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Nest VerticalStackLayout objects" />
+                            <VerticalStackLayout Margin="20" Spacing="8">
+                                <Label Text="Primary colors" TextColor="Blue" />
+                                <Frame Padding="8" BorderColor="white">
+                                    <HorizontalStackLayout Spacing="15">
+                                        <Rectangle
+                                            Fill="Red"
+                                            HeightRequest="30"
+                                            WidthRequest="30" />
+                                        <Label
+                                            FontSize="18"
+                                            Text="Red"
+                                            TextColor="Blue" />
+                                    </HorizontalStackLayout>
+                                </Frame>
+                                <Frame Padding="8" BorderColor="white">
+                                    <HorizontalStackLayout Spacing="15">
+                                        <Rectangle
+                                            Fill="Yellow"
+                                            HeightRequest="30"
+                                            WidthRequest="30" />
+                                        <Label
+                                            FontSize="18"
+                                            Text="Yellow"
+                                            TextColor="Blue" />
+                                    </HorizontalStackLayout>
+                                </Frame>
+                                <Frame Padding="8" BorderColor="white">
+                                    <HorizontalStackLayout Spacing="15">
+                                        <Rectangle
+                                            Fill="Blue"
+                                            HeightRequest="30"
+                                            WidthRequest="30" />
+                                        <Label
+                                            FontSize="18"
+                                            Text="Blue"
+                                            TextColor="Blue" />
+                                    </HorizontalStackLayout>
+                                </Frame>
+                            </VerticalStackLayout>
+                            <core:SourceCodeExpander Code="{x:Binding SpaceBetweenChildViewsXamlCode}" CodeType="Xaml" />
+                        </VerticalStackLayout>
+                    </Border>
                 </VerticalStackLayout>
-            </Frame>
-        </VerticalStackLayout>
-    </ScrollView>
+            </Grid>
+        </ScrollView>
+    </RefreshView>
 </core:BasePage>

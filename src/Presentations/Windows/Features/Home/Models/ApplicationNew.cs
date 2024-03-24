@@ -3,22 +3,32 @@
 public partial class ApplicationNew : BaseModel
 {
     [ObservableProperty]
+    string title;
+
+    [ObservableProperty]
     string authorName;
+
+    [ObservableProperty]
+    string newLog;
+
+    [ObservableProperty]
+    string newsRoute;
+
+    [ObservableProperty]
+    object? arg;
 
     [ObservableProperty]
     ImageSource authorImageUrl;
 
     [ObservableProperty]
-    DateTime date;
+    ImageSource secondImage;
 
     [ObservableProperty]
-    IGalleryCardInfo? component;
+    DateTime date;
 
     [ObservableProperty]
     NewActivity activity;
 
-    [ObservableProperty]
-    string newLog;
 }
 
 public enum NewActivity

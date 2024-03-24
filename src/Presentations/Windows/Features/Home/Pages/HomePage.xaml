@@ -80,11 +80,40 @@
 
             <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
                 <Image
-                    Margin="0,0,0,20"
                     HeightRequest="250"
                     HorizontalOptions="Center"
                     Source="mauisland_logo.png"
                     WidthRequest="250" />
+                <acrylic:AcrylicView
+                    Padding="10"
+                    EffectStyle="Dark"
+                    WidthRequest="160">
+                    <acrylic:AcrylicView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{x:Binding OpenUrlCommand}" CommandParameter="{x:Binding ProjectRepo}" />
+                    </acrylic:AcrylicView.GestureRecognizers>
+                    <acrylic:AcrylicView.Behaviors>
+                        <toolkit:AnimationBehavior>
+                            <toolkit:AnimationBehavior.AnimationType>
+                                <toolkit:FadeAnimation Opacity="0.2" />
+                            </toolkit:AnimationBehavior.AnimationType>
+                        </toolkit:AnimationBehavior>
+                    </acrylic:AcrylicView.Behaviors>
+                    <HorizontalStackLayout
+                        HorizontalOptions="Center"
+                        Spacing="10"
+                        VerticalOptions="Center">
+                        <Image
+                            HeightRequest="20"
+                            Source="githublogo.png"
+                            WidthRequest="20" />
+                        <Label
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="Source code"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                </acrylic:AcrylicView>
                 <!--<CollectionView
                     x:Name="MAUIFactsCarousel"
                     HorizontalOptions="Center"
@@ -106,13 +135,23 @@
             HeightRequest="260"
             HorizontalOptions="End"
             VerticalOptions="End">
-            <Label
-                FontAttributes="Bold"
-                FontSize="18"
-                MaxLines="1"
+            <acrylic:AcrylicView
+                Padding="10"
+                CornerRadius="5"
+                EffectStyle="Dark"
+                HorizontalOptions="Fill"
                 Rotation="-90"
-                Text="TOP NEWS"
-                VerticalOptions="Center" />
+                VerticalOptions="Center">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    MaxLines="2"
+                    Text="APP NEWS"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+            </acrylic:AcrylicView>
             <CollectionView
                 Grid.Column="1"
                 Margin="5,5,5,20"
