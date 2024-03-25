@@ -14,7 +14,7 @@
         </Style>
     </ListView.Resources>
     <ListView.ItemTemplate>
-        <DataTemplate x:DataType="app:IGalleryCardInfo">
+        <DataTemplate x:DataType="core:IGalleryCardInfo">
             <ViewCell>
                 <Border Padding="5" BackgroundColor="{x:Static core:AppColors.BlackGrey}">
                     <Border.StrokeShape>

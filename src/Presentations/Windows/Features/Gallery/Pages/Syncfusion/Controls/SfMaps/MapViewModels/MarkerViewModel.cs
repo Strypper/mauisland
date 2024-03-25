@@ -2,7 +2,7 @@ using Syncfusion.Maui.Maps;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-namespace MAUIsland.Gallery.Syncfusion;
+namespace MAUIsland;
 
 public class MarkerViewModel
 {

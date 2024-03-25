@@ -1,6 +1,6 @@
 using Material.Components.Maui;
 
-namespace MAUIsland.Gallery.Material;
+namespace MAUIsland;
 class MaterialComboBoxControlInfo : IMaterialUIGalleryCardInfo
 {
     public string ControlName => nameof(ComboBox);

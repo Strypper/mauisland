@@ -1,11 +1,11 @@
-using MAUIsland.Gallery.Syncfusion;
 using Syncfusion.Maui.Maps;
 
 namespace MAUIsland;
 public partial class SfMapsViewPage : IGalleryPage
 {
     private bool canStopTimer;
-    #region [CTor]
+
+    #region [ CTor ]
     public SfMapsViewPage(SfMapsViewPageViewModel vm)
     {
         InitializeComponent();
@@ -24,7 +24,7 @@ public partial class SfMapsViewPage : IGalleryPage
     }
     #endregion
 
-    #region Marker Layer
+    #region [ Marker Layer ]
     private async void StartTimer()
     {
         await Task.Delay(500);
@@ -78,7 +78,8 @@ public partial class SfMapsViewPage : IGalleryPage
     }
     #endregion
 
-    #region Selection Layer
+    #region [ Selection Layer ]
+
     //private void shapeLayer_ShapeSelected(object sender, ShapeSelectedEventArgs e)
     //{
     //    this.ClearPopup();

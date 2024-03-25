@@ -273,27 +273,27 @@
             <app:MrIncreadibleCollectionTemplateWithSwipeContentView ComponentData="{x:Binding}" />
         </DataTemplate>
 
-        <DataTemplate x:Key="ControllInfoCollectionTemplate" x:DataType="app:IGalleryCardInfo">
+        <DataTemplate x:Key="ControllInfoCollectionTemplate" x:DataType="core:IGalleryCardInfo">
             <app:ControllInfoCollectionTemplateContentView ComponentData="{x:Binding}" />
         </DataTemplate>
 
-        <DataTemplate x:Key="ControllInfoCollectionTwoItemRowTemplate" x:DataType="app:IGalleryCardInfo">
+        <DataTemplate x:Key="ControllInfoCollectionTwoItemRowTemplate" x:DataType="core:IGalleryCardInfo">
             <app:ControllInfoCollectionTwoItemRowTemplateContentView ComponentData="{x:Binding}" />
         </DataTemplate>
 
-        <DataTemplate x:Key="ControllInfoCollectionThreeItemRowTemplate" x:DataType="app:IGalleryCardInfo">
+        <DataTemplate x:Key="ControllInfoCollectionThreeItemRowTemplate" x:DataType="core:IGalleryCardInfo">
             <app:ControllInfoCollectionThreeItemRowTemplateContentView ComponentData="{x:Binding}" />
         </DataTemplate>
 
-        <DataTemplate x:Key="ControllInfoCollectionFourItemRowTemplate" x:DataType="app:IGalleryCardInfo">
+        <DataTemplate x:Key="ControllInfoCollectionFourItemRowTemplate" x:DataType="core:IGalleryCardInfo">
             <app:ControllInfoCollectionFourItemRowTemplateContentView ComponentData="{x:Binding}" />
         </DataTemplate>
 
-        <DataTemplate x:Key="NormalItemTemplate" x:DataType="app:IGalleryCardInfo">
+        <DataTemplate x:Key="NormalItemTemplate" x:DataType="core:IGalleryCardInfo">
             <app:NormalItemTemplateContentView ComponentData="{x:Binding}" />
         </DataTemplate>
 
-        <DataTemplate x:Key="SelectedItemTemplate" x:DataType="app:IGalleryCardInfo">
+        <DataTemplate x:Key="SelectedItemTemplate" x:DataType="core:IGalleryCardInfo">
             <app:SelectedItemTemplateContentView ComponentData="{x:Binding}" />
         </DataTemplate>
 
@@ -682,17 +682,19 @@
                             <CollectionView ItemsSource="{x:StaticResource CollectionViewDataTemplateSelector}" Style="{x:StaticResource PropertiesListStyle}" />
                             <Picker
                                 Title="Filter"
+                                ItemsSource="{x:Binding FilterPickerItems,
+                                                        Mode=OneWay}"
                                 SelectedIndex="0"
-                                ItemsSource="{x:Binding FilterPickerItems, Mode=OneWay}"
-                                SelectedItem="{x:Binding SelectedFilterPickerItem, Mode=TwoWay}"
-                                SelectedIndexChanged="OnFilterItemChanged" />
+                                SelectedIndexChanged="OnFilterItemChanged"
+                                SelectedItem="{x:Binding SelectedFilterPickerItem,
+                                                         Mode=TwoWay}" />
                             <CollectionView
                                 x:Name="CollectionViewItemLayoutChanged"
                                 HeightRequest="400"
                                 ItemTemplate="{x:StaticResource TemplateSelector}"
+                                ItemsLayout="VerticalGrid, 4"
                                 ItemsSource="{x:Binding ControlGroupList,
                                                         Mode=OneWay}"
-                                ItemsLayout="VerticalGrid, 4"
                                 SelectionMode="None" />
                         </VerticalStackLayout>
                     </Border>

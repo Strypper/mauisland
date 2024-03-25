@@ -1,6 +1,6 @@
 using Syncfusion.Maui.Charts;
 
-namespace MAUIsland.Gallery.Syncfusion;
+namespace MAUIsland;
 class SfCartesianChartControlInfo : IGalleryCardInfo
 {
     public string ControlName => nameof(SfCartesianChart);

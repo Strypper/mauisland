@@ -1,6 +1,6 @@
 using Material.Components.Maui;
 
-namespace MAUIsland.Gallery.Material;
+namespace MAUIsland;
 class MaterialFABControlInfo : IMaterialUIGalleryCardInfo
 {
     public string ControlName => nameof(FAB);

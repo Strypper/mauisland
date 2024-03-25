@@ -10,7 +10,7 @@ public partial class AppShell : Shell
     private readonly AppSettings appSettings;
     #endregion
 
-    #region [CTor]
+    #region [ CTor ]
     public AppShell()
     {
         InitializeComponent();
@@ -27,7 +27,7 @@ public partial class AppShell : Shell
     }
     #endregion
 
-    #region [Methods]
+    #region [ Methods ]
     void RegisterRoutes()
     {
         Routing.RegisterRoute(nameof(CardsByGroupPage), typeof(CardsByGroupPage));

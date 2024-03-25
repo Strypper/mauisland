@@ -37,12 +37,10 @@ public abstract class NavigationAwareBaseViewModel : BaseViewModel, IQueryAttrib
         return base.OnAppearingAsync();
     }
 
-    // ReSharper disable once UnusedParameter.Global
     protected virtual void OnBack(IDictionary<string, object> query)
     {
     }
 
-    // ReSharper disable once UnusedParameter.Global
     protected virtual void OnInit(IDictionary<string, object> query)
     {
     }
@@ -50,23 +48,14 @@ public abstract class NavigationAwareBaseViewModel : BaseViewModel, IQueryAttrib
 
 public interface IOnBackAwareViewModel
 {
-    // ReSharper disable once UnusedMemberInSuper.Global
-    // ReSharper disable once UnusedMethodReturnValue.Global
-    // ReSharper disable once UnusedParameter.Global
     Task OnBackAsync(IDictionary<string, object> query);
 }
 
 public interface IOnInitAwareViewModel<in T>
 {
-    // ReSharper disable once UnusedMemberInSuper.Global
-    // ReSharper disable once UnusedMethodReturnValue.Global
-    // ReSharper disable once UnusedParameter.Global
     Task OnInitAsync(T args);
 }
 
-// ReSharper disable once UnusedType.Global
-
-// ReSharper disable once UnusedType.Global
 public abstract class NavigationAwareViewModel<TInit>
     : NavigationAwareBaseViewModel
         , IOnInitAwareViewModel<TInit>
@@ -81,8 +70,6 @@ public abstract class NavigationAwareViewModel<TInit>
         OnInitAsync(query.GetData<TInit>());
     }
 
-    // ReSharper disable once UnusedParameter.Global
-    // ReSharper disable once UnusedMethodReturnValue.Global
     public virtual Task OnInitAsync(TInit args) => Task.CompletedTask;
 
     protected override void OnBack(IDictionary<string, object> query)
@@ -90,8 +77,6 @@ public abstract class NavigationAwareViewModel<TInit>
         OnBackAsync(query);
     }
 
-    // ReSharper disable once UnusedParameter.Global
-    // ReSharper disable once UnusedMethodReturnValue.Global
     public virtual Task OnBackAsync(IDictionary<string, object> query) => Task.CompletedTask;
 }
 
@@ -109,8 +94,6 @@ public abstract class OnBackAwareViewModel
         OnBackAsync(query);
     }
 
-    // ReSharper disable once UnusedParameter.Global
-    // ReSharper disable once UnusedMethodReturnValue.Global
     public virtual Task OnBackAsync(IDictionary<string, object> query) => Task.CompletedTask;
 }
 
@@ -128,7 +111,5 @@ public abstract class OnInitAwareViewModel<TInit>
         OnInitAsync(query.GetData<TInit>());
     }
 
-    // ReSharper disable once UnusedParameter.Global
-    // ReSharper disable once UnusedMethodReturnValue.Global
     public virtual Task OnInitAsync(TInit args) => Task.CompletedTask;
 }

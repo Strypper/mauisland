@@ -72,7 +72,7 @@
             </x:String>
         </x:Array>
 
-        <DataTemplate x:Key="ControlInfoCollectionView" x:DataType="app:IGalleryCardInfo">
+        <DataTemplate x:Key="ControlInfoCollectionView" x:DataType="core:IGalleryCardInfo">
             <Border Margin="0,5,0,5" Padding="5">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="5" />

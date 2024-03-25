@@ -1,6 +1,6 @@
 using Syncfusion.Maui.Maps;
 
-namespace MAUIsland.Gallery.Syncfusion;
+namespace MAUIsland;
 public class AustraliaModel
 {
     public AustraliaModel(string state, int size)

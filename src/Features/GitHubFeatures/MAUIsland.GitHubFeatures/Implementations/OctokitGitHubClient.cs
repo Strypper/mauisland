@@ -242,7 +242,7 @@ public class OctokitGitHubClient : IGitHubService
         {
             var request = new RepositoryIssueRequest
             {
-                State = ItemStateFilter.All,
+                State = ItemStateFilter.Open,
             };
             foreach (var label in labels)
             {
@@ -310,6 +310,7 @@ public class OctokitGitHubClient : IGitHubService
                     ClosedAt = issue.Milestone.ClosedAt
                 } : null,
                 Locked = issue.Locked,
+                IsOpen = issue.State == ItemState.Open ? true : false,
                 Comments = issue.Comments,
                 ClosedAt = issue.ClosedAt,
                 CreatedAt = issue.CreatedAt,

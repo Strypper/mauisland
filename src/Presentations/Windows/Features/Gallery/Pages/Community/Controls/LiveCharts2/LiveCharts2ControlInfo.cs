@@ -1,6 +1,4 @@
-using Octokit;
-
-namespace MAUIsland.Gallery.Community;
+namespace MAUIsland;
 class LiveCharts2ControlInfo : IGithubGalleryCardInfo
 {
     public string RepositoryName => "LiveCharts2";

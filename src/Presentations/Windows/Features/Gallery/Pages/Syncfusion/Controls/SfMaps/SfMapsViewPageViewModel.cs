@@ -1,4 +1,3 @@
-using MAUIsland.Gallery.Syncfusion;
 using Syncfusion.Maui.Maps;
 
 namespace MAUIsland;

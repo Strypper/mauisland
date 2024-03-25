@@ -1,6 +1,6 @@
 using Syncfusion.Maui.Maps;
 
-namespace MAUIsland.Gallery.Syncfusion;
+namespace MAUIsland;
 public class PopulationDensityDetails
 {
     public string State { get; set; }

@@ -1,6 +1,6 @@
 using Syncfusion.Maui.DataGrid;
 
-namespace MAUIsland.Gallery.Syncfusion;
+namespace MAUIsland;
 class SfDataGridControlInfo : IGalleryCardInfo
 {
     public string ControlName => nameof(SfDataGrid);

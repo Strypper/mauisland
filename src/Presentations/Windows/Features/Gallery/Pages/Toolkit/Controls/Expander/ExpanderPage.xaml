@@ -58,7 +58,7 @@
             </x:String>
         </x:Array>
 
-        <DataTemplate x:Key="ControlGroupListDataTemplate" x:DataType="app:IGalleryCardInfo">
+        <DataTemplate x:Key="ControlGroupListDataTemplate" x:DataType="core:IGalleryCardInfo">
             <ViewCell>
                 <Border Margin="0,5,0,5" Padding="5">
                     <Border.StrokeShape>

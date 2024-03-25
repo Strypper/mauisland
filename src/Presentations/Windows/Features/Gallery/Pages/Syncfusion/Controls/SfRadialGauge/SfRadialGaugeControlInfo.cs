@@ -1,6 +1,6 @@
 using Syncfusion.Maui.Gauges;
 
-namespace MAUIsland.Gallery.Syncfusion;
+namespace MAUIsland;
 class SfRadialGaugeControlInfo : IGalleryCardInfo
 {
     public string ControlName => nameof(SfRadialGauge);

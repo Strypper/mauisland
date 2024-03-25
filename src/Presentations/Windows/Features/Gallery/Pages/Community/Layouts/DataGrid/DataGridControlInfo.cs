@@ -1,4 +1,4 @@
-namespace MAUIsland.Gallery.Community;
+namespace MAUIsland;
 class DataGridControlInfo : IGithubGalleryCardInfo
 {
     public string RepositoryName => "Maui.DataGrid";

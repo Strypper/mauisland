@@ -24,7 +24,7 @@
 
     </core:BasePage.ToolbarItems>
     <core:BasePage.Resources>
-        <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate" x:DataType="app:IGalleryCardInfo">
+        <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate" x:DataType="core:IGalleryCardInfo">
             <app:ControlCardContentView ComponentData="{x:Binding}" />
         </DataTemplate>
 

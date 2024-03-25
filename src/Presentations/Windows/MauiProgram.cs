@@ -101,6 +101,38 @@ public static class MauiProgram
         return builder;
     }
 
+    //public static MauiAppBuilder RegisterControlInfos(this MauiAppBuilder builder)
+    //{
+    //    // Explicitly list assemblies you want to scan.
+    //    // This can be adjusted based on your project structure.
+    //    var assembliesToScan = new[]
+    //    {
+    //        typeof(Core.IGalleryCardInfo).Assembly, // Core assembly where the interface is defined.
+    //        Assembly.GetExecutingAssembly(), // Current assembly, could be MAUIsland or another MAUI app.
+    //        // Add other assemblies if necessary.
+    //    };
+
+    //    var controlInfoTypes = assembliesToScan
+    //        .SelectMany(assembly => assembly.GetTypes())
+    //        .Where(type => !type.IsAbstract && !type.IsInterface &&
+    //            (typeof(Core.IGalleryCardInfo).IsAssignableFrom(type) || typeof(IBuiltInGalleryCardInfo).IsAssignableFrom(type)))
+    //        .ToList();
+
+    //    foreach (var controlInfoType in controlInfoTypes)
+    //    {
+    //        if (typeof(IBuiltInGalleryCardInfo).IsAssignableFrom(controlInfoType))
+    //        {
+    //            builder.Services.AddSingleton(typeof(IBuiltInGalleryCardInfo), controlInfoType);
+    //        }
+    //        else if (typeof(Core.IGalleryCardInfo).IsAssignableFrom(controlInfoType))
+    //        {
+    //            builder.Services.AddSingleton(typeof(Core.IGalleryCardInfo), controlInfoType);
+    //        }
+    //    }
+
+    //    return builder;
+    //}
+
     static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {
         builder.Services.AddSingleton<IMrIncreadibleMemeService, MrIncreadibleMemeService>();

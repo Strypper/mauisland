@@ -47,7 +47,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\SourceCodeExpanderContent.xaml">
+	  <MauiXaml Update="Views\ContentViews\SourceCodeExpander\SourceCodeExpanderContent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

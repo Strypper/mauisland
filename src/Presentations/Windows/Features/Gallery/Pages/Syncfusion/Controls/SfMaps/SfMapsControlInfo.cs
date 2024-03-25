@@ -1,6 +1,6 @@
 using Syncfusion.Maui.Maps;
 
-namespace MAUIsland.Gallery.Syncfusion;
+namespace MAUIsland;
 class SfMapsControlInfo : IGalleryCardInfo
 {
     public string ControlName => nameof(SfMaps);

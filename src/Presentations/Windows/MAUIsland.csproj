@@ -34,7 +34,8 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" BaseSize="1200, 1200" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\square44x44logo.svg" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
@@ -79,6 +80,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="appsettings.Development.json" />
+	  <None Remove="Resources\AppIcon\square44x44logo.svg" />
 	  <None Remove="Resources\Images\members\member_long.png" />
 	  <None Remove="Resources\Images\members\member_tan.png" />
 	  <None Remove="Resources\Images\project_githubcard_bug.png" />

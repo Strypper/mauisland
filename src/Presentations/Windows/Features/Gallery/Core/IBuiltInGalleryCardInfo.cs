@@ -9,5 +9,4 @@ public interface IBuiltInGalleryCardInfo : IGalleryCardInfo
     List<string> GitHubIssueLabels { get; }
 
     BuiltInGalleryCardStatus Status { get; }
-
 }

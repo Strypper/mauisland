@@ -54,6 +54,9 @@ public partial class GitHubIssueModel : GitHubBaseModel
     bool locked;
 
     [ObservableProperty]
+    bool isOpen;
+
+    [ObservableProperty]
     int comments;
 
     [ObservableProperty]

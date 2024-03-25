@@ -7,7 +7,7 @@
 #endregion
 using System.Collections.ObjectModel;
 
-namespace MAUIsland.Gallery.Syncfusion;
+namespace MAUIsland;
 
 public class SelectionViewModel
 {

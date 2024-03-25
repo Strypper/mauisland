@@ -7,6 +7,10 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
     #region [ Fields ]
     private readonly IControlsService mauiControlsService;
     private readonly ICardInfoSyncService cardInfoSyncService;
+
+
+    private Timer? _debounceTimer;
+    private const int DebouncePeriodInMilliseconds = 500;
     #endregion
 
     #region [ CTor ]
@@ -21,6 +25,9 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [ Properties ]
+
+    [ObservableProperty]
+    string searchText = string.Empty;
 
     [ObservableProperty]
     int span = 4;
@@ -71,12 +78,13 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
         base.OnInit(query);
 
         ControlGroup = query.GetData<ControlGroupInfo>();
+    }
 
+    public override async Task OnAppearingAsync()
+    {
         CommunityToolkit.Diagnostics.Guard.IsNotNull(ControlGroup);
-
-        LoadDataAsync(true).FireAndForget();
-
-        RefreshAsync().GetAwaiter();
+        await LoadDataAsync(true);
+        await RefreshAsync();
     }
     #endregion
 
@@ -106,17 +114,40 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [ Methods ]
+
     partial void OnSelectedItemChanged(string value)
+        => FilterControls(value, SearchText);
+
+    partial void OnSearchTextChanged(string value)
     {
-        var trimmedValue = value.TrimEnd('s');
+        _debounceTimer?.Dispose(); // Cancel any existing timer
+        _debounceTimer = new Timer(_ =>
+        {
+            // This code runs after the debounce period elapses
+            // Ensure you're on the UI thread if necessary, especially if modifying UI elements directly
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                FilterControls(SelectedItem, value);
+            });
+        }, null, DebouncePeriodInMilliseconds, Timeout.Infinite); // Timeout.Infinite ensures the timer runs only once
+    }
+    void FilterControls(string pickerValue, string searchValue)
+    {
+        IsBusy = true;
+        var trimmedValue = pickerValue.TrimEnd('s');
 
         if (trimmedValue == "All")
         {
-            FilteredControlGroupList = ControlGroupList;
+            FilteredControlGroupList = ControlGroupList
+                                            .Where(x => x.ControlName.Contains(searchValue))
+                                            .ToObservableCollection();
+            IsBusy = false;
         }
         else
         {
-            var controlItems = ControlGroupList.Where(x => x.CardType.ToString() == trimmedValue).ToObservableCollection();
+            var controlItems = ControlGroupList.Where(x => x.CardType.ToString() == trimmedValue
+                                                        && x.ControlName.Contains(searchValue))
+                                                        .ToObservableCollection();
             if (controlItems.Count() == 0)
             {
                 FilteredControlGroupList = new ObservableCollection<IGalleryCardInfo>();
@@ -125,6 +156,7 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
             {
                 FilteredControlGroupList = controlItems;
             }
+            IsBusy = false;
         }
     }
 

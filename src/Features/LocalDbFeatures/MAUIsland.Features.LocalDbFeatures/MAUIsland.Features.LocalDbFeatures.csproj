@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.9.141-beta" />
+	<PackageReference Include="OneOf" Version="3.0.263" />
   </ItemGroup>
 
 </Project>

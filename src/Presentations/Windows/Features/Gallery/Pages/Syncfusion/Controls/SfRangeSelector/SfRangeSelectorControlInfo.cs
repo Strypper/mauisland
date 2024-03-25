@@ -1,6 +1,6 @@
 using Syncfusion.Maui.Sliders;
 
-namespace MAUIsland.Gallery.Syncfusion;
+namespace MAUIsland;
 class SfRangeSelectorControlInfo : IGalleryCardInfo
 {
     public string ControlName => nameof(SfRangeSelector);

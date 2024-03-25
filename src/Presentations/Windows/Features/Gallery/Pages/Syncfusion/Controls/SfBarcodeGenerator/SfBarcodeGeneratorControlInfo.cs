@@ -1,6 +1,6 @@
 using Syncfusion.Maui.Barcode;
 
-namespace MAUIsland.Gallery.Syncfusion;
+namespace MAUIsland;
 class SfBarcodeGeneratorControlInfo : IGalleryCardInfo
 {
     public string ControlName => nameof(SfBarcodeGenerator);

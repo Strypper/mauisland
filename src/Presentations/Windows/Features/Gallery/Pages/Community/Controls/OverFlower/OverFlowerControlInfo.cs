@@ -1,4 +1,4 @@
-namespace MAUIsland.Gallery.Community;
+namespace MAUIsland;
 class OverFlowerControlInfo : IGithubGalleryCardInfo
 {
     public string RepositoryName => "OverFlower";

@@ -78,7 +78,7 @@
                     <Label
                         IsVisible="{x:Binding SelectedItem,
                                               Converter={StaticResource EnumToBoolConverter},
-                                              ConverterParameter={x:Static app:GalleryCardType.Converter}}"
+                                              ConverterParameter={x:Static core:GalleryCardType.Converter}}"
                         Text="Let Go!"
                         TextColor="OrangeRed" />
                 </VerticalStackLayout>

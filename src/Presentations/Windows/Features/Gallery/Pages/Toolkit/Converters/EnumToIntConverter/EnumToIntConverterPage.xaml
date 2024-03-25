@@ -75,7 +75,7 @@
                     <Picker
                         BackgroundColor="#512bd4"
                         ItemsSource="{x:Binding GalleryCardTypes}"
-                        SelectedIndex="{Binding SelectedItem, Converter={StaticResource EnumToIntConverter}, ConverterParameter={x:Type app:GalleryCardType}}" />
+                        SelectedIndex="{Binding SelectedItem, Converter={StaticResource EnumToIntConverter}, ConverterParameter={x:Type core:GalleryCardType}}" />
                     <Label Text="This label binds to the SelectedIndex property of the picker, both use EnumToIntConverter, so no int properties are necessary in ViewModel" />
                     <Label>
                         <Label.FormattedText>

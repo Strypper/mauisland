@@ -1,6 +1,6 @@
 using Syncfusion.Maui.ListView;
 
-namespace MAUIsland.Gallery.Syncfusion;
+namespace MAUIsland;
 class SfListViewControlInfo : IGalleryCardInfo
 {
     public string ControlName => nameof(SfListView);

@@ -1,6 +1,6 @@
 using Syncfusion.Maui.Core;
 
-namespace MAUIsland.Gallery.Syncfusion;
+namespace MAUIsland;
 class SfBusyIndicatorControlInfo : IGalleryCardInfo
 {
     public string ControlName => nameof(SfBusyIndicator);

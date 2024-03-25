@@ -1,6 +1,6 @@
 using Syncfusion.Maui.Core;
 
-namespace MAUIsland.Gallery.Syncfusion;
+namespace MAUIsland;
 class SfBadgeViewControlInfo : IGalleryCardInfo
 {
     public string ControlName => nameof(SfBadgeView);

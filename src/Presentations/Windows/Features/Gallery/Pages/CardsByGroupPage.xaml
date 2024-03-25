@@ -17,14 +17,6 @@
     Shell.TabBarIsVisible="False"
     SizeChanged="BasePage_SizeChanged">
     <Shell.SearchHandler>
-
-
-        <!--
-            SearchBoxVisibility="{x:OnPlatform iOS=false,
-            MacCatalyst=false, WinUI=true}"
-        -->
-
-
         <app:CardsSearchHandler
             Cards="{x:Binding ControlGroupList,
                               Mode=TwoWay}"
@@ -34,7 +26,7 @@
             SelectCard="CardsSearchHandler_SelectCard"
             ShowsResults="True">
             <app:CardsSearchHandler.ItemTemplate>
-                <DataTemplate x:DataType="app:IGalleryCardInfo">
+                <DataTemplate x:DataType="core:IGalleryCardInfo">
                     <Grid
                         Margin="5"
                         ColumnDefinitions="40,Auto"
@@ -59,7 +51,7 @@
 
         <app:CardByGroupPageTypePickerConverter x:Key="CardByGroupPageTypePickerConverter" />
 
-        <DataTemplate x:Key="BuiltInCardItemTemplate" x:DataType="app:IGalleryCardInfo">
+        <DataTemplate x:Key="BuiltInCardItemTemplate" x:DataType="core:IGalleryCardInfo">
             <app:ControlCardContentView
                 ComponentData="{x:Binding}"
                 DetailClicked="ControlCardContentView_DetailClicked"
@@ -80,7 +72,7 @@
                 DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
         </DataTemplate>
 
-        <DataTemplate x:Key="SyncfusionCardItemTemplate" x:DataType="app:IGalleryCardInfo">
+        <DataTemplate x:Key="SyncfusionCardItemTemplate" x:DataType="core:IGalleryCardInfo">
             <app:SyncfusionCardContentView
                 ComponentData="{x:Binding}"
                 DetailClicked="ControlCardContentView_DetailClicked"
@@ -263,6 +255,19 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
+                        <HorizontalStackLayout
+                            HorizontalOptions="Center"
+                            Spacing="5"
+                            VerticalOptions="Center">
+                            <SearchBar
+                                HorizontalOptions="Center"
+                                MinimumWidthRequest="250"
+                                Placeholder="Search controls, converters and many more"
+                                Text="{x:Binding SearchText,
+                                                 Mode=TwoWay}"
+                                VerticalOptions="Center" />
+                            <ActivityIndicator IsRunning="{x:Binding IsBusy}" Color="{x:Binding ControlGroup.BrandColor}" />
+                        </HorizontalStackLayout>
                         <Picker
                             x:Name="CardByGroupPageTypePicker"
                             Title="Types"

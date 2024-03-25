@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MAUIsland.Gallery.Syncfusion;
+namespace MAUIsland;
 public class AustraliaViewModel
 {
     public ObservableCollection<AustraliaModel> Data { get; set; }
