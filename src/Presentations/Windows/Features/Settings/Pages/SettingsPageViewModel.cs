@@ -1,37 +1,42 @@
 ﻿using CommunityToolkit.Diagnostics;
+using System.Reflection;
 
 namespace MAUIsland;
 
 public partial class SettingsPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [Services]
+    #region [ Fields ]
 
+    private readonly IAppInfo _appInfo;
     private readonly IFilePicker _filePicker;
     private readonly IUserServices _userService;
 
     #endregion
 
-    #region [CTor]
+    #region [ CTor ]
 
     public SettingsPageViewModel(IAppNavigator appNavigator,
                                  IUserServices userService,
-                                 IFilePicker filePicker) : base(appNavigator)
+                                 IFilePicker filePicker,
+                                 IAppInfo appInfo) : base(appNavigator)
     {
+        _appInfo = appInfo;
         _filePicker = filePicker;
         _userService = userService;
     }
 
     #endregion
 
-    #region [Overrides]
+    #region [ Overrides ]
 
     protected override void OnInit(IDictionary<string, object> query)
     {
-        GetCurrentUser().FireAndForget();
+        AppVersion = _appInfo.VersionString;
+        MauiVersion = GetMauiVersion();
     }
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
 
     [ObservableProperty]
     ImageSource avatarImageSource;
@@ -42,9 +47,15 @@ public partial class SettingsPageViewModel : NavigationAwareBaseViewModel
     [ObservableProperty]
     FileResult file;
 
+    [ObservableProperty]
+    string appVersion = string.Empty;
+
+    [ObservableProperty]
+    string mauiVersion = string.Empty;
+
     #endregion
 
-    #region [Relay Commands]
+    #region [ Relay Commands ]
 
     [RelayCommand]
     private async Task OpenFileAsync()
@@ -66,11 +77,29 @@ public partial class SettingsPageViewModel : NavigationAwareBaseViewModel
 
     #endregion
 
-    #region [Methods]
+    #region [ Methods ]
+
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
+
     async Task GetCurrentUser()
     {
         CurrentUser = await _userService.GetCurrentUser();
         AvatarImageSource = CurrentUser.AvatarUrl;
     }
+
+    private string GetMauiVersion()
+    {
+        var attr = typeof(MauiApp).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
+        string versionWithSuffix = attr.InformationalVersion;
+
+        // Split the version string using '+' as delimiter and take the first part
+        string[] parts = versionWithSuffix.Split('+');
+        string version = parts[0].Trim();
+
+        return version;
+    }
+
     #endregion
 }

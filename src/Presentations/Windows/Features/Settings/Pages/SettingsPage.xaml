@@ -8,13 +8,71 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="SettingsPage"
     Padding="10"
-    x:DataType="app:SettingsPageViewModel">
-    <VerticalStackLayout>
-        <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-            <VerticalStackLayout>
-                <Label Text="MAUIsland" />
-                <Label Text="Version 1.1.0 - Christmas Update" />
+    x:DataType="app:SettingsPageViewModel"
+    BackgroundColor="Transparent">
+
+    <core:BasePage.Resources>
+        <x:String x:Key="RepositoryLink">
+            https://github.com/Strypper/mauisland
+        </x:String>
+
+        <x:String x:Key="LicenseLink">
+            https://github.com/Strypper/mauisland?tab=MIT-1-ov-file#readme
+        </x:String>
+    </core:BasePage.Resources>
+
+    <VerticalStackLayout Spacing="10">
+        <Border Padding="20" StrokeShape="RoundRectangle 4">
+            <VerticalStackLayout Spacing="8">
+                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="MAUIsland" />
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Version: " />
+                            <Span Text="{x:Binding AppVersion}" />
+                            <Span Text=" - Dragon Version" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
             </VerticalStackLayout>
-        </Frame>
+        </Border>
+        <Border Padding="20" StrokeShape="RoundRectangle 4">
+            <VerticalStackLayout Spacing="8">
+                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text=".NET MAUI" />
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Version: " />
+                            <Span Text="{x:Binding MauiVersion}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
+        </Border>
+        <Border Padding="20" StrokeShape="RoundRectangle 4">
+            <VerticalStackLayout Spacing="8">
+                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Source Code" />
+                <ImageButton
+                    Padding="10"
+                    BackgroundColor="#323232"
+                    Command="{x:Binding OpenUrlCommand}"
+                    CommandParameter="{x:StaticResource RepositoryLink}"
+                    CornerRadius="10"
+                    HeightRequest="80"
+                    HorizontalOptions="Start"
+                    Source="githublogo.png"
+                    VerticalOptions="Start"
+                    WidthRequest="80" />
+                <Label
+                    Text="MIT License"
+                    TextColor="#60aeff"
+                    TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{x:Binding OpenUrlCommand}" CommandParameter="{x:StaticResource LicenseLink}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </VerticalStackLayout>
+        </Border>
+        <Label HorizontalOptions="Center" Text="Copyright (c) 2023 Strypper Vandel Jason" />
     </VerticalStackLayout>
 </core:BasePage>
