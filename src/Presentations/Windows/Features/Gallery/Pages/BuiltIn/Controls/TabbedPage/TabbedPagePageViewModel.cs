@@ -1,10 +1,16 @@
+using MAUIsland.Features.LocalDbFeatures.GitHub;
+using MAUIsland.GitHubFeatures;
+
 namespace MAUIsland;
-public partial class TabbedPagePageViewModel : NavigationAwareBaseViewModel
+public partial class TabbedPagePageViewModel : BaseBuiltInPageControlViewModel
 {
     #region [ CTor ]
-    public TabbedPagePageViewModel(
-        IAppNavigator appNavigator
-    ) : base(appNavigator)
+    public TabbedPagePageViewModel(IAppNavigator appNavigator,
+                                   IGitHubService gitHubService,
+                                   IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                                    : base(appNavigator,
+                                           gitHubService,
+                                           gitHubIssueLocalDbService)
     {
     }
     #endregion
@@ -12,7 +18,7 @@ public partial class TabbedPagePageViewModel : NavigationAwareBaseViewModel
     #region [ Properties ]
 
     [ObservableProperty]
-    IGalleryCardInfo controlInformation;
+    IBuiltInGalleryCardInfo controlInformation;
     #endregion
 
     #region [ Overrides ]
@@ -21,7 +27,7 @@ public partial class TabbedPagePageViewModel : NavigationAwareBaseViewModel
     {
         base.OnInit(query);
 
-        ControlInformation = query.GetData<IGalleryCardInfo>();
+        ControlInformation = query.GetData<IBuiltInGalleryCardInfo>();
 
     }
     #endregion
@@ -31,5 +37,15 @@ public partial class TabbedPagePageViewModel : NavigationAwareBaseViewModel
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    async Task RefreshAsync()
+    {
+        await RefreshControlIssues(true,
+                                   ControlInformation.ControlName,
+                                   ControlInformation.GitHubAuthorIssueName,
+                                   ControlInformation.GitHubRepositoryIssueName,
+                                   ControlInformation.GitHubIssueLabels);
+    }
     #endregion
 }

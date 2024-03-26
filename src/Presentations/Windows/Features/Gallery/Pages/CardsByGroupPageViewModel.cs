@@ -5,8 +5,8 @@ namespace MAUIsland;
 public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
 {
     #region [ Fields ]
+
     private readonly IControlsService mauiControlsService;
-    private readonly ICardInfoSyncService cardInfoSyncService;
 
 
     private Timer? _debounceTimer;
@@ -15,12 +15,10 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
 
     #region [ CTor ]
     public CardsByGroupPageViewModel(IAppNavigator appNavigator,
-                                      IControlsService mauiControlsService,
-                                      ICardInfoSyncService cardInfoSyncService)
+                                     IControlsService mauiControlsService)
         : base(appNavigator)
     {
         this.mauiControlsService = mauiControlsService;
-        this.cardInfoSyncService = cardInfoSyncService;
     }
     #endregion
 

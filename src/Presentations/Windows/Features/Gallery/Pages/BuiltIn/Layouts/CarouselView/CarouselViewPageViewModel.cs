@@ -1,21 +1,26 @@
-﻿namespace MAUIsland;
+﻿using MAUIsland.Features.LocalDbFeatures.GitHub;
+using MAUIsland.GitHubFeatures;
 
-public partial class CarouselViewPageViewModel : NavigationAwareBaseViewModel
+namespace MAUIsland;
+
+public partial class CarouselViewPageViewModel : BaseBuiltInPageControlViewModel
 {
-    #region [ CTor ]
-    public CarouselViewPageViewModel(IAppNavigator appNavigator)
-                                    : base(appNavigator)
-    {
 
+    #region [ CTor ]
+    public CarouselViewPageViewModel(IAppNavigator appNavigator,
+                                     IGitHubService gitHubService,
+                                     IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                                    : base(appNavigator,
+                                            gitHubService,
+                                            gitHubIssueLocalDbService)
+    {
     }
     #endregion
 
     #region [ Properties ]
-    [ObservableProperty]
-    bool isRefreshing;
 
     [ObservableProperty]
-    IGalleryCardInfo controlInformation;
+    IBuiltInGalleryCardInfo controlInformation;
 
     [ObservableProperty]
     int commandCurrentSelectedItemPositionSpan = 0;
@@ -383,9 +388,14 @@ public partial class CarouselViewPageViewModel : NavigationAwareBaseViewModel
     {
         base.OnInit(query);
 
-        ControlInformation = query.GetData<IGalleryCardInfo>();
+        ControlInformation = query.GetData<IBuiltInGalleryCardInfo>();
 
-        LoadDataAsync(true).FireAndForget();
+    }
+
+    public override async Task OnAppearingAsync()
+    {
+        await base.OnAppearingAsync();
+        await RefreshAsync();
     }
     #endregion
 
@@ -409,16 +419,6 @@ public partial class CarouselViewPageViewModel : NavigationAwareBaseViewModel
     void CarouselViewCurrentItemChanged(string value)
     {
         CommandCurrentSelectedItemSpan = value;
-    }
-
-    [RelayCommand]
-    void Refresh()
-    {
-        IsRefreshing = true;
-
-        LoadDataAsync(true).FireAndForget();
-
-        IsRefreshing = false;
     }
     #endregion
 
@@ -480,6 +480,17 @@ public partial class CarouselViewPageViewModel : NavigationAwareBaseViewModel
         }
 
         CommandCurrentSelectedItem = Items.First();
+    }
+
+    [RelayCommand]
+    async Task RefreshAsync()
+    {
+        await LoadDataAsync(true);
+        await RefreshControlIssues(true,
+                                   ControlInformation.ControlName,
+                                   ControlInformation.GitHubAuthorIssueName,
+                                   ControlInformation.GitHubRepositoryIssueName,
+                                   ControlInformation.GitHubIssueLabels);
     }
     #endregion
 }

@@ -13,9 +13,9 @@ public partial class ActivityIndicatorPageViewModel : BaseBuiltInPageControlView
     public ActivityIndicatorPageViewModel(IAppNavigator appNavigator,
                                           IGitHubService gitHubService,
                                           IGitHubIssueLocalDbService gitHubIssueLocalDbService)
-                                        : base(appNavigator,
-                                               gitHubService,
-                                               gitHubIssueLocalDbService)
+                                            : base(appNavigator,
+                                                    gitHubService,
+                                                    gitHubIssueLocalDbService)
     {
     }
     #endregion
@@ -97,9 +97,5 @@ public partial class ActivityIndicatorPageViewModel : BaseBuiltInPageControlView
                                    ControlInformation.GitHubRepositoryIssueName,
                                    ControlInformation.GitHubIssueLabels);
     }
-    #endregion
-
-    #region [ Methods ]
-
     #endregion
 }

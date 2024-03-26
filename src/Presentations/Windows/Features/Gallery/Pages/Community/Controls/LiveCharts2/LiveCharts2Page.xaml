@@ -127,8 +127,8 @@
                             Series="{Binding PieSeries3}"
                             WidthRequest="300" />
                     </Grid>
-                    <core:SourceCodeExpander Code="{x:Binding PieChartCSharpCode}" CodeType="CSharp" />
                     <core:SourceCodeExpander Code="{x:Binding PieChartXamlCode}" CodeType="Xaml" />
+                    <core:SourceCodeExpander Code="{x:Binding PieChartCSharpCode}" CodeType="CSharp" />
                 </VerticalStackLayout>
             </Border>
         </VerticalStackLayout>

@@ -1,45 +1,30 @@
-﻿using MAUIsland.GitHubFeatures;
+﻿using MAUIsland.Features.LocalDbFeatures.GitHub;
+using MAUIsland.GitHubFeatures;
 
 namespace MAUIsland;
 
-public partial class ImageButtonPageViewModel : NavigationAwareBaseViewModel
+public partial class ImageButtonPageViewModel : BaseBuiltInPageControlViewModel
 {
     #region [ Fields ]
 
     private readonly IFilePicker filePicker;
-    private readonly IGitHubService gitHubService;
     #endregion
 
     #region [ CTor ]
     public ImageButtonPageViewModel(IAppNavigator appNavigator,
-                                    IFilePicker filePicker,
-                                    IGitHubService gitHubService)
-                                : base(appNavigator)
+                                    IGitHubService gitHubService,
+                                    IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                                : base(appNavigator,
+                                        gitHubService,
+                                        gitHubIssueLocalDbService)
     {
-        this.filePicker = filePicker;
-        this.gitHubService = gitHubService;
     }
     #endregion
 
     #region [ Properties ]
 
     [ObservableProperty]
-    string emptyViewText = "Fetching issues";
-
-    [ObservableProperty]
-    string gitHubAPIRateLimit = "https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28";
-
-    [ObservableProperty]
     IBuiltInGalleryCardInfo controlInformation;
-
-    [ObservableProperty]
-    bool isBusy;
-
-    [ObservableProperty]
-    ObservableCollection<ControlIssueModel> controlIssues;
-
-    [ObservableProperty]
-    ControlIssueModel selectedControlIssue;
 
     [ObservableProperty]
     int imageButtonClickCount;
@@ -148,7 +133,11 @@ public partial class ImageButtonPageViewModel : NavigationAwareBaseViewModel
     [RelayCommand]
     async Task RefreshAsync()
     {
-        await RefreshControlIssues(true);
+        await RefreshControlIssues(true,
+                                   ControlInformation.ControlName,
+                                   ControlInformation.GitHubAuthorIssueName,
+                                   ControlInformation.GitHubRepositoryIssueName,
+                                   ControlInformation.GitHubIssueLabels);
     }
 
     [RelayCommand]
@@ -172,53 +161,5 @@ public partial class ImageButtonPageViewModel : NavigationAwareBaseViewModel
     [RelayCommand]
     void ClickedCount()
         => ImageButtonClickCount += 1;
-    #endregion
-
-    #region [ Methods ]
-
-    async Task RefreshControlIssues(bool forced)
-    {
-        if (IsBusy)
-            return;
-
-        IsBusy = true;
-
-        var result = await gitHubService.GetGitHubIssuesByLabels(ControlInformation.GitHubAuthorIssueName,
-                                                                 ControlInformation.GitHubRepositoryIssueName,
-                                                                 ControlInformation.GitHubIssueLabels);
-
-        IsBusy = false;
-
-        if (result.IsT0) // Check if result is ServiceSuccess
-        {
-            var items = result.AsT0.AttachedData as IEnumerable<GitHubIssueModel>;
-
-            if (ControlIssues is null || forced)
-            {
-                ControlIssues = new(items.Select(x => new ControlIssueModel()
-                {
-                    IssueId = x.Id,
-                    Title = x.Title,
-                    IssueLinkUrl = x.HtmlUrl,
-                    MileStone = x.Milestone is null ? "No mile stone" : x.Milestone.Title,
-                    OwnerName = x.User.Login,
-                    AvatarUrl = x.User.AvatarUrl,
-                    CreatedDate = x.CreatedAt.DateTime,
-                    LastUpdated = x.UpdatedAt is null ? x.CreatedAt.DateTime : x.UpdatedAt.Value.DateTime
-                }));
-            }
-        }
-        else
-        {
-            var error = result.AsT1;
-            EmptyViewText = error.ErrorDetail;
-            await AppNavigator.ShowSnackbarAsync(error.ErrorDetail,
-                                                 async () =>
-                                                 {
-                                                     await AppNavigator.OpenUrlAsync(GitHubAPIRateLimit);
-                                                 },
-                                                 "Visit GitHub API Rate Limits Policies");
-        }
-    }
     #endregion
 }

@@ -1,16 +1,20 @@
-﻿namespace MAUIsland;
+﻿using System.Reflection;
+
+namespace MAUIsland;
 
 public class ControlsService : IControlsService
 {
 
     #region [ Fields ]
 
+    private readonly string mauiVersion;
     private readonly IGalleryCardInfo[] controlInfos;
     #endregion
 
     #region [ CTor ]
     public ControlsService(IEnumerable<IGalleryCardInfo> controlInfos)
     {
+        this.mauiVersion = GetMauiVersion();
         this.controlInfos = controlInfos.ToArray();
     }
     #endregion
@@ -35,7 +39,7 @@ public class ControlsService : IControlsService
         new (){
             Name = ControlGroupInfo.BuiltInControls,
             Title = "Built-in",
-            Version = "8.0.7",
+            Version = "8.0.10",
             BrandColor = Color.FromArgb("#ac99ea"),
             ButtonTextColor = Color.FromArgb("#242424"),
             LottieUrl = "island.json",
@@ -131,6 +135,14 @@ public class ControlsService : IControlsService
         // Perform get control issues by labels
         // Save down to local db
         throw new NotImplementedException();
+    }
+
+
+    private string GetMauiVersion()
+    {
+        var attr = typeof(MauiApp).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
+        string version = attr.InformationalVersion;
+        return version;
     }
     #endregion
 }

@@ -236,11 +236,11 @@ public partial class LiveCharts2PageViewModel : NavigationAwareBaseViewModel
 
     public Axis[] BarsWithBackgroundYAxes { get; set; } =
     {
-            new Axis 
-            { 
-                MinLimit = 0, 
+            new Axis
+            {
+                MinLimit = 0,
                 MaxLimit = 10,
-                LabelsPaint = new SolidColorPaint(SKColors.White), 
+                LabelsPaint = new SolidColorPaint(SKColors.White),
             }
         };
 
@@ -269,13 +269,13 @@ public partial class LiveCharts2PageViewModel : NavigationAwareBaseViewModel
     ISeries[] racingSeries;
 
     [ObservableProperty]
-    Axis[] xRacingAxes = 
-    { 
-        new Axis 
+    Axis[] xRacingAxes =
+    {
+        new Axis
         {
             LabelsPaint = new SolidColorPaint(SKColors.White),
-            SeparatorsPaint = new SolidColorPaint(new SKColor(220, 220, 220)) 
-        } 
+            SeparatorsPaint = new SolidColorPaint(new SKColor(220, 220, 220))
+        }
     };
 
     [ObservableProperty]
@@ -360,10 +360,80 @@ public partial class LiveCharts2PageViewModel : NavigationAwareBaseViewModel
     string pieChartTitle = "Pie Chart";
 
     [ObservableProperty]
-    string pieChartCSharpCode = "";
+    string pieChartXamlCode = @"
+<Grid ColumnDefinitions=""*,*,*"">
+    <lvc:PieChart
+        Title=""{x:Binding PieChartVisualTitle}""
+        HeightRequest=""300""
+        HorizontalOptions=""Center""
+        Series=""{Binding PieSeries}""
+        WidthRequest=""300"" />
+    <lvc:PieChart
+        Title=""{x:Binding DoughnutPieChartVisualTitle}""
+        Grid.Column=""1""
+        HeightRequest=""300""
+        Series=""{Binding PieSeries2}""
+        WidthRequest=""300"" />
+    <lvc:PieChart
+        Title=""{x:Binding PushoutPieChartVisualTitle}""
+        Grid.Column=""2""
+        HeightRequest=""300""
+        Series=""{Binding PieSeries3}""
+        WidthRequest=""300"" />
+</Grid>";
 
     [ObservableProperty]
-    string pieChartXamlCode = "";
+    string pieChartCSharpCode = @"
+// You can create pie series collections easily:
+public IEnumerable<ISeries> PieSeries { get; set; } =
+    new[] { 2, 4, 1, 4, 3 }.AsPieSeries();
+
+// This collection allows customizing the series:
+public IEnumerable<ISeries> PieSeries2 { get; set; } =
+    new[] { 2, 4, 1, 4, 3 }.AsPieSeries((value, series) =>
+    {
+        series.MaxRadialColumnWidth = 60;
+    });
+
+// Here's another pie series with a push-out feature:
+public IEnumerable<ISeries> PieSeries3 { get; set; } =
+    new[] { 6, 5, 4, 3, 2 }.AsPieSeries((value, series) =>
+    {
+        // Pushes out the slice with the value of 6.
+        if (value == 6)
+        {
+            series.Pushout = 30;
+        }
+    });
+
+// Titles for the pie charts.
+public LabelVisual PieChartVisualTitle { get; set; } =
+    new LabelVisual
+    {
+        Text = ""My pie chart title"",
+        TextSize = 25,
+        Padding = new LiveChartsCore.Drawing.Padding(15),
+        Paint = new SolidColorPaint(SKColors.DarkSlateGray)
+    };
+
+public LabelVisual DoughnutPieChartVisualTitle { get; set; } =
+    new LabelVisual
+    {
+        Text = ""My doughnut chart title"",
+        TextSize = 25,
+        Padding = new LiveChartsCore.Drawing.Padding(15),
+        Paint = new SolidColorPaint(SKColors.DarkSlateGray)
+    };
+
+public LabelVisual PushoutPieChartVisualTitle { get; set; } =
+    new LabelVisual
+    {
+        Text = ""My push-out style chart title"",
+        TextSize = 25,
+        Padding = new LiveChartsCore.Drawing.Padding(15),
+        Paint = new SolidColorPaint(SKColors.DarkSlateGray)
+    };
+";
 
     // you can convert any array, list or IEnumerable<T> to a pie series collection:
     public IEnumerable<ISeries> PieSeries { get; set; } =

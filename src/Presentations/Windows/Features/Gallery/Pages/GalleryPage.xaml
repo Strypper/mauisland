@@ -36,13 +36,14 @@
             VerticalOptions="Fill" />
 
         <acrylic:AcrylicView
-            CornerRadius="20"
-            EffectStyle="Custom"
+            BorderColor="Black"
+            BorderThickness="5"
+            CornerRadius="8"
+            EffectStyle="ExtraDark"
             HeightRequest="{x:OnIdiom Desktop=350,
                                       Tablet=250,
                                       Phone=550}"
             HorizontalOptions="Center"
-            TintColor="OrangeRed"
             TintOpacity=".15 "
             VerticalOptions="Center"
             WidthRequest="{x:OnIdiom Desktop=550,

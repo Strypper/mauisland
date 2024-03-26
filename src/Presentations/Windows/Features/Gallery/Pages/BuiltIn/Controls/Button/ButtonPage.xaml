@@ -330,7 +330,7 @@
                         </VerticalStackLayout>
                     </Border>
                     <Border Padding="20" StrokeShape="RoundRectangle 4">
-                        <Frame.Resources>
+                        <Border.Resources>
                             <FontImageSource
                                 x:Key="HomeIcon"
                                 FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
@@ -344,7 +344,7 @@
                                 Glyph="{Static core:FluentUIIcon.Ic_fluent_arrow_download_20_regular}"
                                 Color="{x:AppThemeBinding Dark={x:StaticResource Primary},
                                                           Light={x:StaticResource White}}" />
-                        </Frame.Resources>
+                        </Border.Resources>
                         <VerticalStackLayout Spacing="10">
                             <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Use bitmaps with buttons" />
                             <Label Text="{x:StaticResource ImageButtonControlInfo}" />

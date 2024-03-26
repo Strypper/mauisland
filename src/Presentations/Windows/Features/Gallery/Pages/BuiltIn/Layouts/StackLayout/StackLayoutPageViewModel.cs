@@ -1,65 +1,180 @@
+using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
 
 namespace MAUIsland;
-public partial class StackLayoutPageViewModel : NavigationAwareBaseViewModel
+public partial class StackLayoutPageViewModel : BaseBuiltInPageControlViewModel
 {
     #region [ Fields ]
 
-    private readonly IGitHubService gitHubService;
     #endregion
 
     #region [ CTor ]
     public StackLayoutPageViewModel(IAppNavigator appNavigator,
-                                    IGitHubService gitHubService)
-                                        : base(appNavigator)
+                                    IGitHubService gitHubService,
+                                    IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                                    : base(appNavigator,
+                                           gitHubService,
+                                           gitHubIssueLocalDbService)
     {
-        this.gitHubService = gitHubService;
     }
     #endregion
 
     #region [ Properties ]
 
     [ObservableProperty]
-    string emptyViewText = "Fetching issues";
-
-    [ObservableProperty]
-    string gitHubAPIRateLimit = "https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28";
-
-    [ObservableProperty]
     IBuiltInGalleryCardInfo controlInformation;
 
     [ObservableProperty]
-    bool isBusy;
+    string verticalOrientationXamlCode = "<StackLayout Margin=\"20\">\n" +
+                                      "    <Label Text=\"Primary colors\" />\n" +
+                                      "    <BoxView HeightRequest=\"40\" Color=\"Red\" />\n" +
+                                      "    <BoxView HeightRequest=\"40\" Color=\"Yellow\" />\n" +
+                                      "    <BoxView HeightRequest=\"40\" Color=\"Blue\" />\n" +
+                                      "    <Label Text=\"Secondary colors\" />\n" +
+                                      "    <BoxView HeightRequest=\"40\" Color=\"Green\" />\n" +
+                                      "    <BoxView HeightRequest=\"40\" Color=\"Orange\" />\n" +
+                                      "    <BoxView HeightRequest=\"40\" Color=\"Purple\" />\n" +
+                                      "</StackLayout>";
 
     [ObservableProperty]
-    ObservableCollection<ControlIssueModel> controlIssues;
+    string verticalOrientationCSharpCode = "public class VerticalStackLayoutPage : ContentPage\n" +
+                                        "{\n" +
+                                        "    public VerticalStackLayoutPage()\n" +
+                                        "    {\n" +
+                                        "        Title = \"Vertical StackLayout demo\";\n" +
+                                        "\n" +
+                                        "        StackLayout stackLayout = new StackLayout { Margin = new Thickness(20) };\n" +
+                                        "\n" +
+                                        "        stackLayout.Add(new Label { Text = \"Primary colors\" });\n" +
+                                        "        stackLayout.Add(new BoxView { Color = Colors.Red, HeightRequest = 40 });\n" +
+                                        "        stackLayout.Add(new BoxView { Color = Colors.Yellow, HeightRequest = 40 });\n" +
+                                        "        stackLayout.Add(new BoxView { Color = Colors.Blue, HeightRequest = 40 });\n" +
+                                        "        stackLayout.Add(new Label { Text = \"Secondary colors\" });\n" +
+                                        "        stackLayout.Add(new BoxView { Color = Colors.Green, HeightRequest = 40 });\n" +
+                                        "        stackLayout.Add(new BoxView { Color = Colors.Orange, HeightRequest = 40 });\n" +
+                                        "        stackLayout.Add(new BoxView { Color = Colors.Purple, HeightRequest = 40 });\n" +
+                                        "\n" +
+                                        "        Content = stackLayout;\n" +
+                                        "    }\n" +
+                                        "}";
+
 
     [ObservableProperty]
-    ControlIssueModel selectedControlIssue;
+    string horizontalOrientationXamlCode = "<StackLayout Margin=\"20\"\n" +
+                                        "            HorizontalOptions=\"Center\"\n" +
+                                        "            Orientation=\"Horizontal\">\n" +
+                                        "    <BoxView WidthRequest=\"40\" Color=\"Red\" />\n" +
+                                        "    <BoxView WidthRequest=\"40\" Color=\"Yellow\" />\n" +
+                                        "    <BoxView WidthRequest=\"40\" Color=\"Blue\" />\n" +
+                                        "    <BoxView WidthRequest=\"40\" Color=\"Green\" />\n" +
+                                        "    <BoxView WidthRequest=\"40\" Color=\"Orange\" />\n" +
+                                        "    <BoxView WidthRequest=\"40\" Color=\"Purple\" />\n" +
+                                        "</StackLayout>";
+
 
     [ObservableProperty]
-    string verticalOrientationXamlCode = "<StackLayout Margin=\"20\">\r\n                        <Label Text=\"Primary colors\" />\r\n                        <BoxView HeightRequest=\"40\" Color=\"Red\" />\r\n                        <BoxView HeightRequest=\"40\" Color=\"Yellow\" />\r\n                        <BoxView HeightRequest=\"40\" Color=\"Blue\" />\r\n                        <Label Text=\"Secondary colors\" />\r\n                        <BoxView HeightRequest=\"40\" Color=\"Green\" />\r\n                        <BoxView HeightRequest=\"40\" Color=\"Orange\" />\r\n                        <BoxView HeightRequest=\"40\" Color=\"Purple\" />\r\n                    </StackLayout>";
+    string horizontalOrientationCSharpCode = "public class HorizontalStackLayoutPage : ContentPage\n" +
+                                          "{\n" +
+                                          "    public HorizontalStackLayoutPage()\n" +
+                                          "    {\n" +
+                                          "        Title = \"Horizontal StackLayout demo\";\n" +
+                                          "\n" +
+                                          "        StackLayout stackLayout = new StackLayout\n" +
+                                          "        {\n" +
+                                          "            Margin = new Thickness(20),\n" +
+                                          "            Orientation = StackOrientation.Horizontal,\n" +
+                                          "            HorizontalOptions = LayoutOptions.Center\n" +
+                                          "        };\n" +
+                                          "\n" +
+                                          "        stackLayout.Add(new BoxView { Color = Colors.Red, HeightRequest = 120, WidthRequest = 120 });\n" +
+                                          "        stackLayout.Add(new BoxView { Color = Colors.Yellow, HeightRequest = 120, WidthRequest = 120 });\n" +
+                                          "        stackLayout.Add(new BoxView { Color = Colors.Blue, HeightRequest = 120, WidthRequest = 120 });\n" +
+                                          "        stackLayout.Add(new BoxView { Color = Colors.Green, HeightRequest = 120, WidthRequest = 120 });\n" +
+                                          "        stackLayout.Add(new BoxView { Color = Colors.Orange, HeightRequest = 120, WidthRequest = 120 });\n" +
+                                          "        stackLayout.Add(new BoxView { Color = Colors.Purple, HeightRequest = 120, WidthRequest = 120 });\n" +
+                                          "\n" +
+                                          "        Content = stackLayout;\n" +
+                                          "    }\n" +
+                                          "}";
+
 
     [ObservableProperty]
-    string verticalOrientationCSharpCode = "public class VerticalStackLayoutPage : ContentPage\r\n{\r\n    public VerticalStackLayoutPage()\r\n    {\r\n        Title = \"Vertical StackLayout demo\";\r\n\r\n        StackLayout stackLayout = new StackLayout { Margin = new Thickness(20) };\r\n\r\n        stackLayout.Add(new Label { Text = \"Primary colors\" });\r\n        stackLayout.Add(new BoxView { Color = Colors.Red, HeightRequest = 40 });\r\n        stackLayout.Add(new BoxView { Color = Colors.Yellow, HeightRequest = 40 });\r\n        stackLayout.Add(new BoxView { Color = Colors.Blue, HeightRequest = 40 });\r\n        stackLayout.Add(new Label { Text = \"Secondary colors\" });\r\n        stackLayout.Add(new BoxView { Color = Colors.Green, HeightRequest = 40 });\r\n        stackLayout.Add(new BoxView { Color = Colors.Orange, HeightRequest = 40 });\r\n        stackLayout.Add(new BoxView { Color = Colors.Purple, HeightRequest = 40 });\r\n\r\n        Content = stackLayout;\r\n    }\r\n}";
+    string spaceBetweenChildViewsXamlCode = "<StackLayout Margin=\"20\" Spacing=\"8\">\n" +
+                                            "    <Label Text=\"Primary colors\" />\n" +
+                                            "    <BoxView HeightRequest=\"40\" Color=\"Red\" />\n" +
+                                            "    <BoxView HeightRequest=\"40\" Color=\"Yellow\" />\n" +
+                                            "    <BoxView HeightRequest=\"40\" Color=\"Blue\" />\n" +
+                                            "    <Label Text=\"Secondary colors\" />\n" +
+                                            "    <BoxView HeightRequest=\"40\" Color=\"Green\" />\n" +
+                                            "    <BoxView HeightRequest=\"40\" Color=\"Orange\" />\n" +
+                                            "    <BoxView HeightRequest=\"40\" Color=\"Purple\" />\n" +
+                                            "</StackLayout>";
 
     [ObservableProperty]
-    string horizontalOrientationXamlCode = "<StackLayout\r\n                Margin=\"20\"\r\n                HorizontalOptions=\"Center\"\r\n                Orientation=\"Horizontal\">\r\n                <BoxView WidthRequest=\"40\" Color=\"Red\" />\r\n                <BoxView WidthRequest=\"40\" Color=\"Yellow\" />\r\n                <BoxView WidthRequest=\"40\" Color=\"Blue\" />\r\n                <BoxView WidthRequest=\"40\" Color=\"Green\" />\r\n                <BoxView WidthRequest=\"40\" Color=\"Orange\" />\r\n                <BoxView WidthRequest=\"40\" Color=\"Purple\" />\r\n            </StackLayout>";
+    string spaceBetweenChildViewsCSharpCode = "public class StackLayoutSpacingPage : ContentPage\r\n" +
+                                          "{\r\n" +
+                                          "    public StackLayoutSpacingPage()\r\n" +
+                                          "    {\r\n" +
+                                          "        Title = \"StackLayout Spacing demo\";\r\n" +
+                                          "\r\n" +
+                                          "        StackLayout stackLayout = new StackLayout\r\n" +
+                                          "        {\r\n" +
+                                          "            Margin = new Thickness(20),\r\n" +
+                                          "            Spacing = 8\r\n" +
+                                          "        };\r\n" +
+                                          "\r\n" +
+                                          "        stackLayout.Add(new Label { Text = \"Primary colors\" });\r\n" +
+                                          "        stackLayout.Add(new BoxView { Color = Colors.Red, HeightRequest = 40 });\r\n" +
+                                          "        stackLayout.Add(new BoxView { Color = Colors.Yellow, HeightRequest = 40 });\r\n" +
+                                          "        stackLayout.Add(new BoxView { Color = Colors.Blue, HeightRequest = 40 });\r\n" +
+                                          "        stackLayout.Add(new Label { Text = \"Secondary colors\" });\r\n" +
+                                          "        stackLayout.Add(new BoxView { Color = Colors.Green, HeightRequest = 40 });\r\n" +
+                                          "        stackLayout.Add(new BoxView { Color = Colors.Orange, HeightRequest = 40 });\r\n" +
+                                          "        stackLayout.Add(new BoxView { Color = Colors.Purple, HeightRequest = 40 });\r\n" +
+                                          "\r\n" +
+                                          "        Content = stackLayout;\r\n" +
+                                          "    }\r\n" +
+                                          "}";
 
     [ObservableProperty]
-    string horizontalOrientationCSharpCode = "public class HorizontalStackLayoutPage : ContentPage\r\n{\r\n    public HorizontalStackLayoutPage()\r\n    {\r\n        Title = \"Horizontal StackLayout demo\";\r\n\r\n        StackLayout stackLayout = new StackLayout\r\n        {\r\n            Margin = new Thickness(20),\r\n            Orientation = StackOrientation.Horizontal,\r\n            HorizontalOptions = LayoutOptions.Center\r\n        };\r\n\r\n        stackLayout.Add(new BoxView { Color = Colors.Red, HeightRequest=\"120\", WidthRequest = 120 });\r\n        stackLayout.Add(new BoxView { Color = Colors.Yellow, HeightRequest=\"120\", WidthRequest = 120 });\r\n        stackLayout.Add(new BoxView { Color = Colors.Blue, HeightRequest=\"120\", WidthRequest = 120 });\r\n        stackLayout.Add(new BoxView { Color = Colors.Green, HeightRequest=\"120\", WidthRequest = 120 });\r\n        stackLayout.Add(new BoxView { Color = Colors.Orange, HeightRequest=\"120\", WidthRequest = 120 });\r\n        stackLayout.Add(new BoxView { Color = Colors.Purple, HeightRequest=\"120\", WidthRequest = 120 });\r\n\r\n        Content = stackLayout;\r\n    }\r\n}";
+    string positionAndSizeOfChildViewsXamlCode = "<StackLayout Margin=\"20\"\r\n" +
+                                             "             Spacing=\"6\">\r\n" +
+                                             "    <Label Text=\"Start\"\r\n" +
+                                             "           BackgroundColor=\"Gray\"\r\n" +
+                                             "           HorizontalOptions=\"Start\" />\r\n" +
+                                             "    <Label Text=\"Center\"\r\n" +
+                                             "           BackgroundColor=\"Gray\"\r\n" +
+                                             "           HorizontalOptions=\"Center\" />\r\n" +
+                                             "    <Label Text=\"End\"\r\n" +
+                                             "           BackgroundColor=\"Gray\"\r\n" +
+                                             "           HorizontalOptions=\"End\" />\r\n" +
+                                             "    <Label Text=\"Fill\"\r\n" +
+                                             "           BackgroundColor=\"Gray\"\r\n" +
+                                             "           HorizontalOptions=\"Fill\" />\r\n" +
+                                             "</StackLayout>";
 
     [ObservableProperty]
-    string spaceBetweenChildViewsXamlCode = "<StackLayout Margin=\"20\" Spacing=\"8\">\r\n                        <Label Text=\"Primary colors\" />\r\n                        <BoxView HeightRequest=\"40\" Color=\"Red\" />\r\n                        <BoxView HeightRequest=\"40\" Color=\"Yellow\" />\r\n                        <BoxView HeightRequest=\"40\" Color=\"Blue\" />\r\n                        <Label Text=\"Secondary colors\" />\r\n                        <BoxView HeightRequest=\"40\" Color=\"Green\" />\r\n                        <BoxView HeightRequest=\"40\" Color=\"Orange\" />\r\n                        <BoxView HeightRequest=\"40\" Color=\"Purple\" />\r\n                    </StackLayout>";
+    string positionAndSizeOfChildViewsCSharpCode = "public class AlignmentPage : ContentPage\r\n" +
+                                                   "{\r\n" +
+                                                   "    public AlignmentPage()\r\n" +
+                                                   "    {\r\n" +
+                                                   "        Title = \"Alignment demo\";\r\n" +
+                                                   "\r\n" +
+                                                   "        StackLayout stackLayout = new StackLayout\r\n" +
+                                                   "        {\r\n" +
+                                                   "            Margin = new Thickness(20),\r\n" +
+                                                   "            Spacing = 6\r\n" +
+                                                   "        };\r\n" +
+                                                   "\r\n" +
+                                                   "        stackLayout.Add(new Label { Text = \"Start\", BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Start });\r\n" +
+                                                   "        stackLayout.Add(new Label { Text = \"Center\", BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Center });\r\n" +
+                                                   "        stackLayout.Add(new Label { Text = \"End\", BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.End });\r\n" +
+                                                   "        stackLayout.Add(new Label { Text = \"Fill\", BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill });\r\n" +
+                                                   "\r\n" +
+                                                   "        Content = stackLayout;\r\n" +
+                                                   "    }\r\n" +
+                                                   "}";
 
-    [ObservableProperty]
-    string spaceBetweenChildViewsCSharpCode = "public class StackLayoutSpacingPage : ContentPage\r\n{\r\n    public StackLayoutSpacingPage()\r\n    {\r\n        Title = \"StackLayout Spacing demo\";\r\n\r\n        StackLayout stackLayout = new StackLayout\r\n        {\r\n            Margin = new Thickness(20),\r\n            Spacing = 8\r\n        };\r\n\r\n        stackLayout.Add(new Label { Text = \"Primary colors\" });\r\n        stackLayout.Add(new BoxView { Color = Colors.Red, HeightRequest = 40 });\r\n        stackLayout.Add(new BoxView { Color = Colors.Yellow, HeightRequest = 40 });\r\n        stackLayout.Add(new BoxView { Color = Colors.Blue, HeightRequest = 40 });\r\n        stackLayout.Add(new Label { Text = \"Secondary colors\" });\r\n        stackLayout.Add(new BoxView { Color = Colors.Green, HeightRequest = 40 });\r\n        stackLayout.Add(new BoxView { Color = Colors.Orange, HeightRequest = 40 });\r\n        stackLayout.Add(new BoxView { Color = Colors.Purple, HeightRequest = 40 });\r\n\r\n        Content = stackLayout;\r\n    }\r\n}";
-
-    [ObservableProperty]
-    string positionAndSizeOfChildViewsXamlCode = "<StackLayout Margin=\"20\"\r\n                 Spacing=\"6\">\r\n        <Label Text=\"Start\"\r\n               BackgroundColor=\"Gray\"\r\n               HorizontalOptions=\"Start\" />\r\n        <Label Text=\"Center\"\r\n               BackgroundColor=\"Gray\"\r\n               HorizontalOptions=\"Center\" />\r\n        <Label Text=\"End\"\r\n               BackgroundColor=\"Gray\"\r\n               HorizontalOptions=\"End\" />\r\n        <Label Text=\"Fill\"\r\n               BackgroundColor=\"Gray\"\r\n               HorizontalOptions=\"Fill\" />\r\n    </StackLayout>";
-
-    [ObservableProperty]
-    string positionAndSizeOfChildViewsCSharpCode = "public class AlignmentPage : ContentPage\r\n{\r\n    public AlignmentPage()\r\n    {\r\n        Title = \"Alignment demo\";\r\n\r\n        StackLayout stackLayout = new StackLayout\r\n        {\r\n            Margin = new Thickness(20),\r\n            Spacing = 6\r\n        };\r\n\r\n        stackLayout.Add(new Label { Text = \"Start\", BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Start });\r\n        stackLayout.Add(new Label { Text = \"Center\", BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Center });\r\n        stackLayout.Add(new Label { Text = \"End\", BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.End });\r\n        stackLayout.Add(new Label { Text = \"Fill\", BackgroundColor = Colors.Gray, HorizontalOptions = LayoutOptions.Fill });\r\n\r\n        Content = stackLayout;\r\n    }\r\n}";
 
     [ObservableProperty]
     string nestedStackLayoutObjectsXamlCode = "<StackLayout Margin=\"20\" Spacing=\"8\">\r\n                        <Label Text=\"Primary colors\" />\r\n                        <Frame Padding=\"8\" BorderColor=\"white\">\r\n                            <StackLayout Orientation=\"Horizontal\" Spacing=\"15\">\r\n                                <BoxView WidthRequest=\"40\" Color=\"Red\" />\r\n                                <Label\r\n                                    FontSize=\"18\"\r\n                                    Text=\"Red\"\r\n                                    VerticalOptions=\"Center\" />\r\n                            </StackLayout>\r\n                        </Frame>\r\n                        <Frame Padding=\"8\" BorderColor=\"white\">\r\n                            <StackLayout Orientation=\"Horizontal\" Spacing=\"15\">\r\n                                <BoxView WidthRequest=\"40\" Color=\"Yellow\" />\r\n                                <Label\r\n                                    FontSize=\"18\"\r\n                                    Text=\"Yellow\"\r\n                                    VerticalOptions=\"Center\" />\r\n                            </StackLayout>\r\n                        </Frame>\r\n                        <Frame Padding=\"8\" BorderColor=\"white\">\r\n                            <StackLayout Orientation=\"Horizontal\" Spacing=\"15\">\r\n                                <BoxView WidthRequest=\"40\" Color=\"Blue\" />\r\n                                <Label\r\n                                    FontSize=\"18\"\r\n                                    Text=\"Blue\"\r\n                                    VerticalOptions=\"Center\" />\r\n                            </StackLayout>\r\n                        </Frame>\r\n                    </StackLayout>\r\n                    <StackLayout Margin=\"20\" Spacing=\"8\">\r\n                        <Label Text=\"Secondary colors\" />\r\n                        <Frame Padding=\"8\" BorderColor=\"white\">\r\n                            <StackLayout Orientation=\"Horizontal\" Spacing=\"15\">\r\n                                <BoxView WidthRequest=\"40\" Color=\"Green\" />\r\n                                <Label\r\n                                    FontSize=\"18\"\r\n                                    Text=\"Green\"\r\n                                    VerticalOptions=\"Center\" />\r\n                            </StackLayout>\r\n                        </Frame>\r\n                        <Frame Padding=\"8\" BorderColor=\"white\">\r\n                            <StackLayout Orientation=\"Horizontal\" Spacing=\"15\">\r\n                                <BoxView WidthRequest=\"40\" Color=\"Orange\" />\r\n                                <Label\r\n                                    FontSize=\"18\"\r\n                                    Text=\"Orange\"\r\n                                    VerticalOptions=\"Center\" />\r\n                            </StackLayout>\r\n                        </Frame>\r\n                        <Frame Padding=\"8\" BorderColor=\"white\">\r\n                            <StackLayout Orientation=\"Horizontal\" Spacing=\"15\">\r\n                                <BoxView WidthRequest=\"40\" Color=\"Purple\" />\r\n                                <Label\r\n                                    FontSize=\"18\"\r\n                                    Text=\"Purple\"\r\n                                    VerticalOptions=\"Center\" />\r\n                            </StackLayout>\r\n                        </Frame>\r\n                    </StackLayout>";
@@ -93,55 +208,11 @@ public partial class StackLayoutPageViewModel : NavigationAwareBaseViewModel
     [RelayCommand]
     async Task RefreshAsync()
     {
-        await RefreshControlIssues(true);
-    }
-    #endregion
-
-    #region [ Methods ]
-
-    async Task RefreshControlIssues(bool forced)
-    {
-        if (IsBusy)
-            return;
-
-        IsBusy = true;
-
-        var result = await gitHubService.GetGitHubIssuesByLabels(ControlInformation.GitHubAuthorIssueName,
-                                                                 ControlInformation.GitHubRepositoryIssueName,
-                                                                 ControlInformation.GitHubIssueLabels);
-
-        IsBusy = false;
-
-        if (result.IsT0) // Check if result is ServiceSuccess
-        {
-            var items = result.AsT0.AttachedData as IEnumerable<GitHubIssueModel>;
-
-            if (ControlIssues is null || forced)
-            {
-                ControlIssues = new(items.Select(x => new ControlIssueModel()
-                {
-                    IssueId = x.Id,
-                    Title = x.Title,
-                    IssueLinkUrl = x.HtmlUrl,
-                    MileStone = x.Milestone is null ? "No mile stone" : x.Milestone.Title,
-                    OwnerName = x.User.Login,
-                    AvatarUrl = x.User.AvatarUrl,
-                    CreatedDate = x.CreatedAt.DateTime,
-                    LastUpdated = x.UpdatedAt is null ? x.CreatedAt.DateTime : x.UpdatedAt.Value.DateTime
-                }));
-            }
-        }
-        else
-        {
-            var error = result.AsT1;
-            EmptyViewText = error.ErrorDetail;
-            await AppNavigator.ShowSnackbarAsync(error.ErrorDetail,
-                                                 async () =>
-                                                 {
-                                                     await AppNavigator.OpenUrlAsync(GitHubAPIRateLimit);
-                                                 },
-                                                 "Visit GitHub API Rate Limits Policies");
-        }
+        await RefreshControlIssues(true,
+                                   ControlInformation.ControlName,
+                                   ControlInformation.GitHubAuthorIssueName,
+                                   ControlInformation.GitHubRepositoryIssueName,
+                                   ControlInformation.GitHubIssueLabels);
     }
     #endregion
 }

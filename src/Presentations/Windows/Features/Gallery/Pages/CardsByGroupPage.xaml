@@ -120,87 +120,82 @@
                                 Source="{x:Binding ControlGroup.Banner}"
                                 VerticalOptions="Fill" />
                         </Frame>
-                        <Border
+                        <acrylic:AcrylicView
                             Margin="0,100,0,0"
-                            Padding="0"
+                            BorderColor="{x:Binding ControlGroup.BrandColor}"
+                            BorderThickness="5"
+                            CornerRadius="8"
+                            EffectStyle="ExtraDark"
+                            HeightRequest="250"
                             HorizontalOptions="Center"
-                            Stroke="{x:Binding ControlGroup.BrandColor}"
-                            StrokeShape="RoundRectangle 12,12,12,12"
-                            StrokeThickness="5"
+                            IsVisible="{x:OnIdiom Desktop=True,
+                                                  Tablet=True,
+                                                  Phone=False}"
                             VerticalOptions="End">
-                            <acrylic:AcrylicView
-                                EffectStyle="ExtraDark"
-                                HeightRequest="250"
-                                HorizontalOptions="Fill"
-                                IsVisible="{x:OnIdiom Desktop=True,
-                                                      Tablet=True,
-                                                      Phone=False}"
-                                VerticalOptions="Fill">
-                                <Grid
-                                    Padding="15"
-                                    ColumnDefinitions="100, 400, 200"
-                                    ColumnSpacing="10">
-                                    <VerticalStackLayout VerticalOptions="Start">
-                                        <ImageButton
-                                            Padding="4"
-                                            BackgroundColor="Black"
-                                            CornerRadius="4"
-                                            HeightRequest="90"
-                                            IsVisible="{x:Binding ControlGroup.IconUrl,
-                                                                  Converter={x:StaticResource ImageSourceToBoolConverter}}"
-                                            Source="{x:Binding ControlGroup.IconUrl,
-                                                               Mode=OneWay}"
-                                            WidthRequest="90" />
-                                        <skia:SKLottieView
-                                            HeightRequest="90"
-                                            HorizontalOptions="Center"
-                                            IsVisible="{x:Binding ControlGroup.LottieUrl,
-                                                                  Converter={toolkit:IsStringNotNullOrEmptyConverter}}"
-                                            RepeatCount="-1"
-                                            SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                                            Source="dotnetbot.json"
-                                            WidthRequest="90" />
-                                        <Label HorizontalOptions="Center" TextColor="{x:Static core:AppColors.White}">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span Text="Version: " />
-                                                    <Span Text="{x:Binding ControlGroup.Version}" />
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
-                                    </VerticalStackLayout>
-                                    <VerticalStackLayout Grid.Column="1" Spacing="5">
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="18"
-                                            Text="{x:Binding ControlGroup.Title}"
-                                            TextColor="{x:Static core:AppColors.White}" />
-                                        <Label TextColor="{x:Static core:AppColors.White}">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span Text="Author: " />
-                                                    <Span Text="{x:Binding ControlGroup.Author}" />
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
-                                        <Label
-                                            HeightRequest="170"
-                                            LineBreakMode="CharacterWrap"
-                                            LineHeight="1.55"
-                                            MaxLines="10"
-                                            Text="{x:Binding ControlGroup.Description}"
-                                            TextColor="{x:Static core:AppColors.White}" />
-                                    </VerticalStackLayout>
-                                    <VerticalStackLayout Grid.Column="2" Spacing="5">
-                                        <Label Text="Free" TextColor="{x:Static core:AppColors.White}" />
-                                        <Button
-                                            BackgroundColor="{x:Binding ControlGroup.BrandColor}"
-                                            Text="Get started"
-                                            TextColor="{x:Binding ControlGroup.ButtonTextColor}" />
-                                    </VerticalStackLayout>
-                                </Grid>
-                            </acrylic:AcrylicView>
-                        </Border>
+                            <Grid
+                                Padding="15"
+                                ColumnDefinitions="100, 400, 200"
+                                ColumnSpacing="10">
+                                <VerticalStackLayout VerticalOptions="Start">
+                                    <ImageButton
+                                        Padding="4"
+                                        BackgroundColor="Black"
+                                        CornerRadius="4"
+                                        HeightRequest="90"
+                                        IsVisible="{x:Binding ControlGroup.IconUrl,
+                                                              Converter={x:StaticResource ImageSourceToBoolConverter}}"
+                                        Source="{x:Binding ControlGroup.IconUrl,
+                                                           Mode=OneWay}"
+                                        WidthRequest="90" />
+                                    <skia:SKLottieView
+                                        HeightRequest="90"
+                                        HorizontalOptions="Center"
+                                        IsVisible="{x:Binding ControlGroup.LottieUrl,
+                                                              Converter={toolkit:IsStringNotNullOrEmptyConverter}}"
+                                        RepeatCount="-1"
+                                        SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                                        Source="dotnetbot.json"
+                                        WidthRequest="90" />
+                                    <Label HorizontalOptions="Center" TextColor="{x:Static core:AppColors.White}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Version: " />
+                                                <Span Text="{x:Binding ControlGroup.Version}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="1" Spacing="5">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        Text="{x:Binding ControlGroup.Title}"
+                                        TextColor="{x:Static core:AppColors.White}" />
+                                    <Label TextColor="{x:Static core:AppColors.White}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Author: " />
+                                                <Span Text="{x:Binding ControlGroup.Author}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label
+                                        HeightRequest="170"
+                                        LineBreakMode="CharacterWrap"
+                                        LineHeight="1.55"
+                                        MaxLines="10"
+                                        Text="{x:Binding ControlGroup.Description}"
+                                        TextColor="{x:Static core:AppColors.White}" />
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="2" Spacing="5">
+                                    <Label Text="Free" TextColor="{x:Static core:AppColors.White}" />
+                                    <Button
+                                        BackgroundColor="{x:Binding ControlGroup.BrandColor}"
+                                        Text="Get started"
+                                        TextColor="{x:Binding ControlGroup.ButtonTextColor}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </acrylic:AcrylicView>
                     </Grid>
                     <Border
                         Padding="10"
