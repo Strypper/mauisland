@@ -5,12 +5,93 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="sqlite-net"
-    Padding="10">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    Padding="20"
+    x:DataType="app:SQLiteNETPageViewModel"
+    BackgroundColor="Transparent">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <Label FontSize="Subtitle" Text="{x:Binding Intro}" />
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontSize="Medium"
+                        Text="{x:Binding HeaderFeatures}"
+                        TextDecorations="Underline" />
+                    <CollectionView ItemsSource="{x:Binding Features}" Style="{x:StaticResource PropertiesListStyle}" />
+                </VerticalStackLayout>
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Text="{x:Binding HeaderNuget}" />
+                    <Grid BackgroundColor="White" HeightRequest="1" />
+                    <Label
+                        Padding="5"
+                        BackgroundColor="Yellow"
+                        HorizontalOptions="Start"
+                        Text="{x:Binding Nuget}"
+                        TextColor="Black">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{x:Binding CopyToClipboardCommand}" CommandParameter="{x:Binding Nuget}" />
+                        </Label.GestureRecognizers>
+                        <Label.Behaviors>
+                            <toolkit:AnimationBehavior>
+                                <toolkit:AnimationBehavior.AnimationType>
+                                    <toolkit:FadeAnimation Opacity="0.2" />
+                                </toolkit:AnimationBehavior.AnimationType>
+                            </toolkit:AnimationBehavior>
+                        </Label.Behaviors>
+                    </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span
+                                    FontAttributes="Bold"
+                                    Text="Important: "
+                                    TextDecorations="Underline" />
+                                <Span Text="{x:Binding NugetImportant}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Text="{x:Binding HeaderExample}" />
+                    <Grid BackgroundColor="White" HeightRequest="1" />
+                    <Label Text="{x:Binding Example}" />
+                    <core:SourceCodeExpander Code="{x:Binding Code}" CodeType="CSharp" />
+                    <Label Text="{x:Binding Example2}" />
+                </VerticalStackLayout>
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Text="{x:Binding HeaderSynchronous}" />
+                    <Grid BackgroundColor="White" HeightRequest="1" />
+                    <Label Text="{x:Binding Synchronous}" />
+                    <core:SourceCodeExpander Code="{x:Binding CodeSynchronous}" CodeType="CSharp" />
+                    <Label Text="{x:Binding SynchronousUpdateAndDelete}" />
+                    <Label Text="{x:Binding SynchronousQuery}" />
+                    <core:SourceCodeExpander Code="{x:Binding CodeSynchronousQuery}" CodeType="CSharp" />
+                    <Label Text="{x:Binding SynchronousLowLevelQuery}" />
+                    <core:SourceCodeExpander Code="{x:Binding CodeSynchronousLowLevelQuery}" CodeType="CSharp" />
+                    <Label Text="{x:Binding GenericParameterQuery}" />
+                    <core:SourceCodeExpander Code="{x:Binding CodeGenericParameterQuery}" CodeType="CSharp" />
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
 </core:BasePage>
