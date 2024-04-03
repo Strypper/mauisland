@@ -86,6 +86,13 @@
             MaterialUICardTemplate="{x:StaticResource MaterialUICardItemTemplate}"
             SyncfustionCardTemplate="{x:StaticResource SyncfusionCardItemTemplate}" />
 
+
+        <FontImageSource
+            x:Key="CardsByGroupPageFluentArrowCircleLeft48Regular"
+            FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static core:FluentUIIcon.Ic_fluent_arrow_circle_left_48_regular}"
+            Color="White" />
+
         <toolkit:IsStringNotNullOrEmptyConverter x:Key="IsStringNotNullOrEmptyConverter" />
     </core:BasePage.Resources>
     <core:BasePage.ToolbarItems>
@@ -104,225 +111,236 @@
             Text="Original Document" />
     </core:BasePage.ToolbarItems>
 
-    <Grid ColumnDefinitions="*, auto">
-        <ScrollView VerticalScrollBarVisibility="Always">
-            <Grid>
-                <VerticalStackLayout Spacing="10">
-                    <Grid Grid.ColumnSpan="2">
-                        <Frame
-                            Padding="0"
-                            CornerRadius="4"
-                            VerticalOptions="Start">
-                            <Image
-                                Aspect="AspectFill"
-                                HeightRequest="300"
-                                HorizontalOptions="Fill"
-                                Source="{x:Binding ControlGroup.Banner}"
-                                VerticalOptions="Fill" />
-                        </Frame>
-                        <acrylic:AcrylicView
-                            Margin="0,100,0,0"
-                            BorderColor="{x:Binding ControlGroup.BrandColor}"
-                            BorderThickness="5"
-                            CornerRadius="8"
-                            EffectStyle="ExtraDark"
-                            HeightRequest="250"
-                            HorizontalOptions="Center"
-                            IsVisible="{x:OnIdiom Desktop=True,
-                                                  Tablet=True,
-                                                  Phone=False}"
-                            VerticalOptions="End">
-                            <Grid
-                                Padding="15"
-                                ColumnDefinitions="100, 400, 200"
-                                ColumnSpacing="10">
-                                <VerticalStackLayout VerticalOptions="Start">
-                                    <ImageButton
-                                        Padding="4"
-                                        BackgroundColor="Black"
-                                        CornerRadius="4"
-                                        HeightRequest="90"
-                                        IsVisible="{x:Binding ControlGroup.IconUrl,
-                                                              Converter={x:StaticResource ImageSourceToBoolConverter}}"
-                                        Source="{x:Binding ControlGroup.IconUrl,
-                                                           Mode=OneWay}"
-                                        WidthRequest="90" />
-                                    <skia:SKLottieView
-                                        HeightRequest="90"
-                                        HorizontalOptions="Center"
-                                        IsVisible="{x:Binding ControlGroup.LottieUrl,
-                                                              Converter={toolkit:IsStringNotNullOrEmptyConverter}}"
-                                        RepeatCount="-1"
-                                        SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                                        Source="dotnetbot.json"
-                                        WidthRequest="90" />
-                                    <Label HorizontalOptions="Center" TextColor="{x:Static core:AppColors.White}">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="Version: " />
-                                                <Span Text="{x:Binding ControlGroup.Version}" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                </VerticalStackLayout>
-                                <VerticalStackLayout Grid.Column="1" Spacing="5">
-                                    <Label
-                                        FontAttributes="Bold"
-                                        FontSize="18"
-                                        Text="{x:Binding ControlGroup.Title}"
-                                        TextColor="{x:Static core:AppColors.White}" />
-                                    <Label TextColor="{x:Static core:AppColors.White}">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="Author: " />
-                                                <Span Text="{x:Binding ControlGroup.Author}" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <Label
-                                        HeightRequest="170"
-                                        LineBreakMode="CharacterWrap"
-                                        LineHeight="1.55"
-                                        MaxLines="10"
-                                        Text="{x:Binding ControlGroup.Description}"
-                                        TextColor="{x:Static core:AppColors.White}" />
-                                </VerticalStackLayout>
-                                <VerticalStackLayout Grid.Column="2" Spacing="5">
-                                    <Label Text="Free" TextColor="{x:Static core:AppColors.White}" />
-                                    <Button
-                                        BackgroundColor="{x:Binding ControlGroup.BrandColor}"
-                                        Text="Get started"
-                                        TextColor="{x:Binding ControlGroup.ButtonTextColor}" />
-                                </VerticalStackLayout>
-                            </Grid>
-                        </acrylic:AcrylicView>
-                    </Grid>
-                    <Border
-                        Padding="10"
-                        BackgroundColor="#004173"
-                        IsVisible="{x:Binding ControlGroup.Important,
-                                              Mode=OneWay,
-                                              Converter={toolkit:IsNotNullConverter}}"
-                        StrokeShape="RoundRectangle 4">
-                        <VerticalStackLayout>
-                            <Label
-                                Style="{x:StaticResource DocumentSectionTitleStyle}"
-                                Text="Important"
-                                TextColor="White" />
-                            <Label
-                                MaxLines="4"
-                                Text="{x:Binding ControlGroup.Important.Content}"
-                                TextColor="White" />
-                            <BoxView
-                                BackgroundColor="Transparent"
-                                HeightRequest="10"
-                                Color="Transparent" />
-                            <Image
-                                Aspect="AspectFill"
-                                HeightRequest="370"
-                                HorizontalOptions="Start"
-                                Source="{x:Binding ControlGroup.Important.AttachImage,
-                                                   Mode=OneWay}"
-                                VerticalOptions="Start"
-                                WidthRequest="500" />
-                            <BoxView
-                                BackgroundColor="Transparent"
-                                HeightRequest="10"
-                                Color="Transparent" />
-                            <Button
-                                Command="{x:Binding OpenUrlCommand}"
-                                CommandParameter="{x:Binding ControlGroup.Important.AdditionalLink}"
-                                HeightRequest="30"
-                                HorizontalOptions="Start"
-                                Text="Link" />
-                        </VerticalStackLayout>
-                    </Border>
-                    <Grid>
-                        <Label
-                            FontSize="32"
-                            TextColor="White"
-                            TextDecorations="Underline">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="{x:Binding SelectedItem, Source={x:Reference CardByGroupPageTypePicker}, Mode=OneWay}" />
-                                    <Span Text=": " />
-                                    <Span Text="{x:Binding FilteredControlGroupList.Count, Mode=OneWay}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <HorizontalStackLayout
-                            HorizontalOptions="Center"
-                            Spacing="5"
-                            VerticalOptions="Center">
-                            <SearchBar
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource CardsByGroupPageFluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <Grid ColumnDefinitions="*, auto">
+            <ScrollView VerticalScrollBarVisibility="Always">
+                <Grid>
+                    <VerticalStackLayout Spacing="10">
+                        <Grid Grid.ColumnSpan="2">
+                            <Frame
+                                Padding="0"
+                                CornerRadius="4"
+                                VerticalOptions="Start">
+                                <Image
+                                    Aspect="AspectFill"
+                                    HeightRequest="300"
+                                    HorizontalOptions="Fill"
+                                    Source="{x:Binding ControlGroup.Banner}"
+                                    VerticalOptions="Fill" />
+                            </Frame>
+                            <acrylic:AcrylicView
+                                Margin="0,100,0,0"
+                                BorderColor="{x:Binding ControlGroup.BrandColor}"
+                                BorderThickness="5"
+                                CornerRadius="8"
+                                EffectStyle="ExtraDark"
+                                HeightRequest="250"
                                 HorizontalOptions="Center"
-                                MinimumWidthRequest="250"
-                                Placeholder="Search controls, converters and many more"
-                                Text="{x:Binding SearchText,
-                                                 Mode=TwoWay}"
-                                VerticalOptions="Center" />
-                            <ActivityIndicator IsRunning="{x:Binding IsBusy}" Color="{x:Binding ControlGroup.BrandColor}" />
-                        </HorizontalStackLayout>
-                        <Picker
-                            x:Name="CardByGroupPageTypePicker"
-                            Title="Types"
-                            HorizontalOptions="End"
-                            ItemsSource="{x:Binding ControlGroupList,
-                                                    Mode=OneWay,
-                                                    Converter={x:StaticResource CardByGroupPageTypePickerConverter}}"
-                            SelectedItem="{x:Binding SelectedItem,
-                                                     Mode=TwoWay}"
-                            TextColor="White"
-                            TitleColor="White"
-                            VerticalOptions="Center" />
-                    </Grid>
-                    <Label
-                        x:Name="EmptyLabel"
-                        Grid.Row="1"
-                        Grid.ColumnSpan="2"
-                        IsVisible="False"
-                        Text="No items available"
-                        TextColor="White">
-                        <Label.Triggers>
-                            <DataTrigger
-                                Binding="{x:Binding FilteredControlGroupList.Count}"
-                                TargetType="Label"
-                                Value="0">
-                                <Setter Property="IsVisible" Value="True" />
-                            </DataTrigger>
-                        </Label.Triggers>
-                    </Label>
-                    <mdc:WrapLayout
-                        x:Name="WrapLayout"
-                        Grid.Row="1"
-                        Grid.ColumnSpan="2"
-                        BindableLayout.ItemTemplateSelector="{x:StaticResource BrandCardTemplateSelector}"
-                        BindableLayout.ItemsSource="{x:Binding FilteredControlGroupList,
+                                IsVisible="{x:OnIdiom Desktop=True,
+                                                      Tablet=True,
+                                                      Phone=False}"
+                                VerticalOptions="End">
+                                <Grid
+                                    Padding="15"
+                                    ColumnDefinitions="100, 400, 200"
+                                    ColumnSpacing="10">
+                                    <VerticalStackLayout VerticalOptions="Start">
+                                        <ImageButton
+                                            Padding="4"
+                                            BackgroundColor="Black"
+                                            CornerRadius="4"
+                                            HeightRequest="90"
+                                            IsVisible="{x:Binding ControlGroup.IconUrl,
+                                                                  Converter={x:StaticResource ImageSourceToBoolConverter}}"
+                                            Source="{x:Binding ControlGroup.IconUrl,
                                                                Mode=OneWay}"
-                        HorizontalOptions="{x:OnIdiom Desktop=Start,
-                                                      Tablet=Start,
-                                                      Default=Start,
-                                                      Phone=Center}"
-                        HorizontalSpacing="10"
-                        VerticalSpacing="10">
-                        <mdc:WrapLayout.Triggers>
-                            <DataTrigger
-                                Binding="{x:Binding FilteredControlGroupList.Count}"
-                                TargetType="mdc:WrapLayout"
-                                Value="0">
-                                <Setter Property="IsVisible" Value="False" />
-                            </DataTrigger>
-                        </mdc:WrapLayout.Triggers>
-                    </mdc:WrapLayout>
-                </VerticalStackLayout>
+                                            WidthRequest="90" />
+                                        <skia:SKLottieView
+                                            HeightRequest="90"
+                                            HorizontalOptions="Center"
+                                            IsVisible="{x:Binding ControlGroup.LottieUrl,
+                                                                  Converter={toolkit:IsStringNotNullOrEmptyConverter}}"
+                                            RepeatCount="-1"
+                                            SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                                            Source="dotnetbot.json"
+                                            WidthRequest="90" />
+                                        <Label HorizontalOptions="Center" TextColor="{x:Static core:AppColors.White}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Version: " />
+                                                    <Span Text="{x:Binding ControlGroup.Version}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="1" Spacing="5">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            Text="{x:Binding ControlGroup.Title}"
+                                            TextColor="{x:Static core:AppColors.White}" />
+                                        <Label TextColor="{x:Static core:AppColors.White}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Author: " />
+                                                    <Span Text="{x:Binding ControlGroup.Author}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label
+                                            HeightRequest="170"
+                                            LineBreakMode="CharacterWrap"
+                                            LineHeight="1.55"
+                                            MaxLines="10"
+                                            Text="{x:Binding ControlGroup.Description}"
+                                            TextColor="{x:Static core:AppColors.White}" />
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="2" Spacing="5">
+                                        <Label Text="Free" TextColor="{x:Static core:AppColors.White}" />
+                                        <Button
+                                            BackgroundColor="{x:Binding ControlGroup.BrandColor}"
+                                            Text="Get started"
+                                            TextColor="{x:Binding ControlGroup.ButtonTextColor}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </acrylic:AcrylicView>
+                        </Grid>
+                        <Border
+                            Padding="10"
+                            BackgroundColor="#004173"
+                            IsVisible="{x:Binding ControlGroup.Important,
+                                                  Mode=OneWay,
+                                                  Converter={toolkit:IsNotNullConverter}}"
+                            StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout>
+                                <Label
+                                    Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                    Text="Important"
+                                    TextColor="White" />
+                                <Label
+                                    MaxLines="4"
+                                    Text="{x:Binding ControlGroup.Important.Content}"
+                                    TextColor="White" />
+                                <BoxView
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="10"
+                                    Color="Transparent" />
+                                <Image
+                                    Aspect="AspectFill"
+                                    HeightRequest="370"
+                                    HorizontalOptions="Start"
+                                    Source="{x:Binding ControlGroup.Important.AttachImage,
+                                                       Mode=OneWay}"
+                                    VerticalOptions="Start"
+                                    WidthRequest="500" />
+                                <BoxView
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="10"
+                                    Color="Transparent" />
+                                <Button
+                                    Command="{x:Binding OpenUrlCommand}"
+                                    CommandParameter="{x:Binding ControlGroup.Important.AdditionalLink}"
+                                    HeightRequest="30"
+                                    HorizontalOptions="Start"
+                                    Text="Link" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <Grid>
+                            <Label
+                                FontSize="32"
+                                TextColor="White"
+                                TextDecorations="Underline">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Binding SelectedItem, Source={x:Reference CardByGroupPageTypePicker}, Mode=OneWay}" />
+                                        <Span Text=": " />
+                                        <Span Text="{x:Binding FilteredControlGroupList.Count, Mode=OneWay}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <HorizontalStackLayout
+                                HorizontalOptions="Center"
+                                Spacing="5"
+                                VerticalOptions="Center">
+                                <SearchBar
+                                    HorizontalOptions="Center"
+                                    MinimumWidthRequest="250"
+                                    Placeholder="Search controls, converters and many more"
+                                    Text="{x:Binding SearchText,
+                                                     Mode=TwoWay}"
+                                    VerticalOptions="Center" />
+                                <ActivityIndicator IsRunning="{x:Binding IsBusy}" Color="{x:Binding ControlGroup.BrandColor}" />
+                            </HorizontalStackLayout>
+                            <Picker
+                                x:Name="CardByGroupPageTypePicker"
+                                Title="Types"
+                                HorizontalOptions="End"
+                                ItemsSource="{x:Binding ControlGroupList,
+                                                        Mode=OneWay,
+                                                        Converter={x:StaticResource CardByGroupPageTypePickerConverter}}"
+                                SelectedItem="{x:Binding SelectedItem,
+                                                         Mode=TwoWay}"
+                                TextColor="White"
+                                TitleColor="White"
+                                VerticalOptions="Center" />
+                        </Grid>
+                        <Label
+                            x:Name="EmptyLabel"
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            IsVisible="False"
+                            Text="No items available"
+                            TextColor="White">
+                            <Label.Triggers>
+                                <DataTrigger
+                                    Binding="{x:Binding FilteredControlGroupList.Count}"
+                                    TargetType="Label"
+                                    Value="0">
+                                    <Setter Property="IsVisible" Value="True" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        <mdc:WrapLayout
+                            x:Name="WrapLayout"
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            BindableLayout.ItemTemplateSelector="{x:StaticResource BrandCardTemplateSelector}"
+                            BindableLayout.ItemsSource="{x:Binding FilteredControlGroupList,
+                                                                   Mode=OneWay}"
+                            HorizontalOptions="{x:OnIdiom Desktop=Start,
+                                                          Tablet=Start,
+                                                          Default=Start,
+                                                          Phone=Center}"
+                            HorizontalSpacing="10"
+                            VerticalSpacing="10">
+                            <mdc:WrapLayout.Triggers>
+                                <DataTrigger
+                                    Binding="{x:Binding FilteredControlGroupList.Count}"
+                                    TargetType="mdc:WrapLayout"
+                                    Value="0">
+                                    <Setter Property="IsVisible" Value="False" />
+                                </DataTrigger>
+                            </mdc:WrapLayout.Triggers>
+                        </mdc:WrapLayout>
+                    </VerticalStackLayout>
+                </Grid>
+            </ScrollView>
+            <Grid
+                x:Name="GalleryDetail"
+                Grid.Column="1"
+                IsVisible="{x:Binding IsGalleryDetailVisible,
+                                      Mode=OneWay}">
+                <Border />
             </Grid>
-        </ScrollView>
-        <Grid
-            x:Name="GalleryDetail"
-            Grid.Column="1"
-            IsVisible="{x:Binding IsGalleryDetailVisible,
-                                  Mode=OneWay}">
-            <Border />
         </Grid>
-    </Grid>
+    </SwipeView>
 </core:BasePage>

@@ -108,7 +108,6 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
                 {
                     IssueId = x.Id,
                     Title = x.Title,
-
                     IssueLinkUrl = x.HtmlUrl,
                     MileStone = x.Milestone is null ? "No mile stone" : x.Milestone.Title,
                     OwnerName = x.User.Login,
@@ -166,7 +165,7 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
                 {
                     IssueId = issue.Id,
                     Title = issue.Title,
-                    IssueLinkUrl = issue.Url,
+                    IssueLinkUrl = issue.HtmlUrl,
                     ControlName = controlName,
                     MileStone = issue.Milestone?.Title,
                     OwnerName = issue.User?.Login,

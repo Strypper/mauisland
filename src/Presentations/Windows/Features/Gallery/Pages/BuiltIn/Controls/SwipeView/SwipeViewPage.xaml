@@ -154,7 +154,6 @@
     </core:BasePage.Resources>
 
     <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy, Mode=OneWay}">
-
         <ScrollView>
             <Grid ColumnDefinitions="310, *" ColumnSpacing="20">
                 <Grid RowDefinitions="90, 540, 120" RowSpacing="10">
@@ -228,8 +227,7 @@
                         </VerticalStackLayout>
                     </Border>
                 </Grid>
-                <VerticalStackLayout Spacing="20">
-
+                <VerticalStackLayout Grid.Column="1" Spacing="20">
                     <Border Padding="20" StrokeShape="RoundRectangle 4">
                         <Label FontSize="Subtitle" Text="{x:StaticResource ContronInfo1}" />
                     </Border>

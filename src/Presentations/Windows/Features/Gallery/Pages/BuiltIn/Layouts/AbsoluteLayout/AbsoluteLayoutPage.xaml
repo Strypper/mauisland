@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<core:BasePage
+    x:Class="MAUIsland.AbsoluteLayoutPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="Absolute Layout"
+    Padding="20"
+    x:DataType="app:AbsoluteLayoutPageViewModel"
+    BackgroundColor="Transparent">
+
+    <core:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </core:BasePage.ToolbarItems>
+
+    <core:BasePage.Resources>
+
+        <x:String x:Key="PropertiesListHeader">
+            The StackLayout class defines the following properties:
+        </x:String>
+
+        <x:String x:Key="ReportIssueToMauiTeamLink">
+            https://github.com/dotnet/maui/issues/new/choose
+        </x:String>
+
+        <x:String x:Key="CSharpFundamentalLink">
+            https://learn.microsoft.com/en-us/shows/csharp-fundamentals-for-absolute-beginners/
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeaderPositionAndSizeOfChildViews">
+            A StackLayout only respects the alignment preferences on child views that are in the opposite direction to the StackLayout orientation. Therefore, the Label child views within the vertically oriented StackLayout set their HorizontalOptions properties to one of the alignment fields:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter">
+            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooterPositionAndSizeOfChildViews">
+            The equivalent C# code is:
+        </x:String>
+
+        <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">LayoutBounds</strong>, of type <strong style="color:blue">Rect</strong>, which is an attached property that represents the position and size of a child. The default value of this property is (0,0,AutoSize,AutoSize).
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">LayoutFlags</strong>, of type <strong style="color:blue">AbsoluteLayoutFlags</strong>, which is an attached property that indicates whether properties of the layout bounds used to position and size the child are interpreted proportionally. The default value of this property is AbsoluteLayoutFlags.None.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="PropertiesItemsSourcePositionAndSizeOfChildViews" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Start</strong>, which positions the Label on the left-hand side of the StackLayout.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Center</strong>, which centers the Label in the StackLayout.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">End</strong>, which positions the Label on the right-hand side of the StackLayout.
+                            ]]>
+            </x:String>
+
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Fill</strong>, which ensures that the Label fills the width of the StackLayout.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+        <DataTemplate x:Key="ControlIssueItemTemplate" x:DataType="core:ControlIssueModel">
+            <Border
+                Padding="20"
+                BackgroundColor="#0a0c10"
+                StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Micro"
+                        LineBreakMode="CharacterWrap"
+                        MaxLines="2"
+                        Text="{x:Binding Title,
+                                         Mode=OneWay}"
+                        TextDecorations="Underline"
+                        ToolTipProperties.Text="{x:Binding Title,
+                                                           Mode=OneWay}" />
+                    <HorizontalStackLayout Spacing="8">
+                        <ImageButton
+                            CornerRadius="25"
+                            HeightRequest="10"
+                            Source="{x:Binding AvatarUrl,
+                                               Mode=OneWay}"
+                            VerticalOptions="Center"
+                            WidthRequest="10" />
+                        <Label Text="{x:Binding OwnerName, Mode=OneWay}" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <Label HorizontalOptions="End" Text="{x:Binding CreatedDate, Mode=OneWay}" />
+                </VerticalStackLayout>
+            </Border>
+        </DataTemplate>
+
+        <LinearItemsLayout
+            x:Key="ControlIssueLayout"
+            ItemSpacing="5"
+            Orientation="Vertical" />
+
+    </core:BasePage.Resources>
+
+    <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy, Mode=OneWay}">
+        <ScrollView>
+            <Grid ColumnDefinitions="310, *" ColumnSpacing="20">
+                <Grid RowDefinitions="90, 540, 120" RowSpacing="10">
+                    <Border
+                        Padding="20"
+                        BackgroundColor="#272b33"
+                        StrokeShape="RoundRectangle 4">
+                        <Grid>
+                            <HorizontalStackLayout Spacing="10">
+                                <Image
+                                    HeightRequest="25"
+                                    Source="githublogo.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="25" />
+
+                                <Label
+                                    HorizontalOptions="Start"
+                                    Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                    Text="Issues"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                            <Border
+                                BackgroundColor="OrangeRed"
+                                HeightRequest="40"
+                                HorizontalOptions="End"
+                                StrokeShape="RoundRectangle 20"
+                                VerticalOptions="Center"
+                                WidthRequest="40">
+                                <Label
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    Text="{x:Binding ControlIssues.Count,
+                                                     Mode=OneWay}"
+                                    VerticalOptions="Center" />
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <CollectionView
+                        Grid.Row="1"
+                        Margin="0,0,0,0"
+                        EmptyView="{x:Binding EmptyViewText,
+                                              Mode=OneWay}"
+                        ItemTemplate="{x:StaticResource ControlIssueItemTemplate}"
+                        ItemsLayout="{x:StaticResource ControlIssueLayout}"
+                        ItemsSource="{x:Binding ControlIssues,
+                                                Mode=OneWay}"
+                        SelectedItem="{x:Binding SelectedControlIssue,
+                                                 Mode=TwoWay}"
+                        SelectionChangedCommand="{x:Binding OpenUrlCommand}"
+                        SelectionChangedCommandParameter="{x:Binding SelectedControlIssue.IssueLinkUrl,
+                                                                     Mode=OneWay}"
+                        SelectionMode="Single"
+                        VerticalOptions="Start" />
+                    <Border
+                        Grid.Row="2"
+                        Margin="0,0,0,10"
+                        Padding="20"
+                        BackgroundColor="#272b33"
+                        StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="5">
+                            <Label
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="Found a new bug?"
+                                TextColor="White"
+                                TextDecorations="Underline" />
+                            <Button
+                                Command="{x:Binding OpenUrlCommand}"
+                                CommandParameter="{x:StaticResource ReportIssueToMauiTeamLink}"
+                                Text="Report to the MAUI team" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+                <VerticalStackLayout Grid.Column="1" Spacing="20">
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+                    </Border>
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="10">
+                            <Label FontSize="Medium" Text="{x:StaticResource PropertiesListHeader}" />
+                            <Grid BackgroundColor="White" HeightRequest="1" />
+                            <CollectionView
+                                Footer="{x:StaticResource PropertiesListFooter}"
+                                ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                                Style="{x:StaticResource PropertiesListStyle}" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <!--  Position and size children  -->
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="20">
+                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Position and size children" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <Border Padding="20" StrokeShape="RoundRectangle 4">
+                        <VerticalStackLayout Spacing="10">
+                            <Label FontSize="Medium" Text="Apply elements on an image" />
+                            <Grid BackgroundColor="White" HeightRequest="1" />
+                            <AbsoluteLayout
+                                HorizontalOptions="Center"
+                                VerticalOptions="Start"
+                                WidthRequest="960">
+                                <Image
+                                    HeightRequest="1900"
+                                    Source="aspnetcore_developer_roadmap.png"
+                                    WidthRequest="960" />
+                                <Label
+                                    Padding="0"
+                                    AbsoluteLayout.LayoutBounds="0.39,0.079"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    BackgroundColor="Red"
+                                    FontSize="8"
+                                    HeightRequest="25"
+                                    HorizontalTextAlignment="Center"
+                                    Opacity="0"
+                                    Text="C#"
+                                    VerticalTextAlignment="Center"
+                                    WidthRequest="25">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{x:Binding OpenUrlCommand}" CommandParameter="{x:StaticResource CSharpFundamentalLink}" />
+                                    </Label.GestureRecognizers>
+                                    <Label.Behaviors>
+                                        <toolkit:AnimationBehavior>
+                                            <toolkit:AnimationBehavior.AnimationType>
+                                                <toolkit:FadeAnimation Opacity="1" />
+                                            </toolkit:AnimationBehavior.AnimationType>
+                                        </toolkit:AnimationBehavior>
+                                    </Label.Behaviors>
+                                </Label>
+                            </AbsoluteLayout>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+    </RefreshView>
+</core:BasePage>

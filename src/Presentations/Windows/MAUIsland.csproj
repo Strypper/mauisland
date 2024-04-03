@@ -81,6 +81,7 @@
 	<ItemGroup>
 	  <None Remove="appsettings.Development.json" />
 	  <None Remove="Resources\AppIcon\square44x44logo.svg" />
+	  <None Remove="Resources\Images\aspnetcore_developer_roadmap.png" />
 	  <None Remove="Resources\Images\members\member_long.png" />
 	  <None Remove="Resources\Images\members\member_tan.png" />
 	  <None Remove="Resources\Images\project_githubcard_bug.png" />
@@ -90,7 +91,7 @@
 		<PackageReference Include="akgul.Maui.DataGrid" Version="4.0.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.14" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.14" />
-		<PackageReference Include="Bogus" Version="35.4.1" />
+		<PackageReference Include="Bogus" Version="35.5.0" />
 		<PackageReference Include="ColorCode.Core" Version="2.0.15" />
 		<PackageReference Include="CommunityToolkit.Common" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
@@ -108,7 +109,7 @@
 		<PackageReference Include="Refit.HttpClientFactory" Version="7.0.0" />
 		<PackageReference Include="Refit.Newtonsoft.Json" Version="7.0.0" />
 		<PackageReference Include="Sharpnado.MaterialFrame.Maui" Version="2.0.0" />
-		<PackageReference Include="sqlite-net-pcl" Version="1.9.141-beta" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
 		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="23.1.36" />
 		<PackageReference Include="Syncfusion.Maui.Barcode" Version="23.1.36" />
 		<PackageReference Include="Syncfusion.Maui.Calendar" Version="23.1.36" />
@@ -148,6 +149,9 @@
 		</Compile>
 		<Compile Update="Features\Gallery\ContentViews\GithubCardContentView.xaml.cs">
 			<DependentUpon>GithubCardContentView.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Features\Gallery\Pages\BuiltIn\Layouts\AbsoluteLayout\AbsoluteLayoutPage.xaml.cs">
+		  <DependentUpon>AbsoluteLayoutPage.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\CommunityPage.xaml.cs">
 			<DependentUpon>CommunityPage.xaml</DependentUpon>
@@ -258,6 +262,9 @@
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\Controls\Entry\EntryPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\Layouts\AbsoluteLayout\AbsoluteLayoutPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\CommunityPage.xaml">
