@@ -50,12 +50,14 @@
         <core:DateTimeToSimpleDateTimeStringConverter x:Key="DateTimeToSimpleDateTimeStringConverter" />
     </ContentView.Resources>
 
-    <Grid HeightRequest="330" WidthRequest="511">
-        <Frame
-            Padding="5"
-            HeightRequest="280"
-            VerticalOptions="End"
-            WidthRequest="511">
+    <Grid HeightRequest="330" WidthRequest="511" 
+          RowDefinitions="0.5*, 1*, auto">
+        <Frame Grid.Row="1"
+               Grid.RowSpan="2"
+               Padding="5"
+               HeightRequest="280"
+               VerticalOptions="End"
+               WidthRequest="511">
             <Grid RowDefinitions="50, *, 53" RowSpacing="12">
                 <HorizontalStackLayout Margin="96,0,0,0">
                     <core:IconLabel
@@ -95,7 +97,7 @@
                 </Frame>
                 <Grid
                     Grid.Row="2"
-                    ColumnDefinitions="50, 200, 110, 60, 60"
+                    ColumnDefinitions="1*, auto, 1.2*, 1.2*, 1.2*"
                     ColumnSpacing="5"
                     HorizontalOptions="FillAndExpand">
                     <ImageButton
@@ -118,7 +120,7 @@
                         Text="Detail"
                         TextColor="{x:Static core:AppColors.White}"
                         VerticalOptions="Center"
-                        WidthRequest="200" />
+                        WidthRequest="200"/>
                     <core:IconLabel
                         Grid.Column="2"
                         PrefixIcon="{x:StaticResource GithubLicenseIcon}"
@@ -130,33 +132,33 @@
                         PrefixIcon="{x:StaticResource GithubForkIcon}"
                         Text="{x:Binding Forks,
                                          Source={x:Reference root}}"
-                        TextColor="{x:Static core:AppColors.White}" />
+                        TextColor="{x:Static core:AppColors.White}"/>
                     <core:IconLabel
                         Grid.Column="4"
                         PrefixIcon="{x:StaticResource GithubStarIcon}"
                         Text="{x:Binding Stars,
                                          Source={x:Reference root}}"
-                        TextColor="{x:Static core:AppColors.White}" />
+                        TextColor="{x:Static core:AppColors.White}"/>
                 </Grid>
             </Grid>
         </Frame>
-
-        <toolkit:AvatarView
-            Margin="15,5,5,5"
-            CornerRadius="50"
-            HeightRequest="75"
-            HorizontalOptions="Start"
-            ImageSource="{x:Binding AuthorAvatar,
+        <HorizontalStackLayout Grid.Row="0"
+                               Grid.RowSpan="1">
+            <ImageButton Source="{x:Binding AuthorAvatar,
+                               Source={x:Reference root}}" 
+                         HeightRequest="90"
+                         WidthRequest="90"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Start" 
+                         CornerRadius="50"
+                         Margin="10"/>
+            <Label FontAttributes="Bold"
+                   FontSize="24"
+                   Text="{x:Binding ComponentData.ControlName,
                                     Source={x:Reference root}}"
-            VerticalOptions="Start"
-            WidthRequest="75" />
-
-        <Label
-            Margin="110,15,0,0"
-            FontAttributes="Bold"
-            FontSize="24"
-            Text="{x:Binding ComponentData.ControlName,
-                             Source={x:Reference root}}"
-            TextColor="White" />
+                   TextColor="White"
+                   VerticalOptions="Center"
+                   Margin="0,0,0,40"/>
+        </HorizontalStackLayout>
     </Grid>
 </ContentView>
