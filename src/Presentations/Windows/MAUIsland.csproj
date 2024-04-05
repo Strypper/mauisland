@@ -89,6 +89,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="akgul.Maui.DataGrid" Version="4.0.2" />
+		<PackageReference Include="Indiko.Maui.Controls.Markdown" Version="1.0.1" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.14" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.14" />
 		<PackageReference Include="Bogus" Version="35.5.0" />
@@ -158,6 +159,9 @@
 		</Compile>
 		<Compile Update="Features\Gallery\Pages\CardsByGroupPage.xaml.cs">
 			<DependentUpon>CardsByGroupPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Features\Gallery\Pages\Community\Helpers\IndikoMauiControlsMarkdown\IndikoMauiControlsMarkdownPage.xaml.cs">
+		  <DependentUpon>IndikoMauiControlsMarkdownPage.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Features\Gallery\Pages\Community\Helpers\SQLite-net\SQLiteNETPage.xaml.cs">
 		  <DependentUpon>SQLiteNETPage.xaml</DependentUpon>
@@ -272,6 +276,9 @@
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\NewsPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Gallery\Pages\Community\Helpers\IndikoMauiControlsMarkdown\IndikoMauiControlsMarkdownPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\Community\Helpers\SQLite-net\SQLiteNETPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
