@@ -7,8 +7,9 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Color Converter"
-    Padding="10"
-    x:DataType="app:ColorConverterPageViewModel">
+    Padding="20"
+    x:DataType="app:ColorConverterPageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -202,955 +203,966 @@
         <toolkit:ColorToRgbaStringConverter x:Key="ColorToRgbaStringConverter" />
     </core:BasePage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Converter Properties" />
-                    <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup Toolkit" />
-                    <VerticalStackLayout>
-                        <Label Text="{x:Binding SetupDescription}" />
-                        <Label Text="{x:Binding XamlNamespace}" TextColor="Blue" />
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Converter Properties" />
+                        <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Therefore the following:" />
-                    <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleBefore}" CodeType="Xaml" />
-                    <Label Text="Would be modified to include the xmlns as follows:" />
-                    <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleAfter}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Frame>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup Toolkit" />
+                        <VerticalStackLayout>
+                            <Label Text="{x:Binding SetupDescription}" />
+                            <Label Text="{x:Binding XamlNamespace}" TextColor="Blue" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Color Panel" />
-                    <Label Text="Please design a Color" />
-                    <Grid
-                        Margin="5"
-                        ColumnDefinitions="0.1*, 0.9*"
-                        RowDefinitions="auto, auto, auto, auto">
-                        <Label
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            Text="Red byte" />
-                        <Slider
-                            Grid.Row="0"
-                            Grid.Column="1"
-                            Maximum="1"
-                            Minimum="0"
-                            Value="{x:Binding RedByte}" />
-                        <Label
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            Text="Green byte" />
-                        <Slider
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            Maximum="1"
-                            Minimum="0"
-                            Value="{x:Binding GreenByte}" />
-                        <Label
-                            Grid.Row="2"
-                            Grid.Column="0"
-                            Text="Blue byte" />
-                        <Slider
-                            Grid.Row="2"
-                            Grid.Column="1"
-                            Maximum="1"
-                            Minimum="0"
-                            Value="{x:Binding BlueByte}" />
-                        <Label
-                            Grid.Row="3"
-                            Grid.Column="0"
-                            Text="Alpha byte" />
-                        <Slider
-                            Grid.Row="3"
-                            Grid.Column="1"
-                            Maximum="1"
-                            Minimum="0"
-                            Value="{Binding AlphaByte}" />
-                    </Grid>
-                    <Label Text="Your chosen Color here" />
-                    <Border Padding="0">
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="5" />
-                        </Border.StrokeShape>
-                        <BoxView HeightRequest="100" Color="{x:Binding ExampleColor}" />
-                    </Border>
-                </VerticalStackLayout>
-            </Frame>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Therefore the following:" />
+                        <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleBefore}" CodeType="Xaml" />
+                        <Label Text="Would be modified to include the xmlns as follows:" />
+                        <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleAfter}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Black Or White Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToBlackOrWhiteConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToBlackOrWhiteConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into this text color " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor,
-                                                              Converter={x:StaticResource ColorToBlackOrWhiteConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Color Panel" />
+                        <Label Text="Please design a Color" />
+                        <Grid
+                            Margin="5"
+                            ColumnDefinitions="0.1*, 0.9*"
+                            RowDefinitions="auto, auto, auto, auto">
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="Red byte" />
+                            <Slider
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Maximum="1"
+                                Minimum="0"
+                                Value="{x:Binding RedByte}" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="Green byte" />
+                            <Slider
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Maximum="1"
+                                Minimum="0"
+                                Value="{x:Binding GreenByte}" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Text="Blue byte" />
+                            <Slider
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Maximum="1"
+                                Minimum="0"
+                                Value="{x:Binding BlueByte}" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Text="Alpha byte" />
+                            <Slider
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Maximum="1"
+                                Minimum="0"
+                                Value="{Binding AlphaByte}" />
+                        </Grid>
+                        <Label Text="Your chosen Color here" />
+                        <Border Padding="0">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="5" />
+                            </Border.StrokeShape>
+                            <BoxView HeightRequest="100" Color="{x:Binding ExampleColor}" />
+                        </Border>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Black Or White Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToBlackOrWhiteConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToBlackOrWhiteConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into this text color " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor,
+                                                                  Converter={x:StaticResource ColorToBlackOrWhiteConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToBlackOrWhiteConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToBlackOrWhiteConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Byte Alpha Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToByteAlphaConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToBlackOrWhiteConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into this Byte Alpha (Transparency) " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToByteAlphaConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToByteAlphaConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToByteAlphaConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Byte Blue Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToByteBlueConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToByteBlueConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into this Byte Blue " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToByteBlueConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToByteBlueConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToByteBlueConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Byte Red Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToByteRedConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToByteRedConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into this Byte Red " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToByteRedConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </VerticalStackLayout>
                         <Label Text="This is ViewModel code" />
                         <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
                         <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToBlackOrWhiteConverterSetup}" CodeType="Xaml" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlColorToByteRedConverterSetup}" CodeType="Xaml" />
                         <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToBlackOrWhiteConverterTextTesting}" CodeType="Xaml" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlColorToByteRedConverterTextTesting}" CodeType="Xaml" />
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Byte Alpha Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToByteAlphaConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToBlackOrWhiteConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into this Byte Alpha (Transparency) " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToByteAlphaConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToByteAlphaConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToByteAlphaConverterTextTesting}" CodeType="Xaml" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Byte Green Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToByteGreenConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToByteGreenConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into this Byte Green " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToByteGreenConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToByteGreenConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToByteGreenConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Byte Blue Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToByteBlueConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToByteBlueConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into this Byte Blue " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToByteBlueConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToByteBlueConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToByteBlueConverterTextTesting}" CodeType="Xaml" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Cmyka String Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToCmykaStringConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToCmykaStringConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into Cmyka String " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToCmykaStringConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToCmykaStringConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToCmykaStringConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Byte Red Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToByteRedConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToByteRedConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into this Byte Red " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToByteRedConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Cmyk String Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToCmykStringConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToCmykStringConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into Cmyk String " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToCmykStringConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToCmykStringConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToCmykStringConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                    <Label Text="This is ViewModel code" />
-                    <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                    <Label Text="Here what your converter look like" />
-                    <core:SourceCodeExpander Code="{x:Binding XamlColorToByteRedConverterSetup}" CodeType="Xaml" />
-                    <Label Text="This Xaml TextColor code" />
-                    <core:SourceCodeExpander Code="{x:Binding XamlColorToByteRedConverterTextTesting}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Byte Green Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToByteGreenConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToByteGreenConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into this Byte Green " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToByteGreenConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToByteGreenConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToByteGreenConverterTextTesting}" CodeType="Xaml" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Color For Text Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToColorForTextConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToColorForTextConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into Color For Text " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToColorForTextConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToColorForTextConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToColorForTextConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Cmyka String Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToCmykaStringConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToCmykaStringConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into Cmyka String " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToCmykaStringConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToCmykaStringConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToCmykaStringConverterTextTesting}" CodeType="Xaml" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Degree Hue Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToDegreeHueConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToDegreeHueConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into Degree Hue, and it look like this: " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToDegreeHueConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToDegreeHueConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToDegreeHueConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Cmyk String Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToCmykStringConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToCmykStringConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into Cmyk String " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToCmykStringConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToCmykStringConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToCmykStringConverterTextTesting}" CodeType="Xaml" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Gray Scale Color Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToGrayScaleColorConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToGrayScaleColorConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into this string " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToGrayScaleColorConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToGrayScaleColorConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToGrayScaleColorConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Color For Text Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToColorForTextConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToColorForTextConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into Color For Text " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToColorForTextConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToColorForTextConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToColorForTextConverterTextTesting}" CodeType="Xaml" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Hex Rgb String Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToHexRgbStringConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToHexRgbStringConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColorNotIncludeAlpha}" />
+                                        <Span Text=" into Hex Code " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColorNotIncludeAlpha, Converter={x:StaticResource ColorToHexRgbStringConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This Converter can show the Alpha if the value it converts has Alpha" TextColor="OrangeRed" />
+                            <Label Text="This Example has the same setup but take a color source has Alpha" />
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into Hex Code " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToHexRgbStringConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorNoAlphaConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToHexRgbStringConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToHexRgbStringConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Degree Hue Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToDegreeHueConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToDegreeHueConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into Degree Hue, and it look like this: " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToDegreeHueConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToDegreeHueConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToDegreeHueConverterTextTesting}" CodeType="Xaml" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Hex Rgba String Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToHexRgbaStringConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToHexRgbaStringConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into Hex Code with Alpha " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToHexRgbaStringConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToHexRgbaStringConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToHexRgbaStringConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Gray Scale Color Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToGrayScaleColorConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToGrayScaleColorConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into this string " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToGrayScaleColorConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToGrayScaleColorConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToGrayScaleColorConverterTextTesting}" CodeType="Xaml" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Hsl String Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToHslStringConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToHslStringConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into Hsl " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToHslStringConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToHslStringConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToHslStringConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Hex Rgb String Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToHexRgbStringConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToHexRgbStringConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColorNotIncludeAlpha}" />
-                                    <Span Text=" into Hex Code " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColorNotIncludeAlpha, Converter={x:StaticResource ColorToHexRgbStringConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This Converter can show the Alpha if the value it converts has Alpha" TextColor="OrangeRed" />
-                        <Label Text="This Example has the same setup but take a color source has Alpha" />
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into Hex Code " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToHexRgbStringConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorNoAlphaConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToHexRgbStringConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToHexRgbStringConverterTextTesting}" CodeType="Xaml" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Hsla String Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToHslaStringConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToHslaStringConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into Hsl with Alpha" />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToHslaStringConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToHslaStringConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToHslaStringConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Hex Rgba String Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToHexRgbaStringConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToHexRgbaStringConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into Hex Code with Alpha " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToHexRgbaStringConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToHexRgbaStringConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToHexRgbaStringConverterTextTesting}" CodeType="Xaml" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Inverse Color Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToInverseColorConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToInverseColorConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into Hsl with Alpha " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToInverseColorConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToInverseColorConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToInverseColorConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Hsl String Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToHslStringConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToHslStringConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into Hsl " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToHslStringConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToHslStringConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToHslStringConverterTextTesting}" CodeType="Xaml" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Percent Black Key Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToPercentBlackKeyConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToPercentBlackKeyConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into Percent Black Key " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToPercentBlackKeyConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToPercentBlackKeyConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToPercentBlackKeyConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Hsla String Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToHslaStringConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToHslaStringConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into Hsl with Alpha" />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToHslaStringConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToHslaStringConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToHslaStringConverterTextTesting}" CodeType="Xaml" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Percent Cyan Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToPercentCyanConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToPercentCyanConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into Percent Cyan " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToPercentCyanConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToPercentCyanConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToPercentCyanConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Inverse Color Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToInverseColorConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToInverseColorConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into Hsl with Alpha " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToInverseColorConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToInverseColorConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToInverseColorConverterTextTesting}" CodeType="Xaml" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Percent Magenta Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToPercentMagentaConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToPercentMagentaConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into Percent Magenta " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToPercentMagentaConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToPercentMagentaConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToPercentMagentaConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Percent Black Key Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToPercentBlackKeyConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToPercentBlackKeyConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into Percent Black Key " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToPercentBlackKeyConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToPercentBlackKeyConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToPercentBlackKeyConverterTextTesting}" CodeType="Xaml" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Percent Yellow Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToPercentYellowConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToPercentYellowConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into Percent Yellow " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToPercentYellowConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToPercentYellowConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToPercentYellowConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Percent Cyan Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToPercentCyanConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToPercentCyanConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into Percent Cyan " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToPercentCyanConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToPercentCyanConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToPercentCyanConverterTextTesting}" CodeType="Xaml" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Rgb String Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToRgbStringConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToRgbStringConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into Rgb String " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToRgbStringConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToRgbStringConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToRgbStringConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Percent Magenta Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToPercentMagentaConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToPercentMagentaConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into Percent Magenta " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToPercentMagentaConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToPercentMagentaConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToPercentMagentaConverterTextTesting}" CodeType="Xaml" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="0.8*, 0.2*">
+                            <Label
+                                Grid.Column="0"
+                                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                Text="Color To Rgba String Converter" />
+                            <ImageButton
+                                Grid.Column="1"
+                                Command="{x:Binding OpenColorToRgbaStringConverterUrlCommand}"
+                                HeightRequest="50"
+                                HorizontalOptions="End"
+                                Source="microsoft.png"
+                                WidthRequest="50" />
+                        </Grid>
+                        <CollectionView ItemsSource="{x:StaticResource ColorToRgbaStringConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Margin="10" Spacing="5">
+                            <Label VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="The converter will turn the color of this " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Text Color"
+                                            TextColor="{x:Binding ExampleColor}" />
+                                        <Span Text=" into Rgba String " />
+                                        <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToRgbaStringConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="This is ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
+                            <Label Text="Here what your converter look like" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToRgbaStringConverterSetup}" CodeType="Xaml" />
+                            <Label Text="This Xaml TextColor code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlColorToRgbaStringConverterTextTesting}" CodeType="Xaml" />
+                        </VerticalStackLayout>
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Percent Yellow Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToPercentYellowConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToPercentYellowConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into Percent Yellow " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToPercentYellowConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToPercentYellowConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToPercentYellowConverterTextTesting}" CodeType="Xaml" />
-                    </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Rgb String Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToRgbStringConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToRgbStringConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into Rgb String " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToRgbStringConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToRgbStringConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToRgbStringConverterTextTesting}" CodeType="Xaml" />
-                    </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Grid ColumnDefinitions="0.8*, 0.2*">
-                        <Label
-                            Grid.Column="0"
-                            Style="{x:StaticResource DocumentSectionTitleStyle}"
-                            Text="Color To Rgba String Converter" />
-                        <ImageButton
-                            Grid.Column="1"
-                            Command="{x:Binding OpenColorToRgbaStringConverterUrlCommand}"
-                            HeightRequest="50"
-                            HorizontalOptions="End"
-                            Source="microsoft.png"
-                            WidthRequest="50" />
-                    </Grid>
-                    <CollectionView ItemsSource="{x:StaticResource ColorToRgbaStringConverterControlInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <VerticalStackLayout Margin="10" Spacing="5">
-                        <Label VerticalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="The converter will turn the color of this " />
-                                    <Span
-                                        FontAttributes="Bold"
-                                        Text="Text Color"
-                                        TextColor="{x:Binding ExampleColor}" />
-                                    <Span Text=" into Rgba String " />
-                                    <Span FontAttributes="Bold" Text="{x:Binding ExampleColor, Converter={x:StaticResource ColorToRgbaStringConverter}}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="This is ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpColorConverterTestingViewModel}" CodeType="CSharp" />
-                        <Label Text="Here what your converter look like" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToRgbaStringConverterSetup}" CodeType="Xaml" />
-                        <Label Text="This Xaml TextColor code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlColorToRgbaStringConverterTextTesting}" CodeType="Xaml" />
-                    </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
-        </VerticalStackLayout>
-    </ScrollView>
-
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </SwipeView>
 </core:BasePage>

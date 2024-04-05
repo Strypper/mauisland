@@ -86,13 +86,6 @@
             MaterialUICardTemplate="{x:StaticResource MaterialUICardItemTemplate}"
             SyncfustionCardTemplate="{x:StaticResource SyncfusionCardItemTemplate}" />
 
-
-        <FontImageSource
-            x:Key="CardsByGroupPageFluentArrowCircleLeft48Regular"
-            FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
-            Glyph="{Static core:FluentUIIcon.Ic_fluent_arrow_circle_left_48_regular}"
-            Color="White" />
-
         <toolkit:IsStringNotNullOrEmptyConverter x:Key="IsStringNotNullOrEmptyConverter" />
     </core:BasePage.Resources>
     <core:BasePage.ToolbarItems>
@@ -117,7 +110,7 @@
                 <SwipeItem
                     BackgroundColor="DarkGray"
                     Command="{x:Binding BackCommand}"
-                    IconImageSource="{x:StaticResource CardsByGroupPageFluentArrowCircleLeft48Regular}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
                     Text="Go back" />
             </SwipeItems>
         </SwipeView.LeftItems>

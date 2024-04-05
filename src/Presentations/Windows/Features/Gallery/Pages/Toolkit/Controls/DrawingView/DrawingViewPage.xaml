@@ -7,8 +7,9 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="DrawingView"
-    Padding="10"
-    x:DataType="app:DrawingViewPageViewModel">
+    Padding="20"
+    x:DataType="app:DrawingViewPageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -172,112 +173,123 @@
         </x:Array>
     </core:BasePage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
-            <!--  Properties  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Properties" />
-                    <CollectionView
-                        Header="{x:StaticResource PropertiesListHeader}"
-                        ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-            <!--  DrawingLine  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="DrawingLine" />
-                    <Label Text="The DrawingLine contains the list of points and allows configuring each line style individually." />
-                    <CollectionView
-                        Header="{x:StaticResource PropertiesListHeader1}"
-                        ItemsSource="{x:StaticResource PropertiesItemsSource1}"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-            <!--  Using the DrawingView  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Using the DrawingView" />
-                    <toolkit:DrawingView
-                        HeightRequest="350"
-                        LineColor="Red"
-                        LineWidth="5"
-                        WidthRequest="350" />
-                    <core:SourceCodeExpander Code="{x:Binding BasicDrawingViewXamlCode}" CodeType="Xaml" />
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="C#" />
-                    <core:SourceCodeExpander Code="{x:Binding BasicDrawingViewCSharpCode}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Frame>
-            <!--  MultiLine usage  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="MultiLine usage" />
-                    <Label Text="By default DrawingView supports only 1 line. To enable MultiLine set IsMultiLineModeEnabled to true. Make sure ShouldClearOnFinish is false." />
-                    <toolkit:DrawingView
-                        HeightRequest="350"
-                        IsMultiLineModeEnabled="true"
-                        LineColor="Black"
-                        ShouldClearOnFinish="false"
-                        WidthRequest="350" />
-                    <core:SourceCodeExpander Code="{x:Binding MultiLineUsageXamlCode}" CodeType="Xaml" />
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="C#" />
-                    <core:SourceCodeExpander Code="{x:Binding MultiLineUsageCSharpCode}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Frame>
-            <!--  Handle event when DrawingLineCompleted  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Handle event when DrawingLineCompleted" />
-                    <Label Text="DrawingView allows to subscribe to the events like DrawingLineCompleted. The corresponding command DrawingLineCompletedCommand is also available." />
-                    <core:SourceCodeExpander Code="{x:Binding DrawingLineCompletedXamlCode}" CodeType="Xaml" />
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="C#" />
-                    <core:SourceCodeExpander Code="{x:Binding DrawingLineCompletedCSharpCode}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Frame>
-            <!--  Advanced usage  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Advanced usage" />
-                    <Label Text="To get the full benefits, the DrawingView provides the methods to get the image stream of the drawing lines." />
-                    <core:SourceCodeExpander Code="{x:Binding AdvancedUsageXamlCode}" CodeType="Xaml" />
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="C#" />
-                    <core:SourceCodeExpander Code="{x:Binding AdvancedUsageCSharpCode}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Frame>
-            <!--  Custom IDrawingLine  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Custom IDrawingLine" />
-                    <CollectionView
-                        Header="{x:StaticResource PropertiesListHeader2}"
-                        ItemsSource="{x:StaticResource PropertiesItemsSource2}"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                    <core:SourceCodeExpander Code="{x:Binding CustomIDrawingLineCSharpCode1}" CodeType="CSharp" />
-                    <core:SourceCodeExpander Code="{x:Binding CustomIDrawingLineCSharpCode2}" CodeType="CSharp" />
-                    <core:SourceCodeExpander Code="{x:Binding CustomIDrawingLineCSharpCode3}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Frame>
-            <!--  DrawingLineCompletedEventArgs  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="DrawingLineCompletedEventArgs" />
-                    <CollectionView
-                        Header="{x:StaticResource PropertiesListHeader3}"
-                        ItemsSource="{x:StaticResource PropertiesItemsSource3}"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-            <!--  Methods  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Methods" />
-                    <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource4}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-        </VerticalStackLayout>
-    </ScrollView>
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
+                <!--  Properties  -->
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Properties" />
+                        <CollectionView
+                            Header="{x:StaticResource PropertiesListHeader}"
+                            ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                            Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
+                <!--  DrawingLine  -->
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="DrawingLine" />
+                        <Label Text="The DrawingLine contains the list of points and allows configuring each line style individually." />
+                        <CollectionView
+                            Header="{x:StaticResource PropertiesListHeader1}"
+                            ItemsSource="{x:StaticResource PropertiesItemsSource1}"
+                            Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
+                <!--  Using the DrawingView  -->
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Using the DrawingView" />
+                        <toolkit:DrawingView
+                            HeightRequest="350"
+                            LineColor="Red"
+                            LineWidth="5"
+                            WidthRequest="350" />
+                        <core:SourceCodeExpander Code="{x:Binding BasicDrawingViewXamlCode}" CodeType="Xaml" />
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="C#" />
+                        <core:SourceCodeExpander Code="{x:Binding BasicDrawingViewCSharpCode}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+                <!--  MultiLine usage  -->
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="MultiLine usage" />
+                        <Label Text="By default DrawingView supports only 1 line. To enable MultiLine set IsMultiLineModeEnabled to true. Make sure ShouldClearOnFinish is false." />
+                        <toolkit:DrawingView
+                            HeightRequest="350"
+                            IsMultiLineModeEnabled="true"
+                            LineColor="Black"
+                            ShouldClearOnFinish="false"
+                            WidthRequest="350" />
+                        <core:SourceCodeExpander Code="{x:Binding MultiLineUsageXamlCode}" CodeType="Xaml" />
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="C#" />
+                        <core:SourceCodeExpander Code="{x:Binding MultiLineUsageCSharpCode}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+                <!--  Handle event when DrawingLineCompleted  -->
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Handle event when DrawingLineCompleted" />
+                        <Label Text="DrawingView allows to subscribe to the events like DrawingLineCompleted. The corresponding command DrawingLineCompletedCommand is also available." />
+                        <core:SourceCodeExpander Code="{x:Binding DrawingLineCompletedXamlCode}" CodeType="Xaml" />
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="C#" />
+                        <core:SourceCodeExpander Code="{x:Binding DrawingLineCompletedCSharpCode}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+                <!--  Advanced usage  -->
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Advanced usage" />
+                        <Label Text="To get the full benefits, the DrawingView provides the methods to get the image stream of the drawing lines." />
+                        <core:SourceCodeExpander Code="{x:Binding AdvancedUsageXamlCode}" CodeType="Xaml" />
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="C#" />
+                        <core:SourceCodeExpander Code="{x:Binding AdvancedUsageCSharpCode}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+                <!--  Custom IDrawingLine  -->
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Custom IDrawingLine" />
+                        <CollectionView
+                            Header="{x:StaticResource PropertiesListHeader2}"
+                            ItemsSource="{x:StaticResource PropertiesItemsSource2}"
+                            Style="{x:StaticResource PropertiesListStyle}" />
+                        <core:SourceCodeExpander Code="{x:Binding CustomIDrawingLineCSharpCode1}" CodeType="CSharp" />
+                        <core:SourceCodeExpander Code="{x:Binding CustomIDrawingLineCSharpCode2}" CodeType="CSharp" />
+                        <core:SourceCodeExpander Code="{x:Binding CustomIDrawingLineCSharpCode3}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+                <!--  DrawingLineCompletedEventArgs  -->
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="DrawingLineCompletedEventArgs" />
+                        <CollectionView
+                            Header="{x:StaticResource PropertiesListHeader3}"
+                            ItemsSource="{x:StaticResource PropertiesItemsSource3}"
+                            Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
+                <!--  Methods  -->
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Methods" />
+                        <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource4}" Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </SwipeView>
 </core:BasePage>

@@ -33,104 +33,114 @@
             Text="Original Document" />
     </core:BasePage.ToolbarItems>
 
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Border>
-
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="5">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding BasicBarsTitle}" />
-                    <lvc:CartesianChart
-                        HeightRequest="300"
-                        LegendBackgroundPaint="{Binding LegendBackgroundPaint}"
-                        LegendPosition="Right"
-                        LegendTextPaint="{Binding LegendTextPaint}"
-                        Series="{Binding BasicBarsSeries}"
-                        XAxes="{Binding BasicBarsXAxes}"
-                        YAxes="{Binding BasicBarsYAxes}" />
-                    <core:SourceCodeExpander Code="{x:Binding BasicBarsCSharpCode}" CodeType="CSharp" />
-                    <core:SourceCodeExpander Code="{x:Binding BasicBarsXamlCode}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Border>
-
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="5">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding BarsWithBackgroundTitle}" />
-                    <lvc:CartesianChart
-                        HeightRequest="300"
-                        Series="{Binding BarsWithBackgroundSeries}"
-                        XAxes="{Binding BarsWithBackgroundXAxes}"
-                        YAxes="{Binding BarsWithBackgroundYAxes}" />
-                    <core:SourceCodeExpander Code="{x:Binding BarsWithBackgroundCSharpCode}" CodeType="CSharp" />
-                    <core:SourceCodeExpander Code="{x:Binding BarsWithBackgroundXamlCode}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Border>
-
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="5">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding RacingBarsTitle}" />
-                    <lvc:CartesianChart
-                        HeightRequest="300"
-                        Series="{Binding RacingSeries}"
-                        TooltipPosition="Hidden"
-                        XAxes="{Binding XRacingAxes}"
-                        YAxes="{Binding YRacingAxes}" />
-                    <core:SourceCodeExpander Code="{x:Binding RacingBarsCSharpCode}" CodeType="CSharp" />
-                    <core:SourceCodeExpander Code="{x:Binding RacingBarsXamlCode}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Border>
-
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="5">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding LineSeriesTitle}" />
-                    <lvc:CartesianChart
-                        Title="{Binding LineSeriesVisualTitle}"
-                        HeightRequest="300"
-                        Series="{Binding LineSeries}" />
-                    <core:SourceCodeExpander Code="{x:Binding LineSeriesCSharpCode}" CodeType="CSharp" />
-                    <core:SourceCodeExpander Code="{x:Binding LineSeriesXamlCode}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Border>
-
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="5">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding StackedBarsTitle}" />
-                    <lvc:CartesianChart HeightRequest="300" Series="{Binding StackedSeries}" />
-                    <core:SourceCodeExpander Code="{x:Binding StackBarsCSharpCode}" CodeType="CSharp" />
-                    <core:SourceCodeExpander Code="{x:Binding StackBarsXamlCode}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Border>
-
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="5">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding PieChartTitle}" />
-                    <Grid ColumnDefinitions="*,*,*">
-                        <lvc:PieChart
-                            Title="{x:Binding PieChartVisualTitle}"
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding BasicBarsTitle}" />
+                        <lvc:CartesianChart
                             HeightRequest="300"
-                            HorizontalOptions="Center"
-                            Series="{Binding PieSeries}"
-                            WidthRequest="300" />
-                        <lvc:PieChart
-                            Title="{x:Binding DoughnutPieChartVisualTitle}"
-                            Grid.Column="1"
+                            LegendBackgroundPaint="{Binding LegendBackgroundPaint}"
+                            LegendPosition="Right"
+                            LegendTextPaint="{Binding LegendTextPaint}"
+                            Series="{Binding BasicBarsSeries}"
+                            XAxes="{Binding BasicBarsXAxes}"
+                            YAxes="{Binding BasicBarsYAxes}" />
+                        <core:SourceCodeExpander Code="{x:Binding BasicBarsCSharpCode}" CodeType="CSharp" />
+                        <core:SourceCodeExpander Code="{x:Binding BasicBarsXamlCode}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding BarsWithBackgroundTitle}" />
+                        <lvc:CartesianChart
                             HeightRequest="300"
-                            Series="{Binding PieSeries2}"
-                            WidthRequest="300" />
-                        <lvc:PieChart
-                            Title="{x:Binding PushoutPieChartVisualTitle}"
-                            Grid.Column="2"
+                            Series="{Binding BarsWithBackgroundSeries}"
+                            XAxes="{Binding BarsWithBackgroundXAxes}"
+                            YAxes="{Binding BarsWithBackgroundYAxes}" />
+                        <core:SourceCodeExpander Code="{x:Binding BarsWithBackgroundCSharpCode}" CodeType="CSharp" />
+                        <core:SourceCodeExpander Code="{x:Binding BarsWithBackgroundXamlCode}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding RacingBarsTitle}" />
+                        <lvc:CartesianChart
                             HeightRequest="300"
-                            Series="{Binding PieSeries3}"
-                            WidthRequest="300" />
-                    </Grid>
-                    <core:SourceCodeExpander Code="{x:Binding PieChartXamlCode}" CodeType="Xaml" />
-                    <core:SourceCodeExpander Code="{x:Binding PieChartCSharpCode}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Border>
-        </VerticalStackLayout>
-    </ScrollView>
+                            Series="{Binding RacingSeries}"
+                            TooltipPosition="Hidden"
+                            XAxes="{Binding XRacingAxes}"
+                            YAxes="{Binding YRacingAxes}" />
+                        <core:SourceCodeExpander Code="{x:Binding RacingBarsCSharpCode}" CodeType="CSharp" />
+                        <core:SourceCodeExpander Code="{x:Binding RacingBarsXamlCode}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding LineSeriesTitle}" />
+                        <lvc:CartesianChart
+                            Title="{Binding LineSeriesVisualTitle}"
+                            HeightRequest="300"
+                            Series="{Binding LineSeries}" />
+                        <core:SourceCodeExpander Code="{x:Binding LineSeriesCSharpCode}" CodeType="CSharp" />
+                        <core:SourceCodeExpander Code="{x:Binding LineSeriesXamlCode}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding StackedBarsTitle}" />
+                        <lvc:CartesianChart HeightRequest="300" Series="{Binding StackedSeries}" />
+                        <core:SourceCodeExpander Code="{x:Binding StackBarsCSharpCode}" CodeType="CSharp" />
+                        <core:SourceCodeExpander Code="{x:Binding StackBarsXamlCode}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding PieChartTitle}" />
+                        <Grid ColumnDefinitions="*,*,*">
+                            <lvc:PieChart
+                                Title="{x:Binding PieChartVisualTitle}"
+                                HeightRequest="300"
+                                HorizontalOptions="Center"
+                                Series="{Binding PieSeries}"
+                                WidthRequest="300" />
+                            <lvc:PieChart
+                                Title="{x:Binding DoughnutPieChartVisualTitle}"
+                                Grid.Column="1"
+                                HeightRequest="300"
+                                Series="{Binding PieSeries2}"
+                                WidthRequest="300" />
+                            <lvc:PieChart
+                                Title="{x:Binding PushoutPieChartVisualTitle}"
+                                Grid.Column="2"
+                                HeightRequest="300"
+                                Series="{Binding PieSeries3}"
+                                WidthRequest="300" />
+                        </Grid>
+                        <core:SourceCodeExpander Code="{x:Binding PieChartXamlCode}" CodeType="Xaml" />
+                        <core:SourceCodeExpander Code="{x:Binding PieChartCSharpCode}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </SwipeView>
 </core:BasePage>

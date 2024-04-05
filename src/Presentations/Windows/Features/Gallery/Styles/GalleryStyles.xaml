@@ -31,6 +31,13 @@
         Color="{x:AppThemeBinding Dark=White,
                                   Light=Black}" />
 
+
+    <FontImageSource
+        x:Key="FluentArrowCircleLeft48Regular"
+        FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+        Glyph="{Static core:FluentUIIcon.Ic_fluent_arrow_circle_left_48_regular}"
+        Color="White" />
+
     <FontImageSource
         x:Key="MicrosoftStoreIcon"
         FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"

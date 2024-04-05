@@ -84,34 +84,45 @@
 
     </core:BasePage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter}"
-                    Header="{x:StaticResource PropertiesListHeader}"
-                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                    Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Styles" />
-                    <Label Text="There are 7 styles of chips: 1. Assist, 2. AssistElevated, 3. Filter, 4. FilterElevated 5. Input, 6. Suggestion, 7. SuggestionElevated." />
-                    <core:HorizontalWrapLayout Spacing="5">
-                        <mdc:Chip Style="{DynamicResource AssistChipStyle}" Text="chip" />
-                        <mdc:Chip Style="{DynamicResource AssistElevatedChipStyle}" Text="chip" />
-                        <mdc:Chip Style="{DynamicResource FilterChipStyle}" Text="chip" />
-                        <mdc:Chip Style="{DynamicResource FilterElevatedChipStyle}" Text="chip" />
-                        <mdc:Chip Style="{DynamicResource InputChipStyle}" Text="chip" />
-                        <mdc:Chip Style="{DynamicResource SuggestionChipStyle}" Text="chip" />
-                        <mdc:Chip Style="{DynamicResource SuggestionElevatedChipStyle}" Text="chip" />
-                    </core:HorizontalWrapLayout>
-                    <core:SourceCodeExpander Code="{x:Binding ChipXamlCode}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Frame>
-        </VerticalStackLayout>
-    </ScrollView>
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                    <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Frame>
+                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                    <CollectionView
+                        Footer="{x:StaticResource PropertiesListFooter}"
+                        Header="{x:StaticResource PropertiesListHeader}"
+                        ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                </Frame>
+                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Styles" />
+                        <Label Text="There are 7 styles of chips: 1. Assist, 2. AssistElevated, 3. Filter, 4. FilterElevated 5. Input, 6. Suggestion, 7. SuggestionElevated." />
+                        <core:HorizontalWrapLayout Spacing="5">
+                            <mdc:Chip Style="{DynamicResource AssistChipStyle}" Text="chip" />
+                            <mdc:Chip Style="{DynamicResource AssistElevatedChipStyle}" Text="chip" />
+                            <mdc:Chip Style="{DynamicResource FilterChipStyle}" Text="chip" />
+                            <mdc:Chip Style="{DynamicResource FilterElevatedChipStyle}" Text="chip" />
+                            <mdc:Chip Style="{DynamicResource InputChipStyle}" Text="chip" />
+                            <mdc:Chip Style="{DynamicResource SuggestionChipStyle}" Text="chip" />
+                            <mdc:Chip Style="{DynamicResource SuggestionElevatedChipStyle}" Text="chip" />
+                        </core:HorizontalWrapLayout>
+                        <core:SourceCodeExpander Code="{x:Binding ChipXamlCode}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+    </SwipeView>
 </core:BasePage>

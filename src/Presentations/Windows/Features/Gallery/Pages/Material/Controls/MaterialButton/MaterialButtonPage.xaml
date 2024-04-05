@@ -130,32 +130,43 @@
 
     </core:BasePage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter}"
-                    Header="{x:StaticResource PropertiesListHeader}"
-                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                    Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Styles" />
-                    <Label Text="There are 5 Styles of buttons: 1. Elevated, 2. Filled, 3. FilledTonal , 4. Outlined, 5. Text." />
-                    <core:HorizontalWrapLayout Spacing="5">
-                        <mdc:Button Style="{DynamicResource ElevatedButtonStyle}" Text="Elevated" />
-                        <mdc:Button Style="{DynamicResource FilledButtonStyle}" Text="Filled" />
-                        <mdc:Button Style="{DynamicResource FilledTonalButtonStyle}" Text="FilledTonal" />
-                        <mdc:Button Style="{DynamicResource OutlinedButtonStyle}" Text="Outlined" />
-                        <mdc:Button Style="{StaticResource TextButtonStyle}" Text="Text" />
-                    </core:HorizontalWrapLayout>
-                    <core:SourceCodeExpander Code="{x:Binding ButtonXamlCode}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Frame>
-        </VerticalStackLayout>
-    </ScrollView>
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                    <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Frame>
+                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                    <CollectionView
+                        Footer="{x:StaticResource PropertiesListFooter}"
+                        Header="{x:StaticResource PropertiesListHeader}"
+                        ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                </Frame>
+                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Styles" />
+                        <Label Text="There are 5 Styles of buttons: 1. Elevated, 2. Filled, 3. FilledTonal , 4. Outlined, 5. Text." />
+                        <core:HorizontalWrapLayout Spacing="5">
+                            <mdc:Button Style="{DynamicResource ElevatedButtonStyle}" Text="Elevated" />
+                            <mdc:Button Style="{DynamicResource FilledButtonStyle}" Text="Filled" />
+                            <mdc:Button Style="{DynamicResource FilledTonalButtonStyle}" Text="FilledTonal" />
+                            <mdc:Button Style="{DynamicResource OutlinedButtonStyle}" Text="Outlined" />
+                            <mdc:Button Style="{StaticResource TextButtonStyle}" Text="Text" />
+                        </core:HorizontalWrapLayout>
+                        <core:SourceCodeExpander Code="{x:Binding ButtonXamlCode}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+    </SwipeView>
 </core:BasePage>

@@ -7,7 +7,7 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="State Container"
-    Padding="10"
+    Padding="20"
     x:DataType="app:StateContainerPageViewModel"
     BackgroundColor="Transparent">
 
@@ -67,53 +67,65 @@
         </x:Array>
     </core:BasePage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Border>
 
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout>
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Properties" />
-                    <CollectionView ItemsSource="{x:StaticResource PropertyItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Border>
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
 
-            <Border
-                Padding="10"
-                BackgroundColor="#004173"
-                StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout>
-                    <Label
-                        Style="{x:StaticResource DocumentSectionTitleStyle}"
-                        Text="Important"
-                        TextColor="White" />
-                    <Label Text="{x:StaticResource Important1}" TextColor="White" />
-                </VerticalStackLayout>
-            </Border>
-
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Using the StateContainer" />
-                    <Label Text="{x:StaticResource Using}" />
-                    <VerticalStackLayout toolkit:StateContainer.CanStateChange="{Binding CanStateChange}" toolkit:StateContainer.CurrentState="{Binding CurrentState}">
-                        <toolkit:StateContainer.StateViews>
-                            <VerticalStackLayout toolkit:StateView.StateKey="Loading">
-                                <ActivityIndicator IsRunning="True" />
-                                <Label Text="Loading Content..." />
-                            </VerticalStackLayout>
-                            <Label toolkit:StateView.StateKey="Success" Text="Success!" />
-                        </toolkit:StateContainer.StateViews>
-                        <Label Text="Default Content" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout>
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Properties" />
+                        <CollectionView ItemsSource="{x:StaticResource PropertyItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
                     </VerticalStackLayout>
-                    <Button Command="{Binding ChangeStateCommand}" Text="Change State" />
-                    <Label Text="XAML:" />
-                    <core:SourceCodeExpander Code="{x:Binding XamlStateContainerLayout}" CodeType="Xaml" />
-                    <Label Text="View Model:" />
-                    <core:SourceCodeExpander Code="{x:Binding CsharpStateContainerLayout}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Border>
-        </VerticalStackLayout>
-    </ScrollView>
+                </Border>
+
+                <Border
+                    Padding="10"
+                    BackgroundColor="#004173"
+                    StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout>
+                        <Label
+                            Style="{x:StaticResource DocumentSectionTitleStyle}"
+                            Text="Important"
+                            TextColor="White" />
+                        <Label Text="{x:StaticResource Important1}" TextColor="White" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Using the StateContainer" />
+                        <Label Text="{x:StaticResource Using}" />
+                        <VerticalStackLayout toolkit:StateContainer.CanStateChange="{Binding CanStateChange}" toolkit:StateContainer.CurrentState="{Binding CurrentState}">
+                            <toolkit:StateContainer.StateViews>
+                                <VerticalStackLayout toolkit:StateView.StateKey="Loading">
+                                    <ActivityIndicator IsRunning="True" />
+                                    <Label Text="Loading Content..." />
+                                </VerticalStackLayout>
+                                <Label toolkit:StateView.StateKey="Success" Text="Success!" />
+                            </toolkit:StateContainer.StateViews>
+                            <Label Text="Default Content" />
+                        </VerticalStackLayout>
+                        <Button Command="{Binding ChangeStateCommand}" Text="Change State" />
+                        <Label Text="XAML:" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlStateContainerLayout}" CodeType="Xaml" />
+                        <Label Text="View Model:" />
+                        <core:SourceCodeExpander Code="{x:Binding CsharpStateContainerLayout}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </SwipeView>
 </core:BasePage>

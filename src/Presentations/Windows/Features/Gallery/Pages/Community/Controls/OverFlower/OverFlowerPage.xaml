@@ -65,26 +65,37 @@
 
     </core:BasePage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Border>
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter}"
-                    Header="{x:StaticResource PropertiesListHeader}"
-                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                    Style="{x:StaticResource PropertiesListStyle}" />
-            </Border>
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <over:OverFlower
-                    ImageHeight="1000"
-                    ImageSource="pattern_background_image.png"
-                    ImageWidth="2500"
-                    ScrollDirection="Left"
-                    ScrollDuration="20000" />
-            </Border>
-        </VerticalStackLayout>
-    </ScrollView>
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <CollectionView
+                        Footer="{x:StaticResource PropertiesListFooter}"
+                        Header="{x:StaticResource PropertiesListHeader}"
+                        ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <over:OverFlower
+                        ImageHeight="1000"
+                        ImageSource="pattern_background_image.png"
+                        ImageWidth="2500"
+                        ScrollDirection="Left"
+                        ScrollDuration="20000" />
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </SwipeView>
 </core:BasePage>

@@ -7,8 +7,9 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="ObservableProperty"
-    Padding="10"
-    x:DataType="app:ObservablePropertyPageViewModel">
+    Padding="20"
+    x:DataType="app:ObservablePropertyPageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -101,129 +102,140 @@
         </DataTemplate>
     </core:BasePage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="ObservableProperty attribute" />
-                    <CollectionView ItemsSource="{x:StaticResource ObservableProperty}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="20">
-                    <Label Text="This is toolkit format" />
-                    <core:SourceCodeExpander Code="{x:Binding ToolkitObservableProperty}" CodeType="CSharp" />
-                    <Label Text="And it will generate an observable property like this:" />
-                    <core:SourceCodeExpander Code="{x:Binding BuildinGenerateObservableProperty}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="On property change" />
-                    <CollectionView ItemsSource="{x:StaticResource OnPropertyChange}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="20">
-                    <Label Text="This is toolkit format" />
-                    <core:SourceCodeExpander Code="{x:Binding ToolkitCodeSetup}" CodeType="CSharp" />
-                    <Label Text="The generate code equal something like this in build-in:" />
-                    <core:SourceCodeExpander Code="{x:Binding BuildinCodeSetup}" CodeType="CSharp" />
-                    <Label Text="This is tool kit usage:" />
-                    <core:SourceCodeExpander Code="{x:Binding ToolkitCodeUsage}" CodeType="CSharp" />
-                    <Label Text="And it will equal something like this in build-in:" />
-                    <core:SourceCodeExpander Code="{x:Binding BuildinCodeUsage}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <ScrollView>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <VerticalStackLayout Spacing="20">
-                        <Label Text="This is example for using OnPropertyChange" />
-                        <SearchBar
-                            x:Name="SearchBar"
-                            Placeholder="Search items..."
-                            Text="{x:Binding SearchText}" />
-                        <CollectionView ItemTemplate="{x:StaticResource ControlInfoCollectionView}" ItemsSource="{x:Binding ControlGroupList}" />
-                        <core:SourceCodeExpander Code="{x:Binding SearchingXamlCode}" CodeType="Xaml" />
-                        <core:SourceCodeExpander Code="{x:Binding SearchingCSharpCode}" CodeType="CSharp" />
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="ObservableProperty attribute" />
+                        <CollectionView ItemsSource="{x:StaticResource ObservableProperty}" Style="{x:StaticResource PropertiesListStyle}" />
                     </VerticalStackLayout>
-                </ScrollView>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Notifying dependent properties" />
-                    <CollectionView ItemsSource="{x:StaticResource NotifyPropertyChangedFor}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="20">
-                    <Label Text="This is toolkit format" />
-                    <core:SourceCodeExpander Code="{x:Binding ToolkitNotifyingDependentProperties}" CodeType="CSharp" />
-                    <Label Text="This will result in a generated property equivalent to this:" />
-                    <core:SourceCodeExpander Code="{x:Binding BuildinGenerateNotifyingDependentProperties}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Notifying dependent commands" />
-                    <CollectionView ItemsSource="{x:StaticResource NotifyCanExecuteChangedFor}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="20">
-                    <Label Text="This is toolkit format" />
-                    <core:SourceCodeExpander Code="{x:Binding ToolkitNotifyingDependentCommands}" CodeType="CSharp" />
-                    <Label Text="This will result in a generated property equivalent to this:" />
-                    <core:SourceCodeExpander Code="{x:Binding BuildinGenerateNotifyingDependentCommands}" CodeType="CSharp" />
-                    <Label Text="Note that, in order for this to work, the target command has to be some IRelayCommand property." />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Requesting property validation" />
-                    <CollectionView ItemsSource="{x:StaticResource NotifyDataErrorInfo}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="20">
-                    <Label Text="This is toolkit format" />
-                    <core:SourceCodeExpander Code="{x:Binding ToolkitRequestingPropertyValidation}" CodeType="CSharp" />
-                    <Label Text="And it will generate an observable property like this:" />
-                    <core:SourceCodeExpander Code="{x:Binding BuildinGenerateRequestingPropertyValidation}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="20">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Sending notification messages" />
-                    <CollectionView ItemsSource="{x:StaticResource NotifyPropertyChangedRecipients}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <ScrollView>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <VerticalStackLayout Spacing="20">
                         <Label Text="This is toolkit format" />
-                        <core:SourceCodeExpander Code="{x:Binding ToolkitSendingNotificationMessages}" CodeType="CSharp" />
-                        <Label Text="This will result in the following property being generated:" />
-                        <core:SourceCodeExpander Code="{x:Binding BuildinGenerateSendingNotificationMessages}" CodeType="CSharp" />
+                        <core:SourceCodeExpander Code="{x:Binding ToolkitObservableProperty}" CodeType="CSharp" />
+                        <Label Text="And it will generate an observable property like this:" />
+                        <core:SourceCodeExpander Code="{x:Binding BuildinGenerateObservableProperty}" CodeType="CSharp" />
                     </VerticalStackLayout>
-                </ScrollView>
-            </Frame>
-        </VerticalStackLayout>
-    </ScrollView>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="20">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="On property change" />
+                        <CollectionView ItemsSource="{x:StaticResource OnPropertyChange}" Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="20">
+                        <Label Text="This is toolkit format" />
+                        <core:SourceCodeExpander Code="{x:Binding ToolkitCodeSetup}" CodeType="CSharp" />
+                        <Label Text="The generate code equal something like this in build-in:" />
+                        <core:SourceCodeExpander Code="{x:Binding BuildinCodeSetup}" CodeType="CSharp" />
+                        <Label Text="This is tool kit usage:" />
+                        <core:SourceCodeExpander Code="{x:Binding ToolkitCodeUsage}" CodeType="CSharp" />
+                        <Label Text="And it will equal something like this in build-in:" />
+                        <core:SourceCodeExpander Code="{x:Binding BuildinCodeUsage}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <ScrollView>
+                        <VerticalStackLayout Spacing="20">
+                            <Label Text="This is example for using OnPropertyChange" />
+                            <SearchBar
+                                x:Name="SearchBar"
+                                Placeholder="Search items..."
+                                Text="{x:Binding SearchText}" />
+                            <CollectionView ItemTemplate="{x:StaticResource ControlInfoCollectionView}" ItemsSource="{x:Binding ControlGroupList}" />
+                            <core:SourceCodeExpander Code="{x:Binding SearchingXamlCode}" CodeType="Xaml" />
+                            <core:SourceCodeExpander Code="{x:Binding SearchingCSharpCode}" CodeType="CSharp" />
+                        </VerticalStackLayout>
+                    </ScrollView>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="20">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Notifying dependent properties" />
+                        <CollectionView ItemsSource="{x:StaticResource NotifyPropertyChangedFor}" Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="20">
+                        <Label Text="This is toolkit format" />
+                        <core:SourceCodeExpander Code="{x:Binding ToolkitNotifyingDependentProperties}" CodeType="CSharp" />
+                        <Label Text="This will result in a generated property equivalent to this:" />
+                        <core:SourceCodeExpander Code="{x:Binding BuildinGenerateNotifyingDependentProperties}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="20">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Notifying dependent commands" />
+                        <CollectionView ItemsSource="{x:StaticResource NotifyCanExecuteChangedFor}" Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="20">
+                        <Label Text="This is toolkit format" />
+                        <core:SourceCodeExpander Code="{x:Binding ToolkitNotifyingDependentCommands}" CodeType="CSharp" />
+                        <Label Text="This will result in a generated property equivalent to this:" />
+                        <core:SourceCodeExpander Code="{x:Binding BuildinGenerateNotifyingDependentCommands}" CodeType="CSharp" />
+                        <Label Text="Note that, in order for this to work, the target command has to be some IRelayCommand property." />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="20">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Requesting property validation" />
+                        <CollectionView ItemsSource="{x:StaticResource NotifyDataErrorInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="20">
+                        <Label Text="This is toolkit format" />
+                        <core:SourceCodeExpander Code="{x:Binding ToolkitRequestingPropertyValidation}" CodeType="CSharp" />
+                        <Label Text="And it will generate an observable property like this:" />
+                        <core:SourceCodeExpander Code="{x:Binding BuildinGenerateRequestingPropertyValidation}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="20">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Sending notification messages" />
+                        <CollectionView ItemsSource="{x:StaticResource NotifyPropertyChangedRecipients}" Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <ScrollView>
+                        <VerticalStackLayout Spacing="20">
+                            <Label Text="This is toolkit format" />
+                            <core:SourceCodeExpander Code="{x:Binding ToolkitSendingNotificationMessages}" CodeType="CSharp" />
+                            <Label Text="This will result in the following property being generated:" />
+                            <core:SourceCodeExpander Code="{x:Binding BuildinGenerateSendingNotificationMessages}" CodeType="CSharp" />
+                        </VerticalStackLayout>
+                    </ScrollView>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </SwipeView>
 </core:BasePage>

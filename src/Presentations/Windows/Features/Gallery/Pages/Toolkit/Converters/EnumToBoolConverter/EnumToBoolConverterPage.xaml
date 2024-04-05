@@ -7,8 +7,9 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Enum To Bool Converter"
-    Padding="10"
-    x:DataType="app:EnumToBoolConverterPageViewModel">
+    Padding="20"
+    x:DataType="app:EnumToBoolConverterPageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -36,65 +37,77 @@
         <toolkit:EnumToBoolConverter x:Key="EnumToBoolConverter" />
     </core:BasePage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Converter Properties" />
-                    <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup ToolKit" />
-                    <VerticalStackLayout>
-                        <Label Text="{x:Binding SetupDescription}" />
-                        <Label Text="{x:Binding XamlNamespace}" TextColor="Blue" />
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Converter Properties" />
+                        <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Therefore the following:" />
-                    <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleBefore}" CodeType="Xaml" />
-                    <Label Text="Would be modified to include the xmlns as follows:" />
-                    <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleAfter}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Frame>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup ToolKit" />
+                        <VerticalStackLayout>
+                            <Label Text="{x:Binding SetupDescription}" />
+                            <Label Text="{x:Binding XamlNamespace}" TextColor="Blue" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Enum To Bool Converter" />
-                    <Label Text="The Label below the picker will appear if you pick a correct Type" />
-                    <Picker
-                        BackgroundColor="#512bd4"
-                        ItemsSource="{x:Binding GalleryCardTypes}"
-                        SelectedItem="{x:Binding SelectedItem}" />
-                    <Label
-                        IsVisible="{x:Binding SelectedItem,
-                                              Converter={StaticResource EnumToBoolConverter},
-                                              ConverterParameter={x:Static core:GalleryCardType.Converter}}"
-                        Text="Let Go!"
-                        TextColor="OrangeRed" />
-                </VerticalStackLayout>
-            </Frame>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Therefore the following:" />
+                        <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleBefore}" CodeType="Xaml" />
+                        <Label Text="Would be modified to include the xmlns as follows:" />
+                        <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleAfter}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="This is ViewModel code" />
-                    <core:SourceCodeExpander Code="{x:Binding CSharpxamlConverterTestingViewModel}" CodeType="CSharp" />
-                    <Label Text="Here what your converter look like" />
-                    <core:SourceCodeExpander Code="{x:Binding XamlConverterSetup}" CodeType="Xaml" />
-                    <Label Text="This Xaml code" />
-                    <core:SourceCodeExpander Code="{x:Binding XamlConverterTesting}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Frame>
-        </VerticalStackLayout>
-    </ScrollView>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Enum To Bool Converter" />
+                        <Label Text="The Label below the picker will appear if you pick a correct Type" />
+                        <Picker
+                            BackgroundColor="#512bd4"
+                            ItemsSource="{x:Binding GalleryCardTypes}"
+                            SelectedItem="{x:Binding SelectedItem}" />
+                        <Label
+                            IsVisible="{x:Binding SelectedItem,
+                                                  Converter={StaticResource EnumToBoolConverter},
+                                                  ConverterParameter={x:Static core:GalleryCardType.Converter}}"
+                            Text="Let Go!"
+                            TextColor="OrangeRed" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="This is ViewModel code" />
+                        <core:SourceCodeExpander Code="{x:Binding CSharpxamlConverterTestingViewModel}" CodeType="CSharp" />
+                        <Label Text="Here what your converter look like" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlConverterSetup}" CodeType="Xaml" />
+                        <Label Text="This Xaml code" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlConverterTesting}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </SwipeView>
 
 </core:BasePage>

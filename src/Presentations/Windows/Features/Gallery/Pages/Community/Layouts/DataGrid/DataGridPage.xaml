@@ -79,229 +79,240 @@
 
     </core:BasePage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Border>
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <CollectionView
-                    Footer="{x:StaticResource PropertiesListFooter}"
-                    Header="{x:StaticResource PropertiesListHeader}"
-                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                    Style="{x:StaticResource PropertiesListStyle}" />
-            </Border>
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <CollectionView
+                        Footer="{x:StaticResource PropertiesListFooter}"
+                        Header="{x:StaticResource PropertiesListHeader}"
+                        ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                </Border>
 
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="5">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Normal DataGrid" />
-                    <Label Text="{x:Binding NormalDataGridTip}" />
-                    <datagird:DataGrid
-                        BorderColor="Gray"
-                        HeaderBackground="#35abc3"
-                        HeaderHeight="50"
-                        IsRefreshing="{x:Binding IsRefreshing}"
-                        ItemsSource="{x:Binding ControlGroupList}"
-                        RowHeight="80"
-                        SelectedItem="{x:Binding SelectedControl}">
-                        <datagird:DataGrid.Columns>
-                            <datagird:DataGridColumn
-                                Title="Control"
-                                Width="80"
-                                PropertyName="ControlIcon"
-                                SortingEnabled="True">
-                                <datagird:DataGridColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Frame
-                                            BackgroundColor="#35abc3"
-                                            BorderColor="Transparent"
-                                            HeightRequest="60"
-                                            HorizontalOptions="Center"
-                                            VerticalOptions="Center"
-                                            WidthRequest="60">
-                                            <Image
-                                                HorizontalOptions="CenterAndExpand"
-                                                Source="{x:Binding}"
-                                                VerticalOptions="CenterAndExpand" />
-                                        </Frame>
-                                    </DataTemplate>
-                                </datagird:DataGridColumn.CellTemplate>
-                            </datagird:DataGridColumn>
-                            <datagird:DataGridColumn
-                                Title="Name"
-                                Width="140"
-                                CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
-                                PropertyName="ControlName"
-                                SortingEnabled="True" />
-                            <datagird:DataGridColumn
-                                Title="Type"
-                                Width="120"
-                                PropertyName="CardType"
-                                SortingEnabled="True">
-                                <datagird:DataGridColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Frame
-                                            BackgroundColor="ForestGreen"
-                                            BorderColor="LightGreen"
-                                            HorizontalOptions="Center"
-                                            VerticalOptions="Center">
-                                            <Label
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Normal DataGrid" />
+                        <Label Text="{x:Binding NormalDataGridTip}" />
+                        <datagird:DataGrid
+                            BorderColor="Gray"
+                            HeaderBackground="#35abc3"
+                            HeaderHeight="50"
+                            IsRefreshing="{x:Binding IsRefreshing}"
+                            ItemsSource="{x:Binding ControlGroupList}"
+                            RowHeight="80"
+                            SelectedItem="{x:Binding SelectedControl}">
+                            <datagird:DataGrid.Columns>
+                                <datagird:DataGridColumn
+                                    Title="Control"
+                                    Width="80"
+                                    PropertyName="ControlIcon"
+                                    SortingEnabled="True">
+                                    <datagird:DataGridColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Frame
+                                                BackgroundColor="#35abc3"
+                                                BorderColor="Transparent"
+                                                HeightRequest="60"
                                                 HorizontalOptions="Center"
-                                                Text="{x:Binding}"
+                                                VerticalOptions="Center"
+                                                WidthRequest="60">
+                                                <Image
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    Source="{x:Binding}"
+                                                    VerticalOptions="CenterAndExpand" />
+                                            </Frame>
+                                        </DataTemplate>
+                                    </datagird:DataGridColumn.CellTemplate>
+                                </datagird:DataGridColumn>
+                                <datagird:DataGridColumn
+                                    Title="Name"
+                                    Width="140"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    PropertyName="ControlName"
+                                    SortingEnabled="True" />
+                                <datagird:DataGridColumn
+                                    Title="Type"
+                                    Width="120"
+                                    PropertyName="CardType"
+                                    SortingEnabled="True">
+                                    <datagird:DataGridColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Frame
+                                                BackgroundColor="ForestGreen"
+                                                BorderColor="LightGreen"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center">
+                                                <Label
+                                                    HorizontalOptions="Center"
+                                                    Text="{x:Binding}"
+                                                    VerticalOptions="Center" />
+                                            </Frame>
+                                        </DataTemplate>
+                                    </datagird:DataGridColumn.CellTemplate>
+                                </datagird:DataGridColumn>
+                                <datagird:DataGridColumn
+                                    Title="Detail"
+                                    Width="650"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    PropertyName="ControlDetail"
+                                    SortingEnabled="True" />
+                            </datagird:DataGrid.Columns>
+                        </datagird:DataGrid>
+
+
+                        <Label Text="Here DataGrid Template Xaml" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlNormalDataGridTemplate}" CodeType="Xaml" />
+                        <Label Text="Here DataGrid xaml code" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlNormalDataGrid}" CodeType="Xaml" />
+                        <Label Text="This is the ViewModel" />
+                        <core:SourceCodeExpander Code="{x:Binding CSharpNormalDataGrid}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="DataGrid With Rows Background Color" />
+                        <Label Text="DataGrid Row Color can be adjusted too" />
+                        <datagird:DataGrid
+                            HeaderBackground="#e0e6f7"
+                            HeaderHeight="50"
+                            IsRefreshing="{x:Binding IsRefreshing}"
+                            ItemsSource="{x:Binding GithubControlGroupList}"
+                            RowHeight="80"
+                            SelectedItem="{x:Binding SelectedGithubControl}">
+                            <datagird:DataGrid.RowsBackgroundColorPalette>
+                                <datagird:PaletteCollection>
+                                    <Color>#F2F2F2</Color>
+                                    <Color>#FFFFFF</Color>
+                                </datagird:PaletteCollection>
+                            </datagird:DataGrid.RowsBackgroundColorPalette>
+                            <datagird:DataGrid.Columns>
+                                <datagird:DataGridColumn
+                                    Title="Avatar"
+                                    Width="80"
+                                    PropertyName="OwnerAvatarUrl"
+                                    SortingEnabled="True">
+                                    <datagird:DataGridColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image
+                                                HorizontalOptions="Center"
+                                                Source="{x:Binding}"
                                                 VerticalOptions="Center" />
-                                        </Frame>
-                                    </DataTemplate>
-                                </datagird:DataGridColumn.CellTemplate>
-                            </datagird:DataGridColumn>
-                            <datagird:DataGridColumn
-                                Title="Detail"
-                                Width="650"
-                                CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
-                                PropertyName="ControlDetail"
-                                SortingEnabled="True" />
-                        </datagird:DataGrid.Columns>
-                    </datagird:DataGrid>
+                                        </DataTemplate>
+                                    </datagird:DataGridColumn.CellTemplate>
+                                </datagird:DataGridColumn>
+                                <datagird:DataGridColumn
+                                    Title="Name"
+                                    Width="140"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    PropertyName="Name"
+                                    SortingEnabled="True" />
+                                <datagird:DataGridColumn
+                                    Title="Forks Count"
+                                    Width="100"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    PropertyName="ForksCount"
+                                    SortingEnabled="True" />
+                                <datagird:DataGridColumn
+                                    Title="Stargazers Count"
+                                    Width="120"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    PropertyName="StargazersCount"
+                                    SortingEnabled="True" />
+                                <datagird:DataGridColumn
+                                    Title="Issues Count"
+                                    Width="100"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    PropertyName="OpenIssuesCount"
+                                    SortingEnabled="True" />
+                                <datagird:DataGridColumn
+                                    Title="License"
+                                    Width="100"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    PropertyName="LicenseName"
+                                    SortingEnabled="True" />
+                                <datagird:DataGridColumn
+                                    Title="Link"
+                                    Width="350"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    PropertyName="SvnUrl"
+                                    SortingEnabled="True" />
+                            </datagird:DataGrid.Columns>
+                        </datagird:DataGrid>
 
+                        <Label Text="This is how xaml DataGord code look like" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlRowsColorDataGrid}" CodeType="Xaml" />
+                        <Label Text="This is ViewModel code" />
+                        <core:SourceCodeExpander Code="{x:Binding CSharpRowsColorDataGrid}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
 
-                    <Label Text="Here DataGrid Template Xaml" />
-                    <core:SourceCodeExpander Code="{x:Binding XamlNormalDataGridTemplate}" CodeType="Xaml" />
-                    <Label Text="Here DataGrid xaml code" />
-                    <core:SourceCodeExpander Code="{x:Binding XamlNormalDataGrid}" CodeType="Xaml" />
-                    <Label Text="This is the ViewModel" />
-                    <core:SourceCodeExpander Code="{x:Binding CSharpNormalDataGrid}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="DataGrid With Emty Item" />
+                        <datagird:DataGrid
+                            HeaderBackground="#e0e6f7"
+                            HeaderHeight="50"
+                            IsRefreshing="{x:Binding IsRefreshing}"
+                            ItemsSource="{x:Binding ControlGroupListEmtyList}"
+                            RowHeight="80">
+                            <datagird:DataGrid.NoDataView>
+                                <ContentView>
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        SemanticProperties.HeadingLevel="Level1"
+                                        Text="Nothing to see here!"
+                                        VerticalOptions="Center" />
+                                </ContentView>
+                            </datagird:DataGrid.NoDataView>
+                            <datagird:DataGrid.Columns>
+                                <datagird:DataGridColumn
+                                    Title="Control Name"
+                                    Width="140"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    PropertyName="ControlName"
+                                    SortingEnabled="True" />
+                                <datagird:DataGridColumn
+                                    Title="Type"
+                                    Width="120"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    PropertyName="CardType"
+                                    SortingEnabled="True" />
+                                <datagird:DataGridColumn
+                                    Title="Group Name"
+                                    Width="140"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    PropertyName="GroupName"
+                                    SortingEnabled="True" />
+                                <datagird:DataGridColumn
+                                    Title="Control Detail"
+                                    Width="600"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    PropertyName="ControlDetail"
+                                    SortingEnabled="True" />
+                            </datagird:DataGrid.Columns>
+                        </datagird:DataGrid>
 
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="5">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="DataGrid With Rows Background Color" />
-                    <Label Text="DataGrid Row Color can be adjusted too" />
-                    <datagird:DataGrid
-                        HeaderBackground="#e0e6f7"
-                        HeaderHeight="50"
-                        IsRefreshing="{x:Binding IsRefreshing}"
-                        ItemsSource="{x:Binding GithubControlGroupList}"
-                        RowHeight="80"
-                        SelectedItem="{x:Binding SelectedGithubControl}">
-                        <datagird:DataGrid.RowsBackgroundColorPalette>
-                            <datagird:PaletteCollection>
-                                <Color>#F2F2F2</Color>
-                                <Color>#FFFFFF</Color>
-                            </datagird:PaletteCollection>
-                        </datagird:DataGrid.RowsBackgroundColorPalette>
-                        <datagird:DataGrid.Columns>
-                            <datagird:DataGridColumn
-                                Title="Avatar"
-                                Width="80"
-                                PropertyName="OwnerAvatarUrl"
-                                SortingEnabled="True">
-                                <datagird:DataGridColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Image
-                                            HorizontalOptions="Center"
-                                            Source="{x:Binding}"
-                                            VerticalOptions="Center" />
-                                    </DataTemplate>
-                                </datagird:DataGridColumn.CellTemplate>
-                            </datagird:DataGridColumn>
-                            <datagird:DataGridColumn
-                                Title="Name"
-                                Width="140"
-                                CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
-                                PropertyName="Name"
-                                SortingEnabled="True" />
-                            <datagird:DataGridColumn
-                                Title="Forks Count"
-                                Width="100"
-                                CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
-                                PropertyName="ForksCount"
-                                SortingEnabled="True" />
-                            <datagird:DataGridColumn
-                                Title="Stargazers Count"
-                                Width="120"
-                                CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
-                                PropertyName="StargazersCount"
-                                SortingEnabled="True" />
-                            <datagird:DataGridColumn
-                                Title="Issues Count"
-                                Width="100"
-                                CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
-                                PropertyName="OpenIssuesCount"
-                                SortingEnabled="True" />
-                            <datagird:DataGridColumn
-                                Title="License"
-                                Width="100"
-                                CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
-                                PropertyName="LicenseName"
-                                SortingEnabled="True" />
-                            <datagird:DataGridColumn
-                                Title="Link"
-                                Width="350"
-                                CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
-                                PropertyName="SvnUrl"
-                                SortingEnabled="True" />
-                        </datagird:DataGrid.Columns>
-                    </datagird:DataGrid>
-
-                    <Label Text="This is how xaml DataGord code look like" />
-                    <core:SourceCodeExpander Code="{x:Binding XamlRowsColorDataGrid}" CodeType="Xaml" />
-                    <Label Text="This is ViewModel code" />
-                    <core:SourceCodeExpander Code="{x:Binding CSharpRowsColorDataGrid}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Border>
-
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="5">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="DataGrid With Emty Item" />
-                    <datagird:DataGrid
-                        HeaderBackground="#e0e6f7"
-                        HeaderHeight="50"
-                        IsRefreshing="{x:Binding IsRefreshing}"
-                        ItemsSource="{x:Binding ControlGroupListEmtyList}"
-                        RowHeight="80">
-                        <datagird:DataGrid.NoDataView>
-                            <ContentView>
-                                <Label
-                                    HorizontalOptions="Center"
-                                    SemanticProperties.HeadingLevel="Level1"
-                                    Text="Nothing to see here!"
-                                    VerticalOptions="Center" />
-                            </ContentView>
-                        </datagird:DataGrid.NoDataView>
-                        <datagird:DataGrid.Columns>
-                            <datagird:DataGridColumn
-                                Title="Control Name"
-                                Width="140"
-                                CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
-                                PropertyName="ControlName"
-                                SortingEnabled="True" />
-                            <datagird:DataGridColumn
-                                Title="Type"
-                                Width="120"
-                                CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
-                                PropertyName="CardType"
-                                SortingEnabled="True" />
-                            <datagird:DataGridColumn
-                                Title="Group Name"
-                                Width="140"
-                                CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
-                                PropertyName="GroupName"
-                                SortingEnabled="True" />
-                            <datagird:DataGridColumn
-                                Title="Control Detail"
-                                Width="600"
-                                CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
-                                PropertyName="ControlDetail"
-                                SortingEnabled="True" />
-                        </datagird:DataGrid.Columns>
-                    </datagird:DataGrid>
-
-                    <Label Text="This is how xaml DataGord code look like" />
-                    <core:SourceCodeExpander Code="{x:Binding XamlEmptyListDataGrid}" CodeType="Xaml" />
-                    <Label Text="This is ViewModel code" />
-                    <core:SourceCodeExpander Code="{x:Binding CSharpEmptyListDataGrid}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Border>
-        </VerticalStackLayout>
-    </ScrollView>
+                        <Label Text="This is how xaml DataGord code look like" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlEmptyListDataGrid}" CodeType="Xaml" />
+                        <Label Text="This is ViewModel code" />
+                        <core:SourceCodeExpander Code="{x:Binding CSharpEmptyListDataGrid}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </SwipeView>
 </core:BasePage>

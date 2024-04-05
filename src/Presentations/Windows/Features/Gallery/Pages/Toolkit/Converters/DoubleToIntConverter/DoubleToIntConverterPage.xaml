@@ -7,8 +7,9 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Double To Int Converter"
-    Padding="10"
-    x:DataType="app:DoubleToIntConverterPageViewModel">
+    Padding="20"
+    x:DataType="app:DoubleToIntConverterPageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -36,67 +37,79 @@
         <toolkit:DoubleToIntConverter x:Key="DoubleToIntConverter" />
     </core:BasePage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Converter Properties" />
-                    <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup ToolKit" />
-                    <VerticalStackLayout>
-                        <Label Text="{x:Binding SetupDescription}" />
-                        <Label Text="{x:Binding XamlNamespace}" TextColor="Blue" />
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Converter Properties" />
+                        <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Therefore the following:" />
-                    <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleBefore}" CodeType="Xaml" />
-                    <Label Text="Would be modified to include the xmlns as follows:" />
-                    <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleAfter}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Frame>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup ToolKit" />
+                        <VerticalStackLayout>
+                            <Label Text="{x:Binding SetupDescription}" />
+                            <Label Text="{x:Binding XamlNamespace}" TextColor="Blue" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Double To Int Converter" />
-                    <Label Text="Give this Entry a double it will return a integer number in the result below" />
-                    <Entry
-                        Keyboard="Numeric"
-                        Placeholder="Enter a double number"
-                        Text="{x:Binding TestValue}" />
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Your result here: " />
-                                <Span Text="{x:Binding TestValue, Converter={StaticResource DoubleToIntConverter}}" />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </VerticalStackLayout>
-            </Frame>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Therefore the following:" />
+                        <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleBefore}" CodeType="Xaml" />
+                        <Label Text="Would be modified to include the xmlns as follows:" />
+                        <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleAfter}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="This is ViewModel code" />
-                    <core:SourceCodeExpander Code="{x:Binding CSharpxamlConverterTestingViewModel}" CodeType="CSharp" />
-                    <Label Text="Here what your converter look like" />
-                    <core:SourceCodeExpander Code="{x:Binding XamlConverterSetup}" CodeType="Xaml" />
-                    <Label Text="This Xaml code" />
-                    <core:SourceCodeExpander Code="{x:Binding XamlConverterTesting}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Frame>
-        </VerticalStackLayout>
-    </ScrollView>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Double To Int Converter" />
+                        <Label Text="Give this Entry a double it will return a integer number in the result below" />
+                        <Entry
+                            Keyboard="Numeric"
+                            Placeholder="Enter a double number"
+                            Text="{x:Binding TestValue}" />
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Your result here: " />
+                                    <Span Text="{x:Binding TestValue, Converter={StaticResource DoubleToIntConverter}}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="This is ViewModel code" />
+                        <core:SourceCodeExpander Code="{x:Binding CSharpxamlConverterTestingViewModel}" CodeType="CSharp" />
+                        <Label Text="Here what your converter look like" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlConverterSetup}" CodeType="Xaml" />
+                        <Label Text="This Xaml code" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlConverterTesting}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </SwipeView>
 
 </core:BasePage>

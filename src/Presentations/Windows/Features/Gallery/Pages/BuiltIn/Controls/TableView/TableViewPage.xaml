@@ -310,266 +310,277 @@
             Text="Original Document" />
     </core:BasePage.ToolbarItems>
 
-    <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy, Mode=OneWay}">
-        <ScrollView>
-            <Grid ColumnDefinitions="310, *" ColumnSpacing="20">
-                <Grid RowDefinitions="90, 540, 120" RowSpacing="10">
-                    <Border
-                        Padding="20"
-                        BackgroundColor="#272b33"
-                        StrokeShape="RoundRectangle 4">
-                        <Grid>
-                            <HorizontalStackLayout Spacing="10">
-                                <Image
-                                    HeightRequest="25"
-                                    Source="githublogo.png"
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy, Mode=OneWay}">
+            <ScrollView>
+                <Grid ColumnDefinitions="310, *" ColumnSpacing="20">
+                    <Grid RowDefinitions="90, 540, 120" RowSpacing="10">
+                        <Border
+                            Padding="20"
+                            BackgroundColor="#272b33"
+                            StrokeShape="RoundRectangle 4">
+                            <Grid>
+                                <HorizontalStackLayout Spacing="10">
+                                    <Image
+                                        HeightRequest="25"
+                                        Source="githublogo.png"
+                                        VerticalOptions="Center"
+                                        WidthRequest="25" />
+
+                                    <Label
+                                        HorizontalOptions="Start"
+                                        Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                        Text="Issues"
+                                        VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                                <Border
+                                    BackgroundColor="OrangeRed"
+                                    HeightRequest="40"
+                                    HorizontalOptions="End"
+                                    StrokeShape="RoundRectangle 20"
                                     VerticalOptions="Center"
-                                    WidthRequest="25" />
-
+                                    WidthRequest="40">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="Center"
+                                        Text="{x:Binding ControlIssues.Count,
+                                                         Mode=OneWay}"
+                                        VerticalOptions="Center" />
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <CollectionView
+                            Grid.Row="1"
+                            Margin="0,0,0,0"
+                            EmptyView="{x:Binding EmptyViewText,
+                                                  Mode=OneWay}"
+                            ItemTemplate="{x:StaticResource ControlIssueItemTemplate}"
+                            ItemsLayout="{x:StaticResource ControlIssueLayout}"
+                            ItemsSource="{x:Binding ControlIssues,
+                                                    Mode=OneWay}"
+                            SelectedItem="{x:Binding SelectedControlIssue,
+                                                     Mode=TwoWay}"
+                            SelectionChangedCommand="{x:Binding OpenUrlCommand}"
+                            SelectionChangedCommandParameter="{x:Binding SelectedControlIssue.IssueLinkUrl,
+                                                                         Mode=OneWay}"
+                            SelectionMode="Single"
+                            VerticalOptions="Start" />
+                        <Border
+                            Grid.Row="2"
+                            Margin="0,0,0,10"
+                            Padding="20"
+                            BackgroundColor="#272b33"
+                            StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="5">
                                 <Label
-                                    HorizontalOptions="Start"
-                                    Style="{x:StaticResource DocumentSectionTitleStyle}"
-                                    Text="Issues"
-                                    VerticalOptions="Center" />
-                            </HorizontalStackLayout>
-                            <Border
-                                BackgroundColor="OrangeRed"
-                                HeightRequest="40"
-                                HorizontalOptions="End"
-                                StrokeShape="RoundRectangle 20"
-                                VerticalOptions="Center"
-                                WidthRequest="40">
-                                <Label
-                                    FontAttributes="Bold"
                                     HorizontalOptions="Center"
-                                    Text="{x:Binding ControlIssues.Count,
-                                                     Mode=OneWay}"
-                                    VerticalOptions="Center" />
-                            </Border>
-                        </Grid>
-                    </Border>
-                    <CollectionView
-                        Grid.Row="1"
-                        Margin="0,0,0,0"
-                        EmptyView="{x:Binding EmptyViewText,
-                                              Mode=OneWay}"
-                        ItemTemplate="{x:StaticResource ControlIssueItemTemplate}"
-                        ItemsLayout="{x:StaticResource ControlIssueLayout}"
-                        ItemsSource="{x:Binding ControlIssues,
-                                                Mode=OneWay}"
-                        SelectedItem="{x:Binding SelectedControlIssue,
-                                                 Mode=TwoWay}"
-                        SelectionChangedCommand="{x:Binding OpenUrlCommand}"
-                        SelectionChangedCommandParameter="{x:Binding SelectedControlIssue.IssueLinkUrl,
-                                                                     Mode=OneWay}"
-                        SelectionMode="Single"
-                        VerticalOptions="Start" />
-                    <Border
-                        Grid.Row="2"
-                        Margin="0,0,0,10"
-                        Padding="20"
-                        BackgroundColor="#272b33"
-                        StrokeShape="RoundRectangle 4">
-                        <VerticalStackLayout Spacing="5">
-                            <Label
-                                HorizontalOptions="Center"
-                                HorizontalTextAlignment="Center"
-                                Text="Found a new bug?"
-                                TextColor="White"
-                                TextDecorations="Underline" />
-                            <Button
-                                Command="{x:Binding OpenUrlCommand}"
-                                CommandParameter="{x:StaticResource ReportIssueToMauiTeamLink}"
-                                Text="Report to the MAUI team" />
-                        </VerticalStackLayout>
-                    </Border>
+                                    HorizontalTextAlignment="Center"
+                                    Text="Found a new bug?"
+                                    TextColor="White"
+                                    TextDecorations="Underline" />
+                                <Button
+                                    Command="{x:Binding OpenUrlCommand}"
+                                    CommandParameter="{x:StaticResource ReportIssueToMauiTeamLink}"
+                                    Text="Report to the MAUI team" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                    <VerticalStackLayout Grid.Column="1" Spacing="20">
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <CollectionView
+                                Footer="{x:StaticResource PropertiesListFooter}"
+                                Header="{x:StaticResource PropertiesListHeader}"
+                                ItemsSource="{x:StaticResource PropertyItemsSource}"
+                                Style="{x:StaticResource PropertiesListStyle}" />
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <CollectionView
+                                Header="{x:StaticResource PropertiesListHeader1}"
+                                ItemsSource="{x:StaticResource PropertyItemsSource1}"
+                                Style="{x:StaticResource PropertiesListStyle}" />
+                        </Border>
+
+                        <!--  Create a TableView  -->
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a TableView" />
+                                <Label Text="{x:StaticResource ControlInfo1}" />
+                                <Label Text="The following example shows how to create a TableView:" />
+                                <TableView Intent="Menu">
+                                    <TableRoot>
+                                        <TableSection Title="Chapters">
+                                            <TextCell Detail="Learn about .NET MAUI and what it provides." Text="1. Introduction to .NET MAUI" />
+                                            <TextCell Detail="Learn about the visual elements in .NET MAUI" Text="2. Anatomy of an app" />
+                                            <TextCell Detail="Learn about the .NET MAUI controls that display text." Text="3. Text" />
+                                            <TextCell Detail="Learn how to size .NET MAUI controls on screen." Text="4. Dealing with sizes" />
+                                            <TextCell Detail="Learn more about creating your UI in XAML." Text="5. XAML vs code" />
+                                        </TableSection>
+                                    </TableRoot>
+                                </TableView>
+                                <core:SourceCodeExpander Code="{x:Binding StandardTableViewXamlCode}" CodeType="Xaml" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <!--  Define cell appearance  -->
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Define cell appearance" />
+                                <Label Text="{x:StaticResource ControlInfo2}" />
+                                <CollectionView ItemsSource="{x:StaticResource PropertyItemsSource2}" Style="{x:StaticResource PropertiesListStyle}" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <!--  Text cell  -->
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <CollectionView
+                                    Footer="{x:StaticResource PropertiesListFooter2}"
+                                    Header="{x:StaticResource PropertiesListHeader2}"
+                                    ItemsSource="{x:StaticResource PropertyItemsSource3}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+                                <Label Text="The following example shows using a TextCell to define the appearance of items in a TableView:" />
+                                <TableView Intent="Menu">
+                                    <TableRoot>
+                                        <TableSection Title="Chapters">
+                                            <TextCell Detail="Learn about .NET MAUI and what it provides." Text="1. Introduction to .NET MAUI" />
+                                            <TextCell Detail="Learn about the visual elements in .NET MAUI" Text="2. Anatomy of an app" />
+                                            <TextCell Detail="Learn about the .NET MAUI controls that display text." Text="3. Text" />
+                                            <TextCell Detail="Learn how to size .NET MAUI controls on screen." Text="4. Dealing with sizes" />
+                                            <TextCell Detail="Learn more about creating your UI in XAML." Text="5. XAML vs code" />
+                                        </TableSection>
+                                    </TableRoot>
+                                </TableView>
+                                <core:SourceCodeExpander Code="{x:Binding TextCellXamlCode}" CodeType="Xaml" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <!--  Image cell  -->
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Image cell" />
+                                <Label Text="{x:StaticResource ControlInfo3}" />
+                                <Label Text="The following example shows using an ImageCell to define the appearance of items in a TableView:" />
+                                <TableView Intent="Menu">
+                                    <TableRoot>
+                                        <TableSection Title="Explore all the platforms">
+                                            <ImageCell
+                                                Detail="iOS (formerly iPhone OS ) is a mobile operating system created and developed by Apple Inc. exclusively for its hardware. It is the operating system that powers many of the company's mobile devices, including the iPhone; the term also includes the system software for iPads predating iPadOS"
+                                                ImageSource="ioslogo.png"
+                                                Text="1. IOS" />
+                                            <ImageCell
+                                                Detail="Android is an operating system for mobile devices. It is mostly used for smartphones, like Google 's own Google Pixel, as well as by other phone manufacturers like HTC and Samsung. It has also been used for tablets such as the Motorola, Xoom and Amazon Kindle."
+                                                ImageSource="androidlogo.png"
+                                                Text="2. Android" />
+                                            <ImageCell
+                                                Detail="Windows is a group of several proprietary graphical operating system families developed and marketed by Microsoft. Each family caters to a certain sector of the computing industry. For example, Windows NT for consumers, Windows Server for servers, and Windows IoT for embedded systems. Defunct Windows families include Windows 9x, Windows Mobile, and Windows Phone."
+                                                ImageSource="windowslogo.png"
+                                                Text="3. Windows" />
+                                            <ImageCell
+                                                Detail="Tizen is a Linux-based mobile operating system backed by the Linux Foundation, mainly developed and used primarily by Samsung Electronics. The project was originally conceived as an HTML5-based platform for mobile devices to succeed MeeGo. Samsung merged its previous Linux-based OS effort, Bada, into Tizen, and has since used it primarily on platforms such as wearable devices and smart TVs."
+                                                ImageSource="tizenlogo.png"
+                                                Text="4. Tizen" />
+                                        </TableSection>
+                                    </TableRoot>
+                                </TableView>
+                                <core:SourceCodeExpander Code="{x:Binding ImageCellXamlCode}" CodeType="Xaml" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <!--  Switch cell  -->
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Switch cell" />
+                                <CollectionView
+                                    Footer="{x:StaticResource PropertiesListFooter3}"
+                                    Header="{x:StaticResource PropertiesListHeader4}"
+                                    ItemsSource="{x:StaticResource PropertyItemsSource4}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+                                <Label Text="The following example shows using a SwitchCell to define the appearance of items in a TableView:" />
+                                <TableView Intent="Settings">
+                                    <TableRoot>
+                                        <TableSection>
+                                            <SwitchCell On="False" Text="Airplane Mode" />
+                                            <SwitchCell On="True" Text="Notifications" />
+                                        </TableSection>
+                                    </TableRoot>
+                                </TableView>
+                                <core:SourceCodeExpander Code="{x:Binding SwitchCellXamlCode}" CodeType="Xaml" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <!--  Entry cell  -->
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Entry cell" />
+                                <CollectionView ItemsSource="{x:StaticResource PropertyItemsSource5}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <Label Text="The following example shows using an EntryCell to define the appearance of items in a TableView:" />
+                                <TableView Intent="Settings">
+                                    <TableRoot>
+                                        <TableSection>
+                                            <EntryCell Label="Login" Placeholder="username" />
+                                            <EntryCell Label="Password" Placeholder="password" />
+                                        </TableSection>
+                                    </TableRoot>
+                                </TableView>
+                                <core:SourceCodeExpander Code="{x:Binding EntryCellXamlCode}" CodeType="Xaml" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <!--  View cell  -->
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="View cell" />
+                                <Label Text="{x:StaticResource ControlInfo4}" />
+                                <Label Text="The following example shows using a ViewCell to define the appearance of an item in a TableView:" />
+                                <TableView Intent="Settings">
+                                    <TableRoot>
+                                        <TableSection Title="Silent">
+                                            <ViewCell>
+                                                <Grid ColumnDefinitions="0.5*,0.5*" RowDefinitions="Auto,Auto">
+                                                    <Label Margin="10,10,0,0" Text="Vibrate" />
+                                                    <Switch Grid.Column="1" HorizontalOptions="End" />
+                                                    <Slider
+                                                        Grid.Row="1"
+                                                        Grid.ColumnSpan="2"
+                                                        Margin="10"
+                                                        Maximum="10"
+                                                        Minimum="0"
+                                                        Value="3" />
+                                                </Grid>
+                                            </ViewCell>
+                                        </TableSection>
+                                    </TableRoot>
+                                </TableView>
+                                <core:SourceCodeExpander Code="{x:Binding ViewCellXamlCode}" CodeType="Xaml" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <!--  Right-to-left layout  -->
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Right-to-left layout" />
+                                <Label Text="{x:StaticResource ControlInfo5}" />
+                                <core:SourceCodeExpander Code="{x:Binding RightToLeftLayoutXamlCode}" CodeType="Xaml" />
+                                <Label Text="The default FlowDirection for an element with a parent is MatchParent. Therefore, the TableView inherits the FlowDirection property value from the ContentPage." />
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
                 </Grid>
-                <VerticalStackLayout Grid.Column="1" Spacing="20">
-                    <Border Padding="20" StrokeShape="RoundRectangle 4">
-                        <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
-                    </Border>
-
-                    <Border Padding="20" StrokeShape="RoundRectangle 4">
-                        <CollectionView
-                            Footer="{x:StaticResource PropertiesListFooter}"
-                            Header="{x:StaticResource PropertiesListHeader}"
-                            ItemsSource="{x:StaticResource PropertyItemsSource}"
-                            Style="{x:StaticResource PropertiesListStyle}" />
-                    </Border>
-
-                    <Border Padding="20" StrokeShape="RoundRectangle 4">
-                        <CollectionView
-                            Header="{x:StaticResource PropertiesListHeader1}"
-                            ItemsSource="{x:StaticResource PropertyItemsSource1}"
-                            Style="{x:StaticResource PropertiesListStyle}" />
-                    </Border>
-
-                    <!--  Create a TableView  -->
-                    <Border Padding="20" StrokeShape="RoundRectangle 4">
-                        <VerticalStackLayout Spacing="10">
-                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create a TableView" />
-                            <Label Text="{x:StaticResource ControlInfo1}" />
-                            <Label Text="The following example shows how to create a TableView:" />
-                            <TableView Intent="Menu">
-                                <TableRoot>
-                                    <TableSection Title="Chapters">
-                                        <TextCell Detail="Learn about .NET MAUI and what it provides." Text="1. Introduction to .NET MAUI" />
-                                        <TextCell Detail="Learn about the visual elements in .NET MAUI" Text="2. Anatomy of an app" />
-                                        <TextCell Detail="Learn about the .NET MAUI controls that display text." Text="3. Text" />
-                                        <TextCell Detail="Learn how to size .NET MAUI controls on screen." Text="4. Dealing with sizes" />
-                                        <TextCell Detail="Learn more about creating your UI in XAML." Text="5. XAML vs code" />
-                                    </TableSection>
-                                </TableRoot>
-                            </TableView>
-                            <core:SourceCodeExpander Code="{x:Binding StandardTableViewXamlCode}" CodeType="Xaml" />
-                        </VerticalStackLayout>
-                    </Border>
-
-                    <!--  Define cell appearance  -->
-                    <Border Padding="20" StrokeShape="RoundRectangle 4">
-                        <VerticalStackLayout Spacing="10">
-                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Define cell appearance" />
-                            <Label Text="{x:StaticResource ControlInfo2}" />
-                            <CollectionView ItemsSource="{x:StaticResource PropertyItemsSource2}" Style="{x:StaticResource PropertiesListStyle}" />
-                        </VerticalStackLayout>
-                    </Border>
-
-                    <!--  Text cell  -->
-                    <Border Padding="20" StrokeShape="RoundRectangle 4">
-                        <VerticalStackLayout Spacing="10">
-                            <CollectionView
-                                Footer="{x:StaticResource PropertiesListFooter2}"
-                                Header="{x:StaticResource PropertiesListHeader2}"
-                                ItemsSource="{x:StaticResource PropertyItemsSource3}"
-                                Style="{x:StaticResource PropertiesListStyle}" />
-                            <Label Text="The following example shows using a TextCell to define the appearance of items in a TableView:" />
-                            <TableView Intent="Menu">
-                                <TableRoot>
-                                    <TableSection Title="Chapters">
-                                        <TextCell Detail="Learn about .NET MAUI and what it provides." Text="1. Introduction to .NET MAUI" />
-                                        <TextCell Detail="Learn about the visual elements in .NET MAUI" Text="2. Anatomy of an app" />
-                                        <TextCell Detail="Learn about the .NET MAUI controls that display text." Text="3. Text" />
-                                        <TextCell Detail="Learn how to size .NET MAUI controls on screen." Text="4. Dealing with sizes" />
-                                        <TextCell Detail="Learn more about creating your UI in XAML." Text="5. XAML vs code" />
-                                    </TableSection>
-                                </TableRoot>
-                            </TableView>
-                            <core:SourceCodeExpander Code="{x:Binding TextCellXamlCode}" CodeType="Xaml" />
-                        </VerticalStackLayout>
-                    </Border>
-
-                    <!--  Image cell  -->
-                    <Border Padding="20" StrokeShape="RoundRectangle 4">
-                        <VerticalStackLayout Spacing="10">
-                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Image cell" />
-                            <Label Text="{x:StaticResource ControlInfo3}" />
-                            <Label Text="The following example shows using an ImageCell to define the appearance of items in a TableView:" />
-                            <TableView Intent="Menu">
-                                <TableRoot>
-                                    <TableSection Title="Explore all the platforms">
-                                        <ImageCell
-                                            Detail="iOS (formerly iPhone OS ) is a mobile operating system created and developed by Apple Inc. exclusively for its hardware. It is the operating system that powers many of the company's mobile devices, including the iPhone; the term also includes the system software for iPads predating iPadOS"
-                                            ImageSource="ioslogo.png"
-                                            Text="1. IOS" />
-                                        <ImageCell
-                                            Detail="Android is an operating system for mobile devices. It is mostly used for smartphones, like Google 's own Google Pixel, as well as by other phone manufacturers like HTC and Samsung. It has also been used for tablets such as the Motorola, Xoom and Amazon Kindle."
-                                            ImageSource="androidlogo.png"
-                                            Text="2. Android" />
-                                        <ImageCell
-                                            Detail="Windows is a group of several proprietary graphical operating system families developed and marketed by Microsoft. Each family caters to a certain sector of the computing industry. For example, Windows NT for consumers, Windows Server for servers, and Windows IoT for embedded systems. Defunct Windows families include Windows 9x, Windows Mobile, and Windows Phone."
-                                            ImageSource="windowslogo.png"
-                                            Text="3. Windows" />
-                                        <ImageCell
-                                            Detail="Tizen is a Linux-based mobile operating system backed by the Linux Foundation, mainly developed and used primarily by Samsung Electronics. The project was originally conceived as an HTML5-based platform for mobile devices to succeed MeeGo. Samsung merged its previous Linux-based OS effort, Bada, into Tizen, and has since used it primarily on platforms such as wearable devices and smart TVs."
-                                            ImageSource="tizenlogo.png"
-                                            Text="4. Tizen" />
-                                    </TableSection>
-                                </TableRoot>
-                            </TableView>
-                            <core:SourceCodeExpander Code="{x:Binding ImageCellXamlCode}" CodeType="Xaml" />
-                        </VerticalStackLayout>
-                    </Border>
-
-                    <!--  Switch cell  -->
-                    <Border Padding="20" StrokeShape="RoundRectangle 4">
-                        <VerticalStackLayout Spacing="10">
-                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Switch cell" />
-                            <CollectionView
-                                Footer="{x:StaticResource PropertiesListFooter3}"
-                                Header="{x:StaticResource PropertiesListHeader4}"
-                                ItemsSource="{x:StaticResource PropertyItemsSource4}"
-                                Style="{x:StaticResource PropertiesListStyle}" />
-                            <Label Text="The following example shows using a SwitchCell to define the appearance of items in a TableView:" />
-                            <TableView Intent="Settings">
-                                <TableRoot>
-                                    <TableSection>
-                                        <SwitchCell On="False" Text="Airplane Mode" />
-                                        <SwitchCell On="True" Text="Notifications" />
-                                    </TableSection>
-                                </TableRoot>
-                            </TableView>
-                            <core:SourceCodeExpander Code="{x:Binding SwitchCellXamlCode}" CodeType="Xaml" />
-                        </VerticalStackLayout>
-                    </Border>
-
-                    <!--  Entry cell  -->
-                    <Border Padding="20" StrokeShape="RoundRectangle 4">
-                        <VerticalStackLayout Spacing="10">
-                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Entry cell" />
-                            <CollectionView ItemsSource="{x:StaticResource PropertyItemsSource5}" Style="{x:StaticResource PropertiesListStyle}" />
-                            <Label Text="The following example shows using an EntryCell to define the appearance of items in a TableView:" />
-                            <TableView Intent="Settings">
-                                <TableRoot>
-                                    <TableSection>
-                                        <EntryCell Label="Login" Placeholder="username" />
-                                        <EntryCell Label="Password" Placeholder="password" />
-                                    </TableSection>
-                                </TableRoot>
-                            </TableView>
-                            <core:SourceCodeExpander Code="{x:Binding EntryCellXamlCode}" CodeType="Xaml" />
-                        </VerticalStackLayout>
-                    </Border>
-
-                    <!--  View cell  -->
-                    <Border Padding="20" StrokeShape="RoundRectangle 4">
-                        <VerticalStackLayout Spacing="10">
-                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="View cell" />
-                            <Label Text="{x:StaticResource ControlInfo4}" />
-                            <Label Text="The following example shows using a ViewCell to define the appearance of an item in a TableView:" />
-                            <TableView Intent="Settings">
-                                <TableRoot>
-                                    <TableSection Title="Silent">
-                                        <ViewCell>
-                                            <Grid ColumnDefinitions="0.5*,0.5*" RowDefinitions="Auto,Auto">
-                                                <Label Margin="10,10,0,0" Text="Vibrate" />
-                                                <Switch Grid.Column="1" HorizontalOptions="End" />
-                                                <Slider
-                                                    Grid.Row="1"
-                                                    Grid.ColumnSpan="2"
-                                                    Margin="10"
-                                                    Maximum="10"
-                                                    Minimum="0"
-                                                    Value="3" />
-                                            </Grid>
-                                        </ViewCell>
-                                    </TableSection>
-                                </TableRoot>
-                            </TableView>
-                            <core:SourceCodeExpander Code="{x:Binding ViewCellXamlCode}" CodeType="Xaml" />
-                        </VerticalStackLayout>
-                    </Border>
-
-                    <!--  Right-to-left layout  -->
-                    <Border Padding="20" StrokeShape="RoundRectangle 4">
-                        <VerticalStackLayout Spacing="10">
-                            <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Right-to-left layout" />
-                            <Label Text="{x:StaticResource ControlInfo5}" />
-                            <core:SourceCodeExpander Code="{x:Binding RightToLeftLayoutXamlCode}" CodeType="Xaml" />
-                            <Label Text="The default FlowDirection for an element with a parent is MatchParent. Therefore, the TableView inherits the FlowDirection property value from the ContentPage." />
-                        </VerticalStackLayout>
-                    </Border>
-                </VerticalStackLayout>
-            </Grid>
-        </ScrollView>
-    </RefreshView>
+            </ScrollView>
+        </RefreshView>
+    </SwipeView>
 </core:BasePage>

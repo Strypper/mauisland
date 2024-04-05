@@ -7,7 +7,7 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Media Element"
-    Padding="10"
+    Padding="20"
     x:DataType="app:MediaElementPageViewModel"
     BackgroundColor="Transparent"
     Loaded="ContentPage_Loaded"
@@ -360,375 +360,386 @@
         </DataTemplate>
     </core:BasePage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <CollectionView
-                    Footer="{x:StaticResource MediaElementFooter}"
-                    Header="{x:StaticResource MediaElementHeader}"
-                    ItemsSource="{x:StaticResource MediaElement}"
-                    Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Supported Formats" />
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <CollectionView
-                        Header="{x:Binding .}"
-                        HeaderTemplate="{x:StaticResource SupportedFormatsTableHeader}"
-                        ItemTemplate="{x:StaticResource SupportedFormatsTableGrid}"
-                        ItemsSource="{x:StaticResource SupportedFormats}" />
-                    <Label Text="The MediaElement uses the following platform implementations." />
-                    <CollectionView
-                        Header="{x:Binding .}"
-                        HeaderTemplate="{x:StaticResource PlatformImplementationsTableHeader}"
-                        ItemTemplate="{x:StaticResource PlatformImplementationsTableGrid}"
-                        ItemsSource="{x:StaticResource PlatformImplementations}" />
-                </VerticalStackLayout>
-            </Frame>
+                        Footer="{x:StaticResource MediaElementFooter}"
+                        Header="{x:StaticResource MediaElementHeader}"
+                        ItemsSource="{x:StaticResource MediaElement}"
+                        Style="{x:StaticResource PropertiesListStyle}" />
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout>
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Properties" />
-                    <CollectionView ItemsSource="{x:StaticResource PropertyItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Supported Formats" />
+                        <CollectionView
+                            Header="{x:Binding .}"
+                            HeaderTemplate="{x:StaticResource SupportedFormatsTableHeader}"
+                            ItemTemplate="{x:StaticResource SupportedFormatsTableGrid}"
+                            ItemsSource="{x:StaticResource SupportedFormats}" />
+                        <Label Text="The MediaElement uses the following platform implementations." />
+                        <CollectionView
+                            Header="{x:Binding .}"
+                            HeaderTemplate="{x:StaticResource PlatformImplementationsTableHeader}"
+                            ItemTemplate="{x:StaticResource PlatformImplementationsTableGrid}"
+                            ItemsSource="{x:StaticResource PlatformImplementations}" />
+                    </VerticalStackLayout>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout>
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Events" />
-                    <CollectionView ItemsSource="{x:StaticResource EventItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout>
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Methods" />
-                    <CollectionView ItemsSource="{x:StaticResource MethodItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup Toolkit" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <VerticalStackLayout>
-                        <Label Text="{x:Binding SetupDescription}" />
-                        <Label Text="{x:Binding XamlNamespace}" TextColor="Blue" />
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Properties" />
+                        <CollectionView ItemsSource="{x:StaticResource PropertyItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Therefore the following:" />
-                    <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleBefore}" CodeType="Xaml" />
-                    <Label Text="Would be modified to include the xmlns as follows:" />
-                    <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleAfter}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Bypassing the iOS Silent Switch" />
-                    <CollectionView ItemsSource="{x:StaticResource iOSBypassing}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <core:SourceCodeExpander Code="{x:Binding IOSBypassingSetup}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Play remote media" />
-                    <CollectionView ItemsSource="{x:StaticResource RemoteMedia}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <toolkit:MediaElement
-                    x:Name="SimpleMediaElement"
-                    MinimumHeightRequest="200"
-                    ShouldShowPlaybackControls="True"
-                    Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Your code should like this" />
-                    <core:SourceCodeExpander Code="{x:Binding XamlSimpleRemoteMediaElement}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Play local media" />
-                    <CollectionView
-                        Header="{x:StaticResource LocalMediaHeader}"
-                        ItemsSource="{x:StaticResource LocalMedia}"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                    <Label Text="Play media embedded in the app package" />
-                    <CollectionView ItemsSource="{x:StaticResource AppPackageLocalMedia}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="An example of how to use this syntax in XAML can be seen below." />
-                    <core:SourceCodeExpander Code="{x:Binding XamlSimpleLocalMediaElement}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="MediaSource types static methods" />
-                    <CollectionView
-                        Footer="{x:StaticResource MediaSourceStaticMethodsFooter}"
-                        Header="{x:StaticResource MediaSourceStaticMethodsHeader}"
-                        ItemsSource="{x:StaticResource MediaSourceStaticMethods}"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <core:SourceCodeExpander Code="{x:Binding MediaSourceStaticMethodsExample}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="MediaSource derived classes" />
-                    <CollectionView
-                        Footer="{x:StaticResource MediaSourceTypesFooter}"
-                        Header="{x:StaticResource MediaSourceTypesHeader}"
-                        ItemsSource="{x:StaticResource MediaSourceTypes}"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <core:SourceCodeExpander Code="{x:Binding MediaSourceExample}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Change video aspect ratio" />
-                    <CollectionView ItemsSource="{x:StaticResource AspectRatio}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <core:SourceCodeExpander Code="{x:Binding AspectRatioExample}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Determine MediaElement status" />
-                    <CollectionView
-                        Header="{x:StaticResource MediaElementStateHeader}"
-                        ItemsSource="{x:StaticResource MediaElementState}"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Implement custom transport controls" />
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <toolkit:MediaElement
-                    x:Name="MediaElement"
-                    MediaEnded="OnMediaEnded"
-                    MediaFailed="OnMediaFailed"
-                    MediaOpened="OnMediaOpened"
-                    PositionChanged="OnPositionChanged"
-                    SeekCompleted="OnSeekCompleted"
-                    ShouldAutoPlay="False"
-                    Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                    StateChanged="OnStateChanged"
-                    Volume="{x:Binding Volume,
-                                       Mode=TwoWay}" />
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <HorizontalStackLayout
-                    BindingContext="{x:Reference MediaElement}"
-                    HorizontalOptions="CenterAndExpand"
-                    Spacing="10">
-                    <Button
-                        Grid.Column="0"
-                        Clicked="OnPlayClicked"
-                        Text="Play" />
-                    <Button
-                        Grid.Column="1"
-                        Clicked="OnPauseClicked"
-                        Text="Pause" />
-                    <Button
-                        Grid.Column="2"
-                        Clicked="OnStopClicked"
-                        Text="Stop" />
-                    <Button
-                        Grid.Column="3"
-                        Clicked="OnMuteClicked"
-                        Text="Mute">
-                        <Button.Triggers>
-                            <DataTrigger
-                                Binding="{x:Binding ShouldMute,
-                                                    Source={x:Reference MediaElement}}"
-                                TargetType="Button"
-                                Value="True">
-                                <Setter Property="Text" Value="Unmute" />
-                            </DataTrigger>
-                            <DataTrigger
-                                Binding="{x:Binding ShouldMute,
-                                                    Source={x:Reference MediaElement}}"
-                                TargetType="Button"
-                                Value="False">
-                                <Setter Property="Text" Value="Mute" />
-                            </DataTrigger>
-                        </Button.Triggers>
-                    </Button>
-                    <Button Clicked="OnSpeedMinusClicked" Text="&gt;" />
-                    <Button Clicked="OnSpeedPlusClicked" Text="&gt;&gt;&gt;" />
-                    <Button Clicked="OnVolumeMinusClicked" Text="-" />
-                    <Button Clicked="OnVolumePlusClicked" Text="+" />
-                </HorizontalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="This is the xaml code" />
-                    <core:SourceCodeExpander Code="{x:Binding XamlMediaElement}" CodeType="Xaml" />
-                    <Label Text="This is the code behind" />
-                    <core:SourceCodeExpander Code="{x:Binding CSharpMediaElement}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Implement a custom volumea and video position control" />
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Grid
-                    ColumnDefinitions="0.5*,0.5*"
-                    ColumnSpacing="10"
-                    HorizontalOptions="FillAndExpand">
-                    <VerticalStackLayout Grid.Column="0" Spacing="10">
-                        <Label Text="Video Volume" />
-                        <Slider
-                            x:Name="VolumeSlider"
-                            IsEnabled="True"
-                            Maximum="1.0"
-                            Minimum="0.0"
-                            MinimumTrackColor="Gray"
-                            WidthRequest="200"
-                            Value="{x:Binding Volume,
-                                              Mode=TwoWay}" />
-                        <Label Text="This is the xaml code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlVolumeControl}" CodeType="Xaml" />
-                        <Label Text="This is the ViewModel code" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpVolumeControl}" CodeType="CSharp" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout>
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Events" />
+                        <CollectionView ItemsSource="{x:StaticResource EventItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
                     </VerticalStackLayout>
-                    <VerticalStackLayout Grid.Column="2" Spacing="10">
-                        <Label Text="Video Position" />
-                        <Slider
-                            x:Name="PositionSlider"
-                            DragCompleted="Slider_DragCompleted"
-                            DragStarted="Slider_DragStarted"
-                            IsEnabled="True"
-                            MinimumTrackColor="Gray"
-                            WidthRequest="200" />
-                        <Label Text="This is the xaml code" />
-                        <core:SourceCodeExpander Code="{x:Binding XamlPositionControl}" CodeType="Xaml" />
-                        <Label Text="This is the code behind" />
-                        <core:SourceCodeExpander Code="{x:Binding CSharpPositionControl}" CodeType="CSharp" />
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout>
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Methods" />
+                        <CollectionView ItemsSource="{x:StaticResource MethodItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
                     </VerticalStackLayout>
-                </Grid>
-            </Frame>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Clean up MediaElement resources" />
-                    <CollectionView ItemsSource="{x:StaticResource MediaElementCleanUpResources}" Style="{x:StaticResource PropertiesListStyle}" />
-                    <Label Text="{x:Binding XamlCleanUpProperty}" TextColor="Blue" />
-                </VerticalStackLayout>
-            </Frame>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup Toolkit" />
+                        <VerticalStackLayout>
+                            <Label Text="{x:Binding SetupDescription}" />
+                            <Label Text="{x:Binding XamlNamespace}" TextColor="Blue" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="This is the xaml code" />
-                    <core:SourceCodeExpander Code="{x:Binding XamlCleanUpMediaElementResourcesRemovedVisualTree}" CodeType="Xaml" />
-                    <Label Text="This is the code behind" />
-                    <core:SourceCodeExpander Code="{x:Binding CSharpCleanUpMediaElementResourcesRemovedVisualTree}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Frame>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Therefore the following:" />
+                        <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleBefore}" CodeType="Xaml" />
+                        <Label Text="Would be modified to include the xmlns as follows:" />
+                        <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleAfter}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="You can clean up resource using OnDisappearing" />
-                    <core:SourceCodeExpander Code="{x:Binding CleanUpMediaElementResourcesPageInvisible}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Frame>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Bypassing the iOS Silent Switch" />
+                        <CollectionView ItemsSource="{x:StaticResource iOSBypassing}" Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <CollectionView ItemsSource="{x:StaticResource MediaElementCleanUpResourcesExplanation}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <core:SourceCodeExpander Code="{x:Binding IOSBypassingSetup}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
 
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Play remote media" />
+                        <CollectionView ItemsSource="{x:StaticResource RemoteMedia}" Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Download And Delete Media File" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <toolkit:MediaElement
-                        x:Name="MediaElementDownloadSample"
-                        HeightRequest="300"
-                        ShouldAutoPlay="True"
+                        x:Name="SimpleMediaElement"
+                        MinimumHeightRequest="200"
                         ShouldShowPlaybackControls="True"
-                        WidthRequest="400" />
-                    <ActivityIndicator
-                        x:Name="DownloadIndicator"
-                        HeightRequest="100"
-                        WidthRequest="100" />
-                    <ProgressBar x:Name="DownloadProgressBar" />
+                        Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
+                </Border>
 
-                    <Label
-                        x:Name="ResultLabel"
-                        FontSize="18"
-                        HorizontalOptions="Center"
-                        SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                        SemanticProperties.HeadingLevel="Level2"
-                        Text="Start the download boiz" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Your code should like this" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlSimpleRemoteMediaElement}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
 
-                    <Label
-                        x:Name="CheckFileLabel"
-                        FontSize="18"
-                        HorizontalOptions="Center"
-                        Text="Common check the file" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Play local media" />
+                        <CollectionView
+                            Header="{x:StaticResource LocalMediaHeader}"
+                            ItemsSource="{x:StaticResource LocalMedia}"
+                            Style="{x:StaticResource PropertiesListStyle}" />
+                        <Label Text="Play media embedded in the app package" />
+                        <CollectionView ItemsSource="{x:StaticResource AppPackageLocalMedia}" Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
 
-                    <Button
-                        x:Name="DownloadButton"
-                        Clicked="DownloadButton_Clicked"
-                        HorizontalOptions="Center"
-                        SemanticProperties.Hint="Counts the number of times you click"
-                        Text="Download" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="An example of how to use this syntax in XAML can be seen below." />
+                        <core:SourceCodeExpander Code="{x:Binding XamlSimpleLocalMediaElement}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
 
-                    <Button
-                        x:Name="DeleteLocalVideoButton"
-                        BackgroundColor="Red"
-                        Clicked="DeleteLocalVideoButton_Clicked"
-                        Text="Delete" />
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="MediaSource types static methods" />
+                        <CollectionView
+                            Footer="{x:StaticResource MediaSourceStaticMethodsFooter}"
+                            Header="{x:StaticResource MediaSourceStaticMethodsHeader}"
+                            ItemsSource="{x:StaticResource MediaSourceStaticMethods}"
+                            Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
 
-                    <Button Clicked="CheckDownload_Clicked" Text="Check download" />
-                </VerticalStackLayout>
-            </Frame>
-        </VerticalStackLayout>
-    </ScrollView>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <core:SourceCodeExpander Code="{x:Binding MediaSourceStaticMethodsExample}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="MediaSource derived classes" />
+                        <CollectionView
+                            Footer="{x:StaticResource MediaSourceTypesFooter}"
+                            Header="{x:StaticResource MediaSourceTypesHeader}"
+                            ItemsSource="{x:StaticResource MediaSourceTypes}"
+                            Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <core:SourceCodeExpander Code="{x:Binding MediaSourceExample}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Change video aspect ratio" />
+                        <CollectionView ItemsSource="{x:StaticResource AspectRatio}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <core:SourceCodeExpander Code="{x:Binding AspectRatioExample}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Determine MediaElement status" />
+                        <CollectionView
+                            Header="{x:StaticResource MediaElementStateHeader}"
+                            ItemsSource="{x:StaticResource MediaElementState}"
+                            Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Implement custom transport controls" />
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <toolkit:MediaElement
+                        x:Name="MediaElement"
+                        MediaEnded="OnMediaEnded"
+                        MediaFailed="OnMediaFailed"
+                        MediaOpened="OnMediaOpened"
+                        PositionChanged="OnPositionChanged"
+                        SeekCompleted="OnSeekCompleted"
+                        ShouldAutoPlay="False"
+                        Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                        StateChanged="OnStateChanged"
+                        Volume="{x:Binding Volume,
+                                           Mode=TwoWay}" />
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <HorizontalStackLayout
+                        BindingContext="{x:Reference MediaElement}"
+                        HorizontalOptions="CenterAndExpand"
+                        Spacing="10">
+                        <Button
+                            Grid.Column="0"
+                            Clicked="OnPlayClicked"
+                            Text="Play" />
+                        <Button
+                            Grid.Column="1"
+                            Clicked="OnPauseClicked"
+                            Text="Pause" />
+                        <Button
+                            Grid.Column="2"
+                            Clicked="OnStopClicked"
+                            Text="Stop" />
+                        <Button
+                            Grid.Column="3"
+                            Clicked="OnMuteClicked"
+                            Text="Mute">
+                            <Button.Triggers>
+                                <DataTrigger
+                                    Binding="{x:Binding ShouldMute,
+                                                        Source={x:Reference MediaElement}}"
+                                    TargetType="Button"
+                                    Value="True">
+                                    <Setter Property="Text" Value="Unmute" />
+                                </DataTrigger>
+                                <DataTrigger
+                                    Binding="{x:Binding ShouldMute,
+                                                        Source={x:Reference MediaElement}}"
+                                    TargetType="Button"
+                                    Value="False">
+                                    <Setter Property="Text" Value="Mute" />
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
+                        <Button Clicked="OnSpeedMinusClicked" Text="&gt;" />
+                        <Button Clicked="OnSpeedPlusClicked" Text="&gt;&gt;&gt;" />
+                        <Button Clicked="OnVolumeMinusClicked" Text="-" />
+                        <Button Clicked="OnVolumePlusClicked" Text="+" />
+                    </HorizontalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="This is the xaml code" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlMediaElement}" CodeType="Xaml" />
+                        <Label Text="This is the code behind" />
+                        <core:SourceCodeExpander Code="{x:Binding CSharpMediaElement}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Implement a custom volumea and video position control" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Grid
+                        ColumnDefinitions="0.5*,0.5*"
+                        ColumnSpacing="10"
+                        HorizontalOptions="FillAndExpand">
+                        <VerticalStackLayout Grid.Column="0" Spacing="10">
+                            <Label Text="Video Volume" />
+                            <Slider
+                                x:Name="VolumeSlider"
+                                IsEnabled="True"
+                                Maximum="1.0"
+                                Minimum="0.0"
+                                MinimumTrackColor="Gray"
+                                WidthRequest="200"
+                                Value="{x:Binding Volume,
+                                                  Mode=TwoWay}" />
+                            <Label Text="This is the xaml code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlVolumeControl}" CodeType="Xaml" />
+                            <Label Text="This is the ViewModel code" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpVolumeControl}" CodeType="CSharp" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="2" Spacing="10">
+                            <Label Text="Video Position" />
+                            <Slider
+                                x:Name="PositionSlider"
+                                DragCompleted="Slider_DragCompleted"
+                                DragStarted="Slider_DragStarted"
+                                IsEnabled="True"
+                                MinimumTrackColor="Gray"
+                                WidthRequest="200" />
+                            <Label Text="This is the xaml code" />
+                            <core:SourceCodeExpander Code="{x:Binding XamlPositionControl}" CodeType="Xaml" />
+                            <Label Text="This is the code behind" />
+                            <core:SourceCodeExpander Code="{x:Binding CSharpPositionControl}" CodeType="CSharp" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Clean up MediaElement resources" />
+                        <CollectionView ItemsSource="{x:StaticResource MediaElementCleanUpResources}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <Label Text="{x:Binding XamlCleanUpProperty}" TextColor="Blue" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="This is the xaml code" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlCleanUpMediaElementResourcesRemovedVisualTree}" CodeType="Xaml" />
+                        <Label Text="This is the code behind" />
+                        <core:SourceCodeExpander Code="{x:Binding CSharpCleanUpMediaElementResourcesRemovedVisualTree}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="You can clean up resource using OnDisappearing" />
+                        <core:SourceCodeExpander Code="{x:Binding CleanUpMediaElementResourcesPageInvisible}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <CollectionView ItemsSource="{x:StaticResource MediaElementCleanUpResourcesExplanation}" Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
+
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Download And Delete Media File" />
+                        <toolkit:MediaElement
+                            x:Name="MediaElementDownloadSample"
+                            HeightRequest="300"
+                            ShouldAutoPlay="True"
+                            ShouldShowPlaybackControls="True"
+                            WidthRequest="400" />
+                        <ActivityIndicator
+                            x:Name="DownloadIndicator"
+                            HeightRequest="100"
+                            WidthRequest="100" />
+                        <ProgressBar x:Name="DownloadProgressBar" />
+
+                        <Label
+                            x:Name="ResultLabel"
+                            FontSize="18"
+                            HorizontalOptions="Center"
+                            SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                            SemanticProperties.HeadingLevel="Level2"
+                            Text="Start the download boiz" />
+
+                        <Label
+                            x:Name="CheckFileLabel"
+                            FontSize="18"
+                            HorizontalOptions="Center"
+                            Text="Common check the file" />
+
+                        <Button
+                            x:Name="DownloadButton"
+                            Clicked="DownloadButton_Clicked"
+                            HorizontalOptions="Center"
+                            SemanticProperties.Hint="Counts the number of times you click"
+                            Text="Download" />
+
+                        <Button
+                            x:Name="DeleteLocalVideoButton"
+                            BackgroundColor="Red"
+                            Clicked="DeleteLocalVideoButton_Clicked"
+                            Text="Delete" />
+
+                        <Button Clicked="CheckDownload_Clicked" Text="Check download" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </SwipeView>
 </core:BasePage>

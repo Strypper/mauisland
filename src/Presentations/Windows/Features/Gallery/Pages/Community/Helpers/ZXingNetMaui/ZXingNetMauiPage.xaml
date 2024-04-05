@@ -19,101 +19,111 @@
             Text="Source code" />
     </core:BasePage.ToolbarItems>
 
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Installation" />
+                        <Label
+                            FontAttributes="Bold"
+                            Text="1. Install ZXing.Net.Maui.Controls NuGet package on your .NET MAUI application"
+                            TextDecorations="Underline" />
+                        <Label Text="Install through package reference" />
+                        <Label
+                            BackgroundColor="#07223f"
+                            Text="{x:Binding PackageReference}"
+                            TextColor="White" />
+                        <Label Text="Or install it through dotnet CLI" />
+                        <Label
+                            BackgroundColor="#07223f"
+                            Text="{x:Binding DotnetCLI}"
+                            TextColor="White" />
+                        <Label FontAttributes="Bold" TextDecorations="Underline">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="2. Make sure to initialize the plugin first in your " />
+                                    <Span BackgroundColor="#464a51" Text="MauiProgram.cs" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <core:SourceCodeExpander Code="{x:Binding ServiceRegisterCode}" CodeType="CSharp" />
+                        <HorizontalStackLayout>
+                            <Image
+                                HeightRequest="60"
+                                Source="androidlogo.png"
+                                WidthRequest="60" />
+                            <Label Text="Android" TextColor="#207245" />
+                        </HorizontalStackLayout>
+                        <Label Text="For Android go to your AndroidManifest.xml file (under the Platforms\Android folder) and add the following permissions inside of the manifest node:" />
+                        <Label
+                            BackgroundColor="#07223f"
+                            Text="{x:Binding AndroidManifest}"
+                            TextColor="White" />
+                        <HorizontalStackLayout>
+                            <Image
+                                HeightRequest="60"
+                                Source="ioslogo.png"
+                                WidthRequest="60" />
+                            <Label Text="IOS" TextColor="#f2584f" />
+                        </HorizontalStackLayout>
+                        <Label Text="For iOS go to your info.plist file (under the Platforms\iOS folder) and add the following permissions inside of the dict node:" />
+                        <Label
+                            BackgroundColor="#07223f"
+                            Text="{x:Binding IosInfoPlist}"
+                            TextColor="White" />
+                        <Label Text="Make sure that you enter a clear and valid reason for your app to access the camera. This description will be shown to the user." />
+                    </VerticalStackLayout>
+                </Border>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Border>
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="5">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Installation" />
-                    <Label
-                        FontAttributes="Bold"
-                        Text="1. Install ZXing.Net.Maui.Controls NuGet package on your .NET MAUI application"
-                        TextDecorations="Underline" />
-                    <Label Text="Install through package reference" />
-                    <Label
-                        BackgroundColor="#07223f"
-                        Text="{x:Binding PackageReference}"
-                        TextColor="White" />
-                    <Label Text="Or install it through dotnet CLI" />
-                    <Label
-                        BackgroundColor="#07223f"
-                        Text="{x:Binding DotnetCLI}"
-                        TextColor="White" />
-                    <Label FontAttributes="Bold" TextDecorations="Underline">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="2. Make sure to initialize the plugin first in your " />
-                                <Span BackgroundColor="#464a51" Text="MauiProgram.cs" />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    <core:SourceCodeExpander Code="{x:Binding ServiceRegisterCode}" CodeType="CSharp" />
-                    <HorizontalStackLayout>
-                        <Image
-                            HeightRequest="60"
-                            Source="androidlogo.png"
-                            WidthRequest="60" />
-                        <Label Text="Android" TextColor="#207245" />
-                    </HorizontalStackLayout>
-                    <Label Text="For Android go to your AndroidManifest.xml file (under the Platforms\Android folder) and add the following permissions inside of the manifest node:" />
-                    <Label
-                        BackgroundColor="#07223f"
-                        Text="{x:Binding AndroidManifest}"
-                        TextColor="White" />
-                    <HorizontalStackLayout>
-                        <Image
-                            HeightRequest="60"
-                            Source="ioslogo.png"
-                            WidthRequest="60" />
-                        <Label Text="IOS" TextColor="#f2584f" />
-                    </HorizontalStackLayout>
-                    <Label Text="For iOS go to your info.plist file (under the Platforms\iOS folder) and add the following permissions inside of the dict node:" />
-                    <Label
-                        BackgroundColor="#07223f"
-                        Text="{x:Binding IosInfoPlist}"
-                        TextColor="White" />
-                    <Label Text="Make sure that you enter a clear and valid reason for your app to access the camera. This description will be shown to the user." />
-                </VerticalStackLayout>
-            </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Usage" />
+                        <Label Text="If you're using the controls from XAML, make sure to add the right XML namespace in the root of your file, e.g:" />
+                        <Label
+                            BackgroundColor="#07223f"
+                            Text="{x:Binding XamlNameSpace}"
+                            TextColor="White" />
+                        <core:SourceCodeExpander Code="{x:Binding DeclareControlCode}" CodeType="Xaml" />
+                        <Label Text="Configure reader options" />
+                        <core:SourceCodeExpander Code="{x:Binding ConfigReaderOptions}" CodeType="CSharp" />
+                        <Label Text="Toggle Torch" />
+                        <core:SourceCodeExpander Code="{x:Binding ToggleTorch}" CodeType="CSharp" />
+                        <Label Text="Flip between Rear/Front cameras" />
+                        <core:SourceCodeExpander Code="{x:Binding FlipBetweenRearFrontCamera}" CodeType="CSharp" />
+                        <Label Text="Handle detected barcode(s)" />
+                        <core:SourceCodeExpander Code="{x:Binding DetectBarCode}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
 
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="5">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Usage" />
-                    <Label Text="If you're using the controls from XAML, make sure to add the right XML namespace in the root of your file, e.g:" />
-                    <Label
-                        BackgroundColor="#07223f"
-                        Text="{x:Binding XamlNameSpace}"
-                        TextColor="White" />
-                    <core:SourceCodeExpander Code="{x:Binding DeclareControlCode}" CodeType="Xaml" />
-                    <Label Text="Configure reader options" />
-                    <core:SourceCodeExpander Code="{x:Binding ConfigReaderOptions}" CodeType="CSharp" />
-                    <Label Text="Toggle Torch" />
-                    <core:SourceCodeExpander Code="{x:Binding ToggleTorch}" CodeType="CSharp" />
-                    <Label Text="Flip between Rear/Front cameras" />
-                    <core:SourceCodeExpander Code="{x:Binding FlipBetweenRearFrontCamera}" CodeType="CSharp" />
-                    <Label Text="Handle detected barcode(s)" />
-                    <core:SourceCodeExpander Code="{x:Binding DetectBarCode}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Border>
-
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <zxing:CameraBarcodeReaderView x:Name="cameraBarcodeReaderView" BarcodesDetected="BarcodesDetected" />
-            </Border>
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="5">
-                    <zxing:BarcodeGeneratorView
-                        Margin="3"
-                        ForegroundColor="DarkBlue"
-                        Format="QrCode"
-                        HeightRequest="50"
-                        WidthRequest="50"
-                        Value="https://dotnet.microsoft.com" />
-                    <core:SourceCodeExpander Code="{x:Binding BarCodeGeneratorView}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Border>
-        </VerticalStackLayout>
-    </ScrollView>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <zxing:CameraBarcodeReaderView x:Name="cameraBarcodeReaderView" BarcodesDetected="BarcodesDetected" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="5">
+                        <zxing:BarcodeGeneratorView
+                            Margin="3"
+                            ForegroundColor="DarkBlue"
+                            Format="QrCode"
+                            HeightRequest="50"
+                            WidthRequest="50"
+                            Value="https://dotnet.microsoft.com" />
+                        <core:SourceCodeExpander Code="{x:Binding BarCodeGeneratorView}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </SwipeView>
 </core:BasePage>

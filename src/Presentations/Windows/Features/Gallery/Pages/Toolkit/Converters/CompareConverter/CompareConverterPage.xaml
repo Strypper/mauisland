@@ -7,8 +7,9 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Compare Converter"
-    Padding="10"
-    x:DataType="app:CompareConverterPageViewModel">
+    Padding="20"
+    x:DataType="app:CompareConverterPageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -89,90 +90,102 @@
             TrueObject="LightGreen" />
     </core:BasePage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Converter Properties" />
-                    <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="TextCaseType" />
-                    <Label Text="{x:StaticResource TextCaseTypeDescription}" />
-                    <CollectionView ItemsSource="{x:StaticResource TextCaseTypeItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Frame>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup Toolkit" />
-                    <VerticalStackLayout>
-                        <Label Text="{x:Binding SetupDescription}" />
-                        <Label Text="{x:Binding XamlNamespace}" TextColor="Blue" />
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Converter Properties" />
+                        <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
                     </VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="TextCaseType" />
+                        <Label Text="{x:StaticResource TextCaseTypeDescription}" />
+                        <CollectionView ItemsSource="{x:StaticResource TextCaseTypeItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Therefore the following:" />
-                    <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleBefore}" CodeType="Xaml" />
-                    <Label Text="Would be modified to include the xmlns as follows:" />
-                    <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleAfter}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Frame>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup Toolkit" />
+                        <VerticalStackLayout>
+                            <Label Text="{x:Binding SetupDescription}" />
+                            <Label Text="{x:Binding XamlNamespace}" TextColor="Blue" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Compare Converter" />
-                    <Label Text="You can change the input value by this slider" />
-                    <Slider
-                        Maximum="60"
-                        Minimum="0"
-                        Value="{x:Binding SlideValue}" />
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Current input value: " />
-                                <Span FontAttributes="Bold" Text="{x:Binding SlideValue}" />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    <Label
-                        BackgroundColor="{x:Binding TestValue1,
-                                                    Converter={StaticResource CompareConverter1}}"
-                        FontAttributes="Bold"
-                        FontSize="14"
-                        HorizontalOptions="CenterAndExpand"
-                        Text="The background of this label will be green if the value entered is higher than 30, and red otherwise."
-                        VerticalOptions="Center" />
-                    <Label
-                        BackgroundColor="{x:Binding TestValue2,
-                                                    Converter={StaticResource CompareConverter2}}"
-                        FontAttributes="Bold"
-                        FontSize="14"
-                        HorizontalOptions="CenterAndExpand"
-                        Text="The background of this label will be green if the value entered is less than 40, and red otherwise."
-                        VerticalOptions="Center" />
-                </VerticalStackLayout>
-            </Frame>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Therefore the following:" />
+                        <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleBefore}" CodeType="Xaml" />
+                        <Label Text="Would be modified to include the xmlns as follows:" />
+                        <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleAfter}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="This is ViewModel code" />
-                    <core:SourceCodeExpander Code="{x:Binding CSharpxamlConverterTestingViewModel}" CodeType="CSharp" />
-                    <Label Text="Here what your converter look like" />
-                    <core:SourceCodeExpander Code="{x:Binding XamlConverterSetup}" CodeType="Xaml" />
-                    <Label Text="This Xaml code" />
-                    <core:SourceCodeExpander Code="{x:Binding XamlConverterTesting}" CodeType="Xaml" />
-                </VerticalStackLayout>
-            </Frame>
-        </VerticalStackLayout>
-    </ScrollView>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Compare Converter" />
+                        <Label Text="You can change the input value by this slider" />
+                        <Slider
+                            Maximum="60"
+                            Minimum="0"
+                            Value="{x:Binding SlideValue}" />
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Current input value: " />
+                                    <Span FontAttributes="Bold" Text="{x:Binding SlideValue}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label
+                            BackgroundColor="{x:Binding TestValue1,
+                                                        Converter={StaticResource CompareConverter1}}"
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="The background of this label will be green if the value entered is higher than 30, and red otherwise."
+                            VerticalOptions="Center" />
+                        <Label
+                            BackgroundColor="{x:Binding TestValue2,
+                                                        Converter={StaticResource CompareConverter2}}"
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="The background of this label will be green if the value entered is less than 40, and red otherwise."
+                            VerticalOptions="Center" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="This is ViewModel code" />
+                        <core:SourceCodeExpander Code="{x:Binding CSharpxamlConverterTestingViewModel}" CodeType="CSharp" />
+                        <Label Text="Here what your converter look like" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlConverterSetup}" CodeType="Xaml" />
+                        <Label Text="This Xaml code" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlConverterTesting}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </SwipeView>
 
 </core:BasePage>

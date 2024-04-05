@@ -93,226 +93,243 @@
 
     </core:BasePage.Resources>
 
-    <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy, Mode=OneWay}">
-        <ScrollView>
-            <Grid ColumnDefinitions="310, *" ColumnSpacing="20">
-                <Grid RowDefinitions="90, 540, 120" RowSpacing="10">
-                    <Border
-                        Padding="20"
-                        BackgroundColor="#272b33"
-                        StrokeShape="RoundRectangle 4">
-                        <Grid>
-                            <HorizontalStackLayout Spacing="10">
-                                <Image
-                                    HeightRequest="25"
-                                    Source="githublogo.png"
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy, Mode=OneWay}">
+            <ScrollView>
+                <Grid ColumnDefinitions="310, *" ColumnSpacing="20">
+                    <Grid RowDefinitions="90, 540, 120" RowSpacing="10">
+                        <Border
+                            Padding="20"
+                            BackgroundColor="#272b33"
+                            StrokeShape="RoundRectangle 4">
+                            <Grid>
+                                <HorizontalStackLayout Spacing="10">
+                                    <Image
+                                        HeightRequest="25"
+                                        Source="githublogo.png"
+                                        VerticalOptions="Center"
+                                        WidthRequest="25" />
+
+                                    <Label
+                                        HorizontalOptions="Start"
+                                        Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                        Text="Issues"
+                                        VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                                <Border
+                                    BackgroundColor="OrangeRed"
+                                    HeightRequest="40"
+                                    HorizontalOptions="End"
+                                    StrokeShape="RoundRectangle 20"
                                     VerticalOptions="Center"
-                                    WidthRequest="25" />
-
-                                <Label
-                                    HorizontalOptions="Start"
-                                    Style="{x:StaticResource DocumentSectionTitleStyle}"
-                                    Text="Issues"
-                                    VerticalOptions="Center" />
-                            </HorizontalStackLayout>
-                            <Border
-                                BackgroundColor="OrangeRed"
-                                HeightRequest="40"
-                                HorizontalOptions="End"
-                                StrokeShape="RoundRectangle 20"
-                                VerticalOptions="Center"
-                                WidthRequest="40">
-                                <Label
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="Center"
-                                    Text="{x:Binding ControlIssues.Count,
-                                                     Mode=OneWay}"
-                                    VerticalOptions="Center" />
-                            </Border>
-                        </Grid>
-                    </Border>
-                    <CollectionView
-                        Grid.Row="1"
-                        Margin="0,0,0,0"
-                        EmptyView="{x:Binding EmptyViewText,
-                                              Mode=OneWay}"
-                        ItemTemplate="{x:StaticResource ControlIssueItemTemplate}"
-                        ItemsLayout="{x:StaticResource ControlIssueLayout}"
-                        ItemsSource="{x:Binding ControlIssues,
-                                                Mode=OneWay}"
-                        SelectedItem="{x:Binding SelectedControlIssue,
-                                                 Mode=TwoWay}"
-                        SelectionChangedCommand="{x:Binding OpenUrlCommand}"
-                        SelectionChangedCommandParameter="{x:Binding SelectedControlIssue.IssueLinkUrl,
-                                                                     Mode=OneWay}"
-                        SelectionMode="Single"
-                        VerticalOptions="Start" />
-                    <Border
-                        Grid.Row="2"
-                        Margin="0,0,0,10"
-                        Padding="20"
-                        BackgroundColor="#272b33"
-                        StrokeShape="RoundRectangle 4">
-                        <VerticalStackLayout Spacing="5">
-                            <Label
-                                HorizontalOptions="Center"
-                                HorizontalTextAlignment="Center"
-                                Text="Found a new bug?"
-                                TextColor="White"
-                                TextDecorations="Underline" />
-                            <Button
-                                Command="{x:Binding OpenUrlCommand}"
-                                CommandParameter="{x:StaticResource ReportIssueToMauiTeamLink}"
-                                Text="Report to the MAUI team" />
-                        </VerticalStackLayout>
-                    </Border>
-                </Grid>
-                <VerticalStackLayout Grid.Column="1" Spacing="10">
-                    <Border Padding="20" StrokeShape="RoundRectangle 4">
-                        <Label FontSize="Subtitle" Text="{x:StaticResource introduce}" />
-                    </Border>
-
-                    <Border Padding="20" StrokeShape="RoundRectangle 4">
-                        <VerticalStackLayout Spacing="10">
-                            <Label
-                                FontSize="Medium"
-                                HorizontalOptions="Start"
-                                Text="Basic Progress Bar"
-                                VerticalOptions="Center" />
-                            <BoxView
-                                Background="White"
-                                HeightRequest="1"
-                                VerticalOptions="End" />
-                            <Grid ColumnDefinitions="0.25*, 0.75*" RowDefinitions="auto, auto, auto">
-                                <Label
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    Text="This ProgressBar prepersent 0%" />
-                                <ProgressBar
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    Progress="0" />
-                                <Label
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    Text="This ProgressBar prepersent 50%" />
-                                <ProgressBar
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    Progress="0.5" />
-                                <Label
-                                    Grid.Row="2"
-                                    Grid.Column="0"
-                                    Text="This ProgressBar prepersent 100%" />
-                                <ProgressBar
-                                    Grid.Row="2"
-                                    Grid.Column="1"
-                                    Progress="1" />
+                                    WidthRequest="40">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="Center"
+                                        Text="{x:Binding ControlIssues.Count,
+                                                         Mode=OneWay}"
+                                        VerticalOptions="Center" />
+                                </Border>
                             </Grid>
+                        </Border>
+                        <CollectionView
+                            Grid.Row="1"
+                            Margin="0,0,0,0"
+                            EmptyView="{x:Binding EmptyViewText,
+                                                  Mode=OneWay}"
+                            ItemTemplate="{x:StaticResource ControlIssueItemTemplate}"
+                            ItemsLayout="{x:StaticResource ControlIssueLayout}"
+                            ItemsSource="{x:Binding ControlIssues,
+                                                    Mode=OneWay}"
+                            SelectedItem="{x:Binding SelectedControlIssue,
+                                                     Mode=TwoWay}"
+                            SelectionChangedCommand="{x:Binding OpenUrlCommand}"
+                            SelectionChangedCommandParameter="{x:Binding SelectedControlIssue.IssueLinkUrl,
+                                                                         Mode=OneWay}"
+                            SelectionMode="Single"
+                            VerticalOptions="Start" />
+                        <Border
+                            Grid.Row="2"
+                            Margin="0,0,0,10"
+                            Padding="20"
+                            BackgroundColor="#272b33"
+                            StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="5">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Found a new bug?"
+                                    TextColor="White"
+                                    TextDecorations="Underline" />
+                                <Button
+                                    Command="{x:Binding OpenUrlCommand}"
+                                    CommandParameter="{x:StaticResource ReportIssueToMauiTeamLink}"
+                                    Text="Report to the MAUI team" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                    <VerticalStackLayout Grid.Column="1" Spacing="10">
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <Label FontSize="Subtitle" Text="{x:StaticResource introduce}" />
+                        </Border>
 
-                            <Label Text="This is xaml code for the ProgressBar" />
-                            <core:SourceCodeExpander Code="{x:Binding XamlStandardProgressBar}" CodeType="Xaml" />
-                        </VerticalStackLayout>
-                    </Border>
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label
+                                    FontSize="Medium"
+                                    HorizontalOptions="Start"
+                                    Text="Basic Progress Bar"
+                                    VerticalOptions="Center" />
+                                <BoxView
+                                    Background="White"
+                                    HeightRequest="1"
+                                    VerticalOptions="End" />
+                                <Grid ColumnDefinitions="0.25*, 0.75*" RowDefinitions="auto, auto, auto">
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Text="This ProgressBar prepersent 0%" />
+                                    <ProgressBar
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Progress="0" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Text="This ProgressBar prepersent 50%" />
+                                    <ProgressBar
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Progress="0.5" />
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        Text="This ProgressBar prepersent 100%" />
+                                    <ProgressBar
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        Progress="1" />
+                                </Grid>
 
-                    <Border Padding="20" StrokeShape="RoundRectangle 4">
-                        <VerticalStackLayout Spacing="10">
-                            <Label
-                                FontSize="Medium"
-                                HorizontalOptions="Start"
-                                Text="Progress Bar with Color Changing"
-                                VerticalOptions="Center" />
-                            <BoxView
-                                Background="White"
-                                HeightRequest="1"
-                                VerticalOptions="End" />
-                            <CollectionView
-                                Footer="{x:StaticResource PropertiesListFooter}"
-                                Header="{x:StaticResource PropertiesListHeader}"
-                                ItemsSource="{x:StaticResource PropertyItemsSource}"
-                                Style="{x:StaticResource PropertiesListStyle}" />
+                                <Label Text="This is xaml code for the ProgressBar" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlStandardProgressBar}" CodeType="Xaml" />
+                            </VerticalStackLayout>
+                        </Border>
 
-                    <Frame BackgroundColor="#313131" 
-                           BorderColor="#313131" 
-                           Padding="5" >
-                        <Grid ColumnDefinitions="0.1*, 0.6*, 0.1*, 0.2*">
-                            <Label Grid.Column="0"
-                                   Text="0%" 
-                                   VerticalOptions="Center" 
-                                   HorizontalOptions="Center"/>
-                            <ProgressBar x:Name="ProgressBar1"
-                                         Grid.Column="1"
-                                         Progress="0"/>
-                            <Label x:Name="ProgressLabel" 
-                                   Grid.Column="2"
-                                   Text="0%" 
-                                   VerticalOptions="Center" 
-                                   HorizontalOptions="Center"/>
-                            <Button x:Name="ProgressBarLoadButton"
-                                    Grid.Column="3"
-                                    Clicked="ProgressBarLoadButtonClicked"
-                                    Text="Load"/>
-                        </Grid>
-                    </Frame>
-
-                            <Label Text="This is xaml for the design" />
-                            <core:SourceCodeExpander Code="{x:Binding XamlColorProgressBar}" CodeType="Xaml" />
-                            <Label Text="This is code behind" />
-                            <core:SourceCodeExpander Code="{x:Binding CSharpCcolorProgressBarCodeBehind}" CodeType="CSharp" />
-                        </VerticalStackLayout>
-                    </Border>
-
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="10">
-                    <Label
-                        FontSize="Medium"
-                        HorizontalOptions="Start"
-                        Text="ProgressBar with Progress Animated"
-                        VerticalOptions="Center" />
-                    <BoxView
-                        Background="White"
-                        HeightRequest="1"
-                        VerticalOptions="End" />
-                    <CollectionView ItemsSource="{x:StaticResource AnimatedProgressBar}" 
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label
+                                    FontSize="Medium"
+                                    HorizontalOptions="Start"
+                                    Text="Progress Bar with Color Changing"
+                                    VerticalOptions="Center" />
+                                <BoxView
+                                    Background="White"
+                                    HeightRequest="1"
+                                    VerticalOptions="End" />
+                                <CollectionView
+                                    Footer="{x:StaticResource PropertiesListFooter}"
+                                    Header="{x:StaticResource PropertiesListHeader}"
+                                    ItemsSource="{x:StaticResource PropertyItemsSource}"
                                     Style="{x:StaticResource PropertiesListStyle}" />
-                    <Frame BackgroundColor="#313131" 
-                           BorderColor="#313131" 
-                           Padding="5">
-                        <Grid  ColumnDefinitions="0.1*, 0.6*, 0.1*, 0.2*">
-                            <Label Grid.Column="0" 
-                                   Text="{Binding Path=Progress, 
-                                                  Source={x:Reference ProgressBar2}, 
-                                                  Converter={x:StaticResource ProgressBarPercentageConverter}, 
-                                                  ConverterParameter={x:Type x:String}}" 
-                                   VerticalOptions="Center" 
-                                   HorizontalOptions="Center"/>
-                            <ProgressBar x:Name="ProgressBar2"
-                                         Grid.Column="1"
-                                         Margin="10"
-                                         Progress="0"
-                                         ProgressColor="Red"/>
-                            <Label Grid.Column="2"
-                                   Text="100%" 
-                                   VerticalOptions="Center" 
-                                   HorizontalOptions="Center"/>
-                            <Button x:Name="ProgressBarRunButton"
-                                    Grid.Column="3"
-                                    Clicked="ProgressBarRunButtonClicked"
-                                    Text="Run" />
-                        </Grid>
-                    </Frame>
 
-                    <Label Text="This is xaml code" />
-                    <core:SourceCodeExpander Code="{x:Binding XamlAnimateProgressBar}" CodeType="Xaml" />
-                    <Label Text="This is the code behind" />
-                    <core:SourceCodeExpander Code="{x:Binding CSharpAnimateProgressBarCodeBehind}" CodeType="CSharp" />
-                    <Label Text="This is the converter" />
-                    <core:SourceCodeExpander Code="{x:Binding CSharpAnimateProgressBarConverter}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Border>
+                                <Frame
+                                    Padding="5"
+                                    BackgroundColor="#313131"
+                                    BorderColor="#313131">
+                                    <Grid ColumnDefinitions="0.1*, 0.6*, 0.1*, 0.2*">
+                                        <Label
+                                            Grid.Column="0"
+                                            HorizontalOptions="Center"
+                                            Text="0%"
+                                            VerticalOptions="Center" />
+                                        <ProgressBar
+                                            x:Name="ProgressBar1"
+                                            Grid.Column="1"
+                                            Progress="0" />
+                                        <Label
+                                            x:Name="ProgressLabel"
+                                            Grid.Column="2"
+                                            HorizontalOptions="Center"
+                                            Text="0%"
+                                            VerticalOptions="Center" />
+                                        <Button
+                                            x:Name="ProgressBarLoadButton"
+                                            Grid.Column="3"
+                                            Clicked="ProgressBarLoadButtonClicked"
+                                            Text="Load" />
+                                    </Grid>
+                                </Frame>
 
-                </VerticalStackLayout>
-            </Grid>
-        </ScrollView>
-    </RefreshView>
+                                <Label Text="This is xaml for the design" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlColorProgressBar}" CodeType="Xaml" />
+                                <Label Text="This is code behind" />
+                                <core:SourceCodeExpander Code="{x:Binding CSharpCcolorProgressBarCodeBehind}" CodeType="CSharp" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label
+                                    FontSize="Medium"
+                                    HorizontalOptions="Start"
+                                    Text="ProgressBar with Progress Animated"
+                                    VerticalOptions="Center" />
+                                <BoxView
+                                    Background="White"
+                                    HeightRequest="1"
+                                    VerticalOptions="End" />
+                                <CollectionView ItemsSource="{x:StaticResource AnimatedProgressBar}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <Frame
+                                    Padding="5"
+                                    BackgroundColor="#313131"
+                                    BorderColor="#313131">
+                                    <Grid ColumnDefinitions="0.1*, 0.6*, 0.1*, 0.2*">
+                                        <Label
+                                            Grid.Column="0"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding Path=Progress, Source={x:Reference ProgressBar2}, Converter={x:StaticResource ProgressBarPercentageConverter}, ConverterParameter={x:Type x:String}}"
+                                            VerticalOptions="Center" />
+                                        <ProgressBar
+                                            x:Name="ProgressBar2"
+                                            Grid.Column="1"
+                                            Margin="10"
+                                            Progress="0"
+                                            ProgressColor="Red" />
+                                        <Label
+                                            Grid.Column="2"
+                                            HorizontalOptions="Center"
+                                            Text="100%"
+                                            VerticalOptions="Center" />
+                                        <Button
+                                            x:Name="ProgressBarRunButton"
+                                            Grid.Column="3"
+                                            Clicked="ProgressBarRunButtonClicked"
+                                            Text="Run" />
+                                    </Grid>
+                                </Frame>
+
+                                <Label Text="This is xaml code" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlAnimateProgressBar}" CodeType="Xaml" />
+                                <Label Text="This is the code behind" />
+                                <core:SourceCodeExpander Code="{x:Binding CSharpAnimateProgressBarCodeBehind}" CodeType="CSharp" />
+                                <Label Text="This is the converter" />
+                                <core:SourceCodeExpander Code="{x:Binding CSharpAnimateProgressBarConverter}" CodeType="CSharp" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                    </VerticalStackLayout>
+                </Grid>
+            </ScrollView>
+        </RefreshView>
+    </SwipeView>
 </core:BasePage>

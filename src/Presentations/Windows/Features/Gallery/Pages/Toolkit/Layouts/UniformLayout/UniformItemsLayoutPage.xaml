@@ -40,110 +40,122 @@
         </x:Array>
     </core:BasePage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Border>
 
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout>
-                    <Label
-                        Style="{x:StaticResource DocumentSectionTitleStyle}"
-                        Text="Properties"
-                        TextColor="White" />
-                    <CollectionView ItemsSource="{x:StaticResource PropertyItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
-                </VerticalStackLayout>
-            </Border>
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
 
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="10">
-                    <Label
-                        Style="{x:StaticResource DocumentSectionTitleStyle}"
-                        Text="Using the UniformItemsLayout"
-                        TextColor="White" />
-                    <toolkit:UniformItemsLayout>
-                        <BoxView
-                            HeightRequest="25"
-                            WidthRequest="25"
-                            Color="Blue" />
-                        <BoxView
-                            HeightRequest="25"
-                            WidthRequest="25"
-                            Color="Yellow" />
-                        <BoxView
-                            HeightRequest="25"
-                            WidthRequest="25"
-                            Color="Red" />
-                        <BoxView
-                            HeightRequest="25"
-                            WidthRequest="25"
-                            Color="Black" />
-                        <BoxView
-                            HeightRequest="25"
-                            WidthRequest="25"
-                            Color="Blue" />
-                        <BoxView
-                            HeightRequest="25"
-                            WidthRequest="25"
-                            Color="Yellow" />
-                        <BoxView
-                            HeightRequest="25"
-                            WidthRequest="25"
-                            Color="Red" />
-                        <BoxView
-                            HeightRequest="25"
-                            WidthRequest="25"
-                            Color="Black" />
-                    </toolkit:UniformItemsLayout>
-                    <Label Text="XAML:" TextColor="White" />
-                    <core:SourceCodeExpander Code="{x:Binding XamlUniformItemsLayout}" CodeType="Xaml" />
-                    <Label Text="C#" TextColor="White" />
-                    <core:SourceCodeExpander Code="{x:Binding CsharpUniformItemsLayout}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout>
+                        <Label
+                            Style="{x:StaticResource DocumentSectionTitleStyle}"
+                            Text="Properties"
+                            TextColor="White" />
+                        <CollectionView ItemsSource="{x:StaticResource PropertyItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
 
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="10">
-                    <Label
-                        Style="{x:StaticResource DocumentSectionTitleStyle}"
-                        Text="Customizing an UniformItemsLayout"
-                        TextColor="White" />
-                    <Label Text="{x:StaticResource Customizing}" TextColor="White" />
-                    <HorizontalStackLayout Spacing="10">
-                        <VerticalStackLayout>
-                            <Label Text="Number of columns" TextColor="White" />
-                            <Stepper Minimum="1" Value="{x:Binding NoOfColumns, Mode=TwoWay}" />
-                            <Label Text="{x:Binding NoOfColumns}" TextColor="White" />
-                        </VerticalStackLayout>
-                        <VerticalStackLayout>
-                            <Label Text="Number of rows" TextColor="White" />
-                            <Stepper Minimum="1" Value="{x:Binding NoOfRows, Mode=TwoWay}" />
-                            <Label Text="{x:Binding NoOfRows}" TextColor="White" />
-                        </VerticalStackLayout>
-                    </HorizontalStackLayout>
-                    <toolkit:UniformItemsLayout MaxColumns="{x:Binding NoOfColumns, Mode=OneWay}" MaxRows="{x:Binding NoOfRows, Mode=OneWay}">
-                        <BoxView
-                            HeightRequest="25"
-                            WidthRequest="25"
-                            Color="Blue" />
-                        <BoxView
-                            HeightRequest="25"
-                            WidthRequest="25"
-                            Color="Yellow" />
-                        <BoxView
-                            HeightRequest="25"
-                            WidthRequest="25"
-                            Color="Red" />
-                        <BoxView
-                            HeightRequest="25"
-                            WidthRequest="25"
-                            Color="Black" />
-                    </toolkit:UniformItemsLayout>
-                    <core:SourceCodeExpander Code="{x:Binding XamlCustomizingUniformItemsLayout}" CodeType="Xaml" />
-                    <core:SourceCodeExpander Code="{x:Binding CsharpCustomizingUniformItemsLayout}" CodeType="CSharp" />
-                </VerticalStackLayout>
-            </Border>
-        </VerticalStackLayout>
-    </ScrollView>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            Style="{x:StaticResource DocumentSectionTitleStyle}"
+                            Text="Using the UniformItemsLayout"
+                            TextColor="White" />
+                        <toolkit:UniformItemsLayout>
+                            <BoxView
+                                HeightRequest="25"
+                                WidthRequest="25"
+                                Color="Blue" />
+                            <BoxView
+                                HeightRequest="25"
+                                WidthRequest="25"
+                                Color="Yellow" />
+                            <BoxView
+                                HeightRequest="25"
+                                WidthRequest="25"
+                                Color="Red" />
+                            <BoxView
+                                HeightRequest="25"
+                                WidthRequest="25"
+                                Color="Black" />
+                            <BoxView
+                                HeightRequest="25"
+                                WidthRequest="25"
+                                Color="Blue" />
+                            <BoxView
+                                HeightRequest="25"
+                                WidthRequest="25"
+                                Color="Yellow" />
+                            <BoxView
+                                HeightRequest="25"
+                                WidthRequest="25"
+                                Color="Red" />
+                            <BoxView
+                                HeightRequest="25"
+                                WidthRequest="25"
+                                Color="Black" />
+                        </toolkit:UniformItemsLayout>
+                        <Label Text="XAML:" TextColor="White" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlUniformItemsLayout}" CodeType="Xaml" />
+                        <Label Text="C#" TextColor="White" />
+                        <core:SourceCodeExpander Code="{x:Binding CsharpUniformItemsLayout}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            Style="{x:StaticResource DocumentSectionTitleStyle}"
+                            Text="Customizing an UniformItemsLayout"
+                            TextColor="White" />
+                        <Label Text="{x:StaticResource Customizing}" TextColor="White" />
+                        <HorizontalStackLayout Spacing="10">
+                            <VerticalStackLayout>
+                                <Label Text="Number of columns" TextColor="White" />
+                                <Stepper Minimum="1" Value="{x:Binding NoOfColumns, Mode=TwoWay}" />
+                                <Label Text="{x:Binding NoOfColumns}" TextColor="White" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout>
+                                <Label Text="Number of rows" TextColor="White" />
+                                <Stepper Minimum="1" Value="{x:Binding NoOfRows, Mode=TwoWay}" />
+                                <Label Text="{x:Binding NoOfRows}" TextColor="White" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                        <toolkit:UniformItemsLayout MaxColumns="{x:Binding NoOfColumns, Mode=OneWay}" MaxRows="{x:Binding NoOfRows, Mode=OneWay}">
+                            <BoxView
+                                HeightRequest="25"
+                                WidthRequest="25"
+                                Color="Blue" />
+                            <BoxView
+                                HeightRequest="25"
+                                WidthRequest="25"
+                                Color="Yellow" />
+                            <BoxView
+                                HeightRequest="25"
+                                WidthRequest="25"
+                                Color="Red" />
+                            <BoxView
+                                HeightRequest="25"
+                                WidthRequest="25"
+                                Color="Black" />
+                        </toolkit:UniformItemsLayout>
+                        <core:SourceCodeExpander Code="{x:Binding XamlCustomizingUniformItemsLayout}" CodeType="Xaml" />
+                        <core:SourceCodeExpander Code="{x:Binding CsharpCustomizingUniformItemsLayout}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </SwipeView>
 </core:BasePage>
