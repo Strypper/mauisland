@@ -11,7 +11,7 @@ class DataGridControlInfo : IGithubGalleryCardInfo
     public string ControlName => "DataGrid";
     public string ControlDetail => "MAUI.Datagrid is a library allows us to create complex data grids or tables for displaying record data, it supports sorting and virtualization, so creating another card demonstrates the use cases of this library";
     public string ControlRoute => typeof(DataGridPage).FullName;
-    public string GitHubUrl => $"https://github.com/Strypper/mauisland/blob/main/src/Features/Gallery/Pages/Community/Controls/{ControlName}";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Presentations/Windows/Features/Gallery/Pages/Community/Layouts/DataGrid";
     public string DocumentUrl => "https://github.com/akgulebubekir/Maui.DataGrid";  //SvnUrl
     public string GroupName => ControlGroupInfo.GitHubCommunity;
     public GalleryCardType CardType => GalleryCardType.Layout;

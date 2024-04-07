@@ -1,7 +1,7 @@
 namespace MAUIsland;
 public partial class DataGridPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [Services]
+    #region [ Fields ]
     private readonly IControlsService MauiControlsService;
     private readonly IGitHubRepositorySyncService GitHubRepositorySyncService;
     #endregion
@@ -9,7 +9,7 @@ public partial class DataGridPageViewModel : NavigationAwareBaseViewModel
     #region [ CTor ]
     public DataGridPageViewModel(IAppNavigator appNavigator,
                                  IControlsService controlsService,
-                                 IGitHubRepositorySyncService gitHubRepositorySyncService) 
+                                 IGitHubRepositorySyncService gitHubRepositorySyncService)
         : base(appNavigator)
     {
         this.MauiControlsService = controlsService;
@@ -231,7 +231,7 @@ public partial class DataGridPageViewModel : NavigationAwareBaseViewModel
         "ObservableCollection<IGalleryCardInfo> controlGroupListEmtyList = new();";
     #endregion
 
-    #region [Overrides]
+    #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
@@ -265,7 +265,7 @@ public partial class DataGridPageViewModel : NavigationAwareBaseViewModel
         }
 
         var githubControls = await GitHubRepositorySyncService.GetAllAsync();
-        foreach (var item in githubControls) 
+        foreach (var item in githubControls)
         {
             GithubControlGroupList.Add(item);
         }

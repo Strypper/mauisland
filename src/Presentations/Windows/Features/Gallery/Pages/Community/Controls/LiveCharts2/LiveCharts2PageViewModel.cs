@@ -307,10 +307,10 @@ public partial class LiveCharts2PageViewModel : NavigationAwareBaseViewModel
     public LabelVisual LineSeriesVisualTitle { get; set; } =
         new LabelVisual
         {
-            Text = "My chart title",
+            Text = "Line chart title",
             TextSize = 25,
             Padding = new LiveChartsCore.Drawing.Padding(15),
-            Paint = new SolidColorPaint(SKColors.DarkSlateGray)
+            Paint = new SolidColorPaint(SKColors.White)
         };
     #endregion
 
@@ -461,7 +461,7 @@ public LabelVisual PushoutPieChartVisualTitle { get; set; } =
             Text = "My pie chart title",
             TextSize = 25,
             Padding = new LiveChartsCore.Drawing.Padding(15),
-            Paint = new SolidColorPaint(SKColors.DarkSlateGray)
+            Paint = new SolidColorPaint(SKColors.White)
         };
 
     public LabelVisual DoughnutPieChartVisualTitle { get; set; } =
@@ -470,7 +470,7 @@ public LabelVisual PushoutPieChartVisualTitle { get; set; } =
         Text = "My doughnut chart title",
         TextSize = 25,
         Padding = new LiveChartsCore.Drawing.Padding(15),
-        Paint = new SolidColorPaint(SKColors.DarkSlateGray)
+        Paint = new SolidColorPaint(SKColors.White)
     };
     public LabelVisual PushoutPieChartVisualTitle { get; set; } =
     new LabelVisual
@@ -478,7 +478,7 @@ public LabelVisual PushoutPieChartVisualTitle { get; set; } =
         Text = "My push out style chart title",
         TextSize = 25,
         Padding = new LiveChartsCore.Drawing.Padding(15),
-        Paint = new SolidColorPaint(SKColors.DarkSlateGray)
+        Paint = new SolidColorPaint(SKColors.White)
     };
     #endregion
 
