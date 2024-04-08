@@ -23,6 +23,9 @@ public partial class AbsoluteLayoutPageViewModel : BaseBuiltInPageControlViewMod
 
     [ObservableProperty]
     IBuiltInGalleryCardInfo controlInformation;
+
+    [ObservableProperty]
+    double opacityLevel = 1;
     #endregion
 
     #region [ Overrides ]
