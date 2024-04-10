@@ -1,4 +1,4 @@
-using LiveChartsCore;
+﻿using LiveChartsCore;
 using LiveChartsCore.ConditionalDraw;
 using LiveChartsCore.Measure;
 using LiveChartsCore.SkiaSharpView;
@@ -480,6 +480,77 @@ public LabelVisual PushoutPieChartVisualTitle { get; set; } =
         Padding = new LiveChartsCore.Drawing.Padding(15),
         Paint = new SolidColorPaint(SKColors.White)
     };
+    #endregion
+
+    #region [ Radial Area ]
+
+    [ObservableProperty]
+    string radialAreaTitle = "Radial Area";
+
+    public ISeries[] Series { get; set; } =
+    {
+        new PolarLineSeries<int>
+        {
+            Values = new[] { 7, 9, 2, 2, 9 },
+            LineSmoothness = 0,
+            GeometrySize= 0,
+            Name = "C#",
+            Fill = new SolidColorPaint(SKColors.Blue)
+        },
+        new PolarLineSeries<int>
+        {
+            Values = new[] { 5, 9, 8, 4, 3 },
+            LineSmoothness = 0,
+            GeometrySize = 0,
+            Name = "Java",
+            Fill = new SolidColorPaint(SKColors.Red)
+        }
+    };
+
+    public PolarAxis[] AngleAxes { get; set; } =
+    {
+        new PolarAxis
+        {
+            LabelsRotation = LiveCharts.TangentAngle,
+            Labels = new[] { "Desktop", "Web", "Mobile", "AL/ML", "Game" }
+        }
+    };
+    [ObservableProperty]
+    string radialAreaCSharpCode =
+    "public ISeries[] Series { get; set; } =\r\n" +
+    "{\r\n" +
+    "    new PolarLineSeries<int>\r\n" +
+    "    {\r\n" +
+    "        Values = new[] { 7, 5, 7, 5, 6 },\r\n" +
+    "        LineSmoothness = 0,\r\n" +
+    "        GeometrySize= 0,\r\n" +
+    "        Fill = new SolidColorPaint(SKColors.Blue.WithAlpha(90))\r\n" +
+    "    },\r\n" +
+    "    new PolarLineSeries<int>\r\n" +
+    "    {\r\n" +
+    "        Values = new[] { 2, 7, 5, 9, 7 },\r\n" +
+    "        LineSmoothness = 0,\r\n" +
+    "        GeometrySize = 0,\r\n" +
+    "        Fill = new SolidColorPaint(SKColors.Red.WithAlpha(90))\r\n" +
+    "    }\r\n" +
+    "};\r\n\r\n" +
+    "public PolarAxis[] AngleAxes { get; set; } =\r\n" +
+    "{\r\n" +
+    "    new PolarAxis\r\n" +
+    "    {\r\n" +
+    "        LabelsRotation = LiveCharts.TangentAngle,\r\n" +
+    "        Labels = new[] { \"Desktop\", \"Web\", \"Mobile\", \"AL/ML\", \"Game\" }\r\n" +
+    "    }\r\n" +
+    "};";
+
+    [ObservableProperty]
+    string radialAreaXamlCode =
+    "<lvc:PolarChart\r\n" +
+    "    AngleAxes=\"{Binding AngleAxes}\"\r\n" +
+    "    HeightRequest=\"400\"\r\n" +
+    "    InitialRotation=\"-45\"\r\n" +
+    "    Series=\"{Binding Series}\" />";
+
     #endregion
 
     #endregion

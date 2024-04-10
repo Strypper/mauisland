@@ -288,6 +288,28 @@
                             </VerticalStackLayout>
                         </Border>
 
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+
+                                <Label FontSize="Medium" Text="Open dialog from the ViewModel" />
+
+                                <Grid
+                                    Background="White"
+                                    HeightRequest="1"
+                                    VerticalOptions="End" />
+
+                                <Button
+                                    Command="{x:Binding TriggerDialogFromViewModelCommand}"
+                                    Text="Click me!"
+                                    WidthRequest="100" />
+
+                                <Label Text="Create an interface" />
+                                <core:SourceCodeExpander Code="{x:Binding ViewModelPopUpInterfaceCode}" CodeType="CSharp" />
+                                <Label Text="Create an implementation of that interface" />
+                                <core:SourceCodeExpander Code="{x:Binding ViewModelPopUpCSharpCode}" CodeType="CSharp" />
+                                <Label Text="Don't forget to register them inside the ServiceCollection !!!!" />
+                            </VerticalStackLayout>
+                        </Border>
 
                     </VerticalStackLayout>
                 </Grid>

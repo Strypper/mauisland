@@ -117,6 +117,26 @@
                         </datagrid:DataGrid>
                     </VerticalStackLayout>
                 </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            Text="Events" />
+                        <Grid BackgroundColor="White" HeightRequest="1" />
+                        <datagrid:DataGrid
+                            BorderColor="Gray"
+                            HeaderBackground="#d0bcff"
+                            HeaderHeight="50"
+                            ItemsSource="{x:Binding Events}"
+                            RowHeight="80">
+                            <datagrid:DataGrid.Columns>
+                                <datagrid:DataGridColumn Title="Name" PropertyName="Name" />
+                                <datagrid:DataGridColumn Title="Data Type" PropertyName="DataType" />
+                            </datagrid:DataGrid.Columns>
+                        </datagrid:DataGrid>
+                    </VerticalStackLayout>
+                </Border>
             </VerticalStackLayout>
         </ScrollView>
     </SwipeView>

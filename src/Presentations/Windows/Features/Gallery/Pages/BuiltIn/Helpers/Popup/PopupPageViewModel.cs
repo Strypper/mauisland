@@ -6,16 +6,19 @@ public partial class PopupPageViewModel : BaseBuiltInPageControlViewModel
 {
     #region [ Fields ]
 
+    private readonly IDialogService dialogService;
     #endregion
 
     #region [ CTor ]
     public PopupPageViewModel(IAppNavigator appNavigator,
                               IGitHubService gitHubService,
+                              IDialogService dialogService,
                               IGitHubIssueLocalDbService gitHubIssueLocalDbService)
                                 : base(appNavigator,
                                         gitHubService,
                                         gitHubIssueLocalDbService)
     {
+        this.dialogService = dialogService;
     }
     #endregion
 
@@ -61,6 +64,33 @@ public partial class PopupPageViewModel : BaseBuiltInPageControlViewModel
         "    }\r\n" +
         "}";
 
+    [ObservableProperty]
+    string viewModelPopUpInterfaceCode =
+    "public interface IDialogService\r\n" +
+    "{\r\n" +
+    "    Task<bool> ShowConfirmationAsync(string title, string message);\r\n" +
+    "    Task ShowAlertAsync(string title, string message, string accept, string cancel);\r\n" +
+    "    Task<string> ShowActionsAsync(string title, string message, string destruction, params string[] buttons);\r\n" +
+    "}\r\n";
+
+    [ObservableProperty]
+    string viewModelPopUpCSharpCode =
+    "public class DialogService : IDialogService\r\n" +
+    "{\r\n" +
+    "    public Task<bool> ShowConfirmationAsync(string title, string message)\r\n" +
+    "    {\r\n" +
+    "        return Application.Current.MainPage.DisplayAlert(title, message, \"Understandable, have a nice day\", \"Cancel\");\r\n" +
+    "    }\r\n\r\n" +
+    "    public Task ShowAlertAsync(string title, string message, string accept, string cancel)\r\n" +
+    "    {\r\n" +
+    "        return Application.Current.MainPage.DisplayAlert(title, message, accept, cancel);\r\n" +
+    "    }\r\n\r\n" +
+    "    public Task<string> ShowActionsAsync(string title, string message, string destruction, params string[] buttons)\r\n" +
+    "    {\r\n" +
+    "        return Application.Current.MainPage.DisplayActionSheet(title, \"Closed\", destruction, buttons);\r\n" +
+    "    }\r\n" +
+    "}\r\n";
+
     #endregion
 
     #region [ Overrides ]
@@ -83,6 +113,12 @@ public partial class PopupPageViewModel : BaseBuiltInPageControlViewModel
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    Task TriggerDialogFromViewModelAsync()
+    {
+        return dialogService.ShowConfirmationAsync("I'm from the Viewmodel", "This dialog was opened from the view model instead of code behind");
+    }
 
     [RelayCommand]
     async Task RefreshAsync()

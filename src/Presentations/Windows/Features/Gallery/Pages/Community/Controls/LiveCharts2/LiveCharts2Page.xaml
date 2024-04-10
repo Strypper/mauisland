@@ -140,6 +140,19 @@
                         <core:SourceCodeExpander Code="{x:Binding PieChartCSharpCode}" CodeType="CSharp" />
                     </VerticalStackLayout>
                 </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding RadialAreaTitle}" />
+                        <lvc:PolarChart
+                            AngleAxes="{Binding AngleAxes}"
+                            HeightRequest="400"
+                            InitialRotation="-45"
+                            Series="{Binding Series}" />
+                        <core:SourceCodeExpander Code="{x:Binding RadialAreaXamlCode}" CodeType="Xaml" />
+                        <core:SourceCodeExpander Code="{x:Binding RadialAreaCSharpCode}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
             </VerticalStackLayout>
         </ScrollView>
     </SwipeView>

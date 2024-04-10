@@ -24,7 +24,7 @@ public static class ServicesExtension
 
 
         builder.Services.RegisterGitHubFeatures();
-
+        builder.Services.AddTransient<IDialogService, DialogService>();
 
 
         #region [ LocalDb ]
