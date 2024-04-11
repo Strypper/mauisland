@@ -52,52 +52,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Features\Blog\**" />
-	  <Compile Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
-	  <Compile Remove="Features\QA\**" />
-	  <Compile Remove="Platforms\Android\**" />
-	  <Compile Remove="Platforms\iOS\**" />
-	  <Compile Remove="Platforms\MacCatalyst\**" />
-	  <Compile Remove="Platforms\Tizen\**" />
-	  <EmbeddedResource Remove="Features\Blog\**" />
-	  <EmbeddedResource Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
-	  <EmbeddedResource Remove="Features\QA\**" />
-	  <EmbeddedResource Remove="Platforms\Android\**" />
-	  <EmbeddedResource Remove="Platforms\iOS\**" />
-	  <EmbeddedResource Remove="Platforms\MacCatalyst\**" />
-	  <EmbeddedResource Remove="Platforms\Tizen\**" />
-	  <MauiCss Remove="Features\Blog\**" />
-	  <MauiCss Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
-	  <MauiCss Remove="Features\QA\**" />
-	  <MauiCss Remove="Platforms\Android\**" />
-	  <MauiCss Remove="Platforms\iOS\**" />
-	  <MauiCss Remove="Platforms\MacCatalyst\**" />
-	  <MauiCss Remove="Platforms\Tizen\**" />
-	  <MauiXaml Remove="Features\Blog\**" />
-	  <MauiXaml Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
-	  <MauiXaml Remove="Features\QA\**" />
-	  <MauiXaml Remove="Platforms\Android\**" />
-	  <MauiXaml Remove="Platforms\iOS\**" />
-	  <MauiXaml Remove="Platforms\MacCatalyst\**" />
-	  <MauiXaml Remove="Platforms\Tizen\**" />
-	  <None Remove="Features\Blog\**" />
-	  <None Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
-	  <None Remove="Features\QA\**" />
-	  <None Remove="Platforms\Android\**" />
-	  <None Remove="Platforms\iOS\**" />
-	  <None Remove="Platforms\MacCatalyst\**" />
-	  <None Remove="Platforms\Tizen\**" />
-	</ItemGroup>
-	<ItemGroup>
-	  <None Remove="appsettings.Development.json" />
-	  <None Remove="Resources\AppIcon\square44x44logo.svg" />
-	  <None Remove="Resources\Images\aspnetcore_developer_roadmap.png" />
-	  <None Remove="Resources\Images\members\member_long.png" />
-	  <None Remove="Resources\Images\members\member_tan.png" />
-	  <None Remove="Resources\Images\project_githubcard_bug.png" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="akgul.Maui.DataGrid" Version="4.0.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.20" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.20" />
@@ -503,43 +457,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PRIResource Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <ProjectReference Include="..\..\Core\MAUIsland.Core\MAUIsland.Core.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <PRIResource Remove="Platforms\Android\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PRIResource Remove="Platforms\iOS\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PRIResource Remove="Platforms\MacCatalyst\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PRIResource Remove="Platforms\Tizen\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Remove="Features\Gallery\Core\IGalleryCardInfo.cs" />
-	  <Compile Remove="Features\Gallery\Core\IGalleryPage.cs" />
-	  <Compile Remove="Features\Gallery\Models\ControlGroupInfo.cs" />
-	  <Compile Remove="Features\Gallery\Pages\BuiltIn\Controls\Border\BorderPageViewModel.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PRIResource Remove="Features\Blog\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PRIResource Remove="Features\QA\**" />
-	</ItemGroup>
-
 
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace MAUIsland;
+﻿namespace MAUIsland.Core;
 
 public partial class BoolToObjectConverterPageViewModel : NavigationAwareBaseViewModel
 {

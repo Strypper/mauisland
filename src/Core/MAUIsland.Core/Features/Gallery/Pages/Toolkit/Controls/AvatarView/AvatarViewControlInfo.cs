@@ -13,7 +13,7 @@ class AvatarViewControlInfo : ICommunityToolkitGalleryCardInfo
         Glyph = FluentUIIcon.Ic_fluent_person_circle_24_regular,
     };
     public string ControlDetail => "AvatarView is a control for displaying a user's avatar image or their initials. Avatars can be text, image, colored, shaped and supports shadow and gestures.";
-    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Toolkit/Controls/{ControlName}";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Presentations/Windows/Features/Gallery/Pages/Toolkit/Controls/AvatarView";
     public string DocumentUrl => $"https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/views/avatarview";
     public string GroupName => ControlGroupInfo.CommunityToolkit;
     public GalleryCardType CardType => GalleryCardType.Control;
