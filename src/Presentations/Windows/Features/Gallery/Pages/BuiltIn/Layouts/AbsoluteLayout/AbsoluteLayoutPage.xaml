@@ -244,8 +244,8 @@
                                         HeightRequest="1900"
                                         Source="aspnetcore_developer_roadmap.png"
                                         WidthRequest="960" />
-                                    
-                                    <!-- General Development Skill -->
+
+                                    <!--  General Development Skill  -->
                                     <Label
                                         Padding="0"
                                         AbsoluteLayout.LayoutBounds="0.527, 0.064"
@@ -254,7 +254,8 @@
                                         FontSize="8"
                                         HeightRequest="25"
                                         HorizontalTextAlignment="Center"
-                                        Opacity="{x:Binding OpacityLevel,Mode=OneWay}"
+                                        Opacity="{x:Binding OpacityLevel,
+                                                            Mode=OneWay}"
                                         Text="General Development Skill"
                                         VerticalTextAlignment="Center"
                                         WidthRequest="120">
@@ -270,7 +271,7 @@
                                         </Label.Behaviors>
                                     </Label>
 
-                                    <!-- C# -->
+                                    <!--  C#  -->
                                     <Label
                                         Padding="0"
                                         AbsoluteLayout.LayoutBounds="0.39,0.079"
@@ -279,7 +280,8 @@
                                         FontSize="8"
                                         HeightRequest="25"
                                         HorizontalTextAlignment="Center"
-                                        Opacity="{x:Binding OpacityLevel,Mode=OneWay}"
+                                        Opacity="{x:Binding OpacityLevel,
+                                                            Mode=OneWay}"
                                         Text="C#"
                                         VerticalTextAlignment="Center"
                                         WidthRequest="25">
@@ -295,7 +297,7 @@
                                         </Label.Behaviors>
                                     </Label>
 
-                                    <!-- SQL Fundamenatls -->
+                                    <!--  SQL Fundamenatls  -->
                                     <Label
                                         Padding="0"
                                         AbsoluteLayout.LayoutBounds="0.507, 0.104"
@@ -304,7 +306,8 @@
                                         FontSize="8"
                                         HeightRequest="25"
                                         HorizontalTextAlignment="Center"
-                                        Opacity="{x:Binding OpacityLevel,Mode=OneWay}"
+                                        Opacity="{x:Binding OpacityLevel,
+                                                            Mode=OneWay}"
                                         Text="SQL Fundamenatls"
                                         VerticalTextAlignment="Center"
                                         WidthRequest="85">
@@ -320,7 +323,7 @@
                                         </Label.Behaviors>
                                     </Label>
 
-                                    <!-- ASP.NET Core Basics -->
+                                    <!--  ASP.NET Core Basics  -->
                                     <Label
                                         Padding="0"
                                         AbsoluteLayout.LayoutBounds="0.339,0.135"
@@ -329,7 +332,8 @@
                                         FontSize="8"
                                         HeightRequest="25"
                                         HorizontalTextAlignment="Center"
-                                        Opacity="{x:Binding OpacityLevel,Mode=OneWay}"
+                                        Opacity="{x:Binding OpacityLevel,
+                                                            Mode=OneWay}"
                                         Text="ASP.NET Core Basics"
                                         VerticalTextAlignment="Center"
                                         WidthRequest="90">
@@ -345,7 +349,7 @@
                                         </Label.Behaviors>
                                     </Label>
 
-                                    <!-- SOLID -->
+                                    <!--  SOLID  -->
                                     <Label
                                         Padding="0"
                                         AbsoluteLayout.LayoutBounds="0.477, 0.156"
@@ -354,10 +358,115 @@
                                         FontSize="8"
                                         HeightRequest="25"
                                         HorizontalTextAlignment="Center"
-                                        Opacity="{x:Binding OpacityLevel,Mode=OneWay}"
+                                        Opacity="{x:Binding OpacityLevel,
+                                                            Mode=OneWay}"
                                         Text="SOLID"
                                         VerticalTextAlignment="Center"
                                         WidthRequest="35">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{x:Binding OpenUrlCommand}" CommandParameter="{x:StaticResource CSharpFundamentalLink}" />
+                                        </Label.GestureRecognizers>
+                                        <Label.Behaviors>
+                                            <toolkit:AnimationBehavior>
+                                                <toolkit:AnimationBehavior.AnimationType>
+                                                    <toolkit:FadeAnimation Opacity="1" />
+                                                </toolkit:AnimationBehavior.AnimationType>
+                                            </toolkit:AnimationBehavior>
+                                        </Label.Behaviors>
+                                    </Label>
+
+                                    <!--  ORM  -->
+                                    <Label
+                                        Padding="0"
+                                        AbsoluteLayout.LayoutBounds="0.3835,0.227"
+                                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                                        BackgroundColor="Red"
+                                        FontSize="8"
+                                        HeightRequest="25"
+                                        HorizontalTextAlignment="Center"
+                                        Opacity="{x:Binding OpacityLevel,
+                                                            Mode=OneWay}"
+                                        Text="ORM"
+                                        VerticalTextAlignment="Center"
+                                        WidthRequest="33">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{x:Binding OpenUrlCommand}" CommandParameter="{x:StaticResource CSharpFundamentalLink}" />
+                                        </Label.GestureRecognizers>
+                                        <Label.Behaviors>
+                                            <toolkit:AnimationBehavior>
+                                                <toolkit:AnimationBehavior.AnimationType>
+                                                    <toolkit:FadeAnimation Opacity="1" />
+                                                </toolkit:AnimationBehavior.AnimationType>
+                                            </toolkit:AnimationBehavior>
+                                        </Label.Behaviors>
+                                    </Label>
+
+                                    <!--  Dependency Injection  -->
+                                    <Label
+                                        Padding="0"
+                                        AbsoluteLayout.LayoutBounds="0.513, 0.242"
+                                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                                        BackgroundColor="Red"
+                                        FontSize="8"
+                                        HeightRequest="25"
+                                        HorizontalTextAlignment="Center"
+                                        Opacity="{x:Binding OpacityLevel,
+                                                            Mode=OneWay}"
+                                        Text="Dependency Injection"
+                                        VerticalTextAlignment="Center"
+                                        WidthRequest="95">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{x:Binding OpenUrlCommand}" CommandParameter="{x:StaticResource CSharpFundamentalLink}" />
+                                        </Label.GestureRecognizers>
+                                        <Label.Behaviors>
+                                            <toolkit:AnimationBehavior>
+                                                <toolkit:AnimationBehavior.AnimationType>
+                                                    <toolkit:FadeAnimation Opacity="1" />
+                                                </toolkit:AnimationBehavior.AnimationType>
+                                            </toolkit:AnimationBehavior>
+                                        </Label.Behaviors>
+                                    </Label>
+
+                                    <!--  Databases  -->
+                                    <Label
+                                        Padding="0"
+                                        AbsoluteLayout.LayoutBounds="0.368,0.326"
+                                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                                        BackgroundColor="Red"
+                                        FontSize="8"
+                                        HeightRequest="25"
+                                        HorizontalTextAlignment="Center"
+                                        Opacity="{x:Binding OpacityLevel,
+                                                            Mode=OneWay}"
+                                        Text="Databases"
+                                        VerticalTextAlignment="Center"
+                                        WidthRequest="50">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{x:Binding OpenUrlCommand}" CommandParameter="{x:StaticResource CSharpFundamentalLink}" />
+                                        </Label.GestureRecognizers>
+                                        <Label.Behaviors>
+                                            <toolkit:AnimationBehavior>
+                                                <toolkit:AnimationBehavior.AnimationType>
+                                                    <toolkit:FadeAnimation Opacity="1" />
+                                                </toolkit:AnimationBehavior.AnimationType>
+                                            </toolkit:AnimationBehavior>
+                                        </Label.Behaviors>
+                                    </Label>
+
+                                    <!--  Caching  -->
+                                    <Label
+                                        Padding="0"
+                                        AbsoluteLayout.LayoutBounds="0.481, 0.34"
+                                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                                        BackgroundColor="Red"
+                                        FontSize="8"
+                                        HeightRequest="25"
+                                        HorizontalTextAlignment="Center"
+                                        Opacity="{x:Binding OpacityLevel,
+                                                            Mode=OneWay}"
+                                        Text="Caching"
+                                        VerticalTextAlignment="Center"
+                                        WidthRequest="43">
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer Command="{x:Binding OpenUrlCommand}" CommandParameter="{x:StaticResource CSharpFundamentalLink}" />
                                         </Label.GestureRecognizers>
