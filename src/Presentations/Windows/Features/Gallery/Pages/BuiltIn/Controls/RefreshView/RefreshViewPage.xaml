@@ -8,7 +8,7 @@
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     Title="Refresh View"
     Padding="20"
-    x:DataType="app:RefreshViewPageViewModel"
+    x:DataType="core:RefreshViewPageViewModel"
     BackgroundColor="Transparent">
     <core:BasePage.Resources>
         <x:String x:Key="ControlInfo">
@@ -95,7 +95,7 @@
             ItemSpacing="5"
             Orientation="Vertical" />
 
-        <DataTemplate x:Key="DemoItemTemplate" x:DataType="app:DemoItem">
+        <DataTemplate x:Key="DemoItemTemplate" x:DataType="core:DemoItem">
             <VerticalStackLayout>
                 <Label Text="{x:Binding name}" />
                 <Label Text="{x:Binding time}" />

@@ -8,7 +8,7 @@ public partial class SettingsPageViewModel : NavigationAwareBaseViewModel
     #region [ Fields ]
 
     private readonly IAppInfo _appInfo;
-    private readonly IFilePicker _filePicker;
+    private readonly Core.IFilePicker _filePicker;
     private readonly IUserServices _userService;
 
     #endregion
@@ -17,7 +17,7 @@ public partial class SettingsPageViewModel : NavigationAwareBaseViewModel
 
     public SettingsPageViewModel(IAppNavigator appNavigator,
                                  IUserServices userService,
-                                 IFilePicker filePicker,
+                                 Core.IFilePicker filePicker,
                                  IAppInfo appInfo) : base(appNavigator)
     {
         _appInfo = appInfo;

@@ -13,7 +13,7 @@
     Shell.NavBarIsVisible="True"
     Shell.TabBarIsVisible="True">
     <core:BasePage.Resources>
-        <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate" x:DataType="app:ControlGroupInfo">
+        <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate" x:DataType="core:ControlGroupInfo">
             <app:BrandIconContentView
                 ComponentData="{x:Binding}"
                 DetailClicked="BrandIconContentView_DetailClicked"

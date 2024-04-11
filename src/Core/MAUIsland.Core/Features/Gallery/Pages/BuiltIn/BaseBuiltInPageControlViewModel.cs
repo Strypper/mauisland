@@ -35,6 +35,9 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
     bool isBusy;
 
     [ObservableProperty]
+    IBuiltInGalleryCardInfo controlInformation = default!;
+
+    [ObservableProperty]
     ObservableCollection<ControlIssueModel> controlIssues;
 
     [ObservableProperty]

@@ -7,7 +7,7 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="Radio Button"
     Padding="20"
-    x:DataType="app:RadioButtonPageViewModel"
+    x:DataType="core:RadioButtonPageViewModel"
     BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>

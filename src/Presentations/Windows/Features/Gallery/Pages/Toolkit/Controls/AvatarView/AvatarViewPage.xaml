@@ -8,7 +8,7 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Avatar View"
     Padding="20"
-    x:DataType="app:AvatarViewPageViewModel"
+    x:DataType="core:AvatarViewPageViewModel"
     BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>

@@ -58,7 +58,7 @@
                 DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
         </DataTemplate>
 
-        <DataTemplate x:Key="GithubCardItemTemplate" x:DataType="app:IGithubGalleryCardInfo">
+        <DataTemplate x:Key="GithubCardItemTemplate" x:DataType="core:IGithubGalleryCardInfo">
             <app:GithubCardContentView
                 ComponentData="{x:Binding}"
                 DetailClicked="ControlCardContentView_DetailClicked"

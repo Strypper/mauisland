@@ -8,7 +8,7 @@ public partial class BorderPage : IGalleryPage
     #region [ CTor ]
 
 
-    public BorderPage(BorderPageViewModel vm)
+    public BorderPage(Core.BorderPageViewModel vm)
     {
         InitializeComponent();
 

@@ -1,16 +1,8 @@
-using Bogus.DataSets;
-
 namespace MAUIsland;
 
-public class Cats
-{
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public ImageSource Photo { get; set; }
-}
 public partial class IndicatorViewPage : IGalleryPage
 {
-    #region [CTor]
+    #region [ CTor ]
     public IndicatorViewPage(IndicatorViewPageViewModel vm)
     {
         InitializeComponent();

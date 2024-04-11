@@ -8,7 +8,7 @@
     xmlns:over="clr-namespace:OverFlower;assembly=OverFlower"
     Title="OverFlower"
     Padding="10"
-    x:DataType="app:OverFlowerPageViewModel"
+    x:DataType="core:OverFlowerPageViewModel"
     BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>

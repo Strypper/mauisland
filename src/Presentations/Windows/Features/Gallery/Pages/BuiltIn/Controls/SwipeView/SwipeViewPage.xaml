@@ -7,7 +7,7 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="Swipe View"
     Padding="20"
-    x:DataType="app:SwipeViewPageViewModel"
+    x:DataType="core:SwipeViewPageViewModel"
     BackgroundColor="Transparent">
     <core:BasePage.ToolbarItems>
         <ToolbarItem

@@ -8,7 +8,7 @@
     xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
     Title="Live Charts 2"
     Padding="10"
-    x:DataType="app:LiveCharts2PageViewModel"
+    x:DataType="core:LiveCharts2PageViewModel"
     BackgroundColor="Transparent">
 
     <core:BasePage.Resources>

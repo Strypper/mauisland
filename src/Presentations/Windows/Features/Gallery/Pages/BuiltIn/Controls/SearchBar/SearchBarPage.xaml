@@ -7,7 +7,7 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="Search Bar"
     Padding="20"
-    x:DataType="app:SearchBarPageViewModel"
+    x:DataType="core:SearchBarPageViewModel"
     BackgroundColor="Transparent">
 
     <core:BasePage.Resources>
@@ -344,7 +344,7 @@
                                         x:Name="EventHandlerSearchBar"
                                         Placeholder="Search items..."
                                         TextChanged="OnSearchAsync" />
-                                    <app:ControlInfoListView ItemsSource="{x:Binding ControlGroupListForEventCall}" />
+                                    <core:ControlInfoListView ItemsSource="{x:Binding ControlGroupListForEventCall}" />
                                     <core:SourceCodeExpander Code="{x:Binding PerformASearchWithEventHandlersXamlCode}" CodeType="Xaml" />
                                     <core:SourceCodeExpander Code="{x:Binding PerformASearchWithEventHandlersCSCode}" CodeType="CSharp" />
                                 </VerticalStackLayout>
@@ -365,7 +365,7 @@
                                         x:Name="ViewModelSearchBar"
                                         Placeholder="Search items..."
                                         Text="{x:Binding SearchText}" />
-                                    <app:ControlInfoListView ItemsSource="{x:Binding ControlGroupListForCommandCall}" />
+                                    <core:ControlInfoListView ItemsSource="{x:Binding ControlGroupListForCommandCall}" />
                                     <core:SourceCodeExpander Code="{x:Binding PerformASearchWithViewModelXamlCode}" CodeType="Xaml" />
                                     <core:SourceCodeExpander Code="{x:Binding PerformASearchWithViewModelCSCode}" CodeType="CSharp" />
                                 </VerticalStackLayout>

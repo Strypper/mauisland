@@ -1,10 +1,8 @@
-﻿using CommunityToolkit.Maui.Converters;
-
-namespace MAUIsland;
+﻿namespace MAUIsland;
 
 class DoubleToIntConverterControlInfo : ICommunityToolkitGalleryCardInfo
 {
-    public string ControlName => nameof(DoubleToIntConverter);
+    public string ControlName => nameof(Core.DoubleToIntConverter);
 
     public string ControlRoute => typeof(DoubleToIntConverterPage).FullName;
     public ImageSource ControlIcon => new FontImageSource()

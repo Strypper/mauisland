@@ -85,21 +85,52 @@ public static class MauiProgram
         return builder;
     }
 
+    //static MauiAppBuilder RegisterControlInfos(this MauiAppBuilder builder)
+    //{
+    //    var assemblies = new Assembly[] { typeof(IGalleryCardInfo).Assembly };
+    //    var controlInfoTypes = assemblies
+    //        .SelectMany(
+    //            a => a
+    //                .GetTypes()
+    //                .Where(a => !a.IsAbstract && !a.IsInterface && a.IsAssignableTo(typeof(IGalleryCardInfo))));
+
+    //    foreach (var controlInfoType in controlInfoTypes)
+    //    {
+    //        builder.Services.AddSingleton(typeof(IGalleryCardInfo), controlInfoType);
+    //    }
+    //    return builder;
+    //}
+
     static MauiAppBuilder RegisterControlInfos(this MauiAppBuilder builder)
     {
-        var assemblies = new Assembly[] { typeof(IGalleryCardInfo).Assembly };
-        var controlInfoTypes = assemblies
-            .SelectMany(
-                a => a
-                    .GetTypes()
-                    .Where(a => !a.IsAbstract && !a.IsInterface && a.IsAssignableTo(typeof(IGalleryCardInfo))));
+        var assemblies = new List<Assembly>
+        {
+            typeof(IGalleryCardInfo).Assembly, // Assuming IGalleryCardInfo is now in MAUIsland.Core
+        };
 
-        foreach (var controlInfoType in controlInfoTypes)
+        // Explicitly add the MAUIsland.Core assembly, ensuring it's considered.
+        var coreAssembly = AppDomain.CurrentDomain.GetAssemblies()
+                                  .FirstOrDefault(x => x.GetName().Name == "MAUIsland.Core");
+        if (coreAssembly != null)
+        {
+            assemblies.Add(coreAssembly);
+        }
+
+        var a = assemblies.SelectMany(a => a.GetTypes());
+        var b = a.Where(t => !t.IsAbstract && !t.IsInterface && t.IsAssignableTo(typeof(IGalleryCardInfo)));
+        var c = b.Distinct();
+        var d = c.ToList();
+
+        foreach (var controlInfoType in d)
         {
             builder.Services.AddSingleton(typeof(IGalleryCardInfo), controlInfoType);
         }
+
+
         return builder;
     }
+
+
 
     //public static MauiAppBuilder RegisterControlInfos(this MauiAppBuilder builder)
     //{
@@ -136,10 +167,8 @@ public static class MauiProgram
     static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {
         builder.Services.AddSingleton<IMrIncreadibleMemeService, MrIncreadibleMemeService>();
-        builder.Services.AddSingleton<IFilePicker, FilePicker>();
         builder.Services.AddSingleton<IHomeService, HomeService>();
         builder.Services.AddSingleton<IAppNavigator, AppNavigator>();
-        builder.Services.AddSingleton<IControlsService, ControlsService>();
         builder.Services.AddSingleton<IChatHubService, SignalRChatHubService>();
         builder.Services.AddSingleton<ISecureStorageService, SecureStorageService>();
         builder.Services.AddSingleton<IUserServices, RefitIntranetUserService>();
@@ -149,9 +178,6 @@ public static class MauiProgram
         builder.Services.AddSingleton<IAppInfo>(AppInfo.Current);
         builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
 
-        //Register local database
-        builder.Services.AddTransient<IGitHubRepositorySyncService, GitHubRepositorySyncService>();
-        builder.Services.AddTransient<ICardInfoSyncService, CardInfoSyncService>();
         return builder;
     }
 
@@ -195,21 +221,37 @@ public static class MauiProgram
     static MauiAppBuilder RegisterPages(this MauiAppBuilder builder, string pattern = "Page")
     {
         var assemblies = new Assembly[] { typeof(MauiProgram).Assembly };
+        var coreAssemblies = AppDomain.CurrentDomain.GetAssemblies().Single(x => x.GetName().Name == "MAUIsland.Core");
         var pageTypes = assemblies.SelectMany(a => a.GetTypes().Where(a => a.Name.EndsWith(pattern) && !a.IsAbstract && !a.IsInterface));
         foreach (var pageType in pageTypes)
         {
             var viewModelFullName = $"{pageType.FullName}ViewModel";
             var viewModelType = Type.GetType(viewModelFullName);
 
-            builder.Services.AddTransient(pageType);
+            if (viewModelType is null)
+            {
+                var coreViewModelFullName = $"MAUIsland.Core.{pageType.Name}ViewModel";
+                var coreViewModelType = coreAssemblies.GetType(coreViewModelFullName);
 
-            if (viewModelType != null)
+                if (coreViewModelType is null)
+                    continue;
+
+                builder.Services.AddTransient(pageType);
+                builder.Services.AddTransient(coreAssemblies.GetType(coreViewModelFullName));
+            }
+            else
+            {
+                builder.Services.AddTransient(pageType);
+
+                if (viewModelType is null)
+                    continue;
+
                 builder.Services.AddTransient(viewModelType);
+            }
 
             if (pageType.IsAssignableTo(typeof(IGalleryPage)))
-            {
                 Routing.RegisterRoute(pageType.FullName, pageType);
-            }
+
         }
 
         return builder;

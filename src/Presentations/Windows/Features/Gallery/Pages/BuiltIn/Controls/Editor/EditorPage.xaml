@@ -7,7 +7,7 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="Editor"
     Padding="20"
-    x:DataType="app:EditorPageViewModel"
+    x:DataType="core:EditorPageViewModel"
     BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>

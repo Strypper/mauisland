@@ -2,15 +2,16 @@ namespace MAUIsland;
 
 public partial class SearchBarPage : IGalleryPage
 {
-    #region [Services]
+    #region [ Services ]
+
     private readonly IControlsService mauiControlsService;
     #endregion
 
-    #region[View Model]
+    #region[ View Model ]
     protected SearchBarPageViewModel ViewModel { get; set; }
     #endregion
 
-    #region [CTor]
+    #region [ CTor ]
     public SearchBarPage(SearchBarPageViewModel vm,
                          IControlsService mauiControlsService)
     {

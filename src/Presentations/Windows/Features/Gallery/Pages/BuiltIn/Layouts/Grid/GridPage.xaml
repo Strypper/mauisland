@@ -7,7 +7,7 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="Grid"
     Padding="20"
-    x:DataType="app:GridPageViewModel"
+    x:DataType="core:GridPageViewModel"
     BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
@@ -25,7 +25,7 @@
 
     <core:BasePage.Resources>
 
-        <app:DoubleToIntConverter x:Key="doubleToInt" />
+        <core:DoubleToIntConverter x:Key="doubleToInt" />
 
         <x:String x:Key="PropertiesListHeader">
             The Grid class defines the following properties:

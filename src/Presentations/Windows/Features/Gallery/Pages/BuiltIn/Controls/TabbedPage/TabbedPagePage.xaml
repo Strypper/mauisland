@@ -6,7 +6,7 @@
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Padding="10"
-    x:DataType="app:TabbedPagePageViewModel">
+    x:DataType="core:TabbedPagePageViewModel">
 
     <TabbedPage.ToolbarItems>
         <ToolbarItem

@@ -8,7 +8,7 @@
     x:Name="root"
     Title="Indicator View"
     Padding="10"
-    x:DataType="app:IndicatorViewPageViewModel"
+    x:DataType="core:IndicatorViewPageViewModel"
     BackgroundColor="Transparent">
     <core:BasePage.Resources>
 
@@ -90,7 +90,7 @@
             </x:String>
         </x:Array>
 
-        <DataTemplate x:Key="CarouseViewTemplate1" x:DataType="app:Cats">
+        <DataTemplate x:Key="CarouseViewTemplate1" x:DataType="core:Cat">
             <StackLayout>
                 <Frame
                     BorderColor="Blue"

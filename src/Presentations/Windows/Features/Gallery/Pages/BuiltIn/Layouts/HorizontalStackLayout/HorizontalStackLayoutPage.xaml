@@ -7,7 +7,7 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="HorizontalStackLayout"
     Padding="20"
-    x:DataType="app:HorizontalStackLayoutPageViewModel"
+    x:DataType="core:HorizontalStackLayoutPageViewModel"
     BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>

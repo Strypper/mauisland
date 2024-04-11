@@ -11,7 +11,7 @@
     xmlns:ui="clr-namespace:Xe.AcrylicView;assembly=Xe.AcrylicView"
     Title="Acrylic View"
     Padding="10"
-    x:DataType="app:AcrylicViewPageViewModel"
+    x:DataType="core:AcrylicViewPageViewModel"
     BackgroundColor="Transparent">
 
     <core:BasePage.Resources>

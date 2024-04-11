@@ -7,7 +7,7 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="VerticalStackLayout"
     Padding="10"
-    x:DataType="app:VerticalStackLayoutPageViewModel"
+    x:DataType="core:VerticalStackLayoutPageViewModel"
     BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>

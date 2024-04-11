@@ -8,7 +8,7 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Media Element"
     Padding="20"
-    x:DataType="app:MediaElementPageViewModel"
+    x:DataType="core:MediaElementPageViewModel"
     BackgroundColor="Transparent"
     Loaded="ContentPage_Loaded"
     Unloaded="ContentPage_Unloaded">
@@ -27,35 +27,35 @@
     </core:BasePage.ToolbarItems>
 
     <core:BasePage.Resources>
-        <x:Array x:Key="SupportedFormats" Type="{x:Type app:SupportedFormatsTable}">
-            <app:SupportedFormatsTable
+        <x:Array x:Key="SupportedFormats" Type="{x:Type core:SupportedFormatsTable}">
+            <core:SupportedFormatsTable
                 Link="ExoPlayer Supported Formats"
                 Notes=""
                 Platform="Android" />
-            <app:SupportedFormatsTable
+            <core:SupportedFormatsTable
                 Link="iOS/macOS Supported Formats"
                 Notes="No official documentation on this exists"
                 Platform="iOS/macOS" />
-            <app:SupportedFormatsTable
+            <core:SupportedFormatsTable
                 Link="Windows Supported Formats"
                 Notes="On Windows the supported formats are very much dependent on what codecs are installed on the user's machine"
                 Platform="Windows" />
-            <app:SupportedFormatsTable
+            <core:SupportedFormatsTable
                 Link="Tizen Supported Formats"
                 Notes=""
                 Platform="Tizen" />
         </x:Array>
 
-        <x:Array x:Key="PlatformImplementations" Type="{x:Type app:SupportedFormatsTable}">
-            <app:SupportedFormatsTable
+        <x:Array x:Key="PlatformImplementations" Type="{x:Type core:SupportedFormatsTable}">
+            <core:SupportedFormatsTable
                 Link="ExoPlayer, big thank you to the ExoPlayerXamarin maintainers!"
                 Notes=""
                 Platform="Android" />
-            <app:SupportedFormatsTable
+            <core:SupportedFormatsTable
                 Link="AVPlayer"
                 Notes=""
                 Platform="iOS/macOS" />
-            <app:SupportedFormatsTable
+            <core:SupportedFormatsTable
                 Link="MediaPlayer"
                 Notes=""
                 Platform="Windows" />
@@ -319,7 +319,7 @@
             </Frame>
         </DataTemplate>
 
-        <DataTemplate x:Key="SupportedFormatsTableGrid" x:DataType="app:SupportedFormatsTable">
+        <DataTemplate x:Key="SupportedFormatsTableGrid" x:DataType="core:SupportedFormatsTable">
             <Frame
                 Margin="0"
                 Padding="5"
@@ -344,7 +344,7 @@
             </Frame>
         </DataTemplate>
 
-        <DataTemplate x:Key="PlatformImplementationsTableGrid" x:DataType="app:SupportedFormatsTable">
+        <DataTemplate x:Key="PlatformImplementationsTableGrid" x:DataType="core:SupportedFormatsTable">
             <Frame
                 Margin="0"
                 Padding="5"

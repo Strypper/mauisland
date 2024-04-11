@@ -7,7 +7,7 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="Time Picker"
     Padding="20"
-    x:DataType="app:TimePickerPageViewModel"
+    x:DataType="core:TimePickerPageViewModel"
     BackgroundColor="Transparent">
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -23,7 +23,7 @@
     </core:BasePage.ToolbarItems>
 
     <core:BasePage.Resources>
-        <app:TimeOnyToTimeSpanConverter x:Key="TimeOnyToTimeSpanConverter" />
+        <core:TimeOnyToTimeSpanConverter x:Key="TimeOnyToTimeSpanConverter" />
 
         <x:String x:Key="PropertiesListHeader">
             TimePicker defines the following properties:

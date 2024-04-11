@@ -24,8 +24,11 @@ public static class ServicesExtension
 
 
         builder.Services.RegisterGitHubFeatures();
+        builder.Services.AddSingleton<IFilePicker, FilePicker>();
         builder.Services.AddTransient<IDialogService, DialogService>();
-
+        builder.Services.AddSingleton<IControlsService, ControlsService>();
+        builder.Services.AddTransient<IGitHubRepositorySyncService, GitHubRepositorySyncService>();
+        builder.Services.AddTransient<ICardInfoSyncService, CardInfoSyncService>();
 
         #region [ LocalDb ]
 
@@ -39,3 +42,4 @@ public static class ServicesExtension
         return builder;
     }
 }
+
