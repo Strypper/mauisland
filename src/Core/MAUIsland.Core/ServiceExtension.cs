@@ -17,9 +17,9 @@ public static class ServicesExtension
         builder.UseAcrylicView();
         builder.UseSkiaSharp(true);
         builder.UseMaterialComponents();
-        builder.UseMauiCommunityToolkit();
+        //builder.UseMauiCommunityToolkit();
 
-        //builder.UseMauiCommunityToolkit(option => option.SetShouldEnableSnackbarOnWindows(true));
+        builder.UseMauiCommunityToolkit(option => option.SetShouldEnableSnackbarOnWindows(true));
         builder.UseMauiCommunityToolkitCore();
         builder.UseMauiCommunityToolkitMediaElement();
 
