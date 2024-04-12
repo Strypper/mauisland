@@ -199,7 +199,7 @@
         <ScrollView>
             <VerticalStackLayout Spacing="20">
                 <Border Padding="20" StrokeShape="RoundRectangle 4">
-                    <Label Text="{x:Binding ControlInformation.ControlDetail}" />
+                    <Label Text="{x:Binding ControlInformation.ControlDetail}" FontSize="Subtitle" />
                 </Border>
                 <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <CollectionView
