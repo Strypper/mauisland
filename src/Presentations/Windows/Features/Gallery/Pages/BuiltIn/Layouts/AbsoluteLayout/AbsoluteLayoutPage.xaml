@@ -8,8 +8,9 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Absolute Layout"
     Padding="20"
-    x:DataType="app:AbsoluteLayoutPageViewModel"
-    BackgroundColor="Transparent">
+    x:DataType="core:AbsoluteLayoutPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -236,6 +237,10 @@
                             <VerticalStackLayout Spacing="10">
                                 <Label FontSize="Medium" Text="Apply elements on an image" />
                                 <Grid BackgroundColor="White" HeightRequest="1" />
+                                <HorizontalStackLayout Spacing="10">
+                                    <Label Text="Toggle elements opacity:" VerticalOptions="Center" />
+                                    <Switch IsToggled="{x:Binding IsToggleElementsVisible, Mode=TwoWay}" VerticalOptions="Center" />
+                                </HorizontalStackLayout>
                                 <AbsoluteLayout
                                     HorizontalOptions="Center"
                                     VerticalOptions="Start"
@@ -262,13 +267,6 @@
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer Command="{x:Binding OpenUrlCommand}" CommandParameter="{x:StaticResource CSharpFundamentalLink}" />
                                         </Label.GestureRecognizers>
-                                        <Label.Behaviors>
-                                            <toolkit:AnimationBehavior>
-                                                <toolkit:AnimationBehavior.AnimationType>
-                                                    <toolkit:FadeAnimation Opacity="1" />
-                                                </toolkit:AnimationBehavior.AnimationType>
-                                            </toolkit:AnimationBehavior>
-                                        </Label.Behaviors>
                                     </Label>
 
                                     <!--  C#  -->
@@ -288,13 +286,6 @@
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer Command="{x:Binding OpenUrlCommand}" CommandParameter="{x:StaticResource CSharpFundamentalLink}" />
                                         </Label.GestureRecognizers>
-                                        <Label.Behaviors>
-                                            <toolkit:AnimationBehavior>
-                                                <toolkit:AnimationBehavior.AnimationType>
-                                                    <toolkit:FadeAnimation Opacity="1" />
-                                                </toolkit:AnimationBehavior.AnimationType>
-                                            </toolkit:AnimationBehavior>
-                                        </Label.Behaviors>
                                     </Label>
 
                                     <!--  SQL Fundamenatls  -->
@@ -314,13 +305,6 @@
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer Command="{x:Binding OpenUrlCommand}" CommandParameter="{x:StaticResource CSharpFundamentalLink}" />
                                         </Label.GestureRecognizers>
-                                        <Label.Behaviors>
-                                            <toolkit:AnimationBehavior>
-                                                <toolkit:AnimationBehavior.AnimationType>
-                                                    <toolkit:FadeAnimation Opacity="1" />
-                                                </toolkit:AnimationBehavior.AnimationType>
-                                            </toolkit:AnimationBehavior>
-                                        </Label.Behaviors>
                                     </Label>
 
                                     <!--  ASP.NET Core Basics  -->
@@ -340,13 +324,6 @@
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer Command="{x:Binding OpenUrlCommand}" CommandParameter="{x:StaticResource CSharpFundamentalLink}" />
                                         </Label.GestureRecognizers>
-                                        <Label.Behaviors>
-                                            <toolkit:AnimationBehavior>
-                                                <toolkit:AnimationBehavior.AnimationType>
-                                                    <toolkit:FadeAnimation Opacity="1" />
-                                                </toolkit:AnimationBehavior.AnimationType>
-                                            </toolkit:AnimationBehavior>
-                                        </Label.Behaviors>
                                     </Label>
 
                                     <!--  SOLID  -->
@@ -366,13 +343,6 @@
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer Command="{x:Binding OpenUrlCommand}" CommandParameter="{x:StaticResource CSharpFundamentalLink}" />
                                         </Label.GestureRecognizers>
-                                        <Label.Behaviors>
-                                            <toolkit:AnimationBehavior>
-                                                <toolkit:AnimationBehavior.AnimationType>
-                                                    <toolkit:FadeAnimation Opacity="1" />
-                                                </toolkit:AnimationBehavior.AnimationType>
-                                            </toolkit:AnimationBehavior>
-                                        </Label.Behaviors>
                                     </Label>
 
                                     <!--  ORM  -->
@@ -392,13 +362,6 @@
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer Command="{x:Binding OpenUrlCommand}" CommandParameter="{x:StaticResource CSharpFundamentalLink}" />
                                         </Label.GestureRecognizers>
-                                        <Label.Behaviors>
-                                            <toolkit:AnimationBehavior>
-                                                <toolkit:AnimationBehavior.AnimationType>
-                                                    <toolkit:FadeAnimation Opacity="1" />
-                                                </toolkit:AnimationBehavior.AnimationType>
-                                            </toolkit:AnimationBehavior>
-                                        </Label.Behaviors>
                                     </Label>
 
                                     <!--  Dependency Injection  -->
@@ -418,13 +381,6 @@
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer Command="{x:Binding OpenUrlCommand}" CommandParameter="{x:StaticResource CSharpFundamentalLink}" />
                                         </Label.GestureRecognizers>
-                                        <Label.Behaviors>
-                                            <toolkit:AnimationBehavior>
-                                                <toolkit:AnimationBehavior.AnimationType>
-                                                    <toolkit:FadeAnimation Opacity="1" />
-                                                </toolkit:AnimationBehavior.AnimationType>
-                                            </toolkit:AnimationBehavior>
-                                        </Label.Behaviors>
                                     </Label>
 
                                     <!--  Databases  -->
@@ -444,13 +400,6 @@
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer Command="{x:Binding OpenUrlCommand}" CommandParameter="{x:StaticResource CSharpFundamentalLink}" />
                                         </Label.GestureRecognizers>
-                                        <Label.Behaviors>
-                                            <toolkit:AnimationBehavior>
-                                                <toolkit:AnimationBehavior.AnimationType>
-                                                    <toolkit:FadeAnimation Opacity="1" />
-                                                </toolkit:AnimationBehavior.AnimationType>
-                                            </toolkit:AnimationBehavior>
-                                        </Label.Behaviors>
                                     </Label>
 
                                     <!--  Caching  -->
@@ -470,13 +419,6 @@
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer Command="{x:Binding OpenUrlCommand}" CommandParameter="{x:StaticResource CSharpFundamentalLink}" />
                                         </Label.GestureRecognizers>
-                                        <Label.Behaviors>
-                                            <toolkit:AnimationBehavior>
-                                                <toolkit:AnimationBehavior.AnimationType>
-                                                    <toolkit:FadeAnimation Opacity="1" />
-                                                </toolkit:AnimationBehavior.AnimationType>
-                                            </toolkit:AnimationBehavior>
-                                        </Label.Behaviors>
                                     </Label>
 
                                 </AbsoluteLayout>

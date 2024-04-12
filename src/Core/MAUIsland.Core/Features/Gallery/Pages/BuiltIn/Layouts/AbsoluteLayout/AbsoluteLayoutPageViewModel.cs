@@ -1,7 +1,7 @@
 using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
 
-namespace MAUIsland;
+namespace MAUIsland.Core;
 public partial class AbsoluteLayoutPageViewModel : BaseBuiltInPageControlViewModel
 {
     #region [ Fields ]
@@ -22,10 +22,10 @@ public partial class AbsoluteLayoutPageViewModel : BaseBuiltInPageControlViewMod
     #region [ Properties ]
 
     [ObservableProperty]
-    IBuiltInGalleryCardInfo controlInformation;
+    bool isToggleElementsVisible = false;
 
     [ObservableProperty]
-    double opacityLevel = 1;
+    double opacityLevel = 0;
     #endregion
 
     #region [ Overrides ]
@@ -53,11 +53,22 @@ public partial class AbsoluteLayoutPageViewModel : BaseBuiltInPageControlViewMod
     [RelayCommand]
     async Task RefreshAsync()
     {
+        if (ControlInformation is null)
+            return;
+
         await RefreshControlIssues(true,
                                    ControlInformation.ControlName,
                                    ControlInformation.GitHubAuthorIssueName,
                                    ControlInformation.GitHubRepositoryIssueName,
                                    ControlInformation.GitHubIssueLabels);
+    }
+    #endregion
+
+    #region [ Methods ]
+
+    partial void OnIsToggleElementsVisibleChanged(bool value)
+    {
+        OpacityLevel = value ? 1 : 0;
     }
     #endregion
 }
