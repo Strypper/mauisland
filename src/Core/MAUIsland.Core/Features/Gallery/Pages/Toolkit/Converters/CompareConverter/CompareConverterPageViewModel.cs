@@ -1,14 +1,11 @@
-﻿using Microsoft.Maui.Controls;
-using System.Reflection;
-
-namespace MAUIsland;
+﻿namespace MAUIsland.Core;
 
 public partial class CompareConverterPageViewModel : NavigationAwareBaseViewModel
 {
     #region [ CTor ]
     public CompareConverterPageViewModel(IAppNavigator appNavigator)
         : base(appNavigator)
-    { } 
+    { }
     #endregion
 
     #region [ Properties ]

@@ -1,14 +1,11 @@
-﻿using Microsoft.Maui.Controls;
-using System.Reflection;
+﻿namespace MAUIsland.Core;
 
-namespace MAUIsland;
-
-public partial class ByteArrayToImageSourceConverterPageViewModel : NavigationAwareBaseViewModel
+public partial class DateTimeOffsetConverterPageViewModel : NavigationAwareBaseViewModel
 {
     #region [ CTor ]
-    public ByteArrayToImageSourceConverterPageViewModel(IAppNavigator appNavigator)
+    public DateTimeOffsetConverterPageViewModel(IAppNavigator appNavigator)
         : base(appNavigator)
-    { } 
+    { }
     #endregion
 
     #region [ Properties ]
@@ -16,10 +13,7 @@ public partial class ByteArrayToImageSourceConverterPageViewModel : NavigationAw
     IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
-    byte[] imageByteArray;
-
-    [ObservableProperty]
-    string imageByteArrayToString;
+    DateTimeOffset dateTimeOffset = new DateTimeOffset();
 
     [ObservableProperty]
     string setupDescription =
@@ -48,20 +42,21 @@ public partial class ByteArrayToImageSourceConverterPageViewModel : NavigationAw
 
     [ObservableProperty]
     string xamlConverterTesting =
-        "<Image Source=\"{x:Binding ImageByteArray, Converter={x:StaticResource ByteArrayToImageSourceConverter}}\"/>";
+        "<DatePicker Date=\"{x:Binding DateTimeOffset, Converter={StaticResource DateTimeOffsetConverter}}\"\r\n" +
+        "            HorizontalOptions=\"Center\" />";
 
     [ObservableProperty]
     string xamlConverterSetup =
         "<ContentPage>\r\n" +
         "   <ContentPage.Resources>\r\n" +
-        "        <toolkit:ByteArrayToImageSourceConverter x:Key=\"ByteArrayToImageSourceConverter\"/>\r\n" +
+        "        <toolkit:DateTimeOffsetConverter x:Key=\"DateTimeOffsetConverter\" />\r\n" +
         "   </ContentPage.Resources>\r\n" +
         "</ContentPage>";
 
     [ObservableProperty]
     string cSharpxamlConverterTestingViewModel =
         "[ObservableProperty]\r\n" +
-        "byte[] imageByteArray;";
+        "DateTimeOffset dateTimeOffset = new DateTimeOffset();";
     #endregion
 
     #region[ Relay Command ]
@@ -82,20 +77,9 @@ public partial class ByteArrayToImageSourceConverterPageViewModel : NavigationAw
     #region [ Data ]
     private async Task LoadDataAsync()
     {
-        ImageByteArray = await ImageUrlToByteArrayAsync("https://aka.ms/campus.jpg");
-        ImageByteArrayToString = ByteArrayToString(ImageByteArray);
     }
     #endregion
 
     #region [ Method ]
-    public async Task<byte[]> ImageUrlToByteArrayAsync(string imageUrl)
-    {
-        using var httpClient = new HttpClient();
-        return await httpClient.GetByteArrayAsync(imageUrl).ConfigureAwait(false);
-    }
-    public string ByteArrayToString(byte[] byteArray)
-    {
-        return BitConverter.ToString(byteArray);
-    }
     #endregion
 }

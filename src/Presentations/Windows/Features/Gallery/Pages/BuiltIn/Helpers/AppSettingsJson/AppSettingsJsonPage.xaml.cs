@@ -3,16 +3,22 @@ using Microsoft.Extensions.Configuration;
 namespace MAUIsland;
 public partial class AppSettingsJsonPage : IGalleryPage
 {
-    #region [Services]
+    #region [ Fields ]
+
+    private readonly AppSettingsJsonPageViewModel viewModel;
+    #endregion
+
+    #region [ Properties ]
+
     Settings settings;
     #endregion
 
-    #region [CTor]
+    #region [ CTor ]
     public AppSettingsJsonPage(AppSettingsJsonPageViewModel vm)
     {
         InitializeComponent();
 
-        BindingContext = vm;
+        BindingContext = viewModel = vm;
 
         settings = ServiceHelper.GetService<IConfiguration>()
                                    .GetRequiredSection("Settings")
@@ -20,7 +26,17 @@ public partial class AppSettingsJsonPage : IGalleryPage
     }
     #endregion
 
-    #region [Event Handlers]
+    #region [ Event Handlers ]
+
+    private void BasePage_Loaded(object sender, EventArgs e)
+    {
+        if (NewWindowParameter is not null && viewModel.ControlInformation is null)
+        {
+            viewModel.SetControlInformation(NewWindowParameter);
+            viewModel.RefreshCommand.Execute(null);
+        }
+    }
+
     private async void SettingsButton_Clicked(object sender, EventArgs e)
     {
         await DisplayAlert("Config", $"{nameof(settings.KeyOne)}: {settings.KeyOne}" +

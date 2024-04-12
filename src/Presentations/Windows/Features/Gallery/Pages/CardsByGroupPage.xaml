@@ -309,10 +309,7 @@
                             BindableLayout.ItemTemplateSelector="{x:StaticResource BrandCardTemplateSelector}"
                             BindableLayout.ItemsSource="{x:Binding FilteredControlGroupList,
                                                                    Mode=OneWay}"
-                            HorizontalOptions="{x:OnIdiom Desktop=Start,
-                                                          Tablet=Start,
-                                                          Default=Start,
-                                                          Phone=Center}"
+                            HorizontalOptions="Center"
                             HorizontalSpacing="10"
                             VerticalSpacing="10">
                             <mdc:WrapLayout.Triggers>

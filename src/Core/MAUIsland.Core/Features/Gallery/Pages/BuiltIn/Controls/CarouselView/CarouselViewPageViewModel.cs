@@ -483,6 +483,9 @@ public partial class CarouselViewPageViewModel : BaseBuiltInPageControlViewModel
     async Task RefreshAsync()
     {
         await LoadDataAsync(true);
+
+        if (ControlInformation is null)
+            return;
         await RefreshControlIssues(true,
                                    ControlInformation.ControlName,
                                    ControlInformation.GitHubAuthorIssueName,

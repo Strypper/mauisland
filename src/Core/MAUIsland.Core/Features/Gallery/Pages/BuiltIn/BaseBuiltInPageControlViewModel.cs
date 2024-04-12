@@ -38,10 +38,10 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
     IBuiltInGalleryCardInfo controlInformation = default!;
 
     [ObservableProperty]
-    ObservableCollection<ControlIssueModel> controlIssues;
+    ObservableCollection<ControlIssueModel> controlIssues = default!;
 
     [ObservableProperty]
-    ControlIssueModel selectedControlIssue;
+    ControlIssueModel selectedControlIssue = default!;
 
     #endregion
 
@@ -189,6 +189,11 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
         {
             await AppNavigator.ShowSnackbarAsync(e.Message, null, null);
         }
+    }
+
+    public void SetControlInformation(object controlInfo)
+    {
+        ControlInformation = (IBuiltInGalleryCardInfo)controlInfo;
     }
     #endregion
 

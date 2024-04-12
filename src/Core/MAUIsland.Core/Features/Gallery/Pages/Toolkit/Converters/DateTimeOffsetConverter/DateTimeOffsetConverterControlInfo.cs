@@ -1,12 +1,12 @@
 ﻿using CommunityToolkit.Maui.Converters;
 
-namespace MAUIsland;
+namespace MAUIsland.Core;
 
-class DateTimeOffsetConverterControlInfo : ICommunityToolkitGalleryCardInfo
+public class DateTimeOffsetConverterControlInfo : ICommunityToolkitGalleryCardInfo
 {
     public string ControlName => nameof(DateTimeOffsetConverter);
 
-    public string ControlRoute => typeof(DateTimeOffsetConverterPage).FullName;
+    public string ControlRoute => "MAUIsland.DateTimeOffsetConverterPage";
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,

@@ -8,7 +8,8 @@
     Title="Progress Bar"
     Padding="20"
     x:DataType="core:ProgressBarPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
     <core:BasePage.ToolbarItems>
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"

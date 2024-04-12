@@ -2,12 +2,31 @@ namespace MAUIsland;
 
 public partial class EditorPage : IGalleryPage
 {
-	public EditorPage(EditorPageViewModel vm)
-	{
-		InitializeComponent();
+    #region [ Fields ]
 
-		BindingContext = vm;
-	}
+    private readonly EditorPageViewModel viewModel;
+    #endregion
+
+    #region [ CTor ]
+
+    public EditorPage(EditorPageViewModel vm)
+    {
+        InitializeComponent();
+
+        BindingContext = viewModel = vm;
+    }
+    #endregion
+
+    #region [ Event Handlers ]
+
+    private void BasePage_Loaded(object sender, EventArgs e)
+    {
+        if (NewWindowParameter is not null && viewModel.ControlInformation is null)
+        {
+            viewModel.SetControlInformation(NewWindowParameter);
+            viewModel.RefreshCommand.Execute(null);
+        }
+    }
 
     void OnEditorGetTextLength(object sender, TextChangedEventArgs e)
     {
@@ -24,4 +43,5 @@ public partial class EditorPage : IGalleryPage
     {
         string text = ((Editor)sender).Text;
     }
+    #endregion
 }

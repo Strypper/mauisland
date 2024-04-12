@@ -103,6 +103,9 @@ public partial class SearchBarPageViewModel : BaseBuiltInPageControlViewModel
     [RelayCommand]
     async Task RefreshAsync()
     {
+        if (ControlInformation is null)
+            return;
+
         await RefreshControlIssues(true,
                                    ControlInformation.ControlName,
                                    ControlInformation.GitHubAuthorIssueName,

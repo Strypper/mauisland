@@ -18,9 +18,10 @@ public static class ServicesExtension
         builder.UseSkiaSharp(true);
         builder.UseMaterialComponents();
         builder.UseMauiCommunityToolkit();
+
+        //builder.UseMauiCommunityToolkit(option => option.SetShouldEnableSnackbarOnWindows(true));
         builder.UseMauiCommunityToolkitCore();
         builder.UseMauiCommunityToolkitMediaElement();
-
 
 
         builder.Services.RegisterGitHubFeatures();

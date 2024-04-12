@@ -8,7 +8,7 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Compare Converter"
     Padding="20"
-    x:DataType="app:CompareConverterPageViewModel"
+    x:DataType="core:CompareConverterPageViewModel"
     BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>

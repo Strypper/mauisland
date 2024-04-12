@@ -8,7 +8,8 @@
     Title="Search Bar"
     Padding="20"
     x:DataType="core:SearchBarPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.Resources>
         <x:String x:Key="ControlInfo">

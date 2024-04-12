@@ -169,6 +169,8 @@ public partial class BorderPageViewModel : BaseBuiltInPageControlViewModel
         await base.OnAppearingAsync();
         await RefreshAsync();
     }
+
+
     #endregion
 
     #region [ Relay Commands ]
@@ -180,6 +182,9 @@ public partial class BorderPageViewModel : BaseBuiltInPageControlViewModel
     [RelayCommand]
     async Task RefreshAsync()
     {
+        if (ControlInformation is null)
+            return;
+
         await RefreshControlIssues(true,
                                    ControlInformation.ControlName,
                                    ControlInformation.GitHubAuthorIssueName,
@@ -194,4 +199,5 @@ public partial class BorderPageViewModel : BaseBuiltInPageControlViewModel
         await AppNavigator.ShowSnackbarAsync("Code copied to clipboard", null, null);
     }
     #endregion
+
 }

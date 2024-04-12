@@ -1,17 +1,14 @@
-﻿using Microsoft.Maui.Controls;
-using System.Reflection;
-
-namespace MAUIsland;
+﻿namespace MAUIsland.Core;
 
 public partial class ColorConverterPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [Services]
+    #region [ Fields ]
     #endregion
 
     #region [ CTor ]
     public ColorConverterPageViewModel(IAppNavigator appNavigator)
         : base(appNavigator)
-    { } 
+    { }
     #endregion
 
     #region [ Properties ]
@@ -400,11 +397,11 @@ public partial class ColorConverterPageViewModel : NavigationAwareBaseViewModel
     [RelayCommand]
     Task OpenColorToByteGreenConverterUrlAsync()
         => AppNavigator.OpenUrlAsync("https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/converters/color-to-byte-green-converter");
-    
+
     [RelayCommand]
     Task OpenColorToCmykaStringConverterUrlAsync()
         => AppNavigator.OpenUrlAsync("https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/converters/color-to-cmyka-string-converter");
-    
+
     [RelayCommand]
     Task OpenColorToCmykStringConverterUrlAsync()
         => AppNavigator.OpenUrlAsync("https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/converters/color-to-cmyk-string-converter");
@@ -472,7 +469,7 @@ public partial class ColorConverterPageViewModel : NavigationAwareBaseViewModel
     {
         base.OnInit(query);
         ControlInformation = query.GetData<IGalleryCardInfo>();
-        LoadDataAsync().FireAndForget(); 
+        LoadDataAsync().FireAndForget();
     }
     #endregion
 

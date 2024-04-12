@@ -4,8 +4,9 @@ namespace MAUIsland;
 
 public partial class CollectionViewPage : IGalleryPage
 {
-    #region [ Service ]
-    protected readonly CollectionViewPageViewModel ViewModel;
+    #region [ Fields ]
+
+    protected readonly CollectionViewPageViewModel viewModel;
     #endregion
 
     #region [ CTor ]
@@ -13,7 +14,7 @@ public partial class CollectionViewPage : IGalleryPage
     {
         InitializeComponent();
 
-        BindingContext = ViewModel = vm;
+        BindingContext = viewModel = vm;
     }
     #endregion
 
@@ -21,22 +22,32 @@ public partial class CollectionViewPage : IGalleryPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        ViewModel.SpanningNumberChanged += ViewModelSpanningNumberPropertyChanged;
+        viewModel.SpanningNumberChanged += ViewModelSpanningNumberPropertyChanged;
     }
 
     protected override void OnDisappearing()
     {
         base.OnDisappearing();
-        ViewModel.SpanningNumberChanged -= ViewModelSpanningNumberPropertyChanged;
+        viewModel.SpanningNumberChanged -= ViewModelSpanningNumberPropertyChanged;
     }
     #endregion
 
     #region [ Event Handler ]
+
+    private void BasePage_Loaded(object sender, EventArgs e)
+    {
+        if (NewWindowParameter is not null && viewModel.ControlInformation is null)
+        {
+            viewModel.SetControlInformation(NewWindowParameter);
+            viewModel.RefreshCommand.Execute(null);
+        }
+    }
+
     private void ViewModelSpanningNumberPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName == "SpanningNumber")
         {
-            switch (ViewModel.SpanningNumber)
+            switch (viewModel.SpanningNumber)
             {
                 case 1:
                     CollectionViewSpanningChange.ItemTemplate = (DataTemplate)Resources["ControllInfoCollectionTemplate"];
@@ -60,7 +71,7 @@ public partial class CollectionViewPage : IGalleryPage
         var selectedFilter = picker.SelectedItem.ToString();
 
         var collectionView = CollectionViewItemLayoutChanged;
-        var itemsSource = ViewModel.ControlGroupList;
+        var itemsSource = viewModel.ControlGroupList;
 
         var filteredItems = new ObservableCollection<IGalleryCardInfo>(itemsSource.Where(x => x.CardType.ToString() == selectedFilter));
 

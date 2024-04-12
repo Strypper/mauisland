@@ -3,24 +3,40 @@ namespace MAUIsland;
 
 public partial class ProgressBarPage : IGalleryPage
 {
-    private double progress;
-    public double Progress
-    {
-        get { return progress; }
-        set { progress = value; }
-    }
+    #region [ Fields ]
+
+    private readonly ProgressBarPageViewModel viewModel;
+    #endregion
 
     #region [ CTor ]
 
     public ProgressBarPage(ProgressBarPageViewModel vm)
     {
         InitializeComponent();
-        BindingContext = vm;
+        BindingContext = viewModel = vm;
+    }
+    #endregion
+
+    #region [ Properties ]
+
+    private double progress;
+    public double Progress
+    {
+        get { return progress; }
+        set { progress = value; }
     }
     #endregion
 
     #region [ Event Handlers ]
 
+    private void BasePage_Loaded(object sender, EventArgs e)
+    {
+        if (NewWindowParameter is not null && viewModel.ControlInformation is null)
+        {
+            viewModel.SetControlInformation(NewWindowParameter);
+            viewModel.RefreshCommand.Execute(null);
+        }
+    }
 
     private async void ProgressBarLoadButtonClicked(object sender, EventArgs e)
     {

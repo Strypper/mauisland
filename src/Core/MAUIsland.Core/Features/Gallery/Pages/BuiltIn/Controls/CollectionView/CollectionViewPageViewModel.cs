@@ -1022,6 +1022,9 @@ public partial class CollectionViewPageViewModel : BaseBuiltInPageControlViewMod
     [RelayCommand]
     async Task RefreshPageAsync()
     {
+        if (ControlInformation is null)
+            return;
+
         await RefreshControlIssues(true,
                                    ControlInformation.ControlName,
                                    ControlInformation.GitHubAuthorIssueName,

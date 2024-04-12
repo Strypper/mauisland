@@ -278,7 +278,7 @@ public partial class RadioButtonPageViewModel : BaseBuiltInPageControlViewModel
     }
     #endregion
 
-    #region [Relay Commands]
+    #region [ Relay Commands ]
 
     [RelayCommand]
     Task OpenUrlAsync(string url)
@@ -292,6 +292,10 @@ public partial class RadioButtonPageViewModel : BaseBuiltInPageControlViewModel
     [RelayCommand]
     async Task RefreshAsync()
     {
+
+        if (ControlInformation is null)
+            return;
+
         await RefreshControlIssues(true,
                                    ControlInformation.ControlName,
                                    ControlInformation.GitHubAuthorIssueName,

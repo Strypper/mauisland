@@ -44,7 +44,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Features\Chat\" />
 	  <Folder Include="Features\Gallery\Pages\Toolkit\Helpers\" />
 	  <Folder Include="Features\Gallery\Pages\Toolkit\Layouts\" />
 	</ItemGroup>

@@ -35,44 +35,45 @@
             Source="fluentuibackground.jpg"
             VerticalOptions="Fill" />
 
-        <acrylic:AcrylicView
+        <!--<acrylic:AcrylicView
+            Padding="0,30,0,0"
             BorderColor="Black"
             BorderThickness="5"
             CornerRadius="8"
-            EffectStyle="ExtraDark"
-            HeightRequest="{x:OnIdiom Desktop=350,
-                                      Tablet=250,
-                                      Phone=550}"
+            EffectStyle="Dark"
+            HeightRequest="350"
             HorizontalOptions="Center"
             TintOpacity=".15 "
             VerticalOptions="Center"
-            WidthRequest="{x:OnIdiom Desktop=550,
-                                     Tablet=650,
-                                     Phone=320}">
-            <Border
-                HeightRequest="300"
-                StrokeThickness="0"
-                VerticalOptions="Center"
-                WidthRequest="500">
-                <CollectionView
-                    HorizontalOptions="Fill"
-                    ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
-                    ItemsSource="{x:Binding ControlGroups,
-                                            Mode=OneWay}"
-                    VerticalOptions="Fill">
-                    <CollectionView.ItemsLayout>
-                        <GridItemsLayout
-                            HorizontalItemSpacing="5"
-                            Orientation="Vertical"
-                            Span="{x:OnIdiom Desktop=3,
-                                             Phone=2,
-                                             Tablet=3,
-                                             TV=4}"
-                            VerticalItemSpacing="5" />
-                    </CollectionView.ItemsLayout>
-                </CollectionView>
-            </Border>
-        </acrylic:AcrylicView>
+            WidthRequest="550">-->
+        <Border
+            BackgroundColor="#252526"
+            HeightRequest="330"
+            HorizontalOptions="Center"
+            Stroke="Black"
+            StrokeShape="RoundRectangle 6"
+            StrokeThickness="5"
+            VerticalOptions="Center"
+            WidthRequest="550">
+            <CollectionView
+                HorizontalOptions="Center"
+                ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
+                ItemsSource="{x:Binding ControlGroups,
+                                        Mode=OneWay}"
+                VerticalOptions="Center">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        HorizontalItemSpacing="5"
+                        Orientation="Vertical"
+                        Span="{x:OnIdiom Desktop=3,
+                                         Phone=2,
+                                         Tablet=3,
+                                         TV=4}"
+                        VerticalItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+        </Border>
+        <!--</acrylic:AcrylicView>-->
 
         <Button
             Clicked="NavigateToBuiltIn_Clicked"

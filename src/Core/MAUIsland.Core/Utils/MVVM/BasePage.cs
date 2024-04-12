@@ -2,6 +2,7 @@
 
 public class BasePage : ContentPage
 {
+    public object NewWindowParameter { get; set; } = default!;
     protected override void OnAppearing()
     {
         base.OnAppearing();
@@ -20,5 +21,10 @@ public class BasePage : ContentPage
         {
             vm.OnDisappearingAsync();
         }
+    }
+
+    public void SetNewWindowParameter(object parameter)
+    {
+        NewWindowParameter = parameter;
     }
 }
