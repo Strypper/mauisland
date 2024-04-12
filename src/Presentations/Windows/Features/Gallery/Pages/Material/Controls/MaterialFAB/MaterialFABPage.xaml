@@ -8,8 +8,9 @@
     xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
     xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
     Title="MaterialFAB"
-    Padding="10"
-    x:DataType="app:MaterialFABPageViewModel">
+    Padding="20"
+    x:DataType="core:MaterialFABPageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -148,17 +149,17 @@
         </SwipeView.LeftItems>
         <ScrollView>
             <VerticalStackLayout Spacing="20">
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                    <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-                </Frame>
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <CollectionView
                         Footer="{x:StaticResource PropertiesListFooter}"
                         Header="{x:StaticResource PropertiesListHeader}"
                         ItemsSource="{x:StaticResource PropertiesItemsSource}"
                         Style="{x:StaticResource PropertiesListStyle}" />
-                </Frame>
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <VerticalStackLayout Spacing="10">
                         <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Styles" />
                         <Label Text="There are 5 Styles of buttons: 1. Elevated, 2. Filled, 3. FilledTonal , 4. Outlined, 5. Text." />
@@ -169,7 +170,7 @@
                         </core:HorizontalWrapLayout>
                         <core:SourceCodeExpander Code="{x:Binding FabXamlCode}" CodeType="Xaml" />
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
             </VerticalStackLayout>
         </ScrollView>
     </SwipeView>

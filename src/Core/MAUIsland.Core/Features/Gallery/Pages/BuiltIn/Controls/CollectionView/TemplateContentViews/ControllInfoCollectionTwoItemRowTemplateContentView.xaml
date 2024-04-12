@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIsland.Core.ControllInfoCollectionTwoItemRowTemplateContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    x:Name="root">
+    <Border
+        Margin="5"
+        Padding="5"
+        BackgroundColor="{x:Static core:AppColors.BlackGrey}">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="5" />
+        </Border.StrokeShape>
+        <Grid
+            ColumnDefinitions="0.2*, 0.8*"
+            HeightRequest="100"
+            RowDefinitions="0.3*, 0.7*">
+            <Image
+                Grid.Row="0"
+                Grid.Column="0"
+                Source="{x:Binding ComponentData.ControlIcon,
+                                   Source={x:Reference root}}"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="0"
+                Grid.Column="1"
+                FontAttributes="Bold"
+                FontSize="14"
+                HorizontalOptions="Center"
+                LineBreakMode="TailTruncation"
+                Text="{x:Binding ComponentData.ControlName,
+                                 Source={x:Reference root}}"
+                VerticalTextAlignment="Center" />
+            <Border
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Padding="2"
+                BackgroundColor="{x:Static core:AppColors.BlackGrey}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="5" />
+                </Border.StrokeShape>
+                <Label
+                    Background="{x:Static core:AppColors.BlackGrey}"
+                    FontAttributes="Italic"
+                    FontSize="12"
+                    Text="{x:Binding ComponentData.ControlDetail,
+                                     Source={x:Reference root}}" />
+            </Border>
+        </Grid>
+    </Border>
+</ContentView>

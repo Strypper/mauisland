@@ -52,52 +52,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
-	  <Compile Remove="Platforms\Android\**" />
-	  <Compile Remove="Platforms\iOS\**" />
-	  <Compile Remove="Platforms\MacCatalyst\**" />
-	  <Compile Remove="Platforms\Tizen\**" />
-	  <EmbeddedResource Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
-	  <EmbeddedResource Remove="Platforms\Android\**" />
-	  <EmbeddedResource Remove="Platforms\iOS\**" />
-	  <EmbeddedResource Remove="Platforms\MacCatalyst\**" />
-	  <EmbeddedResource Remove="Platforms\Tizen\**" />
-	  <MauiCss Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
-	  <MauiCss Remove="Platforms\Android\**" />
-	  <MauiCss Remove="Platforms\iOS\**" />
-	  <MauiCss Remove="Platforms\MacCatalyst\**" />
-	  <MauiCss Remove="Platforms\Tizen\**" />
-	  <MauiXaml Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
-	  <MauiXaml Remove="Platforms\Android\**" />
-	  <MauiXaml Remove="Platforms\iOS\**" />
-	  <MauiXaml Remove="Platforms\MacCatalyst\**" />
-	  <MauiXaml Remove="Platforms\Tizen\**" />
-	  <None Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
-	  <None Remove="Platforms\Android\**" />
-	  <None Remove="Platforms\iOS\**" />
-	  <None Remove="Platforms\MacCatalyst\**" />
-	  <None Remove="Platforms\Tizen\**" />
-	</ItemGroup>
-	<ItemGroup>
-	  <None Remove="appsettings.Development.json" />
-	  <None Remove="Resources\AppIcon\square44x44logo.svg" />
-	  <None Remove="Resources\Images\aspnetcore_developer_roadmap.png" />
-	  <None Remove="Resources\Images\members\member_long.png" />
-	  <None Remove="Resources\Images\members\member_tan.png" />
-	  <None Remove="Resources\Images\project_githubcard_bug.png" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="akgul.Maui.DataGrid" Version="4.0.2" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.14" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.14" />
-		<PackageReference Include="Bogus" Version="35.5.0" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.20" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.20" />
 		<PackageReference Include="ColorCode.Core" Version="2.0.15" />
 		<PackageReference Include="CommunityToolkit.Common" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="IconPacks.Material" Version="1.0.8807.17-build" />
-		<PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-rc2" />
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.0-preview.1.24081.5" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0-preview.1.24080.9" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0-preview.1.24080.9" />
@@ -108,7 +69,6 @@
 		<PackageReference Include="Refit" Version="7.0.0" />
 		<PackageReference Include="Refit.HttpClientFactory" Version="7.0.0" />
 		<PackageReference Include="Refit.Newtonsoft.Json" Version="7.0.0" />
-		<PackageReference Include="Sharpnado.MaterialFrame.Maui" Version="2.0.0" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
 		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="23.1.36" />
 		<PackageReference Include="Syncfusion.Maui.Barcode" Version="23.1.36" />
@@ -131,9 +91,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Features\Blog\" />
-		<Folder Include="Features\QA\" />
-		<Folder Include="Features\Gallery\Services\" />
+		<Folder Include="Features\Gallery\Pages\Community\Layouts\" />
 		<Folder Include="Features\Settings\Models\" />
 	</ItemGroup>
 
@@ -162,7 +120,7 @@
 		<Compile Update="Features\Gallery\Pages\Community\Helpers\SQLite-net\SQLiteNETPage.xaml.cs">
 		  <DependentUpon>SQLiteNETPage.xaml</DependentUpon>
 		</Compile>
-		<Compile Update="Features\Gallery\Pages\Community\Layouts\DataGrid\DataGridPage.xaml.cs">
+		<Compile Update="Features\Gallery\Pages\Community\Controls\DataGrid\DataGridPage.xaml.cs">
 		  <DependentUpon>DataGridPage.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Features\Gallery\Pages\Material\Controls\MaterialProgressIndicator\MaterialProgressIndicatorPage.xaml.cs">
@@ -276,7 +234,7 @@
 		<MauiXaml Update="Features\Gallery\Pages\Community\Helpers\SQLite-net\SQLiteNETPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Features\Gallery\Pages\Community\Layouts\DataGrid\DataGridPage.xaml">
+		<MauiXaml Update="Features\Gallery\Pages\Community\Controls\DataGrid\DataGridPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\GalleryPage.xaml">
@@ -497,28 +455,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PRIResource Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <ProjectReference Include="..\..\Core\MAUIsland.Core\MAUIsland.Core.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <PRIResource Remove="Platforms\Android\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PRIResource Remove="Platforms\iOS\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PRIResource Remove="Platforms\MacCatalyst\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PRIResource Remove="Platforms\Tizen\**" />
-	</ItemGroup>
-
 
 </Project>

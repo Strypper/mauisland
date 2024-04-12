@@ -35,6 +35,7 @@
             <VerticalStackLayout Grid.RowSpan="2" Spacing="4">
                 <Label
                     Margin="10,0,0,0"
+                    FontAttributes="Bold"
                     FontSize="18"
                     Text="{x:Binding ComponentData.ControlName,
                                      Source={x:Reference root}}"
@@ -101,9 +102,7 @@
                     ToolTipProperties.Text="Github: Source code"
                     WidthRequest="32" />
                 <ImageButton
-                    Padding="{x:OnPlatform WinUI=5,
-                                           Android=0,
-                                           iOS=2}"
+                    Padding="5"
                     BackgroundColor="Transparent"
                     Command="{x:Binding TapCommand,
                                         Source={x:Reference root}}"
@@ -117,13 +116,11 @@
             <ImageButton
                 Grid.Row="2"
                 Grid.Column="1"
-                Padding="{x:OnPlatform WinUI=8,
-                                       Android=8,
-                                       iOS=8}"
+                Padding="8"
                 BackgroundColor="#ac99ea"
                 Clicked="DetailInNewWindow_Clicked"
                 CornerRadius="12"
-                IsEnabled="False"
+                IsEnabled="True"
                 Source="{x:StaticResource OpenInNewWindowsIcon}" />
         </Grid>
     </Border>

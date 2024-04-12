@@ -35,10 +35,13 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
     bool isBusy;
 
     [ObservableProperty]
-    ObservableCollection<ControlIssueModel> controlIssues;
+    IBuiltInGalleryCardInfo controlInformation = default!;
 
     [ObservableProperty]
-    ControlIssueModel selectedControlIssue;
+    ObservableCollection<ControlIssueModel> controlIssues = default!;
+
+    [ObservableProperty]
+    ControlIssueModel selectedControlIssue = default!;
 
     #endregion
 
@@ -186,6 +189,11 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
         {
             await AppNavigator.ShowSnackbarAsync(e.Message, null, null);
         }
+    }
+
+    public void SetControlInformation(object controlInfo)
+    {
+        ControlInformation = (IBuiltInGalleryCardInfo)controlInfo;
     }
     #endregion
 

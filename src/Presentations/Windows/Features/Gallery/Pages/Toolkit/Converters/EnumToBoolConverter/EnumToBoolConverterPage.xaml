@@ -8,8 +8,9 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Enum To Bool Converter"
     Padding="20"
-    x:DataType="app:EnumToBoolConverterPageViewModel"
-    BackgroundColor="Transparent">
+    x:DataType="core:EnumToBoolConverterPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem

@@ -8,8 +8,9 @@
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     Title="Refresh View"
     Padding="20"
-    x:DataType="app:RefreshViewPageViewModel"
-    BackgroundColor="Transparent">
+    x:DataType="core:RefreshViewPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
     <core:BasePage.Resources>
         <x:String x:Key="ControlInfo">
             The .NET Multi-platform App UI (.NET MAUI) RefreshView is a container control that provides pull to refresh functionality for scrollable content. Therefore, the child of a RefreshView must be a scrollable control, such as ScrollView, CollectionView, or ListView.
@@ -95,7 +96,7 @@
             ItemSpacing="5"
             Orientation="Vertical" />
 
-        <DataTemplate x:Key="DemoItemTemplate" x:DataType="app:DemoItem">
+        <DataTemplate x:Key="DemoItemTemplate" x:DataType="core:DemoItem">
             <VerticalStackLayout>
                 <Label Text="{x:Binding name}" />
                 <Label Text="{x:Binding time}" />
@@ -206,11 +207,17 @@
                         </Border>
 
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
-                            <CollectionView
-                                Footer="{x:StaticResource PropertiesListFooter}"
-                                Header="{x:StaticResource PropertiesListHeader}"
-                                ItemsSource="{x:StaticResource PropertyItemsSource}"
-                                Style="{x:StaticResource PropertiesListStyle}" />
+                            <VerticalStackLayout Spacing="10">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Subtitle"
+                                    Text="{x:StaticResource PropertiesListHeader}"
+                                    TextDecorations="Underline" />
+                                <CollectionView
+                                    Footer="{x:StaticResource PropertiesListFooter}"
+                                    ItemsSource="{x:StaticResource PropertyItemsSource}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+                            </VerticalStackLayout>
                         </Border>
 
                         <Border Padding="20" StrokeShape="RoundRectangle 4">

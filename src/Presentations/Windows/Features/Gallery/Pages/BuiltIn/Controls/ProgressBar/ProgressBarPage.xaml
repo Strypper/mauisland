@@ -7,8 +7,9 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="Progress Bar"
     Padding="20"
-    x:DataType="app:ProgressBarPageViewModel"
-    BackgroundColor="Transparent">
+    x:DataType="core:ProgressBarPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
     <core:BasePage.ToolbarItems>
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
@@ -22,7 +23,7 @@
             Text="Original Document" />
     </core:BasePage.ToolbarItems>
     <core:BasePage.Resources>
-        <app:ProgressBarPercentageConverter x:Key="ProgressBarPercentageConverter" />
+        <core:ProgressBarPercentageConverter x:Key="ProgressBarPercentageConverter" />
 
         <x:String x:Key="introduce">
             The .NET Multi-platform App UI (.NET MAUI) ProgressBar indicates to users that the app is progressing through a lengthy activity. The progress bar is a horizontal bar that is filled to a percentage represented by a double value.

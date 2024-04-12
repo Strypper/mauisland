@@ -14,7 +14,7 @@ public partial class MediaElementPage : IGalleryPage
     string localFilePath = Path.Combine(FileSystem.Current.AppDataDirectory, "video.mp4");
     #endregion
 
-    #region [CTor]
+    #region [ CTor ]
     public MediaElementPage(MediaElementPageViewModel vm, ILogger<MediaElementPage> mediaElementLogger)
     {
         InitializeComponent();
@@ -44,6 +44,15 @@ public partial class MediaElementPage : IGalleryPage
     #endregion
 
     #region [ Event Handlers ]
+
+    private void BasePage_Loaded(object sender, EventArgs e)
+    {
+        if (NewWindowParameter is not null && ViewModel.ControlInformation is null)
+        {
+            ViewModel.SetControlInformation(NewWindowParameter);
+            ViewModel.RefreshCommand.Execute(null);
+        }
+    }
     void MediaElementPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName == MediaElement.DurationProperty.PropertyName)
@@ -55,6 +64,12 @@ public partial class MediaElementPage : IGalleryPage
 
     private void ContentPage_Loaded(object sender, EventArgs e)
     {
+        if (NewWindowParameter is not null && ViewModel.ControlInformation is null)
+        {
+            ViewModel.SetControlInformation(NewWindowParameter);
+            ViewModel.RefreshCommand.Execute(null);
+        }
+
         if (File.Exists(localFilePath))
         {
             MediaElementDownloadSample.Source = MediaSource.FromFile(localFilePath);
@@ -117,16 +132,16 @@ public partial class MediaElementPage : IGalleryPage
         }
     }
 
-    void OnMediaOpened(object? sender, EventArgs e) 
+    void OnMediaOpened(object? sender, EventArgs e)
         => MediaElementLogger.LogInformation("Media opened.");
 
-    void OnStateChanged(object? sender, MediaStateChangedEventArgs e) 
+    void OnStateChanged(object? sender, MediaStateChangedEventArgs e)
         => MediaElementLogger.LogInformation("Media State Changed. Old State: {PreviousState}, New State: {NewState}", e.PreviousState, e.NewState);
 
-    void OnMediaFailed(object? sender, MediaFailedEventArgs e) 
+    void OnMediaFailed(object? sender, MediaFailedEventArgs e)
         => MediaElementLogger.LogInformation("Media failed. Error: {ErrorMessage}", e.ErrorMessage);
 
-    void OnMediaEnded(object? sender, EventArgs e) 
+    void OnMediaEnded(object? sender, EventArgs e)
         => MediaElementLogger.LogInformation("Media ended.");
 
     void OnPositionChanged(object? sender, MediaPositionChangedEventArgs e)
@@ -135,7 +150,7 @@ public partial class MediaElementPage : IGalleryPage
         PositionSlider.Value = e.Position.TotalSeconds;
     }
 
-    void OnSeekCompleted(object? sender, EventArgs e) 
+    void OnSeekCompleted(object? sender, EventArgs e)
         => MediaElementLogger.LogInformation("Seek completed.");
 
     void OnSpeedMinusClicked(object? sender, EventArgs e)

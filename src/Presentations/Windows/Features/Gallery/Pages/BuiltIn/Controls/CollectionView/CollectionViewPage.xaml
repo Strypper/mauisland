@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<core:BasePage
+    x:Class="MAUIsland.CollectionViewPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="Collection View"
+    Padding="20"
+    x:DataType="core:CollectionViewPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
+
+    <core:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </core:BasePage.ToolbarItems>
+
+    <core:BasePage.Resources>
+        <x:String x:Key="ControlInfo">
+            Collection View is a view for presenting lists of data using different layout specifications. It aims to provide a more flexible, and performant alternative to ListView.
+        </x:String>
+
+        <x:String x:Key="ReportIssueToMauiTeamLink">
+            https://github.com/dotnet/maui/issues/new/choose
+        </x:String>
+
+        <x:String x:Key="PropertiesListHeader">
+            Collection View defines the following properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter">
+            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+        </x:String>
+
+        <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">ItemsSource  </strong>, of type <strong style="color:blue">IEnumerable </strong>, populates with data.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">ItemTemplate</strong>, of type <strong style="color:blue">DataTemplate</strong>, defines the appearance of each item.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">SelectionMode</strong>, of type <strong style="color:blue">SelectionMode</strong>, defines the selection mode, supports single and multiple selection.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">SelectedItem</strong>, of type <strong style="color:blue">object</strong>, the selected item in the list.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">ItemSizingStrategy </strong>, of type <strong style="color:blue">enumeration</strong>, determines the row height of each item.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">CachingStrategy </strong>, of type <strong style="color:blue">enumeration</strong>, uses the virtualization provided by the underlying native controls.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">Header, Footer </strong>, of type <strong style="color:blue">object</strong>, specifies the string, binding, or view that will be displayed at the start and end of the list.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">HeaderTemplate, FooterTemplate </strong>, of type <strong style="color:blue">DataTemplate</strong>, specifies the DataTemplate to use to format the Header and Footer.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">IsGrouped</strong>, of type <strong style="color:blue">bool</strong>, indicates whether the underlying data should be displayed in groups. The default value of this property is false.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">GroupHeaderTemplate, GroupFooterTemplate </strong>, of type <strong style="color:blue">DataTemplate</strong>, the template to use for the header and footer of each group
+                            ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="BasicCollectionView" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Model Definition</strong>: Create a model that represents the structure of your data item. This model should be assigned to <strong style="color:blue">x:DataType</strong> in your <strong style="color:blue">DataTemplate</strong>, which allows the <strong style="color:blue">ItemTemplate</strong> to understand the structure of each item.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Data Source Assignment</strong>: Assign your data collection to the <strong style="color:blue">ItemsSource</strong> property of the <strong style="color:blue">CollectionView</strong>. This collection is the source from which the <strong style="color:blue">CollectionView</strong> pulls its data.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Item Appearance Design</strong>: Decide on the appearance of each item in the <strong style="color:blue">CollectionView</strong> by defining a <strong style="color:blue">DataTemplate</strong>. This template should contain the <strong style="color:blue">XAML</strong> that describes how each item should be displayed in the <strong style="color:blue">CollectionView</strong>.    ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="SwipeViewCollectionView" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   <strong style="color:blue">CollectionView</strong> in <strong style="color:blue">.NET MAUI</strong> supports context menus through <strong style="color:blue">SwipeView</strong>.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">SwipeView</strong> is a container that wraps an item and provides context menu items. These menus are revealed with a swipe gesture.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   To implement this, <strong style="color:blue">SwipeView</strong> is set as the root view in the <strong style="color:blue">DataTemplate</strong> for each item in the <strong style="color:blue">CollectionView</strong>.    ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="RefreshViewCollectionView" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   <strong style="color:blue">CollectionView</strong> in <strong style="color:blue">.NET MAUI</strong> supports pull-to-refresh functionality through <strong style="color:blue">RefreshView</strong>.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">RefreshView</strong> is a container control that provides this functionality to its child. The child must support scrollable content.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   To implement this, <strong style="color:blue">CollectionView</strong> is set as the child of a <strong style="color:blue">RefreshView</strong>. This allows the data in the <strong style="color:blue">CollectionView</strong> to be refreshed by pulling down on the list of items.    ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="CollectionViewVerticalGridLayout" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   <strong style="color:blue">CollectionView</strong> can display its items in a vertical grid by setting its <strong style="color:blue">ItemsLayout</strong> property to <strong style="color:blue">VerticalGrid</strong>.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   Alternatively, this layout can also be accomplished by setting the <strong style="color:blue">ItemsLayout</strong> property to a <strong style="color:blue">GridItemsLayout</strong> object whose <strong style="color:blue">Orientation</strong> property is set to <strong style="color:blue">Vertical</strong>.    ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="CollectionViewVerticalListLayout" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   <strong style="color:blue">CollectionView</strong> will display its items in a vertical list layout. Therefore, it's not necessary to set the <strong style="color:blue">ItemsLayout</strong> property to use this layout.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">CollectionView</strong> can be set to display its items in a vertical list by setting its <strong style="color:blue">ItemsLayout</strong> property to <strong style="color:blue">VerticalList</strong>.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   Alternatively, this layout can also be accomplished by setting the <strong style="color:blue">ItemsLayout</strong> property to a <strong style="color:blue">LinearItemsLayout</strong> specifying the <strong style="color:blue">Vertical</strong> <strong style="color:blue">ItemsLayout</strong> <strong style="color:blue">Orientation</strong> enumeration member as the <strong style="color:blue">Orientation</strong> property value.    ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="CollectionViewHorizontalListLayout" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   <strong style="color:blue">CollectionView</strong> can display its items in a horizontal list by setting its <strong style="color:blue">ItemsLayout</strong> property to <strong style="color:blue">HorizontalList</strong>.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   Alternatively, this layout can also be accomplished by setting the <strong style="color:blue">ItemsLayout</strong> property to a <strong style="color:blue">LinearItemsLayout</strong> specifying the <strong style="color:blue">Horizontal</strong> <strong style="color:blue">ItemsLayout</strong> <strong style="color:blue">Orientation</strong> enumeration member as the <strong style="color:blue">Orientation</strong> property value.    ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="CollectionViewHeadersFootersProperty" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Header</strong>, of type <strong style="color:blue">object</strong>, specifies the string, binding, or view that will be displayed at the start of the list.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">HeaderTemplate</strong>, of type <strong style="color:blue">DataTemplate</strong>, specifies the <strong style="color:blue">DataTemplate</strong> to use to format the <strong style="color:blue">Header</strong>.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Footer</strong>, of type <strong style="color:blue">object</strong>, specifies the string, binding, or view that will be displayed at the end of the list.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">FooterTemplate</strong>, of type <strong style="color:blue">DataTemplate</strong>, specifies the <strong style="color:blue">DataTemplate</strong> to use to format the <strong style="color:blue">Footer</strong>.    ]]>
+            </x:String>
+        </x:Array>
+
+        <x:String x:Key="CollectionViewHeader">
+            What types of women do you like?
+        </x:String>
+
+        <x:String x:Key="CollectionViewFooter">
+            Hope you like what you choose !!!
+        </x:String>
+
+        <x:Array x:Key="CollectionViewReverseLayout" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   <strong style="color:blue">CollectionView</strong> can layout its content in a right-to-left flow direction by setting its <strong style="color:blue">FlowDirection</strong> property to <strong style="color:blue">RightToLeft</strong>.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   The default <strong style="color:blue">FlowDirection</strong> for an element with a parent is <strong style="color:blue">MatchParent</strong>. Therefore, the <strong style="color:blue">CollectionView</strong> inherits the <strong style="color:blue">FlowDirection</strong> property value from the <strong style="color:blue">StackLayout</strong>, which in turn inherits the <strong style="color:blue">FlowDirection</strong> property value from the <strong style="color:blue">ContentPage</strong>.    ]]>
+            </x:String>
+        </x:Array>
+
+        <x:String x:Key="CollectionViewDataTemplateSelectorHeader">
+            A DataTemplateSelector is a class in Xamarin.Forms that allows you to choose a DataTemplate at runtime based on the value of a data object. It’s particularly useful when you have a CollectionView (or ListView) that displays a heterogeneous collection of items. There are few steps to create and use it:
+        </x:String>
+
+        <x:Array x:Key="CollectionViewDataTemplateSelector" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Define the DataTemplateSelector</strong>: Create a class that inherits from <strong style="color:blue">DataTemplateSelector</strong> and override the <strong style="color:blue">OnSelectTemplate</strong> method. In this method, write your logic to choose a <strong style="color:blue">DataTemplate</strong> based on the item and container.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Define the DataTemplates</strong>: In your <strong style="color:blue">XAML</strong>, define the <strong style="color:blue">DataTemplates</strong> that your <strong style="color:blue">DataTemplateSelector</strong> will choose from. Each <strong style="color:blue">DataTemplate</strong> defines how a certain type of item should be displayed.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Use the DataTemplateSelector</strong>: Still in your <strong style="color:blue">XAML</strong>, create an instance of your <strong style="color:blue">DataTemplateSelector</strong> and assign the <strong style="color:blue">DataTemplates</strong> you defined earlier. Then, set the <strong style="color:blue">ItemTemplate</strong> of your <strong style="color:blue">CollectionView</strong> to your <strong style="color:blue">DataTemplateSelector</strong>.    ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="CollectionViewSelectionProperty" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   <strong style="color:blue">SelectionMode</strong>, of type <strong style="color:blue">SelectionMode</strong>, this is enum type with enumeration members: <strong style="color:blue">None</strong>(This is the default value), <strong style="color:blue">Single</strong>, <strong style="color:blue">Multiple</strong>.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">SelectedItem</strong>, of type <strong style="color:blue">object</strong>, the selected item in the list. This property has a default binding mode of <strong style="color:blue">TwoWay</strong>, and has a null value when no item is selected.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">SelectedItems</strong>, of type <strong style="color:blue">IList</strong>, the selected items in the list. This property has a default binding mode of <strong style="color:blue">OneWay</strong>, and has a null value when no items are selected.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">SelectionChangedCommand</strong>, of type <strong style="color:blue">ICommand</strong>, which is executed when the selected item changes.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">SelectionChangedCommandParameter</strong>, of type <strong style="color:blue">object</strong>, which is the parameter that's passed to the <strong style="color:blue">SelectionChangedCommand</strong>.    ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">SelectionChanged</strong> event that is fired when the <strong style="color:blue">SelectedItem</strong> property changes. The <strong style="color:blue">SelectionChangedEventArgs</strong> object that accompanies the <strong style="color:blue">SelectionChanged</strong> event has two properties, both of type <strong style="color:blue">readonly</strong>: <strong style="color:blue">PreviousSelection</strong>, <strong style="color:blue">CurrentSelection</strong>.    ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="CollectionViewSingleSelection" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[    In a <strong style="color:blue">CollectionView</strong>, when <strong style="color:blue">SelectionMode</strong> is set to <strong style="color:blue">Single</strong>, only one item can be selected at a time.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[    The <strong style="color:blue">SelectedItem</strong> property holds the currently selected item.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[    If the selected item changes, the <strong style="color:blue">SelectionChangedCommand</strong> is executed, passing the <strong style="color:blue">SelectionChangedCommandParameter</strong> to the command. Additionally, the <strong style="color:blue">SelectionChanged</strong> event is triggered.   ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="CollectionViewMultipleSelection" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[    In a <strong style="color:blue">CollectionView</strong>, when <strong style="color:blue">SelectionMode</strong> is set to <strong style="color:blue">Multiple</strong>, it allows for multiple items to be selected simultaneously.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[    The <strong style="color:blue">SelectedItems</strong> property holds the currently selected items. It mean that <strong style="color:blue">SelectedItem</strong> property is not holds any item.   ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[    If the selection changes, the <strong style="color:blue">SelectionChangedCommand</strong> is executed, with the <strong style="color:blue">SelectionChangedCommandParameter</strong> passed to the command. Additionally, the <strong style="color:blue">SelectionChanged</strong> event is triggered.   ]]>
+            </x:String>
+        </x:Array>
+
+        <DataTemplate x:Key="MrIncreadibleItemTemplate" x:DataType="core:MrIncreadible">
+            <core:MrIncreadibleItemTemplateContentView ComponentData="{x:Binding}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="MrIncreadibleItemVerticalTemplate" x:DataType="core:MrIncreadible">
+            <core:MrIncreadibleItemVerticalTemplateContentView ComponentData="{x:Binding}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="MrIncreadibleItemHorizontalTemplate" x:DataType="core:MrIncreadible">
+            <core:MrIncreadibleItemHorizontalTemplateContentView ComponentData="{x:Binding}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="MrIncreadibleItemVerticalSpan2Template" x:DataType="core:MrIncreadible">
+            <core:MrIncreadibleItemVerticalSpan2TemplateContentView ComponentData="{x:Binding}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="MrIncreadibleCollectionTemplateWithSwipe">
+            <core:MrIncreadibleCollectionTemplateWithSwipeContentView ComponentData="{x:Binding}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ControllInfoCollectionTemplate" x:DataType="core:IGalleryCardInfo">
+            <core:ControllInfoCollectionTemplateContentView ComponentData="{x:Binding}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ControllInfoCollectionTwoItemRowTemplate" x:DataType="core:IGalleryCardInfo">
+            <core:ControllInfoCollectionTwoItemRowTemplateContentView ComponentData="{x:Binding}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ControllInfoCollectionThreeItemRowTemplate" x:DataType="core:IGalleryCardInfo">
+            <core:ControllInfoCollectionThreeItemRowTemplateContentView ComponentData="{x:Binding}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ControllInfoCollectionFourItemRowTemplate" x:DataType="core:IGalleryCardInfo">
+            <core:ControllInfoCollectionFourItemRowTemplateContentView ComponentData="{x:Binding}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="NormalItemTemplate" x:DataType="core:IGalleryCardInfo">
+            <core:NormalItemTemplateContentView ComponentData="{x:Binding}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="SelectedItemTemplate" x:DataType="core:IGalleryCardInfo">
+            <core:SelectedItemTemplateContentView ComponentData="{x:Binding}" />
+        </DataTemplate>
+
+        <core:TemplateSelector
+            x:Key="TemplateSelector"
+            NormalTemplate="{x:StaticResource NormalItemTemplate}"
+            SelectedTemplate="{x:StaticResource SelectedItemTemplate}" />
+
+        <DataTemplate x:Key="ControlIssueItemTemplate" x:DataType="core:ControlIssueModel">
+            <Border
+                Padding="20"
+                BackgroundColor="#0a0c10"
+                StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Micro"
+                        LineBreakMode="CharacterWrap"
+                        MaxLines="2"
+                        Text="{x:Binding Title,
+                                         Mode=OneWay}"
+                        TextDecorations="Underline"
+                        ToolTipProperties.Text="{x:Binding Title,
+                                                           Mode=OneWay}" />
+                    <HorizontalStackLayout Spacing="8">
+                        <ImageButton
+                            CornerRadius="25"
+                            HeightRequest="10"
+                            Source="{x:Binding AvatarUrl,
+                                               Mode=OneWay}"
+                            VerticalOptions="Center"
+                            WidthRequest="10" />
+                        <Label Text="{x:Binding OwnerName, Mode=OneWay}" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <Label HorizontalOptions="End" Text="{x:Binding CreatedDate, Mode=OneWay}" />
+                </VerticalStackLayout>
+            </Border>
+        </DataTemplate>
+
+        <LinearItemsLayout
+            x:Key="ControlIssueLayout"
+            ItemSpacing="5"
+            Orientation="Vertical" />
+
+    </core:BasePage.Resources>
+
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <RefreshView Command="{x:Binding RefreshPageCommand}" IsRefreshing="{x:Binding IsBusy, Mode=OneWay}">
+            <ScrollView>
+                <Grid ColumnDefinitions="310, *" ColumnSpacing="20">
+                    <Grid RowDefinitions="90, 540, 120" RowSpacing="10">
+                        <Border
+                            Padding="20"
+                            BackgroundColor="#272b33"
+                            StrokeShape="RoundRectangle 4">
+                            <Grid>
+                                <HorizontalStackLayout Spacing="10">
+                                    <Image
+                                        HeightRequest="25"
+                                        Source="githublogo.png"
+                                        VerticalOptions="Center"
+                                        WidthRequest="25" />
+
+                                    <Label
+                                        HorizontalOptions="Start"
+                                        Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                        Text="Issues"
+                                        VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                                <Border
+                                    BackgroundColor="OrangeRed"
+                                    HeightRequest="40"
+                                    HorizontalOptions="End"
+                                    StrokeShape="RoundRectangle 20"
+                                    VerticalOptions="Center"
+                                    WidthRequest="40">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="Center"
+                                        Text="{x:Binding ControlIssues.Count,
+                                                         Mode=OneWay}"
+                                        VerticalOptions="Center" />
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <CollectionView
+                            Grid.Row="1"
+                            Margin="0,0,0,0"
+                            EmptyView="{x:Binding EmptyViewText,
+                                                  Mode=OneWay}"
+                            ItemTemplate="{x:StaticResource ControlIssueItemTemplate}"
+                            ItemsLayout="{x:StaticResource ControlIssueLayout}"
+                            ItemsSource="{x:Binding ControlIssues,
+                                                    Mode=OneWay}"
+                            SelectedItem="{x:Binding SelectedControlIssue,
+                                                     Mode=TwoWay}"
+                            SelectionChangedCommand="{x:Binding OpenUrlCommand}"
+                            SelectionChangedCommandParameter="{x:Binding SelectedControlIssue.IssueLinkUrl,
+                                                                         Mode=OneWay}"
+                            SelectionMode="Single"
+                            VerticalOptions="Start" />
+                        <Border
+                            Grid.Row="2"
+                            Margin="0,0,0,10"
+                            Padding="20"
+                            BackgroundColor="#272b33"
+                            StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="5">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Found a new bug?"
+                                    TextColor="White"
+                                    TextDecorations="Underline" />
+                                <Button
+                                    Command="{x:Binding OpenUrlCommand}"
+                                    CommandParameter="{x:StaticResource ReportIssueToMauiTeamLink}"
+                                    Text="Report to the MAUI team" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                    <VerticalStackLayout Grid.Column="1" Spacing="20">
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
+                        </Border>
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Subtitle"
+                                    Text="{x:StaticResource PropertiesListHeader}"
+                                    TextDecorations="Underline" />
+                                <CollectionView
+                                    Footer="{x:StaticResource PropertiesListFooter}"
+                                    ItemsSource="{x:StaticResource PropertyItemsSource}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Basic CollectionView with simple DataTemplate" />
+                                <Label Text="There are 3 element to create a collection view " />
+                                <CollectionView ItemsSource="{x:StaticResource BasicCollectionView}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <CollectionView
+                                    HeightRequest="400"
+                                    ItemTemplate="{x:StaticResource ControllInfoCollectionTemplate}"
+                                    ItemsSource="{x:Binding ControlGroupList}" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="This is our Model" />
+                                <core:SourceCodeExpander Code="{x:Binding CSharpBasicCollectionModel}" CodeType="CSharp" />
+                                <Label Text="ViewModel code" />
+                                <core:SourceCodeExpander Code="{x:Binding CSharpBasicCollectionViewModel}" CodeType="CSharp" />
+                                <Label Text="This is basic CollectionView" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlBasicCollectionView}" CodeType="Xaml" />
+                                <Label Text="Here for the DataTemplate design" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlBasicCollectionViewTemplate}" CodeType="Xaml" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView with swipe items" />
+                                <CollectionView ItemsSource="{x:StaticResource SwipeViewCollectionView}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <CollectionView
+                                    HeightRequest="400"
+                                    ItemTemplate="{x:StaticResource MrIncreadibleCollectionTemplateWithSwipe}"
+                                    ItemsSource="{x:Binding MrIncreadibles}" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="This is MrIncreadible Model" />
+                                <core:SourceCodeExpander Code="{x:Binding CSharpSwipeCollectionModel}" CodeType="CSharp" />
+                                <Label Text="This CollectionView swipe items" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlSwipeCollectionView}" CodeType="Xaml" />
+                                <Label Text="Here is the swipe items DataTemplate design" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlSwipeCollectionViewTemplate}" CodeType="Xaml" />
+                                <Label Text="Here is the ViewModel code" />
+                                <core:SourceCodeExpander Code="{x:Binding CSharpSwipeCollectionViewViewModel}" CodeType="CSharp" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView pull to refresh" />
+                                <CollectionView ItemsSource="{x:StaticResource RefreshViewCollectionView}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <RefreshView
+                                    x:Name="RefreshView"
+                                    Command="{Binding RefreshCommand}"
+                                    HeightRequest="400"
+                                    IsRefreshing="{Binding IsRefreshing}">
+                                    <CollectionView ItemTemplate="{x:StaticResource ControllInfoCollectionTemplate}" ItemsSource="{x:Binding ControlGroupList}" />
+                                </RefreshView>
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="This CollectionView with refresh" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlRefreshCollectionView}" CodeType="Xaml" />
+                                <Label Text="Here is the ViewModel code" />
+                                <core:SourceCodeExpander Code="{x:Binding CSharpRefreshCollectionViewViewModel}" CodeType="CSharp" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Padding="5,5,5,30" Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView Linear Layouts" />
+                                <CollectionView ItemsSource="{x:StaticResource CollectionViewVerticalListLayout}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <CollectionView
+                                    HeightRequest="400"
+                                    ItemTemplate="{x:StaticResource MrIncreadibleItemVerticalTemplate}"
+                                    ItemsLayout="VerticalList"
+                                    ItemsSource="{x:Binding MrIncreadibles}" />
+                                <CollectionView ItemsSource="{x:StaticResource CollectionViewHorizontalListLayout}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <CollectionView
+                                    ItemTemplate="{x:StaticResource MrIncreadibleItemHorizontalTemplate}"
+                                    ItemsLayout="HorizontalList"
+                                    ItemsSource="{x:Binding MrIncreadibles}" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Grid ColumnDefinitions="0.5*, 0.5*" ColumnSpacing="10">
+                                    <VerticalStackLayout Grid.Column="0">
+                                        <Label Text="Vertical CollectionView ItemTemplate" />
+                                        <core:SourceCodeExpander Code="{x:Binding XamlVerticalListCollectionViewTemplate}" CodeType="Xaml" />
+                                        <Label Text="Vertical CollectionView xaml code" />
+                                        <core:SourceCodeExpander Code="{x:Binding XamlVerticalListCollectionView}" CodeType="Xaml" />
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="1">
+                                        <Label Text="Horizontal CollectionView ItemTemplate" />
+                                        <core:SourceCodeExpander Code="{x:Binding XamlHorizontalListCollectionViewTemplate}" CodeType="Xaml" />
+                                        <Label Text="Horizontal CollectionView xaml code" />
+                                        <core:SourceCodeExpander Code="{x:Binding XamlHorizontalListCollectionView}" CodeType="Xaml" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView Grid Layouts" />
+                                <CollectionView ItemsSource="{x:StaticResource CollectionViewVerticalGridLayout}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <!--  Adding HorizontalOptions="CenterAndExpand" can help the Span in ItemsLayout to do it job  -->
+                                <CollectionView
+                                    HeightRequest="400"
+                                    HorizontalOptions="CenterAndExpand"
+                                    ItemTemplate="{x:StaticResource MrIncreadibleItemVerticalSpan2Template}"
+                                    ItemsLayout="VerticalGrid, 2"
+                                    ItemsSource="{x:Binding MrIncreadibles}" />
+                                <Label Text="In 2021, .NET MAUI’s CollectionView does not support HorizontalGrid in the ItemsLayout property" TextColor="OrangeRed" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="Here is the Template" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlVerticalGridCollectionViewTemplate}" CodeType="Xaml" />
+                                <Label Text="This is CollectionView Grid Layouts" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlVerticalGridCollectionView}" CodeType="Xaml" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Headers and footers" />
+                                <CollectionView ItemsSource="{x:StaticResource CollectionViewHeadersFootersProperty}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <Frame HorizontalOptions="StartAndExpand" Style="{x:StaticResource DocumentContentFrameStyle}">
+                                    <CollectionView
+                                        Footer="{x:StaticResource CollectionViewFooter}"
+                                        Header="{x:StaticResource CollectionViewHeader}"
+                                        HeightRequest="400"
+                                        HorizontalOptions="StartAndExpand"
+                                        ItemTemplate="{x:StaticResource MrIncreadibleItemTemplate}"
+                                        ItemsSource="{x:Binding MrIncreadibles}" />
+                                </Frame>
+                                <Label Text="It’s unfortunate that the an issue with the CollectionView header and footer from Xamarin.Forms haven’t been resolved yet. Because of the issue, HeaderTemplate and FooterTemplate can not be used properly" TextColor="OrangeRed" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="Header and footer source" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlHeaderFooterCollectionViewSource}" CodeType="Xaml" />
+                                <Label Text="This is Template" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlHeaderFooterCollectionViewTemplate}" CodeType="Xaml" />
+                                <Label Text="This is how CollectionView look like" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlHeaderFooterCollectionView}" CodeType="Xaml" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView Reverse Layout" />
+                                <CollectionView ItemsSource="{x:StaticResource CollectionViewReverseLayout}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <CollectionView
+                                    FlowDirection="RightToLeft"
+                                    HeightRequest="400"
+                                    ItemTemplate="{x:StaticResource MrIncreadibleItemTemplate}"
+                                    ItemsSource="{x:Binding MrIncreadibles}" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="This is how CollectionView look like" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlReverseCollectionView}" CodeType="Xaml" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView Layouts Changing" />
+                                <VerticalStackLayout>
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Utilize " />
+                                                <Span FontAttributes="Bold" Text="GridItemsLayout " />
+                                                <Span Text=" with " />
+                                                <Span FontAttributes="Bold" Text="Span" />
+                                                <Span Text=" to achieve a grid-like layout in a CollectionView" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <HorizontalStackLayout Spacing="5" VerticalOptions="Center">
+                                        <Label VerticalOptions="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Number of Span: " />
+                                                    <Span FontAttributes="Bold" Text="{x:Binding SpanningNumber, Mode=OneWay}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Stepper
+                                            Background="Black"
+                                            Maximum="4"
+                                            Minimum="1"
+                                            VerticalOptions="Center"
+                                            Value="{x:Binding SpanningNumber,
+                                                              Mode=TwoWay}" />
+                                    </HorizontalStackLayout>
+                                    <Label Text="If you do not see any change while pressing the Stepper you can change window size" TextColor="OrangeRed" />
+                                    <!--  Adding HorizontalOptions="CenterAndExpand" can help the Span in ItemsLayout to do it job  -->
+                                    <CollectionView
+                                        x:Name="CollectionViewSpanningChange"
+                                        HeightRequest="400"
+                                        HorizontalOptions="CenterAndExpand"
+                                        ItemTemplate="{x:StaticResource ControllInfoCollectionTemplate}"
+                                        ItemsSource="{x:Binding ControlGroupList,
+                                                                Mode=OneWay}">
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout
+                                                HorizontalItemSpacing="5"
+                                                Orientation="Vertical"
+                                                Span="{x:Binding SpanningNumber,
+                                                                 Mode=TwoWay}"
+                                                VerticalItemSpacing="5" />
+                                        </CollectionView.ItemsLayout>
+                                    </CollectionView>
+                                </VerticalStackLayout>
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="CollectionView with setup" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlLayoutsChangingCollectionView}" CodeType="Xaml" />
+                                <Label Text="Make one normal Template" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlLayoutsChangeNormalCollectionViewTemplate}" CodeType="Xaml" />
+                                <Label Text="We would need some Templates for the changing" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlLayoutsChangeCollectionViewTemplate}" CodeType="Xaml" />
+                                <Label Text="This is all we need in ViewModel" />
+                                <core:SourceCodeExpander Code="{x:Binding CSharpLayoutsChangingCollectionViewViewModel}" CodeType="CSharp" />
+                                <Label Text="This is what code behind look like" />
+                                <core:SourceCodeExpander Code="{x:Binding CSharpLayoutsChangingCollectionViewCodeBehind}" CodeType="CSharp" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView Template Selector with Event" />
+                                <Label Text="{x:StaticResource CollectionViewDataTemplateSelectorHeader}" />
+                                <CollectionView ItemsSource="{x:StaticResource CollectionViewDataTemplateSelector}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <Picker
+                                    Title="Filter"
+                                    ItemsSource="{x:Binding FilterPickerItems,
+                                                            Mode=OneWay}"
+                                    SelectedIndex="0"
+                                    SelectedIndexChanged="OnFilterItemChanged"
+                                    SelectedItem="{x:Binding SelectedFilterPickerItem,
+                                                             Mode=TwoWay}" />
+                                <CollectionView
+                                    x:Name="CollectionViewItemLayoutChanged"
+                                    HeightRequest="400"
+                                    ItemTemplate="{x:StaticResource TemplateSelector}"
+                                    ItemsLayout="VerticalGrid, 4"
+                                    ItemsSource="{x:Binding ControlGroupList,
+                                                            Mode=OneWay}"
+                                    SelectionMode="None" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="Template Selector" />
+                                <core:SourceCodeExpander Code="{x:Binding CSharpTemplateSelector}" CodeType="CSharp" />
+                                <Label Text="Template for this CollectionView" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlTemplateSelectorCollectionViewTemplate}" CodeType="Xaml" />
+                                <Label Text="CollectionView with setup" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlTemplateSelectorCollectionView}" CodeType="Xaml" />
+                                <Label Text="This is ViewModel code" />
+                                <core:SourceCodeExpander Code="{x:Binding CSharpTemplateSelectorCollectionViewViewModel}" CodeType="CSharp" />
+                                <Label Text="Code behind with EventHandler" />
+                                <core:SourceCodeExpander Code="{x:Binding CSharpTemplateSelectorCollectionViewEventHandler}" CodeType="CSharp" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView Item Selection Properties" />
+                                <CollectionView ItemsSource="{x:StaticResource CollectionViewSelectionProperty}" Style="{x:StaticResource PropertiesListStyle}" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView with single selection" />
+                                <CollectionView ItemsSource="{x:StaticResource CollectionViewSingleSelection}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Current selected item: " />
+                                            <Span Text="{x:Binding CurrentSingleSelectedItemLabel}" TextDecorations="Underline" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Previous selected item: " />
+                                            <Span Text="{x:Binding PreviousSingleSelectedItemLabel}" TextDecorations="Underline" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <CollectionView
+                                    HeightRequest="400"
+                                    HorizontalOptions="CenterAndExpand"
+                                    ItemTemplate="{x:StaticResource ControllInfoCollectionFourItemRowTemplate}"
+                                    ItemsLayout="VerticalGrid, 4"
+                                    ItemsSource="{x:Binding ControlGroupList}"
+                                    SelectedItem="{x:Binding SingleSelectedControlInformation}"
+                                    SelectionChangedCommand="{x:Binding SingleSelectCollectionViewCommand}"
+                                    SelectionMode="Single" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="Template for this CollectionView" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlSingleSelectionCollectionViewTemplate}" CodeType="Xaml" />
+                                <Label Text="CollectionView with setup" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlSingleSelectionCollectionView}" CodeType="Xaml" />
+                                <Label Text="This is ViewModel code" />
+                                <core:SourceCodeExpander Code="{x:Binding CSharpSingleSelectionCollectionViewViewModel}" CodeType="CSharp" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CollectionView with multiple selection" />
+                                <CollectionView ItemsSource="{x:StaticResource CollectionViewMultipleSelection}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <Label LineBreakMode="HeadTruncation">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Selected items: " />
+                                            <Span Text="{x:Binding CurrentMultipleSelectedListItemLabel}" TextDecorations="Underline" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Current selected item: " />
+                                            <Span Text="{x:Binding CurrentMultipleSelectedItemLabel}" TextDecorations="Underline" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Previous selected item: " />
+                                            <Span Text="{x:Binding PreviousMultipleSelectedItemLabel}" TextDecorations="Underline" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <CollectionView
+                                    HeightRequest="400"
+                                    HorizontalOptions="CenterAndExpand"
+                                    ItemTemplate="{x:StaticResource ControllInfoCollectionFourItemRowTemplate}"
+                                    ItemsLayout="VerticalGrid, 4"
+                                    ItemsSource="{x:Binding ControlGroupList}"
+                                    SelectedItems="{x:Binding MultipleSelectedControlInformationList,
+                                                              Mode=TwoWay}"
+                                    SelectionChangedCommand="{x:Binding MultipleSelectCollectionViewCommand}"
+                                    SelectionMode="Multiple" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="CollectionView with setup" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlMultipleSelectionCollectionView}" CodeType="Xaml" />
+                                <Label Text="Make one normal Template" />
+                                <core:SourceCodeExpander Code="{x:Binding XamlMultipleSelectionCollectionViewTemplate}" CodeType="Xaml" />
+                                <Label Text="This is all we need in ViewModel" />
+                                <core:SourceCodeExpander Code="{x:Binding CSharpMultipleSelectionCollectionViewViewModel}" CodeType="CSharp" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+                </Grid>
+            </ScrollView>
+        </RefreshView>
+    </SwipeView>
+</core:BasePage>

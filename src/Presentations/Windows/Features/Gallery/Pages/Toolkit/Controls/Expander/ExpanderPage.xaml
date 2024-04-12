@@ -7,8 +7,10 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Expander"
-    Padding="10"
-    x:DataType="app:ExpanderPageViewModel">
+    Padding="20"
+    x:DataType="core:ExpanderPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -101,19 +103,19 @@
         </SwipeView.LeftItems>
         <ScrollView>
             <VerticalStackLayout Spacing="20">
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                    <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-                </Frame>
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <VerticalStackLayout>
                         <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Properties" />
                         <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
                         <Label Text="{x:StaticResource DirectionPropertiesItemsSourceHeader}" />
                         <CollectionView ItemsSource="{x:StaticResource DirectionPropertiesItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
 
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <VerticalStackLayout Spacing="10">
                         <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setup Toolkit" />
                         <VerticalStackLayout>
@@ -121,18 +123,18 @@
                             <Label Text="{x:Binding XamlNamespace}" TextColor="Blue" />
                         </VerticalStackLayout>
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
 
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <VerticalStackLayout Spacing="10">
                         <Label Text="Therefore the following:" />
                         <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleBefore}" CodeType="Xaml" />
                         <Label Text="Would be modified to include the xmlns as follows:" />
                         <core:SourceCodeExpander Code="{x:Binding FullNamepaceExampleAfter}" CodeType="Xaml" />
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
 
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <VerticalStackLayout Spacing="10">
                         <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Simple Expander" />
                         <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
@@ -160,9 +162,9 @@
                         <Label Text="This is xaml source code example" />
                         <core:SourceCodeExpander Code="{x:Binding XamlSimpleExpander}" CodeType="Xaml" />
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
 
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <VerticalStackLayout Spacing="10">
                         <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Simple Expander With Opposite Direction" />
                         <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
@@ -190,9 +192,9 @@
                         <Label Text="Therefore the following:" />
                         <core:SourceCodeExpander Code="{x:Binding XamlSimpleExpanderOppositeDirection}" CodeType="Xaml" />
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
 
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <VerticalStackLayout Spacing="10">
                         <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Checking Expand" />
                         <Label>
@@ -230,7 +232,7 @@
                         <Label Text="And this is your ViewModel" />
                         <core:SourceCodeExpander Code="{x:Binding CSharpViewModelSimpleExpanderCheckingExpand}" CodeType="CSharp" />
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
             </VerticalStackLayout>
         </ScrollView>
     </SwipeView>

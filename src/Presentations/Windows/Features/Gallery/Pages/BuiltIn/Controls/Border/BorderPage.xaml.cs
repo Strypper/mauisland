@@ -4,6 +4,11 @@ namespace MAUIsland;
 
 public partial class BorderPage : IGalleryPage
 {
+    #region [ Fields ]
+
+    private readonly BorderPageViewModel viewModel;
+    #endregion
+
 
     #region [ CTor ]
 
@@ -11,8 +16,9 @@ public partial class BorderPage : IGalleryPage
     public BorderPage(BorderPageViewModel vm)
     {
         InitializeComponent();
+        viewModel = vm;
+        BindingContext = viewModel;
 
-        BindingContext = vm;
     }
     #endregion
 
@@ -20,6 +26,11 @@ public partial class BorderPage : IGalleryPage
 
     private void BasePage_Loaded(object sender, EventArgs e)
     {
+        if (NewWindowParameter is not null && viewModel.ControlInformation is null)
+        {
+            viewModel.SetControlInformation(NewWindowParameter);
+            viewModel.RefreshCommand.Execute(null);
+        }
         CreateBorderUsingCSharp();
     }
     #endregion

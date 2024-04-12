@@ -1,17 +1,15 @@
-﻿using Syncfusion.Office;
-
-namespace MAUIsland;
+﻿namespace MAUIsland;
 
 public class CardsSearchHandler : SearchHandler
 {
-	#region [CTor]
-	public CardsSearchHandler()
-	{
+    #region [ CTor ]
+    public CardsSearchHandler()
+    {
         this.Cards = new();
-	}
+    }
     #endregion
 
-    #region [Bindable Properties]
+    #region [ Bindable Properties ]
     public static readonly BindableProperty CardsProperty = BindableProperty.Create(nameof(Cards),
                                                                                typeof(ObservableCollection<IGalleryCardInfo>),
                                                                                typeof(CardsSearchHandler),
@@ -19,7 +17,7 @@ public class CardsSearchHandler : SearchHandler
                                                                                BindingMode.OneWay);
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
     public ObservableCollection<IGalleryCardInfo> Cards
     {
         get => (ObservableCollection<IGalleryCardInfo>)GetValue(CardsProperty);
@@ -27,11 +25,11 @@ public class CardsSearchHandler : SearchHandler
     }
     #endregion
 
-    #region [Delegates]
+    #region [ Delegates ]
     public delegate void SelectCardEventHandler(IGalleryCardInfo control);
     #endregion
 
-    #region [Event Handlers]
+    #region [ Event Handlers ]
     public event SelectCardEventHandler SelectCard;
 
     protected override void OnQueryChanged(string oldValue, string newValue)

@@ -6,9 +6,10 @@
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="ImageButton"
-    Padding="10"
-    x:DataType="app:ImageButtonPageViewModel"
-    BackgroundColor="Transparent">
+    Padding="20"
+    x:DataType="core:ImageButtonPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem

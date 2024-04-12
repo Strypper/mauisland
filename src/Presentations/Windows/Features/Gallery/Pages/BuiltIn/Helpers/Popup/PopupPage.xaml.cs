@@ -1,14 +1,31 @@
 namespace MAUIsland;
 public partial class PopupPage : IGalleryPage
 {
-    #region [CTor]
+    #region [ Fields ]
+
+    private readonly PopupPageViewModel viewModel;
+    #endregion
+
+    #region [ CTor ]
+
     public PopupPage(PopupPageViewModel vm)
     {
         InitializeComponent();
 
-        BindingContext = vm;
+        BindingContext = viewModel = vm;
     }
     #endregion
+
+    #region [ Event Handlers ]
+
+    private void BasePage_Loaded(object sender, EventArgs e)
+    {
+        if (NewWindowParameter is not null && viewModel.ControlInformation is null)
+        {
+            viewModel.SetControlInformation(NewWindowParameter);
+            viewModel.RefreshCommand.Execute(null);
+        }
+    }
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
@@ -17,8 +34,8 @@ public partial class PopupPage : IGalleryPage
 
     private async void Button_Clicked_1(object sender, EventArgs e)
     {
-        bool answer = await DisplayAlert("Question?", "Would you like to play a game", "Yes","No");
-        await DisplayAlert("Answer",$"Answer is {( answer ? "yes" : "no")}" , "OK");
+        bool answer = await DisplayAlert("Question?", "Would you like to play a game", "Yes", "No");
+        await DisplayAlert("Answer", $"Answer is {(answer ? "yes" : "no")}", "OK");
     }
 
     private async void Button_Clicked_2(object sender, EventArgs e)
@@ -32,10 +49,11 @@ public partial class PopupPage : IGalleryPage
 
     private async void Button_Clicked_3(object sender, EventArgs e)
     {
-        string answer = await DisplayPromptAsync("Hello", "What's your name?",placeholder: "Type your name");
-        if (answer != null) 
+        string answer = await DisplayPromptAsync("Hello", "What's your name?", placeholder: "Type your name");
+        if (answer != null)
         {
-            await DisplayAlert("Welcome", $"Hello, {answer}","Cancel");
+            await DisplayAlert("Welcome", $"Hello, {answer}", "Cancel");
         }
     }
+    #endregion
 }

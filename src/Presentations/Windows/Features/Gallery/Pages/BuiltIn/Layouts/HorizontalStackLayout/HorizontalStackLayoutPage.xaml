@@ -7,8 +7,9 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="HorizontalStackLayout"
     Padding="20"
-    x:DataType="app:HorizontalStackLayoutPageViewModel"
-    BackgroundColor="Transparent">
+    x:DataType="core:HorizontalStackLayoutPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -204,10 +205,14 @@
                         </Border>
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
                             <VerticalStackLayout Spacing="20">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Subtitle"
+                                    Text="{x:StaticResource PropertiesListHeader}"
+                                    TextDecorations="Underline" />
                                 <CollectionView
                                     Footer="{x:StaticResource PropertiesListFooter}"
-                                    Header="{x:StaticResource PropertiesListHeader}"
-                                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                                    ItemsSource="{x:StaticResource PropertyItemsSource}"
                                     Style="{x:StaticResource PropertiesListStyle}" />
                                 <HorizontalStackLayout Margin="20">
                                     <Rectangle

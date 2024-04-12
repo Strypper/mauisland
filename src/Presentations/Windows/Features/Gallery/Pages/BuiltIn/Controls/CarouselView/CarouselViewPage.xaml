@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<core:BasePage
+    x:Class="MAUIsland.CarouselViewPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    Title="Carousel View"
+    Padding="20"
+    x:DataType="core:CarouselViewPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
+
+    <core:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </core:BasePage.ToolbarItems>
+    <core:BasePage.Resources>
+        <x:String x:Key="PropertiesListHeader">
+            CarouselView defines the following properties:
+        </x:String>
+
+        <x:String x:Key="PropertiesListFooter">
+            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
+        </x:String>
+
+        <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   <strong style="color:blue">ItemsSource</strong>, of type <strong style="color:blue">IEnumerable</strong>, sets the collection of items to be displayed in the carousel.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">ItemTemplate</strong>, of type <strong style="color:blue">DataTemplate</strong>, defines the presentation of the data in the carousel.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Position</strong>, of type <strong style="color:blue">int</strong>, gets or sets the currently selected item.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">CurrentItem</strong>, of type <strong style="color:blue">object</strong>, represents the current item being displayed. This property has a default binding mode of TwoWay, and has a null value when there isn't any data to display.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">CurrentItemChangedCommand</strong>, of type <strong style="color:blue">ICommand</strong>, is executed when the current item changes.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">CurrentItemChangedCommandParameter</strong>, of type <strong style="color:blue">object</strong>, is the parameter that's passed to the CurrentItemChangedCommand.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">CurrentItemChangedEventArgs</strong>, of type <strong style="color:blue">object</strong>, accompanies the CurrentItemChanged event and has two properties, both of type object: PreviousItem – the previous item, after the property change. CurrentItem – the current item, after the property change.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">ItemsLayout</strong>, of type <strong style="color:blue">IItemsLayout</strong>, defines the strategy for laying out the items in the carousel.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">PeekAreaInsets</strong>, of type <strong style="color:blue">Thickness</strong>, gets or sets the insets for the visible area that peeks into the non-visible area.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">IsBounceEnabled</strong>, of type <strong style="color:blue">bool</strong>, gets or sets whether bouncing is enabled for the carousel.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">IsScrollAnimated</strong>, of type <strong style="color:blue">bool</strong>, gets or sets whether scrolling is animated.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">IsSwipeEnabled</strong>, of type <strong style="color:blue">bool</strong>, gets or sets whether swiping is enabled.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">IsScrolling</strong>, of type <strong style="color:blue">bool</strong>, gets a value that indicates whether the user is scrolling the carousel.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">Loop</strong>, of type <strong style="color:blue">bool</strong>, gets or sets whether the carousel should loop.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">RemainingItemsThreshold</strong>, of type <strong style="color:blue">int</strong>, gets or sets the threshold of items not yet visible in the list at which the RemainingItemsThresholdReached event will be fired.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">RemainingItemsThresholdReachedCommand</strong>, of type <strong style="color:blue">ICommand</strong>, gets or sets the command that will be executed when the RemainingItemsThreshold is reached.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   <strong style="color:blue">RemainingItemsThresholdReachedCommandParameter</strong>, of type <strong style="color:blue">object</strong>, which is the parameter that's passed to the <strong style="color:blue">RemainingItemsThresholdReachedCommand</strong>.  ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="CarouselViewInfo" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   The CarouselView in .NET Multi-platform App UI (.NET MAUI) is a user interface element that allows data to be displayed in a layout that can be scrolled through. Users can swipe to navigate through a set of items.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   CarouselView, by default, arranges its items horizontally. It shows one item at a time on the screen, and users can swipe left or right to navigate through the items. It also has the capability to show indicators for each item in the collection.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   CarouselView offers a looping feature. This means if a user swipes back from the first item, they will see the last item in the collection. Similarly, swiping forward from the last item will bring them back to the first item.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   CarouselView shares a lot of its functionality with CollectionView. However, they are used for different purposes. CollectionView is generally used for displaying long lists of data, while CarouselView is more suited for showcasing a limited number of items. For more details about CollectionView, please refer to the CollectionView documentation.  ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="CarouselViewDataTemplateSelector" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[   The appearance of each item in the CarouselView can be chosen at runtime, based on the item value, and by using converter.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[   Set the CarouselView.ItemTemplate property to a DataTemplateSelector object. DataTemplateSelector class defines DataTemplate properties that are set to different data templates. Apply logic to return the desired template in slector class.  ]]>
+            </x:String>
+        </x:Array>
+
+        <DataTemplate x:Key="NormalDataTemplate" x:DataType="core:CarouselItem">
+            <StackLayout>
+                <Frame
+                    BorderColor="DarkGray"
+                    CornerRadius="5"
+                    HasShadow="True"
+                    HeightRequest="300"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                    <StackLayout>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            Text="{Binding Title}"
+                            VerticalOptions="Center" />
+                        <Image
+                            Aspect="AspectFill"
+                            HeightRequest="150"
+                            HorizontalOptions="Center"
+                            Source="microsoft.png"
+                            WidthRequest="150" />
+                        <Label HorizontalOptions="Center" Text="{Binding Content}" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </DataTemplate>
+
+        <DataTemplate x:Key="HighlightedDataTemplate" x:DataType="core:CarouselItem">
+            <StackLayout>
+                <Frame
+                    Margin="20"
+                    BackgroundColor="GreenYellow"
+                    BorderColor="Black"
+                    CornerRadius="5"
+                    HasShadow="True"
+                    HeightRequest="300"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                    <StackLayout>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            Text="{Binding Title}"
+                            VerticalOptions="Center" />
+                        <Image
+                            Aspect="AspectFill"
+                            HeightRequest="150"
+                            HorizontalOptions="Center"
+                            Source="microsoft.png"
+                            WidthRequest="150" />
+                        <Label HorizontalOptions="Center" Text="{Binding Content}" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CarouselSwipeViewItemTemplate">
+            <StackLayout>
+                <Frame
+                    Margin="20"
+                    HeightRequest="300"
+                    HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand">
+                    <SwipeView>
+                        <SwipeView.TopItems>
+                            <SwipeItems>
+                                <SwipeItem
+                                    BackgroundColor="LightGreen"
+                                    Command="{x:Binding Path=BindingContext.SwipeViewFavoriteCommand,
+                                                        Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
+                                    CommandParameter="{Binding}"
+                                    IconImageSource="{x:Static core:FluentUIIcon.Ic_fluent_heart_24_regular}"
+                                    Text="Favorite" />
+                            </SwipeItems>
+                        </SwipeView.TopItems>
+                        <SwipeView.BottomItems>
+                            <SwipeItems>
+                                <SwipeItem
+                                    BackgroundColor="LightPink"
+                                    Command="{x:Binding Path=BindingContext.SwipeViewDeleteCommand,
+                                                        Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
+                                    CommandParameter="{Binding}"
+                                    IconImageSource="{x:Static core:FluentUIIcon.Ic_fluent_delete_24_regular}"
+                                    Text="Delete" />
+                            </SwipeItems>
+                        </SwipeView.BottomItems>
+                        <StackLayout x:DataType="core:CarouselItem">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                Text="{Binding Title}"
+                                VerticalOptions="Center" />
+                            <Image
+                                Aspect="AspectFill"
+                                HeightRequest="150"
+                                HorizontalOptions="Center"
+                                Source="microsoft.png"
+                                WidthRequest="150" />
+                            <Label HorizontalOptions="Center" Text="{Binding Content}" />
+                        </StackLayout>
+                    </SwipeView>
+                </Frame>
+            </StackLayout>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CollectionViewDataTemplate" x:DataType="core:CarouselItem">
+            <StackLayout>
+                <Frame
+                    Margin="5"
+                    Background="DarkGray"
+                    BorderColor="Transparent"
+                    CornerRadius="5"
+                    HasShadow="True"
+                    VerticalOptions="Center">
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Label Text="{Binding Content}" TextColor="White" />
+                    </HorizontalStackLayout>
+                </Frame>
+            </StackLayout>
+        </DataTemplate>
+
+        <core:CarouselViewItemDataTemplateSelector
+            x:Key="CarouselViewItemDataTemplateSelector"
+            HighlightedTemplate="{x:StaticResource HighlightedDataTemplate}"
+            NormalTemplate="{x:StaticResource NormalDataTemplate}" />
+
+    </core:BasePage.Resources>
+
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            Text="{x:StaticResource PropertiesListHeader}"
+                            TextDecorations="Underline" />
+                        <CollectionView
+                            Footer="{x:StaticResource PropertiesListFooter}"
+                            ItemsSource="{x:StaticResource PropertyItemsSource}"
+                            Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Overview" />
+                        <CollectionView ItemsSource="{x:StaticResource CarouselViewInfo}" Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Basic CarouselView" />
+                        <CarouselView ItemTemplate="{x:StaticResource NormalDataTemplate}" ItemsSource="{x:Binding Items}" />
+
+                        <Label Text="This is the Model that will be used for ths page" />
+                        <core:SourceCodeExpander Code="{x:Binding CSharpCarouselItemModel}" CodeType="CSharp" />
+                        <Label Text="Here is the Xaml code" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlCarouselViewBasic}" CodeType="Xaml" />
+                        <Label Text="Basic CarouselView DataTemplate" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlCarouselViewBasicDataTemplate}" CodeType="Xaml" />
+                        <Label Text="Here is the ViewMOdel" />
+                        <core:SourceCodeExpander Code="{x:Binding CSharpCarouselViewBasicViewModel}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CarouselView with DataTemplateSelector" />
+                        <CollectionView ItemsSource="{x:StaticResource CollectionViewDataTemplate}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <Label Text="CarouselView with first item highlighted:" />
+                        <CarouselView
+                            x:Name="TemplateSelectorCarouselView"
+                            ItemTemplate="{x:StaticResource CarouselViewItemDataTemplateSelector}"
+                            ItemsSource="{x:Binding Items}"
+                            Loop="False" />
+                        <Label
+                            Margin="5"
+                            Text="Note that: It work well with Loop disabled"
+                            TextColor="OrangeRed" />
+                        <Label Text="This is the Xaml code" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlCarouselViewDataTemplateSelector}" CodeType="Xaml" />
+                        <Label Text="Here is DataTemplate Selector" />
+                        <core:SourceCodeExpander Code="{x:Binding CSharpCarouselViewDataTemplateSelector}" CodeType="CSharp" />
+                        <Label Text="Here is Selector setup" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlCarouselViewDataTemplateSelectorSetup}" CodeType="Xaml" />
+                        <Label Text="This is the ViewModel" />
+                        <core:SourceCodeExpander Code="{x:Binding CSharpCarouselViewDataTemplateSelectorViewModel}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CarouselView with IndicatorView" />
+                        <CarouselView
+                            IndicatorView="IndicatorView"
+                            ItemTemplate="{x:StaticResource NormalDataTemplate}"
+                            ItemsSource="{x:Binding Items}" />
+                        <IndicatorView
+                            x:Name="IndicatorView"
+                            HorizontalOptions="Center"
+                            IndicatorColor="LightGray"
+                            SelectedIndicatorColor="Aqua" />
+                        <Label Text="Here is the code" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlCarouselViewIndicatorView}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CarouselView with SwipeView" />
+                        <CarouselView ItemTemplate="{x:StaticResource CarouselSwipeViewItemTemplate}" ItemsSource="{x:Binding Items}" />
+
+                        <Label Text="Xaml Code here" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlCarouselViewSwipeView}" CodeType="Xaml" />
+                        <Label Text="This is the CarouselView DataTemplate containt SwipeView" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlCarouselViewSwipeViewDataTemplate}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CarouselView with RefreshView" />
+                        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}">
+                            <CarouselView ItemTemplate="{x:StaticResource NormalDataTemplate}" ItemsSource="{x:Binding Items}" />
+                        </RefreshView>
+                        <Label Text="Here for Xaml code" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlCarouselViewRefreshView}" CodeType="Xaml" />
+                        <Label Text="Here for ViewModel" />
+                        <core:SourceCodeExpander Code="{x:Binding CSharpCarouselViewRefreshViewViewModel}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CarouselView Layout" />
+                        <Label Text="This is CarouselView with horizontal layout" />
+                        <CarouselView
+                            HorizontalOptions="FillAndExpand"
+                            ItemTemplate="{x:StaticResource NormalDataTemplate}"
+                            ItemsSource="{x:Binding Items}">
+                            <CarouselView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal" />
+                            </CarouselView.ItemsLayout>
+                        </CarouselView>
+                        <Label Text="This is CarouselView with vertical layout" />
+                        <Label
+                            Margin="5"
+                            Text="Note for the error: Vertical LinearItemsLayout and ItemSpacing are not working"
+                            TextColor="OrangeRed" />
+                        <Label Text="Here is the Xaml code" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlCarouselViewHorizontalLayout}" CodeType="Xaml" />
+                        <!--  Right-to-left layout  -->
+                        <Label Text="This is CarouselView with Right-to-left dlow direction layout" />
+                        <CarouselView
+                            FlowDirection="RightToLeft"
+                            HorizontalOptions="FillAndExpand"
+                            ItemTemplate="{x:StaticResource NormalDataTemplate}"
+                            ItemsSource="{x:Binding Items}" />
+                        <Label Text="Here is the Xaml code" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlCarouselViewRightToLeftLayout}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!--<Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CarouselView Visible Adjacent Items" />
+                    <CarouselView ItemsSource="{x:Binding Items}"
+                                  ItemTemplate="{x:StaticResource NormalDataTemplate}"/>
+                    <Label Text="PeekAreaInsets ? doom"/>
+                </VerticalStackLayout>
+            </Border>-->
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CarouselView Current Item Changing Respondsibility" />
+                        <Label Text="Item Changing With EventHandler" />
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="This is the Current Item Content that you selected: " />
+                                    <Span x:Name="ItemChangingEventHandlerLabelSpan" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="And its Position: " />
+                                    <Span x:Name="PositionItemChangingEventHandlerLabelSpan" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <CarouselView
+                            Grid.Column="1"
+                            CurrentItemChanged="CarouselViewCurrentItemChanged"
+                            ItemTemplate="{x:StaticResource NormalDataTemplate}"
+                            ItemsSource="{x:Binding Items}"
+                            VerticalOptions="Center" />
+                        <Label Text="This is xaml code" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlCarouselViewItemChangingEvent}" CodeType="Xaml" />
+                        <Label Text="This is code behind" />
+                        <core:SourceCodeExpander Code="{x:Binding CSharpCarouselViewItemChangingEventCodeBehind}" CodeType="CSharp" />
+                        <Label Text="Item Changing With Command" />
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="This is the Current Item Content that you selected: " />
+                                    <Span Text="{x:Binding CommandCurrentSelectedItemSpan}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="And its Position: " />
+                                    <Span Text="{x:Binding CommandCurrentSelectedItemPositionSpan}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <CarouselView
+                            x:Name="CarouselViewCommandItemChanging"
+                            Grid.Column="1"
+                            CurrentItem="{x:Binding CommandCurrentSelectedItem}"
+                            CurrentItemChangedCommand="{x:Binding CarouselViewCurrentItemChangedCommand}"
+                            CurrentItemChangedCommandParameter="{x:Binding Path=CurrentItem.Content,
+                                                                           Source={x:Reference CarouselViewCommandItemChanging}}"
+                            ItemTemplate="{x:StaticResource NormalDataTemplate}"
+                            ItemsSource="{x:Binding Items}"
+                            Position="{x:Binding CommandCurrentSelectedItemPositionSpan,
+                                                 Mode=TwoWay}"
+                            VerticalOptions="Center" />
+                        <Label Text="This is xaml code" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlCarouselViewItemChangingCommand}" CodeType="Xaml" />
+                        <Label Text="This is ViewModel" />
+                        <core:SourceCodeExpander Code="{x:Binding CSharpCarouselViewItemChangingCommandViewModel}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="CarouselView EmptyView" />
+                        <Label Text="This is CarouselView with List" />
+                        <CarouselView
+                            EmptyView="Nothing to show here !!!."
+                            ItemTemplate="{x:StaticResource NormalDataTemplate}"
+                            ItemsSource="{x:Binding ItemEmptyList}"
+                            Loop="False" />
+                        <Label
+                            Margin="5"
+                            Text="EmptyView work well with none looping carousel"
+                            TextColor="OrangeRed" />
+                        <Label Text="Here is the Xaml code" />
+                        <core:SourceCodeExpander Code="{x:Binding XamlCarouselViewEmptyView}" CodeType="Xaml" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </SwipeView>
+</core:BasePage>
