@@ -9,7 +9,8 @@
     Title="Byte Array To Image Source Converter"
     Padding="20"
     x:DataType="core:ByteArrayToImageSourceConverterPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem

@@ -12,7 +12,7 @@ class ColorConverterControlInfo : ICommunityToolkitGalleryCardInfo
         Glyph = FluentUIIcon.Ic_fluent_approvals_app_20_regular
     };
     public string ControlDetail => "A group of converters that convert a Color to strings value like RGB, HEX, HSL, etc";
-    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Features/Gallery/Pages/Toolkit/Converters/{ControlName}";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Presentations/Windows/Features/Gallery/Pages/Toolkit/Converters/{ControlName}";
     public string DocumentUrl => $"https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/converters/";
     public string GroupName => ControlGroupInfo.CommunityToolkit;
     public GalleryCardType CardType => GalleryCardType.Converter;

@@ -1,21 +1,27 @@
-﻿namespace MAUIsland.Core;
+﻿using MAUIsland.Features.LocalDbFeatures.GitHub;
+using MAUIsland.GitHubFeatures;
 
-public partial class ExpanderPageViewModel : NavigationAwareBaseViewModel
+namespace MAUIsland.Core;
+
+public partial class ExpanderPageViewModel : BaseToolkitPageControlViewModel
 {
-    #region [ Services ]
+    #region [ Fields ]
+
     private readonly IControlsService MauiControlsService;
     #endregion
 
     #region [ CTor ]
-    public ExpanderPageViewModel(IAppNavigator appNavigator)
-        : base(appNavigator)
+    public ExpanderPageViewModel(IAppNavigator appNavigator,
+                                 IGitHubService gitHubService,
+                                 IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                                        : base(appNavigator,
+                                                gitHubService,
+                                                gitHubIssueLocalDbService)
     {
     }
     #endregion
 
     #region [ Properties ]
-    [ObservableProperty]
-    IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
     ObservableCollection<IGalleryCardInfo> controlGroupList;
@@ -159,7 +165,7 @@ public partial class ExpanderPageViewModel : NavigationAwareBaseViewModel
         base.OnInit(query);
         ExpanderStatus = "Is Close";
         ControlGroupList = new ObservableCollection<IGalleryCardInfo>();
-        ControlInformation = query.GetData<IGalleryCardInfo>();
+        ControlInformation = query.GetData<ICommunityToolkitGalleryCardInfo>();
 
     }
     #endregion
@@ -168,6 +174,13 @@ public partial class ExpanderPageViewModel : NavigationAwareBaseViewModel
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    async Task RefreshAsync()
+    {
+        if (ControlInformation is null)
+            return;
+    }
     #endregion
 
     #region [ Data ]

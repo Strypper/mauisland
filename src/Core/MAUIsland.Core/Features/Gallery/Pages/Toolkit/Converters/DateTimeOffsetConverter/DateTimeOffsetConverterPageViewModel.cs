@@ -1,16 +1,22 @@
-﻿namespace MAUIsland.Core;
+﻿using MAUIsland.Features.LocalDbFeatures.GitHub;
+using MAUIsland.GitHubFeatures;
 
-public partial class DateTimeOffsetConverterPageViewModel : NavigationAwareBaseViewModel
+namespace MAUIsland.Core;
+
+public partial class DateTimeOffsetConverterPageViewModel : BaseToolkitPageControlViewModel
 {
     #region [ CTor ]
-    public DateTimeOffsetConverterPageViewModel(IAppNavigator appNavigator)
-        : base(appNavigator)
-    { }
+    public DateTimeOffsetConverterPageViewModel(IAppNavigator appNavigator,
+                                                IGitHubService gitHubService,
+                                                IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                                                    : base(appNavigator,
+                                                            gitHubService,
+                                                            gitHubIssueLocalDbService)
+    {
+    }
     #endregion
 
     #region [ Properties ]
-    [ObservableProperty]
-    IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
     DateTimeOffset dateTimeOffset = new DateTimeOffset();
@@ -63,13 +69,20 @@ public partial class DateTimeOffsetConverterPageViewModel : NavigationAwareBaseV
     [RelayCommand]
     Task OpenUrlAsync(string url)
         => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    async Task RefreshAsync()
+    {
+        if (ControlInformation is null)
+            return;
+    }
     #endregion
 
     #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
-        ControlInformation = query.GetData<IGalleryCardInfo>();
+        ControlInformation = query.GetData<ICommunityToolkitGalleryCardInfo>();
         LoadDataAsync().FireAndForget();
     }
     #endregion

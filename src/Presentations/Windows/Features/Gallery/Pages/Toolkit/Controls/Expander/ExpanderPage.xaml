@@ -9,7 +9,8 @@
     Title="Expander"
     Padding="20"
     x:DataType="core:ExpanderPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem

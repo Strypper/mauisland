@@ -9,7 +9,8 @@
     Title="Avatar View"
     Padding="20"
     x:DataType="core:AvatarViewPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem

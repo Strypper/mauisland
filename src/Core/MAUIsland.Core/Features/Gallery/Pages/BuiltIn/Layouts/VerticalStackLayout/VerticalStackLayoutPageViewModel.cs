@@ -13,8 +13,8 @@ public partial class VerticalStackLayoutPageViewModel : BaseBuiltInPageControlVi
                                             IGitHubService gitHubService,
                                             IGitHubIssueLocalDbService gitHubIssueLocalDbService)
                                                 : base(appNavigator,
-                                                        gitHubService,
-                                                        gitHubIssueLocalDbService)
+                                                       gitHubService,
+                                                       gitHubIssueLocalDbService)
     {
     }
     #endregion

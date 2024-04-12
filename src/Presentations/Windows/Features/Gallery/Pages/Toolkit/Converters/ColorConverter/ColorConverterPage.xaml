@@ -9,7 +9,8 @@
     Title="Color Converter"
     Padding="20"
     x:DataType="core:ColorConverterPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem

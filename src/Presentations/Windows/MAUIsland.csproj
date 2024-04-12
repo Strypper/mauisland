@@ -59,7 +59,6 @@
 		<PackageReference Include="CommunityToolkit.Common" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="IconPacks.Material" Version="1.0.8807.17-build" />
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.0-preview.1.24081.5" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0-preview.1.24080.9" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0-preview.1.24080.9" />

@@ -1,16 +1,23 @@
-﻿namespace MAUIsland.Core;
+﻿using MAUIsland.Features.LocalDbFeatures.GitHub;
+using MAUIsland.GitHubFeatures;
 
-public partial class CompareConverterPageViewModel : NavigationAwareBaseViewModel
+namespace MAUIsland.Core;
+
+public partial class CompareConverterPageViewModel : BaseToolkitPageControlViewModel
 {
     #region [ CTor ]
-    public CompareConverterPageViewModel(IAppNavigator appNavigator)
-        : base(appNavigator)
-    { }
+
+    public CompareConverterPageViewModel(IAppNavigator appNavigator,
+                                         IGitHubService gitHubService,
+                                         IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                                                : base(appNavigator,
+                                                        gitHubService,
+                                                        gitHubIssueLocalDbService)
+    {
+    }
     #endregion
 
     #region [ Properties ]
-    [ObservableProperty]
-    IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
     double slideValue = 0;
@@ -92,13 +99,20 @@ public partial class CompareConverterPageViewModel : NavigationAwareBaseViewMode
     [RelayCommand]
     Task OpenUrlAsync(string url)
         => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    async Task RefreshAsync()
+    {
+        if (ControlInformation is null)
+            return;
+    }
     #endregion
 
     #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
-        ControlInformation = query.GetData<IGalleryCardInfo>();
+        ControlInformation = query.GetData<ICommunityToolkitGalleryCardInfo>();
         LoadDataAsync().FireAndForget();
     }
     #endregion

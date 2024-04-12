@@ -1,22 +1,28 @@
-﻿namespace MAUIsland.Core;
+﻿using MAUIsland.Features.LocalDbFeatures.GitHub;
+using MAUIsland.GitHubFeatures;
 
-public partial class ColorConverterPageViewModel : NavigationAwareBaseViewModel
+namespace MAUIsland.Core;
+
+public partial class ColorConverterPageViewModel : BaseToolkitPageControlViewModel
 {
     #region [ Fields ]
     #endregion
 
     #region [ CTor ]
-    public ColorConverterPageViewModel(IAppNavigator appNavigator)
-        : base(appNavigator)
-    { }
+    public ColorConverterPageViewModel(IAppNavigator appNavigator,
+                                       IGitHubService gitHubService,
+                                       IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                                            : base(appNavigator,
+                                                    gitHubService,
+                                                    gitHubIssueLocalDbService)
+    {
+    }
     #endregion
 
     #region [ Properties ]
-    [ObservableProperty]
-    IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
-    ObservableCollection<IGalleryCardInfo> controlGroupList;
+    ObservableCollection<IGalleryCardInfo> controlGroupList = default!;
 
     [ObservableProperty]
     double blueByte;
@@ -373,7 +379,24 @@ public partial class ColorConverterPageViewModel : NavigationAwareBaseViewModel
         "</ContentPage>";
     #endregion
 
+    #region [ Overrides ]
+    protected override void OnInit(IDictionary<string, object> query)
+    {
+        base.OnInit(query);
+        ControlInformation = query.GetData<ICommunityToolkitGalleryCardInfo>();
+        LoadDataAsync().FireAndForget();
+    }
+    #endregion
+
     #region[ Relay Command ]
+
+    [RelayCommand]
+    async Task RefreshAsync()
+    {
+        if (ControlInformation is null)
+            return;
+    }
+
     [RelayCommand]
     Task OpenUrlAsync(string url)
         => AppNavigator.OpenUrlAsync(url);
@@ -464,14 +487,6 @@ public partial class ColorConverterPageViewModel : NavigationAwareBaseViewModel
 
     #endregion
 
-    #region [ Overrides ]
-    protected override void OnInit(IDictionary<string, object> query)
-    {
-        base.OnInit(query);
-        ControlInformation = query.GetData<IGalleryCardInfo>();
-        LoadDataAsync().FireAndForget();
-    }
-    #endregion
 
     #region [ Data ]
     private async Task LoadDataAsync()

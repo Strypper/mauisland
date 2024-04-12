@@ -1,16 +1,22 @@
-﻿namespace MAUIsland.Core;
+﻿using MAUIsland.Features.LocalDbFeatures.GitHub;
+using MAUIsland.GitHubFeatures;
 
-public partial class ByteArrayToImageSourceConverterPageViewModel : NavigationAwareBaseViewModel
+namespace MAUIsland.Core;
+
+public partial class ByteArrayToImageSourceConverterPageViewModel : BaseToolkitPageControlViewModel
 {
     #region [ CTor ]
-    public ByteArrayToImageSourceConverterPageViewModel(IAppNavigator appNavigator)
-        : base(appNavigator)
-    { }
+    public ByteArrayToImageSourceConverterPageViewModel(IAppNavigator appNavigator,
+                                                        IGitHubService gitHubService,
+                                                        IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                                                            : base(appNavigator,
+                                                                    gitHubService,
+                                                                    gitHubIssueLocalDbService)
+    {
+    }
     #endregion
 
     #region [ Properties ]
-    [ObservableProperty]
-    IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
     byte[] imageByteArray;
@@ -65,13 +71,20 @@ public partial class ByteArrayToImageSourceConverterPageViewModel : NavigationAw
     [RelayCommand]
     Task OpenUrlAsync(string url)
         => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    async Task RefreshAsync()
+    {
+        if (ControlInformation is null)
+            return;
+    }
     #endregion
 
     #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
-        ControlInformation = query.GetData<IGalleryCardInfo>();
+        ControlInformation = query.GetData<ICommunityToolkitGalleryCardInfo>();
         LoadDataAsync().FireAndForget();
     }
     #endregion

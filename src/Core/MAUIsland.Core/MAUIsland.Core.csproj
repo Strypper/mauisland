@@ -23,6 +23,7 @@
 		<PackageReference Include="Bogus" Version="35.5.0" />
 		<PackageReference Include="ColorCode.Core" Version="2.0.15" />
 		<PackageReference Include="Material.Components.Maui" Version="0.2.2-preview" />
+		<PackageReference Include="IconPacks.Material" Version="1.0.8807.17-build" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
 		<PackageReference Include="CommunityToolkit.Maui.Core" Version="7.0.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
@@ -41,11 +42,6 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Features\GitHubFeatures\MAUIsland.GitHubFeatures\MAUIsland.GitHubFeatures.csproj" />
 	  <ProjectReference Include="..\..\Features\LocalDbFeatures\GitHub\MAUIsland.Features.LocalDbFeatures.GitHub\MAUIsland.Features.LocalDbFeatures.GitHub.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Features\Gallery\Pages\Toolkit\Helpers\" />
-	  <Folder Include="Features\Gallery\Pages\Toolkit\Layouts\" />
 	</ItemGroup>
 
 	<ItemGroup>

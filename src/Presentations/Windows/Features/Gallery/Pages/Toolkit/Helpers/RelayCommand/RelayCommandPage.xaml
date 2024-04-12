@@ -8,8 +8,9 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="RelayCommand"
     Padding="20"
-    x:DataType="app:RelayCommandPageViewModel"
-    BackgroundColor="Transparent">
+    x:DataType="core:RelayCommandPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem

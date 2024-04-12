@@ -9,7 +9,8 @@
     Title="Compare Converter"
     Padding="20"
     x:DataType="core:CompareConverterPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem

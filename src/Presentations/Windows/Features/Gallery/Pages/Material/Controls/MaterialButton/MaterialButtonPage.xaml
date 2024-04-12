@@ -9,7 +9,7 @@
     xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
     Title="MaterialButton"
     Padding="20"
-    x:DataType="app:MaterialButtonPageViewModel"
+    x:DataType="core:MaterialButtonPageViewModel"
     BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>

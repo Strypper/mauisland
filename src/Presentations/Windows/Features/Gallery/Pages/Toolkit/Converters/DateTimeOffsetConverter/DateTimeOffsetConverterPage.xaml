@@ -9,7 +9,8 @@
     Title="Date Time Offset Converter"
     Padding="20"
     x:DataType="core:DateTimeOffsetConverterPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
