@@ -12,6 +12,12 @@ public partial class MaterialFABPageViewModel : NavigationAwareBaseViewModel
     #region [ Properties ]
 
     [ObservableProperty]
+    List<MaterialComponentProperty> properties = default!;
+
+    [ObservableProperty]
+    List<MaterialComponentEvent> events = default!;
+
+    [ObservableProperty]
     IGalleryCardInfo controlInformation = default!;
 
     [ObservableProperty]
@@ -24,6 +30,30 @@ public partial class MaterialFABPageViewModel : NavigationAwareBaseViewModel
         base.OnInit(query);
 
         ControlInformation = query.GetData<IGalleryCardInfo>();
+        Properties = new List<MaterialComponentProperty>()
+        {
+            new(){ Name = "IconData", DataType = "string", DefaultValue = string.Empty },
+            new(){ Name = "BackgroundColor", DataType = "Color", DefaultValue = "style" },
+            new(){ Name = "Shape", DataType = "Shape", DefaultValue = "Large" },
+            new(){ Name = "Elevation", DataType = "Elevation", DefaultValue = "Level3" },
+            new(){ Name = "StateLayerColor", DataType = "Color", DefaultValue = "style" },
+            new(){ Name = "RippleDuration", DataType = "float", DefaultValue = "0.5" },
+            new(){ Name = "RippleEasing", DataType = "Easing", DefaultValue = "SinInOut" },
+            new(){ Name = "ContextMenu", DataType = "ContextMenu", DefaultValue = string.Empty },
+            new(){ Name = "Style", DataType = "Style", DefaultValue = "Surface" },
+            new(){ Name = "Command", DataType = "ICommand", DefaultValue = string.Empty },
+            new(){ Name = "CommandParameter", DataType = "object", DefaultValue = string.Empty },
+        };
+
+
+        Events = new List<MaterialComponentEvent>()
+        {
+            new() { Name = "Clicked", DataType = "EventHandler<TouchEventArgs>" },
+            new() { Name = "Pressed", DataType = "EventHandler<TouchEventArgs>" },
+            new() { Name = "Released", DataType = "EventHandler<TouchEventArgs>" },
+            new() { Name = "LongPressed", DataType = "EventHandler<TouchEventArgs>" },
+            new() { Name = "RightClicked (Desktop only)", DataType= "EventHandler<TouchEventArgs>"}
+        };
 
     }
     #endregion

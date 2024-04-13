@@ -160,13 +160,6 @@
                     <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
                 </Border>
                 <Border Padding="20" StrokeShape="RoundRectangle 4">
-                    <CollectionView
-                        Footer="{x:StaticResource PropertiesListFooter}"
-                        Header="{x:StaticResource PropertiesListHeader}"
-                        ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                </Border>
-                <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <VerticalStackLayout Spacing="10">
                         <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Styles" />
                         <Label Text="There are 2 styles of comboBoxs: 1. Filled. 2. Outlined." />

@@ -14,7 +14,7 @@ public class MaterialFABControlInfo : IMaterialUIGalleryCardInfo
         Size = 100,
         Glyph = FluentUIIcon.Ic_fluent_add_square_24_regular
     };
-    public string ControlDetail => "FABs(floating action button) represents the primary action of a screen.";
+    public string ControlDetail => "Floating action buttons (FABs) help people take primary actions.";
     public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Presentations/Windows/Features/Gallery/Pages/Material/Controls/MaterialFAB";
     public string DocumentUrl => $"https://mdc-maui.github.io/FAB";
     public string GroupName => ControlGroupInfo.MaterialComponent;

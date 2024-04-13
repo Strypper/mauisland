@@ -12,6 +12,12 @@ public partial class MaterialContextMenuPageViewModel : NavigationAwareBaseViewM
     #region [ Properties ]
 
     [ObservableProperty]
+    List<MaterialComponentProperty> properties = default!;
+
+    [ObservableProperty]
+    List<MaterialComponentEvent> events = default!;
+
+    [ObservableProperty]
     IGalleryCardInfo controlInformation = default!;
 
     [ObservableProperty]
@@ -25,6 +31,20 @@ public partial class MaterialContextMenuPageViewModel : NavigationAwareBaseViewM
 
         ControlInformation = query.GetData<IGalleryCardInfo>();
 
+        Properties = new List<MaterialComponentProperty>()
+        {
+            new(){ Name = "Items", DataType = "ObservableCollection<MenuItem>", DefaultValue = string.Empty },
+            new(){ Name = "ItemsSource", DataType = "IList", DefaultValue = string.Empty },
+            new(){ Name = "Result", DataType = "object", DefaultValue = string.Empty },
+            new(){ Name = "BackgroundColor", DataType = "Color", DefaultValue = "SurfaceContainerColor" },
+            new(){ Name = "Shape", DataType = "Shape", DefaultValue = "4" },
+            new(){ Name = "Elevation", DataType = "Elevation", DefaultValue = "Level2" },
+        };
+
+        Events = new List<MaterialComponentEvent>()
+        {
+            new() { Name = "Closed", DataType= "EventHandler<object>"}
+        };
     }
     #endregion
 
