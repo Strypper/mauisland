@@ -40,6 +40,7 @@ public partial class CollectionViewPage : IGalleryPage
         {
             viewModel.SetControlInformation(NewWindowParameter);
             viewModel.RefreshCommand.Execute(null);
+            viewModel.RefreshPageCommand.Execute(null);
         }
     }
 
@@ -68,6 +69,10 @@ public partial class CollectionViewPage : IGalleryPage
     void OnFilterItemChanged(object sender, EventArgs e)
     {
         var picker = (Picker)sender;
+
+        if (picker.SelectedItem is null)
+            return;
+
         var selectedFilter = picker.SelectedItem.ToString();
 
         var collectionView = CollectionViewItemLayoutChanged;

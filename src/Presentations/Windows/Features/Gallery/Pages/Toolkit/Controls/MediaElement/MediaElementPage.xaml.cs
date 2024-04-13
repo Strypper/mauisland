@@ -82,9 +82,9 @@ public partial class MediaElementPage : IGalleryPage
 
     void ContentPage_Unloaded(object? sender, EventArgs e)
     {
-        MediaElementDownloadSample.Handler?.DisconnectHandler();
-        MediaElement.Handler?.DisconnectHandler();
-        SimpleMediaElement.Handler?.DisconnectHandler();
+        //MediaElementDownloadSample.Handler?.DisconnectHandler();
+        //MediaElement.Handler?.DisconnectHandler();
+        //SimpleMediaElement.Handler?.DisconnectHandler();
     }
 
     private void DownloadButton_Clicked(object sender, EventArgs e)

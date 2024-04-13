@@ -8,7 +8,8 @@
     Title="StackLayout"
     Padding="20"
     x:DataType="core:StackLayoutPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem

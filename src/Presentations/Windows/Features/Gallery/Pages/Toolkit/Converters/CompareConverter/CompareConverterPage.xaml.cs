@@ -14,7 +14,7 @@ public partial class CompareConverterPage : IGalleryPage
     {
         InitializeComponent();
 
-        BindingContext = vm;
+        BindingContext = viewModel = vm;
     }
     #endregion
 

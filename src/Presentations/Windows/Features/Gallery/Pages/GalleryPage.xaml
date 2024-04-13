@@ -54,13 +54,13 @@
             StrokeShape="RoundRectangle 6"
             StrokeThickness="5"
             VerticalOptions="Center"
-            WidthRequest="450">
+            WidthRequest="500">
             <CollectionView
                 HorizontalOptions="Center"
                 ItemTemplate="{x:StaticResource HorizontalWrapLayoutItemTemplate}"
                 ItemsSource="{x:Binding ControlGroups,
                                         Mode=OneWay}"
-                VerticalOptions="Center">k
+                VerticalOptions="Center">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout
                         HorizontalItemSpacing="5"

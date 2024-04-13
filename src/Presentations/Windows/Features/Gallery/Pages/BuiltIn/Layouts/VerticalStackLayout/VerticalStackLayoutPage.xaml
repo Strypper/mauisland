@@ -213,7 +213,7 @@
                                     TextDecorations="Underline" />
                                 <CollectionView
                                     Footer="{x:StaticResource PropertiesListFooter}"
-                                    ItemsSource="{x:StaticResource PropertyItemsSource}"
+                                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
                                     Style="{x:StaticResource PropertiesListStyle}" />
                                 <VerticalStackLayout Margin="20">
                                     <Label Text="Primary colors" TextColor="Blue" />

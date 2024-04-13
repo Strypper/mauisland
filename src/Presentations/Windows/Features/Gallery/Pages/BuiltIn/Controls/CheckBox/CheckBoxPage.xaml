@@ -223,6 +223,7 @@
                                     <CheckBox IsChecked="{x:Binding IsChecked, Mode=TwoWay}" Color="{x:Binding CurrentColor, Mode=OneWay}" />
                                     <Label
                                         Text="{x:Binding IsChecked,
+                                                         Mode=OneWay,
                                                          Converter={x:StaticResource StringTernaryOperatorConverter},
                                                          ConverterParameter={x:StaticResource CheckBoxStateMessages}}"
                                         TextColor="{x:Binding CurrentColor,

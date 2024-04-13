@@ -1058,6 +1058,9 @@ public partial class CollectionViewPageViewModel : BaseBuiltInPageControlViewMod
         FilterPickerItems.Add("None");
         SelectedFilterPickerItem = FilterPickerItems.Last();
 
+        if (ControlInformation is null)
+            return;
+
         var items = await MauiControlsService.GetControlsAsync(ControlInformation.GroupName);
         foreach (var item in items)
         {

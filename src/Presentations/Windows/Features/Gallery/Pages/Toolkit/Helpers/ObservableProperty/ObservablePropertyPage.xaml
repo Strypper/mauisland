@@ -9,7 +9,8 @@
     Title="ObservableProperty"
     Padding="20"
     x:DataType="core:ObservablePropertyPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
