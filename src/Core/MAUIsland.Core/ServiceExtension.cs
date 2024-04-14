@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Maui;
-using CommunityToolkit.Maui.Core;
 using Material.Components.Maui.Extensions;
 using MAUIsland.Features.LocalDbFeatures;
 using MAUIsland.Features.LocalDbFeatures.GitHub;
@@ -14,14 +13,11 @@ public static class ServicesExtension
     public static MauiAppBuilder InitCore(this MauiAppBuilder builder)
     {
 
+        //builder.UseMauiCommunityToolkit(option => option.SetShouldEnableSnackbarOnWindows(true));
+
         builder.UseAcrylicView();
         builder.UseSkiaSharp(true);
         builder.UseMaterialComponents();
-        builder.UseMauiCommunityToolkit();
-
-        //builder.UseMauiCommunityToolkit(option => option.SetShouldEnableSnackbarOnWindows(true));
-        builder.UseMauiCommunityToolkitCore();
-        builder.UseMauiCommunityToolkitMediaElement();
 
 
         builder.Services.RegisterGitHubFeatures();
