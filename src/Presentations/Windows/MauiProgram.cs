@@ -49,7 +49,7 @@ public static class MauiProgram
         DependencyService.Register<IMrIncreadibleMemeService, MrIncreadibleMemeService>();
 
 #if DEBUG
-        builder.Logging.AddDebug();
+        //builder.Logging.AddDebug();
 #endif
 
         return builder.Build();
