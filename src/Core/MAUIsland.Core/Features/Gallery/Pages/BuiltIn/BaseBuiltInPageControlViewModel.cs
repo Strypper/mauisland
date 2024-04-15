@@ -1,4 +1,6 @@
-﻿using MAUIsland.Features.LocalDbFeatures.GitHub;
+﻿using DiscordRPC;
+using DiscordRPC.Logging;
+using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
 
 namespace MAUIsland.Core;
@@ -6,7 +8,7 @@ namespace MAUIsland.Core;
 public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewModel
 {
     #region [ Fields ]
-
+    protected DiscordRpcClient client;
     protected IGitHubService GitHubService { get; }
     protected IGitHubIssueLocalDbService GitHubIssueLocalDbService { get; }
     #endregion
@@ -20,6 +22,9 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
     {
         GitHubService = gitHubService;
         GitHubIssueLocalDbService = gitHubIssueLocalDbService;
+
+        // Subscribe to the Pushed event
+        Shell.Current.Navigated += OnShellNavigated;
     }
     #endregion
 
@@ -190,6 +195,31 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
             await AppNavigator.ShowSnackbarAsync(e.Message, null, null);
         }
     }
+
+    private void OnShellNavigated(object sender, ShellNavigatedEventArgs e)
+{
+    // Get the page name
+    var pageLink = e.Current.Location.ToString();
+
+    var splitPageName = pageLink.Split('/');
+    var pageName = splitPageName[splitPageName.Length - 1];
+
+    var textInfo = new System.Globalization.CultureInfo("en-US", false).TextInfo;
+    var capitalizedLastPart = textInfo.ToTitleCase(pageName.ToLower());
+    //Set the rich presence
+    //Call this as many times as you want and anywhere in your code.
+    client.SetPresence(new RichPresence()
+    {
+        Details = "MaUIland",
+        State = $"Viewing {capitalizedLastPart}",
+        Assets = new Assets()
+        {
+            LargeImageKey = "https://raw.githubusercontent.com/Strypper/mauisland/main/src/Presentations/Windows/Resources/Images/logos/mauisland_logo.png",
+            LargeImageText = "Lachee's Discord IPC Library",
+            SmallImageKey = "https://raw.githubusercontent.com/Strypper/mauisland/main/src/Presentations/Windows/Resources/Images/logos/mauisland_logo.png"
+        }
+    });
+}
     #endregion
 
 
