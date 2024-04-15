@@ -81,7 +81,6 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
     public override async Task OnAppearingAsync()
     {
         CommunityToolkit.Diagnostics.Guard.IsNotNull(ControlGroup);
-        await LoadDataAsync(true);
         await RefreshAsync();
     }
     #endregion
@@ -160,7 +159,7 @@ public partial class CardsByGroupPageViewModel : NavigationAwareBaseViewModel
 
     async Task RefreshAsync()
     {
-
+        await LoadDataAsync(true);
     }
     async Task OnControlCardNavigation(IGalleryCardInfo control)
     {

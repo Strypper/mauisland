@@ -5,10 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:datagrid="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
     xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
     Title="MaterialButton"
-    Padding="10"
-    x:DataType="app:MaterialRadioButtonPageViewModel">
+    Padding="20"
+    x:DataType="core:MaterialRadioButtonPageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -27,14 +29,6 @@
 
         <x:String x:Key="ControlInfo">
             Radio buttons let people select one option from a set of options.
-        </x:String>
-
-        <x:String x:Key="PropertiesListHeader">
-            MaterialButton defines the following properties:
-        </x:String>
-
-        <x:String x:Key="PropertiesListFooter">
-            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
         </x:String>
 
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
@@ -70,17 +64,13 @@
         </SwipeView.LeftItems>
         <ScrollView>
             <VerticalStackLayout Spacing="20">
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                    <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-                </Frame>
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                    <CollectionView
-                        Footer="{x:StaticResource PropertiesListFooter}"
-                        Header="{x:StaticResource PropertiesListHeader}"
-                        ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                </Frame>
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <VerticalStackLayout Spacing="10">
                         <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:StaticResource ControlInfo}" />
                         <Label Text="Horizontal mode" />
@@ -97,7 +87,89 @@
                         </mdc:RadioButton>
                         <core:SourceCodeExpander Code="{x:Binding RadioButtonXamlCode}" CodeType="Xaml" />
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            Text="Properties" />
+                        <Grid BackgroundColor="White" HeightRequest="1" />
+                        <datagrid:DataGrid
+                            BorderColor="Gray"
+                            HeaderBackground="#d0bcff"
+                            HeaderHeight="50"
+                            ItemsSource="{x:Binding Properties}"
+                            RowHeight="80">
+                            <datagrid:DataGrid.Columns>
+                                <datagrid:DataGridColumn Title="Name" PropertyName="Name" />
+                                <datagrid:DataGridColumn Title="Data Type" PropertyName="DataType" />
+                                <datagrid:DataGridColumn Title="Default Value" PropertyName="DefaultValue" />
+                            </datagrid:DataGrid.Columns>
+                        </datagrid:DataGrid>
+                    </VerticalStackLayout>
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            Text="Events" />
+                        <Grid BackgroundColor="White" HeightRequest="1" />
+                        <datagrid:DataGrid
+                            BorderColor="Gray"
+                            HeaderBackground="#d0bcff"
+                            HeaderHeight="50"
+                            ItemsSource="{x:Binding Events}"
+                            RowHeight="80">
+                            <datagrid:DataGrid.Columns>
+                                <datagrid:DataGridColumn Title="Name" PropertyName="Name" />
+                                <datagrid:DataGridColumn Title="Data Type" PropertyName="DataType" />
+                            </datagrid:DataGrid.Columns>
+                        </datagrid:DataGrid>
+                    </VerticalStackLayout>
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            Text="RadioItem Properties" />
+                        <Grid BackgroundColor="White" HeightRequest="1" />
+                        <datagrid:DataGrid
+                            BorderColor="Gray"
+                            HeaderBackground="#d0bcff"
+                            HeaderHeight="50"
+                            ItemsSource="{x:Binding RadioItemProperties}"
+                            RowHeight="80">
+                            <datagrid:DataGrid.Columns>
+                                <datagrid:DataGridColumn Title="Name" PropertyName="Name" />
+                                <datagrid:DataGridColumn Title="Data Type" PropertyName="DataType" />
+                                <datagrid:DataGridColumn Title="Default Value" PropertyName="DefaultValue" />
+                            </datagrid:DataGrid.Columns>
+                        </datagrid:DataGrid>
+                    </VerticalStackLayout>
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            Text="RadioItem Events" />
+                        <Grid BackgroundColor="White" HeightRequest="1" />
+                        <datagrid:DataGrid
+                            BorderColor="Gray"
+                            HeaderBackground="#d0bcff"
+                            HeaderHeight="50"
+                            ItemsSource="{x:Binding RadioItemEvents}"
+                            RowHeight="80">
+                            <datagrid:DataGrid.Columns>
+                                <datagrid:DataGridColumn Title="Name" PropertyName="Name" />
+                                <datagrid:DataGridColumn Title="Data Type" PropertyName="DataType" />
+                            </datagrid:DataGrid.Columns>
+                        </datagrid:DataGrid>
+                    </VerticalStackLayout>
+                </Border>
             </VerticalStackLayout>
         </ScrollView>
     </SwipeView>

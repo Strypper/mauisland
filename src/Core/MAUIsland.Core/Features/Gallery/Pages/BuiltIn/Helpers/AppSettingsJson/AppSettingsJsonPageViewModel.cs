@@ -1,18 +1,22 @@
+using MAUIsland.Features.LocalDbFeatures.GitHub;
+using MAUIsland.GitHubFeatures;
+
 namespace MAUIsland.Core;
 
-public partial class AppSettingsJsonPageViewModel : NavigationAwareBaseViewModel
+public partial class AppSettingsJsonPageViewModel : BaseBuiltInPageControlViewModel
 {
     #region [ CTor ]
-    public AppSettingsJsonPageViewModel(
-        IAppNavigator appNavigator
-    ) : base(appNavigator)
+    public AppSettingsJsonPageViewModel(IAppNavigator appNavigator,
+                                        IGitHubService gitHubService,
+                                        IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                                            : base(appNavigator,
+                                                    gitHubService,
+                                                    gitHubIssueLocalDbService)
     {
     }
     #endregion
 
     #region [ Properties ]
-    [ObservableProperty]
-    IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
     string appSettingsJsonContent =
@@ -104,7 +108,7 @@ public partial class AppSettingsJsonPageViewModel : NavigationAwareBaseViewModel
     {
         base.OnInit(query);
 
-        ControlInformation = query.GetData<IGalleryCardInfo>();
+        ControlInformation = query.GetData<IBuiltInGalleryCardInfo>();
 
     }
     #endregion
@@ -113,6 +117,19 @@ public partial class AppSettingsJsonPageViewModel : NavigationAwareBaseViewModel
 
     [RelayCommand]
     Task OpenUrlAsync(string url)
-    => AppNavigator.OpenUrlAsync(url);
+        => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    async Task RefreshAsync()
+    {
+        if (ControlInformation is null)
+            return;
+
+        await RefreshControlIssues(true,
+                                   ControlInformation.ControlName,
+                                   ControlInformation.GitHubAuthorIssueName,
+                                   ControlInformation.GitHubRepositoryIssueName,
+                                   ControlInformation.GitHubIssueLabels);
+    }
     #endregion
 }

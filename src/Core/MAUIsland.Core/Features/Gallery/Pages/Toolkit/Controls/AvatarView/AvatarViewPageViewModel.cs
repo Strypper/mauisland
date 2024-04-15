@@ -1,16 +1,22 @@
-﻿namespace MAUIsland.Core;
+﻿using MAUIsland.Features.LocalDbFeatures.GitHub;
+using MAUIsland.GitHubFeatures;
 
-public partial class AvatarViewPageViewModel : NavigationAwareBaseViewModel
+namespace MAUIsland.Core;
+
+public partial class AvatarViewPageViewModel : BaseToolkitPageControlViewModel
 {
     #region [ CTor ]
-    public AvatarViewPageViewModel(IAppNavigator appNavigator) : base(appNavigator)
+    public AvatarViewPageViewModel(IAppNavigator appNavigator,
+                                   IGitHubService gitHubService,
+                                   IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                                        : base(appNavigator,
+                                                gitHubService,
+                                                gitHubIssueLocalDbService)
     {
     }
     #endregion
 
     #region [ Properties ]
-    [ObservableProperty]
-    IGalleryCardInfo controlInformation = default!;
 
     [ObservableProperty]
     string setupDescription =
@@ -141,13 +147,21 @@ public partial class AvatarViewPageViewModel : NavigationAwareBaseViewModel
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
-        ControlInformation = query.GetData<IGalleryCardInfo>();
+        ControlInformation = query.GetData<ICommunityToolkitGalleryCardInfo>();
     }
     #endregion
 
     #region [ Relay Commands ]
+
     [RelayCommand]
     Task OpenUrlAsync(string url)
-    => AppNavigator.OpenUrlAsync(url);
+        => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    async Task RefreshAsync()
+    {
+        if (ControlInformation is null)
+            return;
+    }
     #endregion
 }

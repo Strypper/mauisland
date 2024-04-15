@@ -1,17 +1,22 @@
-﻿namespace MAUIsland.Core;
+﻿using MAUIsland.Features.LocalDbFeatures.GitHub;
+using MAUIsland.GitHubFeatures;
 
-public partial class BoolToObjectConverterPageViewModel : NavigationAwareBaseViewModel
+namespace MAUIsland.Core;
+
+public partial class BoolToObjectConverterPageViewModel : BaseToolkitPageControlViewModel
 {
     #region [ CTor ]
-    public BoolToObjectConverterPageViewModel(IAppNavigator appNavigator)
-        : base(appNavigator)
+    public BoolToObjectConverterPageViewModel(IAppNavigator appNavigator,
+                                              IGitHubService gitHubService,
+                                              IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                                                    : base(appNavigator,
+                                                           gitHubService,
+                                                           gitHubIssueLocalDbService)
     {
     }
     #endregion
 
     #region [ Properties ]
-    [ObservableProperty]
-    IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
     bool converterTesting1 = true;
@@ -73,17 +78,26 @@ public partial class BoolToObjectConverterPageViewModel : NavigationAwareBaseVie
         "bool converterTesting2 = false;";
     #endregion
 
-    #region[ Relay Command ]
-    [RelayCommand]
-    Task OpenUrlAsync(string url)
-        => AppNavigator.OpenUrlAsync(url);
-    #endregion
-
     #region [ Overrides ]
+
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
-        ControlInformation = query.GetData<IGalleryCardInfo>();
+        ControlInformation = query.GetData<ICommunityToolkitGalleryCardInfo>();
+    }
+    #endregion
+
+    #region[ Relay Command ]
+
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+        => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    async Task RefreshAsync()
+    {
+        if (ControlInformation is null)
+            return;
     }
     #endregion
 }

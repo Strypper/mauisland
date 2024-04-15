@@ -6,9 +6,10 @@
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="VerticalStackLayout"
-    Padding="10"
+    Padding="20"
     x:DataType="core:VerticalStackLayoutPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -205,9 +206,13 @@
                         </Border>
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
                             <VerticalStackLayout Spacing="20">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Subtitle"
+                                    Text="{x:StaticResource PropertiesListHeader}"
+                                    TextDecorations="Underline" />
                                 <CollectionView
                                     Footer="{x:StaticResource PropertiesListFooter}"
-                                    Header="{x:StaticResource PropertiesListHeader}"
                                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                                     Style="{x:StaticResource PropertiesListStyle}" />
                                 <VerticalStackLayout Margin="20">

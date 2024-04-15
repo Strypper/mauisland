@@ -1,19 +1,21 @@
+using MAUIsland.Features.LocalDbFeatures.GitHub;
+using MAUIsland.GitHubFeatures;
+
 namespace MAUIsland.Core;
-public partial class DrawingViewPageViewModel : NavigationAwareBaseViewModel
+public partial class DrawingViewPageViewModel : BaseToolkitPageControlViewModel
 {
     #region [ CTor ]
-
-    public DrawingViewPageViewModel(
-        IAppNavigator appNavigator
-    ) : base(appNavigator)
+    public DrawingViewPageViewModel(IAppNavigator appNavigator,
+                                   IGitHubService gitHubService,
+                                   IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                                        : base(appNavigator,
+                                                gitHubService,
+                                                gitHubIssueLocalDbService)
     {
     }
     #endregion
 
     #region [ Properties ]
-
-    [ObservableProperty]
-    IGalleryCardInfo controlInformation = default!;
 
     [ObservableProperty]
     string basicDrawingViewXamlCode = "<toolkit:DrawingView\r\n            Lines=\"{Binding MyLines}\"\r\n            LineColor=\"Red\"\r\n            LineWidth=\"5\" />";
@@ -54,7 +56,7 @@ public partial class DrawingViewPageViewModel : NavigationAwareBaseViewModel
     {
         base.OnInit(query);
 
-        ControlInformation = query.GetData<IGalleryCardInfo>();
+        ControlInformation = query.GetData<ICommunityToolkitGalleryCardInfo>();
 
     }
     #endregion
@@ -63,6 +65,14 @@ public partial class DrawingViewPageViewModel : NavigationAwareBaseViewModel
 
     [RelayCommand]
     Task OpenUrlAsync(string url)
-    => AppNavigator.OpenUrlAsync(url);
+        => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+
+    async Task RefreshAsync()
+    {
+        if (ControlInformation is null)
+            return;
+    }
     #endregion
 }

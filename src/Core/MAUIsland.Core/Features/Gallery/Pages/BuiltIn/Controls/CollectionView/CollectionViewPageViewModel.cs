@@ -1022,6 +1022,9 @@ public partial class CollectionViewPageViewModel : BaseBuiltInPageControlViewMod
     [RelayCommand]
     async Task RefreshPageAsync()
     {
+        if (ControlInformation is null)
+            return;
+
         await RefreshControlIssues(true,
                                    ControlInformation.ControlName,
                                    ControlInformation.GitHubAuthorIssueName,
@@ -1054,6 +1057,9 @@ public partial class CollectionViewPageViewModel : BaseBuiltInPageControlViewMod
         FilterPickerItems = Enum.GetNames(typeof(GalleryCardType)).ToObservableCollection();
         FilterPickerItems.Add("None");
         SelectedFilterPickerItem = FilterPickerItems.Last();
+
+        if (ControlInformation is null)
+            return;
 
         var items = await MauiControlsService.GetControlsAsync(ControlInformation.GroupName);
         foreach (var item in items)

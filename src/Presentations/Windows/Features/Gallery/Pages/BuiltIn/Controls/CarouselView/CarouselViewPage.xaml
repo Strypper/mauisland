@@ -8,7 +8,8 @@
     Title="Carousel View"
     Padding="20"
     x:DataType="core:CarouselViewPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -256,11 +257,14 @@
                     <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
                 </Border>
                 <Border Padding="20" StrokeShape="RoundRectangle 4">
-                    <VerticalStackLayout>
-                        <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            Text="{x:StaticResource PropertiesListHeader}"
+                            TextDecorations="Underline" />
                         <CollectionView
                             Footer="{x:StaticResource PropertiesListFooter}"
-                            Header="{x:StaticResource PropertiesListHeader}"
                             ItemsSource="{x:StaticResource PropertyItemsSource}"
                             Style="{x:StaticResource PropertiesListStyle}" />
                     </VerticalStackLayout>

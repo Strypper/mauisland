@@ -8,7 +8,8 @@
     Title="HorizontalStackLayout"
     Padding="20"
     x:DataType="core:HorizontalStackLayoutPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -204,9 +205,13 @@
                         </Border>
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
                             <VerticalStackLayout Spacing="20">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Subtitle"
+                                    Text="{x:StaticResource PropertiesListHeader}"
+                                    TextDecorations="Underline" />
                                 <CollectionView
                                     Footer="{x:StaticResource PropertiesListFooter}"
-                                    Header="{x:StaticResource PropertiesListHeader}"
                                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                                     Style="{x:StaticResource PropertiesListStyle}" />
                                 <HorizontalStackLayout Margin="20">

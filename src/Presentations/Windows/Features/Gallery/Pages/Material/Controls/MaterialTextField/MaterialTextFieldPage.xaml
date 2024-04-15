@@ -5,11 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:datagrid="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
     xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
     xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
     Title="MaterialTextField"
-    Padding="10"
-    x:DataType="app:MaterialTextFieldPageViewModel">
+    Padding="20"
+    x:DataType="core:MaterialTextFieldPageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -37,147 +39,27 @@
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">Text</strong>, of type <strong style="color:blue">string</strong>, TextField's text.
+                            Make sure text fields look interactive
                             ]]>
             </x:String>
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">IsError</strong>, of type <strong style="color:blue">bool</strong>, TextField's verified state.
+                            Two types: filled and outlined
                             ]]>
             </x:String>
             <x:String>
                 <![CDATA[
-                            <strong style="color:blue">CaretPosition</strong>, of type <strong style="color:blue">int</strong>, TextField's caret position.
+                            The text field’s state (blank, with input, error, etc) should be visible at a glance
                         ]]>
             </x:String>
             <x:String>
                 <![CDATA[
-        <strong style="color:blue">CaretColor</strong>, of type <strong style="color:blue">Color</strong>, TextField's caret and cursor color.
+                            Keep labels and error messages brief and easy to act on
     ]]>
             </x:String>
             <x:String>
                 <![CDATA[
-        <strong style="color:blue">IconData</strong>, of type <strong style="color:blue">IconData</strong>, TextField's icon from iconkind.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">IconSource</strong>, of type <strong style="color:blue">SkPicture</strong>, TextField's icon from file.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">IconData</strong>, of type <strong style="color:blue">string</strong>, TextField's icon from path data.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">TrailingIcon</strong>, of type <strong style="color:blue">IconData</strong>, TextField's trailing icon from iconkind.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">TrailingIconSource</strong>, of type <strong style="color:blue">SkPicture</strong>, TextField's trailing icon from file.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">TrailingIconData</strong>, of type <strong style="color:blue">string</strong>, TextField's trailing icon from path data.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">LabelText</strong>, of type <strong style="color:blue">string</strong>, TextField's label text.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">LabelTextColor</strong>, of type <strong style="color:blue">Color</strong>, TextField's label text color.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">SupportingText</strong>, of type <strong style="color:blue">string</strong>, TextField's supporting text.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">SupportingTextColor</strong>, of type <strong style="color:blue">Color</strong>, TextField's supporting text color.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">ActiveIndicatorHeight</strong>, of type <strong style="color:blue">int</strong>, TextField's active indicator height.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">ActiveIndicatorColor</strong>, of type <strong style="color:blue">Color</strong>, TextField's active indicator color.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">BackgroundColour</strong>, of type <strong style="color:blue">Color</strong>, TextField's background color.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">ForegroundColor</strong>, of type <strong style="color:blue">Color</strong>, TextField's foreground color.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">FontFamily</strong>, of type <strong style="color:blue">string</strong>, font family of the TextField's text.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">FontSize</strong>, of type <strong style="color:blue">float</strong>, font size of the TextField's text.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">FontWeight</strong>, of type <strong style="color:blue">int</strong>, font weight of the TextField's text.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">FontItalic</strong>, of type <strong style="color:blue">bool</strong>, enable font italic of the TextField's text.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">Shape</strong>, of type <strong style="color:blue">Shape</strong>, corner radius of the TextField's border.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">OutlineWidth</strong>, of type <strong style="color:blue">int</strong>, TextField's border width.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">OutlineColor</strong>, of type <strong style="color:blue">Color</strong>, TextField's border color.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">RippleColor</strong>, of type <strong style="color:blue">Color</strong>, TextField's ripple color.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">Style</strong>, of type <strong style="color:blue">Style</strong>, TextField's style.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">Command</strong>, of type <strong style="color:blue">ICommand</strong>, executed when the TextField's is TextChanged.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">CommandParameter</strong>, of type <strong style="color:blue">object</strong>, Command's parameter.
+                            Text fields commonly appear in forms and dialogs
     ]]>
             </x:String>
         </x:Array>
@@ -197,17 +79,13 @@
         </SwipeView.LeftItems>
         <ScrollView>
             <VerticalStackLayout Spacing="20">
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                    <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-                </Frame>
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                    <CollectionView
-                        Footer="{x:StaticResource PropertiesListFooter}"
-                        Header="{x:StaticResource PropertiesListHeader}"
-                        ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                </Frame>
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <VerticalStackLayout Spacing="10">
                         <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Styles" />
                         <Label Text="There are 2 Styles of text fields: 1. Filled, 2. Outlined." />
@@ -226,7 +104,48 @@
                         </core:HorizontalWrapLayout>
                         <core:SourceCodeExpander Code="{x:Binding TextFieldXamlCode}" CodeType="Xaml" />
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            Text="Properties" />
+                        <Grid BackgroundColor="White" HeightRequest="1" />
+                        <datagrid:DataGrid
+                            BorderColor="Gray"
+                            HeaderBackground="#d0bcff"
+                            HeaderHeight="50"
+                            ItemsSource="{x:Binding Properties}"
+                            RowHeight="80">
+                            <datagrid:DataGrid.Columns>
+                                <datagrid:DataGridColumn Title="Name" PropertyName="Name" />
+                                <datagrid:DataGridColumn Title="Data Type" PropertyName="DataType" />
+                                <datagrid:DataGridColumn Title="Default Value" PropertyName="DefaultValue" />
+                            </datagrid:DataGrid.Columns>
+                        </datagrid:DataGrid>
+                    </VerticalStackLayout>
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            Text="Events" />
+                        <Grid BackgroundColor="White" HeightRequest="1" />
+                        <datagrid:DataGrid
+                            BorderColor="Gray"
+                            HeaderBackground="#d0bcff"
+                            HeaderHeight="50"
+                            ItemsSource="{x:Binding Events}"
+                            RowHeight="80">
+                            <datagrid:DataGrid.Columns>
+                                <datagrid:DataGridColumn Title="Name" PropertyName="Name" />
+                                <datagrid:DataGridColumn Title="Data Type" PropertyName="DataType" />
+                            </datagrid:DataGrid.Columns>
+                        </datagrid:DataGrid>
+                    </VerticalStackLayout>
+                </Border>
             </VerticalStackLayout>
         </ScrollView>
     </SwipeView>

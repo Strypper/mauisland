@@ -1,12 +1,17 @@
 using CommunityToolkit.Maui.Core.Primitives;
+using MAUIsland.Features.LocalDbFeatures.GitHub;
+using MAUIsland.GitHubFeatures;
 
 namespace MAUIsland.Core;
-public partial class MediaElementPageViewModel : NavigationAwareBaseViewModel
+public partial class MediaElementPageViewModel : BaseToolkitPageControlViewModel
 {
     #region [ CTor ]
-    public MediaElementPageViewModel(
-        IAppNavigator appNavigator
-    ) : base(appNavigator)
+    public MediaElementPageViewModel(IAppNavigator appNavigator,
+                                     IGitHubService gitHubService,
+                                     IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                                        : base(appNavigator,
+                                                gitHubService,
+                                                gitHubIssueLocalDbService)
     {
     }
     #endregion
@@ -17,9 +22,6 @@ public partial class MediaElementPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     MediaElementState currentState;
-
-    [ObservableProperty]
-    IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
     string setupDescription =
@@ -315,7 +317,7 @@ public partial class MediaElementPageViewModel : NavigationAwareBaseViewModel
     {
         base.OnInit(query);
         Volume = 0.5;
-        ControlInformation = query.GetData<IGalleryCardInfo>();
+        ControlInformation = query.GetData<ICommunityToolkitGalleryCardInfo>();
     }
     #endregion
 
@@ -323,6 +325,13 @@ public partial class MediaElementPageViewModel : NavigationAwareBaseViewModel
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    async Task RefreshAsync()
+    {
+        if (ControlInformation is null)
+            return;
+    }
     #endregion
 }
 

@@ -43,10 +43,10 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
     IBuiltInGalleryCardInfo controlInformation = default!;
 
     [ObservableProperty]
-    ObservableCollection<ControlIssueModel> controlIssues;
+    ObservableCollection<ControlIssueModel> controlIssues = default!;
 
     [ObservableProperty]
-    ControlIssueModel selectedControlIssue;
+    ControlIssueModel selectedControlIssue = default!;
 
     #endregion
 
@@ -196,31 +196,34 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
         }
     }
 
-    private void OnShellNavigated(object sender, ShellNavigatedEventArgs e)
-{
-    // Get the page name
-    var pageLink = e.Current.Location.ToString();
-
-    var splitPageName = pageLink.Split('/');
-    var pageName = splitPageName[splitPageName.Length - 1];
-
-    var textInfo = new System.Globalization.CultureInfo("en-US", false).TextInfo;
-    var capitalizedLastPart = textInfo.ToTitleCase(pageName.ToLower());
-    //Set the rich presence
-    //Call this as many times as you want and anywhere in your code.
-    client.SetPresence(new RichPresence()
+    public void SetControlInformation(object controlInfo)
     {
-        Details = "MaUIland",
-        State = $"Viewing {capitalizedLastPart}",
-        Assets = new Assets()
+        ControlInformation = (IBuiltInGalleryCardInfo)controlInfo;
+    }
+
+    private void OnShellNavigated(object sender, ShellNavigatedEventArgs e)
+    {
+        // Get the page name
+        var pageLink = e.Current.Location.ToString();
+
+        var splitPageName = pageLink.Split('/');
+        var pageName = splitPageName[splitPageName.Length - 1];
+
+        var textInfo = new System.Globalization.CultureInfo("en-US", false).TextInfo;
+        var capitalizedLastPart = textInfo.ToTitleCase(pageName.ToLower());
+        //Set the rich presence
+        //Call this as many times as you want and anywhere in your code.
+        client.SetPresence(new RichPresence()
         {
-            LargeImageKey = "https://raw.githubusercontent.com/Strypper/mauisland/main/src/Presentations/Windows/Resources/Images/logos/mauisland_logo.png",
-            LargeImageText = "Lachee's Discord IPC Library",
-            SmallImageKey = "https://raw.githubusercontent.com/Strypper/mauisland/main/src/Presentations/Windows/Resources/Images/logos/mauisland_logo.png"
-        }
-    });
-}
+            Details = "MaUIland",
+            State = $"Viewing {capitalizedLastPart}",
+            Assets = new Assets()
+            {
+                LargeImageKey = "https://raw.githubusercontent.com/Strypper/mauisland/main/src/Presentations/Windows/Resources/Images/logos/mauisland_logo.png",
+                LargeImageText = "Lachee's Discord IPC Library",
+                SmallImageKey = "https://raw.githubusercontent.com/Strypper/mauisland/main/src/Presentations/Windows/Resources/Images/logos/mauisland_logo.png"
+            }
+        });
+    }
     #endregion
-
-
 }

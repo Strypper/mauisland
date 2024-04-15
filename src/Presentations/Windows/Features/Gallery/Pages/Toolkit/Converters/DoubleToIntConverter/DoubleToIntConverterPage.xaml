@@ -8,8 +8,9 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Double To Int Converter"
     Padding="20"
-    x:DataType="app:DoubleToIntConverterPageViewModel"
-    BackgroundColor="Transparent">
+    x:DataType="core:DoubleToIntConverterPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem

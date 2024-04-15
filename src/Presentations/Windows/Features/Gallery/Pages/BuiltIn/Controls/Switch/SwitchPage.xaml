@@ -8,7 +8,8 @@
     Title="Switch"
     Padding="20"
     x:DataType="core:SwitchPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
     <core:BasePage.Resources>
 
         <x:String x:Key="ControlInfo">
@@ -210,14 +211,17 @@
                         </Border>
 
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
-                            <CollectionView
-                                Margin="10"
-                                Footer="{x:StaticResource PropertiesListFooter}"
-                                Header="{x:StaticResource PropertiesListHeader}"
-                                ItemsSource="{x:StaticResource PropertyItemsSource}"
-                                SelectionMode="Single"
-                                Style="{x:StaticResource PropertiesListStyle}"
-                                VerticalScrollBarVisibility="Never" />
+                            <VerticalStackLayout Spacing="10">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Subtitle"
+                                    Text="{x:StaticResource PropertiesListHeader}"
+                                    TextDecorations="Underline" />
+                                <CollectionView
+                                    Footer="{x:StaticResource PropertiesListFooter}"
+                                    ItemsSource="{x:StaticResource PropertyItemsSource}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+                            </VerticalStackLayout>
                         </Border>
 
                         <Border Padding="20" StrokeShape="RoundRectangle 4">

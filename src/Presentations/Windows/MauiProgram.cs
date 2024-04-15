@@ -4,7 +4,6 @@ using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Storage;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Refit;
 using Syncfusion.Maui.Core.Hosting;
 using System.Reflection;
@@ -22,6 +21,9 @@ public static class MauiProgram
 
         var builder = MauiApp.CreateBuilder();
         builder
+            .UseMauiCommunityToolkit()
+            .UseMauiCommunityToolkitCore()
+            .UseMauiCommunityToolkitMediaElement()
             .InitCore()
             .UseMauiApp<App>()
             .ConfigureFonts(fonts =>
@@ -47,7 +49,7 @@ public static class MauiProgram
         DependencyService.Register<IMrIncreadibleMemeService, MrIncreadibleMemeService>();
 
 #if DEBUG
-        builder.Logging.AddDebug();
+        //builder.Logging.AddDebug();
 #endif
 
         return builder.Build();

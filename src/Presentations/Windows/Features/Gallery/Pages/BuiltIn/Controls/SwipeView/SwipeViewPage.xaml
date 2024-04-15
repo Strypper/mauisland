@@ -8,7 +8,8 @@
     Title="Swipe View"
     Padding="20"
     x:DataType="core:SwipeViewPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
     <core:BasePage.ToolbarItems>
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
@@ -50,7 +51,7 @@
             In addition, SwipeView includes Open and Close methods, which programmatically open and close the swipe items, respectively.
         </x:String>
 
-        <x:Array x:Key="PropertyItemsSource1" Type="{x:Type x:String}">
+        <x:Array x:Key="PropertiesItemsSource1" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
                                 <strong style="color:blue">LeftItems</strong>, of type <strong style="color:blue">SwipeItems</strong>, which represents the swipe items that can be invoked when the control is swiped from the left side.
@@ -82,7 +83,7 @@
             </x:String>
         </x:Array>
 
-        <x:Array x:Key="PropertyItemsSource2" Type="{x:Type x:String}">
+        <x:Array x:Key="PropertiesItemsSource2" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
                                 <strong style="color:blue">SwipeStarted</strong>, is raised when a swipe starts. The <strong style="color:blue">SwipeStartedEventArgs</strong> object that accompanies this event has a <strong style="color:blue">SwipeDirection</strong> property, of type <strong style="color:blue">SwipeDirection</strong>.
@@ -233,18 +234,24 @@
                     </Border>
 
                     <Border Padding="20" StrokeShape="RoundRectangle 4">
-                        <CollectionView
-                            Footer="{x:StaticResource PropertiesListFooter1}"
-                            Header="{x:StaticResource PropertiesListHeader1}"
-                            ItemsSource="{x:StaticResource PropertyItemsSource1}"
-                            Style="{x:StaticResource PropertiesListStyle}" />
+                        <VerticalStackLayout Spacing="10">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Subtitle"
+                                Text="{x:StaticResource PropertiesListHeader1}"
+                                TextDecorations="Underline" />
+                            <CollectionView
+                                Footer="{x:StaticResource PropertiesListFooter1}"
+                                ItemsSource="{x:StaticResource PropertiesItemsSource1}"
+                                Style="{x:StaticResource PropertiesListStyle}" />
+                        </VerticalStackLayout>
                     </Border>
 
                     <Border Padding="20" StrokeShape="RoundRectangle 4">
                         <CollectionView
                             Footer="{x:StaticResource PropertiesListFooter2}"
                             Header="{x:StaticResource PropertiesListHeader2}"
-                            ItemsSource="{x:StaticResource PropertyItemsSource2}"
+                            ItemsSource="{x:StaticResource PropertiesItemsSource2}"
                             Style="{x:StaticResource PropertiesListStyle}" />
                     </Border>
 

@@ -9,7 +9,8 @@
     Title="DrawingView"
     Padding="20"
     x:DataType="core:DrawingViewPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem

@@ -5,10 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:datagrid="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
     xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
     Title="MaterialSwitch"
-    Padding="10"
-    x:DataType="app:MaterialSwitchPageViewModel">
+    Padding="20"
+    x:DataType="core:MaterialSwitchPageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -36,12 +38,22 @@
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">Color</strong>, of type <strong style="color:blue">Color </strong>, value that defines the color of the ActivityIndicator.
+                            Use switches (not radio buttons) if the items in a list can be independently controlled.
                             ]]>
             </x:String>
             <x:String>
                 <![CDATA[
-                                <strong style="color:blue">IsRunning</strong>, of type <strong style="color:blue">bool</strong>,value that indicates whether the ActivityIndicator should be visible and animating, or hidden. The default value of this property is false, which indicates that the ActivityIndicator isn't visible.
+                            Switches are the best way to let users adjust settings.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                            Make sure the switch’s selection (on or off) is visible at a glance.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                            Two styles: DefaultSwitchStyle and MarkSwitchStyle.
                             ]]>
             </x:String>
         </x:Array>
@@ -61,17 +73,13 @@
         </SwipeView.LeftItems>
         <ScrollView>
             <VerticalStackLayout Spacing="20">
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                    <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-                </Frame>
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                    <CollectionView
-                        Footer="{x:StaticResource PropertiesListFooter}"
-                        Header="{x:StaticResource PropertiesListHeader}"
-                        ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                </Frame>
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <VerticalStackLayout Spacing="10">
                         <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Examples" />
                         <core:HorizontalWrapLayout Spacing="5">
@@ -81,7 +89,48 @@
                         </core:HorizontalWrapLayout>
                         <core:SourceCodeExpander Code="{x:Binding SwitchXamlCode}" CodeType="Xaml" />
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            Text="Properties" />
+                        <Grid BackgroundColor="White" HeightRequest="1" />
+                        <datagrid:DataGrid
+                            BorderColor="Gray"
+                            HeaderBackground="#d0bcff"
+                            HeaderHeight="50"
+                            ItemsSource="{x:Binding Properties}"
+                            RowHeight="80">
+                            <datagrid:DataGrid.Columns>
+                                <datagrid:DataGridColumn Title="Name" PropertyName="Name" />
+                                <datagrid:DataGridColumn Title="Data Type" PropertyName="DataType" />
+                                <datagrid:DataGridColumn Title="Default Value" PropertyName="DefaultValue" />
+                            </datagrid:DataGrid.Columns>
+                        </datagrid:DataGrid>
+                    </VerticalStackLayout>
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            Text="Events" />
+                        <Grid BackgroundColor="White" HeightRequest="1" />
+                        <datagrid:DataGrid
+                            BorderColor="Gray"
+                            HeaderBackground="#d0bcff"
+                            HeaderHeight="50"
+                            ItemsSource="{x:Binding Events}"
+                            RowHeight="80">
+                            <datagrid:DataGrid.Columns>
+                                <datagrid:DataGridColumn Title="Name" PropertyName="Name" />
+                                <datagrid:DataGridColumn Title="Data Type" PropertyName="DataType" />
+                            </datagrid:DataGrid.Columns>
+                        </datagrid:DataGrid>
+                    </VerticalStackLayout>
+                </Border>
             </VerticalStackLayout>
         </ScrollView>
     </SwipeView>

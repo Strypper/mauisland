@@ -8,7 +8,8 @@
     Title="Table View"
     Padding="20"
     x:DataType="core:TableViewPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
     <core:BasePage.Resources>
         <x:String x:Key="ControlInfo">
             The .NET Multi-platform App UI (.NET MAUI) TableView displays a table of scrollable items that can be grouped into sections. A TableView is typically used for displaying items where each row has a different appearance, such as presenting a table of settings.
@@ -400,18 +401,17 @@
                         </Border>
 
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
-                            <CollectionView
-                                Footer="{x:StaticResource PropertiesListFooter}"
-                                Header="{x:StaticResource PropertiesListHeader}"
-                                ItemsSource="{x:StaticResource PropertyItemsSource}"
-                                Style="{x:StaticResource PropertiesListStyle}" />
-                        </Border>
-
-                        <Border Padding="20" StrokeShape="RoundRectangle 4">
-                            <CollectionView
-                                Header="{x:StaticResource PropertiesListHeader1}"
-                                ItemsSource="{x:StaticResource PropertyItemsSource1}"
-                                Style="{x:StaticResource PropertiesListStyle}" />
+                            <VerticalStackLayout Spacing="10">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Subtitle"
+                                    Text="{x:StaticResource PropertiesListHeader}"
+                                    TextDecorations="Underline" />
+                                <CollectionView
+                                    Footer="{x:StaticResource PropertiesListFooter}"
+                                    ItemsSource="{x:StaticResource PropertyItemsSource}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+                            </VerticalStackLayout>
                         </Border>
 
                         <!--  Create a TableView  -->

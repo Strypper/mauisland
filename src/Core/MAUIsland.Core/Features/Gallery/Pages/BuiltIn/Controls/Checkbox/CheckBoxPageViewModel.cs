@@ -44,7 +44,7 @@ public partial class CheckBoxPageViewModel : BaseBuiltInPageControlViewModel
     bool isChecked;
 
     [ObservableProperty]
-    string currentColor = "F2F1F1";
+    Color currentColor = new Color(242, 241, 241, 255);
 
     [ObservableProperty]
     string standardCheckBoxXamlCode = "<CheckBox />";
@@ -81,6 +81,9 @@ public partial class CheckBoxPageViewModel : BaseBuiltInPageControlViewModel
     [RelayCommand]
     async Task RefreshAsync()
     {
+        if (ControlInformation is null)
+            return;
+
         await RefreshControlIssues(true,
                                    ControlInformation.ControlName,
                                    ControlInformation.GitHubAuthorIssueName,

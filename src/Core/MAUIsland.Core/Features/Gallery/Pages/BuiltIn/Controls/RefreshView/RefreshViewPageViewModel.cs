@@ -85,6 +85,9 @@ public partial class RefreshViewPageViewModel : BaseBuiltInPageControlViewModel
     [RelayCommand]
     async Task RefreshPageAsync()
     {
+        if (ControlInformation is null)
+            return;
+
         await RefreshControlIssues(true,
                                    ControlInformation.ControlName,
                                    ControlInformation.GitHubAuthorIssueName,
