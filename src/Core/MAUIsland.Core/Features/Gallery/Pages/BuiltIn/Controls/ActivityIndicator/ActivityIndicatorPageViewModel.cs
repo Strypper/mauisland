@@ -1,4 +1,5 @@
-﻿using MAUIsland.Features.LocalDbFeatures.GitHub;
+﻿using DiscordRPC;
+using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
 
 namespace MAUIsland.Core;

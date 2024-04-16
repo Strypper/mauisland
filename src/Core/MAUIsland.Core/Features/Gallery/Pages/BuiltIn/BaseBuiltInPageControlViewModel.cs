@@ -8,7 +8,7 @@ namespace MAUIsland.Core;
 public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewModel
 {
     #region [ Fields ]
-    protected DiscordRpcClient client;
+    protected DiscordRpcClient DiscordRpcClient;
     protected IGitHubService GitHubService { get; }
     protected IGitHubIssueLocalDbService GitHubIssueLocalDbService { get; }
     #endregion
@@ -22,6 +22,24 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
     {
         GitHubService = gitHubService;
         GitHubIssueLocalDbService = gitHubIssueLocalDbService;
+        DiscordRpcClient = new DiscordRPC.DiscordRpcClient("1130545099739254839");
+
+        //Set the logger
+        DiscordRpcClient.Logger = new DiscordRPC.Logging.ConsoleLogger() { Level = DiscordRPC.Logging.LogLevel.Warning };
+
+        //Subscribe to events
+        DiscordRpcClient.OnReady += (sender, e) =>
+        {
+            Console.WriteLine("Received Ready from user {0}", e.User.Username);
+        };
+
+        DiscordRpcClient.OnPresenceUpdate += (sender, e) =>
+        {
+            Console.WriteLine("Received Update! {0}", e.Presence);
+        };
+
+        //Connect to the RPC
+        DiscordRpcClient.Initialize();
 
         // Subscribe to the Pushed event
         Shell.Current.Navigated += OnShellNavigated;
@@ -213,7 +231,7 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
         var capitalizedLastPart = textInfo.ToTitleCase(pageName.ToLower());
         //Set the rich presence
         //Call this as many times as you want and anywhere in your code.
-        client.SetPresence(new RichPresence()
+        DiscordRpcClient.SetPresence(new RichPresence()
         {
             Details = "MaUIland",
             State = $"Viewing {capitalizedLastPart}",
