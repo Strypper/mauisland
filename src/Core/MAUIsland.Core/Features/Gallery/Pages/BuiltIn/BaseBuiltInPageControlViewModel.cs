@@ -207,9 +207,16 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
     {
         string mauislandLogo = "https://raw.githubusercontent.com/Strypper/mauisland/main/src/Presentations/Windows/Resources/Images/logos/mauisland_logo.png";
         string builtinGalleryLogo = "https://i.imgur.com/Sr8N6Vm.png";
+        string storeLink = "https://www.microsoft.com/store/productId/9NLQ0J5P471L";
+        string sourceCodeLink = "https://github.com/Strypper/mauisland";
 
         DiscordRpcClient.SetPresence(new RichPresence()
         {
+            Buttons = new DiscordRPC.Button[]
+            {
+                new() { Label = "Get the app 🚀", Url = storeLink },
+                new() { Label = "Source code 🧑🏽‍💻", Url = sourceCodeLink },
+            },
             Details = "Exploring built-in gallery",
             State = $"Viewing {ControlInformation.ControlName}",
             Assets = new Assets()
