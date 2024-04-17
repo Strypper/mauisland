@@ -20,7 +20,7 @@ MAUIsland is an app that showcases all the .NET MAUI controls available for deve
 </p>
 
 # Version 2.0 (Dragon version)
-1. Revamped Design 🎨: The application now features a sleek, acrylic material design. The interface is smoother, with enhanced contrast and reduced distractions, offering users a more engaging experience.
+1. Revamped Design 🎨: The application now features a sleek, acrylic + mica material design. The interface is smoother, with enhanced contrast and reduced distractions, offering users a more engaging experience.
 
 2. Performance Enhancements 🏎️: Significant improvements have been made in page navigation, resulting in a reduced memory footprint. Additionally, internet data is cached locally in a database, enhancing performance and enabling better offline support. The lazy loading of the code view expander contributes to faster initialization of pages.
 
@@ -37,7 +37,8 @@ Add the json settings from the issue:
 ```json
 {
   "AppSettings": {
-    "SyncfusionKey": "Your_syncfustion_key"
+    "SyncfusionKey": "Your_syncfustion_key",
+    "DiscordApplicationId": "Yout_discord_bot_application_id"
   }
 }
 ```
