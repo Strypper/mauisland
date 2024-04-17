@@ -2,7 +2,7 @@
 
 ![](showcases/version_2.0/summary_slide.png)
 
-NET MAUI Control Gallery is an app that showcases all the .NET MAUI controls available for developers. It allows you to easily interact with them and see how they look and behave on different platforms. It also provides guidance, tips and tricks to help you use them effectively in your own apps. 
+MAUIsland is an app that showcases all the .NET MAUI controls available for developers. It allows you to easily interact with them and see how they look and behave on different platforms. It also provides guidance, tips and tricks to help you use them effectively in your own apps. 
 
 <p align="center">
   <img width="300" align="center" src="showcases/version_2.0/MAUIsland_1920x1080.png">
