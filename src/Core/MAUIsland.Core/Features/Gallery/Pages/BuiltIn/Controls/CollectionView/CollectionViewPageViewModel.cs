@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui.Core.Extensions;
+using DiscordRPC;
 using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
 using System.ComponentModel;
@@ -17,11 +18,13 @@ public partial class CollectionViewPageViewModel : BaseBuiltInPageControlViewMod
     #region [ CTor ]
     public CollectionViewPageViewModel(IAppNavigator appNavigator,
                                        IGitHubService gitHubService,
+                                       DiscordRpcClient discordRpcClient,
                                        IControlsService mauiControlsService,
                                        IMrIncreadibleMemeService memeService,
                                        IGitHubIssueLocalDbService gitHubIssueLocalDbService)
                                             : base(appNavigator,
                                                    gitHubService,
+                                                   discordRpcClient,
                                                    gitHubIssueLocalDbService)
     {
         this.MauiControlsService = mauiControlsService;

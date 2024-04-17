@@ -1,4 +1,5 @@
-﻿using MAUIsland.Features.LocalDbFeatures.GitHub;
+﻿using DiscordRPC;
+using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
 
 namespace MAUIsland.Core;
@@ -12,10 +13,12 @@ public partial class EditorPageViewModel : BaseBuiltInPageControlViewModel
     #region [ CTor ]
     public EditorPageViewModel(IAppNavigator appNavigator,
                                IGitHubService gitHubService,
+                               DiscordRpcClient discordRpcClient,
                                IGitHubIssueLocalDbService gitHubIssueLocalDbService)
-                            : base(appNavigator,
-                                    gitHubService,
-                                    gitHubIssueLocalDbService)
+                                : base(appNavigator,
+                                        gitHubService,
+                                        discordRpcClient,
+                                        gitHubIssueLocalDbService)
     {
     }
     #endregion

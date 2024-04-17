@@ -7,7 +7,7 @@
 
   <Identity Name="47268StrypperVandelJason.MAUIsland" 
 			Publisher="CN=C5255E29-81AE-4129-9BC3-9E2C461A195A" 
-			Version="2.0.3.0" />
+			Version="2.0.4.0" />
 
   <Properties>
     <DisplayName>MAUIsland</DisplayName>

@@ -1,4 +1,5 @@
-﻿using MAUIsland.Features.LocalDbFeatures.GitHub;
+﻿using DiscordRPC;
+using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
 
 namespace MAUIsland.Core;
@@ -13,10 +14,12 @@ public partial class TimePickerPageViewModel : BaseBuiltInPageControlViewModel
     #region [ CTor ]
     public TimePickerPageViewModel(IAppNavigator appNavigator,
                                    IGitHubService gitHubService,
+                                   DiscordRpcClient discordRpcClient,
                                    IGitHubIssueLocalDbService gitHubIssueLocalDbService)
                                     : base(appNavigator,
-                                           gitHubService,
-                                           gitHubIssueLocalDbService)
+                                            gitHubService,
+                                            discordRpcClient,
+                                            gitHubIssueLocalDbService)
     {
     }
     #endregion

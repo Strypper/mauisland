@@ -1,5 +1,4 @@
 ﻿using DiscordRPC;
-using DiscordRPC.Logging;
 using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
 
@@ -8,7 +7,8 @@ namespace MAUIsland.Core;
 public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewModel
 {
     #region [ Fields ]
-    protected DiscordRpcClient DiscordRpcClient;
+
+    protected DiscordRpcClient DiscordRpcClient { get; }
     protected IGitHubService GitHubService { get; }
     protected IGitHubIssueLocalDbService GitHubIssueLocalDbService { get; }
     #endregion
@@ -17,29 +17,13 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
 
     public BaseBuiltInPageControlViewModel(IAppNavigator appNavigator,
                                            IGitHubService gitHubService,
+                                           DiscordRpcClient discordRpcClient,
                                            IGitHubIssueLocalDbService gitHubIssueLocalDbService)
                                                : base(appNavigator)
     {
         GitHubService = gitHubService;
+        DiscordRpcClient = discordRpcClient;
         GitHubIssueLocalDbService = gitHubIssueLocalDbService;
-        DiscordRpcClient = new DiscordRPC.DiscordRpcClient("1130545099739254839");
-
-        //Set the logger
-        DiscordRpcClient.Logger = new DiscordRPC.Logging.ConsoleLogger() { Level = DiscordRPC.Logging.LogLevel.Warning };
-
-        //Subscribe to events
-        DiscordRpcClient.OnReady += (sender, e) =>
-        {
-            Console.WriteLine("Received Ready from user {0}", e.User.Username);
-        };
-
-        DiscordRpcClient.OnPresenceUpdate += (sender, e) =>
-        {
-            Console.WriteLine("Received Update! {0}", e.Presence);
-        };
-
-        //Connect to the RPC
-        DiscordRpcClient.Initialize();
 
         // Subscribe to the Pushed event
         Shell.Current.Navigated += OnShellNavigated;
@@ -221,25 +205,18 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
 
     private void OnShellNavigated(object sender, ShellNavigatedEventArgs e)
     {
-        // Get the page name
-        var pageLink = e.Current.Location.ToString();
+        string mauislandLogo = "https://raw.githubusercontent.com/Strypper/mauisland/main/src/Presentations/Windows/Resources/Images/logos/mauisland_logo.png";
+        string builtinGalleryLogo = "https://i.imgur.com/Sr8N6Vm.png";
 
-        var splitPageName = pageLink.Split('/');
-        var pageName = splitPageName[splitPageName.Length - 1];
-
-        var textInfo = new System.Globalization.CultureInfo("en-US", false).TextInfo;
-        var capitalizedLastPart = textInfo.ToTitleCase(pageName.ToLower());
-        //Set the rich presence
-        //Call this as many times as you want and anywhere in your code.
         DiscordRpcClient.SetPresence(new RichPresence()
         {
-            Details = "MaUIland",
-            State = $"Viewing {capitalizedLastPart}",
+            Details = "Exploring built-in gallery",
+            State = $"Viewing {ControlInformation.ControlName}",
             Assets = new Assets()
             {
-                LargeImageKey = "https://raw.githubusercontent.com/Strypper/mauisland/main/src/Presentations/Windows/Resources/Images/logos/mauisland_logo.png",
-                LargeImageText = "Lachee's Discord IPC Library",
-                SmallImageKey = "https://raw.githubusercontent.com/Strypper/mauisland/main/src/Presentations/Windows/Resources/Images/logos/mauisland_logo.png"
+                LargeImageKey = mauislandLogo,
+                LargeImageText = "MAUIsland",
+                SmallImageKey = builtinGalleryLogo
             }
         });
     }

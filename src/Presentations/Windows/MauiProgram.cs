@@ -182,7 +182,11 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<DiscordRPC.DiscordRpcClient>(_ =>
         {
-            var client = new DiscordRPC.DiscordRpcClient("1130545099739254839");
+            var appSettings = ServiceHelper.GetService<IConfiguration>()
+                                   .GetRequiredSection("AppSettings")
+                                   .Get<AppSettings>();
+
+            var client = new DiscordRPC.DiscordRpcClient(appSettings.DiscordApplicationId);
 
             //Set the logger
             client.Logger = new DiscordRPC.Logging.ConsoleLogger() { Level = DiscordRPC.Logging.LogLevel.Warning };

@@ -1,3 +1,4 @@
+using DiscordRPC;
 using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
 
@@ -11,10 +12,12 @@ public partial class HorizontalStackLayoutPageViewModel : BaseBuiltInPageControl
     #region [ CTor ]
     public HorizontalStackLayoutPageViewModel(IAppNavigator appNavigator,
                                               IGitHubService gitHubService,
+                                              DiscordRpcClient discordRpcClient,
                                               IGitHubIssueLocalDbService gitHubIssueLocalDbService)
                                                 : base(appNavigator,
-                                                        gitHubService,
-                                                        gitHubIssueLocalDbService)
+                                                       gitHubService,
+                                                       discordRpcClient,
+                                                       gitHubIssueLocalDbService)
     {
     }
     #endregion

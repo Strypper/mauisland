@@ -13,9 +13,11 @@ public partial class ActivityIndicatorPageViewModel : BaseBuiltInPageControlView
     #region [ CTor ]
     public ActivityIndicatorPageViewModel(IAppNavigator appNavigator,
                                           IGitHubService gitHubService,
+                                          DiscordRpcClient discordRpcClient,
                                           IGitHubIssueLocalDbService gitHubIssueLocalDbService)
                                             : base(appNavigator,
                                                     gitHubService,
+                                                    discordRpcClient,
                                                     gitHubIssueLocalDbService)
     {
     }
