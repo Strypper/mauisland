@@ -8,7 +8,7 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UseRidGraph>true</UseRidGraph>
-		<_MauiForceXamlCForDebug>true</_MauiForceXamlCForDebug>
+		<_MauiForceXamlCForDebug>false</_MauiForceXamlCForDebug>
 
 		<!-- Display name -->
 		<ApplicationTitle>MAUIsland</ApplicationTitle>

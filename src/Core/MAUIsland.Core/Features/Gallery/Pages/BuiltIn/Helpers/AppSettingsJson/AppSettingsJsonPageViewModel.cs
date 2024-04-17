@@ -1,3 +1,4 @@
+using DiscordRPC;
 using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
 
@@ -7,11 +8,13 @@ public partial class AppSettingsJsonPageViewModel : BaseBuiltInPageControlViewMo
 {
     #region [ CTor ]
     public AppSettingsJsonPageViewModel(IAppNavigator appNavigator,
-                                        IGitHubService gitHubService,
-                                        IGitHubIssueLocalDbService gitHubIssueLocalDbService)
-                                            : base(appNavigator,
-                                                    gitHubService,
-                                                    gitHubIssueLocalDbService)
+                                       IGitHubService gitHubService,
+                                       DiscordRpcClient discordRpcClient,
+                                       IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                                        : base(appNavigator,
+                                                gitHubService,
+                                                discordRpcClient,
+                                                gitHubIssueLocalDbService)
     {
     }
     #endregion

@@ -1,3 +1,4 @@
+using DiscordRPC;
 using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
 
@@ -10,10 +11,12 @@ public partial class FramePageViewModel : BaseBuiltInPageControlViewModel
 
     #region [ CTor ]
     public FramePageViewModel(IAppNavigator appNavigator,
-                              IGitHubService gitHubService,
-                              IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                               IGitHubService gitHubService,
+                               DiscordRpcClient discordRpcClient,
+                               IGitHubIssueLocalDbService gitHubIssueLocalDbService)
                                 : base(appNavigator,
                                         gitHubService,
+                                        discordRpcClient,
                                         gitHubIssueLocalDbService)
     {
     }

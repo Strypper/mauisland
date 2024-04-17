@@ -1,4 +1,5 @@
-﻿using MAUIsland.Features.LocalDbFeatures.GitHub;
+﻿using DiscordRPC;
+using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
 
 namespace MAUIsland.Core;
@@ -7,6 +8,7 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
 {
     #region [ Fields ]
 
+    protected DiscordRpcClient DiscordRpcClient { get; }
     protected IGitHubService GitHubService { get; }
     protected IGitHubIssueLocalDbService GitHubIssueLocalDbService { get; }
     #endregion
@@ -15,11 +17,16 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
 
     public BaseBuiltInPageControlViewModel(IAppNavigator appNavigator,
                                            IGitHubService gitHubService,
+                                           DiscordRpcClient discordRpcClient,
                                            IGitHubIssueLocalDbService gitHubIssueLocalDbService)
                                                : base(appNavigator)
     {
         GitHubService = gitHubService;
+        DiscordRpcClient = discordRpcClient;
         GitHubIssueLocalDbService = gitHubIssueLocalDbService;
+
+        // Subscribe to the Pushed event
+        Shell.Current.Navigated += OnShellNavigated;
     }
     #endregion
 
@@ -195,7 +202,23 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
     {
         ControlInformation = (IBuiltInGalleryCardInfo)controlInfo;
     }
+
+    private void OnShellNavigated(object sender, ShellNavigatedEventArgs e)
+    {
+        string mauislandLogo = "https://raw.githubusercontent.com/Strypper/mauisland/main/src/Presentations/Windows/Resources/Images/logos/mauisland_logo.png";
+        string builtinGalleryLogo = "https://i.imgur.com/Sr8N6Vm.png";
+
+        DiscordRpcClient.SetPresence(new RichPresence()
+        {
+            Details = "Exploring built-in gallery",
+            State = $"Viewing {ControlInformation.ControlName}",
+            Assets = new Assets()
+            {
+                LargeImageKey = mauislandLogo,
+                LargeImageText = "MAUIsland",
+                SmallImageKey = builtinGalleryLogo
+            }
+        });
+    }
     #endregion
-
-
 }

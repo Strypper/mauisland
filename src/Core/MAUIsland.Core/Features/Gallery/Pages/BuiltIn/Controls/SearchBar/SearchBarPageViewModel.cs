@@ -1,4 +1,5 @@
-﻿using MAUIsland.Features.LocalDbFeatures.GitHub;
+﻿using DiscordRPC;
+using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
 
 namespace MAUIsland.Core;
@@ -13,11 +14,13 @@ public partial class SearchBarPageViewModel : BaseBuiltInPageControlViewModel
     #region [ CTor ]
     public SearchBarPageViewModel(IAppNavigator appNavigator,
                                   IGitHubService gitHubService,
+                                  DiscordRpcClient discordRpcClient,
                                   IControlsService mauiControlsService,
                                   IGitHubIssueLocalDbService gitHubIssueLocalDbService)
                                                : base(appNavigator,
-                                                    gitHubService,
-                                                    gitHubIssueLocalDbService)
+                                                      gitHubService,
+                                                      discordRpcClient,
+                                                      gitHubIssueLocalDbService)
     {
         this.mauiControlsService = mauiControlsService;
     }

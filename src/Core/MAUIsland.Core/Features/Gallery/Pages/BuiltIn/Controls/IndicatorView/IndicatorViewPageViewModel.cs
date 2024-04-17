@@ -1,4 +1,5 @@
-﻿using MAUIsland.Features.LocalDbFeatures.GitHub;
+﻿using DiscordRPC;
+using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
 
 namespace MAUIsland.Core;
@@ -13,10 +14,12 @@ public partial class IndicatorViewPageViewModel : BaseBuiltInPageControlViewMode
 
     #region [ CTor ]
     public IndicatorViewPageViewModel(IAppNavigator appNavigator,
-                                      IGitHubService gitHubService,
-                                      IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                                       IGitHubService gitHubService,
+                                       DiscordRpcClient discordRpcClient,
+                                       IGitHubIssueLocalDbService gitHubIssueLocalDbService)
                                         : base(appNavigator,
                                                 gitHubService,
+                                                discordRpcClient,
                                                 gitHubIssueLocalDbService)
     {
     }

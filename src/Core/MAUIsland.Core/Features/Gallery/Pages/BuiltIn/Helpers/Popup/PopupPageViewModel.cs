@@ -1,3 +1,4 @@
+using DiscordRPC;
 using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
 
@@ -11,11 +12,12 @@ public partial class PopupPageViewModel : BaseBuiltInPageControlViewModel
 
     #region [ CTor ]
     public PopupPageViewModel(IAppNavigator appNavigator,
-                              IGitHubService gitHubService,
-                              IDialogService dialogService,
-                              IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                               IGitHubService gitHubService,
+                               DiscordRpcClient discordRpcClient,
+                               IGitHubIssueLocalDbService gitHubIssueLocalDbService)
                                 : base(appNavigator,
                                         gitHubService,
+                                        discordRpcClient,
                                         gitHubIssueLocalDbService)
     {
         this.dialogService = dialogService;

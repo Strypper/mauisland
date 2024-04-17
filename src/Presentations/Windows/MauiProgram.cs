@@ -180,6 +180,34 @@ public static class MauiProgram
         builder.Services.AddSingleton<IAppInfo>(AppInfo.Current);
         builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
 
+        builder.Services.AddSingleton<DiscordRPC.DiscordRpcClient>(_ =>
+        {
+            var appSettings = ServiceHelper.GetService<IConfiguration>()
+                                   .GetRequiredSection("AppSettings")
+                                   .Get<AppSettings>();
+
+            var client = new DiscordRPC.DiscordRpcClient(appSettings.DiscordApplicationId);
+
+            //Set the logger
+            client.Logger = new DiscordRPC.Logging.ConsoleLogger() { Level = DiscordRPC.Logging.LogLevel.Warning };
+
+            //Subscribe to events
+            client.OnReady += (sender, e) =>
+            {
+                Console.WriteLine("Received Ready from user {0}", e.User.Username);
+            };
+
+            client.OnPresenceUpdate += (sender, e) =>
+            {
+                Console.WriteLine("Received Update! {0}", e.Presence);
+            };
+
+            //Connect to the RPC
+            client.Initialize();
+
+            return client;
+        });
+
         return builder;
     }
 
