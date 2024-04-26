@@ -68,40 +68,39 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="akgul.Maui.DataGrid" Version="4.0.2" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.20" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.20" />
+		<PackageReference Include="akgul.Maui.DataGrid" Version="4.0.3" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.21" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.21" />
 		<PackageReference Include="ColorCode.Core" Version="2.0.15" />
 		<PackageReference Include="CommunityToolkit.Common" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.0-preview.1.24081.5" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0-preview.1.24080.9" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.4" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0-preview.1.24080.9" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0-preview.1.24080.9" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="Octokit" Version="10.0.0" />
 		<PackageReference Include="OverFlower" Version="0.0.3" />
 		<PackageReference Include="Refit" Version="7.0.0" />
 		<PackageReference Include="Refit.HttpClientFactory" Version="7.0.0" />
 		<PackageReference Include="Refit.Newtonsoft.Json" Version="7.0.0" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
-		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.Barcode" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.Calendar" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.Charts" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.Core" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.DataForm" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.Gauges" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.Inputs" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.ListView" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.Maps" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.PdfViewer" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.ProgressBar" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.SignaturePad" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.Sliders" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.TabView" Version="22.1.38" />
+		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Barcode" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Calendar" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Charts" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.DataForm" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Gauges" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Inputs" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.ListView" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Maps" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.PdfViewer" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.ProgressBar" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.SignaturePad" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Sliders" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.TabView" Version="25.1.41" />
 		<PackageReference Include="ZXing.Net.Maui" Version="0.4.0" />
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
 	</ItemGroup>

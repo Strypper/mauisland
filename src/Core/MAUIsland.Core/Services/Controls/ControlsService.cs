@@ -23,19 +23,19 @@ public class ControlsService : IControlsService
 
     private readonly IList<ControlGroupInfo> controlGroupInfos = new List<ControlGroupInfo>()
     {
-        //new (){
-        //    Name = ControlGroupInfo.SyncfusionControls,
-        //    Title = "Syncfusion",
-        //    Version = "23.1.36",
-        //    BrandColor = Color.FromArgb("#ff8900"),
-        //    ButtonTextColor = Colors.White,
-        //    IconUrl = "syncfusionlogo.png",
-        //    Author = "Syncfusion Inc.",
-        //    Banner = "syncfusion_banner.png",
-        //    ProviderUrl = "https://help.syncfusion.com/maui/introduction/overview",
-        //    MicrosoftStoreLink="https://www.microsoft.com/store/productId/9P2P4D2BK270",
-        //    Description = "Syncfusion is a company that provides a set of controls for creating beautiful cross-platform, native mobile & desktop apps using .NET Multi-platform App UI (.NET MAUI). They offer a comprehensive collection of .NET MAUI components such as Charts, Gauge, and Tab View. You can add Syncfusion .NET MAUI components to your project by installing them from nuget.org. They also have a Visual Studio extension designed to streamline the creation of .NET MAUI applications."
-        //},
+        new (){
+            Name = ControlGroupInfo.SyncfusionControls,
+            Title = "Syncfusion",
+            Version = "25.1.41",
+            BrandColor = Color.FromArgb("#ff8900"),
+            ButtonTextColor = Colors.White,
+            IconUrl = "syncfusionlogo.png",
+            Author = "Syncfusion Inc.",
+            Banner = "syncfusion_banner.png",
+            ProviderUrl = "https://help.syncfusion.com/maui/introduction/overview",
+            MicrosoftStoreLink="https://www.microsoft.com/store/productId/9P2P4D2BK270",
+            Description = "Syncfusion is a company that provides a set of controls for creating beautiful cross-platform, native mobile & desktop apps using .NET Multi-platform App UI (.NET MAUI). They offer a comprehensive collection of .NET MAUI components such as Charts, Gauge, and Tab View. You can add Syncfusion .NET MAUI components to your project by installing them from nuget.org. They also have a Visual Studio extension designed to streamline the creation of .NET MAUI applications."
+        },
         new (){
             Name = ControlGroupInfo.BuiltInControls,
             Title = "Built-in",

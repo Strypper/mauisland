@@ -1,19 +1,19 @@
 using Syncfusion.Maui.Core;
 
-namespace MAUIsland;
-class SfBadgeViewControlInfo : IGalleryCardInfo
+namespace MAUIsland.Core;
+class SfAvatarViewControlInfo : IGalleryCardInfo
 {
-    public string ControlName => nameof(SfBadgeView);
-    public string ControlRoute => typeof(SfBadgeViewPage).FullName;
+    public string ControlName => nameof(SfAvatarView);
+    public string ControlRoute => $"MAUIsland.{ControlName}Page";
     public ImageSource ControlIcon => new FontImageSource()
     {
         FontFamily = FontNames.FluentSystemIconsRegular,
         Size = 100,
-        Glyph = FluentUIIcon.Ic_fluent_mail_alert_24_regular
+        Glyph = FluentUIIcon.Ic_fluent_person_32_regular
     };
-    public string ControlDetail => "Badges are used to notify users of new or unread messages, notifications, or the status of something.";
+    public string ControlDetail => "The .NET MAUI Avatar View control provides a graphical representation of user image that allows you to customize the view by adding image, background color, icon, text, etc.";
     public string GitHubUrl => $"https://github.com/Strypper/mauisland/blob/main/src/Features/Gallery/Pages/Syncfusion/Controls/{ControlName}";
-    public string DocumentUrl => $"https://help.syncfusion.com/maui/badge-view/overview";
+    public string DocumentUrl => $"https://help.syncfusion.com/maui/avatar-view/overview";
     public string GroupName => ControlGroupInfo.SyncfusionControls;
 
     public GalleryCardType CardType => GalleryCardType.Control;

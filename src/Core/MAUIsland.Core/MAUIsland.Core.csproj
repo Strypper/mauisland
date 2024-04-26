@@ -33,12 +33,29 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.20" />
 		<PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-rc2" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.20" />
+		<PackageReference Include="Octokit" Version="11.0.1" />
 		<PackageReference Include="SkiaSharp" Version="2.88.7" />
 		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.86" />
 		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.7" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.7" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.7" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.7" />
+		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Barcode" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Calendar" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Charts" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.DataForm" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Gauges" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Inputs" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.ListView" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Maps" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.PdfViewer" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.ProgressBar" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.SignaturePad" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Sliders" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.TabView" Version="25.1.41" />
 	</ItemGroup>
 
 	<ItemGroup>

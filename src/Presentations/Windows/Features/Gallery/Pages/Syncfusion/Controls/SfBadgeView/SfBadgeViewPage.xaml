@@ -10,8 +10,9 @@
     xmlns:sfavatar="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
     Title="SfBadgeView"
-    Padding="10"
-    x:DataType="app:SfBadgeViewPageViewModel">
+    Padding="20"
+    x:DataType="core:SfBadgeViewPageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -170,24 +171,24 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="10">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <CollectionView
                         Header="{x:StaticResource PropertiesListHeader}"
                         ItemsSource="{x:StaticResource PropertiesItemsSource}"
                         Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <Label
                 FontAttributes="Bold"
                 FontSize="Title"
                 Text="Getting Started" />
             <!--  Adding a content  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Adding a content" />
                     <Label Text="An Image, button, or label or any view can be added to the Badge View using the Content property." />
@@ -216,7 +217,7 @@
                     </badge:SfBadgeView>
                     <core:SourceCodeExpander Code="{x:Binding AddingAContentSecondXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <Label
                 FontAttributes="Bold"
                 FontSize="Title"
@@ -226,7 +227,7 @@
             <!--  Error: BREAK!!!  -->
 
             <!--  Stroke customization  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Stroke customization" />
                     <Label Text="The stroke and stroke thickness of the badge view can be customized using the Stroke and StrokeThickness properties, respectively." />
@@ -250,9 +251,9 @@
                     </badge:SfBadgeView>
                     <core:SourceCodeExpander Code="{x:Binding StrokeCustomizationXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Text customization  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Text customization" />
                     <Label Text="The text color and margin of badge view can be changed using the TextColor and TextPadding properties, respectively." />
@@ -276,9 +277,9 @@
                     </badge:SfBadgeView>
                     <core:SourceCodeExpander Code="{x:Binding TextCustomizationXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Predefined styles  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Predefined styles" />
                     <CollectionView
@@ -303,9 +304,9 @@
                     </badge:SfBadgeView>
                     <core:SourceCodeExpander Code="{x:Binding PredefindedSymbolsXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Badge background customization  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Badge background customization" />
                     <Label Text="Other than the predefined styles, the color of the badge can be customized using the BadgeType property which has to be set as None. Then the color of the badge view can be set using the Background property." />
@@ -329,9 +330,9 @@
                     </badge:SfBadgeView>
                     <core:SourceCodeExpander Code="{x:Binding BadgeBackgroundCustomizationXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Setting corner radius of the badge  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setting corner radius of the badge" />
                     <Label Text="The CornerRadius property is used to reduce the radius of the corners." />
@@ -355,9 +356,9 @@
                     </badge:SfBadgeView>
                     <core:SourceCodeExpander Code="{x:Binding CornerRadiusOfTheBadgeXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Alignment of badge  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Alignment of badge" />
                     <Label Text="Align the badge view using the Center, Start, and End properties of BadgeAlignment property." />
@@ -444,13 +445,13 @@
                     </Grid>
                     <core:SourceCodeExpander Code="{x:Binding AlignmentOfBadgeXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Position customization  -->
             <Label
                 FontAttributes="Bold"
                 FontSize="Title"
                 Text="Badge Customization" />
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Text="The default position of notification is TopRight. The position can be customized as TopLeft, BottomLeft, BottomRight, Left,Top, Right, and Bottom using the Position property." />
                     <HorizontalStackLayout Spacing="50">
@@ -608,9 +609,9 @@
                     </HorizontalStackLayout>
                     <core:SourceCodeExpander Code="{x:Binding PositionCustomizationXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Setting a badge offset  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Setting a badge offset" />
                     <Label Text="The badge view x,y position can be adjusted using the Offset property." />
@@ -636,9 +637,9 @@
                     </badge:SfBadgeView>
                     <core:SourceCodeExpander Code="{x:Binding SettingAbadgeOffsetXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Change your avatarview  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <badge:SfBadgeView
                         BadgeText="8"
@@ -669,13 +670,13 @@
                         </badge:SfBadgeView.BadgeSettings>
                     </badge:SfBadgeView>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Predefined symbols  -->
             <Label
                 FontAttributes="Bold"
                 FontSize="Title"
                 Text="Predefined symbols" />
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <CollectionView
                         Header="{x:StaticResource PropertiesListHeader2}"
@@ -813,13 +814,13 @@
                     </HorizontalStackLayout>
                     <core:SourceCodeExpander Code="{x:Binding PredefinedStylesXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <!--  Animation  -->
             <Label
                 FontAttributes="Bold"
                 FontSize="Title"
                 Text="Animation" />
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Text="You can enable or disable the animation of the badge text using Scale or None enum values of the BadgeAnimation property. You can see the animation when you change the badge text." />
                     <badge:SfBadgeView
@@ -854,7 +855,7 @@
                         HorizontalOptions="Center" />
                     <core:SourceCodeExpander Code="{x:Binding AnimationBasicXamlCode}" CodeType="Xaml" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </core:BasePage>

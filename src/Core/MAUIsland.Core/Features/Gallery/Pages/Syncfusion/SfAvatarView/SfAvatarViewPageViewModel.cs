@@ -1,7 +1,7 @@
-namespace MAUIsland;
+namespace MAUIsland.Core;
 public partial class SfAvatarViewPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [CTor]
+    #region [ CTor ]
     public SfAvatarViewPageViewModel(
         IAppNavigator appNavigator
     ) : base(appNavigator)
@@ -9,7 +9,8 @@ public partial class SfAvatarViewPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
+
     [ObservableProperty]
     IGalleryCardInfo controlInformation;
 
@@ -24,7 +25,7 @@ public partial class SfAvatarViewPageViewModel : NavigationAwareBaseViewModel
 
     #endregion
 
-    #region [Overrides]
+    #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
@@ -43,7 +44,7 @@ public partial class SfAvatarViewPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Relay Commands]
+    #region [ Relay Commands ]
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);

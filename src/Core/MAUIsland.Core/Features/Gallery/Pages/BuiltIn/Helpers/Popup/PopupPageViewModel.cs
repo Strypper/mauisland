@@ -7,14 +7,15 @@ public partial class PopupPageViewModel : BaseBuiltInPageControlViewModel
 {
     #region [ Fields ]
 
-    private readonly IDialogService dialogService;
+    private readonly IDialogService dialogService = default!;
     #endregion
 
     #region [ CTor ]
     public PopupPageViewModel(IAppNavigator appNavigator,
-                               IGitHubService gitHubService,
-                               DiscordRpcClient discordRpcClient,
-                               IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                              IGitHubService gitHubService,
+                              DiscordRpcClient discordRpcClient,
+                              IDialogService dialogService,
+                              IGitHubIssueLocalDbService gitHubIssueLocalDbService)
                                 : base(appNavigator,
                                         gitHubService,
                                         discordRpcClient,

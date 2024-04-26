@@ -1,7 +1,7 @@
-namespace MAUIsland;
+namespace MAUIsland.Core;
 public partial class SfBadgeViewPageViewModel : NavigationAwareBaseViewModel
 {
-    #region [CTor]
+    #region [ CTor ]
     public SfBadgeViewPageViewModel(
         IAppNavigator appNavigator
     ) : base(appNavigator)
@@ -9,7 +9,8 @@ public partial class SfBadgeViewPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
+
     [ObservableProperty]
     IGalleryCardInfo controlInformation;
 
@@ -48,7 +49,7 @@ public partial class SfBadgeViewPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     string positionCustomizationXamlCode = "<badge:SfBadgeView\r\n                            BadgeText=\"5\"\r\n                            HeightRequest=\"60\"\r\n                            HorizontalOptions=\"Center\"\r\n                            VerticalOptions=\"Center\"\r\n                            WidthRequest=\"140\">\r\n                            <badge:SfBadgeView.Content>\r\n                                <Button\r\n                                    BackgroundColor=\"#d6d8d7\"\r\n                                    HeightRequest=\"60\"\r\n                                    Text=\"Left\"\r\n                                    TextColor=\"Black\"\r\n                                    WidthRequest=\"120\" />\r\n                            </badge:SfBadgeView.Content>\r\n                            <badge:SfBadgeView.BadgeSettings>\r\n                                <badge:BadgeSettings Position=\"Left\" />\r\n                            </badge:SfBadgeView.BadgeSettings>\r\n                        </badge:SfBadgeView>";
-    
+
     [ObservableProperty]
     string settingAbadgeOffsetXamlCode = "<badge:SfBadgeView\r\n                            BadgeText=\"8\"\r\n                            HeightRequest=\"70\"\r\n                            HorizontalOptions=\"Center\"\r\n                            VerticalOptions=\"Center\"\r\n                            WidthRequest=\"60\">\r\n                            <badge:SfBadgeView.Content>\r\n                                <Image\r\n                                    HeightRequest=\"70\"\r\n                                    Source=\"https://i.imgur.com/mdBNR5T.png\"\r\n                                    WidthRequest=\"60\" />\r\n                            </badge:SfBadgeView.Content>\r\n                            <badge:SfBadgeView.BadgeSettings>\r\n                                <badge:BadgeSettings\r\n                                    Position=\"BottomRight\"\r\n                                    Type=\"Success\"\r\n                                    Offset=\"0,-1\" />\r\n                            </badge:SfBadgeView.BadgeSettings>\r\n                        </badge:SfBadgeView>";
 
@@ -57,10 +58,10 @@ public partial class SfBadgeViewPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     string animationBasicXamlCode = "<badge:SfBadgeView\r\n                        BadgeText=\"{x:Binding Source={x:Reference NotificationCountStepper},\r\n                                              Path=Value}\"\r\n                        HeightRequest=\"70\"\r\n                        HorizontalOptions=\"Center\"\r\n                        VerticalOptions=\"Center\"\r\n                        WidthRequest=\"65\">\r\n                        <badge:SfBadgeView.Content>\r\n                            <Image\r\n                                HeightRequest=\"70\"\r\n                                Source=\"https://i.imgur.com/mdBNR5T.png\"\r\n                                WidthRequest=\"60\" />\r\n                        </badge:SfBadgeView.Content>\r\n                        <badge:SfBadgeView.BadgeSettings>\r\n                            <badge:BadgeSettings\r\n                                Animation=\"Scale\"\r\n                                Position=\"TopRight\"\r\n                                Type=\"Error\"\r\n                                Offset=\"0,0\" />\r\n                        </badge:SfBadgeView.BadgeSettings>\r\n                    </badge:SfBadgeView>\r\n                    <Label\r\n                        FontAttributes=\"Bold\"\r\n                        HorizontalOptions=\"Center\"\r\n                        Text=\"{x:Binding Source={x:Reference NotificationCountStepper},\r\n                                         Path=Value}\" />\r\n                    <Stepper x:Name=\"NotificationCountStepper\" HorizontalOptions=\"Center\" />\r\n                    <core:SourceCodeExpander Code=\"{x:Binding AnimationBasic}\" CodeType=\"Xaml\" />";
-    
+
     #endregion
 
-    #region [Overrides]
+    #region [ Overrides ]
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
@@ -77,7 +78,8 @@ public partial class SfBadgeViewPageViewModel : NavigationAwareBaseViewModel
     }
     #endregion
 
-    #region [Relay Commands]
+    #region [ Relay Commands ]
+
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
