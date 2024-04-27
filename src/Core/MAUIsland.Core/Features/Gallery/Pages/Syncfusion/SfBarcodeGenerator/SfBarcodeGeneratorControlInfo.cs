@@ -1,0 +1,28 @@
+using Syncfusion.Maui.Core;
+
+namespace MAUIsland.Core;
+class SfBarcodeGeneratorControlInfo : IGalleryCardInfo
+{
+    public string ControlName => nameof(SfBadgeView);
+    public string ControlRoute => $"MAUIsland.{ControlName}Page";
+    public ImageSource ControlIcon => new FontImageSource()
+    {
+        FontFamily = FontNames.FluentSystemIconsRegular,
+        Size = 100,
+        Glyph = FluentUIIcon.Ic_fluent_barcode_scanner_24_regular
+    };
+    public string ControlDetail => "The Syncfusion .NET MAUI Barcode Generator is a data visualization control used to generate and display data in a machine-readable format. It provides a perfect approach to encode text using supported symbology types.";
+    public string GitHubUrl => $"https://github.com/Strypper/mauisland/blob/main/src/Features/Gallery/Pages/Syncfusion/Controls/{ControlName}";
+    public string DocumentUrl => $"https://help.syncfusion.com/maui/barcode-generator/overview";
+    public string GroupName => ControlGroupInfo.SyncfusionControls;
+
+    public GalleryCardType CardType => GalleryCardType.Control;
+
+    public GalleryCardStatus CardStatus => throw new NotImplementedException();
+
+    public DateTime LastUpdate => throw new NotImplementedException();
+
+    public List<string> DoList => throw new NotImplementedException();
+
+    public List<string> DontList => throw new NotImplementedException();
+}

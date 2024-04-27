@@ -279,6 +279,7 @@ public static class MauiProgram
                 builder.Services.AddTransient(viewModelType);
             }
 
+
             if (pageType.IsAssignableTo(typeof(IGalleryPage)))
                 Routing.RegisterRoute(pageType.FullName, pageType);
 

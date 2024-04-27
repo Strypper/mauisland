@@ -7,8 +7,8 @@
     xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="SfCircularChart"
-    Padding="10"
-    x:DataType="app:SfCircularChartPageViewModel"
+    Padding="20"
+    x:DataType="core:SfCircularChartPageViewModel"
     BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
@@ -62,17 +62,17 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Simple pie chart" />
                     <chart:SfCircularChart>
@@ -83,8 +83,8 @@
                     </chart:SfCircularChart>
                     <core:SourceCodeExpander Code="{x:Binding SimplePieSeriesXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Add title" />
                     <chart:SfCircularChart>
@@ -98,8 +98,8 @@
                     </chart:SfCircularChart>
                     <core:SourceCodeExpander Code="{x:Binding AddTitleToPieSeriesXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Add labels" />
                     <chart:SfCircularChart>
@@ -111,8 +111,8 @@
                     </chart:SfCircularChart>
                     <core:SourceCodeExpander Code="{x:Binding EnableDataLabelXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Add legend" />
                     <chart:SfCircularChart>
@@ -126,8 +126,8 @@
                     </chart:SfCircularChart>
                     <core:SourceCodeExpander Code="{x:Binding EnableLegendXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Add Tooltip" />
                     <chart:SfCircularChart>
@@ -139,8 +139,8 @@
                     </chart:SfCircularChart>
                     <core:SourceCodeExpander Code="{x:Binding EnableTooltipXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Doughnut Chart" />
                     <chart:SfCircularChart>
@@ -152,8 +152,8 @@
                     </chart:SfCircularChart>
                     <core:SourceCodeExpander Code="{x:Binding DoughnutChartXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Inner Radius" />
                     <chart:SfCircularChart>
@@ -166,8 +166,8 @@
                     </chart:SfCircularChart>
                     <core:SourceCodeExpander Code="{x:Binding DoughnutChartInnerRadiusXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Semi Doughnut" />
                     <chart:SfCircularChart>
@@ -182,7 +182,7 @@
                     </chart:SfCircularChart>
                     <core:SourceCodeExpander Code="{x:Binding SemiDoughnutChartXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </core:BasePage>
