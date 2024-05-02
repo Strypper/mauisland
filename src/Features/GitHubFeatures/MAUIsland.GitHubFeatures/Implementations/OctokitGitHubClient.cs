@@ -64,6 +64,70 @@ public class OctokitGitHubClient : IGitHubService
         }
     }
 
+    public async Task<OneOf<ServiceSuccess, SerivceError>> GetLatestRelease(string owner, string repository)
+    {
+        try
+        {
+            var releases = await this.gitClient.Repository.Release.GetAll(owner, repository);
+            var latestRelease = releases.FirstOrDefault();
+
+            if (latestRelease is null)
+                return new ServiceSuccess(Constants.GetAuthorSuccess,
+                                          Constants.NotAvailable,
+                                          nameof(OctokitGitHubClient),
+                                          nameof(GetLatestRelease),
+                                          Constants.NotAvailable,
+                                          DateTime.UtcNow,
+                                          new List<GitHubRepositoryReleaseModel>());
+
+            var attachedData = new GitHubRepositoryReleaseModel()
+            {
+                Id = latestRelease.Id,
+                Url = latestRelease.Url,
+                HtmlUrl = latestRelease.HtmlUrl,
+                AssetsUrl = latestRelease.AssetsUrl,
+                UploadUrl = latestRelease.UploadUrl,
+                NodeId = latestRelease.NodeId,
+                TagName = latestRelease.TagName,
+                TargetCommitish = latestRelease.TargetCommitish,
+                Name = latestRelease.Name,
+                Body = latestRelease.Body,
+                Draft = latestRelease.Draft,
+                Author = latestRelease.Author is not null ? new GitHubAuthorModel()
+                {
+                    AvatarUrl = latestRelease.Author.AvatarUrl,
+                    HtmlUrl = latestRelease.Author.HtmlUrl,
+                    OwnerId = latestRelease.Author.Id,
+                    Login = latestRelease.Author.Login,
+                    Url = latestRelease.Author.Url
+                } : null,
+                Prerelease = latestRelease.Prerelease,
+                CreatedAt = latestRelease.CreatedAt,
+                PublishedAt = latestRelease.PublishedAt,
+                TarballUrl = latestRelease.TarballUrl,
+                ZipballUrl = latestRelease.ZipballUrl,
+                Assets = latestRelease.Assets,
+            };
+            return new ServiceSuccess(Constants.GetAuthorSuccess,
+                                      Constants.NotAvailable,
+                                      nameof(OctokitGitHubClient),
+                                      nameof(GetLatestRelease),
+                                      Constants.NotAvailable,
+                                      DateTime.UtcNow,
+                                      attachedData);
+        }
+        catch (Exception e)
+        {
+            return new SerivceError(Constants.GetAuthorFailure,
+                                    Constants.NotAvailable,
+                                    nameof(OctokitGitHubClient),
+                                    nameof(GetLatestRelease),
+                                    Constants.NotAvailable,
+                                    e.Message,
+                                    DateTime.UtcNow);
+        }
+    }
+
     public async Task<OneOf<ServiceSuccess, SerivceError>> GetGitHubIssueByNo(string owner, string repository, int issueNumber)
     {
         try
