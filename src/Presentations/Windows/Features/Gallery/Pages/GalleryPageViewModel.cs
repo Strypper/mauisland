@@ -9,7 +9,7 @@ public partial class GalleryPageViewModel : NavigationAwareBaseViewModel
 
     #region [ CTor ]
     public GalleryPageViewModel(IControlsService controlsService,
-                                IAppNavigator appNavigator) 
+                                IAppNavigator appNavigator)
         : base(appNavigator)
     {
         this.controlsService = controlsService;

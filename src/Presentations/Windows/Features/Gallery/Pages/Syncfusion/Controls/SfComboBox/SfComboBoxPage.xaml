@@ -8,8 +8,9 @@
     xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
     xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
     Title="SfComboBoxPage"
-    Padding="10"
-    x:DataType="app:SfComboBoxPageViewModel">
+    Padding="20"
+    x:DataType="core:SfComboBoxPageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -70,16 +71,16 @@
     </core:BasePage.Resources>
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Label Text="{x:StaticResource ControlInfo}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <syncfusion:SfListView
                     HeaderTemplate="{x:StaticResource PropertiesSfListHeaderTemplate}"
                     ItemTemplate="{x:StaticResource BulletListItemTemplate}"
                     ItemsSource="{x:StaticResource PropertiesItemsSource}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="5">
                     <inputs:SfComboBox
                         x:Name="comboBox"
@@ -88,7 +89,7 @@
                         ItemsSource="{x:Binding Items}"
                         WidthRequest="250" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </core:BasePage>

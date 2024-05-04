@@ -1,7 +1,7 @@
 namespace MAUIsland;
 public partial class SfRadialGaugePage : IGalleryPage
 {
-    #region [CTor]
+    #region [ CTor ]
     public SfRadialGaugePage(SfRadialGaugePageViewModel vm)
     {
         InitializeComponent();

@@ -1,21 +1,32 @@
-using Bogus.DataSets;
-
 namespace MAUIsland;
 
-public class Cats
-{
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public ImageSource Photo { get; set; }
-}
 public partial class IndicatorViewPage : IGalleryPage
 {
-    #region [CTor]
+    #region [ Fields ]
+
+    private readonly IndicatorViewPageViewModel viewModel;
+    #endregion
+
+    #region [ CTor ]
     public IndicatorViewPage(IndicatorViewPageViewModel vm)
     {
         InitializeComponent();
-        BindingContext = vm;
+
+        BindingContext = viewModel = vm;
     }
+    #endregion
+
+    #region [ Event Handlers ]
+
+    private void BasePage_Loaded(object sender, EventArgs e)
+    {
+        if (NewWindowParameter is not null && viewModel.ControlInformation is null)
+        {
+            viewModel.SetControlInformation(NewWindowParameter);
+            viewModel.RefreshCommand.Execute(null);
+        }
+    }
+
     #endregion
 
 }

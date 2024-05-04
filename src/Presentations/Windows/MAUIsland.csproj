@@ -1,36 +1,48 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
-    <OutputType>Exe</OutputType>
-    <UseMaui>true</UseMaui>
-    <SingleProject>true</SingleProject>
-	<ImplicitUsings>enable</ImplicitUsings>
-	<!--<_MauiForceXamlCForDebug>true</_MauiForceXamlCForDebug>-->
+		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseRidGraph>true</UseRidGraph>
+		<_MauiForceXamlCForDebug>false</_MauiForceXamlCForDebug>
 
-	<!-- Display name -->
-	<ApplicationTitle>MAUIsland</ApplicationTitle>
+		<!-- Display name -->
+		<ApplicationTitle>MAUIsland</ApplicationTitle>
 
-	<!-- App Identifier -->
-	<ApplicationId>com.companyname.mauisland</ApplicationId>
-	<ApplicationIdGuid>337d7a98-7b00-487e-88d9-3b1a317456c7</ApplicationIdGuid>
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.mauisland</ApplicationId>
+		<ApplicationIdGuid>337d7a98-7b00-487e-88d9-3b1a317456c7</ApplicationIdGuid>
 
-	<!-- Versions -->
-	<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-	<ApplicationVersion>1</ApplicationVersion>
+		<!-- Versions -->
+		<ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
+		<ApplicationVersion>2</ApplicationVersion>
 
-    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-    <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-		<GenerateAppInstallerFile>True</GenerateAppInstallerFile>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<GenerateAppInstallerFile>False</GenerateAppInstallerFile>
 		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
 		<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
-		<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+		<AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
 		<AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
 		<GenerateTestArtifacts>True</GenerateTestArtifacts>
 		<AppInstallerUri>https://totechsintranet.blob.core.windows.net/installers</AppInstallerUri>
 		<HoursBetweenUpdateChecks>1</HoursBetweenUpdateChecks>
-		<PackageCertificateKeyFile>MAUIsland_TemporaryKey.pfx</PackageCertificateKeyFile>
+		<GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
+		<SignAssembly>False</SignAssembly>
+		<PackageCertificateThumbprint>B90CE38E464032DB4247C5C0662ABB5BEEA5938C</PackageCertificateThumbprint>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<RuntimeHostConfigurationOption Include="System.Runtime.Loader.UseRidGraph" Value="true" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<!-- App Icon -->
@@ -52,89 +64,50 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
-	  <Compile Remove="Platforms\Android\**" />
-	  <Compile Remove="Platforms\iOS\**" />
-	  <Compile Remove="Platforms\MacCatalyst\**" />
-	  <Compile Remove="Platforms\Tizen\**" />
-	  <EmbeddedResource Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
-	  <EmbeddedResource Remove="Platforms\Android\**" />
-	  <EmbeddedResource Remove="Platforms\iOS\**" />
-	  <EmbeddedResource Remove="Platforms\MacCatalyst\**" />
-	  <EmbeddedResource Remove="Platforms\Tizen\**" />
-	  <MauiCss Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
-	  <MauiCss Remove="Platforms\Android\**" />
-	  <MauiCss Remove="Platforms\iOS\**" />
-	  <MauiCss Remove="Platforms\MacCatalyst\**" />
-	  <MauiCss Remove="Platforms\Tizen\**" />
-	  <MauiXaml Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
-	  <MauiXaml Remove="Platforms\Android\**" />
-	  <MauiXaml Remove="Platforms\iOS\**" />
-	  <MauiXaml Remove="Platforms\MacCatalyst\**" />
-	  <MauiXaml Remove="Platforms\Tizen\**" />
-	  <None Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
-	  <None Remove="Platforms\Android\**" />
-	  <None Remove="Platforms\iOS\**" />
-	  <None Remove="Platforms\MacCatalyst\**" />
-	  <None Remove="Platforms\Tizen\**" />
-	</ItemGroup>
-	<ItemGroup>
 	  <None Remove="appsettings.Development.json" />
-	  <None Remove="Resources\AppIcon\square44x44logo.svg" />
-	  <None Remove="Resources\Images\aspnetcore_developer_roadmap.png" />
-	  <None Remove="Resources\Images\members\member_long.png" />
-	  <None Remove="Resources\Images\members\member_tan.png" />
-	  <None Remove="Resources\Images\project_githubcard_bug.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="akgul.Maui.DataGrid" Version="4.0.2" />
-		<PackageReference Include="Indiko.Maui.Controls.Markdown" Version="1.0.1" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.14" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.14" />
-		<PackageReference Include="Bogus" Version="35.5.0" />
+		<PackageReference Include="akgul.Maui.DataGrid" Version="4.0.3" />
+		<PackageReference Include="Indiko.Maui.Controls.Markdown" Version="1.0.3" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.21" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.21" />
 		<PackageReference Include="ColorCode.Core" Version="2.0.15" />
 		<PackageReference Include="CommunityToolkit.Common" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="IconPacks.Material" Version="1.0.8807.17-build" />
-		<PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-rc2" />
-		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.0-preview.1.24081.5" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0-preview.1.24080.9" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.4" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0-preview.1.24080.9" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0-preview.1.24080.9" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="Octokit" Version="10.0.0" />
 		<PackageReference Include="OverFlower" Version="0.0.3" />
 		<PackageReference Include="Refit" Version="7.0.0" />
 		<PackageReference Include="Refit.HttpClientFactory" Version="7.0.0" />
 		<PackageReference Include="Refit.Newtonsoft.Json" Version="7.0.0" />
-		<PackageReference Include="Sharpnado.MaterialFrame.Maui" Version="2.0.0" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
-		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.Barcode" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.Calendar" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.Charts" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.Core" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.DataForm" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.Gauges" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.Inputs" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.ListView" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.Maps" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.PdfViewer" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.ProgressBar" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.SignaturePad" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.Sliders" Version="23.1.36" />
-		<PackageReference Include="Syncfusion.Maui.TabView" Version="22.1.38" />
+		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Barcode" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Calendar" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Charts" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.DataForm" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Gauges" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Inputs" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.ListView" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Maps" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.PdfViewer" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.ProgressBar" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.SignaturePad" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Sliders" Version="25.1.41" />
+		<PackageReference Include="Syncfusion.Maui.TabView" Version="25.1.41" />
 		<PackageReference Include="ZXing.Net.Maui" Version="0.4.0" />
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Features\Blog\" />
-		<Folder Include="Features\QA\" />
-		<Folder Include="Features\Gallery\Services\" />
+		<Folder Include="Features\Gallery\Pages\Community\Layouts\" />
 		<Folder Include="Features\Settings\Models\" />
 	</ItemGroup>
 
@@ -160,13 +133,13 @@
 		<Compile Update="Features\Gallery\Pages\CardsByGroupPage.xaml.cs">
 			<DependentUpon>CardsByGroupPage.xaml</DependentUpon>
 		</Compile>
-		<Compile Update="Features\Gallery\Pages\Community\Helpers\IndikoMauiControlsMarkdown\IndikoMauiControlsMarkdownPage.xaml.cs">
+		<Compile Update="Features\Gallery\Pages\Community\Controls\IndikoMauiControlsMarkdown\IndikoMauiControlsMarkdownPage.xaml.cs">
 		  <DependentUpon>IndikoMauiControlsMarkdownPage.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Features\Gallery\Pages\Community\Helpers\SQLite-net\SQLiteNETPage.xaml.cs">
 		  <DependentUpon>SQLiteNETPage.xaml</DependentUpon>
 		</Compile>
-		<Compile Update="Features\Gallery\Pages\Community\Layouts\DataGrid\DataGridPage.xaml.cs">
+		<Compile Update="Features\Gallery\Pages\Community\Controls\DataGrid\DataGridPage.xaml.cs">
 		  <DependentUpon>DataGridPage.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Features\Gallery\Pages\Material\Controls\MaterialProgressIndicator\MaterialProgressIndicatorPage.xaml.cs">
@@ -277,13 +250,13 @@
 		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\NewsPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Features\Gallery\Pages\Community\Helpers\IndikoMauiControlsMarkdown\IndikoMauiControlsMarkdownPage.xaml">
+		<MauiXaml Update="Features\Gallery\Pages\Community\Controls\IndikoMauiControlsMarkdown\IndikoMauiControlsMarkdownPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\Community\Helpers\SQLite-net\SQLiteNETPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Features\Gallery\Pages\Community\Layouts\DataGrid\DataGridPage.xaml">
+		<MauiXaml Update="Features\Gallery\Pages\Community\Controls\DataGrid\DataGridPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\GalleryPage.xaml">
@@ -504,28 +477,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PRIResource Remove="Features\Gallery\Pages\Material\Controls\MaterialButton - Copy %283%29\**" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <ProjectReference Include="..\..\Core\MAUIsland.Core\MAUIsland.Core.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <PRIResource Remove="Platforms\Android\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PRIResource Remove="Platforms\iOS\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PRIResource Remove="Platforms\MacCatalyst\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PRIResource Remove="Platforms\Tizen\**" />
-	</ItemGroup>
-
 
 </Project>

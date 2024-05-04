@@ -41,20 +41,16 @@ public class AppNavigator : IAppNavigator
                 var page = Routing.GetOrCreateContent(target, serviceProvider) as Page;
 
                 if (page == null)
-                {
                     throw new InvalidOperationException($"Cannot find page at route {target}");
-                }
+
+                var basePage = (BasePage)page;
+                var controlInformation = navArgs["__DATA__"];
+                if (controlInformation is not null)
+                    basePage.SetNewWindowParameter(controlInformation);
 
                 return MainThread.InvokeOnMainThreadAsync(() =>
                 {
-                    //#if WINDOWS
-                    //                    var window = new AcrylicWindow() { Page = page };
-                    //                    Application.Current?.OpenWindow(window);
-                    //#else
-                    //                    var newWindow = new Window(page);
-                    //                    Application.Current.OpenWindow(newWindow);
-                    //#endif
-                    var newWindow = new Window(page);
+                    var newWindow = new Window(basePage);
                     Application.Current.OpenWindow(newWindow);
                 });
             });

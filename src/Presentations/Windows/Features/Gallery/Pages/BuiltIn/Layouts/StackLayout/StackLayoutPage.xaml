@@ -7,8 +7,9 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="StackLayout"
     Padding="20"
-    x:DataType="app:StackLayoutPageViewModel"
-    BackgroundColor="Transparent">
+    x:DataType="core:StackLayoutPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem

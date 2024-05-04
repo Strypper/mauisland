@@ -8,7 +8,7 @@
     xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
     Title="ZXingNetMaui"
     Padding="10"
-    x:DataType="app:ZXingNetMauiPageViewModel"
+    x:DataType="core:ZXingNetMauiPageViewModel"
     BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
@@ -17,6 +17,11 @@
             CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
             IconImageSource="githublogo.png"
             Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="githublogo.png"
+            Text="Original Source" />
     </core:BasePage.ToolbarItems>
 
     <SwipeView>

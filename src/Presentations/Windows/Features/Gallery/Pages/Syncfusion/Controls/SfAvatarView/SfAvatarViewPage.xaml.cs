@@ -1,9 +1,7 @@
-using Syncfusion.Maui.Core;
-
 namespace MAUIsland;
 public partial class SfAvatarViewPage : IGalleryPage
 {
-    #region [CTor]
+    #region [ CTor ]
     public SfAvatarViewPage(SfAvatarViewPageViewModel vm)
     {
         InitializeComponent();

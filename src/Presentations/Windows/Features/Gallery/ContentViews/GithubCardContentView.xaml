@@ -50,14 +50,17 @@
         <core:DateTimeToSimpleDateTimeStringConverter x:Key="DateTimeToSimpleDateTimeStringConverter" />
     </ContentView.Resources>
 
-    <Grid HeightRequest="330" WidthRequest="511" 
-          RowDefinitions="0.5*, 1*, auto">
-        <Frame Grid.Row="1"
-               Grid.RowSpan="2"
-               Padding="5"
-               HeightRequest="280"
-               VerticalOptions="End"
-               WidthRequest="511">
+    <Grid
+        HeightRequest="330"
+        RowDefinitions="0.5*, 1*, auto"
+        WidthRequest="511">
+        <Frame
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Padding="5"
+            HeightRequest="280"
+            VerticalOptions="End"
+            WidthRequest="511">
             <Grid RowDefinitions="50, *, 53" RowSpacing="12">
                 <HorizontalStackLayout Margin="96,0,0,0">
                     <core:IconLabel
@@ -67,6 +70,13 @@
                         Text="{x:Binding Issues,
                                          Source={x:Reference root}}"
                         TextColor="{x:Static core:AppColors.White}" />
+                    <core:IconLabel
+                        HorizontalOptions="Center"
+                        PrefixIcon="{x:StaticResource GithubLicenseIcon}"
+                        Text="{x:Binding License,
+                                         Source={x:Reference root}}"
+                        TextColor="{x:Static core:AppColors.White}"
+                        VerticalOptions="Center" />
                 </HorizontalStackLayout>
                 <core:IconLabel
                     Margin="0,0,15,0"
@@ -78,6 +88,7 @@
                     TextColor="{x:Static core:AppColors.White}"
                     ToolTipProperties.Text="Last updated"
                     VerticalOptions="Center" />
+
                 <Frame
                     Grid.Row="1"
                     Margin="15,0,15,0"
@@ -97,7 +108,7 @@
                 </Frame>
                 <Grid
                     Grid.Row="2"
-                    ColumnDefinitions="1*, auto, 1.2*, 1.2*, 1.2*"
+                    ColumnDefinitions="1*, auto, 1.2*, 1.2*"
                     ColumnSpacing="5"
                     HorizontalOptions="FillAndExpand">
                     <ImageButton
@@ -120,45 +131,42 @@
                         Text="Detail"
                         TextColor="{x:Static core:AppColors.White}"
                         VerticalOptions="Center"
-                        WidthRequest="200"/>
+                        WidthRequest="200" />
                     <core:IconLabel
                         Grid.Column="2"
-                        PrefixIcon="{x:StaticResource GithubLicenseIcon}"
-                        Text="{x:Binding License,
+                        PrefixIcon="{x:StaticResource GithubForkIcon}"
+                        Text="{x:Binding Forks,
                                          Source={x:Reference root}}"
                         TextColor="{x:Static core:AppColors.White}" />
                     <core:IconLabel
                         Grid.Column="3"
-                        PrefixIcon="{x:StaticResource GithubForkIcon}"
-                        Text="{x:Binding Forks,
-                                         Source={x:Reference root}}"
-                        TextColor="{x:Static core:AppColors.White}"/>
-                    <core:IconLabel
-                        Grid.Column="4"
                         PrefixIcon="{x:StaticResource GithubStarIcon}"
                         Text="{x:Binding Stars,
                                          Source={x:Reference root}}"
-                        TextColor="{x:Static core:AppColors.White}"/>
+                        TextColor="{x:Static core:AppColors.White}" />
                 </Grid>
             </Grid>
         </Frame>
-        <HorizontalStackLayout Grid.Row="0"
-                               Grid.RowSpan="1">
-            <ImageButton Source="{x:Binding AuthorAvatar,
-                               Source={x:Reference root}}" 
-                         HeightRequest="90"
-                         WidthRequest="90"
-                         HorizontalOptions="Start"
-                         VerticalOptions="Start" 
-                         CornerRadius="50"
-                         Margin="10"/>
-            <Label FontAttributes="Bold"
-                   FontSize="24"
-                   Text="{x:Binding ComponentData.ControlName,
-                                    Source={x:Reference root}}"
-                   TextColor="White"
-                   VerticalOptions="Center"
-                   Margin="0,0,0,40"/>
+        <HorizontalStackLayout Grid.Row="0" Grid.RowSpan="1">
+            <ImageButton
+                Margin="10"
+                BorderColor="Black"
+                BorderWidth="5"
+                CornerRadius="50"
+                HeightRequest="90"
+                HorizontalOptions="Start"
+                Source="{x:Binding AuthorAvatar,
+                                   Source={x:Reference root}}"
+                VerticalOptions="Start"
+                WidthRequest="90" />
+            <Label
+                Margin="0,0,0,40"
+                FontAttributes="Bold"
+                FontSize="24"
+                Text="{x:Binding ComponentData.ControlName,
+                                 Source={x:Reference root}}"
+                TextColor="White"
+                VerticalOptions="Center" />
         </HorizontalStackLayout>
     </Grid>
 </ContentView>

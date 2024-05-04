@@ -7,8 +7,9 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:gauge="clr-namespace:Syncfusion.Maui.Gauges;assembly=Syncfusion.Maui.Gauges"
     Title="SfRadialGauge"
-    Padding="10"
-    x:DataType="app:SfRadialGaugePageViewModel">
+    Padding="20"
+    x:DataType="core:SfRadialGaugePageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -67,16 +68,16 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout>
                     <VerticalStackLayout.Resources>
                         <gauge:GaugeLabelStyle
@@ -162,7 +163,7 @@
                     </gauge:SfRadialGauge>
                     <core:SourceCodeExpander Code="{x:Binding BossPissedMetric}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </core:BasePage>

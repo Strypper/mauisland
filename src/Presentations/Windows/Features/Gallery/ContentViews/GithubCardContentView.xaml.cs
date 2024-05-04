@@ -179,7 +179,8 @@ public partial class GithubCardContentView : ContentView
 
         var repository = await syncService?.GetRepositoryAsync(ComponentData.AuthorName, ComponentData.RepositoryName, ComponentData.RepositoryName);
 
-        if (repository == null) {
+        if (repository == null)
+        {
             return;
         }
 
@@ -189,7 +190,7 @@ public partial class GithubCardContentView : ContentView
         this.Forks = repository.ForksCount;
         this.Issues = repository.OpenIssuesCount;
         this.License = "No License";
-        if (repository.License != null) 
+        if (repository.License != null && !string.IsNullOrEmpty(repository.License.Name))
         {
             this.License = repository.License.Name;
         }

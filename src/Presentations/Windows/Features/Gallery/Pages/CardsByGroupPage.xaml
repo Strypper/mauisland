@@ -58,14 +58,14 @@
                 DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
         </DataTemplate>
 
-        <DataTemplate x:Key="GithubCardItemTemplate" x:DataType="app:IGithubGalleryCardInfo">
+        <DataTemplate x:Key="GithubCardItemTemplate" x:DataType="core:IGithubGalleryCardInfo">
             <app:GithubCardContentView
                 ComponentData="{x:Binding}"
                 DetailClicked="ControlCardContentView_DetailClicked"
                 DetailInNewWindowClicked="ControlCardContentView_DetailInNewWindowClicked" />
         </DataTemplate>
 
-        <DataTemplate x:Key="MaterialUICardItemTemplate" x:DataType="app:IMaterialUIGalleryCardInfo">
+        <DataTemplate x:Key="MaterialUICardItemTemplate" x:DataType="core:IMaterialUIGalleryCardInfo">
             <app:MaterialUICardContentView
                 ComponentData="{x:Binding}"
                 DetailClicked="ControlCardContentView_DetailClicked"
@@ -309,10 +309,7 @@
                             BindableLayout.ItemTemplateSelector="{x:StaticResource BrandCardTemplateSelector}"
                             BindableLayout.ItemsSource="{x:Binding FilteredControlGroupList,
                                                                    Mode=OneWay}"
-                            HorizontalOptions="{x:OnIdiom Desktop=Start,
-                                                          Tablet=Start,
-                                                          Default=Start,
-                                                          Phone=Center}"
+                            HorizontalOptions="Center"
                             HorizontalSpacing="10"
                             VerticalSpacing="10">
                             <mdc:WrapLayout.Triggers>

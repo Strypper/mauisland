@@ -49,6 +49,31 @@ public class GitHubServiceIntegrationTest
         Assert.NotNull(repositoryModel.Url);
     }
 
+
+    [Fact]
+    public async Task GetLatestReleaseTest()
+    {
+        var gitHubService = serviceProvider!.GetRequiredService<IGitHubService>();
+        var result = await gitHubService.GetLatestRelease(owner, repositoryName);
+
+        //Assert
+        Assert.IsType<ServiceSuccess>(result.AsT0);
+        Assert.NotEmpty(result.AsT0.SuccessCode);
+        Assert.NotEmpty(result.AsT0.SuccessMessage);
+        Assert.NotEmpty(result.AsT0.ServiceName);
+        Assert.NotEmpty(result.AsT0.MethodName);
+        Assert.NotEmpty(result.AsT0.ConsumerName);
+        Assert.NotEqual(DateTime.MinValue, result.AsT0.EventOccuredAt);
+        Assert.NotNull(result.AsT0.AttachedData);
+
+        var repositoryModel = result.AsT0.AttachedData as GitHubRepositoryReleaseModel;
+        Assert.NotNull(repositoryModel);
+        Assert.NotEqual(0, repositoryModel.Id);
+        Assert.NotNull(repositoryModel.Name);
+        Assert.NotNull(repositoryModel.Url);
+        Assert.NotNull(repositoryModel.Body);
+    }
+
     [Fact]
     public async Task GetAuthorTest()
     {

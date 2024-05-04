@@ -6,10 +6,10 @@
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:maps="clr-namespace:Syncfusion.Maui.Maps;assembly=Syncfusion.Maui.Maps"
-    xmlns:model="clr-namespace:MAUIsland.Gallery.Syncfusion"
     Title="SfMapsView"
-    Padding="10"
-    x:DataType="app:SfMapsViewPageViewModel">
+    Padding="20"
+    x:DataType="core:SfMapsViewPageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -25,7 +25,7 @@
     </core:BasePage.ToolbarItems>
 
     <core:BasePage.Resources>
-        <DataTemplate x:Key="markerTemplate" x:DataType="app:CustomMarker">
+        <DataTemplate x:Key="markerTemplate" x:DataType="core:CustomMarker">
             <StackLayout>
                 <Ellipse
                     Fill="Red"
@@ -107,18 +107,18 @@
     </core:BasePage.Resources>
     <ScrollView>
         <VerticalStackLayout Spacing="10">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <CollectionView
                         Header="{x:StaticResource PropertiesListHeader}"
                         ItemsSource="{x:StaticResource PropertiesItemsSource}"
                         Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
             <Label
                 FontAttributes="Bold"
                 FontSize="Title"

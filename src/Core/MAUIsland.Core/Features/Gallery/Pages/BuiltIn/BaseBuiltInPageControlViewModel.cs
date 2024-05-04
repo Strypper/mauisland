@@ -1,4 +1,5 @@
-﻿using MAUIsland.Features.LocalDbFeatures.GitHub;
+﻿using DiscordRPC;
+using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
 
 namespace MAUIsland.Core;
@@ -7,6 +8,7 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
 {
     #region [ Fields ]
 
+    protected DiscordRpcClient DiscordRpcClient { get; }
     protected IGitHubService GitHubService { get; }
     protected IGitHubIssueLocalDbService GitHubIssueLocalDbService { get; }
     #endregion
@@ -15,11 +17,16 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
 
     public BaseBuiltInPageControlViewModel(IAppNavigator appNavigator,
                                            IGitHubService gitHubService,
+                                           DiscordRpcClient discordRpcClient,
                                            IGitHubIssueLocalDbService gitHubIssueLocalDbService)
                                                : base(appNavigator)
     {
         GitHubService = gitHubService;
+        DiscordRpcClient = discordRpcClient;
         GitHubIssueLocalDbService = gitHubIssueLocalDbService;
+
+        // Subscribe to the Pushed event
+        Shell.Current.Navigated += OnShellNavigated;
     }
     #endregion
 
@@ -35,10 +42,13 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
     bool isBusy;
 
     [ObservableProperty]
-    ObservableCollection<ControlIssueModel> controlIssues;
+    IBuiltInGalleryCardInfo controlInformation = default!;
 
     [ObservableProperty]
-    ControlIssueModel selectedControlIssue;
+    ObservableCollection<ControlIssueModel> controlIssues = default!;
+
+    [ObservableProperty]
+    ControlIssueModel selectedControlIssue = default!;
 
     #endregion
 
@@ -187,7 +197,35 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
             await AppNavigator.ShowSnackbarAsync(e.Message, null, null);
         }
     }
+
+    public void SetControlInformation(object controlInfo)
+    {
+        ControlInformation = (IBuiltInGalleryCardInfo)controlInfo;
+    }
+
+    private void OnShellNavigated(object sender, ShellNavigatedEventArgs e)
+    {
+        string mauislandLogo = "https://raw.githubusercontent.com/Strypper/mauisland/main/src/Presentations/Windows/Resources/Images/logos/mauisland_logo.png";
+        string builtinGalleryLogo = "https://i.imgur.com/Sr8N6Vm.png";
+        string storeLink = "https://www.microsoft.com/store/productId/9NLQ0J5P471L";
+        string sourceCodeLink = "https://github.com/Strypper/mauisland";
+
+        DiscordRpcClient.SetPresence(new RichPresence()
+        {
+            Buttons = new DiscordRPC.Button[]
+            {
+                new() { Label = "Get the app 🚀", Url = storeLink },
+                new() { Label = "Source code 🧑🏽‍💻", Url = sourceCodeLink },
+            },
+            Details = "Exploring built-in gallery",
+            State = $"Viewing {ControlInformation.ControlName}",
+            Assets = new Assets()
+            {
+                LargeImageKey = mauislandLogo,
+                LargeImageText = "MAUIsland",
+                SmallImageKey = builtinGalleryLogo
+            }
+        });
+    }
     #endregion
-
-
 }

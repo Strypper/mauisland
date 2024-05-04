@@ -7,8 +7,9 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
     Title="SfListView"
-    Padding="10"
-    x:DataType="app:SfListViewPageViewModel">
+    Padding="20"
+    x:DataType="core:SfListViewPageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -130,12 +131,12 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Label Text="{x:StaticResource ControlInfo}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <syncfusion:SfListView ItemTemplate="{x:StaticResource BulletListItemTemplate}" ItemsSource="{x:StaticResource PropertyItemsSource}" />
-            </Frame>
+            </Border>
 
             <syncfusion:SfListView
                 x:Name="MAUIAllControlSfList"

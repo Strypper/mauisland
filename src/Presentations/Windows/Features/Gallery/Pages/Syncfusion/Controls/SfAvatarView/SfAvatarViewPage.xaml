@@ -9,8 +9,9 @@
     xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
     xmlns:sfavatar="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     Title="SfAvatarView"
-    Padding="10"
-    x:DataType="app:SfAvatarViewPageViewModel">
+    Padding="20"
+    x:DataType="core:SfAvatarViewPageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.Resources>
 
@@ -156,20 +157,20 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Label Text="{x:StaticResource ControlInfo}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <CollectionView
                         Header="{x:StaticResource PropertiesListHeader}"
                         ItemsSource="{x:StaticResource PropertiesItemsSource}"
                         Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Adding the .NET MAUI Avatar View control" />
                     <Grid>
@@ -184,10 +185,10 @@
                     </Grid>
                 </VerticalStackLayout>
 
-            </Frame>
+            </Border>
 
             <!--  Content Types in SfAvatarView  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="5">
                     <inputs:SfComboBox
                         x:Name="comboBox"
@@ -203,13 +204,13 @@
                         WidthRequest="60" />
                     <Label HorizontalOptions="Center" Text="{x:Binding SelectedTotechsMember.Name}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <Label
                 FontAttributes="Bold"
                 FontSize="Title"
                 Text="Content Types in SfAvatarView" />
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Default" />
                     <Label Text="Default type avatar view is used for displaying the default vector image when initializing without the initials, custom, or group view types." />
@@ -222,9 +223,9 @@
                         VerticalOptions="Center"
                         WidthRequest="60" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="SingleCharacter" />
                     <Label Text="The SingleCharacter is used for displaying the first character in the string you have set in the InitialsType property." />
@@ -241,9 +242,9 @@
                         VerticalOptions="Center"
                         WidthRequest="60" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="DoubleCharacter" />
                     <Label Text="The DoubleCharacter is used for displaying a two-characters text you have set in the InitialsType property. If the initials contain one word, it shows the first and last letters of the single string. If it contains two or more words, it displays the first letter of the first string and first letter of the last string." />
@@ -258,9 +259,9 @@
                         InitialsType="DoubleCharacter"
                         WidthRequest="60" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Avatar characters" />
                     <Label Text="You can set the default vector images that already present in avatar view by setting the AvatarCharacter property." />
@@ -274,9 +275,9 @@
                         VerticalOptions="Center"
                         WidthRequest="60" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="GroupView" />
                     <Label Text="You can add maximum three images or initials in the same view using a GroupView type.  Set the InitialsMemberPath for displaying the initials in the group view. For image, set the ImageSourceMemberPath. The following code sample demonstrates how to add images using the GroupSource property." />
@@ -291,9 +292,9 @@
                         VerticalOptions="Center"
                         WidthRequest="60" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Add initials only in GroupView" />
                     <Label Text="You can set the initials only in the group view by setting the InitialsMemberPath alone. It is demonstrated in the following code sample." />
@@ -308,14 +309,14 @@
                         VerticalOptions="Center"
                         WidthRequest="60" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!--  Visual Style in .NET MAUI Avatar View(SfAvatarView)  -->
             <Label
                 FontAttributes="Bold"
                 FontSize="Title"
                 Text="Visual Style in .NET MAUI Avatar View(SfAvatarView)" />
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Circle" />
                     <CollectionView
@@ -324,9 +325,9 @@
                         ItemsSource="{x:StaticResource PropertiesItemsSource1}"
                         Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Grid
                     ColumnDefinitions="*,*,*,*,*"
                     ColumnSpacing="5"
@@ -422,9 +423,9 @@
                         VerticalOptions="Center"
                         VerticalTextAlignment="Center" />
                 </Grid>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Square" />
                     <CollectionView
@@ -433,9 +434,9 @@
                         ItemsSource="{x:StaticResource PropertiesItemsSource2}"
                         Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Grid
                     ColumnDefinitions="*,*,*,*,*"
                     ColumnSpacing="5"
@@ -533,14 +534,14 @@
                         VerticalTextAlignment="Center" />
 
                 </Grid>
-            </Frame>
+            </Border>
 
             <!--  Customization in SfAvatarView  -->
             <Label
                 FontAttributes="Bold"
                 FontSize="Title"
                 Text="Customization in SfAvatarView" />
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Stroke" />
                     <Label Text="The Stroke property is used for setting color to the stroke of SfAvatarView." />
@@ -555,9 +556,9 @@
                             VerticalOptions="Center" />
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Default background color" />
                     <Label Text="The background color for the SfAvatarView control can be set using the AvatarColorMode property. When the AvatarColorMode property is set to default, it displays the background color set in the BackgroundColor property." />
@@ -574,9 +575,9 @@
                             VerticalOptions="Center" />
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Dark color" />
                     <Label Text="The dark background color can be set using DarkBackground in the AvatarColorMode property." />
@@ -593,9 +594,9 @@
                             VerticalOptions="Center" />
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Light color" />
                     <Label Text="The light background color can be set using LightBackground in the AvatarColorMode property." />
@@ -612,9 +613,9 @@
                             VerticalOptions="Center" />
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Gradients" />
                     <Label Text="You can also specify a range of colors using LinearGradientBrush in Background Property as demonstrated in the following code example." />
@@ -634,9 +635,9 @@
                         </sfavatar:SfAvatarView.Background>
                     </sfavatar:SfAvatarView>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Stroke Thickness" />
                     <Label Text="You can customize the thickness of the avatar view using the StrokeThickness property." />
@@ -652,9 +653,9 @@
                             VerticalOptions="Center" />
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Corner radius" />
                     <Label Text="You can customize the corner radius of the avatar view using the CornerRadius property." />
@@ -669,10 +670,10 @@
                             WidthRequest="60" />
                     </Grid>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
             <!--  Set badge view to avatar  -->
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="20">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Set badge view to avatar" />
                     <Label Text="The SfAvatarView control provides support for BadgeView to notify users of new or unread messages, notifications, or the status of something." />
@@ -697,7 +698,7 @@
                         </badge:SfBadgeView.BadgeSettings>
                     </badge:SfBadgeView>
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </core:BasePage>

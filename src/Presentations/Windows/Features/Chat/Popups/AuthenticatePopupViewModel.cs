@@ -5,15 +5,15 @@ namespace MAUIsland;
 
 public partial class AuthenticatePopupViewModel : BaseViewModel
 {
-    #region [Services]
-    private readonly IFilePicker filePicker;
+    #region [ Services ]
+    private readonly Core.IFilePicker filePicker;
     private readonly IUserServices userServices;
     private readonly IAuthenticationServices authenticationServices;
     #endregion
 
-    #region [CTor]
+    #region [ CTor ]
     public AuthenticatePopupViewModel(IAppNavigator appNavigator,
-                                      IFilePicker filePicker,
+                                      Core.IFilePicker filePicker,
                                       IUserServices userServices,
                                       IAuthenticationServices authenticationServices)
         : base(appNavigator)
@@ -24,7 +24,8 @@ public partial class AuthenticatePopupViewModel : BaseViewModel
     }
     #endregion
 
-    #region [Properties]
+    #region [ Properties ]
+
     [ObservableProperty]
     FileResult file;
 
@@ -38,7 +39,7 @@ public partial class AuthenticatePopupViewModel : BaseViewModel
     bool isLogin = true;
     #endregion
 
-    #region [Relay Commands]
+    #region [ Relay Commands ]
 
     [RelayCommand]
     Task NavigateBack() => AppNavigator.GoBackAsync();
@@ -103,6 +104,6 @@ public partial class AuthenticatePopupViewModel : BaseViewModel
 
     #endregion
 
-    #region [Methods]
+    #region [ Methods ]
     #endregion
 }

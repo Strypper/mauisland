@@ -5,11 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:datagrid="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
     xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
     xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
     Title="MaterialFAB"
-    Padding="10"
-    x:DataType="app:MaterialFABPageViewModel">
+    Padding="20"
+    x:DataType="core:MaterialFABPageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -26,111 +28,55 @@
 
     <core:BasePage.Resources>
 
-        <x:String x:Key="PropertiesListHeader">
-            MaterialFAB defines the following properties:
-        </x:String>
-
-        <x:String x:Key="PropertiesListFooter">
-            These properties are backed by BindableProperty objects, which means that they can be targets of data bindings, and styled.
-        </x:String>
-
         <x:Array x:Key="PropertiesItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
-        <strong style="color:blue">Text</strong>, of type <strong style="color:blue">string</strong>, FAB's text.
-    ]]>
+                    Use a FAB for the most common or important action on a screen.
+            ]]>
             </x:String>
             <x:String>
                 <![CDATA[
-        <strong style="color:blue">IconData</strong>, of type <strong style="color:blue">IconData</strong>, FAB's icon from iconkind.
-    ]]>
+                    Make sure the icon in a FAB is clear and understandable.
+            ]]>
             </x:String>
             <x:String>
                 <![CDATA[
-        <strong style="color:blue">IconSource</strong>, of type <strong style="color:blue">SkPicture</strong>, FAB's icon from file.
-    ]]>
+                    FABs persist on the screen when content is scrolling.
+            ]]>
             </x:String>
             <x:String>
                 <![CDATA[
-        <strong style="color:blue">IconData</strong>, of type <strong style="color:blue">string</strong>, FAB's icon from path data.
-    ]]>
+                    Three styles: SecondaryFABStyle, SurfaceFABStyle and TertiaryFABStyle.
+            ]]>
             </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">IsExtended</strong>, of type <strong style="color:blue">bool</strong>, FAB's extended state.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">BackgroundColour</strong>, of type <strong style="color:blue">Color</strong>, FAB's background color.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">ForegroundColor</strong>, of type <strong style="color:blue">Color</strong>, FAB's foreground color.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">FontFamily</strong>, of type <strong style="color:blue">string</strong>, font family of the FAB's text.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">FontSize</strong>, of type <strong style="color:blue">float</strong>, font size of the FAB's text.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">FontWeight</strong>, of type <strong style="color:blue">int</strong>, font weight of the FAB's text.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">FontItalic</strong>, of type <strong style="color:blue">bool</strong>, enable font italic of the FAB's text.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">Shape</strong>, of type <strong style="color:blue">Shape</strong>, corner radius of the FAB's border.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">Elevation</strong>, of type <strong style="color:blue">int</strong>, FAB's elevation.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">OutlineColor</strong>, of type <strong style="color:blue">Color</strong>, FAB's border color.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">RippleColor</strong>, of type <strong style="color:blue">Color</strong>, FAB's ripple color.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">ContextMenu</strong>, of type <strong style="color:blue">ContextMenu</strong>, FAB's context menu.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">Style</strong>, of type <strong style="color:blue">Style</strong>, FAB's style.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">Command</strong>, of type <strong style="color:blue">ICommand</strong>, executed when the FAB is clicked.
-    ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[
-        <strong style="color:blue">CommandParameter</strong>, of type <strong style="color:blue">object</strong>, Command's parameter.
-    ]]>
-            </x:String>
+        </x:Array>
 
+        <x:Array x:Key="ButtonStyles" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                    Elevated.
+            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                    Filled.
+            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                    FilledTonal.
+            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                    Outlined.
+            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                    Text.
+            ]]>
+            </x:String>
         </x:Array>
 
 
@@ -148,28 +94,69 @@
         </SwipeView.LeftItems>
         <ScrollView>
             <VerticalStackLayout Spacing="20">
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                    <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-                </Frame>
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
-                    <CollectionView
-                        Footer="{x:StaticResource PropertiesListFooter}"
-                        Header="{x:StaticResource PropertiesListHeader}"
-                        ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                        Style="{x:StaticResource PropertiesListStyle}" />
-                </Frame>
-                <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <VerticalStackLayout Spacing="10">
                         <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Styles" />
-                        <Label Text="There are 5 Styles of buttons: 1. Elevated, 2. Filled, 3. FilledTonal , 4. Outlined, 5. Text." />
+                        <Label Text="There are 5 Styles of buttons:" />
+                        <CollectionView ItemsSource="{x:StaticResource ButtonStyles}" Style="{x:StaticResource PropertiesListStyle}" />
                         <core:HorizontalWrapLayout Spacing="5">
-                            <mdc:FAB IconData="{Static icon:Material.Add}" Style="{DynamicResource SecondaryFABStyle}" />
-                            <mdc:FAB IconData="{Static icon:Material.Add}" Style="{DynamicResource SurfaceFABStyle}" />
-                            <mdc:FAB IconData="{Static icon:Material.Add}" Style="{DynamicResource TertiaryFABStyle}" />
+                            <mdc:Button Style="{DynamicResource ElevatedButtonStyle}" Text="Elevated" />
+                            <mdc:Button Style="{DynamicResource FilledButtonStyle}" Text="Filled" />
+                            <mdc:Button Style="{DynamicResource FilledTonalButtonStyle}" Text="FilledTonal" />
+                            <mdc:Button Style="{DynamicResource OutlinedButtonStyle}" Text="Outlined" />
+                            <mdc:Button Style="{StaticResource TextButtonStyle}" Text="Text" />
+
                         </core:HorizontalWrapLayout>
                         <core:SourceCodeExpander Code="{x:Binding FabXamlCode}" CodeType="Xaml" />
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            Text="Properties" />
+                        <Grid BackgroundColor="White" HeightRequest="1" />
+                        <datagrid:DataGrid
+                            BorderColor="Gray"
+                            HeaderBackground="#d0bcff"
+                            HeaderHeight="50"
+                            ItemsSource="{x:Binding Properties}"
+                            RowHeight="80">
+                            <datagrid:DataGrid.Columns>
+                                <datagrid:DataGridColumn Title="Name" PropertyName="Name" />
+                                <datagrid:DataGridColumn Title="Data Type" PropertyName="DataType" />
+                                <datagrid:DataGridColumn Title="Default Value" PropertyName="DefaultValue" />
+                            </datagrid:DataGrid.Columns>
+                        </datagrid:DataGrid>
+                    </VerticalStackLayout>
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Subtitle"
+                            Text="Events" />
+                        <Grid BackgroundColor="White" HeightRequest="1" />
+                        <datagrid:DataGrid
+                            BorderColor="Gray"
+                            HeaderBackground="#d0bcff"
+                            HeaderHeight="50"
+                            ItemsSource="{x:Binding Events}"
+                            RowHeight="80">
+                            <datagrid:DataGrid.Columns>
+                                <datagrid:DataGridColumn Title="Name" PropertyName="Name" />
+                                <datagrid:DataGridColumn Title="Data Type" PropertyName="DataType" />
+                            </datagrid:DataGrid.Columns>
+                        </datagrid:DataGrid>
+                    </VerticalStackLayout>
+                </Border>
             </VerticalStackLayout>
         </ScrollView>
     </SwipeView>

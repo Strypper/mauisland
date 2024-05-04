@@ -8,7 +8,7 @@
     xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
     Title="Live Charts 2"
     Padding="10"
-    x:DataType="app:LiveCharts2PageViewModel"
+    x:DataType="core:LiveCharts2PageViewModel"
     BackgroundColor="Transparent">
 
     <core:BasePage.Resources>
@@ -138,6 +138,19 @@
                         </Grid>
                         <core:SourceCodeExpander Code="{x:Binding PieChartXamlCode}" CodeType="Xaml" />
                         <core:SourceCodeExpander Code="{x:Binding PieChartCSharpCode}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding RadialAreaTitle}" />
+                        <lvc:PolarChart
+                            AngleAxes="{Binding AngleAxes}"
+                            HeightRequest="400"
+                            InitialRotation="-45"
+                            Series="{Binding Series}" />
+                        <core:SourceCodeExpander Code="{x:Binding RadialAreaXamlCode}" CodeType="Xaml" />
+                        <core:SourceCodeExpander Code="{x:Binding RadialAreaCSharpCode}" CodeType="CSharp" />
                     </VerticalStackLayout>
                 </Border>
             </VerticalStackLayout>

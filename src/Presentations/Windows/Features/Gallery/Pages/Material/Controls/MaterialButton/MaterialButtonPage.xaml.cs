@@ -1,7 +1,7 @@
 namespace MAUIsland;
 public partial class MaterialButtonPage : IGalleryPage
 {
-    #region [CTor]
+    #region [ CTor ]
     public MaterialButtonPage(MaterialButtonPageViewModel vm)
     {
         InitializeComponent();

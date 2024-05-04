@@ -7,8 +7,9 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="Activity Indicator"
     Padding="20"
-    x:DataType="app:ActivityIndicatorPageViewModel"
-    BackgroundColor="Transparent">
+    x:DataType="core:ActivityIndicatorPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -191,11 +192,17 @@
                             <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
                         </Border>
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
-                            <CollectionView
-                                Footer="{x:StaticResource PropertiesListFooter}"
-                                Header="{x:StaticResource PropertiesListHeader}"
-                                ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                                Style="{x:StaticResource PropertiesListStyle}" />
+                            <VerticalStackLayout Spacing="10">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Subtitle"
+                                    Text="{x:StaticResource PropertiesListHeader}"
+                                    TextDecorations="Underline" />
+                                <CollectionView
+                                    Footer="{x:StaticResource PropertiesListFooter}"
+                                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+                            </VerticalStackLayout>
                         </Border>
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
                             <VerticalStackLayout Spacing="10">

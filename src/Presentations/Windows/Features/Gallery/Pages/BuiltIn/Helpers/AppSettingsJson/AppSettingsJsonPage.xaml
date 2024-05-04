@@ -7,8 +7,9 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="AppSettingsJson"
     Padding="20"
-    x:DataType="app:AppSettingsJsonPageViewModel"
-    BackgroundColor="Transparent">
+    x:DataType="core:AppSettingsJsonPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem

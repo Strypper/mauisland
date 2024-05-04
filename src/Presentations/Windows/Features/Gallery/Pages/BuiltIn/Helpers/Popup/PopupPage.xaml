@@ -7,8 +7,9 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="Popup"
     Padding="20"
-    x:DataType="app:PopupPageViewModel"
-    BackgroundColor="Transparent">
+    x:DataType="core:PopupPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -263,11 +264,17 @@
                         </Border>
 
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
-                            <CollectionView
-                                Footer="{x:StaticResource PropertiesListFooter}"
-                                Header="{x:StaticResource PropertiesListHeader}"
-                                ItemsSource="{x:StaticResource PropertiesItemsSource}"
-                                Style="{x:StaticResource PropertiesListStyle}" />
+                            <VerticalStackLayout Spacing="10">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Subtitle"
+                                    Text="{x:StaticResource PropertiesListHeader}"
+                                    TextDecorations="Underline" />
+                                <CollectionView
+                                    Footer="{x:StaticResource PropertiesListFooter}"
+                                    ItemsSource="{x:StaticResource PropertiesItemsSource}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+                            </VerticalStackLayout>
                         </Border>
 
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
@@ -288,6 +295,28 @@
                             </VerticalStackLayout>
                         </Border>
 
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+
+                                <Label FontSize="Medium" Text="Open dialog from the ViewModel" />
+
+                                <Grid
+                                    Background="White"
+                                    HeightRequest="1"
+                                    VerticalOptions="End" />
+
+                                <Button
+                                    Command="{x:Binding TriggerDialogFromViewModelCommand}"
+                                    Text="Click me!"
+                                    WidthRequest="100" />
+
+                                <Label Text="Create an interface" />
+                                <core:SourceCodeExpander Code="{x:Binding ViewModelPopUpInterfaceCode}" CodeType="CSharp" />
+                                <Label Text="Create an implementation of that interface" />
+                                <core:SourceCodeExpander Code="{x:Binding ViewModelPopUpCSharpCode}" CodeType="CSharp" />
+                                <Label Text="Don't forget to register them inside the ServiceCollection !!!!" />
+                            </VerticalStackLayout>
+                        </Border>
 
                     </VerticalStackLayout>
                 </Grid>

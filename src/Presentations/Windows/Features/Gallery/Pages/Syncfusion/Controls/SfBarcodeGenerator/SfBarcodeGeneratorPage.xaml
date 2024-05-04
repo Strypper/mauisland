@@ -7,8 +7,9 @@
     xmlns:barcode="clr-namespace:Syncfusion.Maui.Barcode;assembly=Syncfusion.Maui.Barcode"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="SfBarcodeGenerator"
-    Padding="10"
-    x:DataType="app:SfBarcodeGeneratorPageViewModel">
+    Padding="20"
+    x:DataType="core:SfBarcodeGeneratorPageViewModel"
+    BackgroundColor="Transparent">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -61,18 +62,18 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="20">
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <Label Text="{x:Binding ControlInformation.ControlDetail}" />
-            </Frame>
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            </Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <CollectionView
                     Footer="{x:StaticResource PropertiesListFooter}"
                     Header="{x:StaticResource PropertiesListHeader}"
                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                     Style="{x:StaticResource PropertiesListStyle}" />
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label FontSize="Medium" Text="A simple SfBarCodeGenerator Control" />
                     <barcode:SfBarcodeGenerator
@@ -83,9 +84,9 @@
 
                     <core:SourceCodeExpander Code="{x:Binding BasicSfBarcodeGeneratorXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label FontSize="Medium" Text="QR Code symbology" />
                     <barcode:SfBarcodeGenerator
@@ -100,9 +101,9 @@
 
                     <core:SourceCodeExpander Code="{x:Binding QrSfBarcodeGeneratorXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
-            <Frame Style="{x:StaticResource DocumentContentFrameStyle}">
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label FontSize="Medium" Text="Customization" />
                     <barcode:SfBarcodeGenerator
@@ -122,7 +123,7 @@
 
                     <core:SourceCodeExpander Code="{x:Binding CustomSfBarcodeGeneratorXamlCode}" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
         </VerticalStackLayout>
     </ScrollView>

@@ -1,10 +1,32 @@
 # 🏝️ MAUIsland
 
-![](showcases/projectmockup.png)
+![](showcases/version_2.0/summary_slide.png)
 
-NET MAUI Control Gallery is an app that showcases all the .NET MAUI controls available for developers. It allows you to easily interact with them and see how they look and behave on different platforms. It also provides guidance, tips and tricks to help you use them effectively in your own apps. Designed by [Snow Nhi](https://github.com/SnowNhi)
+MAUIsland is an app that showcases all the .NET MAUI controls available for developers. It allows you to easily interact with them and see how they look and behave on different platforms. It also provides guidance, tips and tricks to help you use them effectively in your own apps. 
 
-[<img src="https://developer.microsoft.com/en-us/store/badges/images/English_get-it-from-MS.png" width="160">](https://www.microsoft.com/store/productId/9NLQ0J5P471L)
+<p align="center">
+  <img width="300" align="center" src="showcases/version_2.0/MAUIsland_1920x1080.png">
+</p>
+<h1 align="center">
+  MAUIsland
+</h1>
+<p align="center">
+  Explore and interact. Stay up to date with the .NET MAUI Community.
+</p>
+<p align="center">
+  <a href="https://www.microsoft.com/store/productId/9NLQ0J5P471L" target="_blank">
+    <img src="showcases/storeBadge.png" width="200" alt="Store link" />
+  </a>
+</p>
+
+# Version 2.0 (Dragon version)
+1. Revamped Design 🎨: The application now features a sleek, acrylic + mica material design. The interface is smoother, with enhanced contrast and reduced distractions, offering users a more engaging experience.
+
+2. Performance Enhancements 🏎️: Significant improvements have been made in page navigation, resulting in a reduced memory footprint. Additionally, internet data is cached locally in a database, enhancing performance and enabling better offline support. The lazy loading of the code view expander contributes to faster initialization of pages.
+
+3. Expanded Community Toolkit 🔨: The Community Toolkit Gallery has been enriched with the addition of four new controls, nine converters, and three layouts, empowering developers with more tools to enhance their applications.
+
+4. GitHub Community Gallery 🤝: We've integrated six widely used GitHub nuggets that are commonly utilized with .NET MAUI, including LiveChart2, ZXing.Net.Maui, and more. This gallery not only provides access to these resources but also offers UI fixes to address issues like stretched clicking and hovering targets for a smoother user interaction.
 
 # ⚠️ Create appsettings.Development.json before run App
 1. Click right MAUIsland in Solution Explorer
@@ -15,7 +37,8 @@ Add the json settings from the issue:
 ```json
 {
   "AppSettings": {
-    "SyncfusionKey": "Your_syncfustion_key"
+    "SyncfusionKey": "Your_syncfustion_key",
+    "DiscordApplicationId": "Yout_discord_bot_application_id"
   }
 }
 ```

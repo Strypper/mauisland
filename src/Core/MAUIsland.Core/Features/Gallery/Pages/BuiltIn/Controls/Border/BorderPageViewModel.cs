@@ -1,12 +1,21 @@
-﻿namespace MAUIsland.Core;
+﻿using DiscordRPC;
+using MAUIsland.Features.LocalDbFeatures.GitHub;
+using MAUIsland.GitHubFeatures;
 
-public partial class BorderPageViewModel : NavigationAwareBaseViewModel
+namespace MAUIsland.Core;
+
+public partial class BorderPageViewModel : BaseBuiltInPageControlViewModel
 {
     #region [ CTor ]
-    public BorderPageViewModel(IAppNavigator appNavigator)
-                                    : base(appNavigator)
+    public BorderPageViewModel(IAppNavigator appNavigator,
+                               IGitHubService gitHubService,
+                               DiscordRpcClient discordRpcClient,
+                               IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+                                : base(appNavigator,
+                                        gitHubService,
+                                        discordRpcClient,
+                                        gitHubIssueLocalDbService)
     {
-
     }
     #endregion
 
@@ -14,9 +23,6 @@ public partial class BorderPageViewModel : NavigationAwareBaseViewModel
 
     [ObservableProperty]
     bool isEnable = true;
-
-    [ObservableProperty]
-    IGalleryCardInfo controlInformation;
 
     [ObservableProperty]
     string roundedRectangleXamlCode =
@@ -157,15 +163,37 @@ public partial class BorderPageViewModel : NavigationAwareBaseViewModel
     {
         base.OnInit(query);
 
-        ControlInformation = query.GetData<IGalleryCardInfo>();
+        ControlInformation = query.GetData<IBuiltInGalleryCardInfo>();
 
     }
+
+    public override async Task OnAppearingAsync()
+    {
+        await base.OnAppearingAsync();
+        await RefreshAsync();
+    }
+
+
     #endregion
 
     #region [ Relay Commands ]
+
     [RelayCommand]
     Task OpenUrlAsync(string url)
     => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    async Task RefreshAsync()
+    {
+        if (ControlInformation is null)
+            return;
+
+        await RefreshControlIssues(true,
+                                   ControlInformation.ControlName,
+                                   ControlInformation.GitHubAuthorIssueName,
+                                   ControlInformation.GitHubRepositoryIssueName,
+                                   ControlInformation.GitHubIssueLabels);
+    }
 
     [RelayCommand]
     async Task CopyToClipboardAsync(string text)
@@ -174,4 +202,5 @@ public partial class BorderPageViewModel : NavigationAwareBaseViewModel
         await AppNavigator.ShowSnackbarAsync("Code copied to clipboard", null, null);
     }
     #endregion
+
 }

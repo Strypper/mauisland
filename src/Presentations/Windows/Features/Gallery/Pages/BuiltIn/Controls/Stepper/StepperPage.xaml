@@ -7,12 +7,12 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     Title="Stepper"
     Padding="20"
-    x:DataType="app:StepperPageViewModel"
+    x:DataType="core:StepperPageViewModel"
     BackgroundColor="Transparent">
 
     <core:BasePage.Resources>
-        <app:AgeToMemeImageConverter x:Key="AgeToMrIncreadibleMemeImageConverter" />
-        <app:AgeToMemeTitleConverter x:Key="AgeToMrIncreadibleMemeTitleConverter" />
+        <core:AgeToMemeImageConverter x:Key="AgeToMrIncreadibleMemeImageConverter" />
+        <core:AgeToMemeTitleConverter x:Key="AgeToMrIncreadibleMemeTitleConverter" />
 
         <x:String x:Key="ControlInfo">
             The .NET Multi-platform App UI (.NET MAUI) Stepper enables a numeric value to be selected from a range of values. It consists of two buttons labeled with minus and plus signs. These buttons can be manipulated by the user to incrementally select a double value from a range of values.
