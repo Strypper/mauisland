@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+
+<ItemGroup>
+	<PackageReference Include="CodeHollow.FeedReader" Version="1.2.6" />
+	<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+	<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+	<PackageReference Include="OneOf" Version="3.0.263" />
+</ItemGroup>
+
+</Project>
