@@ -33,3 +33,4 @@ public partial class IndikoMauiControlsMarkdownPageViewModel : NavigationAwareBa
     }
     #endregion
 }
+`
