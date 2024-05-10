@@ -26,7 +26,7 @@ public class ControlsService : IControlsService
         new (){
             Name = ControlGroupInfo.SyncfusionControls,
             Title = "Syncfusion",
-            Version = "25.1.41",
+            Version = "25.2.3",
             BrandColor = Color.FromArgb("#ff8900"),
             ButtonTextColor = Colors.White,
             IconUrl = "syncfusionlogo.png",
@@ -39,7 +39,7 @@ public class ControlsService : IControlsService
         new (){
             Name = ControlGroupInfo.BuiltInControls,
             Title = "Built-in",
-            Version = "8.0.20",
+            Version = "8.0.21",
             BrandColor = Color.FromArgb("#ac99ea"),
             ButtonTextColor = Color.FromArgb("#242424"),
             LottieUrl = "island.json",
@@ -51,7 +51,7 @@ public class ControlsService : IControlsService
         new (){
             Name = ControlGroupInfo.CommunityToolkit,
             Title = "Toolkit",
-            Version = "7.0.1",
+            Version = "9.0.0",
             BrandColor = Color.FromArgb("#2a0a96"),
             ButtonTextColor = Colors.White,
             IconUrl = "mauitoolkit_logo.png",

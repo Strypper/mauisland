@@ -21,9 +21,9 @@ public static class MauiProgram
 
         var builder = MauiApp.CreateBuilder();
         builder
-            .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitCore()
             .UseMauiCommunityToolkitMediaElement()
+            .UseMauiCommunityToolkit(options => options.SetShouldEnableSnackbarOnWindows(true))
             .InitCore()
             .UseMauiApp<App>()
             .ConfigureFonts(fonts =>

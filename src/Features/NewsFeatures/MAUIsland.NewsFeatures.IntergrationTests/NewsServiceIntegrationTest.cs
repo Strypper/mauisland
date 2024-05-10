@@ -1,7 +1,6 @@
-using MAUIsland.NewsFeatures;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MAUIsland.GitHubFeatures.IntegrationTests;
+namespace MAUIsland.NewsFeatures.IntegrationTests;
 
 public class NewsServiceIntegrationTest
 {

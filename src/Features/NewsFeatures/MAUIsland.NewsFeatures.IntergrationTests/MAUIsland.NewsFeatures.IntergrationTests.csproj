@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Features\NewsFeatures\MAUIsland.NewsFeatures\MAUIsland.NewsFeatures.csproj" />
+    <ProjectReference Include="..\MAUIsland.NewsFeatures\MAUIsland.NewsFeatures.csproj" />
   </ItemGroup>
 
   <ItemGroup>

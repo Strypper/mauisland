@@ -1,7 +1,6 @@
-﻿using MAUIsland.NewsFeatures;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace MAUIsland.GitHubFeatures;
+namespace MAUIsland.NewsFeatures;
 
 public static class ServiceExtension
 {
