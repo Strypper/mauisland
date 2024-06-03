@@ -22,5 +22,5 @@ public class CheckBoxControlInfo : IBuiltInGalleryCardInfo
     public List<string> DontList => throw new NotImplementedException();
     public string GitHubAuthorIssueName => "dotnet";
     public string GitHubRepositoryIssueName => "maui";
-    public List<string> GitHubIssueLabels => new List<string>() { "control-checkbox" };
+    public List<string> GitHubIssueLabels => new List<string>() { "area-controls-checkbox" };
 }

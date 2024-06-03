@@ -11,6 +11,19 @@
     x:DataType="core:SQLiteNETPageViewModel"
     BackgroundColor="Transparent">
 
+    <core:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="githublogo.png"
+            Text="Original Source" />
+    </core:BasePage.ToolbarItems>
+
     <SwipeView>
         <SwipeView.LeftItems>
             <SwipeItems Mode="Execute">
@@ -100,6 +113,66 @@
                         <core:SourceCodeExpander Code="{x:Binding CodeSynchronousLowLevelQuery}" CodeType="CSharp" />
                         <Label Text="{x:Binding GenericParameterQuery}" />
                         <core:SourceCodeExpander Code="{x:Binding CodeGenericParameterQuery}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            Text="{x:Binding HeaderAsynchronous}" />
+                        <Grid BackgroundColor="White" HeightRequest="1" />
+                        <Label Text="{x:Binding Asynchronous}" />
+                        <core:SourceCodeExpander Code="{x:Binding CodeAsynchronous}" CodeType="CSharp" />
+                        <Label Text="{x:Binding Asynchronous1}" />
+                        <core:SourceCodeExpander Code="{x:Binding CodeAsynchronous1}" CodeType="CSharp" />
+                        <Label Text="{x:Binding Asynchronous2}" />
+                        <core:SourceCodeExpander Code="{x:Binding CodeAsynchronous2}" CodeType="CSharp" />
+                        <Label Text="{x:Binding Asynchronous3}" />
+                        <core:SourceCodeExpander Code="{x:Binding CodeAsynchronous3}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            Text="{x:Binding HeaderManualSQL}" />
+                        <Grid BackgroundColor="White" HeightRequest="1" />
+                        <Label Text="{x:Binding ManualSQL}" />
+                        <Label Text="{x:Binding ManualSQL1}" />
+                        <core:SourceCodeExpander Code="{x:Binding CodeManualSQL}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            Text="{x:Binding HeaderSQLCipher}" />
+                        <Grid BackgroundColor="White" HeightRequest="1" />
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Binding SqlCipher}" />
+                                    <Span Text=" " />
+                                    <Span
+                                        BackgroundColor="Yellow"
+                                        Text="sqlite-net-sqlcipher NuGet package."
+                                        TextColor="Black">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{x:Binding OpenUrlCommand}" CommandParameter="{x:Binding SqlCipherLink}" />
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Text="{x:Binding OptionSQLCipher}" />
+                        <core:SourceCodeExpander Code="{x:Binding CodeSQLCipher}" CodeType="CSharp" />
+                        <Label Text="{x:Binding Option2SQLCipher}" />
+                        <core:SourceCodeExpander Code="{x:Binding Code2SQLCipher}" CodeType="CSharp" />
                     </VerticalStackLayout>
                 </Border>
             </VerticalStackLayout>

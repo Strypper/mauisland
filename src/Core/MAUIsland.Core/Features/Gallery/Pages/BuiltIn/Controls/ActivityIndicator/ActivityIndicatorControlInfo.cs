@@ -22,5 +22,5 @@ public class ActivityIndicatorControlInfo : IBuiltInGalleryCardInfo
     public List<string> DontList => throw new NotImplementedException();
     public string GitHubAuthorIssueName => "dotnet";
     public string GitHubRepositoryIssueName => "maui";
-    public List<string> GitHubIssueLabels => new List<string>() { "control-activityindicator" };
+    public List<string> GitHubIssueLabels => new List<string>() { "area-controls-activityindicator" };
 }

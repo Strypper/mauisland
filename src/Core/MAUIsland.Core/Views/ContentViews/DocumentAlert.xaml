@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIsland.Core.DocumentAlert"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland.Core"
+    x:Name="root"
+    x:DataType="app:DocumentAlert"
+    Loaded="root_Loaded">
+    <Border
+        Padding="10"
+        BackgroundColor="{x:Binding ComponentColor,
+                                    Source={x:Reference root},
+                                    Mode=OneWay}"
+        StrokeShape="RoundRectangle 4">
+        <VerticalStackLayout>
+            <Label
+                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                Text="{x:Binding AlertType,
+                                 Source={x:Reference root},
+                                 Mode=OneWay}"
+                TextColor="White" />
+            <Label
+                Text="{x:Binding Text,
+                                 Source={x:Reference root},
+                                 Mode=OneWay}"
+                TextColor="White"
+                TextType="Html" />
+        </VerticalStackLayout>
+    </Border>
+</ContentView>

@@ -22,5 +22,5 @@ public class IndicatorViewControlInfo : IBuiltInGalleryCardInfo
     public List<string> DontList => throw new NotImplementedException();
     public string GitHubAuthorIssueName => "dotnet";
     public string GitHubRepositoryIssueName => "maui";
-    public List<string> GitHubIssueLabels => new List<string>() { "control-indicatorview" };
+    public List<string> GitHubIssueLabels => new List<string>() { "area-controls-indicatorview" };
 }

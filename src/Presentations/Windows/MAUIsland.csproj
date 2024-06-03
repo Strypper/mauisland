@@ -68,13 +68,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.21" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.21" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.40" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.40" />
 		<PackageReference Include="ColorCode.Core" Version="2.0.15" />
 		<PackageReference Include="CommunityToolkit.Common" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.4" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.6" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0-preview.1.24080.9" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
@@ -102,6 +102,9 @@
 		</Compile>
 		<Compile Update="Features\Gallery\Pages\BuiltIn\Layouts\AbsoluteLayout\AbsoluteLayoutPage.xaml.cs">
 		  <DependentUpon>AbsoluteLayoutPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Features\Gallery\Pages\BuiltIn\Layouts\AbsoluteLayout\ContentViews\DotNetRoadMap.xaml.cs">
+		  <DependentUpon>DotNetRoadMap.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\CommunityPage.xaml.cs">
 			<DependentUpon>CommunityPage.xaml</DependentUpon>
@@ -215,6 +218,9 @@
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\Layouts\AbsoluteLayout\AbsoluteLayoutPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\Layouts\AbsoluteLayout\ContentViews\DotNetRoadMap.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\CommunityPage.xaml">

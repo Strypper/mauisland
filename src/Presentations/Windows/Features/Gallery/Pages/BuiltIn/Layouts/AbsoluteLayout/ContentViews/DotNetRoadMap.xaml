@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIsland.DotNetRoadMap"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    x:Name="root"
+    x:DataType="app:DotNetRoadMap"
+    Loaded="root_Loaded">
+    <VerticalStackLayout Spacing="10">
+        <HorizontalStackLayout AbsoluteLayout.LayoutBounds="50.0, 1.0" Spacing="10">
+            <Label Text="Toggle elements opacity:" VerticalOptions="Center" />
+            <Switch
+                BindingContext="{x:Reference root}"
+                IsToggled="{x:Binding IsToggleElementsVisible,
+                                      Mode=TwoWay}"
+                VerticalOptions="Center" />
+        </HorizontalStackLayout>
+        <AbsoluteLayout
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+            WidthRequest="960">
+
+            <Image
+                HeightRequest="1900"
+                Source="aspnetcore_developer_roadmap.png"
+                WidthRequest="960" />
+            <!--
+                Opacity="{x:Binding OpacityLevel,
+                Mode=OneWay}"
+            -->
+            <Label
+                x:Name="CSharpFundamentalLink"
+                Padding="0"
+                AbsoluteLayout.LayoutBounds="0.527, 0.064"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BackgroundColor="Red"
+                BindingContext="{x:Reference root}"
+                FontSize="8"
+                HeightRequest="25"
+                HorizontalTextAlignment="Center"
+                Opacity="{x:Binding OpacityLevel,
+                                    Mode=OneWay}"
+                Text="General Development Skill"
+                VerticalTextAlignment="Center"
+                WidthRequest="120">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+
+            <!--  C#  -->
+            <Label
+                x:Name="CSharpLink"
+                Padding="0"
+                AbsoluteLayout.LayoutBounds="0.39,0.079"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BackgroundColor="Red"
+                BindingContext="{x:Reference root}"
+                FontSize="8"
+                HeightRequest="25"
+                HorizontalTextAlignment="Center"
+                Opacity="{x:Binding OpacityLevel,
+                                    Mode=OneWay}"
+                Text="C#"
+                VerticalTextAlignment="Center"
+                WidthRequest="25">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <!--  SQL Fundamenatls  -->
+            <Label
+                x:Name="SQLFundamentalsLink"
+                Padding="0"
+                AbsoluteLayout.LayoutBounds="0.507, 0.104"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BackgroundColor="Red"
+                BindingContext="{x:Reference root}"
+                FontSize="8"
+                HeightRequest="25"
+                HorizontalTextAlignment="Center"
+                Opacity="{x:Binding OpacityLevel,
+                                    Mode=OneWay}"
+                Text="SQL Fundamenatls"
+                VerticalTextAlignment="Center"
+                WidthRequest="85">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <!--  ASP.NET Core Basics  -->
+            <Label
+                x:Name="ASPNETCoreBasicsLink"
+                Padding="0"
+                AbsoluteLayout.LayoutBounds="0.339,0.135"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BackgroundColor="Red"
+                BindingContext="{x:Reference root}"
+                FontSize="8"
+                HeightRequest="25"
+                HorizontalTextAlignment="Center"
+                Opacity="{x:Binding OpacityLevel,
+                                    Mode=OneWay}"
+                Text="ASP.NET Core Basics"
+                VerticalTextAlignment="Center"
+                WidthRequest="90">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <!--  SOLID  -->
+            <Label
+                x:Name="SOLIDLink"
+                Padding="0"
+                AbsoluteLayout.LayoutBounds="0.477, 0.156"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BackgroundColor="Red"
+                BindingContext="{x:Reference root}"
+                FontSize="8"
+                HeightRequest="25"
+                HorizontalTextAlignment="Center"
+                Opacity="{x:Binding OpacityLevel,
+                                    Mode=OneWay}"
+                Text="SOLID"
+                VerticalTextAlignment="Center"
+                WidthRequest="35">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <!--  ORM  -->
+            <Label
+                x:Name="ORMLink"
+                Padding="0"
+                AbsoluteLayout.LayoutBounds="0.3835,0.227"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BackgroundColor="Red"
+                BindingContext="{x:Reference root}"
+                FontSize="8"
+                HeightRequest="25"
+                HorizontalTextAlignment="Center"
+                Opacity="{x:Binding OpacityLevel,
+                                    Mode=OneWay}"
+                Text="ORM"
+                VerticalTextAlignment="Center"
+                WidthRequest="33">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <!--  Dependency Injection  -->
+            <Label
+                x:Name="DILink"
+                Padding="0"
+                AbsoluteLayout.LayoutBounds="0.513, 0.242"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BackgroundColor="Red"
+                BindingContext="{x:Reference root}"
+                FontSize="8"
+                HeightRequest="25"
+                HorizontalTextAlignment="Center"
+                Opacity="{x:Binding OpacityLevel,
+                                    Mode=OneWay}"
+                Text="Dependency Injection"
+                VerticalTextAlignment="Center"
+                WidthRequest="95">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <!--  Databases  -->
+            <Label
+                x:Name="DatabasesLink"
+                Padding="0"
+                AbsoluteLayout.LayoutBounds="0.368,0.326"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BackgroundColor="Red"
+                BindingContext="{x:Reference root}"
+                FontSize="8"
+                HeightRequest="25"
+                HorizontalTextAlignment="Center"
+                Opacity="{x:Binding OpacityLevel,
+                                    Mode=OneWay}"
+                Text="Databases"
+                VerticalTextAlignment="Center"
+                WidthRequest="50">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <!--  Caching  -->
+            <Label
+                x:Name="CachingLink"
+                Padding="0"
+                AbsoluteLayout.LayoutBounds="0.481, 0.34"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BackgroundColor="Red"
+                BindingContext="{x:Reference root}"
+                FontSize="8"
+                HeightRequest="25"
+                HorizontalTextAlignment="Center"
+                Opacity="{x:Binding OpacityLevel,
+                                    Mode=OneWay}"
+                Text="Caching"
+                VerticalTextAlignment="Center"
+                WidthRequest="43">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+        </AbsoluteLayout>
+    </VerticalStackLayout>
+</ContentView>

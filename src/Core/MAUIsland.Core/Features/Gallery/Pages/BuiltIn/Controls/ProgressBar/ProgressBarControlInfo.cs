@@ -22,5 +22,5 @@ public class ProgressBarControlInfo : IBuiltInGalleryCardInfo
     public List<string> DontList => throw new NotImplementedException();
     public string GitHubAuthorIssueName => "dotnet";
     public string GitHubRepositoryIssueName => "maui";
-    public List<string> GitHubIssueLabels => new List<string>() { "control-progressbar" };
+    public List<string> GitHubIssueLabels => new List<string>() { "area-controls-progressbar" };
 }

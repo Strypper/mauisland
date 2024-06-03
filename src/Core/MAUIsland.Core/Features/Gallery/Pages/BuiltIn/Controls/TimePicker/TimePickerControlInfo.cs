@@ -22,5 +22,5 @@ public class TimePickerControlInfo : IBuiltInGalleryCardInfo
     public List<string> DontList => throw new NotImplementedException();
     public string GitHubAuthorIssueName => "dotnet";
     public string GitHubRepositoryIssueName => "maui";
-    public List<string> GitHubIssueLabels => new List<string>() { "control-datetimepicker" };
+    public List<string> GitHubIssueLabels => new List<string>() { "area-controls-datetimepicker" };
 }
