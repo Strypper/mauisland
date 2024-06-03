@@ -17,7 +17,6 @@ public partial class EntryPage : IGalleryPage
     }
     #endregion
 
-
     #region [ Event Handlers ]
 
     private void BasePage_Loaded(object sender, EventArgs e)
@@ -29,10 +28,17 @@ public partial class EntryPage : IGalleryPage
         }
     }
 
-    private void Entry_Completed(object sender, EventArgs e)
+    private void OnEntryCompleted(System.Object sender, System.EventArgs e)
     {
-
+        string text = ((Entry)sender).Text;
+    }
+    private void OnEntryTextChanged(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e)
+    {
+        string oldText = e.OldTextValue;
+        string newText = e.NewTextValue;
+        string myText = entry.Text;
     }
 
     #endregion
+
 }

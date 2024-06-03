@@ -39,7 +39,7 @@ public class ControlsService : IControlsService
         new (){
             Name = ControlGroupInfo.BuiltInControls,
             Title = "Built-in",
-            Version = "8.0.21",
+            Version = "8.0.40",
             BrandColor = Color.FromArgb("#ac99ea"),
             ButtonTextColor = Color.FromArgb("#242424"),
             LottieUrl = "island.json",

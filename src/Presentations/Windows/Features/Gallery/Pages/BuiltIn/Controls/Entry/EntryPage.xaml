@@ -178,7 +178,7 @@
             ItemSpacing="10"
             Orientation="Vertical" />
 
-        <DataTemplate x:Key="ChatCollectionViewItemTemplate" x:DataType="app:ChatMessageModel">
+        <DataTemplate x:Key="ChatCollectionViewItemTemplate" x:DataType="core:ChatMessageModel">
             <app:ChatBubbleContentView ComponentData="{x:Binding}" />
         </DataTemplate>
     </core:BasePage.Resources>
@@ -293,20 +293,74 @@
                                     Footer="{x:StaticResource PropertiesListFooter}"
                                     ItemsSource="{x:StaticResource PropertiesItemsSource}"
                                     Style="{x:StaticResource PropertiesListStyle}" />
+                                <Label Text="{x:Binding Content}" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Subtitle"
+                                    Text="{x:Binding Content1}"
+                                    TextDecorations="Underline" />
+                                <CollectionView
+                                    Footer="{x:StaticResource PropertiesListFooter}"
+                                    ItemsSource="{x:Binding EntryList}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+                                <Label Text="{x:Binding Content2}" />
                             </VerticalStackLayout>
                         </Border>
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
                             <VerticalStackLayout Spacing="10">
-                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Create Entry With Place Holder" />
-                                <Grid>
-                                    <Entry
-                                        x:Name="Entry"
-                                        HorizontalTextAlignment="Start"
-                                        Placeholder="Enter text here"
-                                        PlaceholderColor="LightSlateGray"
-                                        VerticalTextAlignment="Center" />
-                                </Grid>
-                                <core:SourceCodeExpander Code="{x:Binding StandardEntryXamlCode}" CodeType="Xaml" />
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding CreateAnEntryHeader}" />
+                                <Label Text="{x:Binding Content3}" />
+                                <Entry
+                                    x:Name="entry"
+                                    Completed="OnEntryCompleted"
+                                    Placeholder="Enter text"
+                                    TextChanged="OnEntryTextChanged" />
+                                <core:SourceCodeExpander Code="{x:Binding CreateAnEntryXamlCode}" CodeType="Xaml" />
+                                <Label Text="{x:Binding Content4}" />
+                                <core:SourceCodeExpander Code="{x:Binding CreateAnEntryCSharpCode}" CodeType="CSharp" />
+                                <core:DocumentAlert AlertType="Note" Text="{x:Binding CreateAnEntryNote}" />
+                                <Label Text="{x:Binding Content5}" />
+                                <Label Text="{x:Binding Content6}" />
+                                <core:SourceCodeExpander Code="{x:Binding CreateAnEntryCSharpCode1}" CodeType="CSharp" />
+                                <Label Text="{x:Binding Content7}" />
+                                <core:SourceCodeExpander Code="{x:Binding CreateAnEntryCSharpCode2}" CodeType="CSharp" />
+                                <Label Text="{x:Binding Content8}" />
+                                <core:DocumentAlert AlertType="Note" Text="{x:Binding CreateAnEntryNote1}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding SetCharacterSpacingHeader}" />
+                                <Label Text="{x:Binding SetCharacterSpacing}" />
+                                <Entry CharacterSpacing="10" Placeholder="Type the text to see the behavior" />
+                                <core:SourceCodeExpander Code="{x:Binding SetCharacterSpacingXamlCode}" CodeType="Xaml" />
+                                <Label Text="{x:Binding SetCharacterSpacing1}" />
+                                <core:DocumentAlert AlertType="Note" Text="{x:Binding SetCharacterSpacingNote}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding LimitInputLengthHeader}" />
+                                <Label Text="{x:Binding LimitInputLength}" />
+                                <Entry MaxLength="10" Placeholder="Type the text to see the behavior" />
+                                <core:SourceCodeExpander Code="{x:Binding LimitInputLengthXamlCode}" CodeType="Xaml" />
+                                <Label Text="{x:Binding LimitInputLength1}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding SetTheCursorPositionAndTextSelectionLengthHeader}" />
+                                <Label Text="{x:Binding SetTheCursorPositionAndTextSelectionLength}" />
+                                <Entry CursorPosition="5" Text="Cursor position set" />
+                                <core:SourceCodeExpander Code="{x:Binding SetTheCursorPositionAndTextSelectionLengthXamlCode}" CodeType="Xaml" />
+                                <Label Text="{x:Binding SetTheCursorPositionAndTextSelectionLength1}" />
+                                <Label Text="{x:Binding SetTheCursorPositionAndTextSelectionLength2}" />
+                                <Entry
+                                    CursorPosition="2"
+                                    SelectionLength="10"
+                                    Text="Cursor position and selection length set" />
+                                <core:SourceCodeExpander Code="{x:Binding SetTheCursorPositionAndTextSelectionLengthXamlCode1}" CodeType="Xaml" />
+                                <Label Text="{x:Binding SetTheCursorPositionAndTextSelectionLength3}" />
                             </VerticalStackLayout>
                         </Border>
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
@@ -330,8 +384,9 @@
                                     x:Name="ChatboxEntry"
                                     Placeholder="Type in some message and press Enter !!!"
                                     ReturnCommand="{x:Binding SendMessageCommand}"
-                                    ReturnCommandParameter="{x:Binding Source={x:Reference ChatboxEntry},
-                                                                       Path=Text}" />
+                                    ReturnCommandParameter="{x:Binding TextMessage}"
+                                    Text="{x:Binding TextMessage,
+                                                     Mode=TwoWay}" />
                             </VerticalStackLayout>
                         </Border>
                     </VerticalStackLayout>
