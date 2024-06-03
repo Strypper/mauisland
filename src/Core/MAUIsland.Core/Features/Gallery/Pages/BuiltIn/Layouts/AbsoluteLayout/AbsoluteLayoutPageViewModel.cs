@@ -80,7 +80,7 @@ public partial class AbsoluteLayoutPageViewModel : BaseBuiltInPageControlViewMod
     string absolutePositioningAndSizing4 = "In this example, the position and size of each BoxView is defined using a Rect object. The position of the Label is defined using a Point object. The C# example uses the following Add extension methods to add children to the AbsoluteLayout:";
 
     [ObservableProperty]
-    string absolutePositioningAndSizing5 = "In C#, it's also possible to set the position and size of a child of an AbsoluteLayout after it has been added to the layout, using the AbsoluteLayout.SetLayoutBounds method. The first argument to this method is the child, and the second is a Rect object.";
+    string absolutePositioningAndSizing5 = "In C#, it's also possible to set the position and size of a child of an AbsoluteLayout after it has been added to the layout, using the <span style=\"color:red;\"><strong>AbsoluteLayout.SetLayoutBounds</strong></span> method. The first argument to this method is the child, and the second is a <span style=\"color:red;\"><strong>Rect</strong></span> object.";
 
     [ObservableProperty]
     string absolutePositioningAndSizingNote = "An AbsoluteLayout that uses absolute values can position and size children so that they don't fit within the bounds of the layout.";
@@ -182,13 +182,13 @@ public partial class AbsoluteLayoutPageViewModel : BaseBuiltInPageControlViewMod
     string proportionalPositioningAndSizingHeader = "Proportional positioning and sizing";
 
     [ObservableProperty]
-    string proportionalPositioningAndSizing = "An AbsoluteLayout can position and size children using proportional values. This is achieved by adding children to the AbsoluteLayout and by setting the AbsoluteLayout.LayoutBounds attached property on each child to proportional position and/or size values in the range 0-1. Position and size values are made proportional by setting the AbsoluteLayout.LayoutFlags attached property on each child.";
+    string proportionalPositioningAndSizing = "An AbsoluteLayout can position and size children using proportional values. This is achieved by adding children to the AbsoluteLayout and by setting the <span style=\"color:red;\"><strong>AbsoluteLayout.LayoutBounds</strong></span> attached property on each child to proportional position and/or size values in the range 0-1. Position and size values are made proportional by setting the <span style=\"color:red;\"><strong>AbsoluteLayout.LayoutFlags</strong></span> attached property on each child.";
 
     [ObservableProperty]
-    string proportionalPositioningAndSizing1 = "The AbsoluteLayout.LayoutFlags attached property, of type AbsoluteLayoutFlags, allows you to set a flag that indicates that the layout bounds position and size values for a child are proportional to the size of the AbsoluteLayout. When laying out a child, AbsoluteLayout scales the position and size values appropriately, to any device size.";
+    string proportionalPositioningAndSizing1 = "The <span style=\"color:red;\"><strong>AbsoluteLayout.LayoutFlags</strong></span> attached property, of type <span style=\"color:red;\"><strong>AbsoluteLayoutFlags</strong></span>, allows you to set a flag that indicates that the layout bounds position and size values for a child are proportional to the size of the AbsoluteLayout. When laying out a child, AbsoluteLayout scales the position and size values appropriately, to any device size.";
 
     [ObservableProperty]
-    string proportionalPositioningAndSizing2 = "The AbsoluteLayoutFlags enumeration defines the following members:";
+    string proportionalPositioningAndSizing2 = "The <span style=\"color:red;\"><strong>AbsoluteLayoutFlags</strong></span> enumeration defines the following members:";
 
     [ObservableProperty]
     List<string> proportionalPositioningAndSizingList = new()
@@ -208,7 +208,7 @@ public partial class AbsoluteLayoutPageViewModel : BaseBuiltInPageControlViewMod
     string proportionalPositioningAndSizingTip = "The <span style=\"color:red;\"><strong>AbsoluteLayoutFlags</strong></span> enumeration is a <span style=\"color:red;\"><strong>Flags</strong></span> enumeration, which means that enumeration members can be combined. This is accomplished in XAML with a comma-separated list, and in C# with the bitwise OR operator.";
 
     [ObservableProperty]
-    string proportionalPositioningAndSizing3 = "For example, if you use the SizeProportional flag and set the width of a child to 0.25 and the height to 0.1, the child will be one-quarter of the width of the AbsoluteLayout and one-tenth the height. The PositionProportional flag is similar. A position of (0,0) puts the child in the upper-left corner, while a position of (1,1) puts the child in the lower-right corner, and a position of (0.5,0.5) centers the child within the AbsoluteLayout.";
+    string proportionalPositioningAndSizing3 = "For example, if you use the <span style=\"color:red;\"><strong><a href=\"https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.absolutelayout?view=net-maui-8.0\" target=\"_blank\">SizeProportional</a></strong></span> flag and set the width of a child to 0.25 and the height to 0.1, the child will be one-quarter of the width of the <a href=\"https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.absolutelayout?view=net-maui-8.0\" target=\"_blank\">AbsoluteLayout</a> and one-tenth the height. The <span style=\"color:red;\"><strong>PositionProportional</strong></span> flag is similar. A position of (0,0) puts the child in the upper-left corner, while a position of (1,1) puts the child in the lower-right corner, and a position of (0.5,0.5) centers the child within the <a href=\"https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.absolutelayout?view=net-maui-8.0\" target=\"_blank\">AbsoluteLayout</a>.\r\n";
 
     [ObservableProperty]
     string proportionalPositioningAndSizing4 = "The following XAML shows an AbsoluteLayout whose children are positioned using proportional values:";
@@ -239,7 +239,7 @@ public partial class AbsoluteLayoutPageViewModel : BaseBuiltInPageControlViewMod
     "</ContentPage>";
 
     [ObservableProperty]
-    string proportionalPositioningAndSizing5 = "In this example, each child is positioned using proportional values but sized using absolute values. This is accomplished by setting the AbsoluteLayout.LayoutFlags attached property of each child to PositionProportional. The first two values that are specified in the AbsoluteLayout.LayoutBounds attached property, for each child, define the position using proportional values. The size of each child is defined with the third and forth absolute values, using device-independent units.";
+    string proportionalPositioningAndSizing5 = "In this example, each child is positioned using proportional values but sized using absolute values. This is accomplished by setting the <span style=\"color:red;\"><strong>AbsoluteLayout.LayoutFlags</strong></span> attached property of each child to <span style=\"color:red;\"><strong>PositionProportional</strong></span>. The first two values that are specified in the <span style=\"color:red;\"><strong>AbsoluteLayout.LayoutBounds</strong></span> attached property, for each child, define the position using proportional values. The size of each child is defined with the third and forth absolute values, using device-independent units.";
 
     [ObservableProperty]
     string proportionalPositioningAndSizing6 = "The equivalent C# code is shown below:";
@@ -279,7 +279,7 @@ public partial class AbsoluteLayoutPageViewModel : BaseBuiltInPageControlViewMod
         "}";
 
     [ObservableProperty]
-    string proportionalPositioningAndSizing7 = "In this example, the position and size of each child is set with the AbsoluteLayout.SetLayoutBounds method. The first argument to the method is the child, and the second is a Rect object. The position of each child is set with proportional values, while the size of each child is set with absolute values, using device-independent units.";
+    string proportionalPositioningAndSizing7 = "In this example, the position and size of each child is set with the <span style=\"color:red;\"><strong>AbsoluteLayout.SetLayoutBounds</strong></span> method. The first argument to the method is the child, and the second is a <span style=\"color:red;\"><strong>Rect</strong></span> object. The position of each child is set with proportional values, while the size of each child is set with absolute values, using device-independent units.";
 
     [ObservableProperty]
     string proportionalPositioningAndSizingNote = "An <span style=\"color:red;\"><strong>AbsoluteLayout</strong></span> that uses proportional values can position and size children so that they don't fit within the bounds of the layout by using values outside the 0-1 range.";

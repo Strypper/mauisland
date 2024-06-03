@@ -9,7 +9,7 @@ class BorderControlInfo : IBuiltInGalleryCardInfo
         Glyph = FluentUIIcon.Ic_fluent_checkbox_indeterminate_24_regular
     };
     public string ControlName => nameof(Border);
-    public string ControlDetail => $"The .NET Multi-platform App UI (.NET MAUI) Border is a container control that draws a border, background, or both, around another control. A Border can only contain one child object. If you want to put a border around multiple objects, wrap them in a container object such as a layout.";
+    public string ControlDetail => $"Border is a container control that draws a border, background, or both, around another control. A Border can only contain one child object. If you want to put a border around multiple objects, wrap them in a container object such as a layout.";
     public string ControlRoute => $"MAUIsland.{ControlName}Page";
     public string GitHubUrl => $"https://github.com/Strypper/mauisland/tree/main/src/Presentations/Windows/Features/Gallery/Pages/BuiltIn/Controls/{ControlName}";
     public string DocumentUrl => $"https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/{ControlName}";

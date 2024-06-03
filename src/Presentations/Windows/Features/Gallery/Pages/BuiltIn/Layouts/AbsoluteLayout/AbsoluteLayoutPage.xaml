@@ -230,13 +230,13 @@
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
                             <VerticalStackLayout Spacing="20">
                                 <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding ProportionalPositioningAndSizingHeader}" />
-                                <Label Text="{x:Binding ProportionalPositioningAndSizing}" />
-                                <Label Text="{x:Binding ProportionalPositioningAndSizing1}" />
-                                <Label Text="{x:Binding ProportionalPositioningAndSizing2}" />
+                                <Label Text="{x:Binding ProportionalPositioningAndSizing}" TextType="Html" />
+                                <Label Text="{x:Binding ProportionalPositioningAndSizing1}" TextType="Html" />
+                                <Label Text="{x:Binding ProportionalPositioningAndSizing2}" TextType="Html" />
                                 <CollectionView ItemsSource="{x:Binding ProportionalPositioningAndSizingList}" Style="{x:StaticResource PropertiesListStyle}" />
                                 <core:DocumentAlert AlertType="Tip" Text="{x:Binding ProportionalPositioningAndSizingTip}" />
-                                <Label Text="{x:Binding ProportionalPositioningAndSizing3}" />
-                                <Label Text="{x:Binding ProportionalPositioningAndSizing4}" />
+                                <Label Text="{x:Binding ProportionalPositioningAndSizing3}" TextType="Html" />
+                                <Label Text="{x:Binding ProportionalPositioningAndSizing4}" TextType="Html" />
                                 <core:SourceCodeExpander Code="{x:Binding ProportionalPositioningAndSizingXamlCode}" CodeType="Xaml" />
                                 <AbsoluteLayout>
                                     <BoxView
@@ -260,10 +260,10 @@
                                         AbsoluteLayout.LayoutFlags="PositionProportional"
                                         Text="Centered text" />
                                 </AbsoluteLayout>
-                                <Label Text="{x:Binding ProportionalPositioningAndSizing5}" />
+                                <Label Text="{x:Binding ProportionalPositioningAndSizing5}" TextType="Html" />
                                 <Label Text="{x:Binding ProportionalPositioningAndSizing6}" />
                                 <core:SourceCodeExpander Code="{x:Binding ProportionalPositioningAndSizingCSharpCode}" CodeType="CSharp" />
-                                <Label Text="{x:Binding ProportionalPositioningAndSizing7}" />
+                                <Label Text="{x:Binding ProportionalPositioningAndSizing7}" TextType="Html" />
                                 <core:DocumentAlert AlertType="Note" Text="{x:Binding ProportionalPositioningAndSizingNote}" />
                             </VerticalStackLayout>
                         </Border>
