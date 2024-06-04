@@ -12,15 +12,17 @@ public partial class ImageButtonPageViewModel : BaseBuiltInPageControlViewModel
     #endregion
 
     #region [ CTor ]
-    public ImageButtonPageViewModel(IAppNavigator appNavigator,
-                                   IGitHubService gitHubService,
-                                   DiscordRpcClient discordRpcClient,
-                                   IGitHubIssueLocalDbService gitHubIssueLocalDbService)
+    public ImageButtonPageViewModel(IFilePicker filePicker,
+                                    IAppNavigator appNavigator,
+                                    IGitHubService gitHubService,
+                                    DiscordRpcClient discordRpcClient,
+                                    IGitHubIssueLocalDbService gitHubIssueLocalDbService)
                                     : base(appNavigator,
                                             gitHubService,
                                             discordRpcClient,
                                             gitHubIssueLocalDbService)
     {
+        this.filePicker = filePicker;
     }
     #endregion
 

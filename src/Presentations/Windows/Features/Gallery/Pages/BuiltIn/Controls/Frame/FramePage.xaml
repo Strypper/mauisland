@@ -266,7 +266,7 @@
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
                             <VerticalStackLayout Spacing="20">
                                 <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Round elements" />
-                                <CollectionView ItemsSource="{x:StaticResource PropertiesItemsSource2}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <Label Text="The CornerRadius  property of the Frame control is one approach to creating a circle image. The following XAML shows how to create a circle image with a Frame:" />
                                 <Frame
                                     Padding="20"
                                     BorderColor="Black"
