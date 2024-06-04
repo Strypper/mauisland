@@ -306,6 +306,7 @@
                                 <Label Text="{x:Binding Content2}" />
                             </VerticalStackLayout>
                         </Border>
+                        <!--  Create an Entry  -->
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
                             <VerticalStackLayout Spacing="10">
                                 <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding CreateAnEntryHeader}" />
@@ -328,6 +329,7 @@
                                 <core:DocumentAlert AlertType="Note" Text="{x:Binding CreateAnEntryNote1}" />
                             </VerticalStackLayout>
                         </Border>
+                        <!--  Set character spacing  -->
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
                             <VerticalStackLayout Spacing="10">
                                 <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding SetCharacterSpacingHeader}" />
@@ -338,6 +340,7 @@
                                 <core:DocumentAlert AlertType="Note" Text="{x:Binding SetCharacterSpacingNote}" />
                             </VerticalStackLayout>
                         </Border>
+                        <!--  Limit input length  -->
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
                             <VerticalStackLayout Spacing="10">
                                 <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding LimitInputLengthHeader}" />
@@ -347,6 +350,7 @@
                                 <Label Text="{x:Binding LimitInputLength1}" />
                             </VerticalStackLayout>
                         </Border>
+                        <!--  Set the cursor position and text selection length  -->
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
                             <VerticalStackLayout Spacing="10">
                                 <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding SetTheCursorPositionAndTextSelectionLengthHeader}" />
@@ -361,6 +365,108 @@
                                     Text="Cursor position and selection length set" />
                                 <core:SourceCodeExpander Code="{x:Binding SetTheCursorPositionAndTextSelectionLengthXamlCode1}" CodeType="Xaml" />
                                 <Label Text="{x:Binding SetTheCursorPositionAndTextSelectionLength3}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <!--  Display a clear button  -->
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding DisplayAClearButtonHeader}" />
+                                <Label Text="{x:Binding DisplayAClearButton}" />
+                                <CollectionView ItemsSource="{x:Binding DisplayAClearButtonList}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <core:SourceCodeExpander Code="{x:Binding DisplayAClearButtonXamlCode}" CodeType="Xaml" />
+                                <Entry ClearButtonVisibility="WhileEditing" Text=".NET MAUI" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <!--  Transform text  -->
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding TransformTextHeader}" />
+                                <Label Text="{x:Binding TransformText}" />
+                                <CollectionView ItemsSource="{x:Binding TransformTextList}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <Label Text="{x:Binding TransformText1}" />
+                                <Entry Text="This text will be displayed in uppercase." TextTransform="Uppercase" />
+                                <core:SourceCodeExpander Code="{x:Binding TransformTextXamlCode}" CodeType="Xaml" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <!--  Obscure text entry  -->
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding ObscureTextEntryHeader}" />
+                                <Label Text="{x:Binding ObscureTextEntry}" />
+                                <Entry IsPassword="True" />
+                                <core:SourceCodeExpander Code="{x:Binding ObscureTextEntryXamlCode}" CodeType="Xaml" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <!--  Customize the keyboard  -->
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding CustomizeTheKeyboardHeader}" />
+                                <Label Text="{x:Binding CustomizeTheKeyboard}" />
+                                <CollectionView ItemsSource="{x:Binding CustomizeTheKeyboardList}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <Label Text="{x:Binding CustomizeTheKeyboard1}" />
+                                <Entry Keyboard="Chat" />
+                                <core:SourceCodeExpander Code="{x:Binding CustomizeTheKeyboardXamlCode}" CodeType="Xaml" />
+                                <Label Text="{x:Binding CustomizeTheKeyboard2}" />
+                                <CollectionView ItemsSource="{x:Binding CustomizeTheKeyboardList1}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <Label Text="{x:Binding CustomizeTheKeyboard3}" />
+                                <core:SourceCodeExpander Code="{x:Binding CustomizeTheKeyboardXamlCode1}" CodeType="Xaml" />
+                                <Label Text="{x:Binding CustomizeTheKeyboard4}" />
+                                <core:SourceCodeExpander Code="{x:Binding CustomizeTheKeyboardCSharpCode}" CodeType="CSharp" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <!--  Customize the return key  -->
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding CustomizeTheReturnKeyHeader}" />
+                                <Label Text="{x:Binding CustomizeTheReturnKey}" />
+                                <CollectionView ItemsSource="{x:Binding CustomizeTheReturnKeyList}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <Label Text="{x:Binding CustomizeTheKeyboard1}" />
+                                <Entry ReturnType="Send" />
+                                <core:SourceCodeExpander Code="{x:Binding CustomizeTheReturnKeyXamlCode}" CodeType="Xaml" />
+                                <core:DocumentAlert AlertType="Note" Text="{x:Binding CustomizeTheReturnKeyNote}" />
+                                <Label Text="{x:Binding CustomizeTheKeyboard2}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <!--  Hide and show the soft input keyboard  -->
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding HideAndShowTheSoftInputKeyboardHeader}" />
+                                <Label Text="{x:Binding HideAndShowTheSoftInputKeyboard}" />
+                                <CollectionView ItemsSource="{x:Binding HideAndShowTheSoftInputKeyboardList}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <Label Text="{x:Binding HideAndShowTheSoftInputKeyboard1}" />
+                                <core:SourceCodeExpander Code="{x:Binding HideAndShowTheSoftInputKeyboardCSharpCode}" CodeType="CSharp" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <!--  Enable and disable spell checking  -->
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding EnableAndDisableSpellCheckingHeader}" />
+                                <Label Text="{x:Binding EnableAndDisableSpellChecking}" />
+                                <Label Text="{x:Binding EnableAndDisableSpellChecking1}" />
+                                <Entry IsSpellCheckEnabled="True" />
+                                <core:SourceCodeExpander Code="{x:Binding EnableAndDisableSpellCheckingXamlCode}" CodeType="CSharp" />
+                                <core:DocumentAlert AlertType="Note" Text="{x:Binding EnableAndDisableSpellCheckingNote}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <!--  Enable and disable text prediction  -->
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding EnableAndDisableTextPredictionHeader}" />
+                                <Label Text="{x:Binding EnableAndDisableTextPrediction}" />
+                                <Label Text="{x:Binding EnableAndDisableTextPrediction1}" />
+                                <Entry IsTextPredictionEnabled="True" />
+                                <core:SourceCodeExpander Code="{x:Binding EnableAndDisableTextPredictionXamlCode}" CodeType="CSharp" />
+                                <core:DocumentAlert AlertType="Note" Text="{x:Binding EnableAndDisableTextPredictionNote}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <!--  Prevent text entry  -->
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding PreventTextEntryHeader}" />
+                                <Label Text="{x:Binding PreventTextEntry}" />
+                                <Entry IsReadOnly="true" Text="User input won't be accepted." />
+                                <core:SourceCodeExpander Code="{x:Binding PreventTextEntryXamlCode}" CodeType="CSharp" />
+                                <core:DocumentAlert AlertType="Note" Text="{x:Binding PreventTextEntryNote}" />
                             </VerticalStackLayout>
                         </Border>
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
