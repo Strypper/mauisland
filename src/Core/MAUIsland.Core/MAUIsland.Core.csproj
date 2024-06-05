@@ -23,40 +23,43 @@
 		<PackageReference Include="akgul.Maui.DataGrid" Version="4.0.4" />
 		<PackageReference Include="AcrylicView.Maui" Version="2.1.3" />
 		<PackageReference Include="Bogus" Version="35.5.1" />
+		<PackageReference Include="OverFlower" Version="0.0.3" />
 		<PackageReference Include="ColorCode.Core" Version="2.0.15" />
 		<PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
 		<PackageReference Include="Material.Components.Maui" Version="0.2.2-preview" />
-		<PackageReference Include="IconPacks.Material" Version="1.0.8807.17-build" />
+		<PackageReference Include="IconPacks.Material" Version="1.0.8919.2-build" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui.Core" Version="9.0.0" />
+		<PackageReference Include="CommunityToolkit.Common" Version="8.2.2" />
+		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="3.1.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.40" />
-		<PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-rc2" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.40" />
 		<PackageReference Include="Octokit" Version="11.0.1" />
-		<PackageReference Include="SkiaSharp" Version="2.88.7" />
-		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.86" />
-		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.7" />
-		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.7" />
-		<PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.7" />
-		<PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.7" />
-		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="25.2.3" />
-		<PackageReference Include="Syncfusion.Maui.Barcode" Version="25.2.3" />
-		<PackageReference Include="Syncfusion.Maui.Calendar" Version="25.2.3" />
-		<PackageReference Include="Syncfusion.Maui.Charts" Version="25.2.3" />
-		<PackageReference Include="Syncfusion.Maui.Core" Version="25.2.3" />
-		<PackageReference Include="Syncfusion.Maui.DataForm" Version="25.2.3" />
-		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="25.2.3" />
-		<PackageReference Include="Syncfusion.Maui.Gauges" Version="25.2.3" />
-		<PackageReference Include="Syncfusion.Maui.Inputs" Version="25.2.3" />
-		<PackageReference Include="Syncfusion.Maui.ListView" Version="25.2.3" />
-		<PackageReference Include="Syncfusion.Maui.Maps" Version="25.2.3" />
-		<PackageReference Include="Syncfusion.Maui.PdfViewer" Version="25.2.3" />
-		<PackageReference Include="Syncfusion.Maui.ProgressBar" Version="25.2.3" />
-		<PackageReference Include="Syncfusion.Maui.SignaturePad" Version="25.2.3" />
-		<PackageReference Include="Syncfusion.Maui.Sliders" Version="25.2.3" />
-		<PackageReference Include="Syncfusion.Maui.TabView" Version="25.2.3" />
+		<PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-rc2" />
+		<PackageReference Include="SkiaSharp" Version="3.0.0-preview.3.1" />
+		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0" />
+		<PackageReference Include="SkiaSharp.Skottie" Version="3.0.0-preview.3.1" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="3.0.0-preview.3.1" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.8" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Core" Version="3.0.0-preview.3.1" />
+		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="25.2.7" />
+		<PackageReference Include="Syncfusion.Maui.Barcode" Version="25.2.7" />
+		<PackageReference Include="Syncfusion.Maui.Calendar" Version="25.2.7" />
+		<PackageReference Include="Syncfusion.Maui.Charts" Version="25.2.7" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="25.2.7" />
+		<PackageReference Include="Syncfusion.Maui.DataForm" Version="25.2.7" />
+		<PackageReference Include="Syncfusion.Maui.DataGrid" Version="25.2.7" />
+		<PackageReference Include="Syncfusion.Maui.Gauges" Version="25.2.7" />
+		<PackageReference Include="Syncfusion.Maui.Inputs" Version="25.2.7" />
+		<PackageReference Include="Syncfusion.Maui.ListView" Version="25.2.7" />
+		<PackageReference Include="Syncfusion.Maui.Maps" Version="25.2.7" />
+		<PackageReference Include="Syncfusion.Maui.PdfViewer" Version="25.2.7" />
+		<PackageReference Include="Syncfusion.Maui.ProgressBar" Version="25.2.7" />
+		<PackageReference Include="Syncfusion.Maui.SignaturePad" Version="25.2.7" />
+		<PackageReference Include="Syncfusion.Maui.Sliders" Version="25.2.7" />
+		<PackageReference Include="Syncfusion.Maui.TabView" Version="25.2.7" />
 		<PackageReference Include="ZXing.Net.Maui" Version="0.4.0" />
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />

@@ -444,7 +444,7 @@
                                 <Label Text="{x:Binding EnableAndDisableSpellChecking}" />
                                 <Label Text="{x:Binding EnableAndDisableSpellChecking1}" />
                                 <Entry IsSpellCheckEnabled="True" />
-                                <core:SourceCodeExpander Code="{x:Binding EnableAndDisableSpellCheckingXamlCode}" CodeType="CSharp" />
+                                <core:SourceCodeExpander Code="{x:Binding EnableAndDisableSpellCheckingXamlCode}" CodeType="Xaml" />
                                 <core:DocumentAlert AlertType="Note" Text="{x:Binding EnableAndDisableSpellCheckingNote}" />
                             </VerticalStackLayout>
                         </Border>
@@ -455,7 +455,7 @@
                                 <Label Text="{x:Binding EnableAndDisableTextPrediction}" />
                                 <Label Text="{x:Binding EnableAndDisableTextPrediction1}" />
                                 <Entry IsTextPredictionEnabled="True" />
-                                <core:SourceCodeExpander Code="{x:Binding EnableAndDisableTextPredictionXamlCode}" CodeType="CSharp" />
+                                <core:SourceCodeExpander Code="{x:Binding EnableAndDisableTextPredictionXamlCode}" CodeType="Xaml" />
                                 <core:DocumentAlert AlertType="Note" Text="{x:Binding EnableAndDisableTextPredictionNote}" />
                             </VerticalStackLayout>
                         </Border>
@@ -465,7 +465,7 @@
                                 <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding PreventTextEntryHeader}" />
                                 <Label Text="{x:Binding PreventTextEntry}" />
                                 <Entry IsReadOnly="true" Text="User input won't be accepted." />
-                                <core:SourceCodeExpander Code="{x:Binding PreventTextEntryXamlCode}" CodeType="CSharp" />
+                                <core:SourceCodeExpander Code="{x:Binding PreventTextEntryXamlCode}" CodeType="Xaml" />
                                 <core:DocumentAlert AlertType="Note" Text="{x:Binding PreventTextEntryNote}" />
                             </VerticalStackLayout>
                         </Border>
