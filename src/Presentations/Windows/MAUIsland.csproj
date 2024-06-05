@@ -8,7 +8,7 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<!--<UseRidGraph>true</UseRidGraph>-->
-		<_MauiForceXamlCForDebug>true</_MauiForceXamlCForDebug>
+		<_MauiForceXamlCForDebug>false</_MauiForceXamlCForDebug>
 
 		<!-- Display name -->
 		<ApplicationTitle>MAUIsland</ApplicationTitle>
@@ -38,8 +38,6 @@
 		<GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
 		<SignAssembly>False</SignAssembly>
 		<PackageCertificateThumbprint>B90CE38E464032DB4247C5C0662ABB5BEEA5938C</PackageCertificateThumbprint>
-		<WindowsAppSDKSelfContained Condition="'$(IsUnpackaged)' == 'true'">true</WindowsAppSDKSelfContained>
-		<SelfContained Condition="'$(IsUnpackaged)' == 'true'">true</SelfContained>
 		<Platforms>AnyCPU;x64</Platforms>
 	</PropertyGroup>
 
@@ -109,6 +107,9 @@
 		</Compile>
 		<Compile Update="Features\Gallery\Pages\CardsByGroupPage.xaml.cs">
 			<DependentUpon>CardsByGroupPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Features\Gallery\Pages\Community\Helpers\OCR\OCRPage.xaml.cs">
+		  <DependentUpon>OCRPage.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Features\Gallery\Pages\Community\Helpers\SQLite-net\SQLiteNETPage.xaml.cs">
 		  <DependentUpon>SQLiteNETPage.xaml</DependentUpon>
@@ -226,6 +227,9 @@
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\TabbedPage\TabbedPages\NewsPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Gallery\Pages\Community\Helpers\OCR\OCRPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\Community\Helpers\SQLite-net\SQLiteNETPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>

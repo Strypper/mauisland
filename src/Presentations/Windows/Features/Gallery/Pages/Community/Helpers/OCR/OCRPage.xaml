@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<core:BasePage
+    x:Class="MAUIsland.OCRPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="OCR"
+    Padding="20"
+    x:DataType="core:OCRPageViewModel"
+    BackgroundColor="Transparent">
+
+    <core:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="githublogo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="githublogo.png"
+            Text="Original Source" />
+    </core:BasePage.ToolbarItems>
+
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20">
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            FontSize="Medium"
+                            Text="{x:Binding HeaderFeatures}"
+                            TextDecorations="Underline" />
+                        <CollectionView ItemsSource="{x:Binding Features}" Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding UploadAnImageHeader}" />
+                        <Grid ColumnDefinitions="*, *" ColumnSpacing="15">
+                            <VerticalStackLayout Spacing="10">
+                                <Image Source="{x:Binding ImageSourceSample, Mode=OneWay}" />
+                                <Button Command="{x:Binding OpenFileCommand}" Text="Image load an image" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1" Spacing="5">
+                                <HorizontalStackLayout Spacing="5">
+                                    <Label Text="Try hard?" VerticalOptions="Center" />
+                                    <Switch IsToggled="{x:Binding IsTryHard, Mode=TwoWay}" VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                                <core:DocumentAlert AlertType="Tip" Text="{x:Binding TryHardTip}" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    Text="Extracted text:"
+                                    TextDecorations="Underline" />
+                                <Border
+                                    Padding="20"
+                                    BackgroundColor="#252526"
+                                    StrokeShape="RoundRectangle 4">
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="&quot;" />
+                                                <Span Text="{x:Binding ExtractedText, Mode=OneWay}" />
+                                                <Span Text="&quot;" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Border>
+                                <Button
+                                    Command="{x:Binding CopyToClipboardCommand}"
+                                    CommandParameter="{x:Binding ExtractedText}"
+                                    Text="Copy value" />
+                                <Label Text="{x:Binding ExtractStatus, Mode=OneWay}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </SwipeView>
+</core:BasePage>

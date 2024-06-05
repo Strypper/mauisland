@@ -3,6 +3,7 @@ using Material.Components.Maui.Extensions;
 using MAUIsland.Features.LocalDbFeatures;
 using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
+using Plugin.Maui.OCR;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using Xe.AcrylicView;
 
@@ -15,6 +16,7 @@ public static class ServicesExtension
 
         //builder.UseMauiCommunityToolkit(option => option.SetShouldEnableSnackbarOnWindows(true));
 
+        builder.UseOcr();
         builder.UseAcrylicView();
         builder.UseSkiaSharp(true);
         builder.UseMaterialComponents();
