@@ -38,6 +38,8 @@
 		<GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
 		<SignAssembly>False</SignAssembly>
 		<PackageCertificateThumbprint>B90CE38E464032DB4247C5C0662ABB5BEEA5938C</PackageCertificateThumbprint>
+		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+		<Platforms>AnyCPU;x64</Platforms>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -407,7 +409,9 @@
 		<EmbeddedResource Include="appsettings.Development.json">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</EmbeddedResource>
-		<EmbeddedResource Include="Features\Gallery\Pages\BuiltIn\Helpers\AppSettingsJson\JsonFiles\appsettings.json" />
+		<EmbeddedResource Include="Features\Gallery\Pages\BuiltIn\Helpers\AppSettingsJson\JsonFiles\appsettings.json">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</EmbeddedResource>
 		<EmbeddedResource Include="Resources\Raw\australia.shp" />
 		<EmbeddedResource Include="Resources\Raw\river.json" />
 		<EmbeddedResource Include="Resources\Raw\usa_state.shp" />

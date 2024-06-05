@@ -55,13 +55,6 @@ public static class MauiProgram
         return builder.Build();
     }
 
-#if __ANDROID__
-    public static void PrependToMappingImageSource(IImageHandler handler, Microsoft.Maui.IImage image)
-    {
-        //handler.PlatformView?.Clear();
-    }
-#endif
-
     static MauiAppBuilder RegisterPopups(this MauiAppBuilder builder)
     {
         builder.Services.AddPopup<AuthenticatePopup, AuthenticatePopupViewModel>(AppRoutes.SignUp);
@@ -292,20 +285,21 @@ public static class MauiProgram
     {
         var assembly = Assembly.GetExecutingAssembly();
         using var stream = assembly.GetManifestResourceStream("MAUIsland.appsettings.Development.json");
-        using var appsettingspagestream = assembly.GetManifestResourceStream("MAUIsland.Features.Gallery.Pages.BuiltIn.Helpers.AppSettingsJson.JsonFiles.appsettings.json");
+        //using var appsettingspagestream = assembly.GetManifestResourceStream("MAUIsland.Features.Gallery.Pages.BuiltIn.Helpers.AppSettingsJson.JsonFiles.appsettings.json");
 
-        if (stream is not null && appsettingspagestream is not null)
+        //if (stream is not null && appsettingspagestream is not null)
+        if (stream is not null)
         {
             var config = new ConfigurationBuilder()
                         .AddJsonStream(stream)
                         .Build();
 
-            var appsettingsconfig = new ConfigurationBuilder()
-                        .AddJsonStream(appsettingspagestream)
-                        .Build();
+            //var appsettingsconfig = new ConfigurationBuilder()
+            //            .AddJsonStream(appsettingspagestream)
+            //            .Build();
 
             builder.Configuration.AddConfiguration(config);
-            builder.Configuration.AddConfiguration(appsettingsconfig);
+            //builder.Configuration.AddConfiguration(appsettingsconfig);
         }
         else
         {

@@ -9,7 +9,7 @@
 
   <Identity Name="47268StrypperVandelJason.MAUIsland" 
 			Publisher="CN=C5255E29-81AE-4129-9BC3-9E2C461A195A" 
-			Version="2.0.4.0" />
+			Version="2.0.7.0" />
 
   <Properties>
     <DisplayName>MAUIsland</DisplayName>
@@ -43,13 +43,13 @@
       </uap:VisualElements>
 	<Extensions>
 		<desktop:Extension Category="windows.toastNotificationActivation">
-			<desktop:ToastNotificationActivation ToastActivatorCLSID="6e919706-2634-4d97-a93c-2213b2acc334" />
+			<desktop:ToastNotificationActivation ToastActivatorCLSID="c3e1a5f6-8d4b-4e7a-9c1e-2b8c3d0f9a7f" />
 		</desktop:Extension>
 		<com:Extension Category="windows.comServer">
 			<com:ComServer>
 				<com:ExeServer Executable="MAUIsland\MAUIsland.exe" DisplayName="$targetnametoken$" Arguments="----AppNotificationActivated:">
 					<!-- Example path to executable: CommunityToolkit.Maui.Sample\CommunityToolkit.Maui.Sample.exe -->
-					<com:Class Id="6e919706-2634-4d97-a93c-2213b2acc334" />
+					<com:Class Id="c3e1a5f6-8d4b-4e7a-9c1e-2b8c3d0f9a7f" />
 				</com:ExeServer>
 			</com:ComServer>
 		</com:Extension>
