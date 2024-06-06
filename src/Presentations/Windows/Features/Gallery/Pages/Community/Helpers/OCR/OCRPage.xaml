@@ -42,7 +42,7 @@
                 <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <VerticalStackLayout Spacing="10">
                         <Label
-                            FontSize="Medium"
+                            Style="{x:StaticResource DocumentSectionTitleStyle}"
                             Text="{x:Binding HeaderFeatures}"
                             TextDecorations="Underline" />
                         <CollectionView ItemsSource="{x:Binding Features}" Style="{x:StaticResource PropertiesListStyle}" />
@@ -87,6 +87,108 @@
                                 <Label Text="{x:Binding ExtractStatus, Mode=OneWay}" />
                             </VerticalStackLayout>
                         </Grid>
+                    </VerticalStackLayout>
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            Style="{x:StaticResource DocumentSectionTitleStyle}"
+                            Text="{x:Binding InstallPluginHeader}"
+                            TextDecorations="Underline" />
+
+                        <HorizontalStackLayout Spacing="10">
+                            <Button
+                                BackgroundColor="#512bd4"
+                                Command="{x:Binding OpenUrlCommand}"
+                                CommandParameter="{x:Binding MauiNugetLink}"
+                                Text="MAUI"
+                                TextColor="White" />
+                            <Button
+                                BackgroundColor="#31c1e7"
+                                Command="{x:Binding OpenUrlCommand}"
+                                CommandParameter="{x:Binding XamarinNugetLink}"
+                                Text="Xamarin" />
+                        </HorizontalStackLayout>
+                        <Label
+                            Padding="7"
+                            BackgroundColor="Yellow"
+                            HorizontalOptions="Start"
+                            Text="{x:Binding DotNetMauiInstallNugetCLICommand}"
+                            TextColor="Black">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{x:Binding CopyToClipboardCommand}" CommandParameter="{x:Binding DotNetMauiInstallNugetCLICommand}" />
+                            </Label.GestureRecognizers>
+                            <Label.Behaviors>
+                                <toolkit:AnimationBehavior>
+                                    <toolkit:AnimationBehavior.AnimationType>
+                                        <toolkit:FadeAnimation Opacity="0.2" />
+                                    </toolkit:AnimationBehavior.AnimationType>
+                                </toolkit:AnimationBehavior>
+                            </Label.Behaviors>
+                        </Label>
+                        <Label
+                            Padding="7"
+                            BackgroundColor="Yellow"
+                            HorizontalOptions="Start"
+                            Text="{x:Binding XamarinInstallNugetCLICommand}"
+                            TextColor="Black">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{x:Binding CopyToClipboardCommand}" CommandParameter="{x:Binding XamarinInstallNugetCLICommand}" />
+                            </Label.GestureRecognizers>
+                            <Label.Behaviors>
+                                <toolkit:AnimationBehavior>
+                                    <toolkit:AnimationBehavior.AnimationType>
+                                        <toolkit:FadeAnimation Opacity="0.2" />
+                                    </toolkit:AnimationBehavior.AnimationType>
+                                </toolkit:AnimationBehavior>
+                            </Label.Behaviors>
+                        </Label>
+                    </VerticalStackLayout>
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            Style="{x:StaticResource DocumentSectionTitleStyle}"
+                            Text="{x:Binding MauiSetupAndUsageHeader}"
+                            TextDecorations="Underline" />
+                        <Label Text="{x:Binding MauiSetupAndUsage}" />
+                        <core:SourceCodeExpander Code="{x:Binding MauiProgramSetupCSharpCode}" CodeType="CSharp" />
+                        <Label Text="{x:Binding MauiSetupAndUsage1}" />
+                        <core:SourceCodeExpander Code="{x:Binding MauiSetupAndUsageCSharpCode}" CodeType="CSharp" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            Style="{x:StaticResource DocumentSectionTitleStyle}"
+                            Text="{x:Binding PermissionsHeader}"
+                            TextDecorations="Underline" />
+                        <Label Text="{x:Binding Permissions}" />
+                        <Label
+                            FontAttributes="Bold"
+                            Text="{x:Binding Permissions1}"
+                            TextDecorations="Underline" />
+                        <Label Text="{x:Binding Permissions2}" />
+                        <Label
+                            FontAttributes="Bold"
+                            Text="{x:Binding Permissions3}"
+                            TextDecorations="Underline" />
+                        <Label Text="{x:Binding Permissions4}" />
+                        <core:SourceCodeExpander Code="{x:Binding PermissionsXMLCode}" CodeType="Xaml" />
+                        <Label Text="{x:Binding Permissions4}" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border Padding="20" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout Spacing="10">
+                        <Label
+                            Style="{x:StaticResource DocumentSectionTitleStyle}"
+                            Text="{x:Binding PatternMatchingHeader}"
+                            TextDecorations="Underline" />
+                        <Label Text="{x:Binding PatternMatching}" />
+                        <Label Text="{x:Binding PatternMatching1}" />
+                        <CollectionView ItemsSource="{x:Binding PatternMatchingList}" Style="{x:StaticResource PropertiesListStyle}" />
+                        <Label Text="{x:Binding PatternMatching2}" />
+                        <core:SourceCodeExpander Code="{x:Binding PatternMatchinCSharpCode}" CodeType="CSharp" />
                     </VerticalStackLayout>
                 </Border>
             </VerticalStackLayout>

@@ -43,6 +43,17 @@ public partial class SourceCodeExpander : ContentView, INotifyPropertyChanged
     }
 
 
+    public static readonly BindableProperty CopyStatusProperty = BindableProperty.Create(nameof(CopyStatus),
+                                                                                           typeof(string),
+                                                                                           typeof(SourceCodeExpander),
+                                                                                           default(string));
+    public string CopyStatus
+    {
+        get => (string)GetValue(CopyStatusProperty);
+        set => SetValue(CopyStatusProperty, value);
+    }
+
+
     public static readonly BindableProperty CodeTypeProperty = BindableProperty.Create(nameof(CodeType),
                                                                                        typeof(CodeType),
                                                                                        typeof(SourceCodeExpander),
@@ -79,6 +90,7 @@ public partial class SourceCodeExpander : ContentView, INotifyPropertyChanged
     private async void Copy_Clicked(object sender, EventArgs e)
     {
         await Clipboard.Default.SetTextAsync(Code);
+        CopyStatus = $"Copied at: {DateTime.Now:HH:mm:ss}";
         await appNavigator.ShowSnackbarAsync("Code copied to clipboard", null, null);
     }
     private void root_Loaded(object sender, EventArgs e)

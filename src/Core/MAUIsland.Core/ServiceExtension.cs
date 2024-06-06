@@ -6,6 +6,7 @@ using MAUIsland.GitHubFeatures;
 using Plugin.Maui.OCR;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using Xe.AcrylicView;
+using ZXing.Net.Maui.Controls;
 
 namespace MAUIsland.Core;
 
@@ -19,6 +20,7 @@ public static class ServicesExtension
         builder.UseOcr();
         builder.UseAcrylicView();
         builder.UseSkiaSharp(true);
+        builder.UseBarcodeReader();
         builder.UseMaterialComponents();
 
 

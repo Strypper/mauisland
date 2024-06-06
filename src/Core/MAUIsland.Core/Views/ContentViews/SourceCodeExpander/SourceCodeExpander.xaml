@@ -38,27 +38,35 @@
                                               Source={x:Reference root}}"
                         TextColor="#ce8557"
                         VerticalOptions="Center" />
-                    <ImageButton
-                        Padding="5"
-                        BackgroundColor="{x:StaticResource White}"
-                        BorderColor="Black"
-                        BorderWidth="2"
-                        Clicked="Copy_Clicked"
-                        CornerRadius="5"
-                        HeightRequest="8"
-                        HorizontalOptions="End"
-                        Source="{x:StaticResource CopyIcon}"
-                        VerticalOptions="Center"
-                        WidthRequest="8">
+                    <HorizontalStackLayout HorizontalOptions="End" Spacing="5">
+                        <Label
+                            BindingContext="{x:Reference root}"
+                            Text="{x:Binding CopyStatus,
+                                             Mode=OneWay}"
+                            TextColor="Black"
+                            VerticalOptions="Center" />
+                        <ImageButton
+                            Padding="5"
+                            BackgroundColor="{x:StaticResource White}"
+                            BorderColor="Black"
+                            BorderWidth="2"
+                            Clicked="Copy_Clicked"
+                            CornerRadius="5"
+                            HeightRequest="8"
+                            HorizontalOptions="End"
+                            Source="{x:StaticResource CopyIcon}"
+                            VerticalOptions="Center"
+                            WidthRequest="8">
 
-                        <ImageButton.Behaviors>
-                            <mct:AnimationBehavior EventName="Clicked">
-                                <mct:AnimationBehavior.AnimationType>
-                                    <core:SampleScaleAnimation Easing="{x:Static Easing.Linear}" Length="100" />
-                                </mct:AnimationBehavior.AnimationType>
-                            </mct:AnimationBehavior>
-                        </ImageButton.Behaviors>
-                    </ImageButton>
+                            <ImageButton.Behaviors>
+                                <mct:AnimationBehavior EventName="Clicked">
+                                    <mct:AnimationBehavior.AnimationType>
+                                        <core:SampleScaleAnimation Easing="{x:Static Easing.Linear}" Length="100" />
+                                    </mct:AnimationBehavior.AnimationType>
+                                </mct:AnimationBehavior>
+                            </ImageButton.Behaviors>
+                        </ImageButton>
+                    </HorizontalStackLayout>
                 </Grid>
             </toolkit:Expander.Header>
             <app:LazyViewSourceCodeExpanderContent BindingContext="{x:Binding OutputFormattedString, Source={x:Reference root}}" />

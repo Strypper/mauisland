@@ -46,7 +46,6 @@ public static class MauiProgram
             .ConfigureSyncfusionCore()
             .UseBarcodeReader();
 
-        DependencyService.Register<IMrIncreadibleMemeService, MrIncreadibleMemeService>();
 
 #if DEBUG
         //builder.Logging.AddDebug();
