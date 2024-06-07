@@ -29,8 +29,8 @@
 		<PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
 		<PackageReference Include="Material.Components.Maui" Version="0.2.2-preview" />
 		<PackageReference Include="IconPacks.Material" Version="1.0.8919.2-build" />
-		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.0" />
-		<PackageReference Include="CommunityToolkit.Maui.Core" Version="9.0.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.1" />
+		<PackageReference Include="CommunityToolkit.Maui.Core" Version="9.0.1" />
 		<PackageReference Include="CommunityToolkit.Common" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
@@ -40,12 +40,12 @@
 		<PackageReference Include="Octokit" Version="11.0.1" />
 		<PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-rc2" />
 		<PackageReference Include="Plugin.Maui.OCR" Version="1.0.11" />
-		<PackageReference Include="SkiaSharp" Version="3.0.0-preview.3.1" />
+		<PackageReference Include="SkiaSharp" Version="2.88.8" />
 		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0" />
-		<PackageReference Include="SkiaSharp.Skottie" Version="3.0.0-preview.3.1" />
-		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="3.0.0-preview.3.1" />
+		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.8" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.8" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.8" />
-		<PackageReference Include="SkiaSharp.Views.Maui.Core" Version="3.0.0-preview.3.1" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.8" />
 		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="25.2.7" />
 		<PackageReference Include="Syncfusion.Maui.Barcode" Version="25.2.7" />
 		<PackageReference Include="Syncfusion.Maui.Calendar" Version="25.2.7" />
