@@ -42,7 +42,7 @@ public partial class GitHubRepositoryReleaseModel : GitHubBaseModel
     DateTimeOffset? publishedAt;
 
     [ObservableProperty]
-    GitHubAuthorModel author;
+    GitHubAuthorModel? author;
 
     [ObservableProperty]
     string tarballUrl;

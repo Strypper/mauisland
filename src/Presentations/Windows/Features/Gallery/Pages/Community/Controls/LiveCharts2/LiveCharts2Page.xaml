@@ -92,6 +92,7 @@
                     </VerticalStackLayout>
                 </Border>
 
+                <!--  Line Series  -->
                 <Border Padding="20" StrokeShape="RoundRectangle 4">
                     <VerticalStackLayout Spacing="5">
                         <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:Binding LineSeriesTitle}" />
@@ -101,6 +102,11 @@
                             Series="{Binding LineSeries}" />
                         <core:SourceCodeExpander Code="{x:Binding LineSeriesCSharpCode}" CodeType="CSharp" />
                         <core:SourceCodeExpander Code="{x:Binding LineSeriesXamlCode}" CodeType="Xaml" />
+                        <lvc:CartesianChart
+                            HeightRequest="300"
+                            Series="{x:Binding LineSeries2}"
+                            XAxes="{x:Binding LineSeries2XAxis}"
+                            YAxes="{x:Binding LineSeries2YAxis}" />
                     </VerticalStackLayout>
                 </Border>
 
@@ -138,6 +144,22 @@
                         </Grid>
                         <core:SourceCodeExpander Code="{x:Binding PieChartXamlCode}" CodeType="Xaml" />
                         <core:SourceCodeExpander Code="{x:Binding PieChartCSharpCode}" CodeType="CSharp" />
+                        <Grid ColumnDefinitions="*,*">
+                            <lvc:PieChart
+                                Title="{x:Binding PieChartWithLegendVisualTitle}"
+                                HeightRequest="400"
+                                LegendPosition="Right"
+                                LegendTextPaint="{x:Binding LegendTextPaint}"
+                                Series="{x:Binding PieSeries4}"
+                                WidthRequest="400" />
+                            <VerticalStackLayout
+                                Grid.Column="1"
+                                Spacing="5"
+                                VerticalOptions="Center">
+                                <core:SourceCodeExpander Code="{x:Binding PieChart4XamlCode}" CodeType="Xaml" />
+                                <core:SourceCodeExpander Code="{x:Binding PieChart4CSharpCode}" CodeType="CSharp" />
+                            </VerticalStackLayout>
+                        </Grid>
                     </VerticalStackLayout>
                 </Border>
 

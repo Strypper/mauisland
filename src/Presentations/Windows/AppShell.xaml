@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:showcases="clr-namespace:MAUIsland.Showcases"
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     Shell.FlyoutBehavior="Flyout">
     <Shell.Resources>
@@ -20,10 +21,18 @@
             Glyph="{Static core:FluentUIIcon.Ic_fluent_chat_20_regular}"
             Color="{AppThemeBinding Light='#15161e',
                                     Dark='#eaeaea'}" />
+
         <FontImageSource
             x:Key="CodeIcon"
             FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
             Glyph="{Static core:FluentUIIcon.Ic_fluent_code_circle_20_regular}"
+            Color="{AppThemeBinding Light='#15161e',
+                                    Dark='#eaeaea'}" />
+
+        <FontImageSource
+            x:Key="ShowcasesIcon"
+            FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static core:FluentUIIcon.Ic_fluent_star_emphasis_20_regular}"
             Color="{AppThemeBinding Light='#15161e',
                                     Dark='#eaeaea'}" />
 
@@ -50,6 +59,11 @@
             ContentTemplate="{DataTemplate app:GalleryPage}"
             Icon="{x:StaticResource CodeIcon}"
             Route="galleryPage" />
+        <ShellContent
+            Title="Showcases"
+            ContentTemplate="{DataTemplate showcases:ShowcasesPage}"
+            Icon="{x:StaticResource ShowcasesIcon}"
+            Route="showcases" />
     </FlyoutItem>
     <ShellContent
         Title="Settings"

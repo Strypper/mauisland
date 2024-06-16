@@ -212,12 +212,13 @@
                                     <ActivityIndicator IsRunning="True" Color="Red" />
                                     <ActivityIndicator IsRunning="true" Color="Aqua" />
                                 </HorizontalStackLayout>
-                                <core:SourceCodeExpander Code="{x:Binding GroupOfActivityIndicators}" />
+                                <core:SourceCodeExpander Code="{x:Binding GroupOfActivityIndicators}" CodeType="Xaml" />
                             </VerticalStackLayout>
 
                         </Border>
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
                             <VerticalStackLayout Spacing="5">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Change the color" />
                                 <HorizontalStackLayout Spacing="10">
                                     <Picker
                                         x:Name="ActivityIndicatorColorPicker"

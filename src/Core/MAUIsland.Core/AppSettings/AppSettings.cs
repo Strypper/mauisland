@@ -1,4 +1,4 @@
-﻿namespace MAUIsland;
+﻿namespace MAUIsland.Core;
 
 public class AppSettings
 {

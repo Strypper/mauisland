@@ -65,7 +65,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Features\Settings\Models\**" />
+	  <Compile Remove="Features\Settings\Models\**" />
+	  <EmbeddedResource Remove="Features\Settings\Models\**" />
+	  <MauiCss Remove="Features\Settings\Models\**" />
+	  <MauiXaml Remove="Features\Settings\Models\**" />
+	  <None Remove="Features\Settings\Models\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="appsettings.Development.json" />
+	  <None Remove="Resources\Images\books\dotnet_developers_cross_platform_applications_ebook.png" />
+	  <None Remove="Resources\Images\books\dotnet_maui_in_action.png" />
+	  <None Remove="Resources\Images\books\enterprise_app_patterns_ebook.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -80,7 +92,6 @@
 
 	<ItemGroup>
 		<Folder Include="Features\Gallery\Pages\Community\Layouts\" />
-		<Folder Include="Features\Settings\Models\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -149,6 +160,9 @@
 		</Compile>
 		<Compile Update="Features\Home\Pages\HomePage.xaml.cs">
 			<DependentUpon>HomePage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Features\Showcases\Pages\ShowcasesPage.xaml.cs">
+		  <DependentUpon>ShowcasesPage.xaml</DependentUpon>
 		</Compile>
 	</ItemGroup>
 
@@ -402,6 +416,9 @@
 		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\Xxxx\XxxxPage.xaml">
 			<SubType></SubType>
 		</MauiXaml>
+		<MauiXaml Update="Features\Showcases\Pages\ShowcasesPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 	</ItemGroup>
 
 
@@ -426,6 +443,9 @@
 		<MauiImage Include="Resources\Images\banners\github_banner.png" />
 		<MauiImage Include="Resources\Images\banners\mauitoolkit_banner.png" />
 		<MauiImage Include="Resources\Images\banners\syncfusion_banner.png" />
+		<MauiImage Include="Resources\Images\books\dotnet_developers_cross_platform_applications_ebook.png" />
+		<MauiImage Include="Resources\Images\books\dotnet_maui_in_action.png" />
+		<MauiImage Include="Resources\Images\books\enterprise_app_patterns_ebook.png" />
 		<MauiImage Include="Resources\Images\logos\androidlogo.svg" />
 		<MauiImage Include="Resources\Images\logos\communitytoolkitlogo.png" />
 		<MauiImage Include="Resources\Images\logos\devexpress_logo.png" />

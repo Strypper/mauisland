@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<core:BasePage
+    x:Class="MAUIsland.Showcases.ShowcasesPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+    xmlns:showcases="clr-namespace:MAUIsland.Showcases"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:DataType="showcases:ShowcasesPageViewModel"
+    BackgroundColor="Transparent">
+
+    <core:BasePage.Resources>
+        <DataTemplate x:Key="Item2Template" x:DataType="showcases:BookItem">
+            <VerticalStackLayout Spacing="10" VerticalOptions="Center">
+                <Image
+                    HeightRequest="277.5"
+                    HorizontalOptions="Center"
+                    Source="{x:Binding CoverImage,
+                                       Mode=OneWay}"
+                    VerticalOptions="Center"
+                    WidthRequest="221.3" />
+                <Label
+                    FontAttributes="Bold"
+                    HeightRequest="20"
+                    HorizontalTextAlignment="Center"
+                    LineBreakMode="TailTruncation"
+                    MaxLines="2"
+                    Text="{x:Binding Name}"
+                    TextDecorations="Underline"
+                    ToolTipProperties.Text="{x:Binding Name}"
+                    WidthRequest="220" />
+            </VerticalStackLayout>
+        </DataTemplate>
+
+        <LinearItemsLayout
+            x:Key="Item2Layout"
+            ItemSpacing="15"
+            Orientation="Horizontal" />
+    </core:BasePage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="5">
+
+            <Grid
+                Padding="10"
+                ColumnDefinitions="3*, *, *"
+                ColumnSpacing="10"
+                HeightRequest="500"
+                RowDefinitions="*,*,*"
+                RowSpacing="10">
+                <Border Grid.RowSpan="3" StrokeShape="RoundRectangle 4">
+                    <Grid>
+                        <ActivityIndicator IsRunning="{x:Binding IsGitHubOpenIssuesChartLoading}" />
+                        <lvc:CartesianChart
+                            Title="{x:Binding GitHubOpenIssuesChartTile}"
+                            HeightRequest="450"
+                            Series="{x:Binding GitHubOpenIssuesChart}"
+                            XAxes="{x:Binding GitHubOpenIssuesChartXAxis}"
+                            YAxes="{x:Binding GitHubOpenIssuesChartYAxis}" />
+                    </Grid>
+                </Border>
+                <Border Grid.Column="1" StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="38"
+                            HorizontalOptions="Center"
+                            Text="{x:Binding IssuesListCount}"
+                            TextDecorations="Underline"
+                            VerticalOptions="Center" />
+                        <Label HorizontalOptions="Center" Text="Total Issues" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    StrokeShape="RoundRectangle 4">
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Border
+                            Padding="5"
+                            BackgroundColor="#2980b9"
+                            StrokeShape="RoundRectangle 4">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="24"
+                                HorizontalOptions="Center"
+                                Text="{x:Binding ReleaseInfo}"
+                                VerticalOptions="Center" />
+                        </Border>
+                        <Label HorizontalOptions="Center" Text="Latest Stable Release" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Padding="15"
+                    BackgroundColor="#161c29"
+                    StrokeShape="RoundRectangle 4">
+                    <Grid>
+                        <Image
+                            HeightRequest="45"
+                            HorizontalOptions="End"
+                            Source="tizenlogo.png"
+                            VerticalOptions="Start"
+                            WidthRequest="45" />
+
+                        <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="End">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="48"
+                                HorizontalOptions="Start"
+                                Text="{x:Binding TizenIssuesCount}"
+                                TextColor="#00b5f2"
+                                VerticalOptions="Center" />
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="Open Issues"
+                                TextColor="#00b5f2" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Padding="15"
+                    BackgroundColor="#351a1a"
+                    StrokeShape="RoundRectangle 4">
+                    <Grid>
+                        <Image
+                            HeightRequest="45"
+                            HorizontalOptions="End"
+                            Source="ioslogo.png"
+                            VerticalOptions="Start"
+                            WidthRequest="45" />
+
+                        <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="End">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="48"
+                                HorizontalOptions="Start"
+                                Text="{x:Binding IosIssuesCount}"
+                                TextColor="#fb4f4f"
+                                VerticalOptions="Center" />
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="Open Issues"
+                                TextColor="#fb4f4f" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Padding="15"
+                    BackgroundColor="#1f424d"
+                    StrokeShape="RoundRectangle 4">
+                    <Grid>
+                        <Image
+                            HeightRequest="45"
+                            HorizontalOptions="End"
+                            Source="androidlogo.png"
+                            VerticalOptions="Start"
+                            WidthRequest="45" />
+
+                        <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="End">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="48"
+                                HorizontalOptions="Start"
+                                Text="{x:Binding AndroidIssuesCount}"
+                                TextColor="#1ed75f"
+                                VerticalOptions="Center" />
+                            <Label
+                                HorizontalOptions="Start"
+                                Text="Open Issues"
+                                TextColor="#1ed75f" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+                <Border
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Padding="15"
+                    BackgroundColor="#d6dbfa"
+                    StrokeShape="RoundRectangle 4">
+                    <Grid>
+                        <Image
+                            HeightRequest="45"
+                            HorizontalOptions="End"
+                            Source="windowslogo.png"
+                            VerticalOptions="Start"
+                            WidthRequest="45" />
+
+                        <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="End">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="48"
+                                HorizontalOptions="Start"
+                                Text="{x:Binding WindowsIssueCount}"
+                                TextColor="#0981d8"
+                                VerticalOptions="Center" />
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="Open Issues"
+                                TextColor="#0981d8" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Label
+                Margin="10,0,0,0"
+                Style="{x:StaticResource DocumentSectionTitleStyle}"
+                Text="{x:Binding SectionTitle1}" />
+
+            <Border
+                Margin="10,0,0,0"
+                HeightRequest="400"
+                HorizontalOptions="Fill"
+                StrokeShape="RoundRectangle 250,0,250,0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="1,1">
+                        <GradientStopCollection>
+                            <GradientStop Offset="0" Color="#5286ea" />
+                            <GradientStop Offset="1" Color="Transparent" />
+                        </GradientStopCollection>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <CollectionView
+                    HeightRequest="360"
+                    HorizontalOptions="End"
+                    ItemTemplate="{x:StaticResource Item2Template}"
+                    ItemsLayout="{x:StaticResource Item2Layout}"
+                    ItemsSource="{x:Binding Items2}"
+                    SelectedItem="{x:Binding SelectedItem2,
+                                             Mode=TwoWay}"
+                    SelectionChangedCommand="{x:Binding OpenUrlCommand}"
+                    SelectionChangedCommandParameter="{x:Binding SelectedItem2.Url}"
+                    SelectionMode="Single"
+                    VerticalOptions="Center" />
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</core:BasePage>

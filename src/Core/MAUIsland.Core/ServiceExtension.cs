@@ -12,10 +12,8 @@ namespace MAUIsland.Core;
 
 public static class ServicesExtension
 {
-    public static MauiAppBuilder InitCore(this MauiAppBuilder builder)
+    public static MauiAppBuilder InitCore(this MauiAppBuilder builder, string gitHubFeatureAccessToken)
     {
-
-        //builder.UseMauiCommunityToolkit(option => option.SetShouldEnableSnackbarOnWindows(true));
 
         builder.UseOcr();
         builder.UseAcrylicView();
@@ -24,7 +22,7 @@ public static class ServicesExtension
         builder.UseMaterialComponents();
 
 
-        builder.Services.RegisterGitHubFeatures();
+        builder.Services.RegisterGitHubFeatures(gitHubFeatureAccessToken);
         builder.Services.AddSingleton<IFilePicker, FilePicker>();
         builder.Services.AddTransient<IDialogService, DialogService>();
         builder.Services.AddSingleton<IControlsService, ControlsService>();

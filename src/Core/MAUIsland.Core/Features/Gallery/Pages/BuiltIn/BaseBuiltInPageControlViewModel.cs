@@ -210,6 +210,9 @@ public partial class BaseBuiltInPageControlViewModel : NavigationAwareBaseViewMo
         string storeLink = "https://www.microsoft.com/store/productId/9NLQ0J5P471L";
         string sourceCodeLink = "https://github.com/Strypper/mauisland";
 
+        if (ControlInformation is null)
+            return;
+
         DiscordRpcClient.SetPresence(new RichPresence()
         {
             Buttons = new DiscordRPC.Button[]

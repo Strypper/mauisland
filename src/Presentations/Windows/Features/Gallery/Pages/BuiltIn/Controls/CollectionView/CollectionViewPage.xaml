@@ -428,6 +428,7 @@
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
                             <Label FontSize="Subtitle" Text="{x:StaticResource ControlInfo}" />
                         </Border>
+
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
                             <VerticalStackLayout Spacing="10">
                                 <Label
@@ -497,10 +498,13 @@
                                 <CollectionView ItemsSource="{x:StaticResource RefreshViewCollectionView}" Style="{x:StaticResource PropertiesListStyle}" />
                                 <RefreshView
                                     x:Name="RefreshView"
-                                    Command="{Binding RefreshCommand}"
+                                    Command="{Binding RefreshCollectionViewThatHaveRefreshViewCommand}"
                                     HeightRequest="400"
                                     IsRefreshing="{Binding IsRefreshing}">
-                                    <CollectionView ItemTemplate="{x:StaticResource ControllInfoCollectionTemplate}" ItemsSource="{x:Binding ControlGroupList}" />
+                                    <CollectionView
+                                        EmptyView="Pull down to load data"
+                                        ItemTemplate="{x:StaticResource ControllInfoCollectionTemplate}"
+                                        ItemsSource="{x:Binding ControlGroupListForRefreshExample}" />
                                 </RefreshView>
                             </VerticalStackLayout>
                         </Border>

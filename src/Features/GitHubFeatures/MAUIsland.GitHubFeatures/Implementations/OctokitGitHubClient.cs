@@ -12,9 +12,13 @@ public class OctokitGitHubClient : IGitHubService
 
     #region [ CTor ]
 
-    public OctokitGitHubClient()
+    public OctokitGitHubClient(FeatureSettings featureSettings)
     {
         this.gitClient = new GitHubClient(new ProductHeaderValue(httpHeader));
+
+
+        var tokenAuth = new Credentials(featureSettings.AccessToken);
+        this.gitClient.Credentials = tokenAuth;
     }
     #endregion
 
@@ -231,6 +235,7 @@ public class OctokitGitHubClient : IGitHubService
                 State = issue.State.StringValue,
                 Title = issue.Title,
                 Body = issue.Body,
+                IsOpen = issue.ClosedAt is null ? true : false,
                 User = new GitHubAuthorModel
                 {
                     Id = issue.User.Id,
@@ -414,6 +419,7 @@ public class OctokitGitHubClient : IGitHubService
                 GitUrl = repo.GitUrl,
                 SvnUrl = repo.SvnUrl,
                 Description = repo.Description,
+
             };
             return new ServiceSuccess(Constants.GetRepositorySuccess,
                                       Constants.NotAvailable,

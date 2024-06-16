@@ -305,13 +305,46 @@ public partial class LiveCharts2PageViewModel : NavigationAwareBaseViewModel
     };
 
     public LabelVisual LineSeriesVisualTitle { get; set; } =
-        new LabelVisual
+    new LabelVisual
+    {
+        Text = "Line chart title",
+        TextSize = 25,
+        Padding = new LiveChartsCore.Drawing.Padding(15),
+        Paint = new SolidColorPaint(SKColors.White)
+    };
+
+    public ISeries[] LineSeries2 { get; set; } =
+    {
+        new LineSeries<int>
         {
-            Text = "Line chart title",
-            TextSize = 25,
-            Padding = new LiveChartsCore.Drawing.Padding(15),
-            Paint = new SolidColorPaint(SKColors.White)
-        };
+            Values = new ObservableCollection<int> { 200, 558, 458, 249 },
+            Fill = null
+        }
+    };
+
+    public List<Axis> LineSeries2XAxis { get; set; } = new List<Axis>()
+    {
+        new Axis
+        {
+            Name = "Employee name",
+            NamePaint = new SolidColorPaint(SKColors.White),
+            Labels = new string[] { "Anne", "Johnny", "Zac", "Rosa" },
+            LabelsPaint = new SolidColorPaint(SKColors.White)
+        }
+    };
+
+    public List<Axis> LineSeries2YAxis { get; set; } = new List<Axis>()
+    {
+        new Axis
+        {
+            Name = "Salary",
+            NamePaint = new SolidColorPaint(SKColors.White),
+            Labeler = Labelers.Default,
+            LabelsPaint = new SolidColorPaint(SKColors.White)
+        }
+    };
+
+
     #endregion
 
     #region [ Stacked Column Bars ]
@@ -435,6 +468,52 @@ public LabelVisual PushoutPieChartVisualTitle { get; set; } =
     };
 ";
 
+    [ObservableProperty]
+    string pieChart4XamlCode = @"
+<lvc:PieChart
+    Title=""{x:Binding PieChartWithLegendVisualTitle}""
+    HeightRequest=""400""
+    LegendPosition=""Right""
+    LegendTextPaint=""{x:Binding LegendTextPaint}""
+    Series=""{x:Binding PieSeries4}""
+    WidthRequest=""400"" />";
+
+    [ObservableProperty]
+    string pieChart4CSharpCode = @"
+// Creating a new pie series collection with specific values and colors:
+public IEnumerable<ISeries> PieSeries4 { get; set; } = new List<ISeries>
+{
+    new PieSeries<double>
+    {
+        Values = new List<double> { 8 },
+        Name = ""Android"",
+        Fill = new SolidColorPaint(SKColors.Green)
+    },
+    new PieSeries<double>
+    {
+        Values = new List<double> { 6 },
+        Name = ""IOS"",
+        Fill = new SolidColorPaint(SKColors.Red)
+    },
+    new PieSeries<double>
+    {
+        Values = new List<double> { 4 },
+        Name = ""Windows"",
+        Fill = new SolidColorPaint(SKColors.Blue)
+    }
+};
+
+// Title for the pie chart with a legend.
+public LabelVisual PieChartWithLegendVisualTitle { get; set; } =
+    new LabelVisual
+    {
+        Text = ""Pie Chart With Legend"",
+        TextSize = 25,
+        Padding = new LiveChartsCore.Drawing.Padding(15),
+        Paint = new SolidColorPaint(SKColors.White)
+    };
+";
+
     // you can convert any array, list or IEnumerable<T> to a pie series collection:
     public IEnumerable<ISeries> PieSeries { get; set; } =
         new[] { 2, 4, 1, 4, 3 }.AsPieSeries();
@@ -454,6 +533,27 @@ public LabelVisual PushoutPieChartVisualTitle { get; set; } =
 
         series.Pushout = 30;
     });
+    public IEnumerable<ISeries> PieSeries4 { get; set; } = new List<ISeries>
+    {
+        new PieSeries<double>
+        {
+            Values = new List<double> { 8 },
+            Name = "Android",
+            Fill = new SolidColorPaint(SKColors.Green)
+        },
+        new PieSeries<double>
+        {
+            Values = new List<double> { 6 },
+            Name = "IOS",
+            Fill = new SolidColorPaint(SKColors.Red)
+        },
+        new PieSeries<double>
+        {
+            Values = new List<double> { 4 },
+            Name = "Windows",
+            Fill = new SolidColorPaint(SKColors.Blue)
+        }
+    };
 
     public LabelVisual PieChartVisualTitle { get; set; } =
         new LabelVisual
@@ -476,6 +576,14 @@ public LabelVisual PushoutPieChartVisualTitle { get; set; } =
     new LabelVisual
     {
         Text = "My push out style chart title",
+        TextSize = 25,
+        Padding = new LiveChartsCore.Drawing.Padding(15),
+        Paint = new SolidColorPaint(SKColors.White)
+    };
+    public LabelVisual PieChartWithLegendVisualTitle { get; set; } =
+    new LabelVisual
+    {
+        Text = "Pie Chart With Legend",
         TextSize = 25,
         Padding = new LiveChartsCore.Drawing.Padding(15),
         Paint = new SolidColorPaint(SKColors.White)

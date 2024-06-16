@@ -49,7 +49,6 @@ public class GitHubServiceIntegrationTest
         Assert.NotNull(repositoryModel.Url);
     }
 
-
     [Fact]
     public async Task GetLatestReleaseTest()
     {

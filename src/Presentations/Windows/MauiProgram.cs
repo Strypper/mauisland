@@ -13,18 +13,19 @@ namespace MAUIsland;
 
 public static class MauiProgram
 {
+
     public static MauiApp CreateMauiApp()
     {
 
         var isLocal = true;
 
-
         var builder = MauiApp.CreateBuilder();
+
         builder
             .UseMauiCommunityToolkitCore()
             .UseMauiCommunityToolkitMediaElement()
             .UseMauiCommunityToolkit(options => options.SetShouldEnableSnackbarOnWindows(true))
-            .InitCore()
+            .GetAppSettings()
             .UseMauiApp<App>()
             .ConfigureFonts(fonts =>
             {
@@ -42,7 +43,6 @@ public static class MauiProgram
             .RegisterPopups()
             .RegisterRefitApi(isLocal)
             .RegisterRealTimeConnection(isLocal)
-            .GetAppSettings()
             .ConfigureSyncfusionCore()
             .UseBarcodeReader();
 
@@ -50,6 +50,14 @@ public static class MauiProgram
 #if DEBUG
         //builder.Logging.AddDebug();
 #endif
+
+
+        var serviceProvider = builder.Services.BuildServiceProvider();
+        var appSettings = serviceProvider.GetRequiredService<IConfiguration>()
+                                         .GetRequiredSection("AppSettings")
+                                         .Get<AppSettings>();
+
+        builder.InitCore(gitHubFeatureAccessToken: appSettings.GitHubAccessToken);
 
         return builder.Build();
     }
@@ -79,84 +87,34 @@ public static class MauiProgram
         return builder;
     }
 
-    //static MauiAppBuilder RegisterControlInfos(this MauiAppBuilder builder)
-    //{
-    //    var assemblies = new Assembly[] { typeof(IGalleryCardInfo).Assembly };
-    //    var controlInfoTypes = assemblies
-    //        .SelectMany(
-    //            a => a
-    //                .GetTypes()
-    //                .Where(a => !a.IsAbstract && !a.IsInterface && a.IsAssignableTo(typeof(IGalleryCardInfo))));
-
-    //    foreach (var controlInfoType in controlInfoTypes)
-    //    {
-    //        builder.Services.AddSingleton(typeof(IGalleryCardInfo), controlInfoType);
-    //    }
-    //    return builder;
-    //}
-
     static MauiAppBuilder RegisterControlInfos(this MauiAppBuilder builder)
     {
         var assemblies = new List<Assembly>
-        {
-            typeof(IGalleryCardInfo).Assembly, // Assuming IGalleryCardInfo is now in MAUIsland.Core
-        };
+    {
+        typeof(IGalleryCardInfo).Assembly, // Assuming IGalleryCardInfo is now in MAUIsland.Core
+    };
 
         // Explicitly add the MAUIsland.Core assembly, ensuring it's considered.
         var coreAssembly = AppDomain.CurrentDomain.GetAssemblies()
-                                  .FirstOrDefault(x => x.GetName().Name == "MAUIsland.Core");
+                                                  .FirstOrDefault(x => x.GetName().Name == "MAUIsland.Core");
         if (coreAssembly != null)
         {
             assemblies.Add(coreAssembly);
         }
 
-        var a = assemblies.SelectMany(a => a.GetTypes());
-        var b = a.Where(t => !t.IsAbstract && !t.IsInterface && t.IsAssignableTo(typeof(IGalleryCardInfo)));
-        var c = b.Distinct();
-        var d = c.ToList();
+        var allTypes = assemblies.SelectMany(assembly => assembly.GetTypes());
+        var galleryCardInfoTypes = allTypes.Where(type => !type.IsAbstract && !type.IsInterface && type.IsAssignableTo(typeof(IGalleryCardInfo)));
+        var distinctGalleryCardInfoTypes = galleryCardInfoTypes.Distinct();
+        var galleryCardInfoTypeList = distinctGalleryCardInfoTypes.ToList();
 
-        foreach (var controlInfoType in d)
+        foreach (var controlInfoType in galleryCardInfoTypeList)
         {
             builder.Services.AddSingleton(typeof(IGalleryCardInfo), controlInfoType);
         }
 
-
         return builder;
     }
 
-
-
-    //public static MauiAppBuilder RegisterControlInfos(this MauiAppBuilder builder)
-    //{
-    //    // Explicitly list assemblies you want to scan.
-    //    // This can be adjusted based on your project structure.
-    //    var assembliesToScan = new[]
-    //    {
-    //        typeof(Core.IGalleryCardInfo).Assembly, // Core assembly where the interface is defined.
-    //        Assembly.GetExecutingAssembly(), // Current assembly, could be MAUIsland or another MAUI app.
-    //        // Add other assemblies if necessary.
-    //    };
-
-    //    var controlInfoTypes = assembliesToScan
-    //        .SelectMany(assembly => assembly.GetTypes())
-    //        .Where(type => !type.IsAbstract && !type.IsInterface &&
-    //            (typeof(Core.IGalleryCardInfo).IsAssignableFrom(type) || typeof(IBuiltInGalleryCardInfo).IsAssignableFrom(type)))
-    //        .ToList();
-
-    //    foreach (var controlInfoType in controlInfoTypes)
-    //    {
-    //        if (typeof(IBuiltInGalleryCardInfo).IsAssignableFrom(controlInfoType))
-    //        {
-    //            builder.Services.AddSingleton(typeof(IBuiltInGalleryCardInfo), controlInfoType);
-    //        }
-    //        else if (typeof(Core.IGalleryCardInfo).IsAssignableFrom(controlInfoType))
-    //        {
-    //            builder.Services.AddSingleton(typeof(Core.IGalleryCardInfo), controlInfoType);
-    //        }
-    //    }
-
-    //    return builder;
-    //}
 
     static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {
@@ -172,7 +130,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<IAppInfo>(AppInfo.Current);
         builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
 
-        builder.Services.AddSingleton<DiscordRPC.DiscordRpcClient>(_ =>
+        builder.Configuration.GetSection("AppSettings");
+
+        builder.Services.AddSingleton(_ =>
         {
             var appSettings = ServiceHelper.GetService<IConfiguration>()
                                    .GetRequiredSection("AppSettings")
@@ -199,6 +159,7 @@ public static class MauiProgram
 
             return client;
         });
+
 
         return builder;
     }

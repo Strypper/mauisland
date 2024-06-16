@@ -71,6 +71,9 @@ public partial class CollectionViewPageViewModel : BaseBuiltInPageControlViewMod
     ObservableCollection<IGalleryCardInfo> controlGroupList;
 
     [ObservableProperty]
+    ObservableCollection<IGalleryCardInfo> controlGroupListForRefreshExample;
+
+    [ObservableProperty]
     int spanningNumber = 1;
 
     [ObservableProperty]
@@ -950,8 +953,7 @@ public partial class CollectionViewPageViewModel : BaseBuiltInPageControlViewMod
         base.OnInit(query);
 
         ControlInformation = query.GetData<IBuiltInGalleryCardInfo>();
-
-        LoadDataAsync().FireAndForget();
+        RefreshAsync().FireAndForget();
     }
 
     public override async Task OnAppearingAsync()
@@ -986,6 +988,16 @@ public partial class CollectionViewPageViewModel : BaseBuiltInPageControlViewMod
         IsRefreshing = true;
 
         LoadDataAsync().FireAndForget();
+        LoadRefreshItemSourceAsync().FireAndForget();
+
+        IsRefreshing = false;
+    }
+
+    [RelayCommand]
+    async Task RefreshCollectionViewThatHaveRefreshViewAsync()
+    {
+        IsRefreshing = true;
+        LoadRefreshItemSourceAsync().FireAndForget();
 
         IsRefreshing = false;
     }
@@ -1055,8 +1067,8 @@ public partial class CollectionViewPageViewModel : BaseBuiltInPageControlViewMod
     #region [ Data ]
     private async Task LoadDataAsync()
     {
+        //ControlGroupList.Clear();
         ControlGroupList = new ObservableCollection<IGalleryCardInfo>();
-        ControlGroupList.Clear();
         FilterPickerItems = Enum.GetNames(typeof(GalleryCardType)).ToObservableCollection();
         FilterPickerItems.Add("None");
         SelectedFilterPickerItem = FilterPickerItems.Last();
@@ -1089,6 +1101,19 @@ public partial class CollectionViewPageViewModel : BaseBuiltInPageControlViewMod
             }
         }
         return;
+    }
+
+    async Task LoadRefreshItemSourceAsync()
+    {
+        if (ControlGroupList is null || !ControlGroupList.Any())
+            return;
+
+        ControlGroupListForRefreshExample = new();
+
+        foreach (var item in ControlGroupList)
+        {
+            ControlGroupListForRefreshExample.Add(item);
+        }
     }
     #endregion
 

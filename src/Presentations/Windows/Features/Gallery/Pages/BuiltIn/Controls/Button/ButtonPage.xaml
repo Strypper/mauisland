@@ -32,6 +32,18 @@
             The Button class defines an ImageSource property that allows you to display a small bitmap image on the Button, either alone or in combination with text. You can also specify how the text and image are arranged. The ImageSource property is of type ImageSource, which means that the bitmaps can be loaded from a file, embedded resource, URI, or stream.
         </x:String>
 
+        <x:String x:Key="Note1">
+            While Button defines an ImageSource property, that allows you to display a image on the Button, this property is intended to be used when displaying a small icon next to the Button text.
+        </x:String>
+
+        <x:String x:Key="ControlInfo1">
+            In addition, Button defines Clicked, Pressed, and Released events. The Clicked event is raised when a Button tap with a finger or mouse pointer is released from the button's surface. The Pressed event is raised when a finger presses on a Button, or a mouse button is pressed with the pointer positioned over the Button. The Released event is raised when the finger or mouse button is released. Generally, a Clicked event is also raised at the same time as the Released event, but if the finger or mouse pointer slides away from the surface of the Button before being released, the Clicked event might not occur.
+        </x:String>
+
+        <x:String x:Key="Important">
+            A Button must have its IsEnabled property set to true for it to respond to taps.
+        </x:String>
+
         <x:Array x:Key="PropertyItemsSource" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[
@@ -286,6 +298,9 @@
                                     Footer="{x:StaticResource PropertiesListFooter}"
                                     ItemsSource="{x:StaticResource PropertyItemsSource}"
                                     Style="{x:StaticResource PropertiesListStyle}" />
+                                <core:DocumentAlert AlertType="Note" Text="{x:StaticResource Note1}" />
+                                <Label Text="{x:StaticResource ControlInfo1}" />
+                                <core:DocumentAlert AlertType="Important" Text="{x:StaticResource Important}" />
                             </VerticalStackLayout>
                         </Border>
                         <Border Padding="20" StrokeShape="RoundRectangle 4">
