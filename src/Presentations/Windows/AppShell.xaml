@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:home="clr-namespace:MAUIsland.Home"
     xmlns:showcases="clr-namespace:MAUIsland.Showcases"
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     Shell.FlyoutBehavior="Flyout">
@@ -46,7 +47,7 @@
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent
             Title="Home"
-            ContentTemplate="{DataTemplate app:HomePage}"
+            ContentTemplate="{DataTemplate home:HomePage}"
             Icon="{x:StaticResource HomeIcon}"
             Route="homePage" />
         <!--<ShellContent

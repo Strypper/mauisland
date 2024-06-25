@@ -75,9 +75,24 @@
 
 	<ItemGroup>
 	  <None Remove="appsettings.Development.json" />
+	  <None Remove="Resources\Images\backgrounds\abstract_background_1.jpg" />
 	  <None Remove="Resources\Images\books\dotnet_developers_cross_platform_applications_ebook.png" />
 	  <None Remove="Resources\Images\books\dotnet_maui_in_action.png" />
 	  <None Remove="Resources\Images\books\enterprise_app_patterns_ebook.png" />
+	  <None Remove="Resources\Images\mockups\iphone_15.png" />
+	  <None Remove="Resources\Images\mockups\samsung_s8.png" />
+	  <None Remove="Resources\Images\showcases\calling_app_1.gif" />
+	  <None Remove="Resources\Images\showcases\chick_and_paddy_1.png" />
+	  <None Remove="Resources\Images\showcases\chick_and_paddy_2.png" />
+	  <None Remove="Resources\Images\showcases\chick_and_paddy_3.png" />
+	  <None Remove="Resources\Images\showcases\chick_and_paddy_4.png" />
+	  <None Remove="Resources\Images\showcases\four_seasons_1.gif" />
+	  <None Remove="Resources\Images\showcases\gadgets_store_app_1.gif" />
+	  <None Remove="Resources\Images\showcases\gadgets_store_app_2.gif" />
+	  <None Remove="Resources\Images\showcases\gadgets_store_app_3.gif" />
+	  <None Remove="Resources\Images\showcases\maui_planets_001.png" />
+	  <None Remove="Resources\Images\showcases\maui_planets_002.png" />
+	  <None Remove="Resources\Images\showcases\maui_planets_003.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -92,6 +107,7 @@
 
 	<ItemGroup>
 		<Folder Include="Features\Gallery\Pages\Community\Layouts\" />
+		<Folder Include="Features\Showcases\Models\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -436,6 +452,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<MauiImage Include="Resources\Images\backgrounds\abstract_background_1.jpg" />
 		<MauiImage Include="Resources\Images\backgrounds\maui_homepage_background.jpg" />
 		<MauiImage Include="Resources\Images\backgrounds\pattern_background_image.png" />
 		<MauiImage Include="Resources\Images\banners\builtin_banner.png" />
@@ -446,11 +463,11 @@
 		<MauiImage Include="Resources\Images\books\dotnet_developers_cross_platform_applications_ebook.png" />
 		<MauiImage Include="Resources\Images\books\dotnet_maui_in_action.png" />
 		<MauiImage Include="Resources\Images\books\enterprise_app_patterns_ebook.png" />
-		<MauiImage Include="Resources\Images\logos\androidlogo.svg" />
-		<MauiImage Include="Resources\Images\logos\communitytoolkitlogo.png" />
+		<MauiImage Include="Resources\Images\logos\android_logo.svg" />
+		<MauiImage Include="Resources\Images\logos\community_toolkit_logo.png" />
 		<MauiImage Include="Resources\Images\logos\devexpress_logo.png" />
-		<MauiImage Include="Resources\Images\logos\githublogo.png" />
-		<MauiImage Include="Resources\Images\logos\ioslogo.png" />
+		<MauiImage Include="Resources\Images\logos\github_logo.png" />
+		<MauiImage Include="Resources\Images\logos\ios_logo.png" />
 		<MauiImage Include="Resources\Images\logos\jamesmontemagnologo.png" />
 		<MauiImage Include="Resources\Images\banners\materialui_banner.png" />
 		<MauiImage Include="Resources\Images\logos\materialuilogo.png" />
@@ -458,7 +475,7 @@
 		<MauiImage Include="Resources\Images\logos\mauisland_logo.png" />
 		<MauiImage Include="Resources\Images\logos\mauitoolkit_logo.png" />
 		<MauiImage Include="Resources\Images\logos\syncfusionlogo.png" />
-		<MauiImage Include="Resources\Images\logos\tizenlogo.svg" />
+		<MauiImage Include="Resources\Images\logos\tizen_logo.svg" />
 		<MauiImage Include="Resources\Images\logos\windowslogo.svg" />
 		<MauiImage Include="Resources\Images\members\member_long.png" />
 		<MauiImage Include="Resources\Images\members\member_tan.png" />
@@ -474,6 +491,20 @@
 		<MauiImage Include="Resources\Images\memes\mrincrediblesmile3.png" />
 		<MauiImage Include="Resources\Images\memes\mrincrediblesmile4.png" />
 		<MauiImage Include="Resources\Images\memes\mrincrediblesmile5.png" />
+		<MauiImage Include="Resources\Images\mockups\iphone_15.png" />
+		<MauiImage Include="Resources\Images\mockups\samsung_s8.png" />
+		<MauiImage Include="Resources\Images\showcases\calling_app_1.gif" />
+		<MauiImage Include="Resources\Images\showcases\chick_and_paddy_1.png" />
+		<MauiImage Include="Resources\Images\showcases\chick_and_paddy_2.png" />
+		<MauiImage Include="Resources\Images\showcases\chick_and_paddy_3.png" />
+		<MauiImage Include="Resources\Images\showcases\chick_and_paddy_4.png" />
+		<MauiImage Include="Resources\Images\showcases\four_seasons_1.gif" />
+		<MauiImage Include="Resources\Images\showcases\gadgets_store_app_1.gif" />
+		<MauiImage Include="Resources\Images\showcases\gadgets_store_app_2.gif" />
+		<MauiImage Include="Resources\Images\showcases\gadgets_store_app_3.gif" />
+		<MauiImage Include="Resources\Images\showcases\maui_planets_001.png" />
+		<MauiImage Include="Resources\Images\showcases\maui_planets_002.png" />
+		<MauiImage Include="Resources\Images\showcases\maui_planets_003.png" />
 	</ItemGroup>
 
 	<ItemGroup>

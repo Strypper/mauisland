@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIsland.Core.SamsungS8ContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    x:Name="root"
+    x:DataType="core:SamsungS8ContentView"
+    Loaded="root_Loaded">
+    <ContentView.Resources>
+        <FontImageSource
+            x:Key="BackIcon"
+            FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static core:FluentUIIcon.Ic_fluent_arrow_circle_left_24_regular}"
+            Color="{x:Static core:AppColors.White}" />
+
+        <FontImageSource
+            x:Key="NextIcon"
+            FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+            Glyph="{x:Static core:FluentUIIcon.Ic_fluent_arrow_circle_right_24_regular}"
+            Color="{x:Static core:AppColors.White}" />
+    </ContentView.Resources>
+
+    <Grid HeightRequest="400" WidthRequest="200">
+        <Border
+            HeightRequest="315"
+            StrokeShape="RoundRectangle 20"
+            StrokeThickness="1"
+            WidthRequest="160">
+            <CollectionView
+                x:Name="MockUpCarousel"
+                BackgroundColor="Black"
+                BindingContext="{x:Reference root}"
+                HorizontalOptions="FillAndExpand"
+                HorizontalScrollBarVisibility="Never"
+                InputTransparent="True"
+                ItemsSource="{x:Binding ComponentData.MockUps,
+                                        Mode=OneWay}"
+                ItemsUpdatingScrollMode="KeepItemsInView"
+                SelectedItem="{x:Binding SelectedMockUp,
+                                         Mode=TwoWay}"
+                SelectionMode="Single"
+                VerticalOptions="Fill">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                        ItemSpacing="0"
+                        Orientation="Horizontal"
+                        SnapPointsAlignment="Center"
+                        SnapPointsType="MandatorySingle" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type x:String}">
+                        <Border
+                            Padding="0"
+                            HeightRequest="315"
+                            StrokeShape="RoundRectangle 20"
+                            WidthRequest="160">
+                            <Image
+                                Aspect="AspectFit"
+                                HorizontalOptions="Center"
+                                IsAnimationPlaying="True"
+                                Source="{x:Binding Mode=OneWay}"
+                                VerticalOptions="Center" />
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Border>
+        <Image
+            HeightRequest="348"
+            HorizontalOptions="Center"
+            InputTransparent="True"
+            Source="samsung_s8.png"
+            VerticalOptions="Center" />
+        <ImageButton
+            x:Name="BackButton"
+            Margin="22,0,0,0"
+            BackgroundColor="Transparent"
+            BorderColor="White"
+            BorderWidth="2"
+            Clicked="BackButton_Clicked"
+            CornerRadius="20"
+            HeightRequest="340"
+            HorizontalOptions="Start"
+            Opacity="0"
+            Source="{x:StaticResource BackIcon}"
+            VerticalOptions="Center"
+            WidthRequest="40">
+            <ImageButton.GestureRecognizers>
+                <PointerGestureRecognizer PointerEntered="PointerGestureRecognizer_PointerEntered" PointerExited="PointerGestureRecognizer_PointerExited" />
+            </ImageButton.GestureRecognizers>
+        </ImageButton>
+        <ImageButton
+            x:Name="NextButton"
+            Margin="0,0,22,0"
+            BackgroundColor="Transparent"
+            BorderColor="White"
+            BorderWidth="2"
+            Clicked="NextButton_Clicked"
+            CornerRadius="20"
+            HeightRequest="340"
+            HorizontalOptions="End"
+            Opacity="0"
+            Source="{x:StaticResource NextIcon}"
+            VerticalOptions="Center"
+            WidthRequest="40">
+            <ImageButton.GestureRecognizers>
+                <PointerGestureRecognizer PointerEntered="PointerGestureRecognizer_PointerEntered" PointerExited="PointerGestureRecognizer_PointerExited" />
+            </ImageButton.GestureRecognizers>
+        </ImageButton>
+    </Grid>
+</ContentView>

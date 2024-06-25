@@ -115,6 +115,13 @@
 	  <Compile Update="Views\ContentViews\DocumentAlert.xaml.cs">
 	    <DependentUpon>DocumentAlert.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\ContentViews\MockUps\SamsungS8ContentView.xaml.cs">
+	    <SubType>Code</SubType>
+	    <DependentUpon>SamsungS8ContentView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ContentViews\MockUps\Iphone15ContentView.xaml.cs">
+	    <DependentUpon>Iphone15ContentView.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -155,6 +162,13 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ContentViews\DocumentAlert.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentViews\MockUps\SamsungS8ContentView.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentViews\MockUps\Iphone15ContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ContentViews\SourceCodeExpander\SourceCodeExpanderContent.xaml">

@@ -66,7 +66,7 @@ public class ControlsService : IControlsService
             Version= "None",
             BrandColor = Color.FromArgb("#000000"),
             ButtonTextColor = Colors.White,
-            IconUrl = "githublogo.png",
+            IconUrl = "github_logo.png",
             Author = "Community",
             Banner = "github_banner.png",
             ProviderUrl = "https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/",

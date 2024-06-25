@@ -3,25 +3,24 @@
     x:Class="MAUIsland.Core.SourceCodeExpander"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:app="clr-namespace:MAUIsland.Core"
     xmlns:core="clr-namespace:MAUIsland.Core"
     xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:Name="root"
-    x:DataType="app:SourceCodeExpander"
+    x:DataType="core:SourceCodeExpander"
     Loaded="root_Loaded">
 
     <ContentView.Resources>
         <FontImageSource
             x:Key="CopyIcon"
-            FontFamily="{x:Static app:FontNames.FluentSystemIconsRegular}"
-            Glyph="{Static app:FluentUIIcon.Ic_fluent_copy_24_regular}"
-            Color="{x:Static app:AppColors.Black}" />
+            FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static core:FluentUIIcon.Ic_fluent_copy_24_regular}"
+            Color="{x:Static core:AppColors.Black}" />
     </ContentView.Resources>
 
     <Frame
         x:Name="ComponentFrame"
-        BackgroundColor="{x:Static app:AppColors.White}"
+        BackgroundColor="{x:Static core:AppColors.White}"
         Style="{x:StaticResource DocumentContentFrameStyle}">
         <toolkit:Expander
             x:Name="CodeExpander"
@@ -69,7 +68,7 @@
                     </HorizontalStackLayout>
                 </Grid>
             </toolkit:Expander.Header>
-            <app:LazyViewSourceCodeExpanderContent BindingContext="{x:Binding OutputFormattedString, Source={x:Reference root}}" />
+            <core:LazyViewSourceCodeExpanderContent BindingContext="{x:Binding OutputFormattedString, Source={x:Reference root}}" />
         </toolkit:Expander>
     </Frame>
 </ContentView>

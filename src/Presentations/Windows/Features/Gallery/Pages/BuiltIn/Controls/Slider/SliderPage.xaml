@@ -124,7 +124,7 @@
     </core:BasePage.Resources>
 
     <core:BasePage.ToolbarItems>
-        <ToolbarItem IconImageSource="githublogo.png" Text="Source code" />
+        <ToolbarItem IconImageSource="github_logo.png" Text="Source code" />
         <ToolbarItem IconImageSource="microsoft.png" Text="Original Document" />
     </core:BasePage.ToolbarItems>
 
@@ -150,7 +150,7 @@
                                 <HorizontalStackLayout Spacing="10">
                                     <Image
                                         HeightRequest="25"
-                                        Source="githublogo.png"
+                                        Source="github_logo.png"
                                         VerticalOptions="Center"
                                         WidthRequest="25" />
 

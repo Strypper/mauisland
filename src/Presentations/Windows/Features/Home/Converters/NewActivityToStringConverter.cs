@@ -1,11 +1,11 @@
-﻿namespace MAUIsland;
+﻿namespace MAUIsland.Home;
 
 public class NewActivityToStringConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         var newActivity = (NewActivity)value;
-        return newActivity switch 
+        return newActivity switch
         {
             NewActivity.Enhancement => "Enhance",
             NewActivity.AddFeature => "Add",

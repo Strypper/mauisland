@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView
-    x:Class="MAUIsland.ControlActivityCardContentView"
+    x:Class="MAUIsland.Home.ControlActivityCardContentView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:acrylic="clr-namespace:Xe.AcrylicView;assembly=Xe.AcrylicView"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:home="clr-namespace:MAUIsland.Home"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:Name="root">
 
     <ContentView.Resources>
 
-        <app:NewActivityToStringConverter x:Key="NewActivityToStringConverter" />
+        <home:NewActivityToStringConverter x:Key="NewActivityToStringConverter" />
         <core:DateTimeToSimpleDateTimeStringConverter x:Key="DateTimeToSimpleDateTimeStringConverter" />
 
         <FontImageSource

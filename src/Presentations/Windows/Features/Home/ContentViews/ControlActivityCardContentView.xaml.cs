@@ -1,4 +1,4 @@
-namespace MAUIsland;
+namespace MAUIsland.Home;
 
 public partial class ControlActivityCardContentView : ContentView
 {

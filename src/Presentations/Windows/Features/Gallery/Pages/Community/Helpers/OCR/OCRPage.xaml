@@ -15,12 +15,12 @@
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
             CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
-            IconImageSource="githublogo.png"
+            IconImageSource="github_logo.png"
             Text="Source code" />
         <ToolbarItem
             Command="{x:Binding OpenUrlCommand}"
             CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
-            IconImageSource="githublogo.png"
+            IconImageSource="github_logo.png"
             Text="Original Source" />
     </core:BasePage.ToolbarItems>
 

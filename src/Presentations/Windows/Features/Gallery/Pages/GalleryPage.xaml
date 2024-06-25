@@ -32,7 +32,7 @@
             Aspect="AspectFill"
             HorizontalOptions="Fill"
             Opacity="0.7"
-            Source="fluentuibackground.jpg"
+            Source="fluent_ui_background.jpg"
             VerticalOptions="Fill" />
 
         <!--<acrylic:AcrylicView

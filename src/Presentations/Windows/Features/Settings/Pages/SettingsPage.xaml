@@ -60,7 +60,7 @@
                     CornerRadius="10"
                     HeightRequest="80"
                     HorizontalOptions="Start"
-                    Source="githublogo.png"
+                    Source="github_logo.png"
                     VerticalOptions="Start"
                     WidthRequest="80" />
                 <Label
