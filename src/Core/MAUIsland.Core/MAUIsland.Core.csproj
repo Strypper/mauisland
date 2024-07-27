@@ -29,17 +29,17 @@
 		<PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
 		<PackageReference Include="Material.Components.Maui" Version="0.2.2-preview" />
 		<PackageReference Include="IconPacks.Material" Version="1.0.8919.2-build" />
-		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.1" />
-		<PackageReference Include="CommunityToolkit.Maui.Core" Version="9.0.1" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.2" />
+		<PackageReference Include="CommunityToolkit.Maui.Core" Version="9.0.2" />
 		<PackageReference Include="CommunityToolkit.Common" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="3.1.0" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.40" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.40" />
-		<PackageReference Include="Octokit" Version="11.0.1" />
+		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="4.0.1" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.70" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.70" />
+		<PackageReference Include="Octokit" Version="13.0.1" />
 		<PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-rc2" />
-		<PackageReference Include="Plugin.Maui.OCR" Version="1.0.11" />
+		<PackageReference Include="Plugin.Maui.OCR" Version="1.0.12" />
 		<PackageReference Include="SkiaSharp" Version="2.88.8" />
 		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0" />
 		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.8" />
@@ -115,6 +115,10 @@
 	  <Compile Update="Views\ContentViews\DocumentAlert.xaml.cs">
 	    <DependentUpon>DocumentAlert.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\ContentViews\MockUps\Iphone13MiniContentView.xaml.cs">
+	    <SubType>Code</SubType>
+	    <DependentUpon>Iphone13MiniContentView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\ContentViews\MockUps\SamsungS8ContentView.xaml.cs">
 	    <SubType>Code</SubType>
 	    <DependentUpon>SamsungS8ContentView.xaml</DependentUpon>
@@ -164,11 +168,21 @@
 	  <MauiXaml Update="Views\ContentViews\DocumentAlert.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentViews\MockUps\Iphone13MiniContentView.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentViews\MockUps\SamsungGalaxyS22UltraContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ContentViews\MockUps\SamsungS8ContentView.xaml">
 	    <SubType>Designer</SubType>
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ContentViews\MockUps\Iphone15ContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentViews\Showcases\MobileAppShowcaseContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ContentViews\SourceCodeExpander\SourceCodeExpanderContent.xaml">

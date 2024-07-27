@@ -77,15 +77,11 @@ public partial class SamsungS8ContentView : ContentView
         SelectedMockUp = ComponentData.MockUps[prevIndex];
         MockUpCarousel.ScrollTo(prevIndex);
     }
-    #endregion
-
-    #region [ Methods - Private ]
-
-    #endregion
 
     private void PointerGestureRecognizer_PointerEntered(object sender, PointerEventArgs e)
     {
-        if (ComponentData.MockUps.Count == 1)
+
+        if (ComponentData is null || ComponentData.MockUps.Count == 1)
             return;
 
         var button = (ImageButton)sender;
@@ -94,10 +90,15 @@ public partial class SamsungS8ContentView : ContentView
 
     private void PointerGestureRecognizer_PointerExited(object sender, PointerEventArgs e)
     {
-        if (ComponentData.MockUps.Count == 1)
+        if (ComponentData is null || ComponentData.MockUps.Count == 1)
             return;
 
         var button = (ImageButton)sender;
         button.FadeTo(0, 1500);
     }
+    #endregion
+
+    #region [ Methods - Private ]
+
+    #endregion
 }

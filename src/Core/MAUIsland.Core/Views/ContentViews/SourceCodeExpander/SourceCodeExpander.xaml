@@ -20,7 +20,7 @@
 
     <Frame
         x:Name="ComponentFrame"
-        BackgroundColor="{x:Static core:AppColors.White}"
+        BackgroundColor="{x:Static core:AppColors.Black}"
         Style="{x:StaticResource DocumentContentFrameStyle}">
         <toolkit:Expander
             x:Name="CodeExpander"

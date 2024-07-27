@@ -364,8 +364,8 @@
                             TextColor="Black" />
                     </HorizontalStackLayout>
                     <HorizontalStackLayout HorizontalOptions="Center">
-                        <core:Iphone15ContentView ComponentData="{x:Binding MauiPlanet}" />
-                        <core:Iphone15ContentView ComponentData="{x:Binding ChickAndPaddy}" />
+                        <!--<core:Iphone15ContentView ItemsSource="{x:Binding MauiPlanet}" />
+                        <core:Iphone15ContentView ItemsSource="{x:Binding ChickAndPaddy}" />-->
                         <core:SamsungS8ContentView ComponentData="{x:Binding CallingApp}" />
                         <core:SamsungS8ContentView ComponentData="{x:Binding GadgetsStoreApp}" />
                         <core:SamsungS8ContentView ComponentData="{x:Binding FourSeasonsApp}" />

@@ -3,18 +3,221 @@
     x:Class="MAUIsland.Showcases.ShowcasesPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:acrylic="clr-namespace:Xe.AcrylicView;assembly=Xe.AcrylicView"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
     xmlns:showcases="clr-namespace:MAUIsland.Showcases"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:DataType="showcases:ShowcasesPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    SizeChanged="BasePage_SizeChanged">
 
-    <core:BasePage.Resources />
+    <core:BasePage.Resources>
+        <FontImageSource
+            x:Key="ShowcasesIcon"
+            FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static core:FluentUIIcon.Ic_fluent_star_emphasis_20_regular}"
+            Color="Yellow" />
 
-    <Grid>
-        <core:Iphone15ContentView />
-    </Grid>
+        <FontImageSource
+            x:Key="PullRequestIcon"
+            FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static core:FluentUIIcon.Ic_fluent_arrow_reply_all_20_regular}"
+            Color="#004D4D" />
 
+        <FontImageSource
+            x:Key="MockUpIcon"
+            FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static core:FluentUIIcon.Ic_fluent_phone_vertical_scroll_20_regular}"
+            Color="#004D4D" />
+
+        <LinearGradientBrush x:Key="PullRequestGradient" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0.0" Color="#FFEDC9" />
+            <!--  Light Sand  -->
+            <GradientStop Offset="1.0" Color="#9AD3BC" />
+            <!--  Light Ocean Blue  -->
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="MockUpGradient" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0.0" Color="#49A8DE" />
+            <!--  Light Sand  -->
+            <GradientStop Offset="1.0" Color="#3B5998" />
+            <!--  Light Ocean Blue  -->
+        </LinearGradientBrush>
+
+        <FontImageSource
+            x:Key="HeartIcon"
+            FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static core:FluentUIIcon.Ic_fluent_heart_20_regular}"
+            Color="DeepPink" />
+
+        <DataTemplate x:Key="ShowcasesItemTemplate">
+            <Border
+                Padding="13,0,28,28"
+                HorizontalOptions="Center"
+                MaximumWidthRequest="320"
+                StrokeShape="RoundRectangle 14"
+                VerticalOptions="Center">
+                <Grid
+                    ColumnDefinitions="*, 65"
+                    RowDefinitions="*, 34"
+                    RowSpacing="50">
+                    <core:Iphone15ContentView HeightRequest="400" HorizontalOptions="Center" />
+                    <Label
+                        Margin="0,0,0,-22"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="Radio Shopping App"
+                        VerticalOptions="End" />
+                    <HorizontalStackLayout
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        HorizontalOptions="Center"
+                        Spacing="28"
+                        VerticalOptions="Center">
+                        <Image
+                            HeightRequest="28"
+                            Source="windowslogo.png"
+                            WidthRequest="28" />
+                        <Image
+                            HeightRequest="28"
+                            Source="android_logo.png"
+                            WidthRequest="28" />
+                        <Image
+                            HeightRequest="28"
+                            Source="ios_logo.png"
+                            WidthRequest="28" />
+                        <Image
+                            HeightRequest="28"
+                            Source="tizen_logo.png"
+                            WidthRequest="28" />
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout
+                        Grid.Column="1"
+                        Margin="13,30,0,0"
+                        Spacing="28"
+                        VerticalOptions="Start">
+                        <Border StrokeShape="RoundRectangle 25">
+                            <Image
+                                HeightRequest="48"
+                                Source="member_tan.png"
+                                WidthRequest="48" />
+                        </Border>
+                        <VerticalStackLayout>
+                            <ImageButton
+                                CornerRadius="25"
+                                HeightRequest="50"
+                                Source="{x:StaticResource ShowcasesIcon}"
+                                WidthRequest="50" />
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="1.3k"
+                                VerticalOptions="Center" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <ImageButton
+                                Padding="0"
+                                CornerRadius="25"
+                                HeightRequest="50"
+                                Source="dotnet_maui_logo.png"
+                                ToolTipProperties.Text=".NET MAUI"
+                                WidthRequest="50" />
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="Tech"
+                                VerticalOptions="Center" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <ImageButton
+                                Padding="8"
+                                CornerRadius="25"
+                                HeightRequest="50"
+                                Source="github_logo.png"
+                                WidthRequest="50" />
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="Source"
+                                VerticalOptions="Center" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <x:Array x:Key="DummyData" Type="{x:Type x:String}">
+            <x:String>1</x:String>
+            <x:String>1</x:String>
+            <x:String>1</x:String>
+            <x:String>1</x:String>
+            <x:String>1</x:String>
+        </x:Array>
+        <GridItemsLayout
+            x:Key="ShowcasesItemLayout"
+            HorizontalItemSpacing="4"
+            Orientation="Vertical"
+            Span="{x:Binding CollectionViewSpan,
+                             Mode=OneWay}"
+            VerticalItemSpacing="14" />
+    </core:BasePage.Resources>
+
+    <ScrollView>
+
+        <Grid RowDefinitions="200, *">
+            <Grid
+                Padding="16,16,16,8"
+                ColumnDefinitions="*,*,*,*"
+                ColumnSpacing="16">
+                <Border Grid.ColumnSpan="2" StrokeShape="RoundRectangle 14" />
+                <Border
+                    Grid.Column="2"
+                    Grid.ColumnSpan="1"
+                    Padding="16"
+                    StrokeShape="RoundRectangle 14">
+                    <Grid ColumnDefinitions="2*, *">
+                        <VerticalStackLayout Spacing="16">
+                            <Label
+                                FontSize="Title"
+                                Text="Contribute"
+                                TextDecorations="Underline" />
+                        </VerticalStackLayout>
+                        <Button
+                            Grid.Column="1"
+                            Background="{x:StaticResource PullRequestGradient}"
+                            BorderColor="#004D4D"
+                            BorderWidth="3"
+                            ImageSource="{x:StaticResource PullRequestIcon}" />
+                    </Grid>
+                </Border>
+                <Border
+                    Grid.Column="3"
+                    Grid.ColumnSpan="1"
+                    Padding="16"
+                    StrokeShape="RoundRectangle 14">
+                    <Grid ColumnDefinitions="2*, *">
+                        <VerticalStackLayout Spacing="16">
+                            <Label
+                                FontSize="Title"
+                                Text="Mock Up"
+                                TextDecorations="Underline" />
+                        </VerticalStackLayout>
+                        <Button
+                            Grid.Column="1"
+                            Background="{x:StaticResource MockUpGradient}"
+                            BorderColor="#004D4D"
+                            BorderWidth="3"
+                            Command="{x:Binding NavigateCommand}"
+                            CommandParameter="{x:Binding MockUpPageUrl}"
+                            ImageSource="{x:StaticResource MockUpIcon}" />
+                    </Grid>
+                </Border>
+            </Grid>
+            <CollectionView
+                Grid.Row="1"
+                ItemTemplate="{x:StaticResource ShowcasesItemTemplate}"
+                ItemsLayout="{x:StaticResource ShowcasesItemLayout}"
+                ItemsSource="{x:StaticResource DummyData}" />
+        </Grid>
+
+    </ScrollView>
 </core:BasePage>

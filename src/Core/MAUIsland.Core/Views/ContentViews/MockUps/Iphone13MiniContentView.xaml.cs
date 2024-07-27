@@ -1,35 +1,40 @@
+
 namespace MAUIsland.Core;
 
-public partial class Iphone15ContentView : ContentView
+public partial class Iphone13MiniContentView : ContentView
 {
 
     #region [ CTor ]
 
-    public Iphone15ContentView()
+    public Iphone13MiniContentView()
     {
         InitializeComponent();
     }
 
     #endregion
 
-    #region [ Properties ]
+    #region [ Bindable Properties ]
 
-    private string selectedMockUp;
+
+    public static readonly BindableProperty SelectedMockUpProperty = BindableProperty.Create(
+    nameof(SelectedMockUp),
+    typeof(string),
+    typeof(Iphone13MiniContentView),
+    default(string),
+    BindingMode.TwoWay);
 
     public string SelectedMockUp
     {
-        get { return selectedMockUp; }
-        set { selectedMockUp = value; OnPropertyChanged("SelectedMockUp"); }
+        get => (string)GetValue(SelectedMockUpProperty);
+        set => SetValue(SelectedMockUpProperty, value);
     }
-    #endregion
-
-    #region [ Bindable Properties ]
 
     public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource),
                                                                                    typeof(ObservableCollection<string>),
-                                                                                   typeof(Iphone15ContentView),
+                                                                                   typeof(Iphone13MiniContentView),
                                                                                    default(ObservableCollection<string>),
                                                                                    BindingMode.OneWay);
+
     public ObservableCollection<string> ItemsSource
     {
         get => (ObservableCollection<string>)GetValue(ItemsSourceProperty);
@@ -41,6 +46,7 @@ public partial class Iphone15ContentView : ContentView
 
     private void root_Loaded(object sender, EventArgs e)
     {
+
         if (ItemsSource is null
             ||
            !ItemsSource.Any()
@@ -53,29 +59,29 @@ public partial class Iphone15ContentView : ContentView
 
     private void NextButton_Clicked(object sender, EventArgs e)
     {
+        if (ItemsSource is null)
+            return;
+
         var indexOfCurrent = ItemsSource.IndexOf(SelectedMockUp);
         if (indexOfCurrent == ItemsSource.Count - 1)
             return;
 
         var nextIndex = indexOfCurrent + 1;
         SelectedMockUp = ItemsSource[nextIndex];
-        MockUpCarousel.ScrollTo(nextIndex);
     }
 
     private void BackButton_Clicked(object sender, EventArgs e)
     {
+        if (ItemsSource is null)
+            return;
+
         var indexOfCurrent = ItemsSource.IndexOf(SelectedMockUp);
         if (indexOfCurrent <= 0)
             return;
 
         var prevIndex = indexOfCurrent - 1;
         SelectedMockUp = ItemsSource[prevIndex];
-        MockUpCarousel.ScrollTo(prevIndex);
     }
-    #endregion
-
-    #region [ Methods - Private ]
-
 
     private void PointerGestureRecognizer_PointerEntered(object sender, PointerEventArgs e)
     {
@@ -95,6 +101,9 @@ public partial class Iphone15ContentView : ContentView
         var button = (ImageButton)sender;
         button.FadeTo(0, 1500);
     }
+    #endregion
+
+    #region [ Methods - Private ]
 
     private async Task ExportMockUp()
     {

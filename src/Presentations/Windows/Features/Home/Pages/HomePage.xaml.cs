@@ -24,9 +24,6 @@ public partial class HomePage
 
     private void BasePage_Appearing(object sender, EventArgs e)
     {
-#if WINDOWS
-            ResizeWindows();
-#else
-#endif
+        ResizeWindows();
     }
 }

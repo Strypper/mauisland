@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView
-    x:Class="MAUIsland.Core.Iphone15ContentView"
+    x:Class="MAUIsland.Core.SamsungGalaxyS22UltraContentView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     x:Name="root"
-    x:DataType="core:Iphone15ContentView"
     Loaded="root_Loaded">
+
     <ContentView.Resources>
         <FontImageSource
             x:Key="BackIcon"
@@ -23,61 +23,32 @@
         <core:InnerFrameDimensionConverter x:Key="InnerFrameDimensionConverter" />
     </ContentView.Resources>
 
+
     <Grid>
         <Border
-            Margin="0,0,0,0"
-            BackgroundColor="Red"
-            HeightRequest="{x:Binding Height,
-                                      Mode=OneWay,
-                                      Source={x:Reference Frame},
-                                      Converter={x:StaticResource InnerFrameDimensionConverter},
-                                      ConverterParameter='18'}"
-            StrokeShape="RoundRectangle 30"
+            Padding="0"
+            HeightRequest="{Binding Source={x:Reference Frame}, Path=Height, Converter={x:StaticResource InnerFrameDimensionConverter}, ConverterParameter='0'}"
+            MinimumHeightRequest="400"
+            StrokeShape="RoundRectangle 0"
             StrokeThickness="0"
-            WidthRequest="{x:Binding Width,
-                                     Mode=OneWay,
-                                     Source={x:Reference Frame},
-                                     Converter={x:StaticResource InnerFrameDimensionConverter},
-                                     ConverterParameter='8'}">
-            <CollectionView
-                x:Name="MockUpCarousel"
+            WidthRequest="{Binding Source={x:Reference Frame}, Path=Width, Converter={x:StaticResource InnerFrameDimensionConverter}, ConverterParameter='0'}">
+            <Image
+                Aspect="AspectFit"
                 BindingContext="{x:Reference root}"
-                HorizontalOptions="Fill"
-                HorizontalScrollBarVisibility="Never"
-                ItemsSource="{x:Binding ItemsSource,
-                                        Mode=OneWay}"
-                ItemsUpdatingScrollMode="KeepItemsInView"
-                SelectedItem="{x:Binding SelectedMockUp,
-                                         Mode=TwoWay}"
-                SelectionMode="Single"
-                VerticalOptions="Fill">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout
-                        ItemSpacing="0"
-                        Orientation="Horizontal"
-                        SnapPointsAlignment="Center"
-                        SnapPointsType="MandatorySingle" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="{x:Type x:String}">
-                        <Grid Padding="0">
-                            <Image
-                                Aspect="AspectFill"
-                                BackgroundColor="Red"
-                                HorizontalOptions="CenterAndExpand"
-                                IsAnimationPlaying="True"
-                                Source="{x:Binding Mode=OneWay}"
-                                VerticalOptions="CenterAndExpand" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                HorizontalOptions="CenterAndExpand"
+                IsAnimationPlaying="True"
+                MinimumHeightRequest="400"
+                Source="{x:Binding SelectedMockUp,
+                                   Mode=OneWay}"
+                VerticalOptions="CenterAndExpand" />
         </Border>
         <Image
             x:Name="Frame"
+            Aspect="AspectFit"
             HorizontalOptions="Center"
             InputTransparent="True"
-            Source="iphone_15.png"
+            MinimumHeightRequest="400"
+            Source="samsung_galaxy_s22_ultra_2022.png"
             VerticalOptions="Center" />
         <ImageButton
             x:Name="BackButton"

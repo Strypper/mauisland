@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using MAUIsland.Mockup;
+using Microsoft.Extensions.Configuration;
 
 namespace MAUIsland;
 
@@ -30,6 +31,7 @@ public partial class AppShell : Shell
     #region [ Methods ]
     void RegisterRoutes()
     {
+        Routing.RegisterRoute(nameof(MockupPage), typeof(MockupPage));
         Routing.RegisterRoute(nameof(CardsByGroupPage), typeof(CardsByGroupPage));
     }
     void WriteAppVersion()

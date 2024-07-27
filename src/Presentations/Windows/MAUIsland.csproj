@@ -75,11 +75,15 @@
 
 	<ItemGroup>
 	  <None Remove="appsettings.Development.json" />
+	  <None Remove="Resources\Images\backgrounds\abstract_background.jpg" />
 	  <None Remove="Resources\Images\backgrounds\abstract_background_1.jpg" />
 	  <None Remove="Resources\Images\books\dotnet_developers_cross_platform_applications_ebook.png" />
 	  <None Remove="Resources\Images\books\dotnet_maui_in_action.png" />
 	  <None Remove="Resources\Images\books\enterprise_app_patterns_ebook.png" />
+	  <None Remove="Resources\Images\logos\dotnet_maui_logo.svg" />
+	  <None Remove="Resources\Images\mockups\apple_iphone_13_mini.png" />
 	  <None Remove="Resources\Images\mockups\iphone_15.png" />
+	  <None Remove="Resources\Images\mockups\samsung_galaxy_s22_ultra_2022.png" />
 	  <None Remove="Resources\Images\mockups\samsung_s8.png" />
 	  <None Remove="Resources\Images\showcases\calling_app_1.gif" />
 	  <None Remove="Resources\Images\showcases\chick_and_paddy_1.png" />
@@ -90,16 +94,17 @@
 	  <None Remove="Resources\Images\showcases\gadgets_store_app_1.gif" />
 	  <None Remove="Resources\Images\showcases\gadgets_store_app_2.gif" />
 	  <None Remove="Resources\Images\showcases\gadgets_store_app_3.gif" />
+	  <None Remove="Resources\Images\showcases\grab_food.jpg" />
 	  <None Remove="Resources\Images\showcases\maui_planets_001.png" />
 	  <None Remove="Resources\Images\showcases\maui_planets_002.png" />
 	  <None Remove="Resources\Images\showcases\maui_planets_003.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.40" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.40" />
-		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.6" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.70" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.70" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.7" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0-preview.1.24080.9" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -176,6 +181,9 @@
 		</Compile>
 		<Compile Update="Features\Home\Pages\HomePage.xaml.cs">
 			<DependentUpon>HomePage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Features\Mockup\Pages\MockupPage.xaml.cs">
+		  <DependentUpon>MockupPage.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Features\Showcases\Pages\ShowcasesPage.xaml.cs">
 		  <DependentUpon>ShowcasesPage.xaml</DependentUpon>
@@ -302,6 +310,15 @@
 		</MauiXaml>
 		<MauiXaml Update="Features\Home\ContentViews\ControlActivityCardContentView.xaml">
 			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Mockup\ContentViews\AddButtonContentView\AddButtonContentView.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Mockup\ContentViews\MockupPreviewItemContentView\MockupPreviewItemContentView.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Mockup\Pages\MockupPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Settings\Pages\SettingsPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
@@ -452,6 +469,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<MauiImage Include="Resources\Images\backgrounds\abstract_background.jpg" />
 		<MauiImage Include="Resources\Images\backgrounds\abstract_background_1.jpg" />
 		<MauiImage Include="Resources\Images\backgrounds\maui_homepage_background.jpg" />
 		<MauiImage Include="Resources\Images\backgrounds\pattern_background_image.png" />
@@ -466,6 +484,7 @@
 		<MauiImage Include="Resources\Images\logos\android_logo.svg" />
 		<MauiImage Include="Resources\Images\logos\community_toolkit_logo.png" />
 		<MauiImage Include="Resources\Images\logos\devexpress_logo.png" />
+		<MauiImage Include="Resources\Images\logos\dotnet_maui_logo.svg" />
 		<MauiImage Include="Resources\Images\logos\github_logo.png" />
 		<MauiImage Include="Resources\Images\logos\ios_logo.png" />
 		<MauiImage Include="Resources\Images\logos\jamesmontemagnologo.png" />
@@ -491,7 +510,9 @@
 		<MauiImage Include="Resources\Images\memes\mrincrediblesmile3.png" />
 		<MauiImage Include="Resources\Images\memes\mrincrediblesmile4.png" />
 		<MauiImage Include="Resources\Images\memes\mrincrediblesmile5.png" />
+		<MauiImage Include="Resources\Images\mockups\apple_iphone_13_mini.png" />
 		<MauiImage Include="Resources\Images\mockups\iphone_15.png" />
+		<MauiImage Include="Resources\Images\mockups\samsung_galaxy_s22_ultra_2022.png" />
 		<MauiImage Include="Resources\Images\mockups\samsung_s8.png" />
 		<MauiImage Include="Resources\Images\showcases\calling_app_1.gif" />
 		<MauiImage Include="Resources\Images\showcases\chick_and_paddy_1.png" />
@@ -502,6 +523,7 @@
 		<MauiImage Include="Resources\Images\showcases\gadgets_store_app_1.gif" />
 		<MauiImage Include="Resources\Images\showcases\gadgets_store_app_2.gif" />
 		<MauiImage Include="Resources\Images\showcases\gadgets_store_app_3.gif" />
+		<MauiImage Include="Resources\Images\showcases\grab_food.jpg" />
 		<MauiImage Include="Resources\Images\showcases\maui_planets_001.png" />
 		<MauiImage Include="Resources\Images\showcases\maui_planets_002.png" />
 		<MauiImage Include="Resources\Images\showcases\maui_planets_003.png" />

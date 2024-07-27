@@ -127,7 +127,7 @@ public class FormattedStringFormatter : CodeColorizerBase
 
         if (!string.IsNullOrWhiteSpace(foreground))
             span.TextColor = Color.FromArgb(foreground);
-        //span.TextColor = Color.FromHex("#5598d0");
+
         if (!string.IsNullOrWhiteSpace(background))
             span.BackgroundColor = Color.FromArgb(background);
 

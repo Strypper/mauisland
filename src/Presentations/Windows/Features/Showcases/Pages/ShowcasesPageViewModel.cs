@@ -1,4 +1,5 @@
 ﻿using MAUIsland.GitHubFeatures;
+using MAUIsland.Mockup;
 
 namespace MAUIsland.Showcases;
 
@@ -32,6 +33,12 @@ public partial class ShowcasesPageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [ Properties ]
+
+    [ObservableProperty]
+    int collectionViewSpan = 1;
+
+    [ObservableProperty]
+    string mockUpPageUrl = nameof(MockupPage);
 
     [ObservableProperty]
     BaseMockUp mauiPlanet = new Iphone15Model()
@@ -91,6 +98,10 @@ public partial class ShowcasesPageViewModel : NavigationAwareBaseViewModel
 
     [RelayCommand]
     Task OpenUrlAsync(string url)
-    => AppNavigator.OpenUrlAsync(url);
+        => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    Task NavigateAsync(string url)
+        => AppNavigator.NavigateAsync(url);
     #endregion
 }

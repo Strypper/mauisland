@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIsland.Core.MobileAppShowcaseContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="root"
+    Loaded="root_Loaded">
+
+    <Border
+        Padding="13,0,28,28"
+        HorizontalOptions="Center"
+        MaximumWidthRequest="320"
+        StrokeShape="RoundRectangle 14"
+        VerticalOptions="Center">
+        <Grid
+            ColumnDefinitions="*, 65"
+            RowDefinitions="*, 34"
+            RowSpacing="50">
+            <VerticalStackLayout toolkit:StateContainer.CanStateChange="{x:Binding CanStateChange, Mode=OneWay, Source={x:Reference root}}" toolkit:StateContainer.CurrentState="{x:Binding CurrentState, Mode=OneWay, Source={x:Reference root}}">
+                <toolkit:StateContainer.StateViews>
+                    <core:Iphone15ContentView
+                        toolkit:StateView.StateKey="iPhone15"
+                        HeightRequest="400"
+                        HorizontalOptions="Center" />
+                    <core:SamsungS8ContentView
+                        toolkit:StateView.StateKey="SamsungS8"
+                        HeightRequest="400"
+                        HorizontalOptions="Center" />
+                </toolkit:StateContainer.StateViews>
+            </VerticalStackLayout>
+            <Label
+                Margin="0,0,0,-22"
+                FontAttributes="Bold"
+                FontSize="18"
+                HorizontalOptions="Center"
+                Text="Radio Shopping App"
+                VerticalOptions="End" />
+            <HorizontalStackLayout
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="Center"
+                Spacing="28"
+                VerticalOptions="Center">
+                <Image
+                    HeightRequest="28"
+                    Source="windowslogo.png"
+                    WidthRequest="28" />
+                <Image
+                    HeightRequest="28"
+                    Source="android_logo.png"
+                    WidthRequest="28" />
+                <Image
+                    HeightRequest="28"
+                    Source="ios_logo.png"
+                    WidthRequest="28" />
+                <Image
+                    HeightRequest="28"
+                    Source="tizen_logo.png"
+                    WidthRequest="28" />
+            </HorizontalStackLayout>
+            <VerticalStackLayout
+                Grid.Column="1"
+                Margin="13,30,0,0"
+                Spacing="28"
+                VerticalOptions="Start">
+                <Border StrokeShape="RoundRectangle 25">
+                    <Image
+                        HeightRequest="48"
+                        Source="member_tan.png"
+                        WidthRequest="48" />
+                </Border>
+                <VerticalStackLayout>
+                    <ImageButton
+                        CornerRadius="25"
+                        HeightRequest="50"
+                        Source="{x:StaticResource ShowcasesIcon}"
+                        WidthRequest="50" />
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="1.3k"
+                        VerticalOptions="Center" />
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <ImageButton
+                        Padding="0"
+                        CornerRadius="25"
+                        HeightRequest="50"
+                        Source="dotnet_maui_logo.png"
+                        ToolTipProperties.Text=".NET MAUI"
+                        WidthRequest="50" />
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="Tech"
+                        VerticalOptions="Center" />
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <ImageButton
+                        x:Name="GitHubButton"
+                        Padding="8"
+                        CornerRadius="25"
+                        HeightRequest="50"
+                        Source="github_logo.png"
+                        WidthRequest="50" />
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="Source"
+                        VerticalOptions="Center" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
+    </Border>
+</ContentView>

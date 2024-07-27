@@ -69,7 +69,15 @@
             </x:String>
         </x:Array>
 
-        <DataTemplate x:Key="DataGridItemColumnTemplate">
+        <DataTemplate x:Key="DataGridItemColumnStringTemplate" x:DataType="{x:Type x:String}">
+            <Label
+                HorizontalOptions="Center"
+                Text="{x:Binding}"
+                TextColor="Black"
+                VerticalOptions="Center" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="DataGridItemColumnIntegerTypeTemplate" x:DataType="{x:Type x:Int32}">
             <Label
                 HorizontalOptions="Center"
                 Text="{x:Binding}"
@@ -121,7 +129,7 @@
                                     PropertyName="ControlIcon"
                                     SortingEnabled="True">
                                     <datagrid:DataGridColumn.CellTemplate>
-                                        <DataTemplate>
+                                        <DataTemplate x:DataType="{x:Type ImageSource}">
                                             <Frame
                                                 BackgroundColor="#35abc3"
                                                 BorderColor="Transparent"
@@ -140,7 +148,7 @@
                                 <datagrid:DataGridColumn
                                     Title="Name"
                                     Width="140"
-                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnStringTemplate}"
                                     PropertyName="ControlName"
                                     SortingEnabled="True" />
                                 <datagrid:DataGridColumn
@@ -149,7 +157,7 @@
                                     PropertyName="CardType"
                                     SortingEnabled="True">
                                     <datagrid:DataGridColumn.CellTemplate>
-                                        <DataTemplate>
+                                        <DataTemplate x:DataType="core:GalleryCardType">
                                             <Frame
                                                 BackgroundColor="ForestGreen"
                                                 BorderColor="LightGreen"
@@ -166,7 +174,7 @@
                                 <datagrid:DataGridColumn
                                     Title="Detail"
                                     Width="650"
-                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnStringTemplate}"
                                     PropertyName="ControlDetail"
                                     SortingEnabled="True" />
                             </datagrid:DataGrid.Columns>
@@ -204,7 +212,7 @@
                                     PropertyName="OwnerAvatarUrl"
                                     SortingEnabled="True">
                                     <datagrid:DataGridColumn.CellTemplate>
-                                        <DataTemplate>
+                                        <DataTemplate x:DataType="{x:Type x:String}">
                                             <Image
                                                 HorizontalOptions="Center"
                                                 Source="{x:Binding}"
@@ -215,37 +223,37 @@
                                 <datagrid:DataGridColumn
                                     Title="Name"
                                     Width="140"
-                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnStringTemplate}"
                                     PropertyName="Name"
                                     SortingEnabled="True" />
                                 <datagrid:DataGridColumn
                                     Title="Forks Count"
                                     Width="100"
-                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnIntegerTypeTemplate}"
                                     PropertyName="ForksCount"
                                     SortingEnabled="True" />
                                 <datagrid:DataGridColumn
                                     Title="Stargazers Count"
                                     Width="120"
-                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnIntegerTypeTemplate}"
                                     PropertyName="StargazersCount"
                                     SortingEnabled="True" />
                                 <datagrid:DataGridColumn
                                     Title="Issues Count"
                                     Width="100"
-                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnIntegerTypeTemplate}"
                                     PropertyName="OpenIssuesCount"
                                     SortingEnabled="True" />
                                 <datagrid:DataGridColumn
                                     Title="License"
                                     Width="100"
-                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnStringTemplate}"
                                     PropertyName="LicenseName"
                                     SortingEnabled="True" />
                                 <datagrid:DataGridColumn
                                     Title="Link"
                                     Width="350"
-                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnStringTemplate}"
                                     PropertyName="SvnUrl"
                                     SortingEnabled="True" />
                             </datagrid:DataGrid.Columns>
@@ -280,25 +288,25 @@
                                 <datagrid:DataGridColumn
                                     Title="Control Name"
                                     Width="140"
-                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnStringTemplate}"
                                     PropertyName="ControlName"
                                     SortingEnabled="True" />
                                 <datagrid:DataGridColumn
                                     Title="Type"
                                     Width="120"
-                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnStringTemplate}"
                                     PropertyName="CardType"
                                     SortingEnabled="True" />
                                 <datagrid:DataGridColumn
                                     Title="Group Name"
                                     Width="140"
-                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnStringTemplate}"
                                     PropertyName="GroupName"
                                     SortingEnabled="True" />
                                 <datagrid:DataGridColumn
                                     Title="Control Detail"
                                     Width="600"
-                                    CellTemplate="{x:StaticResource DataGridItemColumnTemplate}"
+                                    CellTemplate="{x:StaticResource DataGridItemColumnStringTemplate}"
                                     PropertyName="ControlDetail"
                                     SortingEnabled="True" />
                             </datagrid:DataGrid.Columns>
