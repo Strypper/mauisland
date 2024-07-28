@@ -82,6 +82,8 @@
 	  <None Remove="Resources\Images\books\enterprise_app_patterns_ebook.png" />
 	  <None Remove="Resources\Images\logos\dotnet_maui_logo.svg" />
 	  <None Remove="Resources\Images\mockups\apple_iphone_13_mini.png" />
+	  <None Remove="Resources\Images\mockups\google_pixel_5.png" />
+	  <None Remove="Resources\Images\mockups\google_pixel_6_pro.png" />
 	  <None Remove="Resources\Images\mockups\iphone_15.png" />
 	  <None Remove="Resources\Images\mockups\samsung_galaxy_s22_ultra_2022.png" />
 	  <None Remove="Resources\Images\mockups\samsung_s8.png" />
@@ -511,6 +513,10 @@
 		<MauiImage Include="Resources\Images\memes\mrincrediblesmile4.png" />
 		<MauiImage Include="Resources\Images\memes\mrincrediblesmile5.png" />
 		<MauiImage Include="Resources\Images\mockups\apple_iphone_13_mini.png" />
+		<MauiImage Include="Resources\Images\mockups\google_pixel_5.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Include="Resources\Images\mockups\google_pixel_6_pro.png" />
 		<MauiImage Include="Resources\Images\mockups\iphone_15.png" />
 		<MauiImage Include="Resources\Images\mockups\samsung_galaxy_s22_ultra_2022.png" />
 		<MauiImage Include="Resources\Images\mockups\samsung_s8.png" />

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView
-    x:Class="MAUIsland.Core.SamsungGalaxyS22UltraContentView"
+    x:Class="MAUIsland.Core.GooglePixel5ContentView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:core="clr-namespace:MAUIsland.Core"
     x:Name="root"
+    x:DataType="core:GooglePixel5ContentView"
     Loaded="root_Loaded">
-
     <ContentView.Resources>
         <FontImageSource
             x:Key="BackIcon"
@@ -23,15 +23,15 @@
         <core:InnerFrameDimensionConverter x:Key="InnerFrameDimensionConverter" />
     </ContentView.Resources>
 
-
     <Grid>
         <Border
             Padding="0"
-            HeightRequest="{Binding Source={x:Reference Frame}, Path=Height, Converter={x:StaticResource InnerFrameDimensionConverter}, ConverterParameter='0'}"
+            HeightRequest="{Binding Source={x:Reference Frame}, Path=Height, Converter={x:StaticResource InnerFrameDimensionConverter}, ConverterParameter='24'}"
+            HorizontalOptions="Center"
             MinimumHeightRequest="400"
-            StrokeShape="RoundRectangle 10"
+            StrokeShape="RoundRectangle 24"
             StrokeThickness="0"
-            WidthRequest="{Binding Source={x:Reference Frame}, Path=Width, Converter={x:StaticResource InnerFrameDimensionConverter}, ConverterParameter='4'}">
+            WidthRequest="{Binding Source={x:Reference Frame}, Path=Width, Converter={x:StaticResource InnerFrameDimensionConverter}, ConverterParameter='24'}">
             <Image
                 Aspect="AspectFit"
                 BindingContext="{x:Reference root}"
@@ -48,7 +48,7 @@
             HorizontalOptions="Center"
             InputTransparent="True"
             MinimumHeightRequest="400"
-            Source="samsung_galaxy_s22_ultra_2022.png"
+            Source="google_pixel_5.png"
             VerticalOptions="Center" />
         <ImageButton
             x:Name="BackButton"

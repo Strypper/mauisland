@@ -115,6 +115,12 @@
 	  <Compile Update="Views\ContentViews\DocumentAlert.xaml.cs">
 	    <DependentUpon>DocumentAlert.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\ContentViews\MockUps\GooglePixel5ContentView.xaml.cs">
+	    <DependentUpon>GooglePixel5ContentView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ContentViews\MockUps\GooglePixel6ProContentView.xaml.cs">
+	    <DependentUpon>GooglePixel6ProContentView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\ContentViews\MockUps\Iphone13MiniContentView.xaml.cs">
 	    <SubType>Code</SubType>
 	    <DependentUpon>Iphone13MiniContentView.xaml</DependentUpon>
@@ -166,6 +172,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ContentViews\DocumentAlert.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentViews\MockUps\GooglePixel5ContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentViews\MockUps\GooglePixel6ProContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ContentViews\MockUps\Iphone13MiniContentView.xaml">

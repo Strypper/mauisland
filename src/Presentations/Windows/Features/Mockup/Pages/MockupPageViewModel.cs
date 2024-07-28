@@ -41,6 +41,12 @@ public partial class MockupPageViewModel(IAppNavigator appNavigator,
 
     [ObservableProperty]
     string samsungGalaxyS22Ultra = "Samsung Galaxy S22 Ultra";
+
+    [ObservableProperty]
+    string googlePixel6Pro = "Google Pixel 6 Pro";
+
+    [ObservableProperty]
+    string googlePixel5 = "Google Pixel 5";
     #endregion
 
     #region [ Relay Commands ]
@@ -72,7 +78,9 @@ public partial class MockupPageViewModel(IAppNavigator appNavigator,
         MockupList = new()
         {
             Iphone13Mini,
-            SamsungGalaxyS22Ultra
+            SamsungGalaxyS22Ultra,
+            GooglePixel6Pro,
+            GooglePixel5
         };
 
         CanMockupFrameChangeState = true;

@@ -121,6 +121,27 @@
                             SelectedMockUp="{x:Binding SelectedMockUp,
                                                        Mode=OneWay,
                                                        Converter={x:StaticResource SelectedMockupPreviewItemModelToStringConverter}}" />
+
+                        <core:GooglePixel6ProContentView
+                            x:Name="GooglePixel6ProMockup"
+                            toolkit:StateView.StateKey="Google Pixel 6 Pro"
+                            ItemsSource="{x:Binding PreviewImages,
+                                                    Mode=OneWay,
+                                                    Converter={x:StaticResource ListOfMockupPreviewItemModelToListStringConverter}}"
+                            SelectedMockUp="{x:Binding SelectedMockUp,
+                                                       Mode=OneWay,
+                                                       Converter={x:StaticResource SelectedMockupPreviewItemModelToStringConverter}}" />
+
+
+                        <core:GooglePixel5ContentView
+                            x:Name="GooglePixel5Mockup"
+                            toolkit:StateView.StateKey="Google Pixel 5"
+                            ItemsSource="{x:Binding PreviewImages,
+                                                    Mode=OneWay,
+                                                    Converter={x:StaticResource ListOfMockupPreviewItemModelToListStringConverter}}"
+                            SelectedMockUp="{x:Binding SelectedMockUp,
+                                                       Mode=OneWay,
+                                                       Converter={x:StaticResource SelectedMockupPreviewItemModelToStringConverter}}" />
                     </toolkit:StateContainer.StateViews>
                 </Grid>
             </Grid>
