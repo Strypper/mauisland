@@ -1,5 +1,5 @@
 ﻿namespace MAUIsland.Core;
 
-public partial class SamsungGalaxyS22UltraModel : BaseMockUp
+public partial class SamsungGalaxyS22UltraModel : BaseMockup
 {
 }

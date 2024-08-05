@@ -1,7 +1,10 @@
 ﻿namespace MAUIsland.Mockup;
 
-public partial class MockupPreviewItemModel : BaseModel
+public partial class PreviewImageModel : BaseModel
 {
+    [ObservableProperty]
+    string? collectionViewId;
+
     [ObservableProperty]
     string? imageSource;
 

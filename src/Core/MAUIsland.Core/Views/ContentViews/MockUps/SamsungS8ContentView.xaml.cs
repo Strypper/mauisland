@@ -43,45 +43,45 @@ public partial class SamsungS8ContentView : ContentView
     {
         if (ComponentData is null
             ||
-            ComponentData.MockUps is null
+            ComponentData.Mockups is null
             ||
-            !ComponentData.MockUps.Any()
+            !ComponentData.Mockups.Any()
             ||
-            ComponentData.MockUps.FirstOrDefault() is null)
+            ComponentData.Mockups.FirstOrDefault() is null)
             return;
 
-        SelectedMockUp = ComponentData.MockUps.FirstOrDefault();
+        SelectedMockUp = ComponentData.Mockups.FirstOrDefault();
     }
 
     private void NextButton_Clicked(object sender, EventArgs e)
     {
-        var indexOfCurrent = ComponentData.MockUps.IndexOf(SelectedMockUp);
-        if (indexOfCurrent == ComponentData.MockUps.Count - 1)
+        var indexOfCurrent = ComponentData.Mockups.IndexOf(SelectedMockUp);
+        if (indexOfCurrent == ComponentData.Mockups.Count - 1)
             return;
 
-        //if (indexOfCurrent >= ComponentData.MockUps.Count - 1)
+        //if (indexOfCurrent >= ComponentData.Mockups.Count - 1)
         //    indexOfCurrent = 0;
 
         var nextIndex = indexOfCurrent + 1;
-        SelectedMockUp = ComponentData.MockUps[nextIndex];
+        SelectedMockUp = ComponentData.Mockups[nextIndex];
         MockUpCarousel.ScrollTo(nextIndex);
     }
 
     private void BackButton_Clicked(object sender, EventArgs e)
     {
-        var indexOfCurrent = ComponentData.MockUps.IndexOf(SelectedMockUp);
+        var indexOfCurrent = ComponentData.Mockups.IndexOf(SelectedMockUp);
         if (indexOfCurrent == 0)
             return;
 
         var prevIndex = indexOfCurrent - 1;
-        SelectedMockUp = ComponentData.MockUps[prevIndex];
+        SelectedMockUp = ComponentData.Mockups[prevIndex];
         MockUpCarousel.ScrollTo(prevIndex);
     }
 
     private void PointerGestureRecognizer_PointerEntered(object sender, PointerEventArgs e)
     {
 
-        if (ComponentData is null || ComponentData.MockUps.Count == 1)
+        if (ComponentData is null || ComponentData.Mockups.Count == 1)
             return;
 
         var button = (ImageButton)sender;
@@ -90,7 +90,7 @@ public partial class SamsungS8ContentView : ContentView
 
     private void PointerGestureRecognizer_PointerExited(object sender, PointerEventArgs e)
     {
-        if (ComponentData is null || ComponentData.MockUps.Count == 1)
+        if (ComponentData is null || ComponentData.Mockups.Count == 1)
             return;
 
         var button = (ImageButton)sender;

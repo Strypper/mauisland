@@ -2,15 +2,21 @@ namespace MAUIsland.Showcases;
 
 public partial class ShowcasesPage
 {
+    #region [ Fields ]
+
     Dictionary<(int min, int max), int> widthRanges = new()
     {
-        { (1, 476), 1 },
-        { (477, 782), 2 },
-        { (783, 1098), 3 },
-        { (1099, 1563), 4 }
+        { (1, 676), 1 },
+        { (677, 1082), 2 },
+        { (1083, 1398), 3 },
+        { (1399, 1863), 4 }
     };
 
     private readonly ShowcasesPageViewModel viewModel;
+
+    #endregion
+
+    #region [ CTor ]
 
     public ShowcasesPage(ShowcasesPageViewModel vm)
     {
@@ -18,6 +24,17 @@ public partial class ShowcasesPage
 
         BindingContext = viewModel = vm;
     }
+
+    #endregion
+
+    #region [ Methods ]
+
+    private void BasePage_Appearing(System.Object sender, System.EventArgs e)
+    {
+
+        ResizeWindows();
+    }
+
     private void BasePage_SizeChanged(object sender, EventArgs e)
     {
         var page = sender as Page; // Assuming your BasePage is derived from Page
@@ -32,6 +49,14 @@ public partial class ShowcasesPage
 
     }
 
+    private void ResizeWindows()
+    {
+
+        if (Window is not null)
+        {
+            Window.Width = 1157;
+        }
+    }
 
     int GetCorrespondingValue(Dictionary<(int min, int max), int> widthRanges, double width)
     {
@@ -51,4 +76,5 @@ public partial class ShowcasesPage
 
         throw new ArgumentOutOfRangeException(nameof(width), "Width is out of range.");
     }
+    #endregion
 }

@@ -22,45 +22,57 @@
             Color="{AppThemeBinding Light='#15161e',
                                     Dark='#eaeaea'}" />
 
-        <DataTemplate x:Key="MockupPreviewItemContentView" x:DataType="mockup:MockupPreviewItemModel">
-            <mockup:MockupPreviewItemContentView BindingContext="{x:Binding}" />
-        </DataTemplate>
-
-        <DataTemplate x:Key="AddButtonContentView" x:DataType="mockup:MockupPreviewItemModel">
-            <mockup:AddButtonContentView BindingContext="{x:Binding}" ImageDrop="AddButton_ImageDropped" />
-        </DataTemplate>
-
-        <mockup:PreviewMockupDataTemplateSelector
-            x:Key="PreviewMockupSelector"
-            AddButton="{x:StaticResource AddButtonContentView}"
-            Mockup="{x:StaticResource MockupPreviewItemContentView}" />
+        <x:Array x:Key="PageTabs" Type="{x:Type x:String}">
+            <x:String>Mock up</x:String>
+            <x:String>Showcase information</x:String>
+        </x:Array>
 
         <LinearItemsLayout
-            x:Key="MockupPreviewItemLayout"
+            x:Key="PageTabBarItemLayout"
             ItemSpacing="16"
             Orientation="Horizontal" />
+
+        <DataTemplate x:Key="PageTabBarTemplate" x:DataType="x:String">
+            <Label
+                FontSize="Title"
+                HeightRequest="52"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="{x:Binding}"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center" />
+        </DataTemplate>
 
         <mockup:ListOfMockupPreviewItemModelToListStringConverter x:Key="ListOfMockupPreviewItemModelToListStringConverter" />
         <mockup:SelectedMockupPreviewItemModelToStringConverter x:Key="SelectedMockupPreviewItemModelToStringConverter" />
     </core:BasePage.Resources>
 
     <Grid ColumnDefinitions="2*,*" ColumnSpacing="8">
-        <Border Padding="16" StrokeShape="RoundRectangle 8">
-            <VerticalStackLayout>
-                <CollectionView
-                    ItemTemplate="{x:StaticResource PreviewMockupSelector}"
-                    ItemsLayout="{x:StaticResource MockupPreviewItemLayout}"
-                    ItemsSource="{x:Binding PreviewImages}"
-                    SelectedItem="{x:Binding SelectedMockUp,
-                                             Mode=TwoWay}"
-                    SelectionMode="Single" />
-                <Button
-                    x:Name="RemoveAllMockUpButton"
-                    Clicked="RemoveAllMockUpButton_Clicked"
-                    HorizontalOptions="Center"
-                    Text="Remove All" />
-            </VerticalStackLayout>
-        </Border>
+        <ScrollView>
+            <Border Padding="16" StrokeShape="RoundRectangle 8">
+
+                <VerticalStackLayout Spacing="16">
+                    <CollectionView
+                        ItemTemplate="{x:StaticResource PageTabBarTemplate}"
+                        ItemsLayout="{x:StaticResource PageTabBarItemLayout}"
+                        ItemsSource="{x:StaticResource PageTabs}"
+                        SelectedItem="{x:Binding SelectedTab,
+                                                 Mode=TwoWay}"
+                        SelectionMode="Single" />
+                    <mockup:MockupScreenShotsContentView BindingContext="{x:Binding}" />
+                    <Button
+                        x:Name="AddDeviceButton"
+                        BackgroundColor="Transparent"
+                        BorderColor="White"
+                        BorderWidth="4"
+                        Command="{x:Binding AddDeviceCommand}"
+                        CornerRadius="4"
+                        HorizontalOptions="Center"
+                        Text="Add Device"
+                        TextColor="White" />
+                </VerticalStackLayout>
+            </Border>
+        </ScrollView>
         <Border
             Grid.Column="1"
             Padding="16"
@@ -77,8 +89,8 @@
                     HorizontalOptions="Center">
                     <Picker
                         Margin="8"
-                        ItemsSource="{x:Binding MockupList}"
-                        SelectedItem="{x:Binding CurrentMockupFrameState,
+                        ItemsSource="{x:Binding DevicesList}"
+                        SelectedItem="{x:Binding SelectedDevice,
                                                  Mode=TwoWay}"
                         VerticalOptions="Fill" />
                     <Button
@@ -97,7 +109,7 @@
                     Grid.Row="1"
                     toolkit:StateContainer.CanStateChange="{x:Binding CanMockupFrameChangeState,
                                                                       Mode=OneWay}"
-                    toolkit:StateContainer.CurrentState="{x:Binding CurrentMockupFrameState,
+                    toolkit:StateContainer.CurrentState="{x:Binding SelectedDevice,
                                                                     Mode=OneWay}"
                     HorizontalOptions="Fill"
                     VerticalOptions="Fill">
@@ -108,7 +120,7 @@
                             ItemsSource="{x:Binding PreviewImages,
                                                     Mode=OneWay,
                                                     Converter={x:StaticResource ListOfMockupPreviewItemModelToListStringConverter}}"
-                            SelectedMockUp="{x:Binding SelectedMockUp,
+                            SelectedMockUp="{x:Binding SelectedMockup,
                                                        Mode=OneWay,
                                                        Converter={x:StaticResource SelectedMockupPreviewItemModelToStringConverter}}" />
 
@@ -118,7 +130,7 @@
                             ItemsSource="{x:Binding PreviewImages,
                                                     Mode=OneWay,
                                                     Converter={x:StaticResource ListOfMockupPreviewItemModelToListStringConverter}}"
-                            SelectedMockUp="{x:Binding SelectedMockUp,
+                            SelectedMockUp="{x:Binding SelectedMockup,
                                                        Mode=OneWay,
                                                        Converter={x:StaticResource SelectedMockupPreviewItemModelToStringConverter}}" />
 
@@ -128,7 +140,7 @@
                             ItemsSource="{x:Binding PreviewImages,
                                                     Mode=OneWay,
                                                     Converter={x:StaticResource ListOfMockupPreviewItemModelToListStringConverter}}"
-                            SelectedMockUp="{x:Binding SelectedMockUp,
+                            SelectedMockUp="{x:Binding SelectedMockup,
                                                        Mode=OneWay,
                                                        Converter={x:StaticResource SelectedMockupPreviewItemModelToStringConverter}}" />
 
@@ -139,7 +151,19 @@
                             ItemsSource="{x:Binding PreviewImages,
                                                     Mode=OneWay,
                                                     Converter={x:StaticResource ListOfMockupPreviewItemModelToListStringConverter}}"
-                            SelectedMockUp="{x:Binding SelectedMockUp,
+                            SelectedMockUp="{x:Binding SelectedMockup,
+                                                       Mode=OneWay,
+                                                       Converter={x:StaticResource SelectedMockupPreviewItemModelToStringConverter}}" />
+
+
+
+                        <core:AppleIphone15ProMaxContentView
+                            x:Name="AppleIphone15ProMaxMockup"
+                            toolkit:StateView.StateKey="Apple iPhone 15 Pro Max"
+                            ItemsSource="{x:Binding PreviewImages,
+                                                    Mode=OneWay,
+                                                    Converter={x:StaticResource ListOfMockupPreviewItemModelToListStringConverter}}"
+                            SelectedMockUp="{x:Binding SelectedMockup,
                                                        Mode=OneWay,
                                                        Converter={x:StaticResource SelectedMockupPreviewItemModelToStringConverter}}" />
                     </toolkit:StateContainer.StateViews>

@@ -5,7 +5,7 @@ public class SelectedMockupPreviewItemModelToStringConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        var selectedImage = value as MockupPreviewItemModel;
+        var selectedImage = value as PreviewImageModel;
         if (selectedImage is null || selectedImage.ImageSource is null)
             return string.Empty;
 

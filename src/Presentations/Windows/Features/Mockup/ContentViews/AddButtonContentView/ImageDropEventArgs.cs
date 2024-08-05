@@ -3,9 +3,9 @@
 
 public class ImageDropEventArgs : EventArgs
 {
-    public AddButtonEventModel EventModel { get; set; }
+    public DroppedImage EventModel { get; set; }
 
-    public ImageDropEventArgs(AddButtonEventModel eventModel)
+    public ImageDropEventArgs(DroppedImage eventModel)
     {
         this.EventModel = eventModel;
     }

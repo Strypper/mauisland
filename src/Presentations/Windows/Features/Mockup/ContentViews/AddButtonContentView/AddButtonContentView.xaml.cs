@@ -15,13 +15,13 @@ public partial class AddButtonContentView : ContentView
     protected override void OnBindingContextChanged()
     {
         base.OnBindingContextChanged();
-        this.BindingContext = (MockupPreviewItemModel)BindingContext;
+        this.BindingContext = (PreviewImageModel)BindingContext;
     }
     #endregion
 
     #region [ Delegates ]
 
-    public delegate void ImageDropEventHandler(Object sender, DropEventArgs e, AddButtonEventModel model);
+    public delegate void ImageDropEventHandler(Object sender, DropEventArgs e, DroppedImage model);
     public event ImageDropEventHandler ImageDrop;
     #endregion
 
@@ -35,13 +35,13 @@ public partial class AddButtonContentView : ContentView
         if (this.BindingContext is null)
             return;
 
-        var context = (MockupPreviewItemModel)this.BindingContext;
+        var context = (PreviewImageModel)this.BindingContext;
 
-        AddButtonEventModel eventModel = new()
+        DroppedImage eventModel = new()
         {
             Id = context.Id,
             ImageSource = context.ImageSource,
-            IsAddButton = context.IsAddButton,
+            CollectionViewId = context.CollectionViewId
         };
 
         ImageDrop.Invoke(sender, e, eventModel);

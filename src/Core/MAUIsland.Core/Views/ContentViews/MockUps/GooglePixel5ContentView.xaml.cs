@@ -1,4 +1,3 @@
-
 namespace MAUIsland.Core;
 
 public partial class GooglePixel5ContentView : ContentView

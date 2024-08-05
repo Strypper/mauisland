@@ -11,6 +11,6 @@ public class PreviewMockupDataTemplateSelector : DataTemplateSelector
     #region [ Overrides ]
 
     protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
-     => ((MockupPreviewItemModel)item).IsAddButton ? AddButton : Mockup;
+     => ((PreviewImageModel)item).IsAddButton ? AddButton : Mockup;
     #endregion
 }

@@ -26,12 +26,12 @@
     <Grid>
         <Border
             Padding="0"
-            HeightRequest="{Binding Source={x:Reference Frame}, Path=Height, Converter={x:StaticResource InnerFrameDimensionConverter}, ConverterParameter='24'}"
+            HeightRequest="{Binding Source={x:Reference Frame}, Path=Height, Converter={x:StaticResource InnerFrameDimensionConverter}, ConverterParameter='14'}"
             HorizontalOptions="Center"
             MinimumHeightRequest="400"
-            StrokeShape="RoundRectangle 24"
+            StrokeShape="RoundRectangle 40"
             StrokeThickness="0"
-            WidthRequest="{Binding Source={x:Reference Frame}, Path=Width, Converter={x:StaticResource InnerFrameDimensionConverter}, ConverterParameter='24'}">
+            WidthRequest="{Binding Source={x:Reference Frame}, Path=Width, Converter={x:StaticResource InnerFrameDimensionConverter}, ConverterParameter='2'}">
             <Image
                 Aspect="AspectFit"
                 BindingContext="{x:Reference root}"

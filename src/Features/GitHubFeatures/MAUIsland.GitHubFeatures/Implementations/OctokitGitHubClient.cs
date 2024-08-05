@@ -419,7 +419,10 @@ public class OctokitGitHubClient : IGitHubService
                 GitUrl = repo.GitUrl,
                 SvnUrl = repo.SvnUrl,
                 Description = repo.Description,
-
+                AuthorName = repo.Owner.Name,
+                AuthorUrl = repo.Owner.Url,
+                AuthorAvatarUrl = repo.Owner.AvatarUrl,
+                StarCount = repo.StargazersCount
             };
             return new ServiceSuccess(Constants.GetRepositorySuccess,
                                       Constants.NotAvailable,

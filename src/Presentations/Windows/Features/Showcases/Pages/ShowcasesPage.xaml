@@ -7,18 +7,31 @@
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+    xmlns:mockup="clr-namespace:MAUIsland.Mockup"
     xmlns:showcases="clr-namespace:MAUIsland.Showcases"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="root"
+    Title="Showcase"
     x:DataType="showcases:ShowcasesPageViewModel"
+    Appearing="BasePage_Appearing"
     BackgroundColor="Transparent"
     SizeChanged="BasePage_SizeChanged">
 
     <core:BasePage.Resources>
+
+        <mockup:ListOfMockupPreviewItemModelToListStringConverter x:Key="ListOfMockupPreviewItemModelToListStringConverter" />
+
         <FontImageSource
             x:Key="ShowcasesIcon"
             FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
             Glyph="{Static core:FluentUIIcon.Ic_fluent_star_emphasis_20_regular}"
             Color="Yellow" />
+
+        <FontImageSource
+            x:Key="HeartIcon"
+            FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static core:FluentUIIcon.Ic_fluent_heart_20_regular}"
+            Color="DeepPink" />
 
         <FontImageSource
             x:Key="PullRequestIcon"
@@ -46,36 +59,32 @@
             <!--  Light Ocean Blue  -->
         </LinearGradientBrush>
 
-        <FontImageSource
-            x:Key="HeartIcon"
-            FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
-            Glyph="{Static core:FluentUIIcon.Ic_fluent_heart_20_regular}"
-            Color="DeepPink" />
-
-        <DataTemplate x:Key="ShowcasesItemTemplate">
+        <ControlTemplate x:Key="ShowcasesControlTemplate">
             <Border
-                Padding="13,0,28,28"
+                Padding="16"
                 HorizontalOptions="Center"
-                MaximumWidthRequest="320"
                 StrokeShape="RoundRectangle 14"
-                VerticalOptions="Center">
+                VerticalOptions="Center"
+                WidthRequest="370">
                 <Grid
-                    ColumnDefinitions="*, 65"
-                    RowDefinitions="*, 34"
-                    RowSpacing="50">
-                    <core:Iphone15ContentView HeightRequest="400" HorizontalOptions="Center" />
+                    ColumnDefinitions="260, auto"
+                    ColumnSpacing="16"
+                    RowDefinitions="*, auto, auto"
+                    RowSpacing="16">
+                    <ContentPresenter MinimumHeightRequest="520" MinimumWidthRequest="260" />
                     <Label
-                        Margin="0,0,0,-22"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
                         FontAttributes="Bold"
                         FontSize="18"
                         HorizontalOptions="Center"
-                        Text="Radio Shopping App"
+                        Text="{TemplateBinding Content.BindingContext.AppName}"
                         VerticalOptions="End" />
                     <HorizontalStackLayout
-                        Grid.Row="1"
+                        Grid.Row="2"
                         Grid.ColumnSpan="2"
                         HorizontalOptions="Center"
-                        Spacing="28"
+                        Spacing="16"
                         VerticalOptions="Center">
                         <Image
                             HeightRequest="28"
@@ -96,14 +105,16 @@
                     </HorizontalStackLayout>
                     <VerticalStackLayout
                         Grid.Column="1"
-                        Margin="13,30,0,0"
-                        Spacing="28"
+                        Spacing="16"
                         VerticalOptions="Start">
-                        <Border StrokeShape="RoundRectangle 25">
+                        <Border
+                            HeightRequest="48"
+                            StrokeShape="RoundRectangle 24"
+                            WidthRequest="48">
                             <Image
-                                HeightRequest="48"
-                                Source="member_tan.png"
-                                WidthRequest="48" />
+                                HorizontalOptions="Fill"
+                                Source="{TemplateBinding Content.BindingContext.AuthorAvatar}"
+                                VerticalOptions="Fill" />
                         </Border>
                         <VerticalStackLayout>
                             <ImageButton
@@ -113,7 +124,7 @@
                                 WidthRequest="50" />
                             <Label
                                 HorizontalOptions="Center"
-                                Text="1.3k"
+                                Text="{TemplateBinding Content.BindingContext.RepoStarsCount}"
                                 VerticalOptions="Center" />
                         </VerticalStackLayout>
                         <VerticalStackLayout>
@@ -132,6 +143,8 @@
                         <VerticalStackLayout>
                             <ImageButton
                                 Padding="8"
+                                Command="{Binding Source={x:Reference root}, Path=BindingContext.OpenUrlCommand}"
+                                CommandParameter="{TemplateBinding Content.BindingContext.RepoUrl}"
                                 CornerRadius="25"
                                 HeightRequest="50"
                                 Source="github_logo.png"
@@ -144,21 +157,59 @@
                     </VerticalStackLayout>
                 </Grid>
             </Border>
+        </ControlTemplate>
+
+        <DataTemplate x:Key="ShowcasesItemTemplate" x:DataType="core:BaseMockup">
+            <ContentView ControlTemplate="{x:StaticResource ShowcasesControlTemplate}">
+                <Grid
+                    toolkit:StateContainer.CanStateChange="{x:Binding CanMockupFrameChangeState,
+                                                                      Mode=OneWay}"
+                    toolkit:StateContainer.CurrentState="{x:Binding CurrentMockupFrameState,
+                                                                    Mode=OneWay}"
+                    BindingContext="{x:Binding}">
+                    <toolkit:StateContainer.StateViews>
+                        <core:Iphone13MiniContentView
+                            x:Name="iPhone13MiniMockup"
+                            toolkit:StateView.StateKey="iPhone 13 Mini"
+                            ItemsSource="{x:Binding Mockups,
+                                                    Mode=OneWay}" />
+
+                        <core:SamsungGalaxyS22UltraContentView
+                            x:Name="SamsungGalaxyS22UltraMockup"
+                            toolkit:StateView.StateKey="Samsung Galaxy S22 Ultra"
+                            ItemsSource="{x:Binding Mockups,
+                                                    Mode=OneWay}" />
+
+                        <core:GooglePixel6ProContentView
+                            x:Name="GooglePixel6ProMockup"
+                            toolkit:StateView.StateKey="Google Pixel 6 Pro"
+                            ItemsSource="{x:Binding Mockups,
+                                                    Mode=OneWay}" />
+
+
+                        <core:GooglePixel5ContentView
+                            x:Name="GooglePixel5Mockup"
+                            toolkit:StateView.StateKey="Google Pixel 5"
+                            ItemsSource="{x:Binding Mockups,
+                                                    Mode=OneWay}" />
+
+                        <core:AppleIphone15ProMaxContentView
+                            x:Name="AppleIphone15ProMaxContentView"
+                            toolkit:StateView.StateKey="Apple iPhone 15 Pro Max"
+                            ItemsSource="{x:Binding Mockups,
+                                                    Mode=OneWay}" />
+                    </toolkit:StateContainer.StateViews>
+                </Grid>
+            </ContentView>
         </DataTemplate>
-        <x:Array x:Key="DummyData" Type="{x:Type x:String}">
-            <x:String>1</x:String>
-            <x:String>1</x:String>
-            <x:String>1</x:String>
-            <x:String>1</x:String>
-            <x:String>1</x:String>
-        </x:Array>
+
         <GridItemsLayout
             x:Key="ShowcasesItemLayout"
             HorizontalItemSpacing="4"
             Orientation="Vertical"
             Span="{x:Binding CollectionViewSpan,
                              Mode=OneWay}"
-            VerticalItemSpacing="14" />
+            VerticalItemSpacing="16" />
     </core:BasePage.Resources>
 
     <ScrollView>
@@ -216,7 +267,7 @@
                 Grid.Row="1"
                 ItemTemplate="{x:StaticResource ShowcasesItemTemplate}"
                 ItemsLayout="{x:StaticResource ShowcasesItemLayout}"
-                ItemsSource="{x:StaticResource DummyData}" />
+                ItemsSource="{x:Binding Mockups}" />
         </Grid>
 
     </ScrollView>

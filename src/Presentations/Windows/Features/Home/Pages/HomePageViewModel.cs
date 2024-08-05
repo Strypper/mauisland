@@ -36,9 +36,9 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
     string projectRepo = "https://github.com/Strypper/mauisland";
 
     [ObservableProperty]
-    BaseMockUp mauiPlanet = new Iphone15Model()
+    BaseMockup mauiPlanet = new Iphone15Model()
     {
-        MockUps = new List<string>()
+        Mockups = new()
         {
             "maui_planets_001.png",
             "maui_planets_002.png",
@@ -47,9 +47,9 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
     };
 
     [ObservableProperty]
-    BaseMockUp gadgetsStoreApp = new SamsungS8Model()
+    BaseMockup gadgetsStoreApp = new SamsungS8Model()
     {
-        MockUps = new List<string>()
+        Mockups = new()
         {
             "gadgets_store_app_1.gif",
             "gadgets_store_app_2.gif",
@@ -58,27 +58,27 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
     };
 
     [ObservableProperty]
-    BaseMockUp callingApp = new SamsungS8Model()
+    BaseMockup callingApp = new SamsungS8Model()
     {
-        MockUps = new List<string>()
+        Mockups = new()
         {
             "calling_app_1.gif"
         }
     };
 
     [ObservableProperty]
-    BaseMockUp fourSeasonsApp = new SamsungS8Model()
+    BaseMockup fourSeasonsApp = new SamsungS8Model()
     {
-        MockUps = new List<string>()
+        Mockups = new()
         {
             "four_seasons_1.gif"
         }
     };
 
     [ObservableProperty]
-    BaseMockUp chickAndPaddy = new Iphone15Model()
+    BaseMockup chickAndPaddy = new Iphone15Model()
     {
-        MockUps = new List<string>()
+        Mockups = new()
         {
             "chick_and_paddy_1.png",
             "chick_and_paddy_2.png",
@@ -223,9 +223,6 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
             return;
 
         var latestRelease = await gitHubService.GetLatestRelease(repositoryAuthor, repositoryName);
-
-        if (openIssues.IsT1)
-            return;
 
         var issuesList = openIssues.AsT0.AttachedData as IEnumerable<GitHubIssueModel>;
 
