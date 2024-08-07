@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<core:BasePage 
+    x:Class="MAUIsland.BlazorWebViewPage" 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    Title="Blazor Web View"
+    Padding="20"
+    x:DataType="core:BlazorWebViewPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
+
+    <core:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="github_logo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </core:BasePage.ToolbarItems>
+</core:BasePage>

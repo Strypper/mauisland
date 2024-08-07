@@ -238,6 +238,9 @@
 		<MauiXaml Update="Features\Gallery\MAUI\Label\LabelPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\BlazorWebViewPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\Controls\Border\BorderPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
