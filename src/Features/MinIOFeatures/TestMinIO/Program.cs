@@ -2,16 +2,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Minio;
-using Minio.ApiEndpoints;
-using Minio.DataModel.Args;
-using Minio.DataModel.Notification;
-using System.Runtime.Intrinsics.X86;
-using System.Security.AccessControl;
-using System;
 using Minio.DataModel;
-using Minio.Helper;
+using Minio.DataModel.Args;
 using Minio.DataModel.Select;
-using Minio.DataModel.Encryption;
+using Minio.Helper;
 
 var endpoint = "minio-api-bit.28.sohan.cloud";
 var accessKey = "petaverse";
