@@ -41,9 +41,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MAUIsland.NewsFeatures.Inte
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGetFeatures", "NuGetFeatures", "{D069C6EA-9676-48DE-B16B-7A177A1FEDAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAUIsland.NuGetFeatures", "src\Features\NuGetFeatures\MAUIsland.NuGetFeatures\MAUIsland.NuGetFeatures.csproj", "{9A141D5A-B1B5-445B-9FCA-A08BA821D339}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MAUIsland.NuGetFeatures", "src\Features\NuGetFeatures\MAUIsland.NuGetFeatures\MAUIsland.NuGetFeatures.csproj", "{9A141D5A-B1B5-445B-9FCA-A08BA821D339}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuGetFeatures.IntegrationTests", "src\Features\NuGetFeatures\NuGetFeatures.IntegrationTests\NuGetFeatures.IntegrationTests.csproj", "{5EEA72E3-4279-4131-9754-144F9D535A72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuGetFeatures.IntegrationTests", "src\Features\NuGetFeatures\NuGetFeatures.IntegrationTests\NuGetFeatures.IntegrationTests.csproj", "{5EEA72E3-4279-4131-9754-144F9D535A72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMinIO", "src\ConsoleApp for Testing\TestMinIO\TestMinIO.csproj", "{F68FD6F9-CD6A-42B4-BC2A-84CEEDF2E3B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -137,6 +139,14 @@ Global
 		{5EEA72E3-4279-4131-9754-144F9D535A72}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5EEA72E3-4279-4131-9754-144F9D535A72}.Release|x64.ActiveCfg = Release|Any CPU
 		{5EEA72E3-4279-4131-9754-144F9D535A72}.Release|x64.Build.0 = Release|Any CPU
+		{F68FD6F9-CD6A-42B4-BC2A-84CEEDF2E3B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F68FD6F9-CD6A-42B4-BC2A-84CEEDF2E3B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F68FD6F9-CD6A-42B4-BC2A-84CEEDF2E3B0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F68FD6F9-CD6A-42B4-BC2A-84CEEDF2E3B0}.Debug|x64.Build.0 = Debug|Any CPU
+		{F68FD6F9-CD6A-42B4-BC2A-84CEEDF2E3B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F68FD6F9-CD6A-42B4-BC2A-84CEEDF2E3B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F68FD6F9-CD6A-42B4-BC2A-84CEEDF2E3B0}.Release|x64.ActiveCfg = Release|Any CPU
+		{F68FD6F9-CD6A-42B4-BC2A-84CEEDF2E3B0}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
