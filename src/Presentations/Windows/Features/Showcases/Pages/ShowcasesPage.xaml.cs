@@ -7,9 +7,9 @@ public partial class ShowcasesPage
     Dictionary<(int min, int max), int> widthRanges = new()
     {
         { (1, 676), 1 },
-        { (677, 1082), 2 },
-        { (1083, 1398), 3 },
-        { (1399, 1863), 4 }
+        { (677, 1142), 2 },
+        { (1143, 1444), 3 },
+        { (1445, 1863), 4 }
     };
 
     private readonly ShowcasesPageViewModel viewModel;
@@ -54,7 +54,7 @@ public partial class ShowcasesPage
 
         if (Window is not null)
         {
-            Window.Width = 1157;
+            Window.Width = 1200;
         }
     }
 
@@ -76,5 +76,16 @@ public partial class ShowcasesPage
 
         throw new ArgumentOutOfRangeException(nameof(width), "Width is out of range.");
     }
+
+    async Task CreateBackgroundImage()
+    {
+    }
+    private async void root_Loaded(System.Object sender, System.EventArgs e)
+    {
+
+        DemoOverFlower.Rotation = -45;
+        await DemoOverFlower.TranslateTo(110, 90, 1000);
+    }
     #endregion
+
 }

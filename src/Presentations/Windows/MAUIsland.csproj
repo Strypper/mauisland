@@ -90,6 +90,7 @@
 	  <None Remove="Resources\Images\mockups\samsung_s8.png" />
 	  <None Remove="Resources\Images\showcases\android_launcher_background_1.png" />
 	  <None Remove="Resources\Images\showcases\android_launcher_background_2.png" />
+	  <None Remove="Resources\Images\showcases\apps_grid.png" />
 	  <None Remove="Resources\Images\showcases\be_1.jpg" />
 	  <None Remove="Resources\Images\showcases\calculator_1.png" />
 	  <None Remove="Resources\Images\showcases\calculator_2.png" />
@@ -561,6 +562,7 @@
 		<MauiImage Include="Resources\Images\mockups\samsung_s8.png" />
 		<MauiImage Include="Resources\Images\showcases\android_launcher_background_1.png" />
 		<MauiImage Include="Resources\Images\showcases\android_launcher_background_2.png" />
+		<MauiImage Include="Resources\Images\showcases\apps_grid.png" />
 		<MauiImage Include="Resources\Images\showcases\be_1.jpg" />
 		<MauiImage Include="Resources\Images\showcases\calculator_1.png" />
 		<MauiImage Include="Resources\Images\showcases\calculator_2.png" />

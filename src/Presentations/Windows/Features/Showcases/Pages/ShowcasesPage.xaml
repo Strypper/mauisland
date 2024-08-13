@@ -8,13 +8,15 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
     xmlns:mockup="clr-namespace:MAUIsland.Mockup"
+    xmlns:over="clr-namespace:OverFlower;assembly=OverFlower"
     xmlns:showcases="clr-namespace:MAUIsland.Showcases"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:Name="root"
-    Title="Showcase"
     x:DataType="showcases:ShowcasesPageViewModel"
     Appearing="BasePage_Appearing"
     BackgroundColor="Transparent"
+    Loaded="root_Loaded"
+    Shell.NavBarIsVisible="False"
     SizeChanged="BasePage_SizeChanged">
 
     <core:BasePage.Resources>
@@ -59,13 +61,21 @@
             <!--  Light Ocean Blue  -->
         </LinearGradientBrush>
 
+
+        <LinearGradientBrush x:Key="HighLightGridBackgroundGradient" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0.0" Color="#059212" />
+            <GradientStop Offset="0.3" Color="#06D001" />
+            <GradientStop Offset="0.6" Color="#9BEC00" />
+            <GradientStop Offset="1.0" Color="#F3FF90" />
+        </LinearGradientBrush>
+
         <ControlTemplate x:Key="ShowcasesControlTemplate">
             <Border
                 Padding="16"
                 HorizontalOptions="Center"
                 StrokeShape="RoundRectangle 14"
                 VerticalOptions="Center"
-                WidthRequest="370">
+                WidthRequest="360">
                 <Grid
                     ColumnDefinitions="260, auto"
                     ColumnSpacing="16"
@@ -105,12 +115,13 @@
                     </HorizontalStackLayout>
                     <VerticalStackLayout
                         Grid.Column="1"
+                        Margin="0,16,0,0"
                         Spacing="16"
                         VerticalOptions="Start">
                         <Border
-                            HeightRequest="48"
+                            HeightRequest="44"
                             StrokeShape="RoundRectangle 24"
-                            WidthRequest="48">
+                            WidthRequest="44">
                             <Image
                                 HorizontalOptions="Fill"
                                 Source="{TemplateBinding Content.BindingContext.AuthorAvatar}"
@@ -119,9 +130,9 @@
                         <VerticalStackLayout>
                             <ImageButton
                                 CornerRadius="25"
-                                HeightRequest="50"
+                                HeightRequest="44"
                                 Source="{x:StaticResource ShowcasesIcon}"
-                                WidthRequest="50" />
+                                WidthRequest="44" />
                             <Label
                                 HorizontalOptions="Center"
                                 Text="{TemplateBinding Content.BindingContext.RepoStarsCount}"
@@ -131,10 +142,10 @@
                             <ImageButton
                                 Padding="0"
                                 CornerRadius="25"
-                                HeightRequest="50"
+                                HeightRequest="44"
                                 Source="dotnet_maui_logo.png"
                                 ToolTipProperties.Text=".NET MAUI"
-                                WidthRequest="50" />
+                                WidthRequest="44" />
                             <Label
                                 HorizontalOptions="Center"
                                 Text="Tech"
@@ -146,9 +157,9 @@
                                 Command="{Binding Source={x:Reference root}, Path=BindingContext.OpenUrlCommand}"
                                 CommandParameter="{TemplateBinding Content.BindingContext.RepoUrl}"
                                 CornerRadius="25"
-                                HeightRequest="50"
+                                HeightRequest="44"
                                 Source="github_logo.png"
-                                WidthRequest="50" />
+                                WidthRequest="44" />
                             <Label
                                 HorizontalOptions="Center"
                                 Text="Source"
@@ -205,11 +216,11 @@
 
         <GridItemsLayout
             x:Key="ShowcasesItemLayout"
-            HorizontalItemSpacing="4"
+            HorizontalItemSpacing="8"
             Orientation="Vertical"
             Span="{x:Binding CollectionViewSpan,
                              Mode=OneWay}"
-            VerticalItemSpacing="16" />
+            VerticalItemSpacing="8" />
     </core:BasePage.Resources>
 
     <ScrollView>
@@ -217,9 +228,37 @@
         <Grid RowDefinitions="200, *">
             <Grid
                 Padding="16,16,16,8"
-                ColumnDefinitions="*,*,*,*"
+                ColumnDefinitions="190,190,*,*"
                 ColumnSpacing="16">
-                <Border Grid.ColumnSpan="2" StrokeShape="RoundRectangle 14" />
+
+                <Frame Grid.ColumnSpan="2" Padding="0">
+                    <Grid
+                        Background="{x:StaticResource HighLightGridBackgroundGradient}"
+                        HeightRequest="200"
+                        IsClippedToBounds="True"
+                        WidthRequest="400">
+                        <over:OverFlower
+                            x:Name="DemoOverFlower"
+                            ImageHeight="500"
+                            ImageSource="apps_grid.png"
+                            ImageWidth="500"
+                            Reverse="false"
+                            ScrollDirection="Left"
+                            ScrollDuration="10000" />
+                        <VerticalStackLayout Margin="16" Spacing="12">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="24"
+                                Text="TOP CONTRIBUTORS"
+                                TextDecorations="Underline" />
+                            <Label
+                                HorizontalOptions="Start"
+                                HorizontalTextAlignment="Start"
+                                MaximumWidthRequest="240"
+                                Text="Explore the possibilities of .NET MAUI! See how others in the community have used this technology to create beautiful, open-source apps." />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Frame>
                 <Border
                     Grid.Column="2"
                     Grid.ColumnSpan="1"
@@ -265,6 +304,7 @@
             </Grid>
             <CollectionView
                 Grid.Row="1"
+                Margin="16,0,16,16"
                 ItemTemplate="{x:StaticResource ShowcasesItemTemplate}"
                 ItemsLayout="{x:StaticResource ShowcasesItemLayout}"
                 ItemsSource="{x:Binding Mockups}" />
