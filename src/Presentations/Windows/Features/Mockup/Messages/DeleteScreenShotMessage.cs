@@ -2,9 +2,9 @@
 
 namespace MAUIsland.Mockup;
 
-public class DeleteScreenShotMessage : ValueChangedMessage<PreviewImageModel>
+public class DeleteScreenShotMessage : ValueChangedMessage<ScreenshotModel>
 {
-    public DeleteScreenShotMessage(PreviewImageModel value) : base(value)
+    public DeleteScreenShotMessage(ScreenshotModel value) : base(value)
     {
 
     }

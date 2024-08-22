@@ -1,6 +1,6 @@
 ﻿namespace MAUIsland.Mockup;
 
-public partial class PreviewImageModel : BaseModel
+public partial class ScreenshotModel : BaseModel
 {
     [ObservableProperty]
     string? collectionViewId;

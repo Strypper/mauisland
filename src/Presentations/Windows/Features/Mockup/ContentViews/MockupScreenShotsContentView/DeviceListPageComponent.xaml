@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIsland.Mockup.DeviceListPageComponent"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:mockup="clr-namespace:MAUIsland.Mockup"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="root"
+    x:DataType="mockup:MockupPageViewModel">
+    <ContentView.Resources>
+
+        <DataTemplate x:Key="ScreenshotItemContentView" x:DataType="mockup:ScreenshotModel">
+            <mockup:ScreenshotItemContentView BindingContext="{x:Binding}" ScreenShotDeleteClicked="MockupPreviewItemContentView_ScreenShotDeleteClicked" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="AddButtonContentView" x:DataType="mockup:ScreenshotModel">
+            <mockup:AddButtonContentView BindingContext="{x:Binding}" ImageDrop="AddButton_ImageDropped" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="DeviceItemTemplate" x:DataType="mockup:DeviceItemModel">
+            <VerticalStackLayout>
+                <CollectionView
+                    ItemTemplate="{x:StaticResource ScreenshotDataTemplateSelector}"
+                    ItemsLayout="{x:StaticResource ScreenshotsItemLayout}"
+                    ItemsSource="{x:Binding Screenshots}"
+                    SelectedItem="{Binding Source={x:Reference root}, Path=BindingContext.SelectedScreenshot, Mode=TwoWay}"
+                    SelectionMode="Single" />
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="16">
+                    <Button
+                        x:Name="RemoveAllMockUpButton"
+                        BackgroundColor="Transparent"
+                        BorderColor="#861b2d"
+                        BorderWidth="4"
+                        Command="{Binding Source={x:Reference root}, Path=BindingContext.RemoveMockupsCommand}"
+                        CornerRadius="4"
+                        HorizontalOptions="Center"
+                        Text="Remove All"
+                        TextColor="#861b2d" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </DataTemplate>
+
+        <mockup:ScreenshotDataTemplateSelector
+            x:Key="ScreenshotDataTemplateSelector"
+            AddButton="{x:StaticResource AddButtonContentView}"
+            Mockup="{x:StaticResource ScreenshotItemContentView}" />
+
+        <LinearItemsLayout
+            x:Key="ScreenshotsItemLayout"
+            ItemSpacing="16"
+            Orientation="Horizontal" />
+
+    </ContentView.Resources>
+
+    <CollectionView ItemTemplate="{x:StaticResource DeviceItemTemplate}" ItemsSource="{x:Binding DeviceList}" />
+</ContentView>

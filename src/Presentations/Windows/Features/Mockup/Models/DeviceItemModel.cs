@@ -1,10 +1,10 @@
 ﻿namespace MAUIsland.Mockup;
 
-public partial class MockupItemModel : BaseModel
+public partial class DeviceItemModel : BaseModel
 {
     [ObservableProperty]
     string deviceModel;
 
     [ObservableProperty]
-    ObservableCollection<PreviewImageModel> previewImages;
+    ObservableCollection<ScreenshotModel> screenshots;
 }

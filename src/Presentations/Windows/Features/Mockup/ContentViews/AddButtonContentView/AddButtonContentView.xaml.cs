@@ -15,7 +15,7 @@ public partial class AddButtonContentView : ContentView
     protected override void OnBindingContextChanged()
     {
         base.OnBindingContextChanged();
-        this.BindingContext = (PreviewImageModel)BindingContext;
+        this.BindingContext = (ScreenshotModel)BindingContext;
     }
     #endregion
 
@@ -35,7 +35,7 @@ public partial class AddButtonContentView : ContentView
         if (this.BindingContext is null)
             return;
 
-        var context = (PreviewImageModel)this.BindingContext;
+        var context = (ScreenshotModel)this.BindingContext;
 
         DroppedImage eventModel = new()
         {

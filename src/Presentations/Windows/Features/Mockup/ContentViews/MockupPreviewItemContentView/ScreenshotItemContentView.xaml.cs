@@ -1,11 +1,11 @@
 namespace MAUIsland.Mockup;
 
-public partial class MockupPreviewItemContentView : ContentView
+public partial class ScreenshotItemContentView : ContentView
 {
 
     #region [ CTor ]
 
-    public MockupPreviewItemContentView()
+    public ScreenshotItemContentView()
     {
         InitializeComponent();
     }
@@ -16,13 +16,13 @@ public partial class MockupPreviewItemContentView : ContentView
     protected override void OnBindingContextChanged()
     {
         base.OnBindingContextChanged();
-        this.BindingContext = (PreviewImageModel)BindingContext;
+        this.BindingContext = (ScreenshotModel)BindingContext;
     }
     #endregion
 
     #region [ Delegates ]
 
-    public delegate void ScreenShotDeleteEventHandler(PreviewImageModel payload);
+    public delegate void ScreenShotDeleteEventHandler(ScreenshotModel payload);
     public event ScreenShotDeleteEventHandler ScreenShotDeleteClicked;
     #endregion
 
@@ -33,7 +33,7 @@ public partial class MockupPreviewItemContentView : ContentView
         if (ScreenShotDeleteClicked is null)
             return;
 
-        var context = (PreviewImageModel)this.BindingContext;
+        var context = (ScreenshotModel)this.BindingContext;
 
         ScreenShotDeleteClicked.Invoke(context);
     }

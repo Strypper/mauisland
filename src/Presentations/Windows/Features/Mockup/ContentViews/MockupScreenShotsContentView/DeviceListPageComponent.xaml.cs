@@ -2,11 +2,11 @@ using CommunityToolkit.Mvvm.Messaging;
 
 namespace MAUIsland.Mockup;
 
-public partial class MockupScreenShotsContentView : ContentView
+public partial class DeviceListPageComponent : ContentView
 {
 
     #region [ CTors ]
-    public MockupScreenShotsContentView()
+    public DeviceListPageComponent()
     {
         InitializeComponent();
     }
@@ -33,7 +33,7 @@ public partial class MockupScreenShotsContentView : ContentView
         }));
     }
 
-    private void MockupPreviewItemContentView_ScreenShotDeleteClicked(PreviewImageModel payload)
+    private void MockupPreviewItemContentView_ScreenShotDeleteClicked(ScreenshotModel payload)
     {
         WeakReferenceMessenger.Default.Send(new DeleteScreenShotMessage(payload));
     }

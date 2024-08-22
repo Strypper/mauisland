@@ -220,6 +220,12 @@
 		<Compile Update="Features\Home\Pages\HomePage.xaml.cs">
 			<DependentUpon>HomePage.xaml</DependentUpon>
 		</Compile>
+		<Compile Update="Features\Mockup\ContentViews\MockupPreviewItemContentView\ScreenshotItemContentView.xaml.cs">
+		  <DependentUpon>ScreenshotItemContentView.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Features\Mockup\ContentViews\MockupScreenShotsContentView\DeviceListPageComponent.xaml.cs">
+		  <DependentUpon>DeviceListPageComponent.xaml</DependentUpon>
+		</Compile>
 		<Compile Update="Features\Mockup\Pages\MockupPage.xaml.cs">
 		  <DependentUpon>MockupPage.xaml</DependentUpon>
 		</Compile>
@@ -352,10 +358,10 @@
 		<MauiXaml Update="Features\Mockup\ContentViews\AddButtonContentView\AddButtonContentView.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Features\Mockup\ContentViews\MockupPreviewItemContentView\MockupPreviewItemContentView.xaml">
+		<MauiXaml Update="Features\Mockup\ContentViews\MockupPreviewItemContentView\ScreenshotItemContentView.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Features\Mockup\ContentViews\MockupScreenShotsContentView\MockupScreenShotsContentView.xaml">
+		<MauiXaml Update="Features\Mockup\ContentViews\MockupScreenShotsContentView\DeviceListPageComponent.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Mockup\Pages\MockupPage.xaml">

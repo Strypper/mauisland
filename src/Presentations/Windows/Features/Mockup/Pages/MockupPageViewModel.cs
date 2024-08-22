@@ -41,13 +41,13 @@ public partial class MockupPageViewModel(IAppNavigator appNavigator,
     #region [ Properties ]
 
     [ObservableProperty]
-    ObservableCollection<MockupItemModel> mockupItems;
+    ObservableCollection<DeviceItemModel> deviceList;
 
     [ObservableProperty]
-    ObservableCollection<PreviewImageModel> previewImages;
+    ObservableCollection<ScreenshotModel> screenshots;
 
     [ObservableProperty]
-    PreviewImageModel selectedMockup;
+    ScreenshotModel selectedScreenshot;
 
     [ObservableProperty]
     bool canMockupFrameChangeState;
@@ -99,8 +99,8 @@ public partial class MockupPageViewModel(IAppNavigator appNavigator,
     [RelayCommand]
     Task RemoveMockups()
     {
-        var freshMockup = PreviewImages.Where(x => x.IsAddButton);
-        PreviewImages = new(freshMockup);
+        var freshMockup = Screenshots.Where(x => x.IsAddButton);
+        Screenshots = new(freshMockup);
 
         return Task.CompletedTask;
     }
@@ -113,7 +113,7 @@ public partial class MockupPageViewModel(IAppNavigator appNavigator,
     {
         string mockupItemGuid = Guid.NewGuid().ToString();
 
-        PreviewImages = new()
+        Screenshots = new()
         {
             new()
             {
@@ -122,13 +122,13 @@ public partial class MockupPageViewModel(IAppNavigator appNavigator,
             }
         };
 
-        MockupItems = new()
+        DeviceList = new()
         {
             new()
             {
                 Id = mockupItemGuid,
                 DeviceModel = Iphone13Mini,
-                PreviewImages = PreviewImages
+                Screenshots = Screenshots
             }
         };
 
@@ -166,18 +166,18 @@ public partial class MockupPageViewModel(IAppNavigator appNavigator,
 
         if (filePaths.Count > 0)
         {
-            var mockupItem = MockupItems.FirstOrDefault(x => x.Id == collectionViewId);
+            var mockupItem = DeviceList.FirstOrDefault(x => x.Id == collectionViewId);
             if (mockupItem is null)
                 return;
 
-            mockupItem.PreviewImages.Add(new()
+            mockupItem.Screenshots.Add(new()
             {
                 Id = new Guid().ToString(),
                 ImageSource = filePaths.First().FullPath,
                 IsAddButton = false,
                 CollectionViewId = mockupItem.Id
             });
-            SelectedMockup = PreviewImages.LastOrDefault();
+            SelectedScreenshot = Screenshots.LastOrDefault();
             e.Handled = true;
         }
         else
@@ -188,11 +188,11 @@ public partial class MockupPageViewModel(IAppNavigator appNavigator,
     async Task AddDevice()
     {
         string newMockupCollectionViewId = Guid.NewGuid().ToString();
-        MockupItems.Add(new()
+        DeviceList.Add(new()
         {
             Id = newMockupCollectionViewId,
             DeviceModel = Iphone13Mini,
-            PreviewImages = new()
+            Screenshots = new()
             {
                 new()
                 {
@@ -203,7 +203,7 @@ public partial class MockupPageViewModel(IAppNavigator appNavigator,
         });
     }
 
-    async Task RemoveScreenShot(PreviewImageModel screenshot)
+    async Task RemoveScreenShot(ScreenshotModel screenshot)
     {
         string dialogTitle = "Do you want to remove this screenshot ?";
         string dialogMessage = "This screenshot will be removed";
@@ -214,12 +214,12 @@ public partial class MockupPageViewModel(IAppNavigator appNavigator,
         if (screenshot.CollectionViewId is null)
             return;
 
-        var mockupItem = MockupItems.FirstOrDefault(x => x.Id == screenshot.CollectionViewId);
+        var mockupItem = DeviceList.FirstOrDefault(x => x.Id == screenshot.CollectionViewId);
         if (mockupItem is null)
             return;
 
 
-        mockupItem.PreviewImages.Remove(screenshot);
+        mockupItem.Screenshots.Remove(screenshot);
     }
 
 

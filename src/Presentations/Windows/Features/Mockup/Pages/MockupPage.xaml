@@ -44,13 +44,12 @@
         </DataTemplate>
 
         <mockup:ListOfMockupPreviewItemModelToListStringConverter x:Key="ListOfMockupPreviewItemModelToListStringConverter" />
-        <mockup:SelectedMockupPreviewItemModelToStringConverter x:Key="SelectedMockupPreviewItemModelToStringConverter" />
+        <mockup:SelectedScreenshotModelToStringConverter x:Key="SelectedScreenshotModelToStringConverter" />
     </core:BasePage.Resources>
 
     <Grid ColumnDefinitions="2*,*" ColumnSpacing="8">
         <ScrollView>
             <Border Padding="16" StrokeShape="RoundRectangle 8">
-
                 <VerticalStackLayout Spacing="16">
                     <CollectionView
                         ItemTemplate="{x:StaticResource PageTabBarTemplate}"
@@ -59,7 +58,7 @@
                         SelectedItem="{x:Binding SelectedTab,
                                                  Mode=TwoWay}"
                         SelectionMode="Single" />
-                    <mockup:MockupScreenShotsContentView BindingContext="{x:Binding}" />
+                    <mockup:DeviceListPageComponent BindingContext="{x:Binding}" />
                     <Button
                         x:Name="AddDeviceButton"
                         BackgroundColor="Transparent"
@@ -117,55 +116,55 @@
                         <core:Iphone13MiniContentView
                             x:Name="iPhone13MiniMockup"
                             toolkit:StateView.StateKey="iPhone 13 Mini"
-                            ItemsSource="{x:Binding PreviewImages,
+                            ItemsSource="{x:Binding Screenshots,
                                                     Mode=OneWay,
                                                     Converter={x:StaticResource ListOfMockupPreviewItemModelToListStringConverter}}"
-                            SelectedMockUp="{x:Binding SelectedMockup,
+                            SelectedMockUp="{x:Binding SelectedScreenshot,
                                                        Mode=OneWay,
-                                                       Converter={x:StaticResource SelectedMockupPreviewItemModelToStringConverter}}" />
+                                                       Converter={x:StaticResource SelectedScreenshotModelToStringConverter}}" />
 
                         <core:SamsungGalaxyS22UltraContentView
                             x:Name="SamsungGalaxyS22UltraMockup"
                             toolkit:StateView.StateKey="Samsung Galaxy S22 Ultra"
-                            ItemsSource="{x:Binding PreviewImages,
+                            ItemsSource="{x:Binding Screenshots,
                                                     Mode=OneWay,
                                                     Converter={x:StaticResource ListOfMockupPreviewItemModelToListStringConverter}}"
-                            SelectedMockUp="{x:Binding SelectedMockup,
+                            SelectedMockUp="{x:Binding SelectedScreenshot,
                                                        Mode=OneWay,
-                                                       Converter={x:StaticResource SelectedMockupPreviewItemModelToStringConverter}}" />
+                                                       Converter={x:StaticResource SelectedScreenshotModelToStringConverter}}" />
 
                         <core:GooglePixel6ProContentView
                             x:Name="GooglePixel6ProMockup"
                             toolkit:StateView.StateKey="Google Pixel 6 Pro"
-                            ItemsSource="{x:Binding PreviewImages,
+                            ItemsSource="{x:Binding Screenshots,
                                                     Mode=OneWay,
                                                     Converter={x:StaticResource ListOfMockupPreviewItemModelToListStringConverter}}"
-                            SelectedMockUp="{x:Binding SelectedMockup,
+                            SelectedMockUp="{x:Binding SelectedScreenshot,
                                                        Mode=OneWay,
-                                                       Converter={x:StaticResource SelectedMockupPreviewItemModelToStringConverter}}" />
+                                                       Converter={x:StaticResource SelectedScreenshotModelToStringConverter}}" />
 
 
                         <core:GooglePixel5ContentView
                             x:Name="GooglePixel5Mockup"
                             toolkit:StateView.StateKey="Google Pixel 5"
-                            ItemsSource="{x:Binding PreviewImages,
+                            ItemsSource="{x:Binding Screenshots,
                                                     Mode=OneWay,
                                                     Converter={x:StaticResource ListOfMockupPreviewItemModelToListStringConverter}}"
-                            SelectedMockUp="{x:Binding SelectedMockup,
+                            SelectedMockUp="{x:Binding SelectedScreenshot,
                                                        Mode=OneWay,
-                                                       Converter={x:StaticResource SelectedMockupPreviewItemModelToStringConverter}}" />
+                                                       Converter={x:StaticResource SelectedScreenshotModelToStringConverter}}" />
 
 
 
                         <core:AppleIphone15ProMaxContentView
                             x:Name="AppleIphone15ProMaxMockup"
                             toolkit:StateView.StateKey="Apple iPhone 15 Pro Max"
-                            ItemsSource="{x:Binding PreviewImages,
+                            ItemsSource="{x:Binding Screenshots,
                                                     Mode=OneWay,
                                                     Converter={x:StaticResource ListOfMockupPreviewItemModelToListStringConverter}}"
-                            SelectedMockUp="{x:Binding SelectedMockup,
+                            SelectedMockUp="{x:Binding SelectedScreenshot,
                                                        Mode=OneWay,
-                                                       Converter={x:StaticResource SelectedMockupPreviewItemModelToStringConverter}}" />
+                                                       Converter={x:StaticResource SelectedScreenshotModelToStringConverter}}" />
                     </toolkit:StateContainer.StateViews>
                 </Grid>
             </Grid>
