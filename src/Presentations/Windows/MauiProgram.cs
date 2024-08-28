@@ -64,6 +64,8 @@ public static class MauiProgram
 
         builder.InitCore(gitHubFeatureAccessToken: appSettings.GitHubAccessToken);
 
+        builder.Services.AddSingleton<BlazorWebViewPageViewModel>();
+
         return builder.Build();
     }
 

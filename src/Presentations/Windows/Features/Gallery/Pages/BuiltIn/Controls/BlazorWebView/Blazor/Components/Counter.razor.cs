@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace MAUIsland;
 
-public partial class ControlsPage : ComponentBase
+public partial class Counter : ComponentBase
 {
     #region [ Properties - Inject ]
     [Inject]
@@ -13,22 +13,22 @@ public partial class ControlsPage : ComponentBase
     #region [ Override ]
     protected override async Task OnInitializedAsync()
     {
-        //ViewModel.PropertyChanged += OnCounterChanged;
+        ViewModel.PropertyChanged += OnViewModelChanged;
 
         await base.OnInitializedAsync();
     }
     #endregion
 
     #region [ Event ]
-    //private void OnCounterChanged(object? sender, PropertyChangedEventArgs e)
-    //{
-    //    StateHasChanged();
-    //}
+    private void OnViewModelChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        StateHasChanged();
+    }
 
-    //public void Dispose()
-    //{
-    //    ViewModel.PropertyChanged -= OnCounterChanged;
-    //}
+    public void Dispose()
+    {
+        ViewModel.PropertyChanged -= OnViewModelChanged;
+    }
 
     private void OnCounterButtonClicked(EventArgs e)
     {

@@ -7,21 +7,16 @@ namespace MAUIsland.Core;
 
 public partial class BlazorWebViewPageViewModel : BaseBuiltInPageControlViewModel
 {
-    #region []
-    protected NavigationManager BlazorNavigator { get; set; }
-    #endregion
-
     #region [ CTor ]
     public BlazorWebViewPageViewModel(IAppNavigator appNavigator,
                                       IGitHubService gitHubService,
                                       DiscordRpcClient discordRpcClient,
-                                      IGitHubIssueLocalDbService gitHubIssueLocalDbService, NavigationManager navigationManager)
+                                      IGitHubIssueLocalDbService gitHubIssueLocalDbService)
                                             : base(appNavigator,
                                                     gitHubService,
                                                     discordRpcClient,
                                                     gitHubIssueLocalDbService)
     {
-        BlazorNavigator = navigationManager;
     }
     #endregion
 
@@ -56,12 +51,12 @@ public partial class BlazorWebViewPageViewModel : BaseBuiltInPageControlViewMode
         this.Counter++;
     }
 
-    [RelayCommand]
-    void PageNavigation(string pageName)
-    {
-        var pageUrl = "/" + pageName.Replace(" ", "");
-        this.BlazorNavigator.NavigateTo(pageUrl, replace: true);
-    }
+    //[RelayCommand]
+    //void PageNavigation(string pageName)
+    //{
+    //    var pageUrl = "/" + pageName.Replace(" ", "");
+    //    this.BlazorNavigator.NavigateTo(pageUrl, replace: true);
+    //}
 
     [RelayCommand]
     Task OpenUrlAsync(string url)
