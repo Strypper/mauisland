@@ -36,6 +36,11 @@ public partial class MockupPageViewModel(IAppNavigator appNavigator,
 
         RefreshAsync().FireAndForget();
     }
+
+    protected override void OnActivated()
+    {
+        base.OnActivated();
+    }
     #endregion
 
     #region [ Properties ]
@@ -49,20 +54,31 @@ public partial class MockupPageViewModel(IAppNavigator appNavigator,
     [ObservableProperty]
     ScreenshotModel selectedScreenshot;
 
+    #endregion
+
+    #region [ Properties - Selected Tabs ]
+
+    [ObservableProperty]
+    List<string> pageTabs;
+
+    [ObservableProperty]
+    bool canPageTabsChangeState;
+
+    [ObservableProperty]
+    string selectedTab;
+
+    #endregion
+
+    #region [ Properties - Mockup Keys ]
+
+    [ObservableProperty]
+    List<string> devicesList;
+
     [ObservableProperty]
     bool canMockupFrameChangeState;
 
     [ObservableProperty]
     string selectedDevice;
-
-    [ObservableProperty]
-    string selectedTab;
-
-    [ObservableProperty]
-    List<string> devicesList;
-    #endregion
-
-    #region [ Properties - Mockup Keys ]
 
     [ObservableProperty]
     string iphone13Mini = "iPhone 13 Mini";
@@ -140,10 +156,17 @@ public partial class MockupPageViewModel(IAppNavigator appNavigator,
             GooglePixel6Pro,
             GooglePixel5
         };
-
         CanMockupFrameChangeState = true;
+        SelectedDevice = DevicesList.FirstOrDefault();
 
-        SelectedDevice = Iphone13Mini;
+        PageTabs = new()
+        {
+            "Devices",
+            "Showcase information"
+        };
+        CanPageTabsChangeState = true;
+        SelectedTab = PageTabs.FirstOrDefault();
+
     }
 
     partial void OnSelectedDeviceChanged(string value)

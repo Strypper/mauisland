@@ -8,7 +8,6 @@
     xmlns:mockup="clr-namespace:MAUIsland.Mockup"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:Name="root"
-    Title="MockupPage"
     Padding="8"
     x:DataType="mockup:MockupPageViewModel"
     BackgroundColor="Transparent">
@@ -21,11 +20,6 @@
             Glyph="{Static core:FluentUIIcon.Ic_fluent_phone_pagination_24_regular}"
             Color="{AppThemeBinding Light='#15161e',
                                     Dark='#eaeaea'}" />
-
-        <x:Array x:Key="PageTabs" Type="{x:Type x:String}">
-            <x:String>Mock up</x:String>
-            <x:String>Showcase information</x:String>
-        </x:Array>
 
         <LinearItemsLayout
             x:Key="PageTabBarItemLayout"
@@ -47,6 +41,17 @@
         <mockup:SelectedScreenshotModelToStringConverter x:Key="SelectedScreenshotModelToStringConverter" />
     </core:BasePage.Resources>
 
+    <Shell.TitleView>
+        <HorizontalStackLayout Padding="4" Spacing="16">
+            <Entry
+                FontAttributes="Bold"
+                MinimumWidthRequest="140"
+                Text="Untitled showcases"
+                VerticalOptions="Center" />
+            <Button CornerRadius="4" Text="Save" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
     <Grid ColumnDefinitions="2*,*" ColumnSpacing="8">
         <ScrollView>
             <Border Padding="16" StrokeShape="RoundRectangle 8">
@@ -54,21 +59,16 @@
                     <CollectionView
                         ItemTemplate="{x:StaticResource PageTabBarTemplate}"
                         ItemsLayout="{x:StaticResource PageTabBarItemLayout}"
-                        ItemsSource="{x:StaticResource PageTabs}"
+                        ItemsSource="{x:Binding PageTabs}"
                         SelectedItem="{x:Binding SelectedTab,
                                                  Mode=TwoWay}"
                         SelectionMode="Single" />
-                    <mockup:DeviceListPageComponent BindingContext="{x:Binding}" />
-                    <Button
-                        x:Name="AddDeviceButton"
-                        BackgroundColor="Transparent"
-                        BorderColor="White"
-                        BorderWidth="4"
-                        Command="{x:Binding AddDeviceCommand}"
-                        CornerRadius="4"
-                        HorizontalOptions="Center"
-                        Text="Add Device"
-                        TextColor="White" />
+                    <Grid toolkit:StateContainer.CanStateChange="{x:Binding CanPageTabsChangeState, Mode=OneWay}" toolkit:StateContainer.CurrentState="{x:Binding SelectedTab, Mode=OneWay}">
+                        <toolkit:StateContainer.StateViews>
+                            <mockup:DeviceListPageComponent toolkit:StateView.StateKey="Devices" BindingContext="{x:Binding}" />
+                            <mockup:ShowcaseInformationPageComponent toolkit:StateView.StateKey="Showcase information" BindingContext="{x:Binding Mode=TwoWay}" />
+                        </toolkit:StateContainer.StateViews>
+                    </Grid>
                 </VerticalStackLayout>
             </Border>
         </ScrollView>

@@ -7,7 +7,7 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="SettingsPage"
-    Padding="10"
+    Padding="8"
     x:DataType="app:SettingsPageViewModel"
     BackgroundColor="Transparent">
 
@@ -21,8 +21,8 @@
         </x:String>
     </core:BasePage.Resources>
 
-    <VerticalStackLayout Spacing="10">
-        <Border Padding="20" StrokeShape="RoundRectangle 4">
+    <VerticalStackLayout Spacing="16">
+        <Border Padding="16" StrokeShape="RoundRectangle 4">
             <VerticalStackLayout Spacing="8">
                 <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="MAUIsland" />
                 <Label>
@@ -36,7 +36,7 @@
                 </Label>
             </VerticalStackLayout>
         </Border>
-        <Border Padding="20" StrokeShape="RoundRectangle 4">
+        <Border Padding="16" StrokeShape="RoundRectangle 4">
             <VerticalStackLayout Spacing="8">
                 <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text=".NET MAUI" />
                 <Label>
@@ -49,7 +49,16 @@
                 </Label>
             </VerticalStackLayout>
         </Border>
-        <Border Padding="20" StrokeShape="RoundRectangle 4">
+        <Border Padding="16" StrokeShape="RoundRectangle 4">
+            <VerticalStackLayout Spacing="8">
+                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Beautiful Resumes" />
+                <Button
+                    Command="{x:Binding NavigateCommand}"
+                    CommandParameter="{x:Static app:AppRoutes.ResumesPage}"
+                    Text="Explore" />
+            </VerticalStackLayout>
+        </Border>
+        <Border Padding="16" StrokeShape="RoundRectangle 4">
             <VerticalStackLayout Spacing="8">
                 <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Source Code" />
                 <ImageButton

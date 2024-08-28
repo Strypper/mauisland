@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIsland.Mockup.ShowcaseInformationPageComponent"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core">
+
+    <ContentView.Resources>
+
+        <FontImageSource
+            x:Key="ShowcaseInformationPageComponentInfoIcon"
+            FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static core:FluentUIIcon.Ic_fluent_info_24_regular}"
+            Color="{AppThemeBinding Light='#d3724c',
+                                    Dark='#eaeaea'}" />
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="16">
+        <Label Text="Description" />
+        <Editor />
+        <HorizontalStackLayout Spacing="8">
+            <Label Text=".csproj link" />
+            <ImageButton
+                HeightRequest="1"
+                Source="{x:StaticResource ShowcaseInformationPageComponentInfoIcon}"
+                WidthRequest="1" />
+        </HorizontalStackLayout>
+        <Entry />
+    </VerticalStackLayout>
+</ContentView>

@@ -3,27 +3,16 @@ using System.Reflection;
 
 namespace MAUIsland;
 
-public partial class SettingsPageViewModel : NavigationAwareBaseViewModel
+public partial class SettingsPageViewModel(IAppNavigator appNavigator,
+                                             IUserServices userService,
+                                             Core.IFilePicker filePicker,
+                                             IAppInfo appInfo) : NavigationAwareBaseViewModel(appNavigator)
 {
     #region [ Fields ]
 
-    private readonly IAppInfo _appInfo;
-    private readonly Core.IFilePicker _filePicker;
-    private readonly IUserServices _userService;
-
-    #endregion
-
-    #region [ CTor ]
-
-    public SettingsPageViewModel(IAppNavigator appNavigator,
-                                 IUserServices userService,
-                                 Core.IFilePicker filePicker,
-                                 IAppInfo appInfo) : base(appNavigator)
-    {
-        _appInfo = appInfo;
-        _filePicker = filePicker;
-        _userService = userService;
-    }
+    private readonly IAppInfo _appInfo = appInfo;
+    private readonly Core.IFilePicker _filePicker = filePicker;
+    private readonly IUserServices _userService = userService;
 
     #endregion
 
@@ -74,6 +63,10 @@ public partial class SettingsPageViewModel : NavigationAwareBaseViewModel
 
         await _userService.UploadCurrentUserAvatar(File);
     }
+
+    [RelayCommand]
+    private async Task NavigateAsync(string route)
+        => await AppNavigator.NavigateAsync(route);
 
     #endregion
 

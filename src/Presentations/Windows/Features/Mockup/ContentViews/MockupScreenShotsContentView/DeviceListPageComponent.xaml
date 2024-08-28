@@ -53,5 +53,18 @@
 
     </ContentView.Resources>
 
-    <CollectionView ItemTemplate="{x:StaticResource DeviceItemTemplate}" ItemsSource="{x:Binding DeviceList}" />
+    <VerticalStackLayout Spacing="16">
+
+        <CollectionView ItemTemplate="{x:StaticResource DeviceItemTemplate}" ItemsSource="{x:Binding DeviceList}" />
+        <Button
+            x:Name="AddDeviceButton"
+            BackgroundColor="Transparent"
+            BorderColor="White"
+            BorderWidth="4"
+            Command="{x:Binding AddDeviceCommand}"
+            CornerRadius="4"
+            HorizontalOptions="Center"
+            Text="Add Device"
+            TextColor="White" />
+    </VerticalStackLayout>
 </ContentView>

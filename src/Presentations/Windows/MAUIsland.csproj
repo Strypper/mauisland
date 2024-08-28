@@ -149,7 +149,6 @@
 
 	<ItemGroup>
 		<Folder Include="Features\Gallery\Pages\Community\Layouts\" />
-		<Folder Include="Features\Mockup\ContentViews\ShowcaseInformationContentView\" />
 		<Folder Include="Features\Showcases\Models\" />
 	</ItemGroup>
 
@@ -364,7 +363,13 @@
 		<MauiXaml Update="Features\Mockup\ContentViews\MockupScreenShotsContentView\DeviceListPageComponent.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<MauiXaml Update="Features\Mockup\ContentViews\ShowcaseInformationContentView\ShowcaseInformationPageComponent.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="Features\Mockup\Pages\MockupPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\ResumesTemplate\Pages\ResumesPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Settings\Pages\SettingsPage.xaml">
