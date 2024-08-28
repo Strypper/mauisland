@@ -34,7 +34,7 @@
                 HorizontalOptions="FillAndExpand"
                 HorizontalScrollBarVisibility="Never"
                 InputTransparent="True"
-                ItemsSource="{x:Binding ComponentData.MockUps,
+                ItemsSource="{x:Binding ComponentData.Mockups,
                                         Mode=OneWay}"
                 ItemsUpdatingScrollMode="KeepItemsInView"
                 SelectedItem="{x:Binding SelectedMockUp,

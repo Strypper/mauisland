@@ -5,7 +5,7 @@ public class ListOfMockupPreviewItemModelToListStringConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        var previewImages = value as List<MockupPreviewItemModel>;
+        var previewImages = value as List<ScreenshotModel>;
         if (previewImages is null)
             return new ObservableCollection<string>();
 

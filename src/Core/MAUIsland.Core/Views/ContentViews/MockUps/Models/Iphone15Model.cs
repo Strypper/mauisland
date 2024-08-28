@@ -1,6 +1,6 @@
 ﻿namespace MAUIsland.Core;
 
 
-public partial class Iphone15Model : BaseMockUp
+public partial class Iphone15Model : BaseMockup
 {
 }

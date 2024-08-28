@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MAUIsland.Core.AppleIphone15ProMaxContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    x:Name="root"
+    Loaded="root_Loaded">
+    <ContentView.Resources>
+        <FontImageSource
+            x:Key="BackIcon"
+            FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static core:FluentUIIcon.Ic_fluent_arrow_circle_left_24_regular}"
+            Color="{x:Static core:AppColors.White}" />
+
+        <FontImageSource
+            x:Key="NextIcon"
+            FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+            Glyph="{x:Static core:FluentUIIcon.Ic_fluent_arrow_circle_right_24_regular}"
+            Color="{x:Static core:AppColors.White}" />
+
+        <core:InnerFrameDimensionConverter x:Key="InnerFrameDimensionConverter" />
+    </ContentView.Resources>
+
+    <Grid>
+        <Border
+            Padding="{x:Binding CurrentBorderPadding,
+                                Source={x:Reference root},
+                                Mode=OneWay}"
+            HeightRequest="{Binding Source={x:Reference Frame}, Path=Height, Converter={x:StaticResource InnerFrameDimensionConverter}, ConverterParameter='0'}"
+            HorizontalOptions="Center"
+            MinimumHeightRequest="400"
+            SizeChanged="Border_SizeChanged"
+            StrokeShape="RoundRectangle 30"
+            StrokeThickness="0"
+            WidthRequest="{Binding Source={x:Reference Frame}, Path=Width, Converter={x:StaticResource InnerFrameDimensionConverter}, ConverterParameter='2'}">
+            <Image
+                Aspect="AspectFit"
+                BindingContext="{x:Reference root}"
+                HorizontalOptions="CenterAndExpand"
+                IsAnimationPlaying="True"
+                MinimumHeightRequest="400"
+                Source="{x:Binding SelectedMockUp,
+                                   Mode=OneWay}"
+                VerticalOptions="CenterAndExpand" />
+        </Border>
+        <Image
+            x:Name="Frame"
+            Aspect="AspectFit"
+            HorizontalOptions="Center"
+            InputTransparent="True"
+            MinimumHeightRequest="400"
+            Source="apple_iphone_15_pro_max.png"
+            VerticalOptions="Center" />
+        <ImageButton
+            x:Name="BackButton"
+            Margin="22,0,0,0"
+            BackgroundColor="Transparent"
+            BorderColor="White"
+            BorderWidth="2"
+            Clicked="BackButton_Clicked"
+            CornerRadius="20"
+            HeightRequest="340"
+            HorizontalOptions="Start"
+            Opacity="0"
+            Source="{x:StaticResource BackIcon}"
+            VerticalOptions="Center"
+            WidthRequest="40">
+            <ImageButton.GestureRecognizers>
+                <PointerGestureRecognizer PointerEntered="PointerGestureRecognizer_PointerEntered" PointerExited="PointerGestureRecognizer_PointerExited" />
+            </ImageButton.GestureRecognizers>
+        </ImageButton>
+        <ImageButton
+            x:Name="NextButton"
+            Margin="0,0,22,0"
+            BackgroundColor="Transparent"
+            BorderColor="White"
+            BorderWidth="2"
+            Clicked="NextButton_Clicked"
+            CornerRadius="20"
+            HeightRequest="340"
+            HorizontalOptions="End"
+            Opacity="0"
+            Source="{x:StaticResource NextIcon}"
+            VerticalOptions="Center"
+            WidthRequest="40">
+            <ImageButton.GestureRecognizers>
+                <PointerGestureRecognizer PointerEntered="PointerGestureRecognizer_PointerEntered" PointerExited="PointerGestureRecognizer_PointerExited" />
+            </ImageButton.GestureRecognizers>
+        </ImageButton>
+    </Grid>
+</ContentView>

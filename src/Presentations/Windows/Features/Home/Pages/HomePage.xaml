@@ -13,6 +13,7 @@
     x:DataType="home:HomePageViewModel"
     Appearing="BasePage_Appearing"
     BackgroundColor="Transparent"
+    Shell.NavBarIsVisible="False"
     SizeChanged="BasePage_SizeChanged">
 
     <core:BasePage.Resources>

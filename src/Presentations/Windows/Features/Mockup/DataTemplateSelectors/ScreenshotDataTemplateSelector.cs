@@ -1,6 +1,6 @@
 ﻿namespace MAUIsland.Mockup;
 
-public class PreviewMockupDataTemplateSelector : DataTemplateSelector
+public class ScreenshotDataTemplateSelector : DataTemplateSelector
 {
     #region [ Templates ]
 
@@ -11,6 +11,6 @@ public class PreviewMockupDataTemplateSelector : DataTemplateSelector
     #region [ Overrides ]
 
     protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
-     => ((MockupPreviewItemModel)item).IsAddButton ? AddButton : Mockup;
+     => ((ScreenshotModel)item).IsAddButton ? AddButton : Mockup;
     #endregion
 }

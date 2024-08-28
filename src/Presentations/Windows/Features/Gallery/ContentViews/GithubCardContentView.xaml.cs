@@ -6,6 +6,7 @@ namespace MAUIsland;
 public partial class GithubCardContentView : ContentView
 {
     #region [ CTor ]
+
     public GithubCardContentView()
     {
         InitializeComponent();
@@ -13,12 +14,14 @@ public partial class GithubCardContentView : ContentView
     #endregion
 
     #region [ Delegates ]
+
     public delegate void DetailEventHandler(IGithubGalleryCardInfo control);
 
     public delegate void DetailInNewWindowEventHandler(IGithubGalleryCardInfo control);
     #endregion
 
     #region [ Events ]
+
     public event DetailEventHandler DetailClicked;
 
     public event DetailInNewWindowEventHandler DetailInNewWindowClicked;
@@ -27,6 +30,7 @@ public partial class GithubCardContentView : ContentView
     #endregion
 
     #region [ Bindable Properties ]
+
     public static readonly BindableProperty ComponentDataProperty = BindableProperty.Create(
         nameof(ComponentData),
         typeof(IGithubGalleryCardInfo),

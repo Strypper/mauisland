@@ -1,11 +1,11 @@
 ﻿
 namespace MAUIsland.Mockup;
 
-public class SelectedMockupPreviewItemModelToStringConverter : IValueConverter
+public class SelectedScreenshotModelToStringConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        var selectedImage = value as MockupPreviewItemModel;
+        var selectedImage = value as ScreenshotModel;
         if (selectedImage is null || selectedImage.ImageSource is null)
             return string.Empty;
 

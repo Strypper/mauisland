@@ -23,4 +23,16 @@ public partial class GitHubRepositoryModel : GitHubBaseModel
 
     [ObservableProperty]
     string description;
+
+    [ObservableProperty]
+    int starCount;
+
+    [ObservableProperty]
+    string authorName;
+
+    [ObservableProperty]
+    string authorUrl;
+
+    [ObservableProperty]
+    string authorAvatarUrl;
 }
