@@ -21,14 +21,10 @@ public partial class Counter : ComponentBase
 
     #region [ Event ]
     private void OnViewModelChanged(object? sender, PropertyChangedEventArgs e)
-    {
-        StateHasChanged();
-    }
+        => StateHasChanged();
 
     public void Dispose()
-    {
-        ViewModel.PropertyChanged -= OnViewModelChanged;
-    }
+        => ViewModel.PropertyChanged -= OnViewModelChanged;
 
     private void OnCounterButtonClicked(EventArgs e)
     {

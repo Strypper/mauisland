@@ -27,12 +27,6 @@ public partial class BlazorWebViewPage : IGalleryPage
             viewModel.RefreshCommand.Execute(null);
         }
     }
-    #endregion
-
-    private void Button_Pressed(object sender, EventArgs e)
-    {
-        this.viewModel.CounterButtonCommand.Execute(this);
-    }
 
     private async void PageNavigateButton_Clicked(System.Object sender, System.EventArgs e)
     {
@@ -43,7 +37,6 @@ public partial class BlazorWebViewPage : IGalleryPage
             var navMan = sp.GetRequiredService<NavigationManager>();
             navMan.NavigateTo(pageUrl);
         });
-
-        //this.viewModel.PageNavigationCommand.Execute(button.Text);
     }
+    #endregion
 }

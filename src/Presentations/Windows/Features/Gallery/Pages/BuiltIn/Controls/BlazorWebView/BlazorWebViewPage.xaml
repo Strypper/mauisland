@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<core:BasePage 
-    x:Class="MAUIsland.BlazorWebViewPage" 
+<core:BasePage
+    x:Class="MAUIsland.BlazorWebViewPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
-    xmlns:local="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:local="clr-namespace:MAUIsland"
     Title="Blazor Web View"
     Padding="20"
     x:DataType="core:BlazorWebViewPageViewModel"
@@ -40,8 +40,8 @@
                 <Grid ColumnDefinitions="*, *">
                     <VerticalStackLayout Grid.Column="0">
                         <Button
+                            Command="{x:Binding CounterButtonCommand}"
                             HorizontalOptions="Start"
-                            Pressed="Button_Pressed"
                             Text="Click me" />
                         <Label FontSize="16">
                             <Label.FormattedText>
@@ -51,18 +51,20 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                        <CollectionView ItemsSource="{x:Binding NavigationPageName}" ItemsLayout="HorizontalList">
+                        <CollectionView ItemsLayout="HorizontalList" ItemsSource="{x:Binding NavigationPageName}">
                             <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Button Text="{x:Binding .}" 
-                                            Clicked="PageNavigateButton_Clicked"/>
+                                <DataTemplate x:DataType="x:String">
+                                    <Button Clicked="PageNavigateButton_Clicked" Text="{x:Binding}" />
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
                     </VerticalStackLayout>
-                    <Border Grid.Column="1" Padding="0" StrokeShape="RoundRectangle 4" StrokeThickness="0">
-                        <BlazorWebView x:Name="blazorWebView"
-                                       HostPage="wwwroot/index.html">
+                    <Border
+                        Grid.Column="1"
+                        Padding="0"
+                        StrokeShape="RoundRectangle 4"
+                        StrokeThickness="0">
+                        <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html">
                             <BlazorWebView.RootComponents>
                                 <RootComponent ComponentType="{x:Type local:Routes}" Selector="#app" />
                             </BlazorWebView.RootComponents>
