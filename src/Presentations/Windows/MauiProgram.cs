@@ -3,8 +3,10 @@ using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Storage;
 using MAUIsland.Home;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Refit;
 using Syncfusion.Maui.Core.Hosting;
 using System.Reflection;
@@ -47,9 +49,11 @@ public static class MauiProgram
             .ConfigureSyncfusionCore()
             .UseBarcodeReader();
 
+        builder.Services.AddMauiBlazorWebView();
 
 #if DEBUG
-        //builder.Logging.AddDebug();
+        builder.Services.AddBlazorWebViewDeveloperTools();
+        builder.Logging.AddDebug();
 #endif
 
 
@@ -115,7 +119,6 @@ public static class MauiProgram
 
         return builder;
     }
-
 
     static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {

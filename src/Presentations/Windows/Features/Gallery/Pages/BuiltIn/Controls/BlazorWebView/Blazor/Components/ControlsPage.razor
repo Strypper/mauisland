@@ -1,0 +1,18 @@
+﻿@page "/controls"
+@namespace MAUIsland
+@attribute [StreamRendering]
+
+@* <PageTitle>Controls Page</PageTitle>
+
+<FluentStack VerticalGap="15" Orientation="Orientation.Vertical">
+    <FluentCard AreaRestricted="false">
+        <FluentToolbar Style="width:100%">
+            <FluentButton Appearance="Appearance.Accent"/>
+            <FluentButton Appearance="Appearance.Outline" />
+        </FluentToolbar>
+    </FluentCard>
+</FluentStack> *@
+
+<p role="status">Current count: @ViewModel.Counter</p>
+
+<button class="btn btn-primary" @onclick=@OnCounterButtonClicked>Click me</button>
