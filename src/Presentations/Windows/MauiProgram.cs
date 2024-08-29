@@ -5,6 +5,7 @@ using CommunityToolkit.Maui.Storage;
 using MAUIsland.Home;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Refit;
 using Syncfusion.Maui.Core.Hosting;
 using System.Reflection;
@@ -62,6 +63,7 @@ public static class MauiProgram
 
         //Temp way for blazor web view, razor and xaml shared states only work with singleton currently
         builder.Services.AddSingleton<BlazorWebViewPageViewModel>();
+        builder.Services.AddSingleton<BlazorWebViewShortenVerPageViewModel>();
 
         return builder.Build();
     }

@@ -74,12 +74,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiCss Remove="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebViewShortenVer\Blazor\Hosting\css\app.css" />
+	  <MauiCss Remove="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebViewShortenVer\Blazor\Hosting\css\bootstrap\bootstrap.min.css" />
+	  <MauiCss Remove="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebViewShortenVer\Blazor\Layout\MainLayout.razor.css" />
+	  <MauiCss Remove="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebViewShortenVer\Blazor\Layout\NavMenu.razor.css" />
 	  <MauiCss Remove="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\Layout\MainLayout.razor.css" />
 	  <MauiCss Remove="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\Layout\NavMenu.razor.css" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="appsettings.Development.json" />
+	  <None Remove="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebViewShortenVer\Blazor\Hosting\css\bootstrap\bootstrap.min.css.map" />
+	  <None Remove="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebViewShortenVer\Blazor\Hosting\favicon.png" />
+	  <None Remove="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebViewShortenVer\Blazor\Hosting\index.html" />
 	  <None Remove="Resources\Images\backgrounds\abstract_background.jpg" />
 	  <None Remove="Resources\Images\backgrounds\abstract_background_1.jpg" />
 	  <None Remove="Resources\Images\books\dotnet_developers_cross_platform_applications_ebook.png" />
@@ -143,11 +150,42 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebViewShortenVer\Blazor\Hosting\css\app.css">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebViewShortenVer\Blazor\Hosting\css\bootstrap\bootstrap.min.css">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebViewShortenVer\Blazor\Hosting\css\bootstrap\bootstrap.min.css.map">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebViewShortenVer\Blazor\Hosting\favicon.png">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebViewShortenVer\Blazor\Hosting\index.html">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebViewShortenVer\Blazor\Layout\MainLayoutTest.razor.css">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebViewShortenVer\Blazor\Layout\NavMenuTest.razor.css">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\Host\css\app.css" />
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\Host\css\bootstrap\bootstrap.min.css" />
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\Host\css\bootstrap\bootstrap.min.css.map" />
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\Host\favicon.png" />
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\Host\index.html" />
 	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\Layout\MainLayout.razor.css">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Content>
 	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\Layout\NavMenu.razor.css">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Content>
 	</ItemGroup>
 
@@ -178,6 +216,9 @@
 		</Compile>
 		<Compile Update="Features\Gallery\ContentViews\GithubCardContentView.xaml.cs">
 			<DependentUpon>GithubCardContentView.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebViewShortenVer\BlazorWebViewShortenVer.xaml.cs">
+		  <DependentUpon>BlazorWebViewShortenVer.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Features\Gallery\Pages\BuiltIn\Layouts\AbsoluteLayout\AbsoluteLayoutPage.xaml.cs">
 		  <DependentUpon>AbsoluteLayoutPage.xaml</DependentUpon>
@@ -292,6 +333,9 @@
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\MAUI\Label\LabelPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebViewShortenVer\BlazorWebViewShortenVer.xaml">
+		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\BlazorWebViewPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>

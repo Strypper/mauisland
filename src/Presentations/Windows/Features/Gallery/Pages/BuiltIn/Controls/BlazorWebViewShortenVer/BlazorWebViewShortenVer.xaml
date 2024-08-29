@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <core:BasePage
-    x:Class="MAUIsland.BlazorWebViewPage"
+    x:Class="MAUIsland.BlazorWebViewShortenVerPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
-    xmlns:local="clr-namespace:MAUIsland"
+    xmlns:local="clr-namespace:MAUIsland.A"
     Title="Blazor Web View"
     Padding="20"
-    x:DataType="core:BlazorWebViewPageViewModel"
+    x:DataType="core:BlazorWebViewShortenVerPageViewModel"
     BackgroundColor="Transparent"
     Loaded="BasePage_Loaded">
 
@@ -64,9 +64,9 @@
                         Padding="0"
                         StrokeShape="RoundRectangle 4"
                         StrokeThickness="0">
-                        <BlazorWebView x:Name="blazorWebView" HostPage="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\Host\index.html">
+                        <BlazorWebView x:Name="blazorWebView" HostPage="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebViewShortenVer\Blazor\Hosting\index.html">
                             <BlazorWebView.RootComponents>
-                                <RootComponent ComponentType="{x:Type local:Routes}" Selector="#app" />
+                                <RootComponent ComponentType="{x:Type local:RoutesTest}" Selector="#app" />
                             </BlazorWebView.RootComponents>
                         </BlazorWebView>
                     </Border>

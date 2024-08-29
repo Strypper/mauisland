@@ -1,0 +1,42 @@
+using Microsoft.AspNetCore.Components;
+
+namespace MAUIsland;
+
+public partial class BlazorWebViewShortenVerPage : IGalleryPage
+{
+    #region [ Fields ]
+
+    private readonly BlazorWebViewShortenVerPageViewModel viewModel;
+    #endregion
+
+    #region [ CTor ] 
+    public BlazorWebViewShortenVerPage(BlazorWebViewShortenVerPageViewModel vm)
+    {
+        InitializeComponent();
+
+        BindingContext = viewModel = vm;
+    }
+    #endregion
+
+    #region [ Event Handlers ]
+    private void BasePage_Loaded(object sender, EventArgs e)
+    {
+        if (NewWindowParameter is not null && viewModel.ControlInformation is null)
+        {
+            viewModel.SetControlInformation(NewWindowParameter);
+            viewModel.RefreshCommand.Execute(null);
+        }
+    }
+
+    private async void PageNavigateButton_Clicked(System.Object sender, System.EventArgs e)
+    {
+        var button = (Button)sender;
+        var pageUrl = "/" + button.Text.Replace(" Page ", "").ToLower();
+        var wasDispatchCalled = await blazorWebView.TryDispatchAsync(sp =>
+        {
+            var navMan = sp.GetRequiredService<NavigationManager>();
+            navMan.NavigateTo(pageUrl);
+        });
+    }
+    #endregion
+}
