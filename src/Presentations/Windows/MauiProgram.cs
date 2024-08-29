@@ -5,6 +5,7 @@ using CommunityToolkit.Maui.Storage;
 using MAUIsland.Home;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Refit;
 using Syncfusion.Maui.Core.Hosting;
 using System.Reflection;
@@ -49,6 +50,13 @@ public static class MauiProgram
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();
+
+        builder.Services.AddLogging(logging =>
+        {
+            logging.AddFilter("Microsoft.AspNetCore.Components.WebView", LogLevel.Trace);
+            logging.AddDebug();
+        });
+
         builder.Logging.AddDebug();
 #endif
 

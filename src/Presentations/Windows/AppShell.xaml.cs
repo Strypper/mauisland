@@ -34,6 +34,7 @@ public partial class AppShell : Shell
     {
         Routing.RegisterRoute(nameof(MockupPage), typeof(MockupPage));
         Routing.RegisterRoute(nameof(ResumesPage), typeof(ResumesPage));
+        Routing.RegisterRoute(nameof(ResumeDetailPage), typeof(ResumeDetailPage));
         Routing.RegisterRoute(nameof(CardsByGroupPage), typeof(CardsByGroupPage));
     }
     void WriteAppVersion()

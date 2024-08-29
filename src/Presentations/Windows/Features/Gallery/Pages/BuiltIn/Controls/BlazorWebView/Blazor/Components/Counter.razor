@@ -1,6 +1,39 @@
 ﻿@page "/controls"
+
+@using Microsoft.AspNetCore.Components;
+@using System.ComponentModel;
+
+@inject BlazorWebViewPageViewModel ViewModel
+
 @namespace MAUIsland
 
 <p role="status">Current count: @ViewModel.Counter</p>
 
-<button class="btn btn-primary" @onclick=@OnCounterButtonClicked>Click me</button>
+<button class="btn btn-primary" @onclick=OnCounterButtonClicked>Click me</button>
+
+@code{
+
+    #region [ Override ]
+
+    protected override async Task OnInitializedAsync()
+    {
+        ViewModel.PropertyChanged += OnViewModelChanged;
+
+        await base.OnInitializedAsync();
+    }
+    #endregion
+
+    #region [ Event Handlers ]
+
+    private void OnViewModelChanged(object? sender, PropertyChangedEventArgs e)
+        => StateHasChanged();
+
+    public void Dispose()
+        => ViewModel.PropertyChanged -= OnViewModelChanged;
+
+    public void OnCounterButtonClicked()
+    {
+        ViewModel.CounterButtonCommand.Execute(this);
+    }
+    #endregion
+}

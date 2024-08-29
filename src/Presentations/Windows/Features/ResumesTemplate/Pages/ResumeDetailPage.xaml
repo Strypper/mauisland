@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<core:BasePage
+    x:Class="MAUIsland.ResumesTemplate.ResumeDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:local="clr-namespace:MAUIsland.ResumesTemplate"
+    Loaded="BasePage_Loaded">
+    <Grid ColumnDefinitions="*,*">
+        <Button Clicked="Button_Clicked" Text="Move" />
+        <BlazorWebView
+            x:Name="blazorWebView"
+            Grid.Column="1"
+            HostPage="Features\ResumesTemplate\Blazor\wwwroot\index.html">
+            <BlazorWebView.RootComponents>
+                <RootComponent ComponentType="{x:Type local:Routes}" Selector="#app1" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
+    </Grid>
+</core:BasePage>

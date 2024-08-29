@@ -9,4 +9,5 @@ public static class AppRoutes
     public const string SignUp = "signUp";
     public const string CardsByGroupPage = nameof(CardsByGroupPage);
     public const string ResumesPage = nameof(ResumesPage);
+    public const string ResumeDetailPage = nameof(ResumeDetailPage);
 }
