@@ -4,26 +4,33 @@ namespace MAUIsland.ResumesTemplate;
 
 public partial class ResumeDetailPage
 {
-    public ResumeDetailPage()
+
+    #region [ CTor ]
+
+    public ResumeDetailPage(ResumeDetailPageViewModel vm)
     {
         InitializeComponent();
-    }
 
-    private async void BasePage_Loaded(System.Object sender, System.EventArgs e)
-    {
-        await blazorWebView.TryDispatchAsync(sp =>
-        {
-            var navMan = sp.GetRequiredService<NavigationManager>();
-            navMan.NavigateTo("/test");
-        });
+        this.BindingContext = vm;
     }
+    #endregion
 
     private async void Button_Clicked(System.Object sender, System.EventArgs e)
     {
-        var a = await blazorWebView.TryDispatchAsync(sp =>
+        var a = await BlazorWebViewElement.TryDispatchAsync(sp =>
         {
             var navMan = sp.GetRequiredService<NavigationManager>();
-            navMan.NavigateTo("/controls");
+            navMan.NavigateTo("/resumes-template/dotnet-template");
         });
     }
+
+    private async void BlazorWebViewElement_Loaded(System.Object sender, System.EventArgs e)
+    {
+        await BlazorWebViewElement.TryDispatchAsync(sp =>
+        {
+            var navMan = sp.GetRequiredService<NavigationManager>();
+            navMan.NavigateTo("/resumes-template/dotnet-template");
+        });
+    }
+
 }

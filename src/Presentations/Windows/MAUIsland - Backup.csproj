@@ -74,15 +74,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiCss Remove="Blazor\hosting\css\app.css" />
-	  <MauiCss Remove="Blazor\hosting\css\bootstrap\bootstrap.min.css" />
+	  <MauiCss Remove="Features\ResumesTemplate\Blazor\wwwroot\css\app.css" />
+	  <MauiCss Remove="Features\ResumesTemplate\Blazor\wwwroot\css\bootstrap\bootstrap.min.css" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="appsettings.Development.json" />
-	  <None Remove="Blazor\hosting\css\bootstrap\bootstrap.min.css.map" />
-	  <None Remove="Blazor\hosting\favicon.png" />
-	  <None Remove="Blazor\hosting\index.html" />
+	  <None Remove="Features\ResumesTemplate\Blazor\wwwroot\css\bootstrap\bootstrap.min.css.map" />
+	  <None Remove="Features\ResumesTemplate\Blazor\wwwroot\favicon.png" />
+	  <None Remove="Features\ResumesTemplate\Blazor\wwwroot\index.html" />
 	  <None Remove="Resources\Images\backgrounds\abstract_background.jpg" />
 	  <None Remove="Resources\Images\backgrounds\abstract_background_1.jpg" />
 	  <None Remove="Resources\Images\books\dotnet_developers_cross_platform_applications_ebook.png" />
@@ -146,11 +146,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="Blazor\hosting\css\app.css" />
-	  <Content Include="Blazor\hosting\css\bootstrap\bootstrap.min.css" />
-	  <Content Include="Blazor\hosting\css\bootstrap\bootstrap.min.css.map" />
-	  <Content Include="Blazor\hosting\favicon.png" />
-	  <Content Include="Blazor\hosting\index.html" />
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\hosting\css\app.css" />
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\hosting\css\bootstrap\bootstrap.min.css" />
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\hosting\css\bootstrap\bootstrap.min.css.map" />
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\hosting\favicon.png" />
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\hosting\index.html" />
+	  <Content Include="Features\ResumesTemplate\Blazor\wwwroot\css\app.css" />
+	  <Content Include="Features\ResumesTemplate\Blazor\wwwroot\css\bootstrap\bootstrap.min.css" />
+	  <Content Include="Features\ResumesTemplate\Blazor\wwwroot\css\bootstrap\bootstrap.min.css.map" />
+	  <Content Include="Features\ResumesTemplate\Blazor\wwwroot\favicon.png" />
+	  <Content Include="Features\ResumesTemplate\Blazor\wwwroot\index.html" />
 	</ItemGroup>
 
 	<ItemGroup>

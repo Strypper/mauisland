@@ -6,15 +6,17 @@
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:local="clr-namespace:MAUIsland.ResumesTemplate"
-    Loaded="BasePage_Loaded">
+    x:DataType="local:ResumeDetailPageViewModel">
     <Grid ColumnDefinitions="*,*">
         <Button Clicked="Button_Clicked" Text="Move" />
         <BlazorWebView
-            x:Name="blazorWebView"
+            x:Name="BlazorWebViewElement"
             Grid.Column="1"
-            HostPage="Features\ResumesTemplate\Blazor\wwwroot\index.html">
+            HostPage="Blazor\hosting\index.html"
+            Loaded="BlazorWebViewElement_Loaded"
+            StartPath="{x:Binding BlazorWebViewStartPath}">
             <BlazorWebView.RootComponents>
-                <RootComponent ComponentType="{x:Type local:Routes}" Selector="#app1" />
+                <RootComponent ComponentType="{x:Type app:Routes}" Selector="#app" />
             </BlazorWebView.RootComponents>
         </BlazorWebView>
     </Grid>

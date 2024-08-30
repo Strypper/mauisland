@@ -64,7 +64,10 @@
                         Padding="0"
                         StrokeShape="RoundRectangle 4"
                         StrokeThickness="0">
-                        <BlazorWebView x:Name="blazorWebView" HostPage="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\hosting\index.html">
+                        <BlazorWebView
+                            x:Name="blazorWebView"
+                            HostPage="Blazor\hosting\index.html"
+                            StartPath="{x:Binding BlazorWebViewStartPath}">
                             <BlazorWebView.RootComponents>
                                 <RootComponent ComponentType="{x:Type local:Routes}" Selector="#app" />
                             </BlazorWebView.RootComponents>

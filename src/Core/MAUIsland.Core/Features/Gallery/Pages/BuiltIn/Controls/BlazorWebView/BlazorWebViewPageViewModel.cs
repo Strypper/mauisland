@@ -1,7 +1,6 @@
 ﻿using DiscordRPC;
 using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
-using Microsoft.AspNetCore.Components;
 
 namespace MAUIsland.Core;
 
@@ -25,7 +24,10 @@ public partial class BlazorWebViewPageViewModel : BaseBuiltInPageControlViewMode
     ObservableCollection<string> navigationPageName = new();
 
     [ObservableProperty]
-    public int counter;
+    int counter;
+
+    [ObservableProperty]
+    string blazorWebViewStartPath = "/blazor-web-view/";
     #endregion
 
     #region [ Overrides ]

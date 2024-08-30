@@ -31,7 +31,7 @@ public partial class BlazorWebViewPage : IGalleryPage
     private async void PageNavigateButton_Clicked(System.Object sender, System.EventArgs e)
     {
         var button = (Button)sender;
-        var pageUrl = "/" + button.Text.Replace(" Page", "").ToLower();
+        var pageUrl = viewModel.BlazorWebViewStartPath + button.Text.Replace(" Page", "").ToLower();
         var wasDispatchCalled = await blazorWebView.TryDispatchAsync(sp =>
         {
             var navMan = sp.GetRequiredService<NavigationManager>();
