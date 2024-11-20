@@ -5,6 +5,7 @@ using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
 using Plugin.Maui.OCR;
 using SkiaSharp.Views.Maui.Controls.Hosting;
+using Syncfusion.Maui.Toolkit.Hosting;
 using Xe.AcrylicView;
 using ZXing.Net.Maui.Controls;
 
@@ -20,6 +21,7 @@ public static class ServicesExtension
         builder.UseSkiaSharp(true);
         builder.UseBarcodeReader();
         builder.UseMaterialComponents();
+        builder.ConfigureSyncfusionToolkit();
 
 
         builder.Services.RegisterGitHubFeatures(gitHubFeatureAccessToken);

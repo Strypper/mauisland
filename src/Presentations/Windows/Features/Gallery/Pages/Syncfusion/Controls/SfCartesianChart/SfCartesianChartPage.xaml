@@ -9,6 +9,7 @@
     xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
     xmlns:sfavatar="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
     Title="SfCartesianChart"
     Padding="20"
     x:DataType="core:SfCartesianChartPageViewModel"
@@ -69,7 +70,7 @@
             <Label FontAttributes="Bold" Text="{x:StaticResource PropertiesListHeader}" />
         </DataTemplate>
 
-        <charts:DataPointSelectionBehavior x:Key="SfCartesianChartSelectionBrush" SelectionBrush="#314A6E" />
+        <toolkit:DataPointSelectionBehavior x:Key="SfCartesianChartSelectionBrush" SelectionBrush="#314A6E" />
 
     </core:BasePage.Resources>
 
@@ -86,23 +87,23 @@
             </Border>
             <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
-                    <charts:SfCartesianChart>
-                        <charts:SfCartesianChart.XAxes>
-                            <charts:CategoryAxis>
-                                <charts:CategoryAxis.Title>
-                                    <charts:ChartAxisTitle Text="Name" TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}" />
-                                </charts:CategoryAxis.Title>
-                            </charts:CategoryAxis>
-                        </charts:SfCartesianChart.XAxes>
-                        <charts:SfCartesianChart.YAxes>
-                            <charts:NumericalAxis>
-                                <charts:NumericalAxis.Title>
-                                    <charts:ChartAxisTitle Text="Exp" TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}" />
-                                </charts:NumericalAxis.Title>
-                            </charts:NumericalAxis>
-                        </charts:SfCartesianChart.YAxes>
+                    <toolkit:SfCartesianChart>
+                        <toolkit:SfCartesianChart.XAxes>
+                            <toolkit:CategoryAxis>
+                                <toolkit:CategoryAxis.Title>
+                                    <toolkit:ChartAxisTitle Text="Name" TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}" />
+                                </toolkit:CategoryAxis.Title>
+                            </toolkit:CategoryAxis>
+                        </toolkit:SfCartesianChart.XAxes>
+                        <toolkit:SfCartesianChart.YAxes>
+                            <toolkit:NumericalAxis>
+                                <toolkit:NumericalAxis.Title>
+                                    <toolkit:ChartAxisTitle Text="Exp" TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}" />
+                                </toolkit:NumericalAxis.Title>
+                            </toolkit:NumericalAxis>
+                        </toolkit:SfCartesianChart.YAxes>
 
-                        <charts:ColumnSeries
+                        <toolkit:ColumnSeries
                             EnableAnimation="True"
                             ItemsSource="{x:Binding Persons}"
                             PaletteBrushes="{x:Binding PalletBrushes,
@@ -110,7 +111,7 @@
                             SelectionBehavior="{x:StaticResource SfCartesianChartSelectionBrush}"
                             XBindingPath="Name"
                             YBindingPath="Exp" />
-                    </charts:SfCartesianChart>
+                    </toolkit:SfCartesianChart>
                     <core:SourceCodeExpander Code="{x:Binding BasicSfCartesianChartXamlCode}" />
                 </VerticalStackLayout>
             </Border>

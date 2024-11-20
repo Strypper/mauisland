@@ -49,9 +49,6 @@ public partial class ShowcasesPageViewModel : NavigationAwareBaseViewModel
     int collectionViewSpan = 3;
 
     [ObservableProperty]
-    string mockUpPageUrl = nameof(MockupPage);
-
-    [ObservableProperty]
     ICollection<BaseMockup> mockups;
 
     [ObservableProperty]

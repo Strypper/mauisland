@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Diagnostics;
 using System.Reflection;
 
-namespace MAUIsland;
+namespace MAUIsland.Settings;
 
 public partial class SettingsPageViewModel(IAppNavigator appNavigator,
                                              IUserServices userService,
@@ -14,6 +14,7 @@ public partial class SettingsPageViewModel(IAppNavigator appNavigator,
     private readonly Core.IFilePicker _filePicker = filePicker;
     private readonly IUserServices _userService = userService;
 
+    public TitleBar? TitleBar;
     #endregion
 
     #region [ Overrides ]
@@ -44,7 +45,23 @@ public partial class SettingsPageViewModel(IAppNavigator appNavigator,
 
     #endregion
 
+    #region [ Properties - Title Bar ]
+
+    [ObservableProperty]
+    string title = "MAUIsland";
+
+    [ObservableProperty]
+    string subtitle = "Everything about .NET MAUI";
+
+    [ObservableProperty]
+    bool isShownTitleBar = true;
+    #endregion
+
     #region [ Relay Commands ]
+
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
 
     [RelayCommand]
     private async Task OpenFileAsync()
@@ -72,9 +89,13 @@ public partial class SettingsPageViewModel(IAppNavigator appNavigator,
 
     #region [ Methods ]
 
-    [RelayCommand]
-    Task OpenUrlAsync(string url)
-    => AppNavigator.OpenUrlAsync(url);
+    public void InitTitleBar()
+    {
+        if (TitleBar is null)
+            return;
+
+        TitleBar.Icon = "mauisland_logo";
+    }
 
     async Task GetCurrentUser()
     {

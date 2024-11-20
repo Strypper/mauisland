@@ -1,5 +1,6 @@
 ﻿using MAUIsland.Mockup;
 using MAUIsland.ResumesTemplate;
+using MAUIsland.Settings;
 using Microsoft.Extensions.Configuration;
 
 namespace MAUIsland;
@@ -32,9 +33,10 @@ public partial class AppShell : Shell
     #region [ Methods ]
     void RegisterRoutes()
     {
-        Routing.RegisterRoute(nameof(MockupPage), typeof(MockupPage));
-        Routing.RegisterRoute(nameof(ResumesPage), typeof(ResumesPage));
-        Routing.RegisterRoute(nameof(CardsByGroupPage), typeof(CardsByGroupPage));
+        Routing.RegisterRoute(AppRoutes.MockupPage, typeof(MockupPage));
+        Routing.RegisterRoute(AppRoutes.ResumesPage, typeof(ResumesPage));
+        Routing.RegisterRoute(AppRoutes.SettingsPage, typeof(SettingsPage));
+        Routing.RegisterRoute(AppRoutes.CardsByGroupPage, typeof(CardsByGroupPage));
     }
     void WriteAppVersion()
     {

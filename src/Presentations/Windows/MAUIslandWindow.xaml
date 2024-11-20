@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Window xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:app="clr-namespace:MAUIsland"
+        xmlns:settings="clr-namespace:MAUIsland.Settings"
+        x:Class="MAUIsland.MAUIslandWindow"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+        x:DataType="settings:SettingsPageViewModel">
+    <Window.Page>
+        <app:AppShell />
+    </Window.Page>
+    <Window.TitleBar>
+        <TitleBar x:Name="titleBar"
+                  Title="{x:Binding Title}"
+                  Subtitle="{x:Binding Subtitle} "
+                  IsVisible="{x:Binding IsShownTitleBar}"
+                  BackgroundColor="#512BD4"
+                  ForegroundColor="White"                  
+                  HeightRequest="48">
+            <TitleBar.Content>
+                <skia:SKLottieView
+                    HeightRequest="32"
+                    HorizontalOptions="Center"
+                    RepeatCount="-1"
+                    RepeatMode="Restart"
+                    Source="totechs_logo.json"
+                    VerticalOptions="Center"
+                    WidthRequest="32" />
+            </TitleBar.Content>
+        </TitleBar>
+    </Window.TitleBar>
+</Window>

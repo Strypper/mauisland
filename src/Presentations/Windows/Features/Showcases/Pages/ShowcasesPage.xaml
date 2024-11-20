@@ -297,7 +297,7 @@
                             BorderColor="#004D4D"
                             BorderWidth="3"
                             Command="{x:Binding NavigateCommand}"
-                            CommandParameter="{x:Binding MockUpPageUrl}"
+                            CommandParameter="{x:Static app:AppRoutes.MockupPage}"
                             ImageSource="{x:StaticResource MockUpIcon}" />
                     </Grid>
                 </Border>

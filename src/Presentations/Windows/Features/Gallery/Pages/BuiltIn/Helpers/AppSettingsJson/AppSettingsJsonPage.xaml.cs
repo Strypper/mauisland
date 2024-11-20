@@ -10,7 +10,7 @@ public partial class AppSettingsJsonPage : IGalleryPage
 
     #region [ Properties ]
 
-    Settings settings;
+    MAUIsland.Core.Settings settings;
     #endregion
 
     #region [ CTor ]
@@ -22,7 +22,7 @@ public partial class AppSettingsJsonPage : IGalleryPage
 
         settings = ServiceHelper.GetService<IConfiguration>()
                                    .GetRequiredSection("Settings")
-                                   .Get<Settings>();
+                                   .Get<MAUIsland.Core.Settings>();
     }
     #endregion
 

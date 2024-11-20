@@ -1,4 +1,4 @@
-namespace MAUIsland;
+namespace MAUIsland.Settings;
 
 public partial class SettingsPage
 {
@@ -7,5 +7,7 @@ public partial class SettingsPage
         InitializeComponent();
 
         BindingContext = vm;
+
+        //vm.TitleBar = Window.TitleBar as TitleBar;
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace MAUIsland;
+﻿using MAUIsland.Settings;
+
+namespace MAUIsland;
 
 public partial class App : Application
 {
@@ -9,6 +11,7 @@ public partial class App : Application
 
     protected override Window CreateWindow(IActivationState? activationState)
     {
-        return new Window(new AppShell());
+        SettingsPageViewModel settingsPageViewModel = ServiceHelper.GetService<SettingsPageViewModel>(); 
+        return new MAUIslandWindow(settingsPageViewModel);
     }
 }
