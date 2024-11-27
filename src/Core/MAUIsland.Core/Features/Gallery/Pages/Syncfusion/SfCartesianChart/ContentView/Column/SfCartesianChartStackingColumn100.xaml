@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartStackingColumn100"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root">
+
+    <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+        <VerticalStackLayout Spacing="10">
+            <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
+                                      Margin="0, 0, 20, 0">
+                <toolkit:SfCartesianChart.Title>
+                    <Label Text="Stacking Column 100 Chart" MaxLines="2" LineBreakMode="WordWrap" HorizontalOptions="Fill" VerticalOptions="Center" HorizontalTextAlignment="Center"
+                           Padding="0,0,0,5"/>
+                </toolkit:SfCartesianChart.Title>
+                <toolkit:SfCartesianChart.Legend>
+                    <toolkit:ChartLegend/>
+                </toolkit:SfCartesianChart.Legend>
+                <toolkit:SfCartesianChart.XAxes>
+                    <toolkit:CategoryAxis LabelPlacement="BetweenTicks" ShowMajorGridLines="False">
+                    </toolkit:CategoryAxis>
+                </toolkit:SfCartesianChart.XAxes>
+                <toolkit:SfCartesianChart.YAxes>
+                    <toolkit:NumericalAxis Interval="20" ShowMajorGridLines="True" ShowMinorGridLines="True" RangePadding="None">
+                        <toolkit:NumericalAxis.LabelStyle>
+                            <toolkit:ChartAxisLabelStyle LabelFormat="0'%"/>
+                        </toolkit:NumericalAxis.LabelStyle>
+                    </toolkit:NumericalAxis>
+                </toolkit:SfCartesianChart.YAxes>
+                <toolkit:SfCartesianChart.Series>
+                    <toolkit:StackingColumn100Series Label="Zone 1" LegendIcon="Rectangle"
+                                                     ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                                     XBindingPath="Name" YBindingPath="High" 
+                                                     EnableAnimation="True" ShowDataLabels="True" />
+                    <toolkit:StackingColumn100Series Label="Zone 2" LegendIcon="Rectangle"
+                                                     ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                                     XBindingPath="Name" YBindingPath="Low" 
+                                                     EnableAnimation="True" ShowDataLabels="True"/>
+                    <toolkit:StackingColumn100Series Label="Zone 3" LegendIcon="Rectangle"
+                                                     ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                                     XBindingPath="Name" YBindingPath="Value" 
+                                                     EnableAnimation="True" ShowDataLabels="True" />
+                    <toolkit:StackingColumn100Series Label="Zone 4" LegendIcon="Rectangle"
+                                                     ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                                     XBindingPath="Name" YBindingPath="Size" 
+                                                     EnableAnimation="True" ShowDataLabels="True"/> 
+                </toolkit:SfCartesianChart.Series>
+            </toolkit:SfCartesianChart>
+
+            <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+        </VerticalStackLayout>
+    </Border>
+</ContentView>

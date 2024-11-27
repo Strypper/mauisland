@@ -109,6 +109,15 @@
 	  <Compile Update="Features\Gallery\Pages\BuiltIn\Controls\CollectionView\TemplateContentViews\SelectedItemTemplateContentView.xaml.cs">
 	    <DependentUpon>%(Filename)</DependentUpon>
 	  </Compile>
+	  <Compile Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Area\SfCartesianChartArea.xaml.cs">
+	    <DependentUpon>SfCartesianChartArea.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Area\SfCartesianChartStackingArea.xaml.cs">
+	    <DependentUpon>SfCartesianChartStackingArea.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Column\Bar\SfCartesianChartStackingBar.xaml.cs">
+	    <DependentUpon>SfCartesianChartStackingBar.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\ContentViews\DocumentAlert.xaml.cs">
 	    <DependentUpon>DocumentAlert.xaml</DependentUpon>
 	  </Compile>
@@ -166,6 +175,51 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\BuiltIn\Controls\CollectionView\TemplateContentViews\SelectedItemTemplateContentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Area\SfCartesianChartArea.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Area\SfCartesianChartRangeArea.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Area\SfCartesianChartSplineArea.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Area\SfCartesianChartSplineRangeArea.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Area\SfCartesianChartStackingArea.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Area\SfCartesianChartStackingArea100.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Area\SfCartesianChartStepArea.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Column\Bar\SfCartesianChartBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Column\Bar\SfCartesianChartStackingBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Column\Bar\SfCartesianChartStackingBar100.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Column\SfCartesianChartColumn.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Column\Bar\SfCartesianChartRangeBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Column\SfCartesianChartRangeColumn.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Column\SfCartesianChartStackingColumn.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Column\SfCartesianChartStackingColumn100.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ContentViews\DocumentAlert.xaml">

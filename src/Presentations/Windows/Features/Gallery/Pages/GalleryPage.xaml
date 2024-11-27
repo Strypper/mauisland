@@ -8,9 +8,9 @@
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:Name="root"
-    Title="Welcome to gallery"
+    Title="Gallery"
     x:DataType="app:GalleryPageViewModel"
-    Shell.NavBarIsVisible="True"
+    Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="True">
     <core:BasePage.Resources>
         <DataTemplate x:Key="HorizontalWrapLayoutItemTemplate" x:DataType="core:ControlGroupInfo">
