@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartStackingColumn"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit" 
+    x:Name="root">
+
+    <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+        <VerticalStackLayout Spacing="10">
+            <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="FillAndExpand" 
+                                      Margin="0, 0, 20, 0">
+                <toolkit:SfCartesianChart.Title>
+                    <Label Text="Stacking Column Chart" Margin="0,0,0,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                </toolkit:SfCartesianChart.Title>
+                <toolkit:SfCartesianChart.XAxes>
+                    <toolkit:CategoryAxis LabelPlacement="BetweenTicks" IsVisible="true" ShowMajorGridLines="false">
+                    </toolkit:CategoryAxis>
+                </toolkit:SfCartesianChart.XAxes>
+                <toolkit:SfCartesianChart.YAxes >
+                    <toolkit:NumericalAxis ShowMajorGridLines="True" ShowMinorGridLines="false" Minimum="0" Maximum="60" Interval="10">
+                        <toolkit:NumericalAxis.LabelStyle>
+                            <toolkit:ChartAxisLabelStyle LabelFormat="0'" />
+                        </toolkit:NumericalAxis.LabelStyle>
+                    </toolkit:NumericalAxis>
+                </toolkit:SfCartesianChart.YAxes>
+                <toolkit:SfCartesianChart.Legend>
+                    <toolkit:ChartLegend ToggleSeriesVisibility="True"/>
+                </toolkit:SfCartesianChart.Legend>
+
+                <toolkit:StackingColumnSeries Label="Zone 1" XBindingPath="Name" YBindingPath="Value"
+                                              ItemsSource="{Binding ComponentData,Source={x:Reference root}}"
+                                              EnableAnimation="True" ShowDataLabels="True" LegendIcon="SeriesType"/>
+                <toolkit:StackingColumnSeries Label="Zone 2" XBindingPath="Name" YBindingPath="High"
+                                              ItemsSource="{Binding ComponentData, Source={x:Reference root}}"
+                                              EnableAnimation="True" ShowDataLabels="True" LegendIcon="SeriesType"/>
+                <toolkit:StackingColumnSeries Label="Zone 3" XBindingPath="Name" YBindingPath="Low"
+                                              ItemsSource="{Binding ComponentData, Source={x:Reference root}}" 
+                                              EnableAnimation="True" ShowDataLabels="True" LegendIcon="SeriesType"/>
+            </toolkit:SfCartesianChart>
+
+            <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+        </VerticalStackLayout>
+    </Border>
+
+</ContentView>

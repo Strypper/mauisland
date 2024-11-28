@@ -28,6 +28,20 @@
                 HorizontalOptions="Start"
                 VerticalOptions="Start"
                 WidthRequest="270" />
+            <Border Margin="0,0,10,0"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 0,0,40,40"
+                    Background="#51a930"
+                    Padding="14,3"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    IsVisible="{x:Binding IsFreeControl, Source={x:Reference root}}">
+                        <Label Text="Free"
+                               TextColor="White"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               HeightRequest="30"/>
+            </Border>
             <Grid
                 Margin="10"
                 ColumnDefinitions="30,280"
