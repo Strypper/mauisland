@@ -1,4 +1,5 @@
 using Syncfusion.Maui.Data;
+using Syncfusion.Maui.Toolkit.Charts;
 
 namespace MAUIsland.Core;
 public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewModel
@@ -48,6 +49,15 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     ObservableCollection<SfCartesianChartModel> stackingColumn;
 
     [ObservableProperty]
+    ObservableCollection<SfCartesianChartModel> firstLine;
+
+    [ObservableProperty]
+    ObservableCollection<SfCartesianChartModel> secondLine;
+
+    [ObservableProperty]
+    ObservableCollection<SfCartesianChartModel> thirdLine;
+
+    [ObservableProperty]
     ObservableCollection<string> areaChartOptions;
 
     [ObservableProperty]
@@ -57,10 +67,34 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     ObservableCollection<string> columnChartOptions;
 
     [ObservableProperty]
+    ObservableCollection<string> lineChartOptions;
+
+    [ObservableProperty]
+    ObservableCollection<string> errorBarTypes;
+
+    [ObservableProperty]
+    ObservableCollection<string> errorBarModes;
+
+    [ObservableProperty]
+    ObservableCollection<string> errorBarDirections;
+
+    [ObservableProperty]
+    string selectedErrorBarType;
+
+    [ObservableProperty]
+    string selectedErrorBarMode;
+
+    [ObservableProperty]
+    string selectedErrorBarDirection;
+
+    [ObservableProperty]
     string areaSelectedOption;
 
     [ObservableProperty]
     string columnBarSelectedOption;
+
+    [ObservableProperty]
+    string lineSelectedOption;
 
     [ObservableProperty]
     ControlGroupInfo controlGroup;
@@ -246,21 +280,17 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
         "    <toolkit:SfCartesianChart.Series>\r\n" +
         "        <toolkit:AreaSeries Label=\"Product A\" EnableAnimation=\"True\" EnableTooltip=\"True\" \r\n" +
-        "                            Stroke=\"{AppThemeBinding Light={StaticResource series4Light}, Dark={StaticResource series4Dark}}\" \r\n" +
-        "                            Fill=\"{AppThemeBinding Light={StaticResource series4Light30}, Dark={StaticResource series4Dark30}}\" StrokeWidth=\"1\" \r\n" +
-        "                            ItemsSource=\"{Binding Area}\" XBindingPath=\"Name\" YBindingPath=\"High\" LegendIcon=\"SeriesType\"/>\r\n" +
+        "                            StrokeWidth=\"1\" LegendIcon=\"SeriesType\" \r\n" +
+        "                            ItemsSource=\"{Binding Area}\" XBindingPath=\"Name\" YBindingPath=\"High\" />\r\n" +
         "        <toolkit:AreaSeries Label=\"Product B\" EnableAnimation=\"True\" EnableTooltip=\"True\" \r\n" +
-        "                            Stroke=\"{AppThemeBinding Light={StaticResource series3Light}, Dark={StaticResource series3Dark}}\" \r\n" +
-        "                            Fill=\"{AppThemeBinding Light={StaticResource series3Light30}, Dark={StaticResource series3Dark30}}\" StrokeWidth=\"1\" \r\n" +
-        "                            ItemsSource=\"{Binding Area}\" XBindingPath=\"Name\" YBindingPath=\"Low\" LegendIcon=\"SeriesType\"/>\r\n" +
+        "                            StrokeWidth=\"1\" LegendIcon=\"SeriesType\" \r\n" +
+        "                            ItemsSource=\"{Binding Area}\" XBindingPath=\"Name\" YBindingPath=\"Low\" />\r\n" +
         "        <toolkit:AreaSeries Label=\"Product C\" EnableAnimation=\"True\" EnableTooltip=\"True\" \r\n" +
-        "                            Stroke=\"{AppThemeBinding Light={StaticResource series2Light}, Dark={StaticResource series2Dark}}\" \r\n" +
-        "                            Fill=\"{AppThemeBinding Light={StaticResource series2Light30}, Dark={StaticResource series2Dark30}}\" StrokeWidth=\"1\" \r\n" +
-        "                            ItemsSource=\"{Binding Area}\" XBindingPath=\"Name\" YBindingPath=\"Value\" LegendIcon=\"SeriesType\"/>\r\n" +
+        "                            StrokeWidth=\"1\" LegendIcon=\"SeriesType\"\r\n" +
+        "                            ItemsSource=\"{Binding Area}\" XBindingPath=\"Name\" YBindingPath=\"Value\" />\r\n" +
         "        <toolkit:AreaSeries Label=\"Product D\" EnableAnimation=\"True\" EnableTooltip=\"True\" \r\n" +
-        "                            Stroke=\"{AppThemeBinding Light={StaticResource series1Light}, Dark={StaticResource series1Dark}}\" \r\n" +
-        "                            Fill=\"{AppThemeBinding Light={StaticResource series1Light30}, Dark={StaticResource series1Dark30}}\" StrokeWidth=\"1\" \r\n" +
-        "                            ItemsSource=\"{Binding Area}\" XBindingPath=\"Name\" YBindingPath=\"Size\" LegendIcon=\"SeriesType\"/>\r\n" +
+        "                            StrokeWidth=\"1\" LegendIcon=\"SeriesType\"\r\n" +
+        "                            ItemsSource=\"{Binding Area}\" XBindingPath=\"Name\" YBindingPath=\"Size\" />\r\n" +
         "    </toolkit:SfCartesianChart.Series>\r\n" +
         "</toolkit:SfCartesianChart>";
 
@@ -296,22 +326,18 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "        </toolkit:NumericalAxis>\r\n" +
         "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
         "    <toolkit:SfCartesianChart.Series>\r\n" +
-        "        <toolkit:SplineAreaSeries Label=\"Product A\" EnableAnimation=\"True\" EnableTooltip=\"True\" \r\n" +
-        "                                  Stroke=\"{AppThemeBinding Light={StaticResource series4Light}, Dark={StaticResource series4Dark}}\" \r\n" +
-        "                                  Fill=\"{AppThemeBinding Light={StaticResource series4Light30}, Dark={StaticResource series4Dark30}}\" StrokeWidth=\"1\" \r\n" +
-        "                                 ItemsSource=\"{Binding Area}\" XBindingPath=\"Name\" YBindingPath=\"High\" LegendIcon=\"SeriesType\"/>\r\n" +
-        "        <toolkit:SplineAreaSeries Label=\"Product B\" EnableAnimation=\"True\" EnableTooltip=\"True\" \r\n" +
-        "                                  Stroke=\"{AppThemeBinding Light={StaticResource series3Light}, Dark={StaticResource series3Dark}}\" \r\n" +
-        "                                  Fill=\"{AppThemeBinding Light={StaticResource series3Light30}, Dark={StaticResource series3Dark30}}\" StrokeWidth=\"1\" \r\n" +
-        "                                  ItemsSource=\"{Binding Area}\" XBindingPath=\"Name\" YBindingPath=\"Low\" LegendIcon=\"SeriesType\"/>\r\n" +
-        "        <toolkit:SplineAreaSeries Label=\"Product C\" EnableAnimation=\"True\" EnableTooltip=\"True\" \r\n" +
-        "                                  Stroke=\"{AppThemeBinding Light={StaticResource series2Light}, Dark={StaticResource series2Dark}}\" \r\n" +
-        "                                  Fill=\"{AppThemeBinding Light={StaticResource series2Light30}, Dark={StaticResource series2Dark30}}\" StrokeWidth=\"1\" \r\n" +
-        "                                      ItemsSource=\"{Binding Area}\" XBindingPath=\"Name\" YBindingPath=\"Value\" LegendIcon=\"SeriesType\"/>\r\n" +
-        "        <toolkit:SplineAreaSeries Label=\"Product D\" EnableAnimation=\"True\" EnableTooltip=\"True\" \r\n" +
-        "                                  Stroke=\"{AppThemeBinding Light={StaticResource series1Light}, Dark={StaticResource series1Dark}}\" \r\n" +
-        "                                  Fill=\"{AppThemeBinding Light={StaticResource series1Light30}, Dark={StaticResource series1Dark30}}\" StrokeWidth=\"1\" \r\n" +
-        "                                  ItemsSource=\"{Binding Area}\" XBindingPath=\"Name\" YBindingPath=\"Size\" LegendIcon=\"SeriesType\"/>\r\n" +
+        "        <toolkit:SplineAreaSeries Label=\"Product A\" EnableAnimation=\"True\" EnableTooltip=\"True\" StrokeWidth=\"1\"\r\n" +
+        "                                  ItemsSource=\"{Binding Area}\" XBindingPath=\"Name\" YBindingPath=\"High\"\r\n" +
+        "                                  LegendIcon=\"SeriesType\"/>\r\n" +
+        "        <toolkit:SplineAreaSeries Label=\"Product B\" EnableAnimation=\"True\" EnableTooltip=\"True\" StrokeWidth=\"1\"\r\n" +
+        "                                  ItemsSource=\"{Binding Area}\" XBindingPath=\"Name\" YBindingPath=\"Low\"\r\n" +
+        "                                  LegendIcon=\"SeriesType\"/>\r\n" +
+        "        <toolkit:SplineAreaSeries Label=\"Product C\" EnableAnimation=\"True\" EnableTooltip=\"True\" StrokeWidth=\"1\"\r\n" +
+        "                                  ItemsSource=\"{Binding Area}\" XBindingPath=\"Name\" YBindingPath=\"Value\"\r\n" +
+        "                                  LegendIcon=\"SeriesType\"/>\r\n" +
+        "        <toolkit:SplineAreaSeries Label=\"Product D\" EnableAnimation=\"True\" EnableTooltip=\"True\" StrokeWidth=\"1\"\r\n" +
+        "                                  ItemsSource=\"{Binding Area}\" XBindingPath=\"Name\" YBindingPath=\"Size\"\r\n" +
+        "                                  LegendIcon=\"SeriesType\"/>\r\n" +
         "    </toolkit:SfCartesianChart.Series>\r\n" +
         "</toolkit:SfCartesianChart>";
 
@@ -346,22 +372,18 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "        </toolkit:NumericalAxis>\r\n" +
         "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
         "    <toolkit:SfCartesianChart.Series>\r\n" +
-        "        <toolkit:StepAreaSeries  Label=\"Product A\" EnableAnimation=\"True\" EnableTooltip=\"True\"\r\n" +
-        "                                Stroke=\"{AppThemeBinding Light={StaticResource series4Light}, Dark={StaticResource series4Dark}}\" \r\n" +
-        "                                Fill=\"{AppThemeBinding Light={StaticResource series4Light30}, Dark={StaticResource series4Dark30}}\" StrokeWidth=\"1\" \r\n" +
-        "                                ItemsSource=\"{Binding ComponentData, Source={x:Reference root}}\" XBindingPath=\"Name\" YBindingPath=\"High\" LegendIcon=\"SeriesType\"/>\r\n" +
-        "        <toolkit:StepAreaSeries  Label=\"Product B\" EnableAnimation=\"True\" EnableTooltip=\"True\"\r\n" +
-        "                                Stroke=\"{AppThemeBinding Light={StaticResource series3Light}, Dark={StaticResource series3Dark}}\" \r\n" +
-        "                                Fill=\"{AppThemeBinding Light={StaticResource series3Light30}, Dark={StaticResource series3Dark30}}\" StrokeWidth=\"1\" \r\n" +
-        "                                ItemsSource=\"{Binding ComponentData, Source={x:Reference root}}\" XBindingPath=\"Name\" YBindingPath=\"Low\" LegendIcon=\"SeriesType\"/>\r\n" +
-        "        <toolkit:StepAreaSeries  Label=\"Product C\" EnableAnimation=\"True\" EnableTooltip=\"True\"\r\n" +
-        "                                Stroke=\"{AppThemeBinding Light={StaticResource series2Light}, Dark={StaticResource series2Dark}}\" \r\n" +
-        "                                Fill=\"{AppThemeBinding Light={StaticResource series2Light30}, Dark={StaticResource series2Dark30}}\" StrokeWidth=\"1\" \r\n" +
-        "                                ItemsSource=\"{Binding ComponentData, Source={x:Reference root}}\" XBindingPath=\"Name\" YBindingPath=\"Value\" LegendIcon=\"SeriesType\"/>\r\n" +
-        "        <toolkit:StepAreaSeries  Label=\"Product D\" EnableAnimation=\"True\" EnableTooltip=\"True\"\r\n" +
-        "                                Stroke=\"{AppThemeBinding Light={StaticResource series1Light}, Dark={StaticResource series1Dark}}\" \r\n" +
-        "                                Fill=\"{AppThemeBinding Light={StaticResource series1Light30}, Dark={StaticResource series1Dark30}}\" StrokeWidth=\"1\" \r\n" +
-        "                                ItemsSource=\"{Binding ComponentData, Source={x:Reference root}}\" XBindingPath=\"Name\" YBindingPath=\"Size\" LegendIcon=\"SeriesType\"/>\r\n" +
+        "        <toolkit:StepAreaSeries Label=\"Product A\" EnableAnimation=\"True\" EnableTooltip=\"True\" StrokeWidth=\"1\"\r\n" +
+        "                                ItemsSource=\"{Binding Area}\" \r\n" +
+        "                                XBindingPath=\"Name\" YBindingPath=\"High\" LegendIcon=\"SeriesType\"/>\r\n" +
+        "        <toolkit:StepAreaSeries Label=\"Product B\" EnableAnimation=\"True\" EnableTooltip=\"True\" StrokeWidth=\"1\"\r\n" +
+        "                                ItemsSource=\"{Binding Area}\" \r\n" +
+        "                                XBindingPath=\"Name\" YBindingPath=\"Low\" LegendIcon=\"SeriesType\"/>\r\n" +
+        "        <toolkit:StepAreaSeries Label=\"Product C\" EnableAnimation=\"True\" EnableTooltip=\"True\" StrokeWidth=\"1\"\r\n" +
+        "                                ItemsSource=\"{Binding Area}\" \r\n" +
+        "                                XBindingPath=\"Name\" YBindingPath=\"Value\" LegendIcon=\"SeriesType\"/>\r\n" +
+        "        <toolkit:StepAreaSeries Label=\"Product D\" EnableAnimation=\"True\" EnableTooltip=\"True\" StrokeWidth=\"1\"\r\n" +
+        "                                ItemsSource=\"{Binding Area}\" \r\n" +
+        "                                XBindingPath=\"Name\" YBindingPath=\"Size\" LegendIcon=\"SeriesType\"/>\r\n" +
         "    </toolkit:SfCartesianChart.Series>\r\n" +
         "</toolkit:SfCartesianChart>";
 
@@ -386,10 +408,8 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "        </toolkit:NumericalAxis>\r\n" +
         "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
         "    <toolkit:SfCartesianChart.Series>\r\n" +
-        "        <toolkit:RangeAreaSeries ItemsSource=\"{Binding ComponentData, Source={x:Reference root}}\" \r\n" +
+        "        <toolkit:RangeAreaSeries ItemsSource=\"{Binding RangeArea}\" \r\n" +
         "                                 XBindingPath=\"Date\" High=\"High\" Low=\"Low\" LegendIcon=\"SeriesType\"\r\n" +
-        "                                 Stroke=\"{AppThemeBinding Light={StaticResource series4Light}, Dark={StaticResource series4Dark}}\" \r\n" +
-        "                                 Fill=\"{AppThemeBinding Light={StaticResource series4Light30}, Dark={StaticResource series4Dark30}}\"\r\n" +
         "                                 EnableAnimation=\"True\" EnableTooltip=\"True\" StrokeWidth=\"1\" />\r\n" +
         "    </toolkit:SfCartesianChart.Series>\r\n" +
         "</toolkit:SfCartesianChart>" + "";
@@ -414,10 +434,8 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "            </toolkit:NumericalAxis.LabelStyle>\r\n" +
         "        </toolkit:NumericalAxis>\r\n" +
         "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
-        "    <toolkit:SplineRangeAreaSeries ItemsSource=\"{x:Binding ComponentData, Source={x:Reference root}}\" \r\n" +
+        "    <toolkit:SplineRangeAreaSeries ItemsSource=\"{x:Binding RangeArea}\" \r\n" +
         "                                   XBindingPath=\"Date\" High=\"High\" Low=\"Low\" LegendIcon=\"SeriesType\"\r\n" +
-        "                                   Fill=\"{AppThemeBinding Light={StaticResource series1Light}, Dark={StaticResource series1Dark}}\" \r\n" +
-        "                                   Stroke=\"{AppThemeBinding Light={StaticResource series1Dark}, Dark={StaticResource series1Dark}}\" \r\n" +
         "                                   EnableAnimation=\"True\" EnableTooltip=\"True\" ShowTrackballLabel=\"True\" StrokeWidth=\"1\" />\r\n" +
         "</toolkit:SfCartesianChart>";
 
@@ -493,21 +511,21 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "        </toolkit:NumericalAxis>\r\n" +
         "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
         "    <toolkit:StackingArea100Series ItemsSource=\"{x:Binding StackingArea}\" \r\n" +
-        "                                    XBindingPath=\"Year\" YBindingPath=\"High\"\r\n" +
-        "                                    Label=\"Product 1\" LegendIcon=\"SeriesType\"\r\n" +
-        "                                    EnableAnimation=\"True\" EnableTooltip=\"True\"/>\r\n" +
+        "                                   XBindingPath=\"Year\" YBindingPath=\"High\"\r\n" +
+        "                                   Label=\"Product 1\" LegendIcon=\"SeriesType\"\r\n" +
+        "                                   EnableAnimation=\"True\" EnableTooltip=\"True\"/>\r\n" +
         "    <toolkit:StackingArea100Series ItemsSource=\"{x:Binding StackingArea}\" \r\n" +
-        "                                    XBindingPath=\"Year\" YBindingPath=\"Low\" \r\n" +
-        "                                    Label=\"Product 2\" LegendIcon=\"SeriesType\"\r\n" +
-        "                                    EnableAnimation=\"True\" EnableTooltip=\"True\"/>\r\n" +
+        "                                   XBindingPath=\"Year\" YBindingPath=\"Low\" \r\n" +
+        "                                   Label=\"Product 2\" LegendIcon=\"SeriesType\"\r\n" +
+        "                                   EnableAnimation=\"True\" EnableTooltip=\"True\"/>\r\n" +
         "    <toolkit:StackingArea100Series ItemsSource=\"{x:Binding StackingArea}\" \r\n" +
-        "                                    XBindingPath=\"Year\" YBindingPath=\"Value\" \r\n" +
-        "                                    Label=\"Product 3\" LegendIcon=\"SeriesType\"\r\n" +
-        "                                    EnableAnimation=\"True\" EnableTooltip=\"True\"/>\r\n" +
+        "                                   XBindingPath=\"Year\" YBindingPath=\"Value\" \r\n" +
+        "                                   Label=\"Product 3\" LegendIcon=\"SeriesType\"\r\n" +
+        "                                   EnableAnimation=\"True\" EnableTooltip=\"True\"/>\r\n" +
         "    <toolkit:StackingArea100Series ItemsSource=\"{x:Binding StackingArea}\" \r\n" +
-        "                                    XBindingPath=\"Year\" YBindingPath=\"Size\" \r\n" +
-        "                                    Label=\"Product 4\" LegendIcon=\"SeriesType\"\r\n" +
-        "                                    EnableAnimation=\"True\" EnableTooltip=\"True\"/>\r\n" +
+        "                                   XBindingPath=\"Year\" YBindingPath=\"Size\" \r\n" +
+        "                                   Label=\"Product 4\" LegendIcon=\"SeriesType\"\r\n" +
+        "                                   EnableAnimation=\"True\" EnableTooltip=\"True\"/>\r\n" +
         "</toolkit:SfCartesianChart>";
 
     [ObservableProperty]
@@ -530,7 +548,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "        </toolkit:NumericalAxis>\r\n" +
         "    </toolkit:SfCartesianChart.YAxes>\r\n" +
         "    <toolkit:SfCartesianChart.Series>\r\n" +
-        "        <toolkit:ColumnSeries EnableAnimation=\"True\" ShowDataLabels=\"True\" ItemsSource=\"{x:Binding ComponentData, Source={x:Reference root}}\" XBindingPath=\"Name\" YBindingPath=\"Exp\">\r\n" +
+        "        <toolkit:ColumnSeries EnableAnimation=\"True\" ShowDataLabels=\"True\" ItemsSource=\"{x:Binding Bar}\" XBindingPath=\"Name\" YBindingPath=\"Exp\">\r\n" +
         "            <toolkit:ColumnSeries.DataLabelSettings>\r\n" +
         "                <toolkit:CartesianDataLabelSettings LabelPlacement=\"Inner\">\r\n" +
         "                    <toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
@@ -606,9 +624,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
         "    <toolkit:SfCartesianChart.Series>\r\n" +
         "        <core:CustomBarChart ShowDataLabels=\"True\" Width=\"0.5\" \r\n" +
-        "                                EnableAnimation=\"True\" CornerRadius=\"25\"  \r\n" +
-        "                                ItemsSource=\"{x:Binding Bar}\" \r\n" +
-        "                                XBindingPath=\"Name\" YBindingPath=\"Exp\">\r\n" +
+        "                             EnableAnimation=\"True\" CornerRadius=\"25\"  \r\n" +
+        "                             ItemsSource=\"{x:Binding Bar}\" \r\n" +
+        "                             XBindingPath=\"Name\" YBindingPath=\"Exp\">\r\n" +
         "            <core:CustomBarChart.DataLabelSettings>\r\n" +
         "                <toolkit:CartesianDataLabelSettings UseSeriesPalette=\"True\" LabelPlacement=\"Inner\">\r\n" +
         "                    <toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
@@ -655,6 +673,85 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "</toolkit:SfCartesianChart>";
 
     [ObservableProperty]
+    string cartesianErrorBarChartXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\"\r\n" +
+        "                            Margin=\"0, 0, 20, 0\" >\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Error Bar Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"False\" EdgeLabelsDrawingMode=\"Shift\" Interval=\"1\" >\r\n" +
+        "            <toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"10\"/>\r\n" +
+        "            </toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"False\" Minimum=\"0\" Maximum=\"120\" >\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:ColumnSeries ItemsSource=\"{x:Binding Bar}\"   \r\n" +
+        "                                XBindingPath=\"Name\" YBindingPath=\"Exp\" Fill=\"#95DB9C\"/>\r\n" +
+        "        <toolkit:ErrorBarSeries ItemsSource=\"{x:Binding Bar}\"  \r\n" +
+        "                                XBindingPath=\"Name\" YBindingPath=\"Exp\"  \r\n" +
+        "                                Mode=\"Vertical\" Type=\"Custom\" VerticalDirection=\"Both\"\r\n" +
+        "                                HorizontalErrorPath=\"Low\" VerticalErrorPath=\"High\"\r\n" +
+        "                                HorizontalErrorValue=\"1\" VerticalErrorValue=\"25\">\r\n" +
+        "            <toolkit:ErrorBarSeries.VerticalLineStyle>\r\n" +
+        "                <toolkit:ErrorBarLineStyle StrokeWidth=\"2\" Stroke=\"Red\"/>\r\n" +
+        "            </toolkit:ErrorBarSeries.VerticalLineStyle>\r\n" +
+        "            <toolkit:ErrorBarSeries.VerticalCapLineStyle>\r\n" +
+        "                <toolkit:ErrorBarCapLineStyle StrokeWidth=\"2\" Stroke=\"Red\"/>\r\n" +
+        "            </toolkit:ErrorBarSeries.VerticalCapLineStyle>\r\n" +
+        "        </toolkit:ErrorBarSeries>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianCustomErrorBarChartXamlCode =
+    "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\" \r\n" +
+    "                            Margin=\"0, 0, 20, 0\">\r\n" +
+    "    <toolkit:SfCartesianChart.Title>\r\n" +
+    "        <Label Text=\"Custom Error Bar Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\"/>\r\n" +
+    "    </toolkit:SfCartesianChart.Title>\r\n" +
+    "    <toolkit:SfCartesianChart.XAxes >\r\n" +
+    "        <toolkit:CategoryAxis ShowMajorGridLines=\"False\" EdgeLabelsDrawingMode=\"Shift\" Interval=\"1\"  >\r\n" +
+    "            <toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+    "                <toolkit:ChartAxisTickStyle TickSize=\"10\"/>\r\n" +
+    "            </toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+    "        </toolkit:CategoryAxis>\r\n" +
+    "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+    "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+    "        <toolkit:NumericalAxis ShowMajorGridLines=\"False\"/>\r\n" +
+    "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+    "    <toolkit:SfCartesianChart.Series>\r\n" +
+    "        <toolkit:ScatterSeries ItemsSource=\"{x:Binding Bar}\" \r\n" +
+    "                                XBindingPath=\"Name\" YBindingPath=\"Exp\" PointHeight=\"10\" PointWidth=\"10\"/>\r\n" +
+    "        <toolkit:ErrorBarSeries x:Name=\"CustomErrorSeries\" ItemsSource=\"{x:Binding Bar}\" \r\n" +
+    "                                XBindingPath=\"Name\" YBindingPath=\"Exp\"   \r\n" +
+    "                                HorizontalErrorValue=\"1\" VerticalErrorValue=\"10\" \r\n" +
+    "                                Type=\"Fixed\" Mode=\"Vertical\"\r\n" +
+    "                                HorizontalDirection=\"Both\" VerticalDirection=\"Both\">\r\n" +
+    "            <toolkit:ErrorBarSeries.VerticalLineStyle>\r\n" +
+    "                <toolkit:ErrorBarLineStyle StrokeWidth=\"2\" Stroke=\"Red\"/>\r\n" +
+    "            </toolkit:ErrorBarSeries.VerticalLineStyle>\r\n" +
+    "            <toolkit:ErrorBarSeries.HorizontalLineStyle>\r\n" +
+    "                <toolkit:ErrorBarLineStyle StrokeWidth=\"2\" Stroke=\"Red\"/>\r\n" +
+    "            </toolkit:ErrorBarSeries.HorizontalLineStyle>\r\n" +
+    "            <toolkit:ErrorBarSeries.VerticalCapLineStyle>\r\n" +
+    "                <toolkit:ErrorBarCapLineStyle StrokeWidth=\"2\" Stroke=\"Red\"/>\r\n" +
+    "            </toolkit:ErrorBarSeries.VerticalCapLineStyle>\r\n" +
+    "            <toolkit:ErrorBarSeries.HorizontalCapLineStyle>\r\n" +
+    "                <toolkit:ErrorBarCapLineStyle StrokeWidth=\"2\" Stroke=\"Red\"/>\r\n" +
+    "            </toolkit:ErrorBarSeries.HorizontalCapLineStyle>\r\n" +
+    "        </toolkit:ErrorBarSeries>\r\n" +
+    "        <toolkit:ScatterSeries ItemsSource=\"{x:Binding Bar}\" \r\n" +
+    "                                XBindingPath=\"Name\" YBindingPath=\"Exp\" PointHeight=\"10\" PointWidth=\"10\"/>\r\n" +
+    "    </toolkit:SfCartesianChart.Series>\r\n" +
+    "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
     string cartesianRangeBarChartXamlCode =
         "<toolkit:SfCartesianChart IsTransposed=\"True\" HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\"\r\n" +
         "                            Margin=\"0, 0, 20, 0\" HeightRequest=\"500\">\r\n" +
@@ -676,9 +773,8 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "        </toolkit:NumericalAxis>\r\n" +
         "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
         "    <toolkit:RangeColumnSeries EnableAnimation=\"True\" ShowDataLabels=\"True\"\r\n" +
-        "                                Fill=\"{x:AppThemeBinding Light={x:StaticResource series1Light}, Dark={x:StaticResource series1Dark}}\"\r\n" +
-        "                                ItemsSource=\"{x:Binding RangeBar}\"\r\n" +
-        "                                XBindingPath=\"Name\" High=\"High\" Low=\"Low\">\r\n" +
+        "                               ItemsSource=\"{x:Binding RangeBar}\"\r\n" +
+        "                               XBindingPath=\"Name\" High=\"High\" Low=\"Low\">\r\n" +
         "        <toolkit:RangeColumnSeries.DataLabelSettings>\r\n" +
         "            <toolkit:CartesianDataLabelSettings UseSeriesPalette=\"False\">\r\n" +
         "                <toolkit:CartesianDataLabelSettings.LabelStyle >\r\n" +
@@ -713,17 +809,17 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\"/>\r\n" +
         "    </toolkit:SfCartesianChart.Legend>\r\n" +
         "    <toolkit:StackingColumnSeries XBindingPath=\"Name\" YBindingPath=\"High\"\r\n" +
-        "                                Label=\"Zone 1\" EnableTooltip=\"True\" LegendIcon=\"SeriesType\"\r\n" +
-        "                                ItemsSource=\"{x:Binding StackingBar}\" />\r\n" +
+        "                                  Label=\"Zone 1\" EnableTooltip=\"True\" LegendIcon=\"SeriesType\"\r\n" +
+        "                                  ItemsSource=\"{x:Binding StackingBar}\" />\r\n" +
         "    <toolkit:StackingColumnSeries XBindingPath=\"Name\" YBindingPath=\"Low\" \r\n" +
-        "                                Label=\"Zone 2\" EnableTooltip=\"True\" LegendIcon=\"SeriesType\"\r\n" +
-        "                                ItemsSource=\"{x:Binding StackingBar}\" />\r\n" +
+        "                                  Label=\"Zone 2\" EnableTooltip=\"True\" LegendIcon=\"SeriesType\"\r\n" +
+        "                                  ItemsSource=\"{x:Binding StackingBar}\" />\r\n" +
         "    <toolkit:StackingColumnSeries XBindingPath=\"Name\" YBindingPath=\"Value\"\r\n" +
-        "                                Label=\"Zone 3\" EnableTooltip=\"True\" LegendIcon=\"SeriesType\"\r\n" +
-        "                                ItemsSource=\"{x:Binding StackingBar}\" />\r\n" +
+        "                                  Label=\"Zone 3\" EnableTooltip=\"True\" LegendIcon=\"SeriesType\"\r\n" +
+        "                                  ItemsSource=\"{x:Binding StackingBar}\" />\r\n" +
         "    <toolkit:StackingColumnSeries XBindingPath=\"Name\" YBindingPath=\"Size\"\r\n" +
-        "                                Label=\"Zone 4\" EnableTooltip=\"True\" LegendIcon=\"SeriesType\"\r\n" +
-        "                                ItemsSource=\"{x:Binding StackingBar}\"/>\r\n" +
+        "                                  Label=\"Zone 4\" EnableTooltip=\"True\" LegendIcon=\"SeriesType\"\r\n" +
+        "                                  ItemsSource=\"{x:Binding StackingBar}\"/>\r\n" +
         "</toolkit:SfCartesianChart>";
 
     [ObservableProperty]
@@ -748,21 +844,21 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "    </toolkit:SfCartesianChart.YAxes>\r\n" +
         "    <toolkit:SfCartesianChart.Series>\r\n" +
         "        <toolkit:StackingColumn100Series Label=\"Quarter 1\" LegendIcon=\"Rectangle\"\r\n" +
-        "                                        ItemsSource=\"{x:Binding StackingColumn}\" \r\n" +
-        "                                        XBindingPath=\"Name\" YBindingPath=\"High\" \r\n" +
-        "                                        EnableAnimation=\"True\" ShowDataLabels=\"True\"/>\r\n" +
+        "                                         ItemsSource=\"{x:Binding StackingColumn}\" \r\n" +
+        "                                         XBindingPath=\"Name\" YBindingPath=\"High\" \r\n" +
+        "                                         EnableAnimation=\"True\" ShowDataLabels=\"True\"/>\r\n" +
         "        <toolkit:StackingColumn100Series Label=\"Quarter 2\" LegendIcon=\"Rectangle\"\r\n" +
-        "                                        ItemsSource=\"{x:Binding StackingColumn}\" \r\n" +
-        "                                        XBindingPath=\"Name\" YBindingPath=\"Low\" \r\n" +
-        "                                        EnableAnimation=\"True\" ShowDataLabels=\"True\"/>\r\n" +
+        "                                         ItemsSource=\"{x:Binding StackingColumn}\" \r\n" +
+        "                                         XBindingPath=\"Name\" YBindingPath=\"Low\" \r\n" +
+        "                                         EnableAnimation=\"True\" ShowDataLabels=\"True\"/>\r\n" +
         "        <toolkit:StackingColumn100Series Label=\"Quarter 3\" LegendIcon=\"Rectangle\"\r\n" +
-        "                                        ItemsSource=\"{x:Binding StackingColumn}\" \r\n" +
-        "                                        XBindingPath=\"Name\" YBindingPath=\"Value\" \r\n" +
-        "                                        EnableAnimation=\"True\" ShowDataLabels=\"True\"/>\r\n" +
+        "                                         ItemsSource=\"{x:Binding StackingColumn}\" \r\n" +
+        "                                         XBindingPath=\"Name\" YBindingPath=\"Value\" \r\n" +
+        "                                         EnableAnimation=\"True\" ShowDataLabels=\"True\"/>\r\n" +
         "        <toolkit:StackingColumn100Series Label=\"Quarter 4\" LegendIcon=\"Rectangle\"\r\n" +
-        "                                        ItemsSource=\"{x:Binding StackingColumn}\" \r\n" +
-        "                                        XBindingPath=\"Name\" YBindingPath=\"Size\" \r\n" +
-        "                                        EnableAnimation=\"True\" ShowDataLabels=\"True\"/>\r\n" +
+        "                                         ItemsSource=\"{x:Binding StackingColumn}\" \r\n" +
+        "                                         XBindingPath=\"Name\" YBindingPath=\"Size\" \r\n" +
+        "                                         EnableAnimation=\"True\" ShowDataLabels=\"True\"/>\r\n" +
         "    </toolkit:SfCartesianChart.Series>\r\n" +
         "</toolkit:SfCartesianChart>";
 
@@ -824,14 +920,14 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "    </toolkit:SfCartesianChart.YAxes>\r\n" +
         "    <toolkit:SfCartesianChart.Series>\r\n" +
         "        <toolkit:ColumnSeries Label=\"Aqua\" EnableTooltip=\"True\" EnableAnimation=\"True\" Width=\"0.8\" Spacing=\"0.2\" \r\n" +
-        "                                ItemsSource=\"{x:Binding Column}\" \r\n" +
-        "                                XBindingPath=\"Name\" YBindingPath=\"Exp\" LegendIcon=\"SeriesType\"/>\r\n" +
+        "                              ItemsSource=\"{x:Binding Column}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Exp\" LegendIcon=\"SeriesType\"/>\r\n" +
         "        <toolkit:ColumnSeries Label=\"Gray\" EnableTooltip=\"True\" EnableAnimation=\"True\" Width=\"0.8\" Spacing=\"0.2\" \r\n" +
-        "                                ItemsSource=\"{x:Binding Column}\" \r\n" +
-        "                                XBindingPath=\"Name\" YBindingPath=\"Value\" LegendIcon=\"SeriesType\"/>\r\n" +
+        "                              ItemsSource=\"{x:Binding Column}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Value\" LegendIcon=\"SeriesType\"/>\r\n" +
         "        <toolkit:ColumnSeries Label=\"Blue\" EnableTooltip=\"True\" EnableAnimation=\"True\" Width=\"0.8\" Spacing=\"0.2\" \r\n" +
-        "                                ItemsSource=\"{x:Binding Column}\" \r\n" +
-        "                                XBindingPath=\"Name\" YBindingPath=\"Size\" LegendIcon=\"SeriesType\"/>\r\n" +
+        "                              ItemsSource=\"{x:Binding Column}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Size\" LegendIcon=\"SeriesType\"/>\r\n" +
         "    </toolkit:SfCartesianChart.Series>\r\n" +
         "</toolkit:SfCartesianChart>";
 
@@ -854,7 +950,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "    </toolkit:SfCartesianChart.YAxes>\r\n" +
         "    <toolkit:SfCartesianChart.Series>\r\n" +
         "        <toolkit:ColumnSeries EnableAnimation=\"True\" EnableTooltip=\"True\" CornerRadius=\"10\" \r\n" +
-        "                                ItemsSource=\"{x:Binding Column}\" XBindingPath=\"Name\" YBindingPath=\"Exp\">\r\n" +
+        "                              ItemsSource=\"{x:Binding Column}\" XBindingPath=\"Name\" YBindingPath=\"Exp\">\r\n" +
         "        </toolkit:ColumnSeries>\r\n" +
         "    </toolkit:SfCartesianChart.Series>\r\n" +
         "    <toolkit:SfCartesianChart.Annotations>\r\n" +
@@ -976,12 +1072,11 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "    <toolkit:SfCartesianChart.Series>\r\n" +
         "        <core:CustomColumnSeries EnableAnimation=\"True\" ShowDataLabels=\"True\"\r\n" +
         "                                        ItemsSource=\"{x:Binding Column}\" \r\n" +
-        "                                        TrackColor=\"{x:AppThemeBinding Light={x:StaticResource TrackColorLight}, Dark={x:StaticResource TrackColorDark}}\"\r\n" +
         "                                        XBindingPath=\"Name\" YBindingPath=\"Exp\">\r\n" +
         "            <core:CustomColumnSeries.DataLabelSettings>\r\n" +
         "                <toolkit:CartesianDataLabelSettings UseSeriesPalette=\"False\" LabelPlacement=\"Outer\">\r\n" +
         "                    <toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
-        "                        <toolkit:ChartDataLabelStyle TextColor=\"{x:AppThemeBinding Default={x:StaticResource ContentForeground}}\" FontSize=\"16\" LabelFormat=\"0.00'M\"/>\r\n" +
+        "                        <toolkit:ChartDataLabelStyle FontSize=\"16\" LabelFormat=\"0.00'M\"/>\r\n" +
         "                    </toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
         "                </toolkit:CartesianDataLabelSettings>\r\n" +
         "            </core:CustomColumnSeries.DataLabelSettings>\r\n" +
@@ -1094,6 +1189,491 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "                                            EnableAnimation=\"True\" ShowDataLabels=\"True\"/>\r\n" +
         "    </toolkit:SfCartesianChart.Series>\r\n" +
         "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianLineChartXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\">\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Line Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"false\" Interval=\"2\" PlotOffsetStart=\"10\" PlotOffsetEnd=\"10\" AxisLineOffset=\"10\">\r\n" +
+        "            <toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"10\">\r\n" +
+        "                </toolkit:ChartAxisTickStyle>\r\n" +
+        "            </toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Maximum=\"100\" Minimum=\"0\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"0'%\"/>\r\n" +
+        "            </toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\">\r\n" +
+        "                </toolkit:ChartLineStyle>\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:LineSeries Label=\"Line 1\" EnableTooltip=\"True\" EnableAnimation=\"True\" StrokeWidth=\"1\" \r\n" +
+        "                            ItemsSource=\"{x:Binding FirstLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" \r\n" +
+        "                            ShowMarkers=\"True\" LegendIcon=\"SeriesType\"/>\r\n" +
+        "        <toolkit:LineSeries Label=\"Line 2\" EnableTooltip=\"True\" EnableAnimation=\"True\" StrokeWidth=\"1\" \r\n" +
+        "                            ItemsSource=\"{x:Binding SecondLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" \r\n" +
+        "                            ShowMarkers=\"True\" LegendIcon=\"SeriesType\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianDashedLineChartXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\">\r\n" +
+        "    <toolkit:SfCartesianChart.Resources>\r\n" +
+        "        <DoubleCollection x:Key=\"DashArray\">\r\n" +
+        "            <x:Double>6</x:Double>\r\n" +
+        "            <x:Double>3</x:Double>\r\n" +
+        "            <x:Double>3</x:Double>\r\n" +
+        "            <x:Double>3</x:Double>\r\n" +
+        "        </DoubleCollection>\r\n" +
+        "    </toolkit:SfCartesianChart.Resources>\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Dashed Line Chart\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"false\" Interval=\"2\" PlotOffsetStart=\"10\" PlotOffsetEnd=\"10\" AxisLineOffset=\"10\">\r\n" +
+        "            <toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"10\">\r\n" +
+        "                </toolkit:ChartAxisTickStyle>\r\n" +
+        "            </toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Interval=\"20\" Maximum=\"100\" Minimum=\"0\" >\r\n" +
+        "            <toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"0'%\"/>\r\n" +
+        "            </toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\">\r\n" +
+        "                </toolkit:ChartLineStyle>\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:LineSeries Label=\"Line 1\" StrokeDashArray=\"{x:StaticResource DashArray}\" LegendIcon=\"SeriesType\"\r\n" +
+        "                        EnableTooltip=\"True\" EnableAnimation=\"True\" StrokeWidth=\"1\" ShowMarkers=\"True\"\r\n" +
+        "                        ItemsSource=\"{x:Binding FirstLine}\" XBindingPath=\"Name\" YBindingPath=\"Value\"/>\r\n" +
+        "        <toolkit:LineSeries Label=\"Line 2\" StrokeDashArray=\"{x:StaticResource DashArray}\" LegendIcon=\"SeriesType\"\r\n" +
+        "                        EnableTooltip=\"True\" EnableAnimation=\"True\" StrokeWidth=\"1\" ShowMarkers=\"True\"\r\n" +
+        "                        ItemsSource=\"{x:Binding SecondLine}\" XBindingPath=\"Name\" YBindingPath=\"Value\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianSplineChartXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\">\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Spline Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"false\" PlotOffsetStart=\"10\" PlotOffsetEnd=\"10\" AxisLineOffset=\"10\">\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Maximum=\"100\" Minimum=\"0\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\">\r\n" +
+        "                </toolkit:ChartLineStyle>\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "            <toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"0'F\" />\r\n" +
+        "            </toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:SplineSeries Label=\"High\" LegendIcon=\"SeriesType\" StrokeWidth=\"1\"\r\n" +
+        "                              ItemsSource=\"{x:Binding FirstLine}\" XBindingPath=\"Name\" YBindingPath=\"Value\" \r\n" +
+        "                              EnableTooltip=\"True\" EnableAnimation=\"True\" ShowMarkers=\"True\"/>\r\n" +
+        "        <toolkit:SplineSeries Label=\"Low\" StrokeWidth=\"1\" LegendIcon=\"SeriesType\"\r\n" +
+        "                              ItemsSource=\"{x:Binding SecondLine}\" XBindingPath=\"Name\" YBindingPath=\"Value\" \r\n" +
+        "                              EnableTooltip=\"True\" EnableAnimation=\"True\" ShowMarkers=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianDashedSplineChartXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\">\r\n" +
+        "    <toolkit:SfCartesianChart.Resources>\r\n" +
+        "        <DoubleCollection x:Key=\"DashArray\">\r\n" +
+        "            <x:Double>6</x:Double>\r\n" +
+        "            <x:Double>3</x:Double>\r\n" +
+        "            <x:Double>3</x:Double>\r\n" +
+        "            <x:Double>3</x:Double>\r\n" +
+        "        </DoubleCollection>\r\n" +
+        "    </toolkit:SfCartesianChart.Resources>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Dashed Spline Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"false\" PlotOffsetStart=\"10\" PlotOffsetEnd=\"10\" AxisLineOffset=\"10\">\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Maximum=\"100\" Minimum=\"0\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\">\r\n" +
+        "                </toolkit:ChartLineStyle>\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "            <toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"0'%\" />\r\n" +
+        "            </toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:SplineSeries Label=\"Line 1\" StrokeDashArray=\"{x:StaticResource DashArray}\" StrokeWidth=\"1\" LegendIcon=\"SeriesType\"\r\n" +
+        "                              EnableTooltip=\"True\" EnableAnimation=\"True\" ShowMarkers=\"True\"\r\n" +
+        "                              ItemsSource=\"{x:Binding FirstLine}\" XBindingPath=\"Name\" YBindingPath=\"Value\" />\r\n" +
+        "        <toolkit:SplineSeries Label=\"Line 2\" StrokeDashArray=\"{x:StaticResource DashArray}\" StrokeWidth=\"1\" LegendIcon=\"SeriesType\"\r\n" +
+        "                              EnableTooltip=\"True\" EnableAnimation=\"True\" ShowMarkers=\"True\"\r\n" +
+        "                              ItemsSource=\"{x:Binding SecondLine}\" XBindingPath=\"Name\" YBindingPath=\"Value\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianStepLineChartXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Step Line Chart\" MaxLines=\"2\" LineBreakMode=\"WordWrap\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"False\" PlotOffsetEnd=\"10\" PlotOffsetStart=\"10\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Minimum=\"0\" Maximum=\"100\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "            <toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"0'%\"/>\r\n" +
+        "            </toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:StepLineSeries Label=\"Line 1\" LegendIcon=\"SeriesType\"\r\n" +
+        "                                ItemsSource=\"{x:Binding FirstLine}\" \r\n" +
+        "                                XBindingPath=\"Name\" YBindingPath=\"Value\" \r\n" +
+        "                                EnableAnimation=\"True\" EnableTooltip=\"True\" ShowMarkers=\"True\">\r\n" +
+        "            <toolkit:StepLineSeries.MarkerSettings>\r\n" +
+        "                <toolkit:ChartMarkerSettings StrokeWidth=\"1\"/>\r\n" +
+        "            </toolkit:StepLineSeries.MarkerSettings>\r\n" +
+        "        </toolkit:StepLineSeries>\r\n" +
+        "        <toolkit:StepLineSeries Label=\"Line 2\" LegendIcon=\"SeriesType\"\r\n" +
+        "                                ItemsSource=\"{x:Binding SecondLine}\" \r\n" +
+        "                                XBindingPath=\"Name\" YBindingPath=\"Value\" \r\n" +
+        "                                EnableAnimation=\"True\" EnableTooltip=\"True\" ShowMarkers=\"True\">\r\n" +
+        "            <toolkit:StepLineSeries.MarkerSettings>\r\n" +
+        "                <toolkit:ChartMarkerSettings StrokeWidth=\"1\"/>\r\n" +
+        "            </toolkit:StepLineSeries.MarkerSettings>\r\n" +
+        "        </toolkit:StepLineSeries>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianDashedStepLineChartXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Dashed Step Line\" MaxLines=\"2\" LineBreakMode=\"WordWrap\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Resources>\r\n" +
+        "        <DoubleCollection x:Key=\"DashArray\">\r\n" +
+        "            <x:Double>6</x:Double>\r\n" +
+        "            <x:Double>3</x:Double>\r\n" +
+        "            <x:Double>3</x:Double>\r\n" +
+        "            <x:Double>3</x:Double>\r\n" +
+        "        </DoubleCollection>\r\n" +
+        "        <ResourceDictionary>\r\n" +
+        "            <DataTemplate x:Key=\"TooltipTemplate\">\r\n" +
+        "                <StackLayout>\r\n" +
+        "                    <Label Text=\"Grades\" HorizontalTextAlignment=\"Center\" HorizontalOptions=\"Center\" VerticalTextAlignment=\"Center\" \r\n" +
+        "                            FontAttributes=\"Bold\" FontFamily=\"Helvetica\" Margin=\"0,2,0,2\" FontSize=\"12\" />\r\n" +
+        "                    <BoxView HeightRequest=\"1\" WidthRequest=\"100\"/>\r\n" +
+        "                    <StackLayout Orientation=\"Horizontal\" VerticalOptions=\"Fill\" Spacing=\"0\" Padding=\"3\" Margin=\"0\">\r\n" +
+        "                        <Ellipse TranslationY=\"-1\" StrokeThickness=\"2\" \r\n" +
+        "                                    HeightRequest=\"10\" WidthRequest=\"10\" Fill=\"#04ABC1\" Margin=\"0,3,3,0\"/>\r\n" +
+        "                        <Label Text=\"{x:Binding Item.Name,StringFormat='{0:MMM-dd}'}\" \r\n" +
+        "                                VerticalTextAlignment=\"Center\" HorizontalOptions=\"Start\" \r\n" +
+        "                                FontFamily=\"Helvetica\" FontSize=\"12\" Margin=\"3,0,3,0\"/>\r\n" +
+        "                        <Label Text=\"{x:Binding Item.Value,StringFormat=' :  {0}'}\" \r\n" +
+        "                                VerticalTextAlignment=\"Center\" HorizontalOptions=\"End\" \r\n" +
+        "                                FontFamily=\"Helvetica\" Margin=\"0,0,3,0\" FontSize=\"12\"/>\r\n" +
+        "                    </StackLayout>\r\n" +
+        "                </StackLayout>\r\n" +
+        "            </DataTemplate>\r\n" +
+        "        </ResourceDictionary>\r\n" +
+        "    </toolkit:SfCartesianChart.Resources>\r\n" +
+        "    <toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "        <toolkit:ChartZoomPanBehavior ZoomMode=\"X\" EnableDoubleTap=\"False\" EnablePinchZooming=\"False\" EnablePanning=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"False\" PlotOffsetEnd=\"10\" PlotOffsetStart=\"10\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis EdgeLabelsDrawingMode=\"Fit\">\r\n" +
+        "            <toolkit:NumericalAxis.LabelStyle LabelFormat=\"0'%\"/>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:StepLineSeries Label=\"Line 1\" LegendIcon=\"SeriesType\"\r\n" +
+        "                                StrokeDashArray=\"{x:StaticResource DashArray}\" \r\n" +
+        "                                ItemsSource=\"{x:Binding FirstLine}\" \r\n" +
+        "                                XBindingPath=\"Name\" YBindingPath=\"Value\" \r\n" +
+        "                                ShowMarkers=\"True\" EnableAnimation=\"True\" EnableTooltip=\"True\"  \r\n" +
+        "                                TooltipTemplate=\"{x:StaticResource TooltipTemplate}\" >\r\n" +
+        "            <toolkit:StepLineSeries.MarkerSettings>\r\n" +
+        "                <toolkit:ChartMarkerSettings StrokeWidth=\"1\"/>\r\n" +
+        "            </toolkit:StepLineSeries.MarkerSettings>\r\n" +
+        "        </toolkit:StepLineSeries>\r\n" +
+        "        <toolkit:StepLineSeries Label=\"Line 2\" LegendIcon=\"SeriesType\"\r\n" +
+        "                                StrokeDashArray=\"{x:StaticResource DashArray}\" \r\n" +
+        "                                ItemsSource=\"{x:Binding SecondLine}\" \r\n" +
+        "                                XBindingPath=\"Name\" YBindingPath=\"Value\" \r\n" +
+        "                                ShowMarkers=\"True\" EnableAnimation=\"True\" EnableTooltip=\"True\"  \r\n" +
+        "                                TooltipTemplate=\"{x:StaticResource TooltipTemplate}\" >\r\n" +
+        "            <toolkit:StepLineSeries.MarkerSettings>\r\n" +
+        "                <toolkit:ChartMarkerSettings StrokeWidth=\"1\"/>\r\n" +
+        "            </toolkit:StepLineSeries.MarkerSettings>\r\n" +
+        "        </toolkit:StepLineSeries>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianVerticalStepLineChartXamlCode =
+        "<toolkit:SfCartesianChart IsTransposed=\"True\" HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Vertical Step Line\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Resources>\r\n" +
+        "        <ResourceDictionary>\r\n" +
+        "            <DataTemplate x:Key=\"TooltipTemplateVerticalLine\">\r\n" +
+        "                <StackLayout>\r\n" +
+        "                    <Label Text=\"Grades\" HorizontalTextAlignment=\"Center\" HorizontalOptions=\"Center\" VerticalTextAlignment=\"Center\" \r\n" +
+        "                           FontAttributes=\"Bold\" FontFamily=\"Helvetica\" Margin=\"0,2\" FontSize=\"12\" />\r\n" +
+        "                    <BoxView HeightRequest=\"1\" WidthRequest=\"100\" />\r\n" +
+        "                    <StackLayout Orientation=\"Horizontal\" VerticalOptions=\"Fill\" Padding=\"3\" >\r\n" +
+        "                        <Ellipse TranslationY=\"-1\" StrokeThickness=\"2\" \r\n" +
+        "                                 HeightRequest=\"10\" WidthRequest=\"10\" Fill=\"#04ABC1\" Margin=\"0,3,3,0\"/>\r\n" +
+        "                        <Label Text=\"{x:Binding Item.Name}\"  VerticalTextAlignment=\"Center\" HorizontalOptions=\"Start\"  \r\n" +
+        "                               FontFamily=\"Helvetica\" FontSize=\"12\" Margin=\"3,0,3,0\"/>\r\n" +
+        "                        <Label Text=\"{x:Binding Item.Value,StringFormat=' :  {0} %'}\" VerticalTextAlignment=\"Center\" HorizontalOptions=\"End\" \r\n" +
+        "                               FontFamily=\"Helvetica\" Margin=\"0,0,3,0\" FontSize=\"12\"/>\r\n" +
+        "                    </StackLayout>\r\n" +
+        "                </StackLayout>\r\n" +
+        "            </DataTemplate>\r\n" +
+        "        </ResourceDictionary>\r\n" +
+        "    </toolkit:SfCartesianChart.Resources>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"False\" LabelPlacement=\"BetweenTicks\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Minimum=\"0\" Maximum=\"100\" Interval=\"20\" ShowMajorGridLines=\"True\">\r\n" +
+        "            <toolkit:NumericalAxis.LabelStyle LabelFormat=\"0'%\"/>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:StepLineSeries Label=\"Line 1\" LegendIcon=\"SeriesType\"\r\n" +
+        "                                ItemsSource=\"{x:Binding FirstLine}\"  \r\n" +
+        "                                XBindingPath=\"Name\" YBindingPath=\"Value\" \r\n" +
+        "                                ShowMarkers=\"True\" EnableAnimation=\"True\" EnableTooltip=\"True\" \r\n" +
+        "                                TooltipTemplate=\"{StaticResource TooltipTemplateVerticalLine}\">\r\n" +
+        "            <toolkit:StepLineSeries.MarkerSettings>\r\n" +
+        "                <toolkit:ChartMarkerSettings StrokeWidth=\"1\"/>\r\n" +
+        "            </toolkit:StepLineSeries.MarkerSettings>\r\n" +
+        "        </toolkit:StepLineSeries>\r\n" +
+        "        <toolkit:StepLineSeries Label=\"Line 2\" LegendIcon=\"SeriesType\"\r\n" +
+        "                                ItemsSource=\"{x:Binding SecondLine}\"  \r\n" +
+        "                                XBindingPath=\"Name\" YBindingPath=\"Value\" \r\n" +
+        "                                ShowMarkers=\"True\" EnableAnimation=\"True\" EnableTooltip=\"True\"  \r\n" +
+        "                                TooltipTemplate=\"{StaticResource TooltipTemplateVerticalLine}\">\r\n" +
+        "            <toolkit:StepLineSeries.MarkerSettings>\r\n" +
+        "                <toolkit:ChartMarkerSettings StrokeWidth=\"1\"/>\r\n" +
+        "            </toolkit:StepLineSeries.MarkerSettings>\r\n" +
+        "        </toolkit:StepLineSeries>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianStackingLineChartXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\" \r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Resources>\r\n" +
+        "        <ResourceDictionary>\r\n" +
+        "            <DataTemplate x:Key=\"TooltipTemplate\">\r\n" +
+        "                <StackLayout>\r\n" +
+        "                    <Label Text=\"Grades\" HorizontalTextAlignment=\"Center\" HorizontalOptions=\"Center\" VerticalTextAlignment=\"Center\" \r\n" +
+        "                           FontAttributes=\"Bold\" FontFamily=\"Helvetica\" Margin=\"0,2,0,2\" FontSize=\"13\"/>\r\n" +
+        "                    <BoxView HeightRequest=\"1\" WidthRequest=\"80\" />\r\n" +
+        "                    <StackLayout Orientation=\"Horizontal\" VerticalOptions=\"Fill\" Spacing=\"0\" Padding=\"3\" Margin=\"0\" HorizontalOptions=\"Center\">\r\n" +
+        "                        <Ellipse TranslationY=\"-1\" StrokeThickness=\"2\" \r\n" +
+        "                                 HeightRequest=\"10\" WidthRequest=\"10\" Fill=\"#04ABC1\" Margin=\"0,3,3,0\"/>\r\n" +
+        "                        <Label Text=\"{Binding Item.Name}\"  VerticalTextAlignment=\"Center\" \r\n" +
+        "                            HorizontalOptions=\"Start\"  FontFamily=\"Helvetica\" FontSize=\"12\" Margin=\"3,0,3,0\"/>\r\n" +
+        "                        <Label Text=\"{Binding Item.Value,StringFormat=' :  {0}'}\" VerticalTextAlignment=\"Center\" \r\n" +
+        "                            HorizontalOptions=\"End\" FontFamily=\"Helvetica\" Margin=\"0,0,3,0\" FontSize=\"12\" />\r\n" +
+        "                    </StackLayout>\r\n" +
+        "                </StackLayout>\r\n" +
+        "            </DataTemplate>\r\n" +
+        "        </ResourceDictionary>\r\n" +
+        "    </toolkit:SfCartesianChart.Resources>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Stacking Line Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"False\" LabelPlacement=\"BetweenTicks\">\r\n" +
+        "            <toolkit:CategoryAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Text=\"Year\"/>\r\n" +
+        "            </toolkit:CategoryAxis.Title>\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes >\r\n" +
+        "        <toolkit:NumericalAxis Minimum=\"0\" Maximum=\"300\" Interval=\"50\" ShowMajorGridLines=\"True\"\r\n" +
+        "                            EdgeLabelsDrawingMode=\"Center\" PlotOffsetEnd=\"10\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:StackingLineSeries Label=\"Line 1\" LegendIcon=\"SeriesType\"\r\n" +
+        "                            ItemsSource=\"{x:Binding FirstLine}\" XBindingPath=\"Name\" YBindingPath=\"Value\"\r\n" +
+        "                            EnableAnimation=\"True\" ShowMarkers=\"True\" StrokeWidth=\"2\" \r\n" +
+        "                            EnableTooltip=\"True\" TooltipTemplate=\"{x:StaticResource TooltipTemplate}\">\r\n" +
+        "        <toolkit:StackingLineSeries.MarkerSettings>\r\n" +
+        "            <toolkit:ChartMarkerSettings Width=\"10\" Height=\"10\" StrokeWidth=\"2\"/>\r\n" +
+        "        </toolkit:StackingLineSeries.MarkerSettings>\r\n" +
+        "    </toolkit:StackingLineSeries>\r\n" +
+        "    <toolkit:StackingLineSeries Label=\"Line 2\" LegendIcon=\"SeriesType\" \r\n" +
+        "                            ItemsSource=\"{x:Binding SecondLine}\" XBindingPath=\"Name\" YBindingPath=\"Value\"\r\n" +
+        "                            EnableAnimation=\"True\" ShowMarkers=\"True\" StrokeWidth=\"2\" \r\n" +
+        "                            EnableTooltip=\"True\" TooltipTemplate=\"{x:StaticResource TooltipTemplate}\">\r\n" +
+        "        <toolkit:StackingLineSeries.MarkerSettings>\r\n" +
+        "            <toolkit:ChartMarkerSettings Width=\"10\" Height=\"10\" StrokeWidth=\"2\"/>\r\n" +
+        "        </toolkit:StackingLineSeries.MarkerSettings>\r\n" +
+        "    </toolkit:StackingLineSeries>\r\n" +
+        "    <toolkit:StackingLineSeries Label=\"Line 3\" LegendIcon=\"SeriesType\" \r\n" +
+        "                            ItemsSource=\"{x:Binding ThirdLine}\" XBindingPath=\"Name\" YBindingPath=\"Value\"\r\n" +
+        "                            EnableAnimation=\"True\" ShowMarkers=\"True\" StrokeWidth=\"2\"\r\n" +
+        "                            EnableTooltip=\"True\" TooltipTemplate=\"{x:StaticResource TooltipTemplate}\">\r\n" +
+        "        <toolkit:StackingLineSeries.MarkerSettings>\r\n" +
+        "            <toolkit:ChartMarkerSettings Width=\"10\" Height=\"10\" StrokeWidth=\"2\"/>\r\n" +
+        "        </toolkit:StackingLineSeries.MarkerSettings>\r\n" +
+        "    </toolkit:StackingLineSeries>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianStackingLine100ChartXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\" \r\n" +
+        "                        Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Resources>\r\n" +
+        "        <ResourceDictionary>\r\n" +
+        "            <DataTemplate x:Key=\"TooltipTemplate\">\r\n" +
+        "                <StackLayout Orientation=\"Horizontal\">\r\n" +
+        "                    <Rectangle HeightRequest=\"35\" WidthRequest=\"8\"/>\r\n" +
+        "                    <StackLayout Orientation=\"Vertical\">\r\n" +
+        "                        <Label Text=\"{Binding Item.Name}\" FontSize=\"13\" Padding=\"5,0,0,0\"/>\r\n" +
+        "                        <Label FontSize=\"12\" Padding=\"5,0,0,0\" Margin=\"0,0,3,0\">\r\n" +
+        "                            <Label.FormattedText>\r\n" +
+        "                                <FormattedString>\r\n" +
+        "                                    <Span Text=\"Grades\" FontAttributes=\"Bold\" />\r\n" +
+        "                                    <Span Text=\"{Binding Item.Value, StringFormat=' : {0}%'}\" />\r\n" +
+        "                                </FormattedString>\r\n" +
+        "                            </Label.FormattedText>\r\n" +
+        "                        </Label>\r\n" +
+        "                    </StackLayout>\r\n" +
+        "                </StackLayout>\r\n" +
+        "            </DataTemplate>\r\n" +
+        "        </ResourceDictionary>\r\n" +
+        "    </toolkit:SfCartesianChart.Resources>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Blood Type Distribution Among Population\"  LineBreakMode=\"WordWrap\"  Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis IsVisible=\"True\" ShowMajorGridLines=\"False\" LabelPlacement=\"BetweenTicks\">\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes >\r\n" +
+        "        <toolkit:NumericalAxis Minimum=\"0\" Maximum=\"100\" Interval=\"20\" ShowMajorGridLines=\"True\" ShowMinorGridLines=\"False\" \r\n" +
+        "                            EdgeLabelsDrawingMode=\"Center\" PlotOffsetEnd=\"10\">\r\n" +
+        "            <toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"0'%\"/>\r\n" +
+        "            </toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:StackingLine100Series Label=\"Line 1\" LegendIcon=\"SeriesType\" \r\n" +
+        "                                ItemsSource=\"{x:Binding FirstLine}\" XBindingPath=\"Name\" YBindingPath=\"Value\"\r\n" +
+        "                                EnableAnimation=\"True\" ShowMarkers=\"True\" StrokeWidth=\"2\" \r\n" +
+        "                                EnableTooltip=\"True\" TooltipTemplate=\"{x:StaticResource TooltipTemplate}\">\r\n" +
+        "        <toolkit:StackingLine100Series.MarkerSettings>\r\n" +
+        "            <toolkit:ChartMarkerSettings Width=\"10\" Height=\"10\" StrokeWidth=\"2\"/>\r\n" +
+        "        </toolkit:StackingLine100Series.MarkerSettings>\r\n" +
+        "    </toolkit:StackingLine100Series>\r\n" +
+        "    <toolkit:StackingLine100Series Label=\"Line 2\" LegendIcon=\"SeriesType\" \r\n" +
+        "                                ItemsSource=\"{x:Binding SecondLine}\" XBindingPath=\"Name\" YBindingPath=\"Value\"\r\n" +
+        "                                EnableAnimation=\"True\" ShowMarkers=\"True\" StrokeWidth=\"2\" \r\n" +
+        "                                EnableTooltip=\"True\" TooltipTemplate=\"{x:StaticResource TooltipTemplate}\">\r\n" +
+        "        <toolkit:StackingLine100Series.MarkerSettings>\r\n" +
+        "            <toolkit:ChartMarkerSettings Width=\"10\" Height=\"10\" StrokeWidth=\"2\"/>\r\n" +
+        "        </toolkit:StackingLine100Series.MarkerSettings>\r\n" +
+        "    </toolkit:StackingLine100Series>\r\n" +
+        "    <toolkit:StackingLine100Series Label=\"Line 3\" LegendIcon=\"SeriesType\" \r\n" +
+        "                                ItemsSource=\"{x:Binding ThirdLine}\" XBindingPath=\"Name\" YBindingPath=\"Value\"\r\n" +
+        "                                EnableAnimation=\"True\"  ShowMarkers=\"True\" StrokeWidth=\"2\" \r\n" +
+        "                                EnableTooltip=\"True\" TooltipTemplate=\"{x:StaticResource TooltipTemplate}\">\r\n" +
+        "        <toolkit:StackingLine100Series.MarkerSettings>\r\n" +
+        "            <toolkit:ChartMarkerSettings Width=\"10\" Height=\"10\" StrokeWidth=\"2\"/>\r\n" +
+        "        </toolkit:StackingLine100Series.MarkerSettings>\r\n" +
+        "    </toolkit:StackingLine100Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
     #endregion
     #endregion
 
@@ -1178,11 +1758,11 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
 
         var bar = new ObservableCollection<SfCartesianChartModel>()
         {
-            new SfCartesianChartModel() { Name = "Strypper", Exp = 100 },
-            new SfCartesianChartModel() { Name = "Tan", Exp = 50 },
-            new SfCartesianChartModel() { Name = "Hung", Exp = 40 },
-            new SfCartesianChartModel() { Name = "Long", Exp = 20 },
-            new SfCartesianChartModel() { Name = "Dat", Exp = 30 }
+            new SfCartesianChartModel() { Name = "Strypper", Exp = 100, High = 10, Low = 1 },
+            new SfCartesianChartModel() { Name = "Tan", Exp = 50, High = 15, Low = 1 },
+            new SfCartesianChartModel() { Name = "Hung", Exp = 40, High = 10, Low = 1 },
+            new SfCartesianChartModel() { Name = "Long", Exp = 20, High = 15, Low = 1 },
+            new SfCartesianChartModel() { Name = "Dat", Exp = 30, High = 10, Low = 1 }
         };
 
         var rangeBar = new ObservableCollection<SfCartesianChartModel>()
@@ -1244,6 +1824,39 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "Product 5", High = 19.739, Low = 11.164, Value = 23.533 }
         };
 
+        var firstLine = new ObservableCollection<SfCartesianChartModel>()
+        {
+            new SfCartesianChartModel() { Name = "2005", Value = 21 },
+            new SfCartesianChartModel() { Name = "2006", Value = 24 },
+            new SfCartesianChartModel() { Name = "2007", Value = 36 },
+            new SfCartesianChartModel() { Name = "2008", Value = 38 },
+            new SfCartesianChartModel() { Name = "2009", Value = 54 },
+            new SfCartesianChartModel() { Name = "2010", Value = 57 },
+            new SfCartesianChartModel() { Name = "2011", Value = 70 }
+        };
+
+        var secondLine = new ObservableCollection<SfCartesianChartModel>()
+        {
+            new SfCartesianChartModel() { Name = "2005", Value = 28 },
+            new SfCartesianChartModel() { Name = "2006", Value = 44 },
+            new SfCartesianChartModel() { Name = "2007", Value = 48 },
+            new SfCartesianChartModel() { Name = "2008", Value = 50 },
+            new SfCartesianChartModel() { Name = "2009", Value = 66 },
+            new SfCartesianChartModel() { Name = "2010", Value = 78 },
+            new SfCartesianChartModel() { Name = "2011", Value = 84 }
+        };
+
+        var thirdLine = new ObservableCollection<SfCartesianChartModel>()
+        {
+            new SfCartesianChartModel() { Name = "2005", Value = 32 },
+            new SfCartesianChartModel() { Name = "2006", Value = 44 },
+            new SfCartesianChartModel() { Name = "2007", Value = 52 },
+            new SfCartesianChartModel() { Name = "2008", Value = 55 },
+            new SfCartesianChartModel() { Name = "2009", Value = 70 },
+            new SfCartesianChartModel() { Name = "2010", Value = 78 },
+            new SfCartesianChartModel() { Name = "2011", Value = 90 }
+        };
+
         var gradients = new List<Brush>(createGradientPalletBrushes());
 
         IsBusy = false;
@@ -1257,9 +1870,23 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         Column = new(column);
         RangeColumn = new(rangeColumn);
         StackingColumn = new(stackingColumn);
+        FirstLine = new(firstLine);
+        SecondLine = new(secondLine);
+        ThirdLine = new(thirdLine);
         Annotation = new(annotation);
         Persons = new(persons);
         PalletBrushes = new(gradients);
+        ErrorBarTypes = new();
+        ErrorBarModes = new();
+        ErrorBarDirections = new();
+
+        ErrorBarTypes = Enum.GetNames(typeof(ErrorBarType)).ToObservableCollection();
+        ErrorBarModes = Enum.GetNames(typeof(ErrorBarMode)).ToObservableCollection();
+        ErrorBarDirections = Enum.GetNames(typeof(ErrorBarDirection)).ToObservableCollection();
+
+        SelectedErrorBarType = ErrorBarType.Fixed.ToString();
+        SelectedErrorBarMode = ErrorBarMode.Vertical.ToString();
+        SelectedErrorBarDirection = ErrorBarDirection.Both.ToString();
 
         AreaChartOptions = new ObservableCollection<string>
         {
@@ -1268,12 +1895,17 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
 
         BarChartOptions = new ObservableCollection<string>
         {
-            "Bar", "Range Bar", "Stacking Bar", "Stacking Bar 100"
+            "Bar", "Error Bar", "Range Bar", "Stacking Bar", "Stacking Bar 100"
         };
 
         ColumnChartOptions = new ObservableCollection<string>
         {
             "Column", "Range Column", "Stacking Column", "Stacking Column 100"
+        };
+
+        LineChartOptions = new ObservableCollection<string>
+        {
+            "Line", "Spline", "Step Line", "Stacking Line", "Stacking Line 100"
         };
 
         if (forced)
@@ -1287,6 +1919,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             Column.Clear();
             RangeColumn.Clear();
             StackingColumn.Clear();
+            FirstLine.Clear();
+            SecondLine.Clear();
+            ThirdLine.Clear();
             Annotation.Clear();
             Persons.Clear();
             PalletBrushes.Clear();
@@ -1301,6 +1936,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         column.ForEach(item => Column.Add(item));
         rangeColumn.ForEach(item => RangeColumn.Add(item));
         stackingColumn.ForEach(item => StackingColumn.Add(item));
+        firstLine.ForEach(item => FirstLine.Add(item));
+        secondLine.ForEach(item => SecondLine.Add(item));
+        thirdLine.ForEach(item => ThirdLine.Add(item));
         annotation.ForEach(item => Annotation.Add(item));
         persons.ForEach(item => Persons.Add(item));
         gradients.ForEach(item => PalletBrushes.Add(item));

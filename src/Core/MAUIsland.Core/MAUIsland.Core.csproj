@@ -201,6 +201,9 @@
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Column\Bar\SfCartesianChartBar.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Column\Bar\SfCartesianChartErrorBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Column\Bar\SfCartesianChartStackingBar.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -220,6 +223,21 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Column\SfCartesianChartStackingColumn100.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Line\SfCartesianChartLine.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Line\SfCartesianChartSpline.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Line\SfCartesianChartStackingLine.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Line\SfCartesianChartStackingLine100.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Line\SfCartesianChartStepLine.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ContentViews\DocumentAlert.xaml">

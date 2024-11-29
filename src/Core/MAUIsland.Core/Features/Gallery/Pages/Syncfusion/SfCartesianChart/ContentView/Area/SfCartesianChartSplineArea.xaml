@@ -39,22 +39,18 @@
                 </toolkit:SfCartesianChart.YAxes>
 
                 <toolkit:SfCartesianChart.Series>
-                    <toolkit:SplineAreaSeries Label="Product A" EnableAnimation="True" EnableTooltip="True" 
-                                              Stroke="{x:AppThemeBinding Light={x:StaticResource series4Light}, Dark={x:StaticResource series4Dark}}" 
-                                              Fill="{x:AppThemeBinding Light={x:StaticResource series4Light30}, Dark={x:StaticResource series4Dark30}}" StrokeWidth="1" 
-                                              ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" XBindingPath="Name" YBindingPath="High" LegendIcon="SeriesType"/>
-                    <toolkit:SplineAreaSeries Label="Product B" EnableAnimation="True" EnableTooltip="True" 
-                                              Stroke="{x:AppThemeBinding Light={x:StaticResource series3Light}, Dark={x:StaticResource series3Dark}}" 
-                                              Fill="{x:AppThemeBinding Light={x:StaticResource series3Light30}, Dark={x:StaticResource series3Dark30}}" StrokeWidth="1" 
-                                              ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" XBindingPath="Name" YBindingPath="Low" LegendIcon="SeriesType"/>
-                    <toolkit:SplineAreaSeries Label="Product C" EnableAnimation="True" EnableTooltip="True" 
-                                              Stroke="{x:AppThemeBinding Light={x:StaticResource series2Light}, Dark={x:StaticResource series2Dark}}" 
-                                              Fill="{x:AppThemeBinding Light={x:StaticResource series2Light30}, Dark={x:StaticResource series2Dark30}}" StrokeWidth="1" 
-                                              ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" XBindingPath="Name" YBindingPath="Value" LegendIcon="SeriesType"/>
-                    <toolkit:SplineAreaSeries Label="Product D" EnableAnimation="True" EnableTooltip="True" 
-                                              Stroke="{x:AppThemeBinding Light={x:StaticResource series1Light}, Dark={x:StaticResource series1Dark}}" 
-                                              Fill="{x:AppThemeBinding Light={x:StaticResource series1Light30}, Dark={x:StaticResource series1Dark30}}" StrokeWidth="1" 
-                                              ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" XBindingPath="Name" YBindingPath="Size" LegendIcon="SeriesType"/>
+                    <toolkit:SplineAreaSeries Label="Product A" EnableAnimation="True" EnableTooltip="True" StrokeWidth="1" 
+                                              ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                              XBindingPath="Name" YBindingPath="High" LegendIcon="SeriesType"/>
+                    <toolkit:SplineAreaSeries Label="Product B" EnableAnimation="True" EnableTooltip="True" StrokeWidth="1" 
+                                              ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                              XBindingPath="Name" YBindingPath="Low" LegendIcon="SeriesType"/>
+                    <toolkit:SplineAreaSeries Label="Product C" EnableAnimation="True" EnableTooltip="True" StrokeWidth="1" 
+                                              ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                              XBindingPath="Name" YBindingPath="Value" LegendIcon="SeriesType"/>
+                    <toolkit:SplineAreaSeries Label="Product D" EnableAnimation="True" EnableTooltip="True" StrokeWidth="1" 
+                                              ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                              XBindingPath="Name" YBindingPath="Size" LegendIcon="SeriesType"/>
                 </toolkit:SfCartesianChart.Series>
             </toolkit:SfCartesianChart>
 

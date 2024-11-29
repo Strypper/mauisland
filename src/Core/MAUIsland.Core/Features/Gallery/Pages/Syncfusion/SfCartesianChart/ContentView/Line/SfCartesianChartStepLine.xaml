@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartStepLine"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root">
+    
+    <VerticalStackLayout>
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
+                                          Margin="0, 0, 20, 0">
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Step Line Chart" MaxLines="2" LineBreakMode="WordWrap" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.Legend>
+                        <toolkit:ChartLegend ToggleSeriesVisibility="True"/>
+                    </toolkit:SfCartesianChart.Legend>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:CategoryAxis ShowMajorGridLines="False" PlotOffsetEnd="10" PlotOffsetStart="10"/>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis Minimum="0" Maximum="100" Interval="20">
+                            <toolkit:NumericalAxis.AxisLineStyle>
+                                <toolkit:ChartLineStyle StrokeWidth="0"/>
+                            </toolkit:NumericalAxis.AxisLineStyle>
+                            <toolkit:NumericalAxis.LabelStyle>
+                                <toolkit:ChartAxisLabelStyle LabelFormat="0'%"/>
+                            </toolkit:NumericalAxis.LabelStyle>
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:SfCartesianChart.Series>
+                        <toolkit:StepLineSeries Label="Line 1" LegendIcon="SeriesType"
+                                                ItemsSource="{x:Binding FirstLineComponentData, Source={x:Reference root}}" 
+                                                XBindingPath="Name" YBindingPath="Value" 
+                                                EnableAnimation="True" EnableTooltip="True" ShowMarkers="True">
+                            <toolkit:StepLineSeries.MarkerSettings>
+                                <toolkit:ChartMarkerSettings StrokeWidth="1"/>
+                            </toolkit:StepLineSeries.MarkerSettings>
+                        </toolkit:StepLineSeries>
+                        <toolkit:StepLineSeries Label="Line 2" LegendIcon="SeriesType"
+                                                ItemsSource="{x:Binding SecondLineComponentData, Source={x:Reference root}}" 
+                                                XBindingPath="Name" YBindingPath="Value" 
+                                                EnableAnimation="True" EnableTooltip="True" ShowMarkers="True">
+                            <toolkit:StepLineSeries.MarkerSettings>
+                                <toolkit:ChartMarkerSettings StrokeWidth="1"/>
+                            </toolkit:StepLineSeries.MarkerSettings>
+                        </toolkit:StepLineSeries>
+                    </toolkit:SfCartesianChart.Series>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding LineCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
+                                          Margin="0, 0, 20, 0">
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Dashed Step Line" MaxLines="2" LineBreakMode="WordWrap" Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.Legend>
+                        <toolkit:ChartLegend ToggleSeriesVisibility="True"/>
+                    </toolkit:SfCartesianChart.Legend>
+                    <toolkit:SfCartesianChart.Resources>
+                        <DoubleCollection x:Key="DashArray">
+                            <x:Double>6</x:Double>
+                            <x:Double>3</x:Double>
+                            <x:Double>3</x:Double>
+                            <x:Double>3</x:Double>
+                        </DoubleCollection>
+                        <ResourceDictionary>
+                            <DataTemplate x:Key="TooltipTemplate">
+                                <StackLayout>
+                                    <Label Text="Grades" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalTextAlignment="Center" 
+                                           FontAttributes="Bold" FontFamily="Helvetica" Margin="0,2,0,2" FontSize="12" />
+                                    <BoxView HeightRequest="1" WidthRequest="100"/>
+                                    <StackLayout Orientation="Horizontal" VerticalOptions="Fill" Spacing="0" Padding="3" Margin="0">
+                                        <Ellipse TranslationY="-1" StrokeThickness="2" 
+                                                 HeightRequest="10" WidthRequest="10" Fill="#04ABC1" Margin="0,3,3,0"/>
+                                        <Label Text="{x:Binding Item.Name,StringFormat='{0:MMM-dd}'}" 
+                                               VerticalTextAlignment="Center" HorizontalOptions="Start" 
+                                               FontFamily="Helvetica" FontSize="12" Margin="3,0,3,0"/>
+                                        <Label Text="{x:Binding Item.Value,StringFormat=' :  {0}'}" 
+                                               VerticalTextAlignment="Center" HorizontalOptions="End" 
+                                               FontFamily="Helvetica" Margin="0,0,3,0" FontSize="12"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </DataTemplate>
+                        </ResourceDictionary>
+                    </toolkit:SfCartesianChart.Resources>
+                    <toolkit:SfCartesianChart.ZoomPanBehavior>
+                        <toolkit:ChartZoomPanBehavior ZoomMode="X" EnableDoubleTap="False" EnablePinchZooming="False" EnablePanning="True"/>
+                    </toolkit:SfCartesianChart.ZoomPanBehavior>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:CategoryAxis ShowMajorGridLines="False" PlotOffsetEnd="10" PlotOffsetStart="10"/>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis EdgeLabelsDrawingMode="Fit">
+                            <toolkit:NumericalAxis.LabelStyle LabelFormat="0'%"/>
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:SfCartesianChart.Series>
+                        <toolkit:StepLineSeries Label="Line 1" LegendIcon="SeriesType"
+                                                StrokeDashArray="{x:StaticResource DashArray}" 
+                                                ItemsSource="{x:Binding FirstLineComponentData, Source={x:Reference root}}" 
+                                                XBindingPath="Name" YBindingPath="Value" 
+                                                ShowMarkers="True" EnableAnimation="True" EnableTooltip="True"  
+                                                TooltipTemplate="{x:StaticResource TooltipTemplate}" >
+                            <toolkit:StepLineSeries.MarkerSettings>
+                                <toolkit:ChartMarkerSettings StrokeWidth="1"/>
+                            </toolkit:StepLineSeries.MarkerSettings>
+                        </toolkit:StepLineSeries>
+                        <toolkit:StepLineSeries Label="Line 2" LegendIcon="SeriesType"
+                                                StrokeDashArray="{x:StaticResource DashArray}" 
+                                                ItemsSource="{x:Binding SecondLineComponentData, Source={x:Reference root}}" 
+                                                XBindingPath="Name" YBindingPath="Value" 
+                                                ShowMarkers="True" EnableAnimation="True" EnableTooltip="True"  
+                                                TooltipTemplate="{x:StaticResource TooltipTemplate}" >
+                            <toolkit:StepLineSeries.MarkerSettings>
+                                <toolkit:ChartMarkerSettings StrokeWidth="1"/>
+                            </toolkit:StepLineSeries.MarkerSettings>
+                        </toolkit:StepLineSeries>
+                    </toolkit:SfCartesianChart.Series>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding DashedLineCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <toolkit:SfCartesianChart IsTransposed="True" HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
+                                          Margin="0, 0, 20, 0">
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Vertical Step Line" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.Legend>
+                        <toolkit:ChartLegend ToggleSeriesVisibility="True"/>
+                    </toolkit:SfCartesianChart.Legend>
+                    <toolkit:SfCartesianChart.Resources>
+                        <ResourceDictionary>
+                            <DataTemplate x:Key="TooltipTemplateVerticalLine">
+                                <StackLayout>
+                                    <Label Text="Grades" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalTextAlignment="Center" 
+                                           FontAttributes="Bold" FontFamily="Helvetica" Margin="0,2" FontSize="12" />
+                                    <BoxView HeightRequest="1" WidthRequest="100" />
+                                    <StackLayout Orientation="Horizontal" VerticalOptions="Fill" Padding="3" >
+                                        <Ellipse TranslationY="-1" StrokeThickness="2" 
+                                                 HeightRequest="10" WidthRequest="10" Fill="#04ABC1" Margin="0,3,3,0"/>
+                                        <Label Text="{x:Binding Item.Name}"  VerticalTextAlignment="Center" HorizontalOptions="Start"  
+                                               FontFamily="Helvetica" FontSize="12" Margin="3,0,3,0"/>
+                                        <Label Text="{x:Binding Item.Value,StringFormat=' :  {0} %'}" VerticalTextAlignment="Center" HorizontalOptions="End" 
+                                               FontFamily="Helvetica" Margin="0,0,3,0" FontSize="12"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </DataTemplate>
+                        </ResourceDictionary>
+                    </toolkit:SfCartesianChart.Resources>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:CategoryAxis ShowMajorGridLines="False" LabelPlacement="BetweenTicks"/>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis Minimum="0" Maximum="100" Interval="20" ShowMajorGridLines="True">
+                            <toolkit:NumericalAxis.LabelStyle LabelFormat="0'%"/>
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:SfCartesianChart.Series>
+                        <toolkit:StepLineSeries Label="Line 1" LegendIcon="SeriesType"
+                                                ItemsSource="{x:Binding FirstLineComponentData, Source={x:Reference root}}"  
+                                                XBindingPath="Name" YBindingPath="Value" 
+                                                ShowMarkers="True" EnableAnimation="True" EnableTooltip="True" 
+                                                TooltipTemplate="{StaticResource TooltipTemplateVerticalLine}">
+                            <toolkit:StepLineSeries.MarkerSettings>
+                                <toolkit:ChartMarkerSettings StrokeWidth="1"/>
+                            </toolkit:StepLineSeries.MarkerSettings>
+                        </toolkit:StepLineSeries>
+                        <toolkit:StepLineSeries Label="Line 2" LegendIcon="SeriesType"
+                                                ItemsSource="{x:Binding SecondLineComponentData, Source={x:Reference root}}"  
+                                                XBindingPath="Name" YBindingPath="Value" 
+                                                ShowMarkers="True" EnableAnimation="True" EnableTooltip="True"  
+                                                TooltipTemplate="{StaticResource TooltipTemplateVerticalLine}">
+                            <toolkit:StepLineSeries.MarkerSettings>
+                                <toolkit:ChartMarkerSettings StrokeWidth="1"/>
+                            </toolkit:StepLineSeries.MarkerSettings>
+                        </toolkit:StepLineSeries>
+                    </toolkit:SfCartesianChart.Series>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding VerticalLineCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

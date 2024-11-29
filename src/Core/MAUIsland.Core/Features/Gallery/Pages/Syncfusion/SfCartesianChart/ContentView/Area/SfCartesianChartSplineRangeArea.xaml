@@ -30,8 +30,6 @@
                 </toolkit:SfCartesianChart.YAxes>
                 <toolkit:SplineRangeAreaSeries ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
                                                XBindingPath="Date" High="High" Low="Low" LegendIcon="SeriesType"
-                                               Fill="{AppThemeBinding Light={StaticResource series1Light}, Dark={StaticResource series1Dark}}" 
-                                               Stroke="{AppThemeBinding Light={StaticResource series1Dark}, Dark={StaticResource series1Dark}}" 
                                                EnableAnimation="True" EnableTooltip="True" ShowTrackballLabel="True" StrokeWidth="1" />
             </toolkit:SfCartesianChart>
 

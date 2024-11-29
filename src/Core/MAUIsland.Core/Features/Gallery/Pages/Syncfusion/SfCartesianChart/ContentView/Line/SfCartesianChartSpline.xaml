@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartSpline"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root">
+    
+    <VerticalStackLayout>
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout>
+                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
+                                          Margin="0, 0, 20, 0">
+                    <toolkit:SfCartesianChart.Legend>
+                        <toolkit:ChartLegend ToggleSeriesVisibility="True"/>
+                    </toolkit:SfCartesianChart.Legend>
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Spline Chart" Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:CategoryAxis ShowMajorGridLines="false" PlotOffsetStart="10" PlotOffsetEnd="10" AxisLineOffset="10">
+                        </toolkit:CategoryAxis>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis Maximum="100" Minimum="0" Interval="20">
+                            <toolkit:NumericalAxis.AxisLineStyle>
+                                <toolkit:ChartLineStyle StrokeWidth="0">
+                                </toolkit:ChartLineStyle>
+                            </toolkit:NumericalAxis.AxisLineStyle>
+                            <toolkit:NumericalAxis.MajorTickStyle>
+                                <toolkit:ChartAxisTickStyle TickSize="0" />
+                            </toolkit:NumericalAxis.MajorTickStyle>
+                            <toolkit:NumericalAxis.LabelStyle>
+                                <toolkit:ChartAxisLabelStyle LabelFormat="0'F" />
+                            </toolkit:NumericalAxis.LabelStyle>
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:SfCartesianChart.Series>
+                        <toolkit:SplineSeries Label="High" LegendIcon="SeriesType" StrokeWidth="1"
+                                              ItemsSource="{x:Binding FirstLineComponentData, Source={x:Reference root}}" XBindingPath="Name" YBindingPath="Value" 
+                                              EnableTooltip="True" EnableAnimation="True" ShowMarkers="True"/>
+                        <toolkit:SplineSeries Label="Low" StrokeWidth="1" LegendIcon="SeriesType"
+                                              ItemsSource="{x:Binding SecondLineComponentData, Source={x:Reference root}}" XBindingPath="Name" YBindingPath="Value" 
+                                              EnableTooltip="True" EnableAnimation="True" ShowMarkers="True"/>
+                    </toolkit:SfCartesianChart.Series>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding LineCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout>
+                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
+                                          Margin="0, 0, 20, 0">
+                    <toolkit:SfCartesianChart.Resources>
+                        <DoubleCollection x:Key="DashArray">
+                            <x:Double>6</x:Double>
+                            <x:Double>3</x:Double>
+                            <x:Double>3</x:Double>
+                            <x:Double>3</x:Double>
+                        </DoubleCollection>
+                    </toolkit:SfCartesianChart.Resources>
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Dashed Spline Chart" Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.Legend>
+                        <toolkit:ChartLegend ToggleSeriesVisibility="True"/>
+                    </toolkit:SfCartesianChart.Legend>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:CategoryAxis ShowMajorGridLines="false" PlotOffsetStart="10" PlotOffsetEnd="10" AxisLineOffset="10">
+                        </toolkit:CategoryAxis>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis Maximum="100" Minimum="0" Interval="20">
+                            <toolkit:NumericalAxis.AxisLineStyle>
+                                <toolkit:ChartLineStyle StrokeWidth="0">
+                                </toolkit:ChartLineStyle>
+                            </toolkit:NumericalAxis.AxisLineStyle>
+                            <toolkit:NumericalAxis.MajorTickStyle>
+                                <toolkit:ChartAxisTickStyle TickSize="0" />
+                            </toolkit:NumericalAxis.MajorTickStyle>
+                            <toolkit:NumericalAxis.LabelStyle>
+                                <toolkit:ChartAxisLabelStyle LabelFormat="0'%" />
+                            </toolkit:NumericalAxis.LabelStyle>
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:SfCartesianChart.Series>
+                        <toolkit:SplineSeries Label="Line 1" StrokeDashArray="{x:StaticResource DashArray}" StrokeWidth="1" LegendIcon="SeriesType"
+                                              EnableTooltip="True" EnableAnimation="True" ShowMarkers="True"
+                                              ItemsSource="{x:Binding FirstLineComponentData, Source={x:Reference root}}" XBindingPath="Name" YBindingPath="Value" />
+                        <toolkit:SplineSeries Label="Line 2" StrokeDashArray="{x:StaticResource DashArray}" StrokeWidth="1" LegendIcon="SeriesType"
+                                              EnableTooltip="True" EnableAnimation="True" ShowMarkers="True"
+                                              ItemsSource="{x:Binding SecondLineComponentData, Source={x:Reference root}}" XBindingPath="Name" YBindingPath="Value" />
+                    </toolkit:SfCartesianChart.Series>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding DashedLineCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

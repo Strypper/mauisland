@@ -16,6 +16,7 @@ public partial class SfCartesianChartPage : IGalleryPage
         AreaChartsSelectionCollectionView.SelectionChanged += OnAreaChartSelectionChanged;
         BarChartsSelectionCollectionView.SelectionChanged += OnColumnBarChartSelectionChanged;
         ColumnChartsSelectionCollectionView.SelectionChanged += OnColumnBarChartSelectionChanged;
+        LineChartsSelectionCollectionView.SelectionChanged += OnLineChartSelectionChanged;
 
         InitializeDefaultView();
     }
@@ -32,6 +33,7 @@ public partial class SfCartesianChartPage : IGalleryPage
         StackingArea100View.IsVisible = false;
 
         BarView.IsVisible = true;
+        ErrorBarView.IsVisible = false;
         RangeBarView.IsVisible = false;
         StackingBarView.IsVisible = false;
         StackingBar100View.IsVisible = false;
@@ -40,6 +42,12 @@ public partial class SfCartesianChartPage : IGalleryPage
         RangeColumnView.IsVisible = false;
         StackingColumnView.IsVisible = false;
         StackingColumn100View.IsVisible = false;
+
+        LineView.IsVisible = true;
+        SplineView.IsVisible = false;
+        StepLineView.IsVisible = false;
+        StackingLineView.IsVisible = false;
+        StackingLineView100.IsVisible = false;
     }
 
     private void OnAreaChartSelectionChanged(object sender, SelectionChangedEventArgs e) 
@@ -78,6 +86,7 @@ public partial class SfCartesianChartPage : IGalleryPage
     private void OnColumnBarChartSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         BarView.IsVisible = false;
+        ErrorBarView.IsVisible = false;
         RangeBarView.IsVisible = false;
         StackingBarView.IsVisible = false;
         StackingBar100View.IsVisible = false;
@@ -94,6 +103,8 @@ public partial class SfCartesianChartPage : IGalleryPage
             {
                 case "Bar": BarView.IsVisible = true;
                     break;
+                case "Error Bar": ErrorBarView.IsVisible = true;
+                    break;
                 case "Range Bar": RangeBarView.IsVisible = true;
                     break;
                 case "Stacking Bar": StackingBarView.IsVisible = true;
@@ -107,6 +118,33 @@ public partial class SfCartesianChartPage : IGalleryPage
                 case "Stacking Column": StackingColumnView.IsVisible = true;
                     break;
                 case "Stacking Column 100": StackingColumn100View.IsVisible = true;
+                    break;
+            }
+        }
+    }
+
+    private void OnLineChartSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        LineView.IsVisible = false;
+        SplineView.IsVisible = false;
+        StepLineView.IsVisible = false;
+        StackingLineView.IsVisible = false;
+        StackingLineView100.IsVisible = false;
+
+        var selectedOption = e.CurrentSelection.FirstOrDefault() as string;
+        if (selectedOption != null)
+        {
+            switch (selectedOption)
+            {
+                case "Line": LineView.IsVisible = true;
+                    break;
+                case "Spline": SplineView.IsVisible = true;
+                    break;
+                case "Step Line": StepLineView.IsVisible = true;
+                    break;
+                case "Stacking Line": StackingLineView.IsVisible = true;
+                    break;
+                case "Stacking Line 100": StackingLineView100.IsVisible = true;
                     break;
             }
         }

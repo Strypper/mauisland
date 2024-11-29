@@ -35,8 +35,6 @@
                 <toolkit:SfCartesianChart.Series>
                     <toolkit:RangeAreaSeries ItemsSource="{Binding ComponentData, Source={x:Reference root}}" 
                                              XBindingPath="Date" High="High" Low="Low" LegendIcon="SeriesType"
-                                             Stroke="{AppThemeBinding Light={StaticResource series4Light}, Dark={StaticResource series4Dark}}" 
-                                             Fill="{AppThemeBinding Light={StaticResource series4Light30}, Dark={StaticResource series4Dark30}}"
                                              EnableAnimation="True" EnableTooltip="True" StrokeWidth="1" />
                 </toolkit:SfCartesianChart.Series>
             </toolkit:SfCartesianChart>

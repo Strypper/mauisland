@@ -30,7 +30,6 @@
                         </toolkit:NumericalAxis>
                     </toolkit:SfCartesianChart.YAxes>
                     <toolkit:RangeColumnSeries EnableAnimation="True" ShowDataLabels="True"
-                                               Fill="{x:AppThemeBinding Light={x:StaticResource series1Light}, Dark={x:StaticResource series1Dark}}"
                                                ItemsSource="{x:Binding ComponentData,Source={x:Reference root}}"
                                                XBindingPath="Name" High="High" Low="Low">
                         <toolkit:RangeColumnSeries.DataLabelSettings>

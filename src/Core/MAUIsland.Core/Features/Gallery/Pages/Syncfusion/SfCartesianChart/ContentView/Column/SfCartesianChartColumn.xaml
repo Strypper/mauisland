@@ -52,7 +52,7 @@
 
         <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
             <VerticalStackLayout Spacing="10">
-                <toolkit:SfCartesianChart x:Name="Chart2" PaletteBrushes="{Binding OlympicColorModel}" HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
+                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
                     <toolkit:SfCartesianChart.Legend>
                         <toolkit:ChartLegend ToggleSeriesVisibility="True" />
                     </toolkit:SfCartesianChart.Legend>
@@ -135,12 +135,11 @@
                     <toolkit:SfCartesianChart.Series>
                         <core:CustomColumnSeries EnableAnimation="True" ShowDataLabels="True"
                                                  ItemsSource="{x:Binding ComponentData,Source={x:Reference root}}" 
-                                                 TrackColor="{x:AppThemeBinding Light={x:StaticResource TrackColorLight}, Dark={x:StaticResource TrackColorDark}}"
                                                  XBindingPath="Name" YBindingPath="Exp">
                             <core:CustomColumnSeries.DataLabelSettings>
                                 <toolkit:CartesianDataLabelSettings UseSeriesPalette="False" LabelPlacement="Outer">
                                     <toolkit:CartesianDataLabelSettings.LabelStyle>
-                                        <toolkit:ChartDataLabelStyle TextColor="{x:AppThemeBinding Default={x:StaticResource ContentForeground}}" FontSize="16" LabelFormat="0.00'M"/>
+                                        <toolkit:ChartDataLabelStyle FontSize="16" LabelFormat="0.00'M"/>
                                     </toolkit:CartesianDataLabelSettings.LabelStyle>
                                 </toolkit:CartesianDataLabelSettings>
                             </core:CustomColumnSeries.DataLabelSettings>
