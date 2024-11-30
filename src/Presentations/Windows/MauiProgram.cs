@@ -5,6 +5,7 @@ using CommunityToolkit.Maui.Storage;
 using MAUIsland.Home;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Refit;
 using Syncfusion.Maui.Core.Hosting;
 using System.Reflection;
@@ -26,7 +27,9 @@ public static class MauiProgram
             .UseMauiCommunityToolkitCore()
             .UseMauiCommunityToolkitMediaElement()
             .UseMauiCommunityToolkit(options => options.SetShouldEnableSnackbarOnWindows(true))
-            .GetAppSettings()
+#if DEBUG 
+            .RegisterAppSettingsFromJsonFile()
+#endif
             .UseMauiApp<App>()
             .ConfigureFonts(fonts =>
             {
@@ -49,14 +52,12 @@ public static class MauiProgram
 
 
 #if DEBUG
-        //builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
 
         var serviceProvider = builder.Services.BuildServiceProvider();
-        var appSettings = serviceProvider.GetRequiredService<IConfiguration>()
-                                         .GetRequiredSection("AppSettings")
-                                         .Get<AppSettings>();
+        var appSettings = serviceProvider.GetRequiredService<AppSettings>();
 
         builder.InitCore(gitHubFeatureAccessToken: appSettings.GitHubAccessToken);
 
@@ -135,9 +136,7 @@ public static class MauiProgram
 
         builder.Services.AddSingleton(_ =>
         {
-            var appSettings = ServiceHelper.GetService<IConfiguration>()
-                                   .GetRequiredSection("AppSettings")
-                                   .Get<AppSettings>();
+            var appSettings = ServiceHelper.GetService<AppSettings>();
 
             var client = new DiscordRPC.DiscordRpcClient(appSettings.DiscordApplicationId);
 
@@ -242,25 +241,28 @@ public static class MauiProgram
         return builder;
     }
 
-    static MauiAppBuilder GetAppSettings(this MauiAppBuilder builder)
+    static MauiAppBuilder RegisterAppSettingsFromJsonFile(this MauiAppBuilder builder)
     {
         var assembly = Assembly.GetExecutingAssembly();
         using var stream = assembly.GetManifestResourceStream("MAUIsland.appsettings.Development.json");
-        //using var appsettingspagestream = assembly.GetManifestResourceStream("MAUIsland.Features.Gallery.Pages.BuiltIn.Helpers.AppSettingsJson.JsonFiles.appsettings.json");
+        using var appsettingspagestream = assembly.GetManifestResourceStream("MAUIsland.Features.Gallery.Pages.BuiltIn.Helpers.AppSettingsJson.JsonFiles.appsettings.json");
 
-        //if (stream is not null && appsettingspagestream is not null)
-        if (stream is not null)
+        if (stream is not null && appsettingspagestream is not null)
         {
-            var config = new ConfigurationBuilder()
+            var systemConfig = new ConfigurationBuilder()
                         .AddJsonStream(stream)
                         .Build();
 
-            //var appsettingsconfig = new ConfigurationBuilder()
-            //            .AddJsonStream(appsettingspagestream)
-            //            .Build();
+            var appSettingsFeatureConfig = new ConfigurationBuilder()
+                        .AddJsonStream(appsettingspagestream)
+                        .Build();
 
-            builder.Configuration.AddConfiguration(config);
-            //builder.Configuration.AddConfiguration(appsettingsconfig);
+            builder.Configuration.AddConfiguration(systemConfig);
+            builder.Configuration.AddConfiguration(appSettingsFeatureConfig);
+
+            var systemSettings = new AppSettings();
+            systemConfig.GetSection("AppSettings").Bind(systemSettings);
+            builder.Services.AddSingleton(systemSettings);
         }
         else
         {
@@ -280,6 +282,7 @@ public static class MauiProgram
 
         return builder;
     }
+    
 
     static IServiceCollection AddPopup<TPopup, TViewModel>(this IServiceCollection services, string name)
     where TPopup : BasePopup where TViewModel : BaseViewModel
