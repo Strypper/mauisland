@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartScatter"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root">
+
+    <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+        <VerticalStackLayout Spacing="10">
+            <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill"
+                                      Margin="0, 0, 20, 0">
+                <toolkit:SfCartesianChart.Legend>
+                    <toolkit:ChartLegend ToggleSeriesVisibility="True"/>
+                </toolkit:SfCartesianChart.Legend>
+                <toolkit:SfCartesianChart.Title>
+                    <Label Text="Scatter Chart" Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                </toolkit:SfCartesianChart.Title>
+                <toolkit:SfCartesianChart.XAxes>
+                    <toolkit:NumericalAxis ShowMajorGridLines="False" EdgeLabelsDrawingMode="Shift" Minimum="100" Maximum="220" Interval="20">
+                        <toolkit:NumericalAxis.Title>
+                            <toolkit:ChartAxisTitle Margin="5,10,5,2" Text="Centimeter"/>
+                        </toolkit:NumericalAxis.Title>
+                    </toolkit:NumericalAxis>
+                </toolkit:SfCartesianChart.XAxes>
+                <toolkit:SfCartesianChart.YAxes>
+                    <toolkit:NumericalAxis ShowMajorGridLines="False" Minimum="50" Maximum="80" Interval="5">
+                        <toolkit:NumericalAxis.Title>
+                            <toolkit:ChartAxisTitle Text="Kilogram"/>
+                        </toolkit:NumericalAxis.Title>
+                    </toolkit:NumericalAxis>
+                </toolkit:SfCartesianChart.YAxes>
+                <toolkit:SfCartesianChart.Series>
+                    <toolkit:ScatterSeries Label="Scatter 1" EnableTooltip="True" EnableAnimation="True" Opacity="0.6" PointWidth="8" PointHeight="8" 
+                                           ItemsSource="{Binding FirstScatterComponentData, Source={x:Reference root}}" XBindingPath="Value" YBindingPath="Size"/>
+                    <toolkit:ScatterSeries Label="Scatter 2" EnableTooltip="True" EnableAnimation="True" Opacity="0.6" PointWidth="8" PointHeight="8" 
+                                           ItemsSource="{Binding SecondScatterComponentData, Source={x:Reference root}}" XBindingPath="Value" YBindingPath="Size"/>
+                </toolkit:SfCartesianChart.Series>
+            </toolkit:SfCartesianChart>
+
+            <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+        </VerticalStackLayout>
+    </Border>
+</ContentView>

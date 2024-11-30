@@ -58,6 +58,15 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     ObservableCollection<SfCartesianChartModel> thirdLine;
 
     [ObservableProperty]
+    ObservableCollection<SfCartesianChartModel> firstScatter;
+
+    [ObservableProperty]
+    ObservableCollection<SfCartesianChartModel> secondScatter;
+
+    [ObservableProperty]
+    ObservableCollection<SfCartesianChartModel> bubble;
+
+    [ObservableProperty]
     ObservableCollection<string> areaChartOptions;
 
     [ObservableProperty]
@@ -1674,6 +1683,125 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "        </toolkit:StackingLine100Series.MarkerSettings>\r\n" +
         "    </toolkit:StackingLine100Series>\r\n" +
         "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianScatterChartXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\" \r\n" +
+        "                        Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Height vs Weight\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"False\" EdgeLabelsDrawingMode=\"Shift\" Minimum=\"100\" Maximum=\"220\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Margin=\"5,10,5,2\" Text=\"Centimeter\"/>\r\n" +
+        "            </toolkit:NumericalAxis.Title>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"False\" Minimum=\"50\" Maximum=\"80\" Interval=\"5\">\r\n" +
+        "            <toolkit:NumericalAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Text=\"Kilogram\"/>\r\n" +
+        "            </toolkit:NumericalAxis.Title>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:ScatterSeries Label=\"Scatter 1\" EnableTooltip=\"True\" EnableAnimation=\"True\" Opacity=\"0.6\" PointWidth=\"8\" PointHeight=\"8\" \r\n" +
+        "                            ItemsSource=\"{Binding FirstScatter}\" XBindingPath=\"Value\" YBindingPath=\"Size\"/>\r\n" +
+        "        <toolkit:ScatterSeries Label=\"Scatter 2\" EnableTooltip=\"True\" EnableAnimation=\"True\" Opacity=\"0.6\" PointWidth=\"8\" PointHeight=\"8\" \r\n" +
+        "                            ItemsSource=\"{Binding SecondScatter}\" XBindingPath=\"Value\" YBindingPath=\"Size\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianBubbleChartXamlCode =
+        "<toolkit:SfCartesianChart VerticalOptions=\"FillAndExpand\" HorizontalOptions=\"Fill\"\r\n" +
+        "                            Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Resources>\r\n" +
+        "        <DataTemplate x:Key=\"Rooltiptemplate\">\r\n" +
+        "            <Grid RowDefinitions=\"auto, auto, auto\">\r\n" +
+        "                <Label Grid.Row=\"0\" Text=\"{Binding Item.Name,StringFormat='{0}'}\" \r\n" +
+        "                        HorizontalTextAlignment=\"Center\" VerticalTextAlignment=\"Center\" \r\n" +
+        "                        Margin=\"0,0,0,2\" HorizontalOptions=\"Center\" FontFamily=\"Helvetica\" FontAttributes=\"Bold\" FontSize=\"10\"/>\r\n" +
+        "                <BoxView Grid.Row=\"1\" VerticalOptions=\"Center\" HeightRequest=\"1\" />\r\n" +
+        "                <StackLayout Grid.Row=\"2\" Orientation=\"Vertical\"  VerticalOptions=\"Fill\" Spacing=\"0\" Padding=\"2\" Margin=\"0\">\r\n" +
+        "                    <Label Text=\"{x:Binding Item.Value,StringFormat='Literacy rate         : {0}%'}\" \r\n" +
+        "                            VerticalTextAlignment=\"Center\" HorizontalOptions=\"Start\" FontFamily=\"Helvetica\" FontSize=\"10\" />\r\n" +
+        "                    <Label Text=\"{x:Binding Item.High,StringFormat='GDP growth rate : {0}'}\" \r\n" +
+        "                            VerticalTextAlignment=\"Center\" HorizontalOptions=\"Start\" FontFamily=\"Helvetica\" FontSize=\"10\" />\r\n" +
+        "                    <Label Text=\"{x:Binding Item.Low,StringFormat='Population           : {0}B'}\" \r\n" +
+        "                            VerticalTextAlignment=\"Center\" HorizontalOptions=\"Start\" FontFamily=\"Helvetica\" FontSize=\"10\" />\r\n" +
+        "                </StackLayout>\r\n" +
+        "            </Grid>\r\n" +
+        "        </DataTemplate>\r\n" +
+        "    </toolkit:SfCartesianChart.Resources>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Bubble Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"False\" RangePadding=\"Additional\" EdgeLabelsDrawingMode=\"Fit\">\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis LabelCreated=\"LabelCreated\" Minimum=\"0\" RangePadding=\"Additional\" EdgeLabelsDrawingMode=\"Fit\">\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:BubbleSeries EnableAnimation=\"True\" TooltipTemplate=\"{StaticResource Tooltiptemplate}\"\r\n" +
+        "                            ItemsSource=\"{x:Binding Bubble}\" \r\n" +
+        "                            EnableTooltip=\"True\" ShowDataLabels=\"False\" \r\n" +
+        "                            XBindingPath=\"Exp\" YBindingPath=\"High\" SizeValuePath=\"Low\" Opacity=\"1\"/>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianCustomBubbleChartXamlCode =
+        "<toolkit:SfCartesianChart VerticalOptions=\"FillAndExpand\" HorizontalOptions=\"Fill\"\r\n" +
+        "                            Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Resources>\r\n" +
+        "        <DataTemplate x:Key=\"CustomTooltiptemplate\">\r\n" +
+        "            <Grid RowDefinitions=\"auto, auto\">\r\n" +
+        "                <Label Grid.Row=\"0\" LineBreakMode=\"WordWrap\" MaximumWidthRequest=\"100\" \r\n" +
+        "                        Text=\"{x:Binding Item.Name,StringFormat='{0}'}\" HorizontalTextAlignment=\"Center\" \r\n" +
+        "                        HorizontalOptions=\"Center\" VerticalTextAlignment=\"Center\" \r\n" +
+        "                        FontFamily=\"Helvetica\" FontAttributes=\"Bold\" Margin=\"0,2,0,2\" FontSize=\"10\"/>\r\n" +
+        "                <BoxView Grid.Row=\"1\" VerticalOptions=\"Center\" HeightRequest=\"1\" />\r\n" +
+        "                <StackLayout Grid.Row=\"2\" Orientation=\"Vertical\" VerticalOptions=\"Fill\" Spacing=\"0\" Padding=\"3\" Margin=\"0\">\r\n" +
+        "                    <Label Text=\"{x:Binding Item.High,StringFormat='Budget   : ${0}M'}\" \r\n" +
+        "                            VerticalTextAlignment=\"Center\" HorizontalOptions=\"Start\" \r\n" +
+        "                            FontFamily=\"Helvetica\" Margin=\"0,0,3,0\" FontSize=\"10\"/>\r\n" +
+        "                    <Label Text=\"{x:Binding Item.Low,StringFormat='Revenue : ${0}M'}\" \r\n" +
+        "                            VerticalTextAlignment=\"Center\" HorizontalOptions=\"Start\" \r\n" +
+        "                            FontFamily=\"Helvetica\" Margin=\"0,0,3,0\" FontSize=\"10\"/>\r\n" +
+        "                </StackLayout>\r\n" +
+        "            </Grid>\r\n" +
+        "        </DataTemplate>\r\n" +
+        "    </toolkit:SfCartesianChart.Resources>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Custom Bubble Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:NumericalAxis RangePadding=\"Additional\" ShowMajorGridLines=\"False\" EdgeLabelsDrawingMode=\"Fit\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis LabelCreated=\"LabelCreated\" Minimum=\"0\" RangePadding=\"Additional\" EdgeLabelsDrawingMode=\"Fit\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:BubbleSeries EnableTooltip=\"True\" TooltipTemplate=\"{x:StaticResource CustomTooltiptemplate}\"\r\n" +
+        "                            ItemsSource=\"{x:Binding ComponentData, Source={x:Reference root}}\" \r\n" +
+        "                            EnableAnimation=\"True\" ShowDataLabels=\"False\"\r\n" +
+        "                            XBindingPath=\"Exp\" YBindingPath=\"High\" SizeValuePath=\"Low\" Opacity=\"1\">\r\n" +
+        "        <toolkit:BubbleSeries.Fill>\r\n" +
+        "            <RadialGradientBrush Center=\"0.35,0.35\" Radius=\"0.5\">\r\n" +
+        "                <GradientStop Offset=\"0\" Color=\"#EAEAEA\" />\r\n" +
+        "                <GradientStop Offset=\"1\" Color=\"#EC9329\" />\r\n" +
+        "            </RadialGradientBrush>\r\n" +
+        "        </toolkit:BubbleSeries.Fill>\r\n" +
+        "    </toolkit:BubbleSeries>\r\n" +
+        "</toolkit:SfCartesianChart>";
     #endregion
     #endregion
 
@@ -1857,6 +1985,76 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "2011", Value = 90 }
         };
 
+        var firstScatter = new ObservableCollection<SfCartesianChartModel>()
+        {
+            new SfCartesianChartModel() { Value = 161, Size = 65 }, new SfCartesianChartModel() { Value = 150, Size = 65 }, new SfCartesianChartModel() { Value = 155, Size = 65 },
+            new SfCartesianChartModel() { Value = 160, Size = 65 }, new SfCartesianChartModel() { Value = 148, Size = 66 }, new SfCartesianChartModel() { Value = 145, Size = 66 },
+            new SfCartesianChartModel() { Value = 137, Size = 66 }, new SfCartesianChartModel() { Value = 138, Size = 66 }, new SfCartesianChartModel() { Value = 162, Size = 66 },
+            new SfCartesianChartModel() { Value = 166, Size = 66 }, new SfCartesianChartModel() { Value = 159, Size = 66 }, new SfCartesianChartModel() { Value = 151, Size = 66 },
+            new SfCartesianChartModel() { Value = 180, Size = 66 }, new SfCartesianChartModel() { Value = 181, Size = 66 }, new SfCartesianChartModel() { Value = 174, Size = 66 },
+            new SfCartesianChartModel() { Value = 159, Size = 66 }, new SfCartesianChartModel() { Value = 151, Size = 67 }, new SfCartesianChartModel() { Value = 148, Size = 67 },
+            new SfCartesianChartModel() { Value = 141, Size = 67 }, new SfCartesianChartModel() { Value = 145, Size = 67 }, new SfCartesianChartModel() { Value = 165, Size = 67 },
+            new SfCartesianChartModel() { Value = 168, Size = 67 }, new SfCartesianChartModel() { Value = 159, Size = 67 }, new SfCartesianChartModel() { Value = 183, Size = 67 },
+            new SfCartesianChartModel() { Value = 188, Size = 67 }, new SfCartesianChartModel() { Value = 187, Size = 67 }, new SfCartesianChartModel() { Value = 172, Size = 67 },
+            new SfCartesianChartModel() { Value = 193, Size = 67 }, new SfCartesianChartModel() { Value = 153, Size = 68 }, new SfCartesianChartModel() { Value = 153, Size = 68 },
+            new SfCartesianChartModel() { Value = 147, Size = 68 }, new SfCartesianChartModel() { Value = 163, Size = 68 }, new SfCartesianChartModel() { Value = 174, Size = 68 },
+            new SfCartesianChartModel() { Value = 173, Size = 68 }, new SfCartesianChartModel() { Value = 160, Size = 68 }, new SfCartesianChartModel() { Value = 191, Size = 68 },
+            new SfCartesianChartModel() { Value = 131, Size = 62 }, new SfCartesianChartModel() { Value = 140, Size = 62 }, new SfCartesianChartModel() { Value = 149, Size = 62 },
+            new SfCartesianChartModel() { Value = 115, Size = 62 }, new SfCartesianChartModel() { Value = 164, Size = 63 }, new SfCartesianChartModel() { Value = 162, Size = 63 },
+            new SfCartesianChartModel() { Value = 167, Size = 63 }, new SfCartesianChartModel() { Value = 146, Size = 63 }, new SfCartesianChartModel() { Value = 150, Size = 64 },
+            new SfCartesianChartModel() { Value = 141, Size = 64 }, new SfCartesianChartModel() { Value = 142, Size = 64 }, new SfCartesianChartModel() { Value = 129, Size = 64 },
+            new SfCartesianChartModel() { Value = 159, Size = 64 }, new SfCartesianChartModel() { Value = 158, Size = 64 }, new SfCartesianChartModel() { Value = 162, Size = 64 },
+            new SfCartesianChartModel() { Value = 136, Size = 64 }, new SfCartesianChartModel() { Value = 176, Size = 64 }, new SfCartesianChartModel() { Value = 170, Size = 64 },
+            new SfCartesianChartModel() { Value = 167, Size = 64 }, new SfCartesianChartModel() { Value = 144, Size = 64 }, new SfCartesianChartModel() { Value = 143, Size = 65 },
+            new SfCartesianChartModel() { Value = 137, Size = 65 }, new SfCartesianChartModel() { Value = 137, Size = 65 }, new SfCartesianChartModel() { Value = 140, Size = 65 },
+        };
+
+        var secondScatter = new ObservableCollection<SfCartesianChartModel>()
+        {
+            new SfCartesianChartModel() { Value = 115, Size = 57 }, new SfCartesianChartModel() { Value = 138, Size = 57 }, new SfCartesianChartModel() { Value = 166, Size = 57 },
+            new SfCartesianChartModel() { Value = 122, Size = 57 }, new SfCartesianChartModel() { Value = 126, Size = 57 }, new SfCartesianChartModel() { Value = 130, Size = 57 },
+            new SfCartesianChartModel() { Value = 125, Size = 57 }, new SfCartesianChartModel() { Value = 144, Size = 57 }, new SfCartesianChartModel() { Value = 150, Size = 57 },
+            new SfCartesianChartModel() { Value = 120, Size = 57 }, new SfCartesianChartModel() { Value = 125, Size = 57 }, new SfCartesianChartModel() { Value = 130, Size = 57 },
+            new SfCartesianChartModel() { Value = 103, Size = 58 }, new SfCartesianChartModel() { Value = 116, Size = 58 }, new SfCartesianChartModel() { Value = 130, Size = 58 },
+            new SfCartesianChartModel() { Value = 126, Size = 58 }, new SfCartesianChartModel() { Value = 136, Size = 58 }, new SfCartesianChartModel() { Value = 148, Size = 58 },
+            new SfCartesianChartModel() { Value = 119, Size = 58 }, new SfCartesianChartModel() { Value = 141, Size = 58 }, new SfCartesianChartModel() { Value = 159, Size = 58 },
+            new SfCartesianChartModel() { Value = 120, Size = 58 }, new SfCartesianChartModel() { Value = 135, Size = 58 }, new SfCartesianChartModel() { Value = 163, Size = 58 },
+            new SfCartesianChartModel() { Value = 119, Size = 59 }, new SfCartesianChartModel() { Value = 131, Size = 59 }, new SfCartesianChartModel() { Value = 148, Size = 59 },
+            new SfCartesianChartModel() { Value = 123, Size = 59 }, new SfCartesianChartModel() { Value = 137, Size = 59 }, new SfCartesianChartModel() { Value = 149, Size = 59 },
+            new SfCartesianChartModel() { Value = 121, Size = 59 }, new SfCartesianChartModel() { Value = 142, Size = 59 }, new SfCartesianChartModel() { Value = 160, Size = 59 },
+            new SfCartesianChartModel() { Value = 118, Size = 59 }, new SfCartesianChartModel() { Value = 130, Size = 59 }, new SfCartesianChartModel() { Value = 146, Size = 59 },
+            new SfCartesianChartModel() { Value = 119, Size = 60 }, new SfCartesianChartModel() { Value = 133, Size = 60 }, new SfCartesianChartModel() { Value = 150, Size = 60 },
+            new SfCartesianChartModel() { Value = 133, Size = 60 }, new SfCartesianChartModel() { Value = 149, Size = 60 }, new SfCartesianChartModel() { Value = 165, Size = 60 },
+            new SfCartesianChartModel() { Value = 130, Size = 60 }, new SfCartesianChartModel() { Value = 139, Size = 60 }, new SfCartesianChartModel() { Value = 154, Size = 60 },
+            new SfCartesianChartModel() { Value = 118, Size = 60 }, new SfCartesianChartModel() { Value = 152, Size = 60 }, new SfCartesianChartModel() { Value = 154, Size = 60 },
+            new SfCartesianChartModel() { Value = 130, Size = 61 }, new SfCartesianChartModel() { Value = 145, Size = 61 }, new SfCartesianChartModel() { Value = 166, Size = 61 },
+            new SfCartesianChartModel() { Value = 131, Size = 61 }, new SfCartesianChartModel() { Value = 143, Size = 61 }, new SfCartesianChartModel() { Value = 162, Size = 61 },
+            new SfCartesianChartModel() { Value = 131, Size = 61 }, new SfCartesianChartModel() { Value = 145, Size = 61 }, new SfCartesianChartModel() { Value = 162, Size = 61 },
+            new SfCartesianChartModel() { Value = 115, Size = 61 }, new SfCartesianChartModel() { Value = 149, Size = 61 }, new SfCartesianChartModel() { Value = 183, Size = 61 },
+        };
+
+        var bubble = new ObservableCollection<SfCartesianChartModel>()
+        {
+            new SfCartesianChartModel() { Name = "2000", Exp = 100, High = 15000, Low = 5.50 },
+            new SfCartesianChartModel() { Name = "2001", Exp = 75, High = 6500, Low = 3.30 },
+            new SfCartesianChartModel() { Name = "2002", Exp = 95, High = 11000, Low = 2.20 },
+            new SfCartesianChartModel() { Name = "2003", Exp = 105, High = 42000, Low = 2.10 },
+            new SfCartesianChartModel() { Name = "2004", Exp = 95, High = 27000, Low = 5.10 },
+            new SfCartesianChartModel() { Name = "2005", Exp = 105, High = 28000, Low = 2.20 },
+            new SfCartesianChartModel() { Name = "2006", Exp = 85, High = 26000, Low = 2.70 },
+            new SfCartesianChartModel() { Name = "2007", Exp = 75, High = 20000, Low = 5.10 },
+            new SfCartesianChartModel() { Name = "2008", Exp = 60, High = 2000, Low = 2.10 },
+            new SfCartesianChartModel() { Name = "2009", Exp = 85, High = 5000, Low = 3.10 },
+            new SfCartesianChartModel() { Name = "2010", Exp = 105, High = 11000, Low = 1.20 },
+            new SfCartesianChartModel() { Name = "2011", Exp = 100, High = 29000, Low = 2.70 },
+            new SfCartesianChartModel() { Name = "2012", Exp = 65, High = 30000, Low = 6.30 },
+            new SfCartesianChartModel() { Name = "2013", Exp = 70, High = 15000, Low = 4.50 },
+            new SfCartesianChartModel() { Name = "2014", Exp = 110, High = 8000, Low = 3.60 },
+            new SfCartesianChartModel() { Name = "2015", Exp = 80, High = 5000, Low = 3.20 },
+            new SfCartesianChartModel() { Name = "2016", Exp = 90, High = 11000, Low = 3.10 },
+            new SfCartesianChartModel() { Name = "2017", Exp = 65, High = 17000, Low = 2.10 },
+        };
+
         var gradients = new List<Brush>(createGradientPalletBrushes());
 
         IsBusy = false;
@@ -1873,6 +2071,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         FirstLine = new(firstLine);
         SecondLine = new(secondLine);
         ThirdLine = new(thirdLine);
+        FirstScatter = new(firstScatter);
+        SecondScatter = new(secondScatter);
+        Bubble = new(bubble);
         Annotation = new(annotation);
         Persons = new(persons);
         PalletBrushes = new(gradients);
@@ -1922,6 +2123,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             FirstLine.Clear();
             SecondLine.Clear();
             ThirdLine.Clear();
+            FirstScatter.Clear();
+            SecondScatter.Clear();
+            Bubble.Clear();
             Annotation.Clear();
             Persons.Clear();
             PalletBrushes.Clear();
@@ -1939,6 +2143,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         firstLine.ForEach(item => FirstLine.Add(item));
         secondLine.ForEach(item => SecondLine.Add(item));
         thirdLine.ForEach(item => ThirdLine.Add(item));
+        firstScatter.ForEach(item => FirstScatter.Add(item));
+        secondScatter.ForEach(item => SecondScatter.Add(item));
+        bubble.ForEach(item => Bubble.Add(item));
         annotation.ForEach(item => Annotation.Add(item));
         persons.ForEach(item => Persons.Add(item));
         gradients.ForEach(item => PalletBrushes.Add(item));

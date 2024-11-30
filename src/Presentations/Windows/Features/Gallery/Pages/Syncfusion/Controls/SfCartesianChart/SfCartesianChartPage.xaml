@@ -426,7 +426,6 @@
                 </VerticalStackLayout>
             </Border>
 
-
             <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Line Charts" />
@@ -478,6 +477,65 @@
                                                                   CodeDescription="{x:Binding CartesianStackingLine100ChartXamlCode}"/>
                         </Grid>
                     </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Scatter Charts" />
+
+                    <!--<Grid ColumnDefinitions="0.2*, 0.8*">
+                        <Border Padding="10" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout>
+                                <Label Text="Scatter Charts" FontSize="20" TextColor="White"/>
+                                <ScrollView>
+                                    <CollectionView x:Name="ScatterChartsSelectionCollectionView"
+                                                    SelectionMode="Single" 
+                                                    ItemsSource="{x:Binding }" 
+                                                    SelectedItem="{x:Binding }"
+                                                    SelectionChanged="OnScatterChartSelectionChanged"
+                                                    ItemTemplate="{x:StaticResource }">
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5"/>
+                                        </CollectionView.ItemsLayout>
+                                    </CollectionView>
+                                </ScrollView>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>-->
+                    <core:SfCartesianChartScatter x:Name="ScatterView" 
+                                                  FirstScatterComponentData="{x:Binding FirstScatter}" 
+                                                  SecondScatterComponentData="{x:Binding SecondScatter}" 
+                                                  CodeDescription="{x:Binding CartesianScatterChartXamlCode}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Bubble Charts" />
+                    <!--<Grid ColumnDefinitions="0.2*, 0.8*">
+                        <Border Padding="10" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout>
+                                <Label Text="Scatter Charts" FontSize="20" TextColor="White"/>
+                                <ScrollView>
+                                    <CollectionView x:Name="ScatterChartsSelectionCollectionView"
+                                                    SelectionMode="Single" 
+                                                    ItemsSource="{x:Binding }" 
+                                                    SelectedItem="{x:Binding }"
+                                                    SelectionChanged="OnScatterChartSelectionChanged"
+                                                    ItemTemplate="{x:StaticResource }">
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5"/>
+                                        </CollectionView.ItemsLayout>
+                                    </CollectionView>
+                                </ScrollView>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>-->
+                    <core:SfCartesianChartBubble x:Name="Bubble" 
+                                                 ComponentData="{x:Binding Bubble}" 
+                                                 BubbleCodeDescription="{x:Binding CartesianBubbleChartXamlCode}" 
+                                                 CustomBubbleCodeDescription="{x:Binding CartesianCustomBubbleChartXamlCode}"/>
                 </VerticalStackLayout>
             </Border>
 

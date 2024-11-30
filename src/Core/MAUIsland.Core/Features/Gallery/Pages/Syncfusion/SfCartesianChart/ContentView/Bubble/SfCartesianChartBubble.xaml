@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartBubble"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root">
+
+    <VerticalStackLayout Spacing="10">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <toolkit:SfCartesianChart VerticalOptions="FillAndExpand" HorizontalOptions="Fill"
+                                          Margin="0, 0, 20, 0">
+                    <toolkit:SfCartesianChart.Resources>
+                        <DataTemplate x:Key="Rooltiptemplate">
+                            <Grid RowDefinitions="auto, auto, auto">
+                                <Label Grid.Row="0" Text="{Binding Item.Name,StringFormat='{0}'}" 
+                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center" 
+                                   Margin="0,0,0,2" HorizontalOptions="Center" FontFamily="Helvetica" FontAttributes="Bold" FontSize="10"/>
+                                <BoxView Grid.Row="1" VerticalOptions="Center" HeightRequest="1" />
+                                <StackLayout Grid.Row="2" Orientation="Vertical"  VerticalOptions="Fill" Spacing="0" Padding="2" Margin="0">
+                                    <Label Text="{x:Binding Item.Value,StringFormat='Literacy rate         : {0}%'}" 
+                                       VerticalTextAlignment="Center" HorizontalOptions="Start" FontFamily="Helvetica" FontSize="10" />
+                                    <Label Text="{x:Binding Item.High,StringFormat='GDP growth rate : {0}'}" 
+                                       VerticalTextAlignment="Center" HorizontalOptions="Start" FontFamily="Helvetica" FontSize="10" />
+                                    <Label Text="{x:Binding Item.Low,StringFormat='Population           : {0}B'}" 
+                                       VerticalTextAlignment="Center" HorizontalOptions="Start" FontFamily="Helvetica" FontSize="10" />
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </toolkit:SfCartesianChart.Resources>
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Bubble Chart" Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16"/>
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:NumericalAxis ShowMajorGridLines="False" RangePadding="Additional" EdgeLabelsDrawingMode="Fit">
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis LabelCreated="LabelCreated" Minimum="0" RangePadding="Additional" EdgeLabelsDrawingMode="Fit">
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:BubbleSeries EnableAnimation="True" TooltipTemplate="{StaticResource Tooltiptemplate}"     
+                                          ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                          EnableTooltip="True" ShowDataLabels="False" 
+                                          XBindingPath="Exp" YBindingPath="High" SizeValuePath="Low" Opacity="1"/>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding BubbleCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <toolkit:SfCartesianChart VerticalOptions="FillAndExpand" HorizontalOptions="Fill"
+                                          Margin="0, 0, 20, 0">
+                    <toolkit:SfCartesianChart.Resources>
+                        <DataTemplate x:Key="CustomTooltiptemplate">
+                            <Grid RowDefinitions="auto, auto">
+                                <Label Grid.Row="0" LineBreakMode="WordWrap" MaximumWidthRequest="100" 
+                                       Text="{x:Binding Item.Name,StringFormat='{0}'}" HorizontalTextAlignment="Center" 
+                                       HorizontalOptions="Center" VerticalTextAlignment="Center" 
+                                       FontFamily="Helvetica" FontAttributes="Bold" Margin="0,2,0,2" FontSize="10"/>
+                                <BoxView Grid.Row="1" VerticalOptions="Center" HeightRequest="1" />
+                                <StackLayout Grid.Row="2" Orientation="Vertical" VerticalOptions="Fill" Spacing="0" Padding="3" Margin="0">
+                                    <Label Text="{x:Binding Item.High,StringFormat='Budget   : ${0}M'}" 
+                                           VerticalTextAlignment="Center" HorizontalOptions="Start" 
+                                           FontFamily="Helvetica" Margin="0,0,3,0" FontSize="10"/>
+                                    <Label Text="{x:Binding Item.Low,StringFormat='Revenue : ${0}M'}" 
+                                           VerticalTextAlignment="Center" HorizontalOptions="Start" 
+                                           FontFamily="Helvetica" Margin="0,0,3,0" FontSize="10"/>
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </toolkit:SfCartesianChart.Resources>
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Custom Bubble Chart" Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16"/>
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.Legend>
+                        <toolkit:ChartLegend/>
+                    </toolkit:SfCartesianChart.Legend>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:NumericalAxis RangePadding="Additional" ShowMajorGridLines="False" EdgeLabelsDrawingMode="Fit"/>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis LabelCreated="LabelCreated" Minimum="0" RangePadding="Additional" EdgeLabelsDrawingMode="Fit"/>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:BubbleSeries EnableTooltip="True" TooltipTemplate="{x:StaticResource CustomTooltiptemplate}"                 
+                                          ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                          EnableAnimation="True" ShowDataLabels="False"
+                                          XBindingPath="Exp" YBindingPath="High" SizeValuePath="Low" Opacity="1">
+                        <toolkit:BubbleSeries.Fill>
+                            <RadialGradientBrush Center="0.35,0.35" Radius="0.5">
+                                <GradientStop Offset="0" Color="#EAEAEA" />
+                                <GradientStop Offset="1" Color="#EC9329" />
+                            </RadialGradientBrush>
+                        </toolkit:BubbleSeries.Fill>
+                    </toolkit:BubbleSeries>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding CustomBubbleCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+
+</ContentView>
