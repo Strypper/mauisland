@@ -6,10 +6,43 @@
     xmlns:core="clr-namespace:MAUIsland.Core"
     xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
     x:Name="root">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+        <VerticalStackLayout Spacing="10">
+            <HorizontalStackLayout HorizontalOptions="End">
+                <Label Text="Show distribution line" VerticalTextAlignment="Center"/>
+                <CheckBox x:Name="CheckBox" IsChecked="True" VerticalOptions="Start" Margin="30,0,0,0"/>
+            </HorizontalStackLayout>
+            <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill"
+                                      Margin="0, 0, 20, 0">
+                <toolkit:SfCartesianChart.Title>
+                    <Label Text="Histogram Chart" Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16"/>
+                </toolkit:SfCartesianChart.Title>
+                <toolkit:SfCartesianChart.XAxes>
+                    <toolkit:NumericalAxis />
+                </toolkit:SfCartesianChart.XAxes>
+                <toolkit:SfCartesianChart.YAxes>
+                    <toolkit:NumericalAxis />
+                </toolkit:SfCartesianChart.YAxes>
+                <toolkit:HistogramSeries ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}"
+                                         XBindingPath="Value" YBindingPath="Size"
+                                         ShowNormalDistributionCurve="{x:Binding Source={x:Reference CheckBox},Path=IsChecked}"
+                                         HistogramInterval="20" StrokeWidth="1.5" ShowDataLabels="True"
+                                         EnableTooltip="True">
+                    <toolkit:HistogramSeries.CurveStyle>
+                        <toolkit:ChartLineStyle StrokeDashArray="12, 3, 3, 3" StrokeWidth="2"/>
+                    </toolkit:HistogramSeries.CurveStyle>
+                    <toolkit:HistogramSeries.DataLabelSettings>
+                        <toolkit:CartesianDataLabelSettings UseSeriesPalette="False">
+                            <toolkit:CartesianDataLabelSettings.LabelStyle>
+                                <toolkit:ChartDataLabelStyle TextColor="Aqua"/>
+                            </toolkit:CartesianDataLabelSettings.LabelStyle>
+                        </toolkit:CartesianDataLabelSettings>
+                    </toolkit:HistogramSeries.DataLabelSettings>
+                </toolkit:HistogramSeries>
+            </toolkit:SfCartesianChart>
+
+            <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+        </VerticalStackLayout>
+    </Border>
 </ContentView>

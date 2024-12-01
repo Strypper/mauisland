@@ -1,5 +1,6 @@
 using Syncfusion.Maui.Data;
 using Syncfusion.Maui.Toolkit.Charts;
+using System.Diagnostics.Metrics;
 
 namespace MAUIsland.Core;
 public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewModel
@@ -68,6 +69,15 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
 
     [ObservableProperty]
     ObservableCollection<SfCartesianChartModel> box;
+
+    [ObservableProperty]
+    ObservableCollection<SfCartesianChartModel> histogram;
+
+    [ObservableProperty]
+    ObservableCollection<SfCartesianChartModel> candle;
+
+    [ObservableProperty]
+    ObservableCollection<SfCartesianChartModel> waterfall;
 
     [ObservableProperty]
     ObservableCollection<string> areaChartOptions;
@@ -1826,6 +1836,140 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "                                 Fill=\"BlueViolet\" Stroke=\"White\">\r\n" +
         "    </toolkit:BoxAndWhiskerSeries>\r\n" +
         "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianHistogramChartXamlCode =
+        "<VerticalStackLayout Spacing=\"10\">\r\n" +
+        "    <HorizontalStackLayout HorizontalOptions=\"End\">\r\n" +
+        "        <Label Text=\"Show distribution line\" VerticalTextAlignment=\"Center\"/>\r\n" +
+        "        <CheckBox x:Name=\"CheckBox\" IsChecked=\"True\" VerticalOptions=\"Start\" Margin=\"30,0,0,0\"/>\r\n" +
+        "    </HorizontalStackLayout>\r\n" +
+        "    <toolkit:SfCartesianChart VerticalOptions=\"FillAndExpand\">\r\n" +
+        "        <toolkit:SfCartesianChart.Title>\r\n" +
+        "            <Label Text=\"Histogram Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\"/>\r\n" +
+        "        </toolkit:SfCartesianChart.Title>\r\n" +
+        "        <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "            <toolkit:NumericalAxis />\r\n" +
+        "        </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "            <toolkit:NumericalAxis />\r\n" +
+        "        </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:HistogramSeries ItemsSource=\"{x:Binding Candle}\"\r\n" +
+        "                            XBindingPath=\"Value\" YBindingPath=\"Size\"\r\n" +
+        "                            ShowNormalDistributionCurve=\"{x:Binding Source={x:Reference CheckBox},Path=IsChecked}\"\r\n" +
+        "                            HistogramInterval=\"20\" StrokeWidth=\"1.5\" ShowDataLabels=\"True\"\r\n" +
+        "                            EnableTooltip=\"True\">\r\n" +
+        "            <toolkit:HistogramSeries.CurveStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeDashArray=\"12, 3, 3, 3\" StrokeWidth=\"2\"/>\r\n" +
+        "            </toolkit:HistogramSeries.CurveStyle>\r\n" +
+        "            <toolkit:HistogramSeries.DataLabelSettings>\r\n" +
+        "                <toolkit:CartesianDataLabelSettings UseSeriesPalette=\"False\">\r\n" +
+        "                    <toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
+        "                        <toolkit:ChartDataLabelStyle TextColor=\"Aqua\"/>\r\n" +
+        "                    </toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
+        "                </toolkit:CartesianDataLabelSettings>\r\n" +
+        "            </toolkit:HistogramSeries.DataLabelSettings>\r\n" +
+        "        </toolkit:HistogramSeries>\r\n" +
+        "    </toolkit:SfCartesianChart>\r\n\r\n" +
+        "    <core:SourceCodeExpander Code=\"{x:Binding CodeDescription, Source={x:Reference root}}\"  CodeType=\"Xaml\"/>\r\n" +
+        "</VerticalStackLayout>";
+
+    [ObservableProperty]
+    string cartesianCandleChartXamlCode =
+        "<VerticalStackLayout Spacing=\"10\">\r\n" +
+        "    <HorizontalStackLayout HorizontalOptions=\"End\">\r\n" +
+        "        <Label Text=\"Enable Solid Candles\" VerticalTextAlignment=\"Center\"/>\r\n" +
+        "        <CheckBox x:Name=\"CheckBox\" IsChecked=\"False\" VerticalOptions=\"Start\" Margin=\"30,0,0,0\" />\r\n" +
+        "    </HorizontalStackLayout>\r\n\r\n" +
+        "    <toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\">\r\n" +
+        "        <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "            <toolkit:DateTimeAxis AutoScrollingMode=\"End\" AutoScrollingDeltaType=\"Months\" LabelCreated=\"LabelCreated\" ShowMajorGridLines=\"False\" >\r\n" +
+        "                <toolkit:DateTimeAxis.LabelStyle>\r\n" +
+        "                    <toolkit:ChartAxisLabelStyle LabelFormat=\"MMM-dd\"/>\r\n" +
+        "                </toolkit:DateTimeAxis.LabelStyle>\r\n" +
+        "            </toolkit:DateTimeAxis>\r\n" +
+        "        </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "            <toolkit:NumericalAxis ShowMinorGridLines=\"True\" Maximum=\"110\" IsVisible=\"True\">\r\n" +
+        "                <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                    <toolkit:ChartLineStyle StrokeWidth=\"0\"/>\r\n" +
+        "                </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "                    <toolkit:ChartAxisLabelStyle LabelFormat=\"$0\"/>\r\n" +
+        "                </toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "            </toolkit:NumericalAxis>\r\n" +
+        "        </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:CandleSeries ItemsSource=\"{x:Binding ComponentData, Source={x:Reference root}}\"\r\n" +
+        "                        XBindingPath=\"Date\" Open=\"Value\" High=\"High\" Low=\"Low\" Close=\"Size\"\r\n" +
+        "                        EnableTooltip=\"True\" EnableAnimation=\"True\"\r\n" +
+        "                        EnableSolidCandle=\"{x:Binding Source={x:Reference CheckBox},Path=IsChecked}\">\r\n" +
+        "        </toolkit:CandleSeries>\r\n" +
+        "        <toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "            <toolkit:ChartZoomPanBehavior ZoomMode=\"X\" EnableDoubleTap=\"False\" EnablePanning=\"True\" EnablePinchZooming=\"True\"/>\r\n" +
+        "        </toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "    </toolkit:SfCartesianChart>\r\n" +
+        "</VerticalStackLayout>";
+
+    [ObservableProperty]
+    string cartesianWaterfallChartXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                            Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Waterfall Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes >\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"False\" LabelPlacement=\"BetweenTicks\">\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"False\" >\r\n" +
+        "            <toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"0'B\" />\r\n" +
+        "            </toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:WaterfallSeries ItemsSource=\"{x:Binding Waterfall}\" \r\n" +
+        "                                AllowAutoSum=\"True\" XBindingPath=\"Name\" YBindingPath=\"Value\" SummaryBindingPath=\"IsSummary\"\r\n" +
+        "                                Fill=\"#95DB9C\" NegativePointsBrush=\"#B95375\" SummaryPointsBrush=\"#327DBE\" \r\n" +
+        "                                EnableAnimation=\"True\">\r\n" +
+        "        <toolkit:WaterfallSeries.DataLabelSettings>\r\n" +
+        "            <toolkit:CartesianDataLabelSettings >\r\n" +
+        "                <toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
+        "                    <toolkit:ChartDataLabelStyle LabelFormat=\"0'B\"/>\r\n" +
+        "                </toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
+        "            </toolkit:CartesianDataLabelSettings>\r\n" +
+        "        </toolkit:WaterfallSeries.DataLabelSettings>\r\n" +
+        "    </toolkit:WaterfallSeries>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianVerticalWaterfallChartXamlCode =
+        "<toolkit:SfCartesianChart IsTransposed=\"True\" HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                            Margin=\"0, 0, 20, 0\" >\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Vertical Waterfall Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\" ShowMajorGridLines=\"False\" >\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"False\" IsVisible=\"False\">\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:WaterfallSeries ItemsSource=\"{x:Binding ComponentData, Source={x:Reference root}}\" \r\n" +
+        "                                AllowAutoSum=\"True\" XBindingPath=\"Name\" YBindingPath=\"Value\" SummaryBindingPath=\"IsSummary\" \r\n" +
+        "                                Fill=\"#95DB9C\" NegativePointsBrush=\"#B95375\" SummaryPointsBrush=\"#327DBE\" \r\n" +
+        "                                EnableAnimation=\"True\" EnableTooltip=\"True\">\r\n" +
+        "        <toolkit:WaterfallSeries.DataLabelSettings >\r\n" +
+        "            <toolkit:CartesianDataLabelSettings BarAlignment=\"Middle\">\r\n" +
+        "                <toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
+        "                    <toolkit:ChartDataLabelStyle LabelFormat=\"0'M\"/>\r\n" +
+        "                </toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
+        "            </toolkit:CartesianDataLabelSettings>\r\n" +
+        "        </toolkit:WaterfallSeries.DataLabelSettings>\r\n" +
+        "    </toolkit:WaterfallSeries>\r\n" +
+        "</toolkit:SfCartesianChart>";
     #endregion
     #endregion
 
@@ -2087,6 +2231,111 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "4", Values = new List<double> { 67.6, 64.2, 65.9, 65.9, 68.2, 71.1, 67.6, 71.6, 72.8, 68.2, 67.6, 67.1, 67.1, 68.2, 65.4, 66.5, 67.6, 67.1, 71.1, 67.1, 65.4, 67.6, 67.6, 70.5, 70.5 } }, 
         };
 
+        var histogram = new ObservableCollection<SfCartesianChartModel>
+        {
+            new SfCartesianChartModel() { Value = 5.250, Size = 0 }, new SfCartesianChartModel() { Value = 7.750, Size = 0 },
+            new SfCartesianChartModel() { Value = 0, Size = 0 }, new SfCartesianChartModel() { Value = 8.275, Size = 0 },
+            new SfCartesianChartModel() { Value = 9.750, Size = 0 }, new SfCartesianChartModel() { Value = 7.750, Size = 0 },
+            new SfCartesianChartModel() { Value = 8.275, Size = 0 }, new SfCartesianChartModel() { Value = 6.250, Size = 0 },
+            new SfCartesianChartModel() { Value = 5.750, Size = 0 }, new SfCartesianChartModel() { Value = 5.250, Size = 0 },
+            new SfCartesianChartModel() { Value = 23.000, Size = 0 }, new SfCartesianChartModel() { Value = 26.500, Size = 0 },
+            new SfCartesianChartModel() { Value = 27.750, Size = 0 }, new SfCartesianChartModel() { Value = 25.025, Size = 0 },
+            new SfCartesianChartModel() { Value = 26.500, Size = 0 }, new SfCartesianChartModel() { Value = 26.500, Size = 0 },
+            new SfCartesianChartModel() { Value = 28.025, Size = 0 }, new SfCartesianChartModel() { Value = 29.250, Size = 0 },
+            new SfCartesianChartModel() { Value = 26.750, Size = 0 }, new SfCartesianChartModel() { Value = 27.250, Size = 0 },
+            new SfCartesianChartModel() { Value = 26.250, Size = 0 }, new SfCartesianChartModel() { Value = 25.250, Size = 0 },
+            new SfCartesianChartModel() { Value = 34.500, Size = 0 }, new SfCartesianChartModel() { Value = 25.625, Size = 0 },
+            new SfCartesianChartModel() { Value = 25.500, Size = 0 }, new SfCartesianChartModel() { Value = 26.625, Size = 0 },
+            new SfCartesianChartModel() { Value = 36.275, Size = 0 }, new SfCartesianChartModel() { Value = 36.250, Size = 0 },
+            new SfCartesianChartModel() { Value = 26.875, Size = 0 }, new SfCartesianChartModel() { Value = 45.000, Size = 0 },
+            new SfCartesianChartModel() { Value = 43.000, Size = 0 }, new SfCartesianChartModel() { Value = 46.500, Size = 0 },
+            new SfCartesianChartModel() { Value = 47.750, Size = 0 }, new SfCartesianChartModel() { Value = 45.025, Size = 0 },
+            new SfCartesianChartModel() { Value = 56.500, Size = 0 }, new SfCartesianChartModel() { Value = 56.500, Size = 0 },
+            new SfCartesianChartModel() { Value = 58.025, Size = 0 }, new SfCartesianChartModel() { Value = 59.250, Size = 0 },
+            new SfCartesianChartModel() { Value = 56.750, Size = 0 }, new SfCartesianChartModel() { Value = 57.250, Size = 0 },
+            new SfCartesianChartModel() { Value = 46.250, Size = 0 }, new SfCartesianChartModel() { Value = 55.250, Size = 0 },
+            new SfCartesianChartModel() { Value = 44.500, Size = 0 }, new SfCartesianChartModel() { Value = 45.500, Size = 0 },
+            new SfCartesianChartModel() { Value = 55.500, Size = 0 }, new SfCartesianChartModel() { Value = 45.625, Size = 0 },
+            new SfCartesianChartModel() { Value = 55.500, Size = 0 }, new SfCartesianChartModel() { Value = 56.250, Size = 0 },
+            new SfCartesianChartModel() { Value = 46.875, Size = 0 }, new SfCartesianChartModel() { Value = 43.000, Size = 0 },
+            new SfCartesianChartModel() { Value = 46.250, Size = 0 }, new SfCartesianChartModel() { Value = 55.250, Size = 0 },
+            new SfCartesianChartModel() { Value = 44.500, Size = 0 }, new SfCartesianChartModel() { Value = 45.425, Size = 0 },
+            new SfCartesianChartModel() { Value = 56.625, Size = 0 }, new SfCartesianChartModel() { Value = 46.275, Size = 0 },
+            new SfCartesianChartModel() { Value = 56.250, Size = 0 }, new SfCartesianChartModel() { Value = 46.875, Size = 0 },
+            new SfCartesianChartModel() { Value = 43.000, Size = 0 }, new SfCartesianChartModel() { Value = 46.250, Size = 0 },
+            new SfCartesianChartModel() { Value = 55.250, Size = 0 }, new SfCartesianChartModel() { Value = 44.500, Size = 0 },
+            new SfCartesianChartModel() { Value = 45.425, Size = 0 }, new SfCartesianChartModel() { Value = 55.500, Size = 0 },
+            new SfCartesianChartModel() { Value = 46.625, Size = 0 }, new SfCartesianChartModel() { Value = 56.275, Size = 0 },
+            new SfCartesianChartModel() { Value = 46.250, Size = 0 }, new SfCartesianChartModel() { Value = 56.250, Size = 0 },
+            new SfCartesianChartModel() { Value = 42.000, Size = 0 }, new SfCartesianChartModel() { Value = 41.000, Size = 0 },
+            new SfCartesianChartModel() { Value = 63.000, Size = 0 }, new SfCartesianChartModel() { Value = 66.500, Size = 0 },
+            new SfCartesianChartModel() { Value = 67.750, Size = 0 }, new SfCartesianChartModel() { Value = 65.025, Size = 0 },
+            new SfCartesianChartModel() { Value = 66.500, Size = 0 }, new SfCartesianChartModel() { Value = 76.500, Size = 0 },
+            new SfCartesianChartModel() { Value = 78.025, Size = 0 }, new SfCartesianChartModel() { Value = 79.250, Size = 0 },
+            new SfCartesianChartModel() { Value = 76.750, Size = 0 }, new SfCartesianChartModel() { Value = 77.250, Size = 0 },
+            new SfCartesianChartModel() { Value = 66.250, Size = 0 }, new SfCartesianChartModel() { Value = 75.250, Size = 0 },
+            new SfCartesianChartModel() { Value = 74.500, Size = 0 }, new SfCartesianChartModel() { Value = 65.625, Size = 0 },
+            new SfCartesianChartModel() { Value = 75.500, Size = 0 }, new SfCartesianChartModel() { Value = 76.625, Size = 0 },
+            new SfCartesianChartModel() { Value = 76.275, Size = 0 }, new SfCartesianChartModel() { Value = 66.250, Size = 0 },
+            new SfCartesianChartModel() { Value = 66.875, Size = 0 }, new SfCartesianChartModel() { Value = 82.000, Size = 0 },
+            new SfCartesianChartModel() { Value = 85.250, Size = 0 }, new SfCartesianChartModel() { Value = 87.750, Size = 0 },
+            new SfCartesianChartModel() { Value = 92.000, Size = 0 }, new SfCartesianChartModel() { Value = 85.250, Size = 0 },
+            new SfCartesianChartModel() { Value = 87.750, Size = 0 }, new SfCartesianChartModel() { Value = 89.000, Size = 0 },
+            new SfCartesianChartModel() { Value = 88.275, Size = 0 }, new SfCartesianChartModel() { Value = 89.750, Size = 0 },
+            new SfCartesianChartModel() { Value = 95.750, Size = 0 }, new SfCartesianChartModel() { Value = 95.250, Size = 0 }
+        };
+
+        var candle = new ObservableCollection<SfCartesianChartModel>
+        {
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 31), High = 97.87, Low = 95.78, Value = 97.07, Size = 96.97 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 30), High = 98.66, Low = 96.55, Value = 96.95, Size = 97.18 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 29), High = 98.87, Low = 94.70, Value = 98.87, Size = 95.25 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 28), High = 100.97, Low = 98.20, Value = 100.03, Size = 98.31 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 24), High = 98.93, Low = 97.11, Value = 98.69, Size = 98.90 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 23), High = 99.60, Low = 97.08, Value = 98.12, Size = 97.18 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 22), High = 99.66, Low = 97.64, Value = 98.35, Size = 97.94 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 21), High = 98.46, Low = 96.40, Value = 97.22, Size = 97.56 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 18), High = 101.73, Low = 98.12, Value = 101.22, Size = 98.79 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 17), High = 102.04, Low = 98.91, Value = 101.29, Size = 100.62 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 16), High = 101.60, Low = 98.12, Value = 101.20, Size = 100.05 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 15), High = 104.41, Low = 99.85, Value = 104.41, Size = 100.49 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 14), High = 101.55, Low = 98.92, Value = 99.57, Size = 100.83 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 11), High = 99.60, Low = 96.00, Value = 96.81, Size = 98.11 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 10), High = 97.89, Low = 95.64, Value = 96.74, Size = 97.63 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 9), High = 104.43, Low = 96.43, Value = 103.16, Size = 97.41 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 8), High = 102.65, Low = 99.68, Value = 99.71, Size = 102.33 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 7), High = 101.97, Low = 99.83, Value = 101.49, Size = 100.17 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 4), High = 101.87, Low = 98.08, Value = 98.08, Size = 100.92 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 3), High = 101.37, Low = 97.66, Value = 100.57, Size = 97.91 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 2), High = 100.05, Low = 98.12, Value = 100.00, Size = 99.99 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 12, 1), High = 100.73, Low = 97.25, Value = 97.54, Size = 99.75 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 11, 30), High = 97.89, Low = 95.42, Value = 97.38, Size = 96.46 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 11, 27), High = 97.63, Low = 94.50, Value = 94.50, Size = 97.38 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 11, 25), High = 98.65, Low = 94.20, Value = 97.40, Size = 94.40 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 11, 24), High = 97.71, Low = 94.24, Value = 95.85, Size = 96.22 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 11, 23), High = 94.71, Low = 90.80, Value = 91.03, Size = 94.48 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 11, 20), High = 91.31, Low = 89.00, Value = 89.08, Size = 90.09 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 11, 19), High = 90.06, Low = 88.17, Value = 88.35, Size = 89.95 },
+            new SfCartesianChartModel() { Date = new DateTime(2020, 11, 18), High = 90.32, Low = 88.09, Value = 89.31, Size = 88.52 }
+        };
+
+        var waterfall = new ObservableCollection<SfCartesianChartModel>()
+        {
+            new SfCartesianChartModel() { Name = "January", Value = 25 },
+            new SfCartesianChartModel() { Name = "February", Value = 22.5 },
+            new SfCartesianChartModel() { Name = "March", Value = -10 },
+            new SfCartesianChartModel() { Name = "April", Value = 23 },
+            new SfCartesianChartModel() { Name = "May", Value = 7 },
+            new SfCartesianChartModel() { Name = "June", Value = -15 },
+            new SfCartesianChartModel() { Name = "July", Value = -8 },
+            new SfCartesianChartModel() { Name = "August", Value = -6 },
+            new SfCartesianChartModel() { Name = "September", Value = -9 },
+            new SfCartesianChartModel() { Name = "October", Value = 22.5 },
+            new SfCartesianChartModel() { Name = "November", Value = 12 },
+            new SfCartesianChartModel() { Name = "December", Value = -30 },
+            new SfCartesianChartModel() { Name = "Total", Value = 34, IsSummary = true }
+        };
+
         var gradients = new List<Brush>(createGradientPalletBrushes());
 
         IsBusy = false;
@@ -2107,6 +2356,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         SecondScatter = new(secondScatter);
         Bubble = new(bubble);
         Box = new(box);
+        Histogram = new(histogram);
+        Candle = new(candle);
+        Waterfall = new(waterfall);
         Annotation = new(annotation);
         Persons = new(persons);
         PalletBrushes = new(gradients);
@@ -2160,6 +2412,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             SecondScatter.Clear();
             Bubble.Clear();
             Box.Clear();
+            Histogram.Clear();
+            Candle.Clear();
+            Waterfall.Clear();
             Annotation.Clear();
             Persons.Clear();
             PalletBrushes.Clear();
@@ -2181,6 +2436,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         secondScatter.ForEach(item => SecondScatter.Add(item));
         bubble.ForEach(item => Bubble.Add(item));
         box.ForEach(item => Box.Add(item));
+        histogram.ForEach(item => Histogram.Add(item));
+        candle.ForEach(item => Candle.Add(item));
+        waterfall.ForEach(item => Waterfall.Add(item));
         annotation.ForEach(item => Annotation.Add(item));
         persons.ForEach(item => Persons.Add(item));
         gradients.ForEach(item => PalletBrushes.Add(item));

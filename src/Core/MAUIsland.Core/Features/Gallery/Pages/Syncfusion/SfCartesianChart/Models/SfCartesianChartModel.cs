@@ -28,4 +28,7 @@ public partial class SfCartesianChartModel : BaseModel
 
     [ObservableProperty]
     List<double>? values;
+
+    [ObservableProperty]
+    bool isSummary;
 }

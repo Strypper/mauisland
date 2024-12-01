@@ -8,7 +8,7 @@
     x:Name="root">
 
     <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
-        <VerticalStackLayout  Spacing="10">
+        <VerticalStackLayout Spacing="10">
             <toolkit:SfCartesianChart VerticalOptions="FillAndExpand" HorizontalOptions="Fill"
                                       Margin="0, 0, 20, 0">
                 <toolkit:SfCartesianChart.Title>

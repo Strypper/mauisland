@@ -566,6 +566,94 @@
                                                         CodeDescription="{x:Binding CartesianBoxAndWhiskerChartXamlCode}"/>
                 </VerticalStackLayout>
             </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Histogram Charts" />
+                    <!--<Grid ColumnDefinitions="0.2*, 0.8*">
+                        <Border Padding="10" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout>
+                                <Label Text="Scatter Charts" FontSize="20" TextColor="White"/>
+                                <ScrollView>
+                                    <CollectionView x:Name="ScatterChartsSelectionCollectionView"
+                                                    SelectionMode="Single" 
+                                                    ItemsSource="{x:Binding }" 
+                                                    SelectedItem="{x:Binding }"
+                                                    SelectionChanged="OnScatterChartSelectionChanged"
+                                                    ItemTemplate="{x:StaticResource }">
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5"/>
+                                        </CollectionView.ItemsLayout>
+                                    </CollectionView>
+                                </ScrollView>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>-->
+                    <core:SfCartesianChartHistogram x:Name="Histogram" 
+                                                    ComponentData="{x:Binding Histogram}" 
+                                                    CodeDescription="{x:Binding CartesianHistogramChartXamlCode}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Candle Charts" />
+                    <!--<Grid ColumnDefinitions="0.2*, 0.8*">
+                        <Border Padding="10" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout>
+                                <Label Text="Scatter Charts" FontSize="20" TextColor="White"/>
+                                <ScrollView>
+                                    <CollectionView x:Name="ScatterChartsSelectionCollectionView"
+                                                    SelectionMode="Single" 
+                                                    ItemsSource="{x:Binding }" 
+                                                    SelectedItem="{x:Binding }"
+                                                    SelectionChanged="OnScatterChartSelectionChanged"
+                                                    ItemTemplate="{x:StaticResource }">
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5"/>
+                                        </CollectionView.ItemsLayout>
+                                    </CollectionView>
+                                </ScrollView>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>-->
+                    <core:SfCartesianChartCandle x:Name="Candle" 
+                                                    ComponentData="{x:Binding Candle}" 
+                                                    CodeDescription="{x:Binding CartesianCandleChartXamlCode}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Candle Charts" />
+                    <!--<Grid ColumnDefinitions="0.2*, 0.8*">
+                        <Border Padding="10" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout>
+                                <Label Text="Scatter Charts" FontSize="20" TextColor="White"/>
+                                <ScrollView>
+                                    <CollectionView x:Name="ScatterChartsSelectionCollectionView"
+                                                    SelectionMode="Single" 
+                                                    ItemsSource="{x:Binding }" 
+                                                    SelectedItem="{x:Binding }"
+                                                    SelectionChanged="OnScatterChartSelectionChanged"
+                                                    ItemTemplate="{x:StaticResource }">
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5"/>
+                                        </CollectionView.ItemsLayout>
+                                    </CollectionView>
+                                </ScrollView>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>-->
+                    <core:SfCartesianChartWaterfall x:Name="Waterfall" 
+                                                    ComponentData="{x:Binding Waterfall}" 
+                                                    WaterfallCodeDescription="{x:Binding CartesianWaterfallChartXamlCode}"
+                                                    VerticalWaterfallCodeDescription="{x:Binding CartesianVerticalWaterfallChartXamlCode}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </core:BasePage>

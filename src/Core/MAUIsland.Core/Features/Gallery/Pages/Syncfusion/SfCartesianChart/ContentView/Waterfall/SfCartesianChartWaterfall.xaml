@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartWaterfall"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root">
+
+    <VerticalStackLayout>
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill"
+                                          Margin="0, 0, 20, 0">
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Waterfall Chart" Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.XAxes >
+                        <toolkit:CategoryAxis ShowMajorGridLines="False" LabelPlacement="BetweenTicks">
+                        </toolkit:CategoryAxis>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis ShowMajorGridLines="False" >
+                            <toolkit:NumericalAxis.LabelStyle>
+                                <toolkit:ChartAxisLabelStyle LabelFormat="0'B" />
+                            </toolkit:NumericalAxis.LabelStyle>
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:WaterfallSeries ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                             AllowAutoSum="True" XBindingPath="Name" YBindingPath="Value" SummaryBindingPath="IsSummary"
+                                             Fill="#95DB9C" NegativePointsBrush="#B95375" SummaryPointsBrush="#327DBE" 
+                                             EnableAnimation="True">
+                        <toolkit:WaterfallSeries.DataLabelSettings>
+                            <toolkit:CartesianDataLabelSettings >
+                                <toolkit:CartesianDataLabelSettings.LabelStyle>
+                                    <toolkit:ChartDataLabelStyle LabelFormat="0'B"/>
+                                </toolkit:CartesianDataLabelSettings.LabelStyle>
+                            </toolkit:CartesianDataLabelSettings>
+                        </toolkit:WaterfallSeries.DataLabelSettings>
+                    </toolkit:WaterfallSeries>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding WaterfallCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <toolkit:SfCartesianChart IsTransposed="True" HorizontalOptions="Fill" VerticalOptions="Fill"
+                                          Margin="0, 0, 20, 0" >
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Vertical Waterfall Chart" Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:CategoryAxis LabelPlacement="BetweenTicks" ShowMajorGridLines="False" >
+                        </toolkit:CategoryAxis>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis ShowMajorGridLines="False" IsVisible="False">
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:WaterfallSeries ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                             AllowAutoSum="True" XBindingPath="Name" YBindingPath="Value" SummaryBindingPath="IsSummary" 
+                                             Fill="#95DB9C" NegativePointsBrush="#B95375" SummaryPointsBrush="#327DBE" 
+                                             EnableAnimation="True" EnableTooltip="True">
+                        <toolkit:WaterfallSeries.DataLabelSettings >
+                            <toolkit:CartesianDataLabelSettings BarAlignment="Middle">
+                                <toolkit:CartesianDataLabelSettings.LabelStyle>
+                                    <toolkit:ChartDataLabelStyle LabelFormat="0'M"/>
+                                </toolkit:CartesianDataLabelSettings.LabelStyle>
+                            </toolkit:CartesianDataLabelSettings>
+                        </toolkit:WaterfallSeries.DataLabelSettings>
+                    </toolkit:WaterfallSeries>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding VerticalWaterfallCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+
+</ContentView>
