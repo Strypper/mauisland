@@ -539,7 +539,32 @@
                 </VerticalStackLayout>
             </Border>
 
-            <Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Box and Whisker Charts" />
+                    <!--<Grid ColumnDefinitions="0.2*, 0.8*">
+                        <Border Padding="10" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout>
+                                <Label Text="Scatter Charts" FontSize="20" TextColor="White"/>
+                                <ScrollView>
+                                    <CollectionView x:Name="ScatterChartsSelectionCollectionView"
+                                                    SelectionMode="Single" 
+                                                    ItemsSource="{x:Binding }" 
+                                                    SelectedItem="{x:Binding }"
+                                                    SelectionChanged="OnScatterChartSelectionChanged"
+                                                    ItemTemplate="{x:StaticResource }">
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5"/>
+                                        </CollectionView.ItemsLayout>
+                                    </CollectionView>
+                                </ScrollView>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>-->
+                    <core:SfCartesianChartBoxAndWhisker x:Name="BoxAndWhisker" 
+                                                        ComponentData="{x:Binding Box}" 
+                                                        CodeDescription="{x:Binding CartesianBoxAndWhiskerChartXamlCode}"/>
+                </VerticalStackLayout>
             </Border>
         </VerticalStackLayout>
     </ScrollView>

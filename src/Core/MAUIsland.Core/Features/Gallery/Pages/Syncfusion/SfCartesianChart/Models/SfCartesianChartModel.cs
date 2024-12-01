@@ -25,4 +25,7 @@ public partial class SfCartesianChartModel : BaseModel
 
     [ObservableProperty]
     DateTime date;
+
+    [ObservableProperty]
+    List<double>? values;
 }

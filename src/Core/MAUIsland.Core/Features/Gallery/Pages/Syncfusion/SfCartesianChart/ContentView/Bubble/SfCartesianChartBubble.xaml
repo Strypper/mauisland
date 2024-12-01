@@ -13,7 +13,7 @@
                 <toolkit:SfCartesianChart VerticalOptions="FillAndExpand" HorizontalOptions="Fill"
                                           Margin="0, 0, 20, 0">
                     <toolkit:SfCartesianChart.Resources>
-                        <DataTemplate x:Key="Rooltiptemplate">
+                        <DataTemplate x:Key="Tooltiptemplate">
                             <Grid RowDefinitions="auto, auto, auto">
                                 <Label Grid.Row="0" Text="{Binding Item.Name,StringFormat='{0}'}" 
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center" 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartBoxAndWhisker"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root">
+
+    <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+        <VerticalStackLayout  Spacing="10">
+            <toolkit:SfCartesianChart VerticalOptions="FillAndExpand" HorizontalOptions="Fill"
+                                      Margin="0, 0, 20, 0">
+                <toolkit:SfCartesianChart.Title>
+                    <Label Text="Box And Whisker Chart" Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16"/>
+                </toolkit:SfCartesianChart.Title>
+                <toolkit:SfCartesianChart.XAxes>
+                    <toolkit:CategoryAxis LabelPlacement="BetweenTicks"/>
+                </toolkit:SfCartesianChart.XAxes>
+                <toolkit:SfCartesianChart.YAxes>
+                    <toolkit:NumericalAxis />
+                </toolkit:SfCartesianChart.YAxes>
+                <toolkit:BoxAndWhiskerSeries ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}"
+                                             XBindingPath="Name" YBindingPath="Values"
+                                             ShowOutlier="True" ShowMedian="True" 
+                                             EnableTooltip="True"
+                                             Fill="BlueViolet" Stroke="White">
+                </toolkit:BoxAndWhiskerSeries>
+            </toolkit:SfCartesianChart>
+
+            <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+        </VerticalStackLayout>
+    </Border>
+</ContentView>

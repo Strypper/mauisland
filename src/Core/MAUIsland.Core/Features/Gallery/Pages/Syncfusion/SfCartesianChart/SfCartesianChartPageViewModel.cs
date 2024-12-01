@@ -67,6 +67,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     ObservableCollection<SfCartesianChartModel> bubble;
 
     [ObservableProperty]
+    ObservableCollection<SfCartesianChartModel> box;
+
+    [ObservableProperty]
     ObservableCollection<string> areaChartOptions;
 
     [ObservableProperty]
@@ -1802,6 +1805,27 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "        </toolkit:BubbleSeries.Fill>\r\n" +
         "    </toolkit:BubbleSeries>\r\n" +
         "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianBoxAndWhiskerChartXamlCode =
+        "<toolkit:SfCartesianChart VerticalOptions=\"FillAndExpand\" HorizontalOptions=\"Fill\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Box And Whisker Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis />\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:BoxAndWhiskerSeries ItemsSource=\"{x:Binding Box}\"\r\n" +
+        "                                 XBindingPath=\"Name\" YBindingPath=\"Values\"\r\n" +
+        "                                 ShowOutlier=\"True\" ShowMedian=\"True\" \r\n" +
+        "                                 EnableTooltip=\"True\" \r\n" +
+        "                                 Fill=\"BlueViolet\" Stroke=\"White\">\r\n" +
+        "    </toolkit:BoxAndWhiskerSeries>\r\n" +
+        "</toolkit:SfCartesianChart>";
     #endregion
     #endregion
 
@@ -2055,6 +2079,14 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "2017", Exp = 65, High = 17000, Low = 2.10 },
         };
 
+        var box = new ObservableCollection<SfCartesianChartModel> 
+        { 
+            new SfCartesianChartModel() { Name = "1", Values = new List<double> { 67.4, 65.5, 72.0, 73.6, 65.2, 67.0, 66.3, 67.9, 65.8, 69.9, 64.5, 66.0, 66.8, 67.0, 69.9, 70.1, 69.7, 68.3, 67.0, 68.2, 65.0, 66.6, 65.4, 68.1 } }, 
+            new SfCartesianChartModel() { Name = "2", Values = new List<double> { 69.0, 66.2, 70.0, 68.5, 66.0, 67.5, 68.5, 66.5, 73.0, 69.0, 69.0, 74.5, 68.0, 68.5, 67.5, 70.0, 69.0, 72.5, 68.0, 69.0, 69.0, 71.0, 68.0, 75.0, 67.0 } }, 
+            new SfCartesianChartModel() { Name = "3", Values = new List<double> { 73.0, 78.9, 75.0, 72.3, 72.4, 74.1, 72.0, 72.0, 70.9, 74.5, 72.0, 72.5, 72.4, 74.0, 75.0, 70.9, 70.9, 76.6, 74.2, 69.5, 68.8, 68.5, 70.1, 73.0, 70.9 } }, 
+            new SfCartesianChartModel() { Name = "4", Values = new List<double> { 67.6, 64.2, 65.9, 65.9, 68.2, 71.1, 67.6, 71.6, 72.8, 68.2, 67.6, 67.1, 67.1, 68.2, 65.4, 66.5, 67.6, 67.1, 71.1, 67.1, 65.4, 67.6, 67.6, 70.5, 70.5 } }, 
+        };
+
         var gradients = new List<Brush>(createGradientPalletBrushes());
 
         IsBusy = false;
@@ -2074,6 +2106,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         FirstScatter = new(firstScatter);
         SecondScatter = new(secondScatter);
         Bubble = new(bubble);
+        Box = new(box);
         Annotation = new(annotation);
         Persons = new(persons);
         PalletBrushes = new(gradients);
@@ -2126,6 +2159,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             FirstScatter.Clear();
             SecondScatter.Clear();
             Bubble.Clear();
+            Box.Clear();
             Annotation.Clear();
             Persons.Clear();
             PalletBrushes.Clear();
@@ -2146,6 +2180,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         firstScatter.ForEach(item => FirstScatter.Add(item));
         secondScatter.ForEach(item => SecondScatter.Add(item));
         bubble.ForEach(item => Bubble.Add(item));
+        box.ForEach(item => Box.Add(item));
         annotation.ForEach(item => Annotation.Add(item));
         persons.ForEach(item => Persons.Add(item));
         gradients.ForEach(item => PalletBrushes.Add(item));
