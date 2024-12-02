@@ -1,4 +1,5 @@
-﻿using LiveChartsCore;
+﻿using System.Text.Json;
+using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.SkiaSharpView.VisualElements;
@@ -14,6 +15,10 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
     private readonly IGitHubService gitHubService;
     private readonly IConversationService conversationService;
     private readonly IGitHubIssueLocalDbService gitHubIssueLocalDbService;
+    #endregion
+
+    #region [ Const ]
+    private const string _homePageName = "mauisland-homepage";
     #endregion
 
     #region [ CTor ]
@@ -34,9 +39,6 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [ Properties ]
-    List<ControlIssueModel> Issues = new(); // TODO: need new model: only subset of property for home page
-
-
     [ObservableProperty]
     string projectRepo = "https://github.com/Strypper/mauisland";
 
@@ -217,91 +219,68 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
     {
         IsGitHubOpenIssuesChartLoading = true;
 
-        // new
-        await LoadIssuesAsync();
+        //await LoadIssuesAsync(); //??
 
         string repositoryAuthor = "dotnet";
         string repositoryName = "maui";
 
         var now = DateTime.UtcNow;
+        IEnumerable<GitHubIssueModel> issuesList;
 
         // First: sync from local db.
-        // TODO: how to get control name for home page?
-        var allLocalDbIssues = await GetIssueByControlNameFromLocalDb("controlName"); // TODO: Need new localdb model
-
-        var forced = false;
+        var allLocalDbIssues = await GetIssueByControlNameFromLocalDb(_homePageName);
 
         // If localdb version is not null & not outdated => use local version.
-        if (allLocalDbIssues != null && allLocalDbIssues.Any() && !allLocalDbIssues.Any(x => (now - x.LastUpdated).TotalHours > 1)) {
-            if (Issues is null || forced) {
-                Issues = new(allLocalDbIssues.Select(x => new ControlIssueModel() { // TODO: need mapping at another place
-                    IssueId = x.IssueId,
-                    Title = x.Title,
-                    IssueLinkUrl = x.IssueLinkUrl,
-                    MileStone = x.MileStone,
-                    OwnerName = x.OwnerName,
-                    AvatarUrl = x.UserAvatarUrl,
-                    CreatedDate = x.CreatedDate,
-                    LastUpdated = x.LastUpdated
-                }));
-            }
-            IsBusy = false;
-
-            // Done.
-            return;
-        }
-
-        // If localdb does not have issue info, or info outdated => sync from GitHub & save.
-        var result = await gitHubService.GetGitHubIssues(repositoryAuthor, repositoryName);
-
-
-        if (result.IsT0) // Check if result is ServiceSuccess
-        {
-            var issues = result.AsT0.AttachedData as IEnumerable<GitHubIssueModel>;
-
-            // Save to localdb.
-            foreach (var issue in issues) {
-                await UpdateLocalIssue(issue, "controlName");
-            }
+        if (allLocalDbIssues != null && allLocalDbIssues.Any() && !allLocalDbIssues.Any(x => (now - x.LastUpdated).TotalHours > 1)) { // TODO: need sync time for home page. How about 3 days?
+            issuesList = new List<GitHubIssueModel>(allLocalDbIssues.Select(x => new GitHubIssueModel() { // TODO: need mapping at another place
+                // For now, just need labels & isopen
+                Labels = DeserializeIssueLables(x.Labels).ToList(),
+                IsOpen = x.IsOpen
+            }));
 
             IsBusy = false;
-
-            if (Issues is null || forced) {
-                Issues = new(issues.Select(x => new ControlIssueModel() {
-                    IssueId = x.Id,
-                    Title = x.Title,
-                    IssueLinkUrl = x.HtmlUrl,
-                    MileStone = x.Milestone is null ? "No mile stone" : x.Milestone.Title,
-                    OwnerName = x.User.Login,
-                    AvatarUrl = x.User.AvatarUrl,
-                    CreatedDate = x.CreatedAt.DateTime,
-                    LastUpdated = x.UpdatedAt is null ? x.CreatedAt.DateTime : x.UpdatedAt.Value.DateTime
-                }));
-            }
         }
         else {
-            IsBusy = false;
+            // If localdb does not have issue info, or info outdated => sync from GitHub & save.
+            var result = await gitHubService.GetGitHubIssues(repositoryAuthor, repositoryName);
 
-            var error = result.AsT1;
-            var emptyViewText = error.ErrorDetail;
-            await AppNavigator.ShowSnackbarAsync(error.ErrorDetail,
-                                                 async () => {
-                                                     await AppNavigator.OpenUrlAsync("GitHubAPIRateLimit");
-                                                 },
-                                                 "Visit GitHub API Rate Limits Policies");
+
+            if (result.IsT0) // Check if result is ServiceSuccess
+            {
+                issuesList = result.AsT0.AttachedData as IEnumerable<GitHubIssueModel>;
+
+                // Save to localdb.
+                foreach (var issue in issuesList) {
+                    await UpdateLocalIssue(issue, _homePageName);
+                }
+
+                IsBusy = false;
+            }
+            else {
+                IsBusy = false;
+
+                var error = result.AsT1;
+                var emptyViewText = error.ErrorDetail;
+                await AppNavigator.ShowSnackbarAsync(error.ErrorDetail,
+                                                     async () => {
+                                                         await AppNavigator.OpenUrlAsync("GitHubAPIRateLimit");
+                                                     },
+                                                     "Visit GitHub API Rate Limits Policies");
+
+                return;
+            }
         }
 
-        // ---
+        // old
+        //var openIssues = await gitHubService.GetGitHubIssues(repositoryAuthor, repositoryName);
 
-        var openIssues = await gitHubService.GetGitHubIssues(repositoryAuthor, repositoryName);
+        //if (openIssues.IsT1)
+        //    return;
 
-        if (openIssues.IsT1)
-            return;
+        //var issuesList = openIssues.AsT0.AttachedData as IEnumerable<GitHubIssueModel>; // old
+        // --- end old ---
 
         var latestRelease = await gitHubService.GetLatestRelease(repositoryAuthor, repositoryName);
-
-        var issuesList = openIssues.AsT0.AttachedData as IEnumerable<GitHubIssueModel>;
-
 
         IssuesListCount = issuesList.Count();
         AndroidIssuesCount = issuesList.Count(issue => issue.Labels.Any(label => label.Name.Equals("platform/android 🤖", StringComparison.OrdinalIgnoreCase)));
@@ -387,23 +366,29 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
 
             var localIssue = await gitHubIssueLocalDbService.GetByIssueUrlAsync(issue.Url);
 
+            var labels = SerializeIssueLables(issue.Labels);
+
             if (localIssue is null) {
                 await gitHubIssueLocalDbService.AddAsync(new() {
                     IssueId = issue.Id,
                     Title = issue.Title,
+                    IsOpen = issue.IsOpen,
                     IssueLinkUrl = issue.HtmlUrl,
                     ControlName = controlName,
                     MileStone = issue.Milestone?.Title,
                     OwnerName = issue.User?.Login,
                     UserAvatarUrl = issue.User?.AvatarUrl,
                     CreatedDate = issue.CreatedAt.DateTime,
+                    Labels = labels,
                     LastUpdated = now
                 });
                 return;
             }
 
             // Update fields: milestone (TODO: what else?).
+            localIssue.IsOpen = issue.IsOpen;
             localIssue.MileStone = issue.Milestone?.Title;
+            localIssue.Labels = labels;
             localIssue.LastUpdated = now;
 
             await gitHubIssueLocalDbService.UpdateAsync(localIssue);
@@ -419,14 +404,25 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
 
             var result = await gitHubIssueLocalDbService.GetByControlNameAsync(controlName);
             return result is not null ?
-                        result
-                        :
+                        result :
                         new List<GitHubIssueLocalDbModel>().AsEnumerable();
         }
         catch (Exception e) {
             await AppNavigator.ShowSnackbarAsync(e.Message, null, null);
             return new List<GitHubIssueLocalDbModel>().AsEnumerable();
         }
+    }
+
+    private IEnumerable<GitHubLabelModel> DeserializeIssueLables(string labels) {
+        var deserializedLabels = JsonSerializer.Deserialize<IEnumerable<GitHubLabelModel>>(labels);
+
+        return deserializedLabels;
+    }
+
+    private string SerializeIssueLables(IEnumerable<GitHubLabelModel> labels) {
+        var serializedLabels = JsonSerializer.Serialize(labels);
+
+        return serializedLabels;
     }
 
     Task LoadBooks()
