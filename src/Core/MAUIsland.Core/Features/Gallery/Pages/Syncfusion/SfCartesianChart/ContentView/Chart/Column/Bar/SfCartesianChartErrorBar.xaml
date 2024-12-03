@@ -54,23 +54,23 @@
                         <VerticalStackLayout Grid.Column="0" Spacing="5" Padding="5">
                             <Label Text=" Type" HorizontalOptions="Start" Padding="5" FontSize="15"/>
                             <Picker x:Name="TypePicker"  
-                                ItemsSource="{x:Binding ErrorBarTypes, Source={x:Reference root}}"
-                                VerticalOptions="Start" HorizontalOptions="Fill"
-                                SelectedIndexChanged="TypePicker_SelectedIndexChanged"/>
+                                    ItemsSource="{x:Binding ErrorBarTypes, Source={x:Reference root}}"
+                                    VerticalOptions="Start" HorizontalOptions="Fill"
+                                    SelectedIndexChanged="TypePicker_SelectedIndexChanged"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Grid.Column="1" Spacing="5" Padding="5">
                             <Label Text="Mode" HorizontalOptions="Start"  Padding="5" FontSize="15"/>
                             <Picker x:Name="ModePicker"
-                                ItemsSource="{x:Binding ErrorBarModes, Source={x:Reference root}}" 
-                                VerticalOptions="Start" HorizontalOptions="Fill"
-                                SelectedIndexChanged="ModePicker_SelectedIndexChanged"/>
+                                    ItemsSource="{x:Binding ErrorBarModes, Source={x:Reference root}}" 
+                                    VerticalOptions="Start" HorizontalOptions="Fill"
+                                    SelectedIndexChanged="ModePicker_SelectedIndexChanged"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Grid.Column="2" Spacing="5" Padding="5">
                             <Label Text="Direction" HorizontalOptions="Start" Padding="5"  FontSize="15"/>
                             <Picker x:Name="DirectionPicker"
-                                ItemsSource="{x:Binding ErrorBarDirections, Source={x:Reference root}}" 
-                                VerticalOptions="Start" HorizontalOptions="Fill" 
-                                SelectedIndexChanged="DirectionPicker_SelectedIndexChanged"/>
+                                    ItemsSource="{x:Binding ErrorBarDirections, Source={x:Reference root}}" 
+                                    VerticalOptions="Start" HorizontalOptions="Fill" 
+                                    SelectedIndexChanged="DirectionPicker_SelectedIndexChanged"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Grid.Column="3" Spacing="5" Padding="5">
                             <Label Grid.Column="0" Text="Horizontal Error " Padding="5" FontSize="15" />

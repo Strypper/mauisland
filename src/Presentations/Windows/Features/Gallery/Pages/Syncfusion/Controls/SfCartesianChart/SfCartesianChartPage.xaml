@@ -12,7 +12,8 @@
     Title="SfCartesianChart"
     Padding="20"
     x:DataType="core:SfCartesianChartPageViewModel"
-    BackgroundColor="Transparent">
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -100,7 +101,48 @@
         <DataTemplate x:Key="ChartCollectionTemplate" x:DataType="{x:Type x:String}">
             <Border StrokeShape="RoundRectangle 4">
                 <Label Text="{x:Binding .}" FontSize="16" TextColor="White" 
-                       Margin="10, 5" HeightRequest="30" VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                       Margin="10, 5" HeightRequest="30" LineBreakMode="WordWrap"
+                       VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="Transparent"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#512bd4"/>
+                                <Setter Property="Stroke" Value="#512bd4"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="HorizontalChartCollectionTemplate" x:DataType="{x:Type x:String}">
+            <Border StrokeShape="RoundRectangle 4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                    Padding="5" Margin="0">
+                <Label Text="{x:Binding .}" FontSize="14" TextColor="White" 
+                       VerticalTextAlignment="Center" HorizontalTextAlignment="Center" 
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="Fill"
+                       LineBreakMode="WordWrap"/>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="Transparent"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#512bd4"/>
+                                <Setter Property="Stroke" Value="#512bd4"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
             </Border>
         </DataTemplate>
 
@@ -265,19 +307,14 @@
                                     <toolkit:NumericalAxis Interval="700" CrossesAt="{Static x:Double.MaxValue}"/>
                                 </toolkit:SfCartesianChart.YAxes>
 
-                                <toolkit:AreaSeries ItemsSource="{Binding Annotation}"
-                                           XBindingPath="Date"
-                                           YBindingPath="Size"
-                                           Fill="#66116DF9"
-                                           Stroke="#116DF9"
-                                           StrokeWidth="3"/>
-
-                                <toolkit:AreaSeries ItemsSource="{Binding Annotation}"
-                                           XBindingPath="Date"
-                                           YBindingPath="Value"
-                                           Fill="#66CAC4D0"
-                                           Stroke="#49454F"
-                                           StrokeWidth="3"/>
+                                <toolkit:AreaSeries ItemsSource="{x:Binding Annotation}"
+                                                    XBindingPath="Date" YBindingPath="Size"
+                                                    Fill="#66116DF9" Stroke="#116DF9"
+                                                    StrokeWidth="3"/>
+                                <toolkit:AreaSeries ItemsSource="{x:Binding Annotation}"
+                                                    XBindingPath="Date" YBindingPath="Value"
+                                                    Fill="#66CAC4D0" Stroke="#49454F"
+                                                    StrokeWidth="3"/>
 
                                 <toolkit:SfCartesianChart.Annotations>
                                     <toolkit:ChartAnnotationCollection>
@@ -314,6 +351,215 @@
             </Border>
 
             <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10" Padding="1">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Charts" />
+                    <Border Margin="5, 0" Padding="10" StrokeShape="RoundRectangle 4">
+                        <HorizontalStackLayout Spacing="5">
+                            <Label Text="Charts Menu" FontSize="20" TextColor="White" VerticalOptions="CenterAndExpand"/>
+                            <ScrollView Orientation="Horizontal" >
+                                <CollectionView x:Name="ChartsCollectionView"
+                                                SelectionMode="Single" 
+                                                ItemsSource="{x:Binding ChartOptions}" 
+                                                SelectedItem="{x:Binding ChartsSelectedOption}"
+                                                SelectionChanged="OnChartSelectionChanged"
+                                                ItemTemplate="{x:StaticResource HorizontalChartCollectionTemplate}">
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"/>
+                                    </CollectionView.ItemsLayout>
+                                </CollectionView>
+                            </ScrollView>
+                        </HorizontalStackLayout>
+                    </Border>
+
+                    <Grid ColumnDefinitions="0.2*, 0.8*">
+                        <VerticalStackLayout>
+                            <Border x:Name="AreaChartMenuView" Margin="5" Padding="10" StrokeShape="RoundRectangle 4">
+                                <VerticalStackLayout>
+                                    <Label Text="Area Charts" FontSize="20" TextColor="White"/>
+                                    <CollectionView x:Name="AreaChartsCollectionView"
+                                                    SelectionMode="Single" 
+                                                    ItemsSource="{x:Binding AreaChartOptions}" 
+                                                    SelectedItem="{x:Binding AreaSelectedOption}"
+                                                    SelectionChanged="OnAreaChartSelectionChanged"
+                                                    ItemTemplate="{x:StaticResource ChartCollectionTemplate}" 
+                                                    Loaded="AreaChartCollectionView_Loaded">
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5"/>
+                                        </CollectionView.ItemsLayout>
+                                    </CollectionView>
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border x:Name="BarChartMenuView" Margin="5" Padding="10" StrokeShape="RoundRectangle 4">
+                                <VerticalStackLayout>
+                                    <Label Text="Bar Charts" FontSize="20" TextColor="White"/>
+                                    <CollectionView x:Name="BarChartsCollectionView"
+                                                    SelectionMode="Single" 
+                                                    ItemsSource="{x:Binding BarChartOptions}" 
+                                                    SelectedItem="{x:Binding ColumnBarSelectedOption}"
+                                                    SelectionChanged="OnColumnBarChartSelectionChanged"
+                                                    ItemTemplate="{x:StaticResource ChartCollectionTemplate}"
+                                                    Loaded="ColumnBarChartCollectionView_Loaded">
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5"/>
+                                        </CollectionView.ItemsLayout>
+                                    </CollectionView>
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border x:Name="ColumnChartMenuView" Margin="5" Padding="10" StrokeShape="RoundRectangle 4">
+                                <VerticalStackLayout>
+                                    <Label Text="Column Charts" FontSize="20" TextColor="White"/>
+                                    <CollectionView x:Name="ColumnChartsCollectionView"
+                                                    SelectionMode="Single" 
+                                                    ItemsSource="{x:Binding ColumnChartOptions}" 
+                                                    SelectedItem="{x:Binding ColumnBarSelectedOption}"
+                                                    SelectionChanged="OnColumnBarChartSelectionChanged"
+                                                    ItemTemplate="{x:StaticResource ChartCollectionTemplate}" 
+                                                    Loaded="ColumnBarChartCollectionView_Loaded">
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5"/>
+                                        </CollectionView.ItemsLayout>
+                                    </CollectionView>
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border x:Name="LineChartMenuView" Margin="5" Padding="10" StrokeShape="RoundRectangle 4">
+                                <VerticalStackLayout>
+                                    <Label Text="Line Charts" FontSize="20" TextColor="White"/>
+                                    <CollectionView x:Name="LineChartsCollectionView"
+                                                    SelectionMode="Single" 
+                                                    ItemsSource="{x:Binding LineChartOptions}" 
+                                                    SelectedItem="{x:Binding LineSelectedOption}"
+                                                    SelectionChanged="OnLineChartSelectionChanged"
+                                                    ItemTemplate="{x:StaticResource ChartCollectionTemplate}" 
+                                                    Loaded="LineChartCollectionView_Loaded">
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5"/>
+                                        </CollectionView.ItemsLayout>
+                                    </CollectionView>
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border x:Name="ScatterChartMenuView" Padding="10" StrokeShape="RoundRectangle 4">
+                                <VerticalStackLayout>
+                                    <Label Text="Scatter Charts" FontSize="20" TextColor="White"/>
+                                    <CollectionView x:Name="ScatterChartsSelectionCollectionView"
+                                                    SelectionMode="Single" 
+                                                    ItemsSource="{x:Binding ScatterChartOptions}" 
+                                                    SelectedItem="{x:Binding ScatterSelectedOption}"
+                                                    SelectionChanged="OnScatterChartSelectionChanged"
+                                                    ItemTemplate="{x:StaticResource ChartCollectionTemplate}"
+                                                    Loaded="ScatterChartCollectionView_Loaded">
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5"/>
+                                        </CollectionView.ItemsLayout>
+                                    </CollectionView>
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border x:Name="BubbleChartMenuView" Padding="10" StrokeShape="RoundRectangle 4">
+                                <VerticalStackLayout>
+                                    <Label Text="Bubble Charts" FontSize="20" TextColor="White"/>
+                                    <ScrollView>
+                                        <CollectionView x:Name="BubbleChartsSelectionCollectionView"
+                                                        SelectionMode="Single" 
+                                                        ItemsSource="{x:Binding BubbleChartOptions}" 
+                                                        SelectedItem="{x:Binding BubbleSelectedOption}"
+                                                        SelectionChanged=" "
+                                                        ItemTemplate="{x:StaticResource ChartCollectionTemplate}"
+                                                        Loaded="BubbleChartCollectionView_Loaded">
+                                            <CollectionView.ItemsLayout>
+                                                <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5"/>
+                                            </CollectionView.ItemsLayout>
+                                        </CollectionView>
+                                    </ScrollView>
+                                </VerticalStackLayout>
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <Grid Grid.Column="1">
+                            <!--Area-->
+                            <core:SfCartesianChartArea x:Name="AreaView" ComponentData="{x:Binding Area}" 
+                                                       CodeDescription="{x:Binding CartesianAreaChartXamlCode}"/>
+                            <core:SfCartesianChartSplineArea x:Name="SqlineAreaView" ComponentData="{x:Binding Area}" 
+                                                             CodeDescription="{x:Binding CartesianSplineAreaChartXamlCode}" />
+                            <core:SfCartesianChartStepArea x:Name="StepAreaView" ComponentData="{x:Binding Area}" 
+                                                           CodeDescription="{x:Binding CartesianStepAreaChartXamlCode}" />
+                            <core:SfCartesianChartRangeArea x:Name="RangeAreaView" ComponentData="{x:Binding RangeArea}" 
+                                                            CodeDescription="{x:Binding CartesianRangeAreaChartXamlCode}" />
+                            <core:SfCartesianChartSplineRangeArea x:Name="SplineRangeAreaView" ComponentData="{x:Binding RangeArea}" 
+                                                                  CodeDescription="{x:Binding CartesianSplineRangeAreaChartXamlCode}" />
+                            <core:SfCartesianChartStackingArea x:Name="StackingAreaView" ComponentData="{x:Binding StackingArea}" 
+                                                               CodeDescription="{x:Binding CartesianStackingAreaChartXamlCode}" />
+                            <core:SfCartesianChartStackingArea100 x:Name="StackingArea100View" ComponentData="{x:Binding StackingArea}" 
+                                                                  CodeDescription="{x:Binding CartesianStackingArea100ChartXamlCode}" />
+
+                            <!--Column/Bar-->
+                            <core:SfCartesianChartBar x:Name="BarView" ComponentData="{x:Binding Bar}" 
+                                                      BarCodeDescription="{x:Binding CartesianBarChartXamlCode}" 
+                                                      DoubleBarCodeDescription="{x:Binding CartesianDoubleBarChartXamlCode}"
+                                                      CustomBarXamlCodeDescription="{x:Binding CartesianBarChartXamlCode}" 
+                                                      CustomBarCSharpCodeDescription="{x:Binding CartesianCustomBarChartCSharpCode}"/>
+                            <core:SfCartesianChartErrorBar x:Name="ErrorBarView" ComponentData="{x:Binding Bar}" 
+                                                           ErrorBarTypes="{x:Binding ErrorBarTypes}"
+                                                           ErrorBarModes="{x:Binding ErrorBarModes}"
+                                                           ErrorBarDirections="{x:Binding ErrorBarDirections}"
+                                                           DefaultCodeDescription="{x:Binding CartesianErrorBarChartXamlCode}" 
+                                                           CustomCodeDescription="{x:Binding CartesianCustomErrorBarChartXamlCode}"/>
+                            <core:SfCartesianChartRangeBar x:Name="RangeBarView" ComponentData="{x:Binding RangeBar}" 
+                                                           CodeDescription="{x:Binding CartesianRangeBarChartXamlCode}" />
+                            <core:SfCartesianChartStackingBar x:Name="StackingBarView" ComponentData="{x:Binding StackingBar}"
+                                                              CodeDescription="{x:Binding CartesianStackingBarChartXamlCode}"/>
+                            <core:SfCartesianChartStackingBar100 x:Name="StackingBar100View" ComponentData="{x:Binding StackingColumn}" 
+                                                                 CodeDescription="{x:Binding CartesianStackingBar100ChartXamlCode}"/>
+                            <core:SfCartesianChartColumn x:Name="ColumnView" ComponentData="{x:Binding Column}" 
+                                                         ColumnXamlCodeDescription="{x:Binding CartesianColumnChartXamlCode}"
+                                                         TripleColumnXamlCodeDescription="{x:Binding CartesianTripleColumnChartXamlCode}"
+                                                         RoundedColumnXamlCodeDescription="{x:Binding CartesianRoundedColumnChartXamlCode}"
+                                                         CustomColumnCSharpCodeDescription="{x:Binding CartesianCustomColumnChartCSharpCode}"
+                                                         CustomColumnXamlCodeDescription="{x:Binding CartesianCustomColumnChartXamlCode}"/>
+                            <core:SfCartesianChartRangeColumn x:Name="RangeColumnView" ComponentData="{x:Binding RangeColumn}"
+                                                              CodeDescription="{x:Binding CartesianRangeColumnChartXamlCode}"/>
+                            <core:SfCartesianChartStackingColumn x:Name="StackingColumnView" ComponentData="{x:Binding StackingColumn}" 
+                                                                 CodeDescription="{x:Binding CartesianStackingColumnChartXamlCode}"/>
+                            <core:SfCartesianChartStackingColumn100 x:Name="StackingColumn100View" ComponentData="{x:Binding StackingColumn}" 
+                                                                    CodeDescription="{x:Binding CartesianStackingColumn100ChartXamlCode}"/>
+
+                            <!--Line-->
+                            <core:SfCartesianChartLine x:Name="LineView" 
+                                                       FirstLineComponentData="{x:Binding FirstLine}" 
+                                                       SecondLineComponentData="{x:Binding SecondLine}" 
+                                                       LineCodeDescription="{x:Binding CartesianLineChartXamlCode}"
+                                                       DashedLineCodeDescription="{x:Binding CartesianDashedLineChartXamlCode}"/>
+                            <core:SfCartesianChartSpline x:Name="SplineView" 
+                                                         FirstLineComponentData="{x:Binding FirstLine}"
+                                                         SecondLineComponentData="{x:Binding SecondLine}"
+                                                         LineCodeDescription="{x:Binding CartesianSplineChartXamlCode}"
+                                                         DashedLineCodeDescription="{x:Binding CartesianDashedSplineChartXamlCode}" />
+                            <core:SfCartesianChartStepLine x:Name="StepLineView" 
+                                                           FirstLineComponentData="{x:Binding FirstLine}"
+                                                           SecondLineComponentData="{x:Binding SecondLine}"
+                                                           LineCodeDescription="{x:Binding CartesianStepLineChartXamlCode}"
+                                                           DashedLineCodeDescription="{x:Binding CartesianDashedStepLineChartXamlCode}" 
+                                                           VerticalLineCodeDescription="{x:Binding CartesianVerticalStepLineChartXamlCode}"/>
+                            <core:SfCartesianChartStackingLine x:Name="StackingLineView" 
+                                                               FirstLineComponentData="{x:Binding FirstLine}"
+                                                               SecondLineComponentData="{x:Binding SecondLine}"
+                                                               ThirdLineComponentData="{x:Binding ThirdLine}"
+                                                               CodeDescription="{x:Binding CartesianStepLineChartXamlCode}"/>
+                            <core:SfCartesianChartStackingLine100 x:Name="StackingLineView100" 
+                                                                  FirstLineComponentData="{x:Binding FirstLine}"
+                                                                  SecondLineComponentData="{x:Binding SecondLine}"
+                                                                  ThirdLineComponentData="{x:Binding ThirdLine}"
+                                                                  CodeDescription="{x:Binding CartesianStackingLine100ChartXamlCode}"/>
+
+                            <!--Scatter-->
+                            <core:SfCartesianChartScatter x:Name="ScatterView" 
+                                                          FirstScatterComponentData="{x:Binding FirstScatter}" 
+                                                          SecondScatterComponentData="{x:Binding SecondScatter}" 
+                                                          CodeDescription="{x:Binding CartesianScatterChartXamlCode}"/>
+                        </Grid>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+            
+            <!--<Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Area Charts" />
 
@@ -346,9 +592,9 @@
                         </Grid>
                     </Grid>
                 </VerticalStackLayout>
-            </Border>
+            </Border>-->
 
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
+            <!--<Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Column and Bar Charts" />
 
@@ -424,9 +670,9 @@
                         </Grid>
                     </Grid>
                 </VerticalStackLayout>
-            </Border>
+            </Border>-->
 
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
+            <!--<Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Line Charts" />
 
@@ -478,13 +724,13 @@
                         </Grid>
                     </Grid>
                 </VerticalStackLayout>
-            </Border>
+            </Border>-->
 
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
+            <!--<Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Scatter Charts" />
 
-                    <!--<Grid ColumnDefinitions="0.2*, 0.8*">
+                    <Grid ColumnDefinitions="0.2*, 0.8*">
                         <Border Padding="10" StrokeShape="RoundRectangle 4">
                             <VerticalStackLayout>
                                 <Label Text="Scatter Charts" FontSize="20" TextColor="White"/>
@@ -502,13 +748,13 @@
                                 </ScrollView>
                             </VerticalStackLayout>
                         </Border>
-                    </Grid>-->
+                    </Grid>
                     <core:SfCartesianChartScatter x:Name="ScatterView" 
                                                   FirstScatterComponentData="{x:Binding FirstScatter}" 
                                                   SecondScatterComponentData="{x:Binding SecondScatter}" 
                                                   CodeDescription="{x:Binding CartesianScatterChartXamlCode}"/>
                 </VerticalStackLayout>
-            </Border>
+            </Border>-->
 
             <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">

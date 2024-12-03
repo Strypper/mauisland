@@ -80,6 +80,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     ObservableCollection<SfCartesianChartModel> waterfall;
 
     [ObservableProperty]
+    ObservableCollection<string> chartOptions;
+
+    [ObservableProperty]
     ObservableCollection<string> areaChartOptions;
 
     [ObservableProperty]
@@ -92,6 +95,24 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     ObservableCollection<string> lineChartOptions;
 
     [ObservableProperty]
+    ObservableCollection<string> scatterChartOptions;
+
+    [ObservableProperty]
+    ObservableCollection<string> histogramChartOptions;
+
+    [ObservableProperty]
+    ObservableCollection<string> boxPlotChartOptions;
+
+    [ObservableProperty]
+    ObservableCollection<string> bubbleChartOptions;
+
+    [ObservableProperty]
+    ObservableCollection<string> candleChartOptions;
+
+    [ObservableProperty]
+    ObservableCollection<string> waterfallChartOptions;
+
+    [ObservableProperty]
     ObservableCollection<string> errorBarTypes;
 
     [ObservableProperty]
@@ -101,13 +122,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     ObservableCollection<string> errorBarDirections;
 
     [ObservableProperty]
-    string selectedErrorBarType;
-
-    [ObservableProperty]
-    string selectedErrorBarMode;
-
-    [ObservableProperty]
-    string selectedErrorBarDirection;
+    string chartsSelectedOption;
 
     [ObservableProperty]
     string areaSelectedOption;
@@ -119,13 +134,31 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     string lineSelectedOption;
 
     [ObservableProperty]
+    string scatterSelectedOption;
+
+    [ObservableProperty]
+    string histogramSelectedOption;
+
+    [ObservableProperty]
+    string boxPlotSelectedOption;
+
+    [ObservableProperty]
+    string bubbleSelectedOption;
+
+    [ObservableProperty]
+    string candleSelectedOption;
+
+    [ObservableProperty]
+    string waterfallSelectedOption;
+
+    [ObservableProperty]
     ControlGroupInfo controlGroup;
 
     [ObservableProperty]
     List<Brush> palletBrushes;
 
     [ObservableProperty]
-    bool isBusy;
+    bool isRefreshing;
 
     #region [ String Properties ]
     [ObservableProperty]
@@ -1979,18 +2012,137 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         base.OnInit(query);
 
         ControlGroup = query.GetData<ControlGroupInfo>();
+    }
+    #endregion
 
-        LoadDataAsync(true).FireAndForget();
+    #region [ Relay Commands ]
+    [RelayCommand]
+    Task OpenUrlAsync(string url)
+    => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    async Task RefreshAsync()
+    {
+        IsRefreshing = true;
+
+        LoadDataAsync().FireAndForget();
+
+        IsRefreshing = false;
+    }
+
+    [RelayCommand]
+    async Task LoadAreaChartOption()
+    {
+        if (AreaChartOptions != null)
+        {
+            if (string.IsNullOrEmpty(AreaSelectedOption))
+            {
+                AreaSelectedOption = AreaChartOptions.FirstOrDefault()!;
+            }
+        }
+    }
+
+    [RelayCommand]
+    async Task LoadColumnBarChartOption()
+    {
+        if (BarChartOptions != null || ColumnChartOptions != null)
+        {
+            if (string.IsNullOrEmpty(ColumnBarSelectedOption))
+            {
+                ColumnBarSelectedOption = BarChartOptions!.FirstOrDefault()! ?? ColumnChartOptions.FirstOrDefault()!;
+            }
+        }
+    }
+
+    [RelayCommand]
+    async Task LoadLineChartOption()
+    {
+        if (LineChartOptions != null)
+        {
+            if (string.IsNullOrEmpty(LineSelectedOption))
+            {
+                LineSelectedOption = LineChartOptions.FirstOrDefault()!;
+            }
+        }
+    }
+
+    [RelayCommand]
+    async Task LoadScatterChartOption()
+    {
+        if (ScatterChartOptions != null)
+        {
+            if (string.IsNullOrEmpty(ScatterSelectedOption))
+            {
+                ScatterSelectedOption = ScatterChartOptions.FirstOrDefault()!;
+            }
+        }
+    }
+
+    [RelayCommand]
+    async Task LoadHistogramChartOption()
+    {
+        if (HistogramChartOptions != null)
+        {
+            if (string.IsNullOrEmpty(HistogramSelectedOption))
+            {
+                HistogramSelectedOption = HistogramChartOptions.FirstOrDefault()!;
+            }
+        }
+    }
+
+    [RelayCommand]
+    async Task LoadBoxPlotChartOption()
+    {
+        if (BoxPlotChartOptions != null)
+        {
+            if (string.IsNullOrEmpty(BoxPlotSelectedOption))
+            {
+                BoxPlotSelectedOption = BoxPlotChartOptions.FirstOrDefault()!;
+            }
+        }
+    }
+
+    [RelayCommand]
+    async Task LoadBubbleChartOption()
+    {
+        if (BubbleChartOptions != null)
+        {
+            if (string.IsNullOrEmpty(BubbleSelectedOption))
+            {
+                BubbleSelectedOption = BubbleChartOptions.FirstOrDefault()!;
+            }
+        }
+    }
+
+    [RelayCommand]
+    async Task LoadCandleChartOption()
+    {
+        if (CandleChartOptions != null)
+        {
+            if (string.IsNullOrEmpty(CandleSelectedOption))
+            {
+                CandleSelectedOption = CandleChartOptions.FirstOrDefault()!;
+            }
+        }
+    }
+
+    [RelayCommand]
+    async Task LoadWaterfallChartOption()
+    {
+        if (WaterfallChartOptions != null)
+        {
+            if (string.IsNullOrEmpty(WaterfallSelectedOption))
+            {
+                WaterfallSelectedOption = WaterfallChartOptions.FirstOrDefault()!;
+            }
+        }
     }
     #endregion
 
     #region [ Methods ]
-    private async Task LoadDataAsync(bool forced)
+    private async Task LoadDataAsync()
     {
-        if (IsBusy) return;
-        IsBusy = true;
-
-        var persons = new ObservableCollection<SfCartesianChartModel>()
+        Persons = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { Name = "Strypper", Exp = 100 },
             new SfCartesianChartModel() { Name = "Tan", Exp = 50 },
@@ -1999,7 +2151,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "Dat", Exp = 30 }
         };
 
-        var annotation = new ObservableCollection<SfCartesianChartModel>()
+        Annotation = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { Date = new DateTime(2020, 03, 02), Size = 350, Value = 100 },
             new SfCartesianChartModel() { Date = new DateTime(2020, 03, 09), Size = 470, Value = 200 },
@@ -2007,7 +2159,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Date = new DateTime(2020, 03, 23), Size = 530, Value = 600 }
         };
 
-        var area = new ObservableCollection<SfCartesianChartModel>()
+        Area = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { Name = "Strypper", High = 4.17, Low = 0.72, Size = 2.48, Value = 1.23 },
             new SfCartesianChartModel() { Name = "Tan", High = 3.51, Low = 1.64, Size = 2.43, Value = 4.17 },
@@ -2016,7 +2168,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "Dat", High = 3.95, Low = 2.63, Size = 0.41, Value = 1.20 }
         };
 
-        var rangeArea = new ObservableCollection<SfCartesianChartModel>()
+        RangeArea = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { Date = new DateTime(2022, 05, 01).Date, High = 36, Low = 13, Value = 24.5},
             new SfCartesianChartModel() { Date = new DateTime(2022, 05, 02).Date, High = 33, Low = 16, Value = 24.5 },
@@ -2036,7 +2188,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Date = new DateTime(2022, 05, 16).Date, High = 31, Low = 15, Value = 23 }
         };
 
-        var stackingArea = new ObservableCollection<SfCartesianChartModel>()
+        StackingArea = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { High = 0.61, Low = 0.03, Value = 0.48, Size = 0.23, Year = "2001"},
             new SfCartesianChartModel() { High = 0.81, Low = 0.05, Value = 0.53, Size = 0.17, Year = "2002" },
@@ -2052,7 +2204,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { High = 1.38, Low = 1.25, Value = 0.57, Size = 1.82, Year = "2012" }
         };
 
-        var bar = new ObservableCollection<SfCartesianChartModel>()
+        Bar = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { Name = "Strypper", Exp = 100, High = 10, Low = 1 },
             new SfCartesianChartModel() { Name = "Tan", Exp = 50, High = 15, Low = 1 },
@@ -2061,7 +2213,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "Dat", Exp = 30, High = 10, Low = 1 }
         };
 
-        var rangeBar = new ObservableCollection<SfCartesianChartModel>()
+        RangeBar = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { Name = "January", High = 7, Low = 3 },
             new SfCartesianChartModel() { Name = "February", High = 8, Low = 3 },
@@ -2077,7 +2229,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "December", High = 8, Low = 3 }
         };
 
-        var stackingBar = new ObservableCollection<SfCartesianChartModel>()
+        StackingBar = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { Name = "Product 1", High = 3.932, Low = -3.987, Value = -5.067, Size = 13.012 },
             new SfCartesianChartModel() { Name = "Product 2", High = -5.432, Low = 3.417, Value = 15.067, Size = 12.321 },
@@ -2086,7 +2238,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "Product 5", High = 5.221, Low = -3.574, Value = -7.004, Size = 11.624}
         };
 
-        var column = new ObservableCollection<SfCartesianChartModel>()
+        Column = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { Name = "Strypper", Exp = 100, Value = 80, Size = 60 },
             new SfCartesianChartModel() { Name = "Tan", Exp = 50, Value = 70, Size = 90 },
@@ -2095,7 +2247,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "Dat", Exp = 30, Value = 60, Size = 90}
         };
 
-        var rangeColumn = new ObservableCollection<SfCartesianChartModel>()
+        RangeColumn = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { Name = "January", High = 7, Low = 3 },
             new SfCartesianChartModel() { Name = "February", High = 8, Low = 3 },
@@ -2111,7 +2263,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "December", High = 8, Low = 3 }
         };
 
-        var stackingColumn = new ObservableCollection<SfCartesianChartModel>()
+        StackingColumn = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { Name = "Product 1", High = 15.767, Low = 9.726, Value = 24.769 },
             new SfCartesianChartModel() { Name = "Product 2", High = 17.471, Low = 10.206, Value = 24.790 },
@@ -2120,7 +2272,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "Product 5", High = 19.739, Low = 11.164, Value = 23.533 }
         };
 
-        var firstLine = new ObservableCollection<SfCartesianChartModel>()
+        FirstLine = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { Name = "2005", Value = 21 },
             new SfCartesianChartModel() { Name = "2006", Value = 24 },
@@ -2131,7 +2283,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "2011", Value = 70 }
         };
 
-        var secondLine = new ObservableCollection<SfCartesianChartModel>()
+        SecondLine = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { Name = "2005", Value = 28 },
             new SfCartesianChartModel() { Name = "2006", Value = 44 },
@@ -2142,7 +2294,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "2011", Value = 84 }
         };
 
-        var thirdLine = new ObservableCollection<SfCartesianChartModel>()
+        ThirdLine = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { Name = "2005", Value = 32 },
             new SfCartesianChartModel() { Name = "2006", Value = 44 },
@@ -2153,7 +2305,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "2011", Value = 90 }
         };
 
-        var firstScatter = new ObservableCollection<SfCartesianChartModel>()
+        FirstScatter = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { Value = 161, Size = 65 }, new SfCartesianChartModel() { Value = 150, Size = 65 }, new SfCartesianChartModel() { Value = 155, Size = 65 },
             new SfCartesianChartModel() { Value = 160, Size = 65 }, new SfCartesianChartModel() { Value = 148, Size = 66 }, new SfCartesianChartModel() { Value = 145, Size = 66 },
@@ -2177,7 +2329,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Value = 137, Size = 65 }, new SfCartesianChartModel() { Value = 137, Size = 65 }, new SfCartesianChartModel() { Value = 140, Size = 65 },
         };
 
-        var secondScatter = new ObservableCollection<SfCartesianChartModel>()
+        SecondScatter = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { Value = 115, Size = 57 }, new SfCartesianChartModel() { Value = 138, Size = 57 }, new SfCartesianChartModel() { Value = 166, Size = 57 },
             new SfCartesianChartModel() { Value = 122, Size = 57 }, new SfCartesianChartModel() { Value = 126, Size = 57 }, new SfCartesianChartModel() { Value = 130, Size = 57 },
@@ -2201,7 +2353,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Value = 115, Size = 61 }, new SfCartesianChartModel() { Value = 149, Size = 61 }, new SfCartesianChartModel() { Value = 183, Size = 61 },
         };
 
-        var bubble = new ObservableCollection<SfCartesianChartModel>()
+        Bubble = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { Name = "2000", Exp = 100, High = 15000, Low = 5.50 },
             new SfCartesianChartModel() { Name = "2001", Exp = 75, High = 6500, Low = 3.30 },
@@ -2223,7 +2375,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "2017", Exp = 65, High = 17000, Low = 2.10 },
         };
 
-        var box = new ObservableCollection<SfCartesianChartModel> 
+        Box = new ObservableCollection<SfCartesianChartModel> 
         { 
             new SfCartesianChartModel() { Name = "1", Values = new List<double> { 67.4, 65.5, 72.0, 73.6, 65.2, 67.0, 66.3, 67.9, 65.8, 69.9, 64.5, 66.0, 66.8, 67.0, 69.9, 70.1, 69.7, 68.3, 67.0, 68.2, 65.0, 66.6, 65.4, 68.1 } }, 
             new SfCartesianChartModel() { Name = "2", Values = new List<double> { 69.0, 66.2, 70.0, 68.5, 66.0, 67.5, 68.5, 66.5, 73.0, 69.0, 69.0, 74.5, 68.0, 68.5, 67.5, 70.0, 69.0, 72.5, 68.0, 69.0, 69.0, 71.0, 68.0, 75.0, 67.0 } }, 
@@ -2231,7 +2383,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "4", Values = new List<double> { 67.6, 64.2, 65.9, 65.9, 68.2, 71.1, 67.6, 71.6, 72.8, 68.2, 67.6, 67.1, 67.1, 68.2, 65.4, 66.5, 67.6, 67.1, 71.1, 67.1, 65.4, 67.6, 67.6, 70.5, 70.5 } }, 
         };
 
-        var histogram = new ObservableCollection<SfCartesianChartModel>
+        Histogram = new ObservableCollection<SfCartesianChartModel>
         {
             new SfCartesianChartModel() { Value = 5.250, Size = 0 }, new SfCartesianChartModel() { Value = 7.750, Size = 0 },
             new SfCartesianChartModel() { Value = 0, Size = 0 }, new SfCartesianChartModel() { Value = 8.275, Size = 0 },
@@ -2285,7 +2437,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Value = 95.750, Size = 0 }, new SfCartesianChartModel() { Value = 95.250, Size = 0 }
         };
 
-        var candle = new ObservableCollection<SfCartesianChartModel>
+        Candle = new ObservableCollection<SfCartesianChartModel>
         {
             new SfCartesianChartModel() { Date = new DateTime(2020, 12, 31), High = 97.87, Low = 95.78, Value = 97.07, Size = 96.97 },
             new SfCartesianChartModel() { Date = new DateTime(2020, 12, 30), High = 98.66, Low = 96.55, Value = 96.95, Size = 97.18 },
@@ -2319,7 +2471,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Date = new DateTime(2020, 11, 18), High = 90.32, Low = 88.09, Value = 89.31, Size = 88.52 }
         };
 
-        var waterfall = new ObservableCollection<SfCartesianChartModel>()
+        Waterfall = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { Name = "January", Value = 25 },
             new SfCartesianChartModel() { Name = "February", Value = 22.5 },
@@ -2336,43 +2488,12 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "Total", Value = 34, IsSummary = true }
         };
 
-        var gradients = new List<Brush>(createGradientPalletBrushes());
+        PalletBrushes = new List<Brush>(createGradientPalletBrushes());
 
-        IsBusy = false;
-
-        Area = new(area);
-        RangeArea = new(rangeArea);
-        StackingArea = new(stackingArea);
-        Bar = new(bar);
-        RangeBar = new(rangeBar);
-        StackingBar = new(stackingBar);
-        Column = new(column);
-        RangeColumn = new(rangeColumn);
-        StackingColumn = new(stackingColumn);
-        FirstLine = new(firstLine);
-        SecondLine = new(secondLine);
-        ThirdLine = new(thirdLine);
-        FirstScatter = new(firstScatter);
-        SecondScatter = new(secondScatter);
-        Bubble = new(bubble);
-        Box = new(box);
-        Histogram = new(histogram);
-        Candle = new(candle);
-        Waterfall = new(waterfall);
-        Annotation = new(annotation);
-        Persons = new(persons);
-        PalletBrushes = new(gradients);
-        ErrorBarTypes = new();
-        ErrorBarModes = new();
-        ErrorBarDirections = new();
-
-        ErrorBarTypes = Enum.GetNames(typeof(ErrorBarType)).ToObservableCollection();
-        ErrorBarModes = Enum.GetNames(typeof(ErrorBarMode)).ToObservableCollection();
-        ErrorBarDirections = Enum.GetNames(typeof(ErrorBarDirection)).ToObservableCollection();
-
-        SelectedErrorBarType = ErrorBarType.Fixed.ToString();
-        SelectedErrorBarMode = ErrorBarMode.Vertical.ToString();
-        SelectedErrorBarDirection = ErrorBarDirection.Both.ToString();
+        ChartOptions = new ObservableCollection<string>
+        {
+            "Area", "Column", "Line", "Scatter", "Histogram", "Box Plot", "Bubble", "Candle", "Waterfall"
+        };
 
         AreaChartOptions = new ObservableCollection<string>
         {
@@ -2394,54 +2515,45 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             "Line", "Spline", "Step Line", "Stacking Line", "Stacking Line 100"
         };
 
-        if (forced)
+        ScatterChartOptions = new ObservableCollection<string>
         {
-            Area.Clear();
-            RangeArea.Clear();
-            StackingArea.Clear();
-            Bar.Clear();
-            RangeBar.Clear();
-            StackingBar.Clear();
-            Column.Clear();
-            RangeColumn.Clear();
-            StackingColumn.Clear();
-            FirstLine.Clear();
-            SecondLine.Clear();
-            ThirdLine.Clear();
-            FirstScatter.Clear();
-            SecondScatter.Clear();
-            Bubble.Clear();
-            Box.Clear();
-            Histogram.Clear();
-            Candle.Clear();
-            Waterfall.Clear();
-            Annotation.Clear();
-            Persons.Clear();
-            PalletBrushes.Clear();
-        }
+            "Scatter",
+        };
 
-        area.ForEach(item => Area.Add(item));
-        rangeArea.ForEach(item => RangeArea.Add(item));
-        stackingArea.ForEach(item => StackingArea.Add(item));
-        bar.ForEach(item => Bar.Add(item));
-        rangeBar.ForEach(item => RangeBar.Add(item));
-        stackingBar.ForEach(item => StackingBar.Add(item));
-        column.ForEach(item => Column.Add(item));
-        rangeColumn.ForEach(item => RangeColumn.Add(item));
-        stackingColumn.ForEach(item => StackingColumn.Add(item));
-        firstLine.ForEach(item => FirstLine.Add(item));
-        secondLine.ForEach(item => SecondLine.Add(item));
-        thirdLine.ForEach(item => ThirdLine.Add(item));
-        firstScatter.ForEach(item => FirstScatter.Add(item));
-        secondScatter.ForEach(item => SecondScatter.Add(item));
-        bubble.ForEach(item => Bubble.Add(item));
-        box.ForEach(item => Box.Add(item));
-        histogram.ForEach(item => Histogram.Add(item));
-        candle.ForEach(item => Candle.Add(item));
-        waterfall.ForEach(item => Waterfall.Add(item));
-        annotation.ForEach(item => Annotation.Add(item));
-        persons.ForEach(item => Persons.Add(item));
-        gradients.ForEach(item => PalletBrushes.Add(item));
+        HistogramChartOptions = new ObservableCollection<string>
+        {
+            "Histogram",
+        };
+
+        BoxPlotChartOptions = new ObservableCollection<string>
+        {
+            "Box Plot",
+        };
+
+        BubbleChartOptions = new ObservableCollection<string>
+        {
+            "Bubble",
+        };
+
+        CandleChartOptions = new ObservableCollection<string>
+        {
+            "Candle",
+        };
+
+        WaterfallChartOptions = new ObservableCollection<string>
+        {
+            "Waterfall",
+        };
+
+        ChartsSelectedOption = ChartOptions.First();
+
+        ErrorBarTypes = new();
+        ErrorBarModes = new();
+        ErrorBarDirections = new();
+
+        ErrorBarTypes = Enum.GetNames(typeof(ErrorBarType)).ToObservableCollection();
+        ErrorBarModes = Enum.GetNames(typeof(ErrorBarMode)).ToObservableCollection();
+        ErrorBarDirections = Enum.GetNames(typeof(ErrorBarDirection)).ToObservableCollection();
     }
 
     List<Brush> createGradientPalletBrushes()
@@ -2492,11 +2604,4 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
 
     }
     #endregion
-
-    #region [ Relay Commands ]
-    [RelayCommand]
-    Task OpenUrlAsync(string url)
-    => AppNavigator.OpenUrlAsync(url);
-    #endregion
-
 }

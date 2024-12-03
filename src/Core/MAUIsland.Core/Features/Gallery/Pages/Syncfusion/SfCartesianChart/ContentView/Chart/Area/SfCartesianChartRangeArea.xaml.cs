@@ -42,7 +42,7 @@ public partial class SfCartesianChartRangeArea : ContentView
     #endregion
 
     #region [ Event ]
-    private void Primary_LabelCreated(object? sender, ChartAxisLabelEventArgs e)
+    private void LabelCreated(object? sender, ChartAxisLabelEventArgs e)
     {
         int month = int.MaxValue;
 

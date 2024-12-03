@@ -20,7 +20,7 @@
                 </toolkit:SfCartesianChart.Title>
 
                 <toolkit:SfCartesianChart.XAxes>
-                    <toolkit:DateTimeAxis LabelCreated="Primary_LabelCreated" Interval="5" 
+                    <toolkit:DateTimeAxis LabelCreated="LabelCreated" Interval="5" 
                                       ShowMajorGridLines="false" AutoScrollingMode="Start" AutoScrollingDeltaType="Days"/>
                 </toolkit:SfCartesianChart.XAxes>
 
