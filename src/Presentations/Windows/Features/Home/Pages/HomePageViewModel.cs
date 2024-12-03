@@ -231,7 +231,7 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
         var allLocalDbIssues = await GetIssueByControlNameFromLocalDb(_homePageName);
 
         // If localdb version is not null & not outdated => use local version.
-        if (allLocalDbIssues != null && allLocalDbIssues.Any() && !allLocalDbIssues.Any(x => (now - x.LastUpdated).TotalHours > 1)) { // TODO: need sync time for home page. How about 3 days?
+        if (allLocalDbIssues != null && allLocalDbIssues.Any() && !allLocalDbIssues.Any(x => (now - x.LastUpdated).TotalDays > 1)) {
             issuesList = new List<GitHubIssueModel>(allLocalDbIssues.Select(x => new GitHubIssueModel() { // TODO: need mapping at another place
                 // For now, just need labels, createdAt & isopen
                 CreatedAt = x.CreatedDate,
