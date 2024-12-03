@@ -233,7 +233,8 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
         // If localdb version is not null & not outdated => use local version.
         if (allLocalDbIssues != null && allLocalDbIssues.Any() && !allLocalDbIssues.Any(x => (now - x.LastUpdated).TotalHours > 1)) { // TODO: need sync time for home page. How about 3 days?
             issuesList = new List<GitHubIssueModel>(allLocalDbIssues.Select(x => new GitHubIssueModel() { // TODO: need mapping at another place
-                // For now, just need labels & isopen
+                // For now, just need labels, createdAt & isopen
+                CreatedAt = x.CreatedDate,
                 Labels = DeserializeIssueLables(x.Labels).ToList(),
                 IsOpen = x.IsOpen
             }));
@@ -300,7 +301,7 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
         var openIssuesCount = dates.Select(date =>
         {
             return issuesList.Count(issue =>
-                issue.IsOpen && issue.CreatedAt.Date == date.Date); // TODO: issue.IsOpen
+                issue.IsOpen && issue.CreatedAt.Date == date.Date); // TODO: issue.IsOpen issue.CreatedAt
         }).ToList();
 
         GitHubOpenIssuesChart = new[]{
