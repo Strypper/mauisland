@@ -5,10 +5,249 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:core="clr-namespace:MAUIsland.Core"
     xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
-    x:Name="root">
+    x:Name="root"
+    Loaded="OnComponentLoaded">
 
-    <VerticalStackLayout Spacing="10">
-        <Border Padding="10" StrokeShape="RoundRectangle 4">
+
+    <ContentView.Resources>
+        <x:String x:Key="TextAnnotationHeader">
+            <![CDATA[ The TextAnnotation can be customized using the LabelStyle property. The LabelStyle property provides options to customize the font-family, font-size, font-attributes, and text color of axis labels. The following properties are used to customize the text: ]]>
+        </x:String>
+
+        <x:Array x:Key="TextAnnotation" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">TextColor</strong> - Gets or sets the text color of the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Background</strong> - Gets or sets the background color of the labels. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Margin</strong> - Gets or sets the margin of the label to customize the appearance of label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">FontFamily</strong> - Gets or sets the font family name for the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">FontAttributes</strong> - Gets or sets the font style for the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">FontSize</strong> - Gets or sets the font size for the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">HorizontalTextAlignment</strong> - Gets or sets the horizontal alignment of the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">VerticalTextAlignment</strong> - Gets or sets the vertical alignment of the label. ]]>
+            </x:String>
+        </x:Array>
+
+        <x:String x:Key="ShapeAnnotationHeader">
+            <![CDATA[ The ShapeAnnotation allows you to add annotations in the form of shapes such as rectangles, ellipses, lines, horizontal lines, and vertical lines at specific areas of interest in the chart area: ]]>
+        </x:String>
+
+        <x:Array x:Key="ShapeAnnotation" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">RectangleAnnotation</strong> - Used to draw a rectangle over the chart area. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">EllipseAnnotation</strong> - Used to draw a circle or an ellipse over the chart area. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">LineAnnotation</strong> - Used to draw a line over the chart area. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">VerticalLineAnnotation</strong> - Used to draw a vertical line across the chart area. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">HorizontalLineAnnotation</strong> - Used to draw a horizontal line across the chart area. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">X2</strong> - Gets or sets the X2 coordinate of the shape annotation. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Y2</strong> - Gets or sets the Y2 coordinate of the shape annotation. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Fill</strong> - Gets or sets the background color of the shape annotation ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Stroke</strong> - Gets or sets the stroke color of the shape annotation. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">StrokeWidth</strong> - Gets or sets the stroke width of the shape annotation. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">StrokeDashArray</strong> - Gets or sets the stroke dash pattern of the shape annotation. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Text</strong> - Gets or sets the annotation text of the shape annotation. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">LabelStyle</strong> - Gets or sets the style for customizing the annotation text of the shape annotation. ]]>
+            </x:String>
+        </x:Array>
+
+        <x:String x:Key="ViewAnnotationHeader">
+            <![CDATA[ The ViewAnnotation allows you to add annotations in the form of your own custom view using the View property at a specific area of interest in the chart area. Additionally, the ViewAnnotation can be aligned using the VerticalAlignment and HorizontalAlignment properties. ]]>
+        </x:String>
+
+        <x:String x:Key="ShapeAnnotationAxisLabelHeader">
+            <![CDATA[ The ViewAnnotation allows you to add annotations in the form of your own custom view using the View property at a specific area of interest in the chart area. Additionally, the ViewAnnotation can be aligned using the VerticalAlignment and HorizontalAlignment properties. ]]>
+        </x:String>
+
+        <x:Array x:Key="ShapeAnnotationAxisLabel" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">TextColor</strong> - Gets or sets the text color of the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Background</strong> - Gets or sets the background color of the labels. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Margin</strong> - Gets or sets the margin of the label to customize the appearance of label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">FontFamily</strong> - Gets or sets the font family name for the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">FontAttributes</strong> - Gets or sets the font style for the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">FontSize</strong> - Gets or sets the font size for the label. ]]>
+            </x:String>
+        </x:Array>
+
+        <x:String x:Key="ShapeAnnotationTextHeader">
+            <![CDATA[ The Text in shape annotation also can be customized by using the LabelStyle property. The LabelStyle property provides options to customize the font-family, font-size, font-attributes and text color of axis labels. ]]>
+        </x:String>
+
+        <x:Array x:Key="ShapeAnnotationText" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">TextColor</strong> - Gets or sets the text color of the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Background</strong> - Gets or sets the background color of the labels. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Margin</strong> - Gets or sets the margin of the label to customize the appearance of label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">FontFamily</strong> - Gets or sets the font family name for the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">FontAttributes</strong> - Gets or sets the font style for the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">FontSize</strong> - Gets or sets the font size for the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">HorizontalTextAlignment</strong> - Gets or sets the horizontal alignment of the labe ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">VerticalTextAlignment</strong> - Gets or sets the vertical alignment of the label. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="TextArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Text annotation" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="TextAnnotation" Margin="5">
+                        <Label Text="{x:StaticResource TextAnnotationHeader}" />
+                        <CollectionView x:Name="TextAnnotationCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTextGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ShapeArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Shape annotation" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="ShapeAnnotation" Margin="5">
+                        <Label Text="{x:StaticResource ShapeAnnotationHeader}" />
+                        <CollectionView x:Name="ShapeAnnotationCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}" />
+
+                        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+                            <Grid>
+                                <VerticalStackLayout>
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Image x:Name="ShapeAxisArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                                        <Label Text="Axis label customization in shape annotation" VerticalTextAlignment="Center" FontSize="16"/>
+                                    </HorizontalStackLayout>
+                                    <VerticalStackLayout x:Name="ShapeAnnotationAxisLabel" Margin="5">
+                                        <Label Text="{x:StaticResource ShapeAnnotationAxisLabelHeader}" />
+                                        <CollectionView x:Name="ShapeAnnotationAxisLabelCollectionView"
+                                                        Style="{x:StaticResource PropertiesListStyle}" />
+                                    </VerticalStackLayout>
+                                </VerticalStackLayout>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnShapeAxisLabelGridTapped" />
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </Border>
+                        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+                            <Grid>
+                                <VerticalStackLayout>
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Image x:Name="ShapeTextArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                                        <Label Text="Text customization in shape annotation" VerticalTextAlignment="Center" FontSize="16"/>
+                                    </HorizontalStackLayout>
+                                    <VerticalStackLayout x:Name="ShapeAnnotationText" Margin="5">
+                                        <Label Text="{x:StaticResource ShapeAnnotationTextHeader}" />
+                                        <CollectionView x:Name="ShapeAnnotationTextCollectionView"
+                                                        Style="{x:StaticResource PropertiesListStyle}" />
+                                    </VerticalStackLayout>
+                                </VerticalStackLayout>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnShapeTextGridTapped" />
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </Border>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnShapeGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ViewArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="View annotation" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="ViewAnnotation" Margin="5">
+                        <Label Text="{x:StaticResource ViewAnnotationHeader}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnViewGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+
+        <Border Padding="10" Margin="5" StrokeShape="RoundRectangle 4">
             <VerticalStackLayout Spacing="10">
                 <toolkit:SfCartesianChart VerticalOptions="FillAndExpand" Margin="0,0,5,0">
                     <toolkit:SfCartesianChart.Title>
@@ -80,68 +319,9 @@
                     </toolkit:SfCartesianChart.Annotations>
                 </toolkit:SfCartesianChart>
                 
-                <core:SourceCodeExpander Code="{x:Binding AnnotationCodeDescription, Source={x:Reference root}}" />
+                <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}" />
             </VerticalStackLayout>
         </Border>
 
-        <Border Padding="10" StrokeShape="RoundRectangle 4">
-            <VerticalStackLayout Spacing="10">
-                <toolkit:SfCartesianChart VerticalOptions="FillAndExpand" Margin="0,0,5,0">
-                    <toolkit:SfCartesianChart.Title>
-                        <Label Text="Annotations Demo for DateTime Chart" Margin="0,2,0,10"
-                               HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand"
-                               FontSize="16" LineBreakMode="WordWrap"/>
-                    </toolkit:SfCartesianChart.Title>
-
-                    <toolkit:SfCartesianChart.XAxes>
-                        <toolkit:DateTimeAxis Interval="2" IntervalType="Months" EdgeLabelsVisibilityMode="AlwaysVisible">
-                            <toolkit:DateTimeAxis.LabelStyle>
-                                <toolkit:ChartAxisLabelStyle LabelFormat="MMM"/>
-                            </toolkit:DateTimeAxis.LabelStyle>
-                        </toolkit:DateTimeAxis>
-                    </toolkit:SfCartesianChart.XAxes>
-                    <toolkit:SfCartesianChart.YAxes>
-                        <toolkit:NumericalAxis Interval="700" CrossesAt="{x:Static x:Double.MaxValue}"/>
-                    </toolkit:SfCartesianChart.YAxes>
-                    <toolkit:AreaSeries ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}"
-                                        XBindingPath="Date" YBindingPath="Size"
-                                        Fill="#66116DF9" Stroke="#116DF9"
-                                        StrokeWidth="3"/>
-                    <toolkit:AreaSeries ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}"
-                                        XBindingPath="Date" YBindingPath="Value"
-                                        Fill="#66CAC4D0" Stroke="#49454F"
-                                        StrokeWidth="3"/>
-
-                    <toolkit:SfCartesianChart.Annotations>
-                        <toolkit:ChartAnnotationCollection>
-                            <toolkit:TextAnnotation X1="2020-3-9" Y1="300" Text="6,360 km">
-                                <toolkit:TextAnnotation.LabelStyle>
-                                    <toolkit:ChartAnnotationLabelStyle FontAttributes="Bold" FontSize="13" TextColor="{AppThemeBinding Light=#116DF9, Dark=White}"/>
-                                </toolkit:TextAnnotation.LabelStyle>
-                            </toolkit:TextAnnotation>
-                            <toolkit:TextAnnotation X1="2020-3-9" Y1="250" Text="March 1 - 9">
-                                <toolkit:TextAnnotation.LabelStyle>
-                                    <toolkit:ChartAnnotationLabelStyle TextColor="{AppThemeBinding Light=#116DF9, Dark=White}"/>
-                                </toolkit:TextAnnotation.LabelStyle>
-                            </toolkit:TextAnnotation>
-
-                            <toolkit:TextAnnotation X1="2020-3-20" Y1="300" Text="22,630 Km">
-                                <toolkit:TextAnnotation.LabelStyle>
-                                    <toolkit:ChartAnnotationLabelStyle FontAttributes="Bold" FontSize="13" TextColor="{AppThemeBinding Light=#116DF9, Dark=White}"/>
-                                </toolkit:TextAnnotation.LabelStyle>
-                            </toolkit:TextAnnotation>
-                            <toolkit:TextAnnotation X1="2020-3-20" Y1="250" Text="March 9 - 20">
-                                <toolkit:TextAnnotation.LabelStyle>
-                                    <toolkit:ChartAnnotationLabelStyle TextColor="{AppThemeBinding Light=#116DF9, Dark=White}"/>
-                                </toolkit:TextAnnotation.LabelStyle>
-                            </toolkit:TextAnnotation>
-
-                        </toolkit:ChartAnnotationCollection>
-                    </toolkit:SfCartesianChart.Annotations>
-                </toolkit:SfCartesianChart>
-                
-                <core:SourceCodeExpander Code="{x:Binding AnnotationForDateTimeChartCodeDescription, Source={x:Reference root}}" />
-            </VerticalStackLayout>
-        </Border>
     </VerticalStackLayout>
 </ContentView>

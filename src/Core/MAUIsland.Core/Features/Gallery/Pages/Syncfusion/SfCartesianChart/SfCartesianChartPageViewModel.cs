@@ -251,62 +251,6 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "</toolkit:SfCartesianChart>";
 
     [ObservableProperty]
-    string cartesianAnnotationForDateTimeChartXamlCode =
-        "<toolkit:SfCartesianChart VerticalOptions=\"FillAndExpand\" Margin=\"0,0,5,0\">\r\n" +
-        "    <toolkit:SfCartesianChart.Title>\r\n" +
-        "        <Label Text=\"Annotations Demo for DateTime Chart\" Margin=\"0,2,0,10\"\r\n" +
-        "                HorizontalOptions=\"Center\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"CenterAndExpand\"\r\n" +
-        "                FontSize=\"16\" LineBreakMode=\"WordWrap\"/>\r\n" +
-        "    </toolkit:SfCartesianChart.Title>\r\n\r\n" +
-        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
-        "        <toolkit:DateTimeAxis Interval=\"2\" IntervalType=\"Months\" EdgeLabelsVisibilityMode=\"AlwaysVisible\">\r\n" +
-        "            <toolkit:DateTimeAxis.LabelStyle>\r\n" +
-        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"MMM\"/>\r\n" +
-        "            </toolkit:DateTimeAxis.LabelStyle>\r\n" +
-        "        </toolkit:DateTimeAxis>\r\n" +
-        "    </toolkit:SfCartesianChart.XAxes>\r\n\r\n" +
-        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
-        "        <toolkit:NumericalAxis Interval=\"1000\" CrossesAt=\"{Static x:Double.MaxValue}\"/>\r\n" +
-        "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
-        "    <toolkit:AreaSeries ItemsSource=\"{Binding Persons}\"\r\n" +
-        "                        XBindingPath=\"Date\"\r\n" +
-        "                        YBindingPath=\"Size\"\r\n" +
-        "                        Fill=\"#66116DF9\"\r\n" +
-        "                        Stroke=\"#116DF9\"\r\n" +
-        "                        StrokeWidth=\"3\"/>\r\n\r\n" +
-        "    <toolkit:AreaSeries ItemsSource=\"{Binding Persons}\"\r\n" +
-        "                        XBindingPath=\"Date\"\r\n" +
-        "                        YBindingPath=\"Value\"\r\n" +
-        "                        Fill=\"#66CAC4D0\"\r\n" +
-        "                        Stroke=\"#49454F\"\r\n" +
-        "                        StrokeWidth=\"3\"/>\r\n\r\n" +
-        "    <toolkit:SfCartesianChart.Annotations>\r\n" +
-        "        <toolkit:ChartAnnotationCollection>\r\n" +
-        "            <toolkit:TextAnnotation X1=\"2020-3-9\" Y1=\"300\" Text=\"6,360 km\">\r\n" +
-        "                <toolkit:TextAnnotation.LabelStyle>\r\n" +
-        "                    <toolkit:ChartAnnotationLabelStyle FontAttributes=\"Bold\" FontSize=\"13\" TextColor=\"{AppThemeBinding Light=#116DF9, Dark=White}\"/>\r\n" +
-        "                </toolkit:TextAnnotation.LabelStyle>\r\n" +
-        "            </toolkit:TextAnnotation>\r\n" +
-        "            <toolkit:TextAnnotation X1=\"2020-3-9\" Y1=\"250\" Text=\"March 1 - 9\">\r\n" +
-        "                <toolkit:TextAnnotation.LabelStyle>\r\n" +
-        "                    <toolkit:ChartAnnotationLabelStyle TextColor=\"{AppThemeBinding Light=#116DF9, Dark=White}\"/>\r\n" +
-        "                </toolkit:TextAnnotation.LabelStyle>\r\n" +
-        "            </toolkit:TextAnnotation>\r\n\r\n" +
-        "            <toolkit:TextAnnotation X1=\"2020-3-20\" Y1=\"300\" Text=\"22,630 Km\">\r\n" +
-        "                <toolkit:TextAnnotation.LabelStyle>\r\n" +
-        "                    <toolkit:ChartAnnotationLabelStyle FontAttributes=\"Bold\" FontSize=\"13\" TextColor=\"{AppThemeBinding Light=#116DF9, Dark=White}\"/>\r\n" +
-        "                </toolkit:TextAnnotation.LabelStyle>\r\n" +
-        "            </toolkit:TextAnnotation>\r\n" +
-        "            <toolkit:TextAnnotation X1=\"2020-3-20\" Y1=\"250\" Text=\"March 9 - 20\">\r\n" +
-        "                <toolkit:TextAnnotation.LabelStyle>\r\n" +
-        "                    <toolkit:ChartAnnotationLabelStyle TextColor=\"{AppThemeBinding Light=#116DF9, Dark=White}\"/>\r\n" +
-        "                </toolkit:TextAnnotation.LabelStyle>\r\n" +
-        "            </toolkit:TextAnnotation>\r\n\r\n" +
-        "        </toolkit:ChartAnnotationCollection>\r\n" +
-        "    </toolkit:SfCartesianChart.Annotations>\r\n" +
-        "</toolkit:SfCartesianChart>";
-
-    [ObservableProperty]
     string cartesianAreaChartXamlCode =
         "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\" \r\n" +
         "                          Margin=\"0, 0, 20, 0\">\r\n" +

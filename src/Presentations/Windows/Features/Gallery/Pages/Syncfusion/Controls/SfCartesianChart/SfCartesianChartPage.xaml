@@ -82,18 +82,6 @@
             SfCartesianChart provides annotation support that allows you to mark specific areas of interest in the chart area. This feature enables you to add text, images, and custom views using the following annotations.
         </x:String>
 
-        <x:Array x:Key="AnnotationsItemsSource" Type="{x:Type x:String}">
-            <x:String>
-                <![CDATA[   Text annotation   ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[   Shape annotation  ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[   View annotation   ]]>
-            </x:String>
-        </x:Array>
-
         <DataTemplate x:Key="SfListViewHeader">
             <Label FontAttributes="Bold" Text="{x:StaticResource PropertiesListHeader}" />
         </DataTemplate>
@@ -208,11 +196,8 @@
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Chart Annotations" />
                     <Label Text="{x:StaticResource AnnotationsHeader}" />
-                    <CollectionView ItemsSource="{x:StaticResource AnnotationsItemsSource}" Style="{x:StaticResource PropertiesListStyle}" />
 
-                    <core:SfCartesianChartAnnotation ComponentData="{x:Binding Annotation}" AnnotationCodeDescription="{x:Binding CartesianAnnotationXamlCode}" 
-                                                     AnnotationForDateTimeChartCodeDescription="{x:Binding CartesianAnnotationForDateTimeChartXamlCode}"/>
-
+                    <core:SfCartesianChartAnnotation ComponentData="{x:Binding Annotation}" CodeDescription="{x:Binding CartesianAnnotationXamlCode}" />
                 </VerticalStackLayout>
             </Border>
 
