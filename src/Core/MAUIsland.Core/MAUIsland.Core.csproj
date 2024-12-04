@@ -177,6 +177,9 @@
 	  <MauiXaml Update="Features\Gallery\Pages\BuiltIn\Controls\CollectionView\TemplateContentViews\SelectedItemTemplateContentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Annotation\SfCartesianChartAnnotation.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Chart\Area\SfCartesianChartArea.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

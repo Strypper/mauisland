@@ -12,20 +12,7 @@ public partial class SfCartesianChartPage : IGalleryPage
         InitializeComponent();
 
         BindingContext = ViewModel = vm;
-    }
-    #endregion
 
-    #region [ Override ]
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
-
-        InitializeDefaultView();
-    }
-
-    protected override void OnDisappearing()
-    {
-        base.OnDisappearing();
     }
     #endregion
 
@@ -33,101 +20,20 @@ public partial class SfCartesianChartPage : IGalleryPage
     private void BasePage_Loaded(object sender, EventArgs e)
     {
         ViewModel.RefreshCommand.Execute(null);
+        ViewModel.LoadAreaDefaultChartOptionCommand.Execute(null);
+        ViewModel.LoadColumnBarDefaultChartOptionCommand.Execute(null);
+        ViewModel.LoadLineDefaultChartOptionCommand.Execute(null);
+        ViewModel.LoadScatterDefaultChartOptionCommand.Execute(null);
+        ViewModel.LoadHistogramDefaultChartOptionCommand.Execute(null);
+        ViewModel.LoadBoxPlotDefaultChartOptionCommand.Execute(null);
+        ViewModel.LoadBubbleDefaultChartOptionCommand.Execute(null);
+        ViewModel.LoadCandleDefaultChartOptionCommand.Execute(null);
+        ViewModel.LoadWaterfallDefaultChartOptionCommand.Execute(null);
     }
 
-    private void AreaChartCollectionView_Loaded(object sender, EventArgs e)
+    private void ChartsCollectionView_Loaded(object sender, EventArgs e)
     {
-        ViewModel.LoadAreaChartOptionCommand.Execute(null);
-    }
-
-    private void ColumnBarChartCollectionView_Loaded(object sender, EventArgs e)
-    {
-        ViewModel.LoadColumnBarChartOptionCommand.Execute(null);
-    }
-
-    private void LineChartCollectionView_Loaded(object sender, EventArgs e)
-    {
-        ViewModel.LoadLineChartOptionCommand.Execute(null);
-    }
-
-    private void ScatterChartCollectionView_Loaded(object sender, EventArgs e)
-    {
-        ViewModel.LoadScatterChartOptionCommand.Execute(null);
-    }
-
-    private void HistogramChartCollectionView_Loaded(object sender, EventArgs e)
-    {
-        ViewModel.LoadHistogramChartOptionCommand.Execute(null);
-    }
-
-    private void BoxPlotChartCollectionView_Loaded(object sender, EventArgs e)
-    {
-        ViewModel.LoadBoxPlotChartOptionCommand.Execute(null);
-    }
-
-    private void BubbleChartCollectionView_Loaded(object sender, EventArgs e)
-    {
-        ViewModel.LoadBubbleChartOptionCommand.Execute(null);
-    }
-
-    private void CandleChartCollectionView_Loaded(object sender, EventArgs e)
-    {
-        ViewModel.LoadCandleChartOptionCommand.Execute(null);
-    }
-
-    private void WaterfallChartCollectionView_Loaded(object sender, EventArgs e)
-    {
-        ViewModel.LoadWaterfallChartOptionCommand.Execute(null);
-    }
-
-    private void InitializeDefaultView()
-    {
-        AreaChartMenuView.IsVisible = false;
-        BarChartMenuView.IsVisible = false;
-        ColumnChartMenuView.IsVisible = false;
-        LineChartMenuView.IsVisible = false;
-
-        AreaDefaultView();
-        BarDefaultView();
-        ColumnDefaultView();
-        LineDefaultView();
-    }
-
-    private void LineDefaultView()
-    {
-        LineView.IsVisible = false;
-        SplineView.IsVisible = false;
-        StepLineView.IsVisible = false;
-        StackingLineView.IsVisible = false;
-        StackingLineView100.IsVisible = false;
-    }
-
-    private void ColumnDefaultView()
-    {
-        ColumnView.IsVisible = false;
-        RangeColumnView.IsVisible = false;
-        StackingColumnView.IsVisible = false;
-        StackingColumn100View.IsVisible = false;
-    }
-
-    private void BarDefaultView()
-    {
-        BarView.IsVisible = false;
-        ErrorBarView.IsVisible = false;
-        RangeBarView.IsVisible = false;
-        StackingBarView.IsVisible = false;
-        StackingBar100View.IsVisible = false;
-    }
-
-    private void AreaDefaultView()
-    {
-        AreaView.IsVisible = false;
-        SqlineAreaView.IsVisible = false;
-        StepAreaView.IsVisible = false;
-        RangeAreaView.IsVisible = false;
-        SplineRangeAreaView.IsVisible = false;
-        StackingAreaView.IsVisible = false;
-        StackingArea100View.IsVisible = false;
+        ViewModel.LoadChartOptionCommand.Execute(null);
     }
 
     private void OnChartSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -168,18 +74,59 @@ public partial class SfCartesianChartPage : IGalleryPage
                         LineChartChanged(lineSelectedItem.ToString());
                     }
                     break;
-                case "Scatter": 
+                case "Scatter":
+                    ScatterChartMenuView.IsVisible = true;
+                    ScatterChartsCollectionView.IsVisible = true;
+                    var scatterSelectedItem = ScatterChartsCollectionView.SelectedItem ?? null;
+                    if (scatterSelectedItem != null)
+                    {
+                        ScatterChartChanged(scatterSelectedItem.ToString());
+                    }
                     break;
-                case "Histogram":  
+                case "Histogram":
+                    HistogramChartMenuView.IsVisible = true;
+                    HistogramChartsCollectionView.IsVisible = true;
+                    var histogramSelectedItem = HistogramChartsCollectionView.SelectedItem ?? null;
+                    if (histogramSelectedItem != null)
+                    {
+                        HistogramChartChanged(histogramSelectedItem.ToString());
+                    }
                     break;
-                case "Box Plot": 
+                case "Box Plot":
+                    BoxPlotChartMenuView.IsVisible = true;
+                    BoxPlotChartsCollectionView.IsVisible = true;
+                    var boxPlotSelectedItem = BoxPlotChartsCollectionView.SelectedItem ?? null;
+                    if (boxPlotSelectedItem != null)
+                    {
+                        BoxPlotChartChanged(boxPlotSelectedItem.ToString());
+                    }
                     break;
                 case "Bubble":
-                    
+                    BubbleChartMenuView.IsVisible = true;
+                    BubbleChartsCollectionView.IsVisible = true;
+                    var bubbleSelectedItem = BubbleChartsCollectionView.SelectedItem ?? null;
+                    if (bubbleSelectedItem != null)
+                    {
+                        BubbleChartChanged(bubbleSelectedItem.ToString());
+                    }
                     break;
-                case "Candle": 
+                case "Candle":
+                    CandleChartMenuView.IsVisible = true;
+                    CandleChartsCollectionView.IsVisible = true;
+                    var candleSelectedItem = CandleChartsCollectionView.SelectedItem ?? null;
+                    if (candleSelectedItem != null)
+                    {
+                        CandleChartChanged(candleSelectedItem.ToString());
+                    }
                     break;
-                case "Waterfall": 
+                case "Waterfall":
+                    WaterfallChartMenuView.IsVisible = true;
+                    WaterfallChartsCollectionView.IsVisible = true;
+                    var waterfallSelectedItem = WaterfallChartsCollectionView.SelectedItem ?? null;
+                    if (waterfallSelectedItem != null)
+                    {
+                        WaterfallChartChanged(waterfallSelectedItem.ToString());
+                    }
                     break;
             } 
         }
@@ -217,42 +164,179 @@ public partial class SfCartesianChartPage : IGalleryPage
         var selectedOption = e.CurrentSelection.FirstOrDefault() as string;
         ScatterChartChanged(selectedOption);
     }
+
+    private void OnBubbleChartSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        BubbleDefaultView();
+
+        var selectedOption = e.CurrentSelection.FirstOrDefault() as string;
+        BubbleChartChanged(selectedOption);
+    }
+
+    private void OnBoxPlotChartSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        BoxPlotDefaultView();
+
+        var selectedOption = e.CurrentSelection.FirstOrDefault() as string;
+        BoxPlotChartChanged(selectedOption);
+    }
+
+    private void OnHistogramChartSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        HistogramDefaultView();
+
+        var selectedOption = e.CurrentSelection.FirstOrDefault() as string;
+        HistogramChartChanged(selectedOption);
+    }
+
+    private void OnCandleChartSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        CandleDefaultView();
+
+        var selectedOption = e.CurrentSelection.FirstOrDefault() as string;
+        CandleChartChanged(selectedOption);
+    }
+
+    private void OnWaterfallChartSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        WaterfallDefaultView();
+
+        var selectedOption = e.CurrentSelection.FirstOrDefault() as string;
+        WaterfallChartChanged(selectedOption);
+    }
     #endregion
 
     #region [ Methods ]
+    private void InitializeDefaultView()
+    {
+        AreaChartMenuView.IsVisible = false;
+        AreaChartsCollectionView.IsVisible = false;
+
+        BarChartMenuView.IsVisible = false;
+        BarChartsCollectionView.IsVisible = false;
+
+        ColumnChartMenuView.IsVisible = false;
+        ColumnChartsCollectionView.IsVisible = false;
+
+        LineChartMenuView.IsVisible = false;
+        LineChartsCollectionView.IsVisible = false;
+
+        ScatterChartMenuView.IsVisible = false;
+        ScatterChartsCollectionView.IsVisible = false;
+
+        BubbleChartMenuView.IsVisible = false;
+        BubbleChartsCollectionView.IsVisible = false;
+
+        BoxPlotChartMenuView.IsVisible = false;
+        BoxPlotChartsCollectionView.IsVisible = false;
+
+        HistogramChartMenuView.IsVisible = false;
+        HistogramChartsCollectionView.IsVisible = false;
+
+        CandleChartMenuView.IsVisible = false;
+        CandleChartsCollectionView.IsVisible = false;
+
+        WaterfallChartMenuView.IsVisible = false;
+        WaterfallChartsCollectionView.IsVisible = false;
+
+        AreaDefaultView();
+        BarDefaultView();
+        ColumnDefaultView();
+        LineDefaultView();
+        ScatterDefaultView();
+        BubbleDefaultView();
+        BoxPlotDefaultView();
+        HistogramDefaultView();
+        CandleDefaultView();
+        WaterfallDefaultView();
+    }
+
+    private void WaterfallDefaultView()
+    {
+        WaterfallView.IsVisible = false;
+    }
+
+    private void CandleDefaultView()
+    {
+        CandleView.IsVisible = false;
+    }
+
+    private void HistogramDefaultView()
+    {
+        HistogramView.IsVisible = false;
+    }
+
+    private void BoxPlotDefaultView()
+    {
+        BoxAndWhiskerView.IsVisible = false;
+    }
+
+    private void BubbleDefaultView()
+    {
+        BubbleView.IsVisible = false;
+    }
+
+    private void ScatterDefaultView()
+    {
+        ScatterView.IsVisible = false;
+    }
+
+    private void LineDefaultView()
+    {
+        LineView.IsVisible = false;
+        SplineView.IsVisible = false;
+        StepLineView.IsVisible = false;
+        StackingLineView.IsVisible = false;
+        StackingLineView100.IsVisible = false;
+    }
+
+    private void ColumnDefaultView()
+    {
+        ColumnView.IsVisible = false;
+        RangeColumnView.IsVisible = false;
+        StackingColumnView.IsVisible = false;
+        StackingColumn100View.IsVisible = false;
+    }
+
+    private void BarDefaultView()
+    {
+        BarView.IsVisible = false;
+        ErrorBarView.IsVisible = false;
+        RangeBarView.IsVisible = false;
+        StackingBarView.IsVisible = false;
+        StackingBar100View.IsVisible = false;
+    }
+
+    private void AreaDefaultView()
+    {
+        AreaView.IsVisible = false;
+        SqlineAreaView.IsVisible = false;
+        StepAreaView.IsVisible = false;
+        RangeAreaView.IsVisible = false;
+        SplineRangeAreaView.IsVisible = false;
+        StackingAreaView.IsVisible = false;
+        StackingArea100View.IsVisible = false;
+    }
+
     private void AreaChartChanged(string value)
     {
         if (value != null)
         {
             switch (value)
             {
-                case "Area":
-                    AreaView.IsVisible = true;
-                    //AreaView.IsEnabled = true;
+                case "Area": AreaView.IsVisible = true;
                     break;
-                case "Spline Area":
-                    SqlineAreaView.IsVisible = true;
-                    //SqlineAreaView.IsEnabled = true;
+                case "Spline Area": SqlineAreaView.IsVisible = true;
                     break;
-                case "Step Area":
-                    StepAreaView.IsVisible = true;
-                    //StepAreaView.IsEnabled = true;
+                case "Step Area": StepAreaView.IsVisible = true;
                     break;
-                case "Range Area":
-                    RangeAreaView.IsVisible = true;
-                    //RangeAreaView.IsEnabled = true;
+                case "Range Area": RangeAreaView.IsVisible = true;
                     break;
-                case "Spline Range Area":
-                    SplineRangeAreaView.IsVisible = true;
-                    //SplineRangeAreaView.IsEnabled = true;
+                case "Spline Range Area": SplineRangeAreaView.IsVisible = true;
                     break;
-                case "Stacking Area":
-                    StackingAreaView.IsVisible = true;
-                    //StackingAreaView.IsEnabled = true;
+                case "Stacking Area": StackingAreaView.IsVisible = true;
                     break;
-                case "100% Stacking Area":
-                    StackingArea100View.IsVisible = true;
-                    //StackingArea100View.IsEnabled = true;
+                case "100% Stacking Area": StackingArea100View.IsVisible = true;
                     break;
             }
         }
@@ -264,41 +348,23 @@ public partial class SfCartesianChartPage : IGalleryPage
         {
             switch (value)
             {
-                case "Bar":
-                    BarView.IsVisible = true;
-                    //BarView.IsEnabled = true;
+                case "Bar": BarView.IsVisible = true;
                     break;
-                case "Error Bar":
-                    ErrorBarView.IsVisible = true;
-                    //ErrorBarView.IsEnabled = true;
+                case "Error Bar": ErrorBarView.IsVisible = true;
                     break;
-                case "Range Bar":
-                    RangeBarView.IsVisible = true;
-                    //RangeBarView.IsEnabled = true;
+                case "Range Bar": RangeBarView.IsVisible = true;
                     break;
-                case "Stacking Bar":
-                    StackingBarView.IsVisible = true;
-                    //StackingBarView.IsEnabled = true;
+                case "Stacking Bar": StackingBarView.IsVisible = true;
                     break;
-                case "Stacking Bar 100":
-                    StackingBar100View.IsVisible = true;
-                    //StackingBar100View.IsEnabled = true;
+                case "Stacking Bar 100": StackingBar100View.IsVisible = true;
                     break;
-                case "Column":
-                    ColumnView.IsVisible = true;
-                    //ColumnView.IsEnabled = true;
+                case "Column": ColumnView.IsVisible = true;
                     break;
-                case "Range Column":
-                    RangeColumnView.IsVisible = true;
-                    //RangeColumnView.IsEnabled = true;
+                case "Range Column": RangeColumnView.IsVisible = true;
                     break;
-                case "Stacking Column":
-                    StackingColumnView.IsVisible = true;
-                    //StackingColumnView.IsEnabled = true;
+                case "Stacking Column": StackingColumnView.IsVisible = true;
                     break;
-                case "Stacking Column 100":
-                    StackingColumn100View.IsVisible = true;
-                    //StackingColumn100View.IsEnabled = true;
+                case "Stacking Column 100": StackingColumn100View.IsVisible = true;
                     break;
             }
         }
@@ -310,25 +376,15 @@ public partial class SfCartesianChartPage : IGalleryPage
         {
             switch (value)
             {
-                case "Line":
-                    LineView.IsVisible = true;
-                    //LineView.IsEnabled = true;
+                case "Line": LineView.IsVisible = true;
                     break;
-                case "Spline":
-                    SplineView.IsVisible = true;
-                    //SplineView.IsEnabled = true;
+                case "Spline": SplineView.IsVisible = true;
                     break;
-                case "Step Line":
-                    StepLineView.IsVisible = true;
-                    //StepLineView.IsEnabled = true;
+                case "Step Line": StepLineView.IsVisible = true;
                     break;
-                case "Stacking Line":
-                    StackingLineView.IsVisible = true;
-                    //StackingLineView.IsEnabled = true;
+                case "Stacking Line": StackingLineView.IsVisible = true;
                     break;
-                case "Stacking Line 100":
-                    StackingLineView100.IsVisible = true;
-                    //StackingLineView100.IsEnabled = true;
+                case "Stacking Line 100": StackingLineView100.IsVisible = true;
                     break;
             }
         }
@@ -342,6 +398,71 @@ public partial class SfCartesianChartPage : IGalleryPage
             {
                 case "Scatter":
                     ScatterView.IsVisible = true;
+                    break;
+            }
+        }
+    }
+
+    private void BubbleChartChanged(string value)
+    {
+        if (value != null)
+        {
+            switch (value)
+            {
+                case "Bubble":
+                    BubbleView.IsVisible = true;
+                    break;
+            }
+        }
+    }
+
+    private void BoxPlotChartChanged(string value)
+    {
+        if (value != null)
+        {
+            switch (value)
+            {
+                case "Box And Whisker":
+                    BoxAndWhiskerView.IsVisible = true;
+                    break;
+            }
+        }
+    }
+
+    private void HistogramChartChanged(string value)
+    {
+        if (value != null)
+        {
+            switch (value)
+            {
+                case "Histogram":
+                    HistogramView.IsVisible = true;
+                    break;
+            }
+        }
+    }
+
+    private void CandleChartChanged(string value)
+    {
+        if (value != null)
+        {
+            switch (value)
+            {
+                case "Candle":
+                    CandleView.IsVisible = true;
+                    break;
+            }
+        }
+    }
+
+    private void WaterfallChartChanged(string value)
+    {
+        if (value != null)
+        {
+            switch (value)
+            {
+                case "Waterfall":
+                    WaterfallView.IsVisible = true;
                     break;
             }
         }

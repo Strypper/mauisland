@@ -2031,7 +2031,19 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     }
 
     [RelayCommand]
-    async Task LoadAreaChartOption()
+    async Task LoadChartOption()
+    {
+        if (ChartOptions != null)
+        {
+            if (string.IsNullOrEmpty(ChartsSelectedOption))
+            {
+                ChartsSelectedOption = ChartOptions.FirstOrDefault()!;
+            }
+        }
+    }
+
+    [RelayCommand]
+    async Task LoadAreaDefaultChartOption()
     {
         if (AreaChartOptions != null)
         {
@@ -2043,7 +2055,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     }
 
     [RelayCommand]
-    async Task LoadColumnBarChartOption()
+    async Task LoadColumnBarDefaultChartOption()
     {
         if (BarChartOptions != null || ColumnChartOptions != null)
         {
@@ -2055,7 +2067,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     }
 
     [RelayCommand]
-    async Task LoadLineChartOption()
+    async Task LoadLineDefaultChartOption()
     {
         if (LineChartOptions != null)
         {
@@ -2067,7 +2079,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     }
 
     [RelayCommand]
-    async Task LoadScatterChartOption()
+    async Task LoadScatterDefaultChartOption()
     {
         if (ScatterChartOptions != null)
         {
@@ -2079,7 +2091,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     }
 
     [RelayCommand]
-    async Task LoadHistogramChartOption()
+    async Task LoadHistogramDefaultChartOption()
     {
         if (HistogramChartOptions != null)
         {
@@ -2091,7 +2103,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     }
 
     [RelayCommand]
-    async Task LoadBoxPlotChartOption()
+    async Task LoadBoxPlotDefaultChartOption()
     {
         if (BoxPlotChartOptions != null)
         {
@@ -2103,7 +2115,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     }
 
     [RelayCommand]
-    async Task LoadBubbleChartOption()
+    async Task LoadBubbleDefaultChartOption()
     {
         if (BubbleChartOptions != null)
         {
@@ -2115,7 +2127,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     }
 
     [RelayCommand]
-    async Task LoadCandleChartOption()
+    async Task LoadCandleDefaultChartOption()
     {
         if (CandleChartOptions != null)
         {
@@ -2127,7 +2139,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     }
 
     [RelayCommand]
-    async Task LoadWaterfallChartOption()
+    async Task LoadWaterfallDefaultChartOption()
     {
         if (WaterfallChartOptions != null)
         {
@@ -2527,7 +2539,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
 
         BoxPlotChartOptions = new ObservableCollection<string>
         {
-            "Box Plot",
+            "Box And Whisker",
         };
 
         BubbleChartOptions = new ObservableCollection<string>
@@ -2545,7 +2557,6 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             "Waterfall",
         };
 
-        ChartsSelectedOption = ChartOptions.First();
 
         ErrorBarTypes = new();
         ErrorBarModes = new();

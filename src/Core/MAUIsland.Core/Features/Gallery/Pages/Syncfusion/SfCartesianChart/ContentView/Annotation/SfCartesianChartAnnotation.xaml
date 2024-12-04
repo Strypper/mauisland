@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartAnnotation"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root">
+
+    <VerticalStackLayout Spacing="10">
+        <Border Padding="10" StrokeShape="RoundRectangle 4">
+            <VerticalStackLayout Spacing="10">
+                <toolkit:SfCartesianChart VerticalOptions="FillAndExpand" Margin="0,0,5,0">
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Annotations Demo" Margin="0,2,0,10"
+                               HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand"
+                               FontSize="16" LineBreakMode="WordWrap"/>
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:NumericalAxis Minimum="0" Maximum="4"/>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis Minimum="20" Maximum="70" Interval="10"/>
+                    </toolkit:SfCartesianChart.YAxes>
+
+                    <toolkit:SfCartesianChart.Annotations>
+                        <toolkit:VerticalLineAnnotation X1="2" LineCap="Arrow" Text="Vertical Line" Stroke="Orange">
+                            <toolkit:VerticalLineAnnotation.LabelStyle>
+                                <toolkit:ChartAnnotationLabelStyle VerticalTextAlignment="Start" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="13" TextColor="Orange"/>
+                            </toolkit:VerticalLineAnnotation.LabelStyle>
+                        </toolkit:VerticalLineAnnotation>
+
+                        <toolkit:HorizontalLineAnnotation Y1="45" LineCap="Arrow" Text="Horizontal Line" Stroke="Orange">
+                            <toolkit:HorizontalLineAnnotation.LabelStyle>
+                                <toolkit:ChartAnnotationLabelStyle VerticalTextAlignment="Start" HorizontalTextAlignment="End" FontAttributes="Bold" FontSize="13" TextColor="Orange"/>
+                            </toolkit:HorizontalLineAnnotation.LabelStyle>
+                        </toolkit:HorizontalLineAnnotation>
+
+                        <toolkit:LineAnnotation X1="2.5" X2="3.5" Y1="52" Y2="63" LineCap="Arrow" Text="Random Line" Stroke="Orange">
+                            <toolkit:LineAnnotation.LabelStyle>
+                                <toolkit:ChartAnnotationLabelStyle FontAttributes="Bold" FontSize="13" TextColor="Orange"/>
+                            </toolkit:LineAnnotation.LabelStyle>
+                        </toolkit:LineAnnotation>
+
+                        <toolkit:RectangleAnnotation X1="0.5" X2="1.5" Y1="25" Y2="35" Text="Rectangle" Stroke="Orange">
+                            <toolkit:RectangleAnnotation.LabelStyle>
+                                <toolkit:ChartAnnotationLabelStyle FontAttributes="Bold" FontSize="13" TextColor="Orange"/>
+                            </toolkit:RectangleAnnotation.LabelStyle>
+                        </toolkit:RectangleAnnotation>
+
+                        <toolkit:EllipseAnnotation X1="2.5" X2="3.5" Y1="25" Y2="35" Text="Ellipse" HorizontalAlignment="End" VerticalAlignment="End" Stroke="Orange">
+                            <toolkit:EllipseAnnotation.LabelStyle>
+                                <toolkit:ChartAnnotationLabelStyle FontAttributes="Bold" FontSize="13" TextColor="Orange"/>
+                            </toolkit:EllipseAnnotation.LabelStyle>
+                        </toolkit:EllipseAnnotation>
+
+                        <toolkit:TextAnnotation X1="1" Y1="57.5" Text="Text Annotation">
+                            <toolkit:TextAnnotation.LabelStyle>
+                                <toolkit:ChartAnnotationLabelStyle FontAttributes="Bold" FontSize="13" TextColor="Orange"/>
+                            </toolkit:TextAnnotation.LabelStyle>
+                        </toolkit:TextAnnotation>
+
+                        <toolkit:ViewAnnotation X1="2.15" Y1="35">
+                            <toolkit:ViewAnnotation.View>
+                                <Image>
+                                    <Image.Source>
+                                        <FontImageSource Glyph="{x:Static core:FluentUIIcon.Ic_fluent_data_histogram_24_regular}" 
+                                                         FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}" 
+                                                         Size ="50"
+                                                         Color="Orange"/>
+                                    </Image.Source>
+                                </Image>
+                            </toolkit:ViewAnnotation.View>
+                        </toolkit:ViewAnnotation>
+                        <toolkit:TextAnnotation X1="2.15" Y1="30" Text="View Annotation">
+                            <toolkit:TextAnnotation.LabelStyle>
+                                <toolkit:ChartAnnotationLabelStyle FontAttributes="Bold" FontSize="13" TextColor="Orange"/>
+                            </toolkit:TextAnnotation.LabelStyle>
+                        </toolkit:TextAnnotation>
+                    </toolkit:SfCartesianChart.Annotations>
+                </toolkit:SfCartesianChart>
+                
+                <core:SourceCodeExpander Code="{x:Binding AnnotationCodeDescription, Source={x:Reference root}}" />
+            </VerticalStackLayout>
+        </Border>
+
+        <Border Padding="10" StrokeShape="RoundRectangle 4">
+            <VerticalStackLayout Spacing="10">
+                <toolkit:SfCartesianChart VerticalOptions="FillAndExpand" Margin="0,0,5,0">
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Annotations Demo for DateTime Chart" Margin="0,2,0,10"
+                               HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand"
+                               FontSize="16" LineBreakMode="WordWrap"/>
+                    </toolkit:SfCartesianChart.Title>
+
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:DateTimeAxis Interval="2" IntervalType="Months" EdgeLabelsVisibilityMode="AlwaysVisible">
+                            <toolkit:DateTimeAxis.LabelStyle>
+                                <toolkit:ChartAxisLabelStyle LabelFormat="MMM"/>
+                            </toolkit:DateTimeAxis.LabelStyle>
+                        </toolkit:DateTimeAxis>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis Interval="700" CrossesAt="{x:Static x:Double.MaxValue}"/>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:AreaSeries ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}"
+                                        XBindingPath="Date" YBindingPath="Size"
+                                        Fill="#66116DF9" Stroke="#116DF9"
+                                        StrokeWidth="3"/>
+                    <toolkit:AreaSeries ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}"
+                                        XBindingPath="Date" YBindingPath="Value"
+                                        Fill="#66CAC4D0" Stroke="#49454F"
+                                        StrokeWidth="3"/>
+
+                    <toolkit:SfCartesianChart.Annotations>
+                        <toolkit:ChartAnnotationCollection>
+                            <toolkit:TextAnnotation X1="2020-3-9" Y1="300" Text="6,360 km">
+                                <toolkit:TextAnnotation.LabelStyle>
+                                    <toolkit:ChartAnnotationLabelStyle FontAttributes="Bold" FontSize="13" TextColor="{AppThemeBinding Light=#116DF9, Dark=White}"/>
+                                </toolkit:TextAnnotation.LabelStyle>
+                            </toolkit:TextAnnotation>
+                            <toolkit:TextAnnotation X1="2020-3-9" Y1="250" Text="March 1 - 9">
+                                <toolkit:TextAnnotation.LabelStyle>
+                                    <toolkit:ChartAnnotationLabelStyle TextColor="{AppThemeBinding Light=#116DF9, Dark=White}"/>
+                                </toolkit:TextAnnotation.LabelStyle>
+                            </toolkit:TextAnnotation>
+
+                            <toolkit:TextAnnotation X1="2020-3-20" Y1="300" Text="22,630 Km">
+                                <toolkit:TextAnnotation.LabelStyle>
+                                    <toolkit:ChartAnnotationLabelStyle FontAttributes="Bold" FontSize="13" TextColor="{AppThemeBinding Light=#116DF9, Dark=White}"/>
+                                </toolkit:TextAnnotation.LabelStyle>
+                            </toolkit:TextAnnotation>
+                            <toolkit:TextAnnotation X1="2020-3-20" Y1="250" Text="March 9 - 20">
+                                <toolkit:TextAnnotation.LabelStyle>
+                                    <toolkit:ChartAnnotationLabelStyle TextColor="{AppThemeBinding Light=#116DF9, Dark=White}"/>
+                                </toolkit:TextAnnotation.LabelStyle>
+                            </toolkit:TextAnnotation>
+
+                        </toolkit:ChartAnnotationCollection>
+                    </toolkit:SfCartesianChart.Annotations>
+                </toolkit:SfCartesianChart>
+                
+                <core:SourceCodeExpander Code="{x:Binding AnnotationForDateTimeChartCodeDescription, Source={x:Reference root}}" />
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>
