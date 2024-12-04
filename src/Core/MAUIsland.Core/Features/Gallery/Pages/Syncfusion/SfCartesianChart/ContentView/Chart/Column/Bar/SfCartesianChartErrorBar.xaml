@@ -5,8 +5,40 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:core="clr-namespace:MAUIsland.Core"
     xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
-    x:Name="root">
-    <VerticalStackLayout Spacing="10">
+    x:Name="root"
+    Loaded="OnComponentLoaded">
+
+    <ContentView.Resources>
+        <x:Array x:Key="ErrorBarChartInfo" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">ErrorBarSeries</strong> indicates the errors or uncertainty in reported values. This will find the possible variations in measurements, and in Chart control these values are displayed as data points. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ The <strong style="color:blue">HorizontalErrorValue</strong> and the <strong style="color:blue">VerticalErrorValue</strong> is used to set the error value(variation) to the series. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Error Bar Chart Information" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="Info" Margin="5">
+                        <CollectionView x:Name="ErrorBarChartCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+
         <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
             <VerticalStackLayout Spacing="10">
                 <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="FillAndExpand"

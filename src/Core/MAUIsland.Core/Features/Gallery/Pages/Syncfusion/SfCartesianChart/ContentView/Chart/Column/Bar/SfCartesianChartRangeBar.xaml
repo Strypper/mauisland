@@ -7,7 +7,10 @@
     xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
     x:Name="root">
 
-    <VerticalStackLayout Spacing="10">
+    <ContentView.Resources>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
         <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
             <VerticalStackLayout Spacing="10">
                 <toolkit:SfCartesianChart IsTransposed="True" HorizontalOptions="Fill" VerticalOptions="FillAndExpand"

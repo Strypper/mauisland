@@ -8,6 +8,7 @@ public partial class SfCartesianChartCandle : ContentView
     public SfCartesianChartCandle()
     {
         InitializeComponent();
+        Info.IsVisible = false;
     }
     #endregion
 
@@ -62,6 +63,27 @@ public partial class SfCartesianChartCandle : ContentView
             ChartAxisLabelStyle labelStyle = new();
             labelStyle.LabelFormat = "dd";
             e.LabelStyle = labelStyle;
+        }
+    }
+
+    private void OnComponentLoaded(object sender, EventArgs e)
+    {
+        var candleChartInfo = (string[])Resources["CandleChartInfo"];
+        CandleChartCollectionView.ItemsSource = candleChartInfo;
+    }
+
+    private async void OnGridTapped(object sender, EventArgs e)
+    {
+        // Rotate the arrow image based on the expanded state
+        if (ArrowImage.Rotation == 0)
+        {
+            await ArrowImage.RotateTo(90);
+            Info.IsVisible = true;
+        }
+        else
+        {
+            await ArrowImage.RotateTo(0);
+            Info.IsVisible = false;
         }
     }
     #endregion

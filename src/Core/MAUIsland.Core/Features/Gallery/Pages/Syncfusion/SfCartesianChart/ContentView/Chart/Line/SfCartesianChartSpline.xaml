@@ -5,9 +5,37 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:core="clr-namespace:MAUIsland.Core"
     xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
-    x:Name="root">
-    
-    <VerticalStackLayout>
+    x:Name="root"
+    Loaded="OnComponentLoaded">
+
+    <ContentView.Resources>
+        <x:Array x:Key="SplineChartInfo" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ The <strong style="color:blue">SplineSeries</strong> resembles line series, but instead of connecting the data points with line segments, the data points are connected by smooth bezier curves. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Spline Chart Information" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="Info" Margin="5">
+                        <CollectionView x:Name="SplineChartCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+
         <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
             <VerticalStackLayout>
                 <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="FillAndExpand"

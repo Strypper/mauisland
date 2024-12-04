@@ -8,6 +8,7 @@ public partial class SfCartesianChartErrorBar : ContentView
     public SfCartesianChartErrorBar()               
     {
         InitializeComponent();
+        Info.IsVisible = false;
     }
     #endregion
 
@@ -94,6 +95,27 @@ public partial class SfCartesianChartErrorBar : ContentView
     #endregion
 
     #region [ Event ]
+    private void OnComponentLoaded(object sender, EventArgs e)
+    {
+        var errorBarChartInfo = (string[])Resources["ErrorBarChartInfo"];
+        ErrorBarChartCollectionView.ItemsSource = errorBarChartInfo;
+    }
+
+    private async void OnGridTapped(object sender, EventArgs e)
+    {
+        // Rotate the arrow image based on the expanded state
+        if (ArrowImage.Rotation == 0)
+        {
+            await ArrowImage.RotateTo(90);
+            Info.IsVisible = true;
+        }
+        else
+        {
+            await ArrowImage.RotateTo(0);
+            Info.IsVisible = false;
+        }
+    }
+
     private void TypePicker_SelectedIndexChanged(object sender, EventArgs e)
     {
         var picker = (Picker)sender;

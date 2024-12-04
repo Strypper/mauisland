@@ -6,6 +6,7 @@ public partial class SfCartesianChartStackingArea : ContentView
     public SfCartesianChartStackingArea()
     {
         InitializeComponent();
+        Info.IsVisible = false;
     }
     #endregion
 
@@ -36,6 +37,29 @@ public partial class SfCartesianChartStackingArea : ContentView
     {
         get => (string)GetValue(CodeDescriptionProperty);
         set => SetValue(CodeDescriptionProperty, value);
+    }
+    #endregion
+
+    #region [ Events ]
+    private void OnComponentLoaded(object sender, EventArgs e)
+    {
+        var stackingAreaChartInfo = (string[])Resources["StackingAreaChartInfo"];
+        StackingAreaChartCollectionView.ItemsSource = stackingAreaChartInfo;
+    }
+
+    private async void OnGridTapped(object sender, EventArgs e)
+    {
+        // Rotate the arrow image based on the expanded state
+        if (ArrowImage.Rotation == 0)
+        {
+            await ArrowImage.RotateTo(90);
+            Info.IsVisible = true;
+        }
+        else
+        {
+            await ArrowImage.RotateTo(0);
+            Info.IsVisible = false;
+        }
     }
     #endregion
 }

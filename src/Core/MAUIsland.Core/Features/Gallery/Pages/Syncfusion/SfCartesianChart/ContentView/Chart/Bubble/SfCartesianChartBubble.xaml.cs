@@ -8,6 +8,7 @@ public partial class SfCartesianChartBubble : ContentView
     public SfCartesianChartBubble()
     {
         InitializeComponent();
+        Info.IsVisible = false;
     }
     #endregion
 
@@ -66,6 +67,26 @@ public partial class SfCartesianChartBubble : ContentView
         else
         {
             e.Label = $"${position}K";
+        }
+    }
+    private void OnComponentLoaded(object sender, EventArgs e)
+    {
+        var bubbleChartInfo = (string[])Resources["BubbleChartInfo"];
+        BubbleChartCollectionView.ItemsSource = bubbleChartInfo;
+    }
+
+    private async void OnGridTapped(object sender, EventArgs e)
+    {
+        // Rotate the arrow image based on the expanded state
+        if (ArrowImage.Rotation == 0)
+        {
+            await ArrowImage.RotateTo(90);
+            Info.IsVisible = true;
+        }
+        else
+        {
+            await ArrowImage.RotateTo(0);
+            Info.IsVisible = false;
         }
     }
     #endregion

@@ -6,6 +6,7 @@ public partial class SfCartesianChartScatter : ContentView
     public SfCartesianChartScatter()
     {
         InitializeComponent();
+        Info.IsVisible = false;
     }
     #endregion
 
@@ -49,6 +50,29 @@ public partial class SfCartesianChartScatter : ContentView
     {
         get => (string)GetValue(CodeDescriptionProperty);
         set => SetValue(CodeDescriptionProperty, value);
+    }
+    #endregion
+
+    #region [ Events ]
+    private void OnComponentLoaded(object sender, EventArgs e)
+    {
+        var scatterChartInfo = (string[])Resources["ScatterChartInfo"];
+        ScatterChartCollectionView.ItemsSource = scatterChartInfo;
+    }
+
+    private async void OnGridTapped(object sender, EventArgs e)
+    {
+        // Rotate the arrow image based on the expanded state
+        if (ArrowImage.Rotation == 0)
+        {
+            await ArrowImage.RotateTo(90);
+            Info.IsVisible = true;
+        }
+        else
+        {
+            await ArrowImage.RotateTo(0);
+            Info.IsVisible = false;
+        }
     }
     #endregion
 }

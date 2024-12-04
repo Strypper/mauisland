@@ -4,12 +4,11 @@ namespace MAUIsland.Core;
 
 public partial class SfCartesianChartSplineRangeArea : ContentView
 {
-    int month = int.MaxValue;
-
     #region [ CTor ]
     public SfCartesianChartSplineRangeArea()
     {
         InitializeComponent();
+        Info.IsVisible = false;
     }
     #endregion
 
@@ -44,9 +43,9 @@ public partial class SfCartesianChartSplineRangeArea : ContentView
     #endregion
 
     #region [ Event ]
-    private void Primary_LabelCreated(object? sender, ChartAxisLabelEventArgs e)
+    private void LabelCreated(object? sender, ChartAxisLabelEventArgs e)
     {
-        int month = int.MaxValue;
+        int month = int.MaxValue; 
 
         DateTime baseDate = new(1899, 12, 30);
         var date = baseDate.AddDays(e.Position);
@@ -64,6 +63,27 @@ public partial class SfCartesianChartSplineRangeArea : ContentView
             ChartAxisLabelStyle labelStyle = new();
             labelStyle.LabelFormat = "dd";
             e.LabelStyle = labelStyle;
+        }
+    }
+
+    private void OnComponentLoaded(object sender, EventArgs e)
+    {
+        var splineRangeAreaChartInfo = (string[])Resources["SplineRangeAreaChartInfo"];
+        SplineRangeAreaChartCollectionView.ItemsSource = splineRangeAreaChartInfo;
+    }
+
+    private async void OnGridTapped(object sender, EventArgs e)
+    {
+        // Rotate the arrow image based on the expanded state
+        if (ArrowImage.Rotation == 0)
+        {
+            await ArrowImage.RotateTo(90);
+            Info.IsVisible = true;
+        }
+        else
+        {
+            await ArrowImage.RotateTo(0);
+            Info.IsVisible = false;
         }
     }
     #endregion

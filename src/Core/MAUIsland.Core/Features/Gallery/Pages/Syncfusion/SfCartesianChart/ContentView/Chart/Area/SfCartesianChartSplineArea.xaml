@@ -5,56 +5,88 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:core="clr-namespace:MAUIsland.Core"
     xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
-    x:Name="root">
+    x:Name="root"
+    Loaded="OnComponentLoaded">
 
-    <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
-        <VerticalStackLayout Spacing="10">
-            <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill" 
+    <ContentView.Resources>
+        <x:Array x:Key="SplineAreaChartInfo" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ The <strong style="color:blue">SplineAreaSeries</strong> connects a series of data points using smooth bezier line curves, with the underlying areas filled. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Spline Area Chart Information" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="Info" Margin="5">
+                        <CollectionView x:Name="SplineAreaChartCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill" 
                                       Margin="0, 0, 20, 0">
-                <toolkit:SfCartesianChart.Legend>
-                    <toolkit:ChartLegend ToggleSeriesVisibility="True"/>
-                </toolkit:SfCartesianChart.Legend>
-                <toolkit:SfCartesianChart.Title>
-                    <Label Text="Spline Area Chart" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16"/>
-                </toolkit:SfCartesianChart.Title>
-                <toolkit:SfCartesianChart.XAxes>
-                    <toolkit:CategoryAxis EdgeLabelsDrawingMode="Shift" Interval="1" ShowMajorGridLines="false">
-                        <toolkit:CategoryAxis.MajorTickStyle>
-                            <toolkit:ChartAxisTickStyle TickSize="5"/>
-                        </toolkit:CategoryAxis.MajorTickStyle>
-                    </toolkit:CategoryAxis>
-                </toolkit:SfCartesianChart.XAxes>
-                <toolkit:SfCartesianChart.YAxes>
-                    <toolkit:NumericalAxis Minimum="0" Maximum="6" Interval="1">
-                        <toolkit:NumericalAxis.Title>
-                            <toolkit:ChartAxisTitle Text="Value in Millions" />
-                        </toolkit:NumericalAxis.Title>
-                        <toolkit:NumericalAxis.LabelStyle>
-                            <toolkit:ChartAxisLabelStyle LabelFormat="0'M" />
-                        </toolkit:NumericalAxis.LabelStyle>
-                        <toolkit:NumericalAxis.AxisLineStyle>
-                            <toolkit:ChartLineStyle StrokeWidth="1"/>
-                        </toolkit:NumericalAxis.AxisLineStyle>
-                    </toolkit:NumericalAxis>
-                </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:SfCartesianChart.Legend>
+                        <toolkit:ChartLegend ToggleSeriesVisibility="True"/>
+                    </toolkit:SfCartesianChart.Legend>
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Spline Area Chart" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16"/>
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:CategoryAxis EdgeLabelsDrawingMode="Shift" Interval="1" ShowMajorGridLines="false">
+                            <toolkit:CategoryAxis.MajorTickStyle>
+                                <toolkit:ChartAxisTickStyle TickSize="5"/>
+                            </toolkit:CategoryAxis.MajorTickStyle>
+                        </toolkit:CategoryAxis>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis Minimum="0" Maximum="6" Interval="1">
+                            <toolkit:NumericalAxis.Title>
+                                <toolkit:ChartAxisTitle Text="Value in Millions" />
+                            </toolkit:NumericalAxis.Title>
+                            <toolkit:NumericalAxis.LabelStyle>
+                                <toolkit:ChartAxisLabelStyle LabelFormat="0'M" />
+                            </toolkit:NumericalAxis.LabelStyle>
+                            <toolkit:NumericalAxis.AxisLineStyle>
+                                <toolkit:ChartLineStyle StrokeWidth="1"/>
+                            </toolkit:NumericalAxis.AxisLineStyle>
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
 
-                <toolkit:SfCartesianChart.Series>
-                    <toolkit:SplineAreaSeries Label="Product A" EnableAnimation="True" EnableTooltip="True" StrokeWidth="1" 
-                                              ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
-                                              XBindingPath="Name" YBindingPath="High" LegendIcon="SeriesType"/>
-                    <toolkit:SplineAreaSeries Label="Product B" EnableAnimation="True" EnableTooltip="True" StrokeWidth="1" 
-                                              ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
-                                              XBindingPath="Name" YBindingPath="Low" LegendIcon="SeriesType"/>
-                    <toolkit:SplineAreaSeries Label="Product C" EnableAnimation="True" EnableTooltip="True" StrokeWidth="1" 
-                                              ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
-                                              XBindingPath="Name" YBindingPath="Value" LegendIcon="SeriesType"/>
-                    <toolkit:SplineAreaSeries Label="Product D" EnableAnimation="True" EnableTooltip="True" StrokeWidth="1" 
-                                              ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
-                                              XBindingPath="Name" YBindingPath="Size" LegendIcon="SeriesType"/>
-                </toolkit:SfCartesianChart.Series>
-            </toolkit:SfCartesianChart>
+                    <toolkit:SfCartesianChart.Series>
+                        <toolkit:SplineAreaSeries Label="Product A" EnableAnimation="True" EnableTooltip="True" StrokeWidth="1" 
+                                                  ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                                  XBindingPath="Name" YBindingPath="High" LegendIcon="SeriesType"/>
+                        <toolkit:SplineAreaSeries Label="Product B" EnableAnimation="True" EnableTooltip="True" StrokeWidth="1" 
+                                                  ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                                  XBindingPath="Name" YBindingPath="Low" LegendIcon="SeriesType"/>
+                        <toolkit:SplineAreaSeries Label="Product C" EnableAnimation="True" EnableTooltip="True" StrokeWidth="1" 
+                                                  ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                                  XBindingPath="Name" YBindingPath="Value" LegendIcon="SeriesType"/>
+                        <toolkit:SplineAreaSeries Label="Product D" EnableAnimation="True" EnableTooltip="True" StrokeWidth="1" 
+                                                  ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                                  XBindingPath="Name" YBindingPath="Size" LegendIcon="SeriesType"/>
+                    </toolkit:SfCartesianChart.Series>
+                </toolkit:SfCartesianChart>
 
-            <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}" CodeType="Xaml"/>
-        </VerticalStackLayout>
-    </Border>
+                <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}" CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+
+
 </ContentView>

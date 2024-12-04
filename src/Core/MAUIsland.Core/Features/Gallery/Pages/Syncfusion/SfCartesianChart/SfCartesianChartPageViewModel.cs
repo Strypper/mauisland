@@ -162,6 +162,10 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
 
     #region [ String Properties ]
     [ObservableProperty]
+    string xamlNamespace =
+        "xmlns:toolkit=\"http://schemas.syncfusion.com/maui/toolkit\"";
+
+    [ObservableProperty]
     string basicSfCartesianChartXamlCode =
         "<toolkit:SfCartesianChart>\r\n" +
         "    <toolkit:SfCartesianChart.XAxes>\r\n" +

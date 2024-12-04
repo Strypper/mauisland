@@ -52,15 +52,11 @@
             </x:String>
         </x:Array>
 
-        <x:String x:Key="AreaChartsHeader">
-            The Syncfusion Toolkit for .NET MAUI Cartesian Chart (SfCartesianChart) provides an efficient way to visualize data with a focus on development productivity, simplicity, and high user interaction. It supports a wide range of charting features to visualize large data sets, offering flexibility in data binding and extensive user customization.
-        </x:String>
-
-        <x:String x:Key="AreaChartsKeyFeaturesHeader">
+        <x:String x:Key="SfCartesianChartKeyFeaturesHeader">
             Key features:
         </x:String>
 
-        <x:Array x:Key="AreaChartsKeyFeatures" Type="{x:Type x:String}">
+        <x:Array x:Key="SfCartesianChartKeyFeatures" Type="{x:Type x:String}">
             <x:String>
                 <![CDATA[ <strong style="color:blue">Versatile Cartesian Charts</strong>: Supports multiple series types, each offering a unique way to represent data with an emphasis on user-friendly and visually appealing UI components. ]]>
             </x:String>
@@ -77,6 +73,10 @@
                 <![CDATA[ <strong style="color:blue">Customizable UI</strong>: Offers extensive customization options for chart features, including axes, labels, legends, and series, allowing users to tailor the chart’s appearance and behavior. ]]>
             </x:String>
         </x:Array>
+
+        <x:String x:Key="SetupToolkit">
+            Setup Syncfusion Toolkit
+        </x:String>
 
         <x:String x:Key="AnnotationsHeader">
             SfCartesianChart provides annotation support that allows you to mark specific areas of interest in the chart area. This feature enables you to add text, images, and custom views using the following annotations.
@@ -153,28 +153,30 @@
         <VerticalStackLayout Spacing="20">
 
             <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <Label Text="{x:StaticResource ControlInfo}" />
-            </Border>
-
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
-                    <!--<Label Text="{x:StaticResource AreaChartsHeader}" />-->
-                    <CollectionView Header="{x:StaticResource AreaChartsKeyFeaturesHeader}"
-                                    ItemsSource="{x:StaticResource AreaChartsKeyFeatures}"
+                    <Label Text="{x:StaticResource ControlInfo}" />
+                    <CollectionView Header="{x:StaticResource SfCartesianChartKeyFeaturesHeader}"
+                                    ItemsSource="{x:StaticResource SfCartesianChartKeyFeatures}"
                                     Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
             </Border>
-
+            
             <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout>
-                    <Label Text="Setup Lybrary"/>
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}"  Text="{x:StaticResource SetupToolkit}" />
                     <Label Text="To get syncfusion open source Chart Control you can use this instead"/>
+                    <Label Text="{x:Binding XamlNamespace}" TextColor="Blue"/>
                 </VerticalStackLayout>
             </Border>
 
             <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Simple Cartesian Chart" />
                     <toolkit:SfCartesianChart>
+                        <toolkit:SfCartesianChart.Title>
+                            <Label Text="Simple Sample Chart" FontSize="16" 
+                                   HorizontalTextAlignment="Center" HorizontalOptions="Fill"  VerticalOptions="Center" />
+                        </toolkit:SfCartesianChart.Title>
                         <toolkit:SfCartesianChart.XAxes>
                             <toolkit:CategoryAxis>
                                 <toolkit:CategoryAxis.Title>
@@ -190,13 +192,12 @@
                             </toolkit:NumericalAxis>
                         </toolkit:SfCartesianChart.YAxes>
 
-                        <toolkit:ColumnSeries
-                            EnableAnimation="True"
-                            ItemsSource="{x:Binding Persons}"
-                            PaletteBrushes="{x:Binding PalletBrushes, Mode=OneWay}"
-                            SelectionBehavior="{x:StaticResource SfCartesianChartSelectionBrush}"
-                            XBindingPath="Name"
-                            YBindingPath="Exp" />
+                        <toolkit:ColumnSeries EnableAnimation="True"
+                                              ItemsSource="{x:Binding Persons}"
+                                              PaletteBrushes="{x:Binding PalletBrushes, Mode=OneWay}"
+                                              SelectionBehavior="{x:StaticResource SfCartesianChartSelectionBrush}"
+                                              XBindingPath="Name"
+                                              YBindingPath="Exp" />
                     </toolkit:SfCartesianChart>
 
                     <core:SourceCodeExpander Code="{x:Binding BasicSfCartesianChartXamlCode}" />

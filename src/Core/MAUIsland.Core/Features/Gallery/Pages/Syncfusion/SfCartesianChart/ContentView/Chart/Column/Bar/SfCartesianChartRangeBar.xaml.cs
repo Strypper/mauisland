@@ -38,4 +38,7 @@ public partial class SfCartesianChartRangeBar : ContentView
         set => SetValue(CodeDescriptionProperty, value);
     }
     #endregion}
+
+    #region [ Events ]
+    #endregion
 }

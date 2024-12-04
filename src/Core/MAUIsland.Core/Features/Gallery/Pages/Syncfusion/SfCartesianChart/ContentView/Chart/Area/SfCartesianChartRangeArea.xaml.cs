@@ -8,7 +8,9 @@ public partial class SfCartesianChartRangeArea : ContentView
     public SfCartesianChartRangeArea()
 	{
 		InitializeComponent();
-	}
+        Info.IsVisible = false;
+
+    }
     #endregion
 
     #region [ Bindable Properties ]
@@ -62,6 +64,29 @@ public partial class SfCartesianChartRangeArea : ContentView
             ChartAxisLabelStyle labelStyle = new();
             labelStyle.LabelFormat = "dd";
             e.LabelStyle = labelStyle;
+        }
+    }
+    #endregion
+
+    #region [ Events ]
+    private void OnComponentLoaded(object sender, EventArgs e) 
+    {
+        var rangeAreaChartInfo = (string[])Resources["RangeAreaChartInfo"];
+        RangeAreaChartCollectionView.ItemsSource = rangeAreaChartInfo; 
+    }
+
+    private async void OnGridTapped(object sender, EventArgs e)
+    {
+        // Rotate the arrow image based on the expanded state
+        if (ArrowImage.Rotation == 0)
+        {
+            await ArrowImage.RotateTo(90);
+            Info.IsVisible = true;
+        }
+        else
+        {
+            await ArrowImage.RotateTo(0);
+            Info.IsVisible = false;
         }
     }
     #endregion
