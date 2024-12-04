@@ -6,6 +6,14 @@ public partial class SyncfusionCardContentView : ContentView
     public SyncfusionCardContentView()
     {
         InitializeComponent();
+
+        this.PropertyChanged += (sender, args) =>
+        {
+            if (args.PropertyName == nameof(ComponentData))
+            {
+                UpdateIsFreeControl();
+            }
+        };
     }
     #endregion
 
@@ -29,6 +37,12 @@ public partial class SyncfusionCardContentView : ContentView
         default(IGalleryCardInfo)
     );
 
+    public static readonly BindableProperty IsFreeControlProperty = BindableProperty.Create(
+        nameof(IsFreeControl),
+        typeof(bool),
+        typeof(SyncfusionCardContentView),
+        false);
+
     public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
     #endregion
 
@@ -38,6 +52,30 @@ public partial class SyncfusionCardContentView : ContentView
         get => (IGalleryCardInfo)GetValue(ComponentDataProperty);
         set => SetValue(ComponentDataProperty, value);
     }
+
+    public bool IsFreeControl
+    {
+        get => (bool)GetValue(IsFreeControlProperty);
+        set => SetValue(IsFreeControlProperty, value);
+    }
+
+    public List<string> FreeControls { get; } = new List<string> 
+    { 
+        "SfDataGrid", 
+        "SfCartesianChart", 
+        "SfCircularChart", 
+        "SfFunnelChart", 
+        "SfPyramidChart", 
+        "SfPolarChart", 
+        "SfRadialGauge", 
+        "SfLinearGauge", 
+        "SfDigitalGauge", 
+        "SfMap", 
+        "SfTreeMap", 
+        "SfListView", 
+        "SfPopup", 
+        "SfTextInputLayout" 
+    };
     #endregion
 
     #region [Event Handlers]
@@ -49,6 +87,20 @@ public partial class SyncfusionCardContentView : ContentView
     private void DetailInNewWindow_Clicked(object sender, EventArgs e)
     {
         DetailInNewWindowClicked?.Invoke(ComponentData);
+    }
+    #endregion
+
+    #region [ Methods ]
+    private void UpdateIsFreeControl()
+    {
+        if (ComponentData != null)
+        {
+            IsFreeControl = FreeControls?.Contains(ComponentData.ControlName) ?? true;
+        }
+        else
+        {
+            IsFreeControl = false;
+        }
     }
     #endregion
 }

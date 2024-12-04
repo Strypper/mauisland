@@ -19,9 +19,7 @@ public partial class AppShell : Shell
         InitializeComponent();
 
         appInfo = ServiceHelper.GetService<IAppInfo>();
-        appSettings = ServiceHelper.GetService<IConfiguration>()
-                                   .GetRequiredSection("AppSettings")
-                                   .Get<AppSettings>();
+        appSettings = ServiceHelper.GetService<AppSettings>();
 
         RegisterRoutes();
         WriteAppVersion();
