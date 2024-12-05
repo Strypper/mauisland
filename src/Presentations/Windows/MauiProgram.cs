@@ -51,6 +51,14 @@ public static class MauiProgram
             .ConfigureSyncfusionCore()
             .UseBarcodeReader();
 
+#if DEBUG
+        builder.Services.AddBlazorWebViewDeveloperTools();
+
+        builder.Services.AddLogging(logging =>
+        {
+            logging.AddFilter("Microsoft.AspNetCore.Components.WebView", LogLevel.Trace);
+            logging.AddDebug();
+        });
 
 #if DEBUG
         builder.Logging.AddDebug();
@@ -135,6 +143,7 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<IAppInfo>(AppInfo.Current);
         builder.Services.AddSingleton<IFolderPicker>(FolderPicker.Default);
+        builder.Services.AddMauiBlazorWebView();
 
         builder.Configuration.GetSection("AppSettings");
 

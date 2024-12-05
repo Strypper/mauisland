@@ -39,7 +39,7 @@
                         HeightRequest="250"/>
             </VerticalStackLayout>
 
-            <Button Clicked="Button_Clicked" Text="Move" />
+        <Button Clicked="Button_Clicked" Text="Move" />
 
         </VerticalStackLayout>
 
