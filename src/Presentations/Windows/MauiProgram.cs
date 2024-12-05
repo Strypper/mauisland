@@ -3,6 +3,7 @@ using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Storage;
 using MAUIsland.Home;
+using MAUIsland.ResumesTemplate;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -61,6 +62,10 @@ public static class MauiProgram
 
         builder.InitCore(gitHubFeatureAccessToken: appSettings.GitHubAccessToken);
 
+        //Temp way for blazor web view, razor and xaml shared states only work with singleton currently
+        //builder.Services.AddSingleton<BlazorWebViewPageViewModel>();
+        builder.Services.AddSingleton<ResumeDetailPageViewModel>();
+
         return builder.Build();
     }
 
@@ -116,7 +121,6 @@ public static class MauiProgram
 
         return builder;
     }
-
 
     static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
     {
@@ -282,7 +286,6 @@ public static class MauiProgram
 
         return builder;
     }
-    
 
     static IServiceCollection AddPopup<TPopup, TViewModel>(this IServiceCollection services, string name)
     where TPopup : BasePopup where TViewModel : BaseViewModel

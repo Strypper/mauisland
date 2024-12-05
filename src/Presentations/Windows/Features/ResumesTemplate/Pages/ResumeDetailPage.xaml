@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<core:BasePage
+    x:Class="MAUIsland.ResumesTemplate.ResumeDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:local="clr-namespace:MAUIsland.ResumesTemplate"
+    x:DataType="local:ResumeDetailPageViewModel">
+    <Grid ColumnDefinitions="*,1000">
+        <VerticalStackLayout Margin="20" Spacing="20">
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Your name"
+                       TextColor="White"/>
+
+                <Entry x:Name="userName"
+                       Text="{x:Binding UserName}"
+                       BackgroundColor="#2F2F2F"
+                       Placeholder=""/>
+            </VerticalStackLayout>
+
+           
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Your position"
+                       TextColor="White"/>
+                <Entry x:Name="position"
+                       BackgroundColor="#2F2F2F"
+                       Placeholder=""/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Description"
+                       TextColor="White"/>
+                <Editor x:Name="description"
+                        BackgroundColor="#2F2F2F"
+                        Placeholder=""
+                        HeightRequest="250"/>
+            </VerticalStackLayout>
+
+            <Button Clicked="Button_Clicked" Text="Move" />
+
+        </VerticalStackLayout>
+
+        <BlazorWebView
+            x:Name="BlazorWebViewElement"
+            Grid.Column="1"
+            HostPage="Blazor\hosting\index.html"
+            Loaded="BlazorWebViewElement_Loaded"
+            StartPath="{x:Binding BlazorWebViewStartPath}">
+            <BlazorWebView.RootComponents>
+                <RootComponent ComponentType="{x:Type app:Routes}" Selector="#app" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
+    </Grid>
+</core:BasePage>
