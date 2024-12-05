@@ -207,7 +207,7 @@
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Chart\Bubble\SfCartesianChartBubble.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Chart\Candle\SfCartesianChartCandle.xaml">
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Chart\Financial\SfCartesianChartCandle.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Chart\Column\Bar\SfCartesianChartBar.xaml">
@@ -237,7 +237,13 @@
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Chart\Column\SfCartesianChartStackingColumn100.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Chart\Financial\SfCartesianChartOHLC.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Chart\Histogram\SfCartesianChartHistogram.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Chart\Line\SfCartesianChartFastLine.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Chart\Line\SfCartesianChartLine.xaml">

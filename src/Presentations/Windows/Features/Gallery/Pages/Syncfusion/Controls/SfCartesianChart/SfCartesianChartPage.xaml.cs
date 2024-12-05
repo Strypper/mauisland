@@ -27,7 +27,7 @@ public partial class SfCartesianChartPage : IGalleryPage
         ViewModel.LoadHistogramDefaultChartOptionCommand.Execute(null);
         ViewModel.LoadBoxPlotDefaultChartOptionCommand.Execute(null);
         ViewModel.LoadBubbleDefaultChartOptionCommand.Execute(null);
-        ViewModel.LoadCandleDefaultChartOptionCommand.Execute(null);
+        ViewModel.LoadFinancialDefaultChartOptionCommand.Execute(null);
         ViewModel.LoadWaterfallDefaultChartOptionCommand.Execute(null);
     }
 
@@ -110,13 +110,13 @@ public partial class SfCartesianChartPage : IGalleryPage
                         BubbleChartChanged(bubbleSelectedItem.ToString());
                     }
                     break;
-                case "Candle":
-                    CandleChartMenuView.IsVisible = true;
-                    CandleChartsCollectionView.IsVisible = true;
-                    var candleSelectedItem = CandleChartsCollectionView.SelectedItem ?? null;
-                    if (candleSelectedItem != null)
+                case "Financial":
+                    FinancialChartMenuView.IsVisible = true;
+                    FinancialChartsCollectionView.IsVisible = true;
+                    var financialSelectedItem = FinancialChartsCollectionView.SelectedItem ?? null;
+                    if (financialSelectedItem != null)
                     {
-                        CandleChartChanged(candleSelectedItem.ToString());
+                        FinancialChartChanged(financialSelectedItem.ToString());
                     }
                     break;
                 case "Waterfall":
@@ -189,12 +189,12 @@ public partial class SfCartesianChartPage : IGalleryPage
         HistogramChartChanged(selectedOption);
     }
 
-    private void OnCandleChartSelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void OnFinancialChartSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        CandleDefaultView();
+        FinancialDefaultView();
 
         var selectedOption = e.CurrentSelection.FirstOrDefault() as string;
-        CandleChartChanged(selectedOption);
+        FinancialChartChanged(selectedOption);
     }
 
     private void OnWaterfallChartSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -233,8 +233,8 @@ public partial class SfCartesianChartPage : IGalleryPage
         HistogramChartMenuView.IsVisible = false;
         HistogramChartsCollectionView.IsVisible = false;
 
-        CandleChartMenuView.IsVisible = false;
-        CandleChartsCollectionView.IsVisible = false;
+        FinancialChartMenuView.IsVisible = false;
+        FinancialChartsCollectionView.IsVisible = false;
 
         WaterfallChartMenuView.IsVisible = false;
         WaterfallChartsCollectionView.IsVisible = false;
@@ -247,7 +247,7 @@ public partial class SfCartesianChartPage : IGalleryPage
         BubbleDefaultView();
         BoxPlotDefaultView();
         HistogramDefaultView();
-        CandleDefaultView();
+        FinancialDefaultView();
         WaterfallDefaultView();
     }
 
@@ -256,9 +256,10 @@ public partial class SfCartesianChartPage : IGalleryPage
         WaterfallView.IsVisible = false;
     }
 
-    private void CandleDefaultView()
+    private void FinancialDefaultView()
     {
         CandleView.IsVisible = false;
+        OHLCView.IsVisible = false;
     }
 
     private void HistogramDefaultView()
@@ -287,9 +288,12 @@ public partial class SfCartesianChartPage : IGalleryPage
         SplineView.IsVisible = false;
         StepLineView.IsVisible = false;
         StackingLineView.IsVisible = false;
-        StackingLineView100.IsVisible = false;
+        StackingLine100View.IsVisible = false;
+        FastLineView.IsVisible = false;
     }
 
+    
+    
     private void ColumnDefaultView()
     {
         ColumnView.IsVisible = false;
@@ -384,7 +388,9 @@ public partial class SfCartesianChartPage : IGalleryPage
                     break;
                 case "Stacking Line": StackingLineView.IsVisible = true;
                     break;
-                case "Stacking Line 100": StackingLineView100.IsVisible = true;
+                case "Stacking Line 100": StackingLine100View.IsVisible = true;
+                    break;
+                case "Fast Line": FastLineView.IsVisible = true;
                     break;
             }
         }
@@ -396,8 +402,7 @@ public partial class SfCartesianChartPage : IGalleryPage
         {
             switch (value)
             {
-                case "Scatter":
-                    ScatterView.IsVisible = true;
+                case "Scatter": ScatterView.IsVisible = true;
                     break;
             }
         }
@@ -409,8 +414,7 @@ public partial class SfCartesianChartPage : IGalleryPage
         {
             switch (value)
             {
-                case "Bubble":
-                    BubbleView.IsVisible = true;
+                case "Bubble": BubbleView.IsVisible = true;
                     break;
             }
         }
@@ -422,8 +426,7 @@ public partial class SfCartesianChartPage : IGalleryPage
         {
             switch (value)
             {
-                case "Box And Whisker":
-                    BoxAndWhiskerView.IsVisible = true;
+                case "Box And Whisker": BoxAndWhiskerView.IsVisible = true;
                     break;
             }
         }
@@ -435,21 +438,21 @@ public partial class SfCartesianChartPage : IGalleryPage
         {
             switch (value)
             {
-                case "Histogram":
-                    HistogramView.IsVisible = true;
+                case "Histogram": HistogramView.IsVisible = true;
                     break;
             }
         }
     }
 
-    private void CandleChartChanged(string value)
+    private void FinancialChartChanged(string value)
     {
         if (value != null)
         {
             switch (value)
             {
-                case "Candle":
-                    CandleView.IsVisible = true;
+                case "Candle": CandleView.IsVisible = true;
+                    break;
+                case "OHLC": OHLCView.IsVisible = true;
                     break;
             }
         }
@@ -461,8 +464,7 @@ public partial class SfCartesianChartPage : IGalleryPage
         {
             switch (value)
             {
-                case "Waterfall":
-                    WaterfallView.IsVisible = true;
+                case "Waterfall": WaterfallView.IsVisible = true;
                     break;
             }
         }

@@ -59,6 +59,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     ObservableCollection<SfCartesianChartModel> thirdLine;
 
     [ObservableProperty]
+    ObservableCollection<SfCartesianChartModel> fastLine;
+
+    [ObservableProperty]
     ObservableCollection<SfCartesianChartModel> firstScatter;
 
     [ObservableProperty]
@@ -74,7 +77,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     ObservableCollection<SfCartesianChartModel> histogram;
 
     [ObservableProperty]
-    ObservableCollection<SfCartesianChartModel> candle;
+    ObservableCollection<SfCartesianChartModel> financial;
 
     [ObservableProperty]
     ObservableCollection<SfCartesianChartModel> waterfall;
@@ -107,7 +110,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     ObservableCollection<string> bubbleChartOptions;
 
     [ObservableProperty]
-    ObservableCollection<string> candleChartOptions;
+    ObservableCollection<string> financialChartOptions;
 
     [ObservableProperty]
     ObservableCollection<string> waterfallChartOptions;
@@ -146,7 +149,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     string bubbleSelectedOption;
 
     [ObservableProperty]
-    string candleSelectedOption;
+    string financialSelectedOption;
 
     [ObservableProperty]
     string waterfallSelectedOption;
@@ -1679,6 +1682,44 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "</toolkit:SfCartesianChart>";
 
     [ObservableProperty]
+    string cartesianFastLineChartXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                            Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Fast Line Chart\" Margin=\"0,0,0,5\" \r\n" +
+        "                HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" \r\n" +
+        "                VerticalOptions=\"Center\" FontSize=\"16\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:DateTimeAxis ShowMinorGridLines=\"False\" ShowMajorGridLines=\"False\" \r\n" +
+        "                            IntervalType=\"Years\" Interval=\"15\">\r\n" +
+        "            <toolkit:DateTimeAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Text=\"X-Axis\"/>\r\n" +
+        "            </toolkit:DateTimeAxis.Title>\r\n" +
+        "            <toolkit:DateTimeAxis.LabelStyle>\r\n" +
+        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"yyyy\"/>\r\n" +
+        "            </toolkit:DateTimeAxis.LabelStyle>\r\n" +
+        "        </toolkit:DateTimeAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis>\r\n" +
+        "            <toolkit:NumericalAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Text=\"Y-Axis\"/>\r\n" +
+        "            </toolkit:NumericalAxis.Title>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "        <toolkit:ChartZoomPanBehavior EnablePinchZooming=\"True\" EnableDoubleTap=\"True\" \r\n" +
+        "                                        EnablePanning=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:FastLineSeries ItemsSource=\"{x:Binding FastLine}\"\r\n" +
+        "                                EnableAntiAliasing=\"True\"\r\n" +
+        "                                XBindingPath=\"Date\" YBindingPath=\"Value\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
     string cartesianScatterChartXamlCode =
         "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\" \r\n" +
         "                        Margin=\"0, 0, 20, 0\">\r\n" +
@@ -1862,7 +1903,10 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "        <Label Text=\"Enable Solid Candles\" VerticalTextAlignment=\"Center\"/>\r\n" +
         "        <CheckBox x:Name=\"CheckBox\" IsChecked=\"False\" VerticalOptions=\"Start\" Margin=\"30,0,0,0\" />\r\n" +
         "    </HorizontalStackLayout>\r\n\r\n" +
-        "    <toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\">\r\n" +
+        "    <toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\" Margin=\"0, 0, 20, 0\">\r\n" +
+        "        <toolkit:SfCartesianChart.Title>\r\n" +
+        "            <Label Text=\"Candle Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "        </toolkit:SfCartesianChart.Title>\r\n" +
         "        <toolkit:SfCartesianChart.XAxes>\r\n" +
         "            <toolkit:DateTimeAxis AutoScrollingMode=\"End\" AutoScrollingDeltaType=\"Months\" LabelCreated=\"LabelCreated\" ShowMajorGridLines=\"False\" >\r\n" +
         "                <toolkit:DateTimeAxis.LabelStyle>\r\n" +
@@ -1890,6 +1934,38 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "        </toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
         "    </toolkit:SfCartesianChart>\r\n" +
         "</VerticalStackLayout>";
+
+    [ObservableProperty]
+    string cartesianOHLCChartXamlCode =
+        "<toolkit:SfCartesianChart  HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\"\r\n" +
+        "                            Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"OHLC Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:DateTimeAxis  AutoScrollingMode=\"End\" AutoScrollingDeltaType=\"Months\" LabelCreated=\"LabelCreated\" ShowMajorGridLines=\"False\" >\r\n" +
+        "            <toolkit:DateTimeAxis.LabelStyle>\r\n" +
+        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"MMM-dd\"/>\r\n" +
+        "            </toolkit:DateTimeAxis.LabelStyle>\r\n" +
+        "        </toolkit:DateTimeAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMinorGridLines=\"True\" Maximum=\"110\" x:Name=\"YAxis\" IsVisible=\"True\">\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "            <toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"$##.##\"/>\r\n" +
+        "            </toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:HiLoOpenCloseSeries ItemsSource=\"{x:Binding ComponentData, Source={x:Reference root}}\"\r\n" +
+        "                                    XBindingPath=\"Date\" Open=\"Value\" High=\"High\" Low=\"Low\" Close=\"Size\"\r\n" +
+        "                                    EnableAnimation=\"True\" EnableTooltip=\"True\"/>\r\n" +
+        "    <toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "        <toolkit:ChartZoomPanBehavior x:Name=\"ZoomPan\" ZoomMode=\"X\" EnableDoubleTap=\"False\" EnablePanning=\"True\" EnablePinchZooming=\"True\"></toolkit:ChartZoomPanBehavior>\r\n" +
+        "    </toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "</toolkit:SfCartesianChart>";
 
     [ObservableProperty]
     string cartesianWaterfallChartXamlCode =
@@ -2075,13 +2151,13 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     }
 
     [RelayCommand]
-    async Task LoadCandleDefaultChartOption()
+    async Task LoadFinancialDefaultChartOption()
     {
-        if (CandleChartOptions != null)
+        if (FinancialChartOptions != null)
         {
-            if (string.IsNullOrEmpty(CandleSelectedOption))
+            if (string.IsNullOrEmpty(FinancialSelectedOption))
             {
-                CandleSelectedOption = CandleChartOptions.FirstOrDefault()!;
+                FinancialSelectedOption = FinancialChartOptions.FirstOrDefault()!;
             }
         }
     }
@@ -2265,6 +2341,15 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "2011", Value = 90 }
         };
 
+        var randomNumber = new Random();
+        FastLine = new ObservableCollection<SfCartesianChartModel>(
+            Enumerable.Range(0, 500).Select(item => 
+            { 
+                var date = new DateTime(1900, 1, 1).AddHours(6 * item); 
+                var value = 100 + Enumerable.Range(0, item).Sum(j => randomNumber.NextDouble() * (randomNumber.NextDouble() > 0.5 ? 1 : -1));
+                return new SfCartesianChartModel { Date = date, Value = Math.Round(value, 2) }; 
+            }));
+
         FirstScatter = new ObservableCollection<SfCartesianChartModel>()
         {
             new SfCartesianChartModel() { Value = 161, Size = 65 }, new SfCartesianChartModel() { Value = 150, Size = 65 }, new SfCartesianChartModel() { Value = 155, Size = 65 },
@@ -2397,7 +2482,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Value = 95.750, Size = 0 }, new SfCartesianChartModel() { Value = 95.250, Size = 0 }
         };
 
-        Candle = new ObservableCollection<SfCartesianChartModel>
+        Financial = new ObservableCollection<SfCartesianChartModel>
         {
             new SfCartesianChartModel() { Date = new DateTime(2020, 12, 31), High = 97.87, Low = 95.78, Value = 97.07, Size = 96.97 },
             new SfCartesianChartModel() { Date = new DateTime(2020, 12, 30), High = 98.66, Low = 96.55, Value = 96.95, Size = 97.18 },
@@ -2452,7 +2537,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
 
         ChartOptions = new ObservableCollection<string>
         {
-            "Area", "Column", "Line", "Scatter", "Histogram", "Box Plot", "Bubble", "Candle", "Waterfall"
+            "Area", "Column", "Line", "Scatter", "Histogram", "Box Plot", "Bubble", "Financial", "Waterfall"
         };
 
         AreaChartOptions = new ObservableCollection<string>
@@ -2472,7 +2557,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
 
         LineChartOptions = new ObservableCollection<string>
         {
-            "Line", "Spline", "Step Line", "Stacking Line", "Stacking Line 100"
+            "Line", "Spline", "Step Line", "Stacking Line", "Stacking Line 100", "Fast Line"
         };
 
         ScatterChartOptions = new ObservableCollection<string>
@@ -2495,9 +2580,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             "Bubble",
         };
 
-        CandleChartOptions = new ObservableCollection<string>
+        FinancialChartOptions = new ObservableCollection<string>
         {
-            "Candle",
+            "Candle", "OHLC"
         };
 
         WaterfallChartOptions = new ObservableCollection<string>

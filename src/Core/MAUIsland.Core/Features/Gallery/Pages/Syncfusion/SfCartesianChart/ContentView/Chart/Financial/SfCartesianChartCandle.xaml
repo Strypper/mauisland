@@ -37,7 +37,7 @@
         </Border>
 
         <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
-            <VerticalStackLayout Spacing="10">
+            <VerticalStackLayout Spacing="5">
                 <HorizontalStackLayout HorizontalOptions="End">
                     <Label Text="Enable Solid Candles" VerticalTextAlignment="Center"/>
                     <CheckBox x:Name="CheckBox" IsChecked="False" VerticalOptions="Start" Margin="30,0,0,0" />
@@ -45,6 +45,9 @@
 
                 <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill"
                                           Margin="0, 0, 20, 0">
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Candle Chart" Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                    </toolkit:SfCartesianChart.Title>
                     <toolkit:SfCartesianChart.XAxes>
                         <toolkit:DateTimeAxis AutoScrollingMode="End" AutoScrollingDeltaType="Months" LabelCreated="LabelCreated" ShowMajorGridLines="False" >
                             <toolkit:DateTimeAxis.LabelStyle>
@@ -71,9 +74,9 @@
                         <toolkit:ChartZoomPanBehavior ZoomMode="X" EnableDoubleTap="False" EnablePanning="True" EnablePinchZooming="True"/>
                     </toolkit:SfCartesianChart.ZoomPanBehavior>
                 </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
             </VerticalStackLayout>
         </Border>
     </VerticalStackLayout>
-
-
 </ContentView>

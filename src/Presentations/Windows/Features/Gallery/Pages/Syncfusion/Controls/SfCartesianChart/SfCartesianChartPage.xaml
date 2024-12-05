@@ -345,14 +345,14 @@
                                     </CollectionView>
                                 </VerticalStackLayout>
                             </Border>
-                            <Border x:Name="CandleChartMenuView" Margin="5" Padding="10" StrokeShape="RoundRectangle 4">
+                            <Border x:Name="FinancialChartMenuView" Margin="5" Padding="10" StrokeShape="RoundRectangle 4">
                                 <VerticalStackLayout>
-                                    <Label Text="Candle Charts" FontSize="20" TextColor="White"/>
-                                    <CollectionView x:Name="CandleChartsCollectionView"
+                                    <Label Text="Financial Charts" FontSize="20" TextColor="White"/>
+                                    <CollectionView x:Name="FinancialChartsCollectionView"
                                                     SelectionMode="Single" 
-                                                    ItemsSource="{x:Binding CandleChartOptions}" 
-                                                    SelectedItem="{x:Binding CandleSelectedOption}"
-                                                    SelectionChanged="OnCandleChartSelectionChanged"
+                                                    ItemsSource="{x:Binding FinancialChartOptions}" 
+                                                    SelectedItem="{x:Binding FinancialSelectedOption}"
+                                                    SelectionChanged="OnFinancialChartSelectionChanged"
                                                     ItemTemplate="{x:StaticResource ChartCollectionTemplate}">
                                         <CollectionView.ItemsLayout>
                                             <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5"/>
@@ -447,11 +447,13 @@
                                                                SecondLineComponentData="{x:Binding SecondLine}"
                                                                ThirdLineComponentData="{x:Binding ThirdLine}"
                                                                CodeDescription="{x:Binding CartesianStepLineChartXamlCode}"/>
-                            <core:SfCartesianChartStackingLine100 x:Name="StackingLineView100" 
+                            <core:SfCartesianChartStackingLine100 x:Name="StackingLine100View" 
                                                                   FirstLineComponentData="{x:Binding FirstLine}"
                                                                   SecondLineComponentData="{x:Binding SecondLine}"
                                                                   ThirdLineComponentData="{x:Binding ThirdLine}"
                                                                   CodeDescription="{x:Binding CartesianStackingLine100ChartXamlCode}"/>
+                            <core:SfCartesianChartFastLine x:Name="FastLineView" ComponentData="{x:Binding FastLine}" 
+                                                           CodeDescription="{x:Binding CartesianFastLineChartXamlCode}"/>
 
                             <!--Scatter-->
                             <core:SfCartesianChartScatter x:Name="ScatterView" 
@@ -475,10 +477,13 @@
                                                             ComponentData="{x:Binding Histogram}" 
                                                             CodeDescription="{x:Binding CartesianHistogramChartXamlCode}"/>
 
-                            <!--Candle-->
+                            <!--Financial-->
                             <core:SfCartesianChartCandle x:Name="CandleView" 
-                                                         ComponentData="{x:Binding Candle}" 
+                                                         ComponentData="{x:Binding Financial}" 
                                                          CodeDescription="{x:Binding CartesianCandleChartXamlCode}"/>
+                            <core:SfCartesianChartOHLC x:Name="OHLCView"
+                                                       ComponentData="{x:Binding Financial}"
+                                                       CodeDescription="{x:Binding CartesianOHLCChartXamlCode}"/>
 
                             <!--Waterfall-->
                             <core:SfCartesianChartWaterfall x:Name="WaterfallView" 
