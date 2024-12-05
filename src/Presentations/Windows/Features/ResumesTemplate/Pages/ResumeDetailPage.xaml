@@ -46,7 +46,7 @@
         <BlazorWebView
             x:Name="BlazorWebViewElement"
             Grid.Column="1"
-            HostPage="Blazor\hosting\index.html"
+            HostPage="wwwroot\index.html"
             Loaded="BlazorWebViewElement_Loaded"
             StartPath="{x:Binding BlazorWebViewStartPath}">
             <BlazorWebView.RootComponents>

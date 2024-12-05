@@ -6,7 +6,7 @@ public partial class ResumeDetailPageViewModel(IAppNavigator appNavigator) : Nav
     #region [ Properties ]
 
     [ObservableProperty]
-    string blazorWebViewStartPath = "/resumes-template";
+    string blazorWebViewStartPath = "/resumes-template/dotnet-template";
 
     [ObservableProperty]
     string userName = "Jonh Doe";

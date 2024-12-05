@@ -72,7 +72,7 @@ public static class MauiProgram
         builder.InitCore(gitHubFeatureAccessToken: appSettings.GitHubAccessToken);
 
         //Temp way for blazor web view, razor and xaml shared states only work with singleton currently
-        //builder.Services.AddSingleton<BlazorWebViewPageViewModel>();
+        builder.Services.AddSingleton<BlazorWebViewPageViewModel>();
         builder.Services.AddSingleton<ResumeDetailPageViewModel>();
 
         return builder.Build();

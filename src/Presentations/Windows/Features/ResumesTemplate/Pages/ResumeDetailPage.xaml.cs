@@ -29,7 +29,7 @@ public partial class ResumeDetailPage
         await BlazorWebViewElement.TryDispatchAsync(sp =>
         {
             var navMan = sp.GetRequiredService<NavigationManager>();
-            navMan.NavigateTo("/resumes-template/dotnet-template");
+            navMan.NavigateTo("/resumes-template");
         });
     }
 

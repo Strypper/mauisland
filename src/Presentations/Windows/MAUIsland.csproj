@@ -483,6 +483,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiCss Include="wwwroot\css\app.css" />
+	  <MauiCss Include="wwwroot\css\bootstrap\bootstrap.min.css" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="wwwroot\css\bootstrap\bootstrap.min.css.map" />
+	  <None Include="wwwroot\favicon.png" />
+	  <None Include="wwwroot\index.html" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <ProjectReference Include="..\..\Core\MAUIsland.Core\MAUIsland.Core.csproj" />
 	</ItemGroup>
 

@@ -66,7 +66,7 @@
                         StrokeThickness="0">
                         <BlazorWebView
                             x:Name="blazorWebView"
-                            HostPage="Blazor\hosting\index.html"
+                            HostPage="wwwroot\index.html"
                             StartPath="{x:Binding BlazorWebViewStartPath}">
                             <BlazorWebView.RootComponents>
                                 <RootComponent ComponentType="{x:Type local:Routes}" Selector="#app" />
