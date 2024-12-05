@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartCategoryAxis"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root"
+    Loaded="OnComponentLoaded">
+
+    <ContentView.Resources>
+        <x:Array x:Key="CategoryAxisInfo" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ The <strong style="color:blue">CategoryAxis</strong> is an indexed based axis that plots values based on the index of the data point collection. The points are equally spaced here. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ The <strong style="color:blue">LabelPlacement</strong> property in <strong style="color:blue">CategoryAxis</strong> is used to placed the axis labels based on ticks and between ticks. The default value of <strong style="color:blue">LabelPlacement</strong> is <strong style="color:blue">OnTicks</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ By default, the <strong style="color:blue">CategoryAxis</strong> axis labels are display with fixed interval 1. It can customized by using the <strong style="color:blue">Interval</strong> property of axis. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ In Cartesian Charts, the <strong style="color:blue">ArrangeByIndex</strong> property is used to determine how the items in a category axis are arranged. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ If <strong style="color:blue">ArrangeByIndex</strong> is set to true, then the items in the category axis will be arranged according to their index values. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ If <strong style="color:blue">ArrangeByIndex</strong> is set to false, then the items in the category axis will be arranged according to their values. By default, <strong style="color:blue">ArrangeByIndex</strong> is true. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                           Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Category Axis" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <Grid ColumnDefinitions="0.4*, 0.6*" x:Name="Info" Margin="5">
+                        <CollectionView x:Name="CategoryAxisChartCollectionView"
+                                        Grid.Column="0"
+                                        Style="{x:StaticResource PropertiesListStyle}"/>
+                        <Border Grid.Column="1" StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+                            <VerticalStackLayout Spacing="5">
+                                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill" 
+                                                          Margin="0, 0, 20, 0">
+                                    <toolkit:SfCartesianChart.Title>
+                                        <Label Text="Category Axis Column Sample Chart"  Margin="0,0,0,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16"/>
+                                    </toolkit:SfCartesianChart.Title>
+                                    <toolkit:SfCartesianChart.XAxes>
+                                        <toolkit:CategoryAxis LabelPlacement="BetweenTicks" />
+                                    </toolkit:SfCartesianChart.XAxes>
+                                    <toolkit:SfCartesianChart.YAxes>
+                                        <toolkit:NumericalAxis IsVisible="False" ShowMajorGridLines="False"/>
+                                    </toolkit:SfCartesianChart.YAxes>
+                                    <toolkit:SfCartesianChart.Series>
+                                        <toolkit:ColumnSeries ShowDataLabels="True" EnableAnimation="True" 
+                                                              ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                                              XBindingPath="Name" YBindingPath="Value">
+                                            <toolkit:ColumnSeries.DataLabelSettings>
+                                                <toolkit:CartesianDataLabelSettings LabelPlacement="Inner">
+                                                </toolkit:CartesianDataLabelSettings>
+                                            </toolkit:ColumnSeries.DataLabelSettings>
+                                        </toolkit:ColumnSeries>
+                                    </toolkit:SfCartesianChart.Series>
+                                </toolkit:SfCartesianChart>
+
+                                <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
+
+</ContentView>

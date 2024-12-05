@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartCategoryAxis"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root"
+    Loaded="OnComponentLoaded">
+
+    <ContentView.Resources>
+        <x:Array x:Key="DateTimeAxisInfo" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">DateTimeAxis</strong> is used to plot <strong style="color:blue">DateTime</strong> values. The <strong style="color:blue">DateTimeAxis</strong> is widely used to make financial charts in places like the Stock Market, where index plotting is done every day. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ In <strong style="color:blue">DateTimeAxis</strong>, intervals can be customized by using the <strong style="color:blue">Interval</strong> and <strong style="color:blue">IntervalType</strong> properties. For example, setting <strong style="color:blue">Interval</strong> as 6 and <strong style="color:blue">IntervalType</strong> as <strong style="color:blue">Months</strong> will consider 6 months as interval. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Minimum</strong> and <strong style="color:blue">Maximum</strong> properties behavior is same as in <strong style="color:blue">NumericalAxis</strong> instead of setting numerical value, have to set date time values. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                       Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="DateTime Axis" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <Grid ColumnDefinitions="0.4*, 0.6*" x:Name="Info" Margin="5">
+                        <CollectionView x:Name="DateTimeAxisChartCollectionView"
+                                    Grid.Column="0"
+                                    Style="{x:StaticResource PropertiesListStyle}"/>
+                        <Border Grid.Column="1" StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+                            <VerticalStackLayout Spacing="5">
+                                <toolkit:SfCartesianChart IsTransposed="False" x:Name="logChart">
+                                    <toolkit:SfCartesianChart.Resources>
+                                        <DataTemplate x:Key="tooltiptemplate">
+                                            <StackLayout>
+                                                <Label Text="Profit" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalTextAlignment="Center" FontFamily="Helvetica" Margin="0,2,0,2" FontSize="12"/>
+                                                <BoxView VerticalOptions="Center" HeightRequest="1" />
+                                                <StackLayout Orientation="Horizontal"  VerticalOptions="Fill" Spacing="0" Padding="3" Margin="0">
+                                                    <Ellipse Stroke="{AppThemeBinding Default={StaticResource ContentBackground}}" StrokeThickness="2" HeightRequest="10" TranslationY="-1.2" WidthRequest="10" Margin="0,3,3,0" />
+                                                    <Label Text="{Binding Item.Name,StringFormat='{0} :'}" VerticalTextAlignment="Center" HorizontalOptions="Start" FontFamily="Helvetica" FontSize="12" Margin="3,0,3,0"/>
+                                                    <Label Text="{Binding Item.Value,StringFormat=' ${0}'}" VerticalTextAlignment="Center" HorizontalOptions="End" FontFamily="Helvetica" Margin="0,0,3,0" FontAttributes="Bold" FontSize="12"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </toolkit:SfCartesianChart.Resources>
+
+                                    <toolkit:SfCartesianChart.Title>
+                                        <Label Text="" Margin="0,0,0,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16"/>
+                                    </toolkit:SfCartesianChart.Title>
+                                    <toolkit:SfCartesianChart.XAxes>
+                                        <toolkit:CategoryAxis PlotOffsetStart="10" PlotOffsetEnd="10" AxisLineOffset="10" EdgeLabelsDrawingMode="Shift" ShowMajorGridLines="True">
+                                            <toolkit:CategoryAxis.Title>
+                                                <toolkit:ChartAxisTitle Text="Category Axis" />
+                                            </toolkit:CategoryAxis.Title>
+                                            <toolkit:CategoryAxis.MajorGridLineStyle>
+                                                <toolkit:ChartLineStyle StrokeWidth="0.5"/>
+                                            </toolkit:CategoryAxis.MajorGridLineStyle>
+                                            <toolkit:CategoryAxis.MajorTickStyle>
+                                                <toolkit:ChartAxisTickStyle TickSize="10"/>
+                                            </toolkit:CategoryAxis.MajorTickStyle>
+                                            <toolkit:CategoryAxis.AxisLineStyle>
+                                                <toolkit:ChartLineStyle StrokeWidth="0"/>
+                                            </toolkit:CategoryAxis.AxisLineStyle>
+                                        </toolkit:CategoryAxis>
+                                    </toolkit:SfCartesianChart.XAxes>
+                                    <toolkit:SfCartesianChart.YAxes>
+                                        <toolkit:LogarithmicAxis Minimum="10" Maximum="100000" MinorTicksPerInterval="5" ShowMinorGridLines="True" >
+                                            <toolkit:LogarithmicAxis.Title>
+                                                <toolkit:ChartAxisTitle Text="Profit" />
+                                            </toolkit:LogarithmicAxis.Title>
+                                            <toolkit:LogarithmicAxis.AxisLineStyle>
+                                                <toolkit:ChartLineStyle StrokeWidth="0">
+                                                </toolkit:ChartLineStyle>
+                                            </toolkit:LogarithmicAxis.AxisLineStyle>
+                                            <toolkit:LogarithmicAxis.MajorGridLineStyle>
+                                                <toolkit:ChartLineStyle StrokeWidth="1.4"/>
+                                            </toolkit:LogarithmicAxis.MajorGridLineStyle>
+                                            <toolkit:LogarithmicAxis.MinorTickStyle>
+                                                <toolkit:ChartAxisTickStyle StrokeWidth="0"/>
+                                            </toolkit:LogarithmicAxis.MinorTickStyle>
+                                            <toolkit:LogarithmicAxis.MajorTickStyle>
+                                                <toolkit:ChartAxisTickStyle StrokeWidth="0"/>
+                                            </toolkit:LogarithmicAxis.MajorTickStyle>
+                                            <toolkit:LogarithmicAxis.LabelStyle>
+                                                <toolkit:ChartAxisLabelStyle LabelFormat="$##.##"/>
+                                            </toolkit:LogarithmicAxis.LabelStyle>
+                                        </toolkit:LogarithmicAxis>
+                                    </toolkit:SfCartesianChart.YAxes>
+                                    <toolkit:SfCartesianChart.Series>
+                                        <toolkit:LineSeries StrokeWidth="2" TooltipTemplate="{StaticResource tooltiptemplate}" EnableTooltip="True" EnableAnimation="False" 
+                                                            ItemsSource="{Binding DataCollection}" 
+                                                            XBindingPath="Name" YBindingPath="Value"/>
+                                        <toolkit:ScatterSeries PointWidth="8" PointHeight="8" EnableAnimation="False" 
+                                                               ItemsSource="{Binding DataCollection}"
+                                                               XBindingPath="Name" YBindingPath="Value"/>
+                                    </toolkit:SfCartesianChart.Series>
+                                </toolkit:SfCartesianChart>
+
+                                <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

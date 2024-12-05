@@ -150,7 +150,7 @@
             </Border>
             
             <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout>
+                <VerticalStackLayout Spacing="5">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}"  Text="{x:StaticResource SetupToolkit}" />
                     <Label Text="To get syncfusion open source Chart Control you can use this instead"/>
                     <Label Text="{x:Binding XamlNamespace}" TextColor="Blue"/>
@@ -192,6 +192,17 @@
                 </VerticalStackLayout>
             </Border>
 
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="5">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}"  Text="Cartesian Chart Axis" />
+                    <Label Text="Cartesian chart supports the following types of chart axis." />
+
+                    <core:SfCartesianChartNumericalAxis ComponentData="{x:Binding Column}" CodeDescription="{x:Binding CartesianNumericalAxisXamlCode}"/>
+                    <core:SfCartesianChartCategoryAxis ComponentData="{x:Binding Column}" CodeDescription="{x:Binding CartesianCategoryAxisXamlCode}"/>
+                    <core:SfCartesianChartDateTimeAxis ComponentData="{x:Binding FastLine}" CodeDescription="{x:Binding CartesianDateTimeAxisXamlCode}"/>
+                </VerticalStackLayout>
+            </Border>
+            
             <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="10">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Chart Annotations" />
@@ -494,6 +505,7 @@
                     </Grid>
                 </VerticalStackLayout>
             </Border>
+
 
             <Border>
             </Border>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartDateTimeAxis"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root"
+    Loaded="OnComponentLoaded">
+
+    <ContentView.Resources>
+        <x:Array x:Key="DateTimeAxisInfo" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">DateTimeAxis</strong> is used to plot <strong style="color:blue">DateTime</strong> values. The <strong style="color:blue">DateTimeAxis</strong> is widely used to make financial charts in places like the Stock Market, where index plotting is done every day. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ In <strong style="color:blue">DateTimeAxis</strong>, intervals can be customized by using the <strong style="color:blue">Interval</strong> and <strong style="color:blue">IntervalType</strong> properties. For example, setting <strong style="color:blue">Interval</strong> as 6 and <strong style="color:blue">IntervalType</strong> as <strong style="color:blue">Months</strong> will consider 6 months as interval. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Minimum</strong> and <strong style="color:blue">Maximum</strong> properties behavior is same as in <strong style="color:blue">NumericalAxis</strong> instead of setting numerical value, have to set date time values. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                           Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="DateTime Axis" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <Grid ColumnDefinitions="0.4*, 0.6*" x:Name="Info" Margin="5">
+                        <CollectionView x:Name="DateTimeAxisChartCollectionView"
+                                        Grid.Column="0"
+                                        Style="{x:StaticResource PropertiesListStyle}"/>
+                        <Border Grid.Column="1" StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+                            <VerticalStackLayout Spacing="5">
+                                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill"
+                                                          Margin="0, 0, 20, 0">
+                                    <toolkit:SfCartesianChart.Title>
+                                        <Label Text="DateTime Axis Line Sample Chart" Margin="0,0,0,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16"/>
+                                    </toolkit:SfCartesianChart.Title>
+                                    <toolkit:SfCartesianChart.XAxes>
+                                        <toolkit:DateTimeAxis EdgeLabelsDrawingMode="Shift" ZoomFactor="0.7" ZoomPosition="0.4" >
+                                            <toolkit:DateTimeAxis.Title>
+                                                <toolkit:ChartAxisTitle Text="DateTime Axis"/>
+                                            </toolkit:DateTimeAxis.Title>
+                                        </toolkit:DateTimeAxis>
+                                    </toolkit:SfCartesianChart.XAxes>
+                                    <toolkit:SfCartesianChart.YAxes>
+                                        <toolkit:NumericalAxis>
+                                            <toolkit:NumericalAxis.Title>
+                                                <toolkit:ChartAxisTitle Text="Numerical Axis"/>
+                                            </toolkit:NumericalAxis.Title>
+                                        </toolkit:NumericalAxis>
+                                    </toolkit:SfCartesianChart.YAxes>
+                                    <toolkit:SfCartesianChart.ZoomPanBehavior>
+                                        <toolkit:ChartZoomPanBehavior x:Name="zooming1" EnablePinchZooming="False" EnableDoubleTap="False" EnablePanning="False" ZoomMode="X" />
+                                    </toolkit:SfCartesianChart.ZoomPanBehavior>
+                                    <toolkit:SfCartesianChart.Series>
+                                        <toolkit:FastLineSeries EnableAnimation="True" EnableTooltip="True" 
+                                                                ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                                                XBindingPath="Date" YBindingPath="Value"/>
+                                    </toolkit:SfCartesianChart.Series>
+                                </toolkit:SfCartesianChart>
+
+                                <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

@@ -3,6 +3,9 @@
 public partial class SfCartesianChartModel : BaseModel
 {
     [ObservableProperty]
+    int? number;
+
+    [ObservableProperty]
     string? name;
 
     [ObservableProperty]

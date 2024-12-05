@@ -194,6 +194,104 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "</toolkit:SfCartesianChart>";
 
     [ObservableProperty]
+    string cartesianCategoryAxisXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\" \r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Category Axis Column Sample Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\" />\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis IsVisible=\"False\" ShowMajorGridLines=\"False\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:ColumnSeries ShowDataLabels=\"True\" EnableAnimation=\"True\" \r\n" +
+        "                              ItemsSource=\"{x:Binding Column}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Value\">\r\n" +
+        "            <toolkit:ColumnSeries.DataLabelSettings>\r\n" +
+        "                <toolkit:CartesianDataLabelSettings LabelPlacement=\"Inner\">\r\n" +
+        "                </toolkit:CartesianDataLabelSettings>\r\n" +
+        "            </toolkit:ColumnSeries.DataLabelSettings>\r\n" +
+        "        </toolkit:ColumnSeries>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianNumericalAxisXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\"\r\n" +
+        "                            Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Numerical Axis Column Sample Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Center\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"CenterAndExpand\" FontSize=\"16\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:NumericalAxis Interval=\"1\" />\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"True\" Minimum=\"0\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:ColumnSeries ShowDataLabels=\"True\" EnableAnimation=\"True\" Label=\"Data 1\" Spacing=\"0.075\" \r\n" +
+        "                                ItemsSource=\"{x:Binding ComponentData, Source={x:Reference root}}\" \r\n" +
+        "                                XBindingPath=\"Number\" YBindingPath=\"Exp\">\r\n" +
+        "            <toolkit:ColumnSeries.DataLabelSettings>\r\n" +
+        "                <toolkit:CartesianDataLabelSettings>\r\n" +
+        "                    <toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
+        "                        <toolkit:ChartDataLabelStyle Margin=\"0\" FontSize=\"10\"/>\r\n" +
+        "                    </toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
+        "                </toolkit:CartesianDataLabelSettings>\r\n" +
+        "            </toolkit:ColumnSeries.DataLabelSettings>\r\n" +
+        "        </toolkit:ColumnSeries>\r\n" +
+        "        <toolkit:ColumnSeries ShowDataLabels=\"True\" EnableAnimation=\"True\" Label=\"Data 2\" Spacing=\"0.075\" \r\n" +
+        "                                ItemsSource=\"{x:Binding ComponentData, Source={x:Reference root}}\" \r\n" +
+        "                                XBindingPath=\"Number\" YBindingPath=\"Exp\">\r\n" +
+        "            <toolkit:ColumnSeries.DataLabelSettings>\r\n" +
+        "                <toolkit:CartesianDataLabelSettings>\r\n" +
+        "                    <toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
+        "                        <toolkit:ChartDataLabelStyle Margin=\"0\" FontSize=\"10\"/>\r\n" +
+        "                    </toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
+        "                </toolkit:CartesianDataLabelSettings>\r\n" +
+        "            </toolkit:ColumnSeries.DataLabelSettings>\r\n" +
+        "        </toolkit:ColumnSeries>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianDateTimeAxisXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"DateTime Axis Line Sample Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:DateTimeAxis EdgeLabelsDrawingMode=\"Shift\" ZoomFactor=\"0.7\" ZoomPosition=\"0.4\" >\r\n" +
+        "            <toolkit:DateTimeAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Text=\"DateTime Axis\"/>\r\n" +
+        "            </toolkit:DateTimeAxis.Title>\r\n" +
+        "        </toolkit:DateTimeAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis>\r\n" +
+        "            <toolkit:NumericalAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Text=\"Numerical Axis\"/>\r\n" +
+        "            </toolkit:NumericalAxis.Title>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "        <toolkit:ChartZoomPanBehavior x:Name=\"zooming1\" EnablePinchZooming=\"False\" EnableDoubleTap=\"False\" EnablePanning=\"False\" ZoomMode=\"X\" />\r\n" +
+        "    </toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:FastLineSeries EnableAnimation=\"True\" EnableTooltip=\"True\" \r\n" +
+        "                                ItemsSource=\"{x:Binding FastLine}\" \r\n" +
+        "                                XBindingPath=\"Date\" YBindingPath=\"Value\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
     string cartesianAnnotationXamlCode =
         "<toolkit:SfCartesianChart VerticalOptions=\"FillAndExpand\" Margin=\"0,0,5,0\" x:Name=\"Chart\">\r\n" +
         "    <toolkit:SfCartesianChart.Title>\r\n" +
@@ -2276,11 +2374,11 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
 
         Column = new ObservableCollection<SfCartesianChartModel>()
         {
-            new SfCartesianChartModel() { Name = "Strypper", Exp = 100, Value = 80, Size = 60 },
-            new SfCartesianChartModel() { Name = "Tan", Exp = 50, Value = 70, Size = 90 },
-            new SfCartesianChartModel() { Name = "Hung", Exp = 40, Value = 80, Size = 60 },
-            new SfCartesianChartModel() { Name = "Long", Exp = 20, Value = 40, Size = 80},
-            new SfCartesianChartModel() { Name = "Dat", Exp = 30, Value = 60, Size = 90}
+            new SfCartesianChartModel() { Name = "Strypper", Exp = 100, Value = 80, Size = 60, Number = 1 },
+            new SfCartesianChartModel() { Name = "Tan", Exp = 50, Value = 70, Size = 90, Number = 2 },
+            new SfCartesianChartModel() { Name = "Hung", Exp = 40, Value = 80, Size = 60, Number = 3 },
+            new SfCartesianChartModel() { Name = "Long", Exp = 20, Value = 40, Size = 80, Number = 4},
+            new SfCartesianChartModel() { Name = "Dat", Exp = 30, Value = 60, Size = 90, Number = 5}
         };
 
         RangeColumn = new ObservableCollection<SfCartesianChartModel>()
