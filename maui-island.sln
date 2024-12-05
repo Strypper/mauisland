@@ -41,9 +41,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MAUIsland.NewsFeatures.Inte
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGetFeatures", "NuGetFeatures", "{D069C6EA-9676-48DE-B16B-7A177A1FEDAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAUIsland.NuGetFeatures", "src\Features\NuGetFeatures\MAUIsland.NuGetFeatures\MAUIsland.NuGetFeatures.csproj", "{9A141D5A-B1B5-445B-9FCA-A08BA821D339}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MAUIsland.NuGetFeatures", "src\Features\NuGetFeatures\MAUIsland.NuGetFeatures\MAUIsland.NuGetFeatures.csproj", "{9A141D5A-B1B5-445B-9FCA-A08BA821D339}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuGetFeatures.IntegrationTests", "src\Features\NuGetFeatures\NuGetFeatures.IntegrationTests\NuGetFeatures.IntegrationTests.csproj", "{5EEA72E3-4279-4131-9754-144F9D535A72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuGetFeatures.IntegrationTests", "src\Features\NuGetFeatures\NuGetFeatures.IntegrationTests\NuGetFeatures.IntegrationTests.csproj", "{5EEA72E3-4279-4131-9754-144F9D535A72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

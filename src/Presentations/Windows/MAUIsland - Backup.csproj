@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
@@ -20,6 +21,11 @@
 		<ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
 		<ApplicationVersion>2</ApplicationVersion>
 
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<GenerateAppInstallerFile>False</GenerateAppInstallerFile>
 		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
@@ -68,27 +74,97 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiCss Remove="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\Layout\MainLayout.razor.css" />
-	  <MauiCss Remove="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\Layout\NavMenu.razor.css" />
-	  <Content Remove="appsettings.Development.json" />
+	  <MauiCss Remove="Features\ResumesTemplate\Blazor\wwwroot\css\app.css" />
+	  <MauiCss Remove="Features\ResumesTemplate\Blazor\wwwroot\css\bootstrap\bootstrap.min.css" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="appsettings.Development.json" />
-	  <None Remove="Resources\Images\backgrounds\*" />
-	  <None Remove="Resources\Images\books\*" />
-	  <None Remove="Resources\Images\logos\*" />
-	  <None Remove="Resources\Images\mockups\*" />
-	  <None Remove="Resources\Images\showcases\*" />
+	  <None Remove="Features\ResumesTemplate\Blazor\wwwroot\css\bootstrap\bootstrap.min.css.map" />
+	  <None Remove="Features\ResumesTemplate\Blazor\wwwroot\favicon.png" />
+	  <None Remove="Features\ResumesTemplate\Blazor\wwwroot\index.html" />
+	  <None Remove="Resources\Images\backgrounds\abstract_background.jpg" />
+	  <None Remove="Resources\Images\backgrounds\abstract_background_1.jpg" />
+	  <None Remove="Resources\Images\books\dotnet_developers_cross_platform_applications_ebook.png" />
+	  <None Remove="Resources\Images\books\dotnet_maui_in_action.png" />
+	  <None Remove="Resources\Images\books\enterprise_app_patterns_ebook.png" />
+	  <None Remove="Resources\Images\logos\dotnet_maui_logo.svg" />
+	  <None Remove="Resources\Images\mockups\apple_iphone_13_mini.png" />
+	  <None Remove="Resources\Images\mockups\apple_iphone_15_pro_max.png" />
+	  <None Remove="Resources\Images\mockups\google_pixel_5.png" />
+	  <None Remove="Resources\Images\mockups\google_pixel_6_pro.png" />
+	  <None Remove="Resources\Images\mockups\iphone_15.png" />
+	  <None Remove="Resources\Images\mockups\samsung_galaxy_s22_ultra_2022.png" />
+	  <None Remove="Resources\Images\mockups\samsung_s8.png" />
+	  <None Remove="Resources\Images\showcases\android_launcher_background_1.png" />
+	  <None Remove="Resources\Images\showcases\android_launcher_background_2.png" />
+	  <None Remove="Resources\Images\showcases\apps_grid.png" />
+	  <None Remove="Resources\Images\showcases\be_1.jpg" />
+	  <None Remove="Resources\Images\showcases\calculator_1.png" />
+	  <None Remove="Resources\Images\showcases\calculator_2.png" />
+	  <None Remove="Resources\Images\showcases\calling_app_1.gif" />
+	  <None Remove="Resources\Images\showcases\chick_and_paddy_1.png" />
+	  <None Remove="Resources\Images\showcases\chick_and_paddy_2.png" />
+	  <None Remove="Resources\Images\showcases\chick_and_paddy_3.png" />
+	  <None Remove="Resources\Images\showcases\chick_and_paddy_4.png" />
+	  <None Remove="Resources\Images\showcases\ecommerce_1.jpg" />
+	  <None Remove="Resources\Images\showcases\ecommerce_2.jpg" />
+	  <None Remove="Resources\Images\showcases\ecommerce_3.jpg" />
+	  <None Remove="Resources\Images\showcases\ecommerce_4.jpg" />
+	  <None Remove="Resources\Images\showcases\ecommerce_5.jpg" />
+	  <None Remove="Resources\Images\showcases\ecommerce_6.jpg" />
+	  <None Remove="Resources\Images\showcases\ecommerce_7.jpg" />
+	  <None Remove="Resources\Images\showcases\file_1.png" />
+	  <None Remove="Resources\Images\showcases\file_2.png" />
+	  <None Remove="Resources\Images\showcases\four_seasons_1.gif" />
+	  <None Remove="Resources\Images\showcases\gadgets_store_app_1.gif" />
+	  <None Remove="Resources\Images\showcases\gadgets_store_app_2.gif" />
+	  <None Remove="Resources\Images\showcases\gadgets_store_app_3.gif" />
+	  <None Remove="Resources\Images\showcases\grab_food_1.jpg" />
+	  <None Remove="Resources\Images\showcases\maui_planets_001.png" />
+	  <None Remove="Resources\Images\showcases\maui_planets_002.png" />
+	  <None Remove="Resources\Images\showcases\maui_planets_003.png" />
+	  <None Remove="Resources\Images\showcases\maui_trackizer_1.jpg" />
+	  <None Remove="Resources\Images\showcases\maui_trackizer_2.jpg" />
+	  <None Remove="Resources\Images\showcases\maui_trackizer_3.jpg" />
+	  <None Remove="Resources\Images\showcases\maui_trackizer_4.jpg" />
+	  <None Remove="Resources\Images\showcases\maui_trackizer_5.jpg" />
+	  <None Remove="Resources\Images\showcases\maui_trackizer_6.jpg" />
+	  <None Remove="Resources\Images\showcases\maui_trackizer_7.jpg" />
+	  <None Remove="Resources\Images\showcases\onelife_1.jpg" />
+	  <None Remove="Resources\Images\showcases\onelife_2.jpg" />
+	  <None Remove="Resources\Images\showcases\onelife_3.jpg" />
+	  <None Remove="Resources\Images\showcases\real_state_app_1.png" />
+	  <None Remove="Resources\Images\showcases\real_state_app_2.png" />
+	  <None Remove="Resources\Images\showcases\real_state_app_3.png" />
+	  <None Remove="Resources\Images\showcases\real_state_app_4.png" />
+	  <None Remove="Resources\Images\showcases\real_state_app_5.png" />
+	  <None Remove="Resources\Images\showcases\starbuck_1.png" />
+	  <None Remove="Resources\Images\showcases\starbuck_2.png" />
+	  <None Remove="Resources\Images\showcases\voice_recorder_1.png" />
+	  <None Remove="Resources\Images\showcases\youtube_1.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="9.0.10" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.10" />
-		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0-rc.2.24473.5" />
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\hosting\css\app.css" />
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\hosting\css\bootstrap\bootstrap.min.css" />
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\hosting\css\bootstrap\bootstrap.min.css.map" />
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\hosting\favicon.png" />
+	  <Content Include="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\hosting\index.html" />
+	  <Content Include="Features\ResumesTemplate\Blazor\wwwroot\css\app.css" />
+	  <Content Include="Features\ResumesTemplate\Blazor\wwwroot\css\bootstrap\bootstrap.min.css" />
+	  <Content Include="Features\ResumesTemplate\Blazor\wwwroot\css\bootstrap\bootstrap.min.css.map" />
+	  <Content Include="Features\ResumesTemplate\Blazor\wwwroot\favicon.png" />
+	  <Content Include="Features\ResumesTemplate\Blazor\wwwroot\index.html" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.70" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.70" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.7" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0-preview.1.24080.9" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 
@@ -452,9 +528,6 @@
 		<MauiXaml Update="Features\Showcases\Pages\ShowcasesPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="MAUIslandWindow.xaml">
-		  <Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
 	</ItemGroup>
 
 
@@ -472,14 +545,103 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<MauiImage Include="Resources\Images\backgrounds\*" />
-		<MauiImage Include="Resources\Images\banners\*" />
-		<MauiImage Include="Resources\Images\books\*" />
-		<MauiImage Include="Resources\Images\logos\*" />
-		<MauiImage Include="Resources\Images\members\*" />
-		<MauiImage Include="Resources\Images\memes\*" />
-		<MauiImage Include="Resources\Images\mockups\*" />
-		<MauiImage Include="Resources\Images\showcases\*" />
+		<MauiImage Include="Resources\Images\backgrounds\abstract_background.jpg" />
+		<MauiImage Include="Resources\Images\backgrounds\abstract_background_1.jpg" />
+		<MauiImage Include="Resources\Images\backgrounds\maui_homepage_background.jpg" />
+		<MauiImage Include="Resources\Images\backgrounds\pattern_background_image.png" />
+		<MauiImage Include="Resources\Images\banners\builtin_banner.png" />
+		<MauiImage Include="Resources\Images\banners\devexpress_banner.jpg" />
+		<MauiImage Include="Resources\Images\banners\github_banner.png" />
+		<MauiImage Include="Resources\Images\banners\mauitoolkit_banner.png" />
+		<MauiImage Include="Resources\Images\banners\syncfusion_banner.png" />
+		<MauiImage Include="Resources\Images\books\dotnet_developers_cross_platform_applications_ebook.png" />
+		<MauiImage Include="Resources\Images\books\dotnet_maui_in_action.png" />
+		<MauiImage Include="Resources\Images\books\enterprise_app_patterns_ebook.png" />
+		<MauiImage Include="Resources\Images\logos\android_logo.svg" />
+		<MauiImage Include="Resources\Images\logos\community_toolkit_logo.png" />
+		<MauiImage Include="Resources\Images\logos\devexpress_logo.png" />
+		<MauiImage Include="Resources\Images\logos\dotnet_maui_logo.svg" />
+		<MauiImage Include="Resources\Images\logos\github_logo.png" />
+		<MauiImage Include="Resources\Images\logos\ios_logo.png" />
+		<MauiImage Include="Resources\Images\logos\jamesmontemagnologo.png" />
+		<MauiImage Include="Resources\Images\banners\materialui_banner.png" />
+		<MauiImage Include="Resources\Images\logos\materialuilogo.png" />
+		<MauiImage Include="Resources\Images\logos\mauilogo.png" />
+		<MauiImage Include="Resources\Images\logos\mauisland_logo.png" />
+		<MauiImage Include="Resources\Images\logos\mauitoolkit_logo.png" />
+		<MauiImage Include="Resources\Images\logos\syncfusionlogo.png" />
+		<MauiImage Include="Resources\Images\logos\tizen_logo.svg" />
+		<MauiImage Include="Resources\Images\logos\windowslogo.svg" />
+		<MauiImage Include="Resources\Images\members\member_long.png" />
+		<MauiImage Include="Resources\Images\members\member_tan.png" />
+		<MauiImage Include="Resources\Images\memes\mrincredibleblackwhite.png" />
+		<MauiImage Include="Resources\Images\memes\mrincredibleblackwhite1.png" />
+		<MauiImage Include="Resources\Images\memes\mrincredibleblackwhite2.png" />
+		<MauiImage Include="Resources\Images\memes\mrincredibleblackwhite3.png" />
+		<MauiImage Include="Resources\Images\memes\mrincredibleblackwhite4.png" />
+		<MauiImage Include="Resources\Images\memes\mrincredibleblackwhite5.png" />
+		<MauiImage Include="Resources\Images\memes\mrincrediblesmile.png" />
+		<MauiImage Include="Resources\Images\memes\mrincrediblesmile1.png" />
+		<MauiImage Include="Resources\Images\memes\mrincrediblesmile2.png" />
+		<MauiImage Include="Resources\Images\memes\mrincrediblesmile3.png" />
+		<MauiImage Include="Resources\Images\memes\mrincrediblesmile4.png" />
+		<MauiImage Include="Resources\Images\memes\mrincrediblesmile5.png" />
+		<MauiImage Include="Resources\Images\mockups\apple_iphone_13_mini.png" />
+		<MauiImage Include="Resources\Images\mockups\apple_iphone_15_pro_max.png" />
+		<MauiImage Include="Resources\Images\mockups\google_pixel_5.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Include="Resources\Images\mockups\google_pixel_6_pro.png" />
+		<MauiImage Include="Resources\Images\mockups\iphone_15.png" />
+		<MauiImage Include="Resources\Images\mockups\samsung_galaxy_s22_ultra_2022.png" />
+		<MauiImage Include="Resources\Images\mockups\samsung_s8.png" />
+		<MauiImage Include="Resources\Images\showcases\android_launcher_background_1.png" />
+		<MauiImage Include="Resources\Images\showcases\android_launcher_background_2.png" />
+		<MauiImage Include="Resources\Images\showcases\apps_grid.png" />
+		<MauiImage Include="Resources\Images\showcases\be_1.jpg" />
+		<MauiImage Include="Resources\Images\showcases\calculator_1.png" />
+		<MauiImage Include="Resources\Images\showcases\calculator_2.png" />
+		<MauiImage Include="Resources\Images\showcases\calling_app_1.gif" />
+		<MauiImage Include="Resources\Images\showcases\chick_and_paddy_1.png" />
+		<MauiImage Include="Resources\Images\showcases\chick_and_paddy_2.png" />
+		<MauiImage Include="Resources\Images\showcases\chick_and_paddy_3.png" />
+		<MauiImage Include="Resources\Images\showcases\chick_and_paddy_4.png" />
+		<MauiImage Include="Resources\Images\showcases\ecommerce_1.jpg" />
+		<MauiImage Include="Resources\Images\showcases\ecommerce_2.jpg" />
+		<MauiImage Include="Resources\Images\showcases\ecommerce_3.jpg" />
+		<MauiImage Include="Resources\Images\showcases\ecommerce_4.jpg" />
+		<MauiImage Include="Resources\Images\showcases\ecommerce_5.jpg" />
+		<MauiImage Include="Resources\Images\showcases\ecommerce_6.jpg" />
+		<MauiImage Include="Resources\Images\showcases\ecommerce_7.jpg" />
+		<MauiImage Include="Resources\Images\showcases\file_1.png" />
+		<MauiImage Include="Resources\Images\showcases\file_2.png" />
+		<MauiImage Include="Resources\Images\showcases\four_seasons_1.gif" />
+		<MauiImage Include="Resources\Images\showcases\gadgets_store_app_1.gif" />
+		<MauiImage Include="Resources\Images\showcases\gadgets_store_app_2.gif" />
+		<MauiImage Include="Resources\Images\showcases\gadgets_store_app_3.gif" />
+		<MauiImage Include="Resources\Images\showcases\grab_food_1.jpg" />
+		<MauiImage Include="Resources\Images\showcases\maui_planets_001.png" />
+		<MauiImage Include="Resources\Images\showcases\maui_planets_002.png" />
+		<MauiImage Include="Resources\Images\showcases\maui_planets_003.png" />
+		<MauiImage Include="Resources\Images\showcases\maui_trackizer_1.jpg" />
+		<MauiImage Include="Resources\Images\showcases\maui_trackizer_2.jpg" />
+		<MauiImage Include="Resources\Images\showcases\maui_trackizer_3.jpg" />
+		<MauiImage Include="Resources\Images\showcases\maui_trackizer_4.jpg" />
+		<MauiImage Include="Resources\Images\showcases\maui_trackizer_5.jpg" />
+		<MauiImage Include="Resources\Images\showcases\maui_trackizer_6.jpg" />
+		<MauiImage Include="Resources\Images\showcases\maui_trackizer_7.jpg" />
+		<MauiImage Include="Resources\Images\showcases\onelife_1.jpg" />
+		<MauiImage Include="Resources\Images\showcases\onelife_2.jpg" />
+		<MauiImage Include="Resources\Images\showcases\onelife_3.jpg" />
+		<MauiImage Include="Resources\Images\showcases\real_state_app_1.png" />
+		<MauiImage Include="Resources\Images\showcases\real_state_app_2.png" />
+		<MauiImage Include="Resources\Images\showcases\real_state_app_3.png" />
+		<MauiImage Include="Resources\Images\showcases\real_state_app_4.png" />
+		<MauiImage Include="Resources\Images\showcases\real_state_app_5.png" />
+		<MauiImage Include="Resources\Images\showcases\starbuck_1.png" />
+		<MauiImage Include="Resources\Images\showcases\starbuck_2.png" />
+		<MauiImage Include="Resources\Images\showcases\voice_recorder_1.png" />
+		<MauiImage Include="Resources\Images\showcases\youtube_1.png" />
 	</ItemGroup>
 
 	<ItemGroup>

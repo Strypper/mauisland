@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<core:BasePage
+    x:Class="MAUIsland.BlazorWebViewPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:local="clr-namespace:MAUIsland"
+    Title="Blazor Web View"
+    Padding="20"
+    x:DataType="core:BlazorWebViewPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="BasePage_Loaded">
+
+    <core:BasePage.ToolbarItems>
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.GitHubUrl}"
+            IconImageSource="github_logo.png"
+            Text="Source code" />
+        <ToolbarItem
+            Command="{x:Binding OpenUrlCommand}"
+            CommandParameter="{x:Binding ControlInformation.DocumentUrl}"
+            IconImageSource="microsoft.png"
+            Text="Original Document" />
+    </core:BasePage.ToolbarItems>
+
+    <SwipeView>
+        <SwipeView.LeftItems>
+            <SwipeItems Mode="Execute">
+                <SwipeItem
+                    BackgroundColor="DarkGray"
+                    Command="{x:Binding BackCommand}"
+                    IconImageSource="{x:StaticResource FluentArrowCircleLeft48Regular}"
+                    Text="Go back" />
+            </SwipeItems>
+        </SwipeView.LeftItems>
+        <RefreshView>
+            <ScrollView>
+                <Grid ColumnDefinitions="*, *">
+                    <VerticalStackLayout Grid.Column="0">
+                        <Button
+                            Command="{x:Binding CounterButtonCommand}"
+                            HorizontalOptions="Start"
+                            Text="Click me" />
+                        <Label FontSize="16">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Total Counter: " />
+                                    <Span Text="{x:Binding Counter, Mode=OneWay}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <CollectionView ItemsLayout="HorizontalList" ItemsSource="{x:Binding NavigationPageName}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="x:String">
+                                    <Button Clicked="PageNavigateButton_Clicked" Text="{x:Binding}" />
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                    <Border
+                        Grid.Column="1"
+                        Padding="0"
+                        StrokeShape="RoundRectangle 4"
+                        StrokeThickness="0">
+                        <BlazorWebView
+                            x:Name="blazorWebView"
+                            HostPage="Blazor\hosting\index.html"
+                            StartPath="{x:Binding BlazorWebViewStartPath}">
+                            <BlazorWebView.RootComponents>
+                                <RootComponent ComponentType="{x:Type local:Routes}" Selector="#app" />
+                            </BlazorWebView.RootComponents>
+                        </BlazorWebView>
+                    </Border>
+                </Grid>
+            </ScrollView>
+        </RefreshView>
+    </SwipeView>
+</core:BasePage>
