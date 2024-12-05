@@ -11,35 +11,35 @@
         <VerticalStackLayout Margin="20" Spacing="20">
 
             <VerticalStackLayout Spacing="5">
-                <Label Text="Your name"
-                       TextColor="White"/>
+                <Label Text="Your name" TextColor="White" />
 
-                <Entry x:Name="userName"
-                       Text="{x:Binding UserName}"
-                       BackgroundColor="#2F2F2F"
-                       Placeholder=""/>
+                <Entry
+                    x:Name="userName"
+                    BackgroundColor="#2F2F2F"
+                    Placeholder=""
+                    Text="{x:Binding UserName}" />
             </VerticalStackLayout>
 
-           
+
 
             <VerticalStackLayout Spacing="5">
-                <Label Text="Your position"
-                       TextColor="White"/>
-                <Entry x:Name="position"
-                       BackgroundColor="#2F2F2F"
-                       Placeholder=""/>
+                <Label Text="Your position" TextColor="White" />
+                <Entry
+                    x:Name="position"
+                    BackgroundColor="#2F2F2F"
+                    Placeholder="" />
             </VerticalStackLayout>
 
             <VerticalStackLayout Spacing="5">
-                <Label Text="Description"
-                       TextColor="White"/>
-                <Editor x:Name="description"
-                        BackgroundColor="#2F2F2F"
-                        Placeholder=""
-                        HeightRequest="250"/>
+                <Label Text="Description" TextColor="White" />
+                <Editor
+                    x:Name="description"
+                    BackgroundColor="#2F2F2F"
+                    HeightRequest="250"
+                    Placeholder="" />
             </VerticalStackLayout>
 
-        <Button Clicked="Button_Clicked" Text="Move" />
+            <Button Clicked="Button_Clicked" Text="Move" />
 
         </VerticalStackLayout>
 

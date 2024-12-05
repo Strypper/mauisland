@@ -82,21 +82,6 @@
             <Label x:Name="AppVersionLabel" HorizontalOptions="Center" />
         </VerticalStackLayout>
     </Shell.FlyoutHeader>
-    <Shell.FlyoutFooter>
-        <Frame Margin="10" BackgroundColor="#333f54">
-            <HorizontalStackLayout Spacing="5">
-                <skia:SKLottieView
-                    HeightRequest="40"
-                    HorizontalOptions="Center"
-                    RepeatCount="-1"
-                    RepeatMode="Restart"
-                    Source="totechs_logo.json"
-                    VerticalOptions="Center"
-                    WidthRequest="40" />
-                <Label Text="Totechs Corp" VerticalOptions="Center" />
-            </HorizontalStackLayout>
-        </Frame>
-    </Shell.FlyoutFooter>
     <Shell.FlyoutBackdrop>
         <LinearGradientBrush EndPoint="1,0">
             <GradientStop Offset="0.0" Color="#faf8d2" />

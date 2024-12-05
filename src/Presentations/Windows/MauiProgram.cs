@@ -53,7 +53,9 @@ public static class MauiProgram
             .ConfigureSyncfusionCore()
             .UseBarcodeReader();
 
+
 #if DEBUG
+        builder.Logging.AddDebug();
         builder.Services.AddBlazorWebViewDeveloperTools();
 
         builder.Services.AddLogging(logging =>
@@ -61,9 +63,6 @@ public static class MauiProgram
             logging.AddFilter("Microsoft.AspNetCore.Components.WebView", LogLevel.Trace);
             logging.AddDebug();
         });
-
-#if DEBUG
-        builder.Logging.AddDebug();
 #endif
 
 
