@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView 
+<ContentView
     x:Class="MAUIsland.Core.SfCartesianChartArea"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -7,26 +7,41 @@
     xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
     x:Name="root">
 
-    <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+    <Border
+        Margin="5"
+        Padding="10"
+        StrokeShape="RoundRectangle 4">
         <VerticalStackLayout Spacing="10">
-            <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill" 
-                                      Margin="0, 0, 20, 0">
+            <toolkit:SfCartesianChart
+                Margin="0,0,20,0"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill">
                 <toolkit:SfCartesianChart.Legend>
-                    <toolkit:ChartLegend ToggleSeriesVisibility="True"/>
+                    <toolkit:ChartLegend ToggleSeriesVisibility="True" />
                 </toolkit:SfCartesianChart.Legend>
                 <toolkit:SfCartesianChart.Title>
-                    <Label Text="Area Chart" FontSize="16" 
-                           HorizontalTextAlignment="Center" HorizontalOptions="Fill"  VerticalOptions="Center" />
+                    <Label
+                        FontSize="16"
+                        HorizontalOptions="Fill"
+                        HorizontalTextAlignment="Center"
+                        Text="Area Chart"
+                        VerticalOptions="Center" />
                 </toolkit:SfCartesianChart.Title>
                 <toolkit:SfCartesianChart.XAxes>
-                    <toolkit:CategoryAxis EdgeLabelsDrawingMode="Shift" Interval="1" ShowMajorGridLines="false">
+                    <toolkit:CategoryAxis
+                        EdgeLabelsDrawingMode="Shift"
+                        Interval="1"
+                        ShowMajorGridLines="false">
                         <toolkit:CategoryAxis.MajorTickStyle>
-                            <toolkit:ChartAxisTickStyle TickSize="5"/>
+                            <toolkit:ChartAxisTickStyle TickSize="5" />
                         </toolkit:CategoryAxis.MajorTickStyle>
                     </toolkit:CategoryAxis>
                 </toolkit:SfCartesianChart.XAxes>
                 <toolkit:SfCartesianChart.YAxes>
-                    <toolkit:NumericalAxis Minimum="0" Maximum="6" Interval="1">
+                    <toolkit:NumericalAxis
+                        Interval="1"
+                        Maximum="6"
+                        Minimum="0">
                         <toolkit:NumericalAxis.Title>
                             <toolkit:ChartAxisTitle Text="Value in Millions" />
                         </toolkit:NumericalAxis.Title>
@@ -34,32 +49,72 @@
                             <toolkit:ChartAxisLabelStyle LabelFormat="0'M" />
                         </toolkit:NumericalAxis.LabelStyle>
                         <toolkit:NumericalAxis.AxisLineStyle>
-                            <toolkit:ChartLineStyle StrokeWidth="1"/>
+                            <toolkit:ChartLineStyle StrokeWidth="1" />
                         </toolkit:NumericalAxis.AxisLineStyle>
                     </toolkit:NumericalAxis>
                 </toolkit:SfCartesianChart.YAxes>
 
                 <toolkit:SfCartesianChart.Series>
-                    <toolkit:AreaSeries Label="Product A" EnableAnimation="True" EnableTooltip="True" 
-                                        Stroke="{x:AppThemeBinding Light={x:StaticResource series4Light}, Dark={x:StaticResource series4Dark}}" 
-                                        Fill="{x:AppThemeBinding Light={x:StaticResource series4Light30}, Dark={x:StaticResource series4Dark30}}" StrokeWidth="1" 
-                                        ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" XBindingPath="Name" YBindingPath="High" LegendIcon="SeriesType"/>
-                    <toolkit:AreaSeries Label="Product B" EnableAnimation="True" EnableTooltip="True" 
-                                        Stroke="{x:AppThemeBinding Light={x:StaticResource series3Light}, Dark={x:StaticResource series3Dark}}" 
-                                        Fill="{x:AppThemeBinding Light={x:StaticResource series3Light30}, Dark={x:StaticResource series3Dark30}}" StrokeWidth="1" 
-                                        ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" XBindingPath="Name" YBindingPath="Low" LegendIcon="SeriesType"/>
-                    <toolkit:AreaSeries Label="Product C" EnableAnimation="True" EnableTooltip="True" 
-                                        Stroke="{x:AppThemeBinding Light={x:StaticResource series2Light}, Dark={x:StaticResource series2Dark}}" 
-                                        Fill="{x:AppThemeBinding Light={x:StaticResource series2Light30}, Dark={x:StaticResource series2Dark30}}" StrokeWidth="1" 
-                                        ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" XBindingPath="Name" YBindingPath="Value" LegendIcon="SeriesType"/>
-                    <toolkit:AreaSeries Label="Product D" EnableAnimation="True" EnableTooltip="True" 
-                                        Stroke="{x:AppThemeBinding Light={x:StaticResource series1Light}, Dark={x:StaticResource series1Dark}}" 
-                                        Fill="{x:AppThemeBinding Light={x:StaticResource series1Light30}, Dark={x:StaticResource series1Dark30}}" StrokeWidth="1" 
-                                        ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" XBindingPath="Name" YBindingPath="Size" LegendIcon="SeriesType"/>
+                    <toolkit:AreaSeries
+                        EnableAnimation="True"
+                        EnableTooltip="True"
+                        Fill="{x:AppThemeBinding Light={x:StaticResource series4Light30},
+                                                 Dark={x:StaticResource series4Dark30}}"
+                        ItemsSource="{x:Binding ComponentData,
+                                                Source={x:Reference root}}"
+                        Label="Product A"
+                        LegendIcon="SeriesType"
+                        Stroke="{x:AppThemeBinding Light={x:StaticResource series4Light},
+                                                   Dark={x:StaticResource series4Dark}}"
+                        StrokeWidth="1"
+                        XBindingPath="Name"
+                        YBindingPath="High" />
+                    <toolkit:AreaSeries
+                        EnableAnimation="True"
+                        EnableTooltip="True"
+                        Fill="{x:AppThemeBinding Light={x:StaticResource series3Light30},
+                                                 Dark={x:StaticResource series3Dark30}}"
+                        ItemsSource="{x:Binding ComponentData,
+                                                Source={x:Reference root}}"
+                        Label="Product B"
+                        LegendIcon="SeriesType"
+                        Stroke="{x:AppThemeBinding Light={x:StaticResource series3Light},
+                                                   Dark={x:StaticResource series3Dark}}"
+                        StrokeWidth="1"
+                        XBindingPath="Name"
+                        YBindingPath="Low" />
+                    <toolkit:AreaSeries
+                        EnableAnimation="True"
+                        EnableTooltip="True"
+                        Fill="{x:AppThemeBinding Light={x:StaticResource series2Light30},
+                                                 Dark={x:StaticResource series2Dark30}}"
+                        ItemsSource="{x:Binding ComponentData,
+                                                Source={x:Reference root}}"
+                        Label="Product C"
+                        LegendIcon="SeriesType"
+                        Stroke="{x:AppThemeBinding Light={x:StaticResource series2Light},
+                                                   Dark={x:StaticResource series2Dark}}"
+                        StrokeWidth="1"
+                        XBindingPath="Name"
+                        YBindingPath="Value" />
+                    <toolkit:AreaSeries
+                        EnableAnimation="True"
+                        EnableTooltip="True"
+                        Fill="{x:AppThemeBinding Light={x:StaticResource series1Light30},
+                                                 Dark={x:StaticResource series1Dark30}}"
+                        ItemsSource="{x:Binding ComponentData,
+                                                Source={x:Reference root}}"
+                        Label="Product D"
+                        LegendIcon="SeriesType"
+                        Stroke="{x:AppThemeBinding Light={x:StaticResource series1Light},
+                                                   Dark={x:StaticResource series1Dark}}"
+                        StrokeWidth="1"
+                        XBindingPath="Name"
+                        YBindingPath="Size" />
                 </toolkit:SfCartesianChart.Series>
             </toolkit:SfCartesianChart>
 
-            <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}" CodeType="Xaml" />
         </VerticalStackLayout>
     </Border>
 </ContentView>

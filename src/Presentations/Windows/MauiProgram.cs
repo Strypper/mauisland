@@ -27,8 +27,10 @@ public static class MauiProgram
             .UseMauiCommunityToolkitCore()
             .UseMauiCommunityToolkitMediaElement()
             .UseMauiCommunityToolkit(options => options.SetShouldEnableSnackbarOnWindows(true))
-#if DEBUG 
+#if DEBUG
             .RegisterAppSettingsFromJsonFile()
+#else
+            .RegisterAppSettingsFromCode()
 #endif
             .UseMauiApp<App>()
             .ConfigureFonts(fonts =>
@@ -282,7 +284,6 @@ public static class MauiProgram
 
         return builder;
     }
-    
 
     static IServiceCollection AddPopup<TPopup, TViewModel>(this IServiceCollection services, string name)
     where TPopup : BasePopup where TViewModel : BaseViewModel

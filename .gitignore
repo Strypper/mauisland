@@ -12,6 +12,7 @@ autom4te.cache/
 *.tar.gz
 tarballs/
 test-results/
+/src/Presentations/Windows/Extensions/ProductionConfig.cs
 
 tools/
 
@@ -411,3 +412,4 @@ ASALocalRun/
 .vs
 /src/appsettings.Development.json
 /src/Presentations/Windows/appsettings.Development.json
+/src/Presentations/Windows/Extensions/TaskHelpers.cs
