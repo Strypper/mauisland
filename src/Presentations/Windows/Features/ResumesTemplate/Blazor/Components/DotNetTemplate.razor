@@ -1,0 +1,681 @@
+﻿@page "/resumes-template/dotnet-template"
+@namespace MAUIsland.ResumesTemplate
+
+<head>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <header class="header">
+        <a href="#home" class="logo">
+            FirstName <span>@ViewModel.UserName</span>
+        </a>
+
+        <i class="bx bx-menu" id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="#education">Education</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="home-content" id="home">
+        <div>
+            <h1>Hi, I'm <span>Nghia Duong</span></h1>
+            <h3 class="text-animation">Position: <span></span></h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            <div class="social-icons">
+                <a href="#a" title="linkedin">
+                    <i class="bx bxl-linkedin" />
+                </a>
+                <a href="#b" title="github">
+                    <i class="bx bxl-github" />
+                </a>
+                <a href="#c" title="facebook">
+                    <i class="bx bxl-facebook-circle" />
+                </a>
+                <a href="#d" title="twitter">
+                    <i class="bx bxl-twitter" />
+                </a>
+            </div>
+
+            <div class="btn-group">
+                <a href="#e" class="btn">Hire</a>
+                <a href="#contact" class="btn">Contact</a>
+            </div>
+        </div>
+
+        <div class="home-img">
+            <img src="https://i.pinimg.com/550x/62/82/41/628241b01dc7c4fa2bea6ea702713a87.jpg" alt="" />
+        </div>
+    </section>
+
+    <section class="education-content" id="education">
+        <h2 class="heading">Education</h2>
+
+        <div class="timeline-items">
+
+            <div class="timeline-item">
+                <div class="timeline-dot">
+                </div>
+                <div class="timeline-date">2021</div>
+                <div class="timeline-content">
+                    <h3>Master of Computer Science</h3>
+                    <p>University of Science, Vietnam</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot">
+                </div>
+                <div class="timeline-date">2018</div>
+                <div class="timeline-content">
+                    <h3>Bachelor of Computer Science</h3>
+                    <p>University of Science, Vietnam</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot">
+                </div>
+                <div class="timeline-date">2015</div>
+                <div class="timeline-content">
+                    <h3>High School</h3>
+                    <p>Le Quy Don High School, Vietnam</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot">
+                </div>
+                <div class="timeline-date">2012</div>
+                <div class="timeline-content">
+                    <h3>Junior High School</h3>
+                    <p>Le Quy Don Junior High School, Vietnam</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="services-content" id="services">
+        <h2 class="heading">Services</h2>
+
+        <div class="services-container">
+            <div class="service-box">
+                <div class="service-info">
+                    <h4>Web development</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+            </div>
+
+            <div class="service-box">
+                <div class="service-info">
+                    <h4>Mobile development</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+            </div>
+
+            <div class="service-box">
+                <div class="service-info">
+                    <h4>Desktop development</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+            </div>
+
+            <div class="service-box">
+                <div class="service-info">
+                    <h4>Database development</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="contact-content" id="contact">
+
+        <h2 class="heading">Contact Me</h2>
+
+        <div class="contact-info">
+            <span>Full Name:</span><span>Nghia Duong</span>
+            <span>Email:</span><span>seledy219@outlook.com</span>
+            <span>Phone:</span><span>+84 123 456 789</span>
+        </div>
+
+        @foreach (var item in ViewModel.Items)
+        {
+            <div class="contact-info">
+                <span>@item:</span><span>@item</span>
+            </div>
+        }
+
+    </section>
+
+    <footer class="footer">
+        <div class="social">
+            <a href="#a" title="linkedin">
+                <i class="bx bxl-linkedin" />
+            </a>
+            <a href="#b" title="github">
+                <i class="bx bxl-github" />
+            </a>
+            <a href="#c" title="facebook">
+                <i class="bx bxl-facebook-circle" />
+            </a>
+            <a href="#d" title="twitter">
+                <i class="bx bxl-twitter" />
+            </a>
+        </div>
+
+        <p class="copyright">
+            @@2024 Totechs. All rights reserved.
+        </p>
+    </footer>
+</body> 
+
+<style>
+    :root {
+        --bg-color: #080808;
+        --second-bg-color: #131313;
+        --text-color: #ffffff;
+        --primary-color: #00ffee;
+    }
+
+    body {
+        background-color: var(--second-bg-color);
+        color: var(--text-color);
+        font-size: 14px;
+    }
+
+        body * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            scroll-behavior: smooth;
+            font-family: "Poppins", sans-serif;
+        }
+
+    header {
+        position: fixed;
+        height: 60px;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 24px 6% 24px;
+        background-color: #00000022;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        align-items: center;
+        font-weight: 800;
+        z-index: 5;
+    }
+
+    section {
+        min-height: 100vh;
+        padding: 70px 6% 30px;
+        background-color: var(--second-bg-color);
+    }
+
+    h1 > span,
+    h2 > span {
+        color: var(--primary-color);
+    }
+
+    .logo {
+        font-size: 20px;
+        color: var(--text-color);
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+        .logo span {
+            color: var(--primary-color);
+            text-shadow: 0 0 25px var(--primary-color);
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+    .navbar a {
+        color: var(--text-color);
+        transition: 0.3s ease;
+        margin-left: 30px;
+        border-bottom: 3px solid transparent;
+        font-weight: 700;
+    }
+
+        .navbar a:hover,
+        .navbar a.active {
+            transform: scale(1.1);
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+    #menu-icon {
+        font-size: 20px;
+        color: var(--primary-color);
+        display: none;
+    }
+
+    .home {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 30px
+    }
+
+    .home-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-align: left;
+        gap: 80px;
+    }
+
+        .home-content h1 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-top: 24px;
+            line-height: 1;
+        }
+
+        .home-content h3 {
+            margin-bottom: 32px;
+            margin-top: 16px;
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+    .home-img {
+        border-radius: 50%;
+    }
+
+        .home-img img {
+            border-radius: 50%;
+            box-shadow: 0 0 25px var(--primary-color);
+            cursor: pointer;
+            transition: 0.4s ease-in-out;
+            width: 240px;
+            height: 240px;
+        }
+
+            .home-img img:hover {
+                box-shadow: 0 0 25px var(--primary-color), 0 0 50px var(--primary-color), 0 0 100px var(--primary-color);
+            }
+
+    .social-icons a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        background: transparent;
+        border: 2px solid var(--primary-color);
+        font-size: 20px;
+        border-radius: 50%;
+        color: var(--primary-color);
+        margin: 30px 15px 30px 0px;
+        transition: 0.3s ease-in-out;
+    }
+
+        .social-icons a:hover {
+            color: var(--text-color);
+            transform: scale(1.2) translateY(-4px);
+            box-shadow: 0 0 25px var(--primary-color);
+            background-color: var(--primary-color);
+        }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background: var(--primary-color);
+        box-shadow: 0 0 25px var(--primary-color);
+        border-radius: 20px;
+        font-size: 16px;
+        color: black;
+        border: 2px solid transparent;
+        letter-spacing: 1px;
+        font-weight: 600;
+        transition: 0.3s ease-in-out;
+        cursor: pointer;
+    }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px var(--primary-color);
+        }
+
+    .btn-group {
+        display: flex;
+        gap: 20px;
+        flex-direction: row;
+        align-items: center;
+    }
+
+        .btn-group a:nth-of-type(2) {
+            background-color: black;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 0 25px transparent;
+        }
+
+            .btn-group a:nth-of-type(2):hover {
+                background-color: var(--primary-color);
+                color: black;
+                box-shadow: 0 0 25px var(--primary-color);
+            }
+
+    .text-animation {
+        font-size: 30px;
+        font-weight: 600;
+        min-width: 280px;
+    }
+
+        .text-animation span {
+            position: relative;
+        }
+
+            .text-animation span::before {
+                content: "Web Developer";
+                color: var(--primary-color);
+                animation: words 16s infinite;
+            }
+
+            .text-animation span::after {
+                content: "";
+                position: absolute;
+                background-color: var(--second-bg-color);
+                width: calc(100% + 8px);
+                height: 105%;
+                border-left: 3px solid var(--primary-color);
+                right: -8px;
+                animation: cursor 0.6s infinite, typing steps(20) 16s 0s infinite;
+            }
+
+    @@keyframes cursor {
+        to
+
+    {
+        border-left: 2px solid var(--primary-color);
+    }
+
+    }
+
+    @@keyframes words {
+        0%, 20%
+
+    {
+        content: "Web Developer";
+    }
+
+    21%,
+    40% {
+        content: "Frontend Developer";
+    }
+
+    41%,
+    60% {
+        content: "Backend Developer";
+    }
+
+    61%,
+    80% {
+        content: "Full Stack Developer";
+    }
+
+    81%,
+    100% {
+        content: "UI / UX Designer";
+    }
+
+    }
+
+    @@keyframes typing {
+        10%, 15%, 30%, 35%, 50%, 55%, 70%, 75%, 90%, 95%
+
+    {
+        width: 0px;
+    }
+
+    5%,
+    20%,
+    25%,
+    40%,
+    45%,
+    60%,
+    65%,
+    80%,
+    85% {
+        width: calc(100% + 8px);
+    }
+
+    }
+
+    .education-content {
+        background-color: var(--second-bg-color);
+    }
+
+    .heading {
+        font-size: 30px;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .timeline-items {
+        max-width: 1200px;
+        margin: auto;
+        margin-bottom: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+    }
+
+        .timeline-items::before {
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 100%;
+            background-color: var(--primary-color);
+            left: calc(50% - 1px);
+        }
+
+    .timeline-item {
+        margin-bottom: 40px;
+        width: 100%;
+        position: relative;
+    }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item:nth-child(odd) {
+            padding-right: calc(50% + 30px);
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: calc(50% + 30px);
+            text-align: left;
+        }
+
+    .timeline-dot {
+        height: 21px;
+        width: 21px;
+        background-color: var(--primary-color);
+        box-shadow: 0 0 25px var(--primary-color), 0 0 50px var(--primary-color);
+        position: absolute;
+        left: calc(50% - 8px);
+        border-radius: 50%;
+        top: 10px
+    }
+
+    .timeline-date {
+        font-size: 18px;
+        font-weight: 800;
+        color: white;
+        margin: 6px 0 15px;
+    }
+
+    .timeline-content {
+        background-color: var(--bg-color);
+        border: 3px solid var(--primary-color);
+        box-shadow: 0 0 10px var(--primary-color);
+        padding: 30px 50px;
+        border-radius: 36px;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+    }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px var(--primary-color);
+        }
+
+        .timeline-content h3 {
+            font-size: 18px;
+            color: white;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            font-size: 14px;
+            color: white;
+            font-weight: 300;
+            line-height: 22px;
+        }
+
+    .services-content {
+    }
+
+    .services-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        color: black;
+        gap: 30px;
+    }
+
+    .service-box {
+        background-color: var(--primary-color);
+        height: 300px;
+        border-radius: 36px;
+        border: 5px solid transparent;
+        cursor: pointer;
+        transition: 0.4s ease-in-out;
+    }
+
+        .service-box:hover {
+            background: white;
+            color: black;
+            border: 5px solid var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .service-box .service-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            max-height: 200px;
+            justify-content: left;
+            align-items: baseline;
+            padding: 50px;
+        }
+
+    .service-info h4 {
+        font-size: 24px;
+        font-weight: 800;
+        line-height: 1.3;
+    }
+
+    .service-info p {
+        font-size: 16px;
+        font-weight: 600;
+        max-height: 100px;
+        line-height: 1.4;
+        margin: auto;
+    }
+
+    .contact-content {
+        background-color: var(--second-bg-color);
+    }
+
+    .contact-info {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: self-start;
+        align-items: center;
+        width: 50%;
+        margin: auto;
+        gap: 30px;
+    }
+
+        .contact-info span {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+            .contact-info span:nth-child(even) {
+                color: var(--primary-color)
+            }
+
+            .contact-info span:nth-child(odd) {
+                color: white
+            }
+
+    .footer {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 20px 0 10px;
+    }
+
+        .footer .social {
+            text-align: center;
+            padding-bottom: 25px;
+            color: var(--primary-color);
+        }
+
+            .footer .social a {
+                font-size: 25px;
+                color: var(--primary-color);
+                border: 2px solid var(--primary-color);
+                width: 42px;
+                height: 42px;
+                line-height: 42px;
+                display: inline-block;
+                text-align: center;
+                border-radius: 50%;
+                margin: 0 10px;
+                transition: 0.3s ease-in-out;
+            }
+
+                .footer .social a:hover {
+                    transform: scale(1.2)translateY(-10px);
+                    background-color: var(--primary-color);
+                    color: black;
+                    box-shadow: 0 0 25px var(--primary-color);
+                }
+
+        .footer .copyright {
+            text-align: center;
+            font-size: 16px;
+            color: white;
+        }
+</style>

@@ -68,6 +68,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiCss Remove="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\Layout\MainLayout.razor.css" />
+	  <MauiCss Remove="Features\Gallery\Pages\BuiltIn\Controls\BlazorWebView\Blazor\Layout\NavMenu.razor.css" />
 	  <Content Remove="appsettings.Development.json" />
 	</ItemGroup>
 
