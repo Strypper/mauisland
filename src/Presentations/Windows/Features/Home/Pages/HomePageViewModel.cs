@@ -365,7 +365,7 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
         try {
             var now = DateTime.UtcNow;
 
-            var localIssue = await gitHubIssueLocalDbService.GetByIssueUrlAsync(issue.Url);
+            var localIssue = await gitHubIssueLocalDbService.GetByIssueUrlAsync(issue.HtmlUrl);
 
             var labels = SerializeIssueLables(issue.Labels);
 
