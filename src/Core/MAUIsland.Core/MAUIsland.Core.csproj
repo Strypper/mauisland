@@ -109,6 +109,9 @@
 	  <Compile Update="Features\Gallery\Pages\BuiltIn\Controls\CollectionView\TemplateContentViews\SelectedItemTemplateContentView.xaml.cs">
 	    <DependentUpon>%(Filename)</DependentUpon>
 	  </Compile>
+	  <Compile Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Appearance\SfCartesianChartAppearanceChart.xaml.cs">
+	    <DependentUpon>SfCartesianChartAppearanceChart.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Chart\Area\SfCartesianChartArea.xaml.cs">
 	    <DependentUpon>SfCartesianChartArea.xaml</DependentUpon>
 	  </Compile>
@@ -180,6 +183,15 @@
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Annotation\SfCartesianChartAnnotation.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Appearance\SfCartesianChartAppearanceChart.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Appearance\SfCartesianChartAppearanceSeries.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Appearance\SfCartesianChartPlottingCustomization.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Axis\SfCartesianChartCategoryAxis.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -190,6 +202,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Axis\SfCartesianChartNumericalAxis.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Axis\SfCartesianChartOtherAxis.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Chart\Area\SfCartesianChartArea.xaml">
@@ -277,6 +292,15 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Chart\Waterfall\SfCartesianChartWaterfall.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\PlotBand\SfCartesianChartDateTimePlotBand.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\PlotBand\SfCartesianChartNumericalPlotBand.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\PlotBand\SfCartesianChartOtherPlotBand.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ContentViews\DocumentAlert.xaml">

@@ -60,7 +60,7 @@
                         </toolkit:NumericalAxis>
                     </toolkit:SfCartesianChart.YAxes>
                     <toolkit:SfCartesianChart.Series>
-                        <toolkit:ColumnSeries Label="Countries" EnableAnimation="True" ShowDataLabels="True"  
+                        <toolkit:ColumnSeries EnableAnimation="True" ShowDataLabels="True"  
                                               ItemsSource="{x:Binding ComponentData,Source={x:Reference root}}" 
                                               XBindingPath="Name" YBindingPath="Exp">
                             <toolkit:ColumnSeries.DataLabelSettings>

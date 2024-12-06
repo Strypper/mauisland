@@ -17,7 +17,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     IGalleryCardInfo controlInformation = default!;
 
     [ObservableProperty]
-    ObservableCollection<SfCartesianChartModel> persons;
+    ObservableCollection<SfCartesianChartModel> crossingAxis;
 
     [ObservableProperty]
     ObservableCollection<SfCartesianChartModel> annotation;
@@ -158,7 +158,10 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     ControlGroupInfo controlGroup;
 
     [ObservableProperty]
-    List<Brush> palletBrushes;
+    List<Brush> coldPalletBrushes;
+
+    [ObservableProperty]
+    List<Brush> rainbowPalletBrushes;
 
     [ObservableProperty]
     bool isRefreshing;
@@ -167,31 +170,6 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     [ObservableProperty]
     string xamlNamespace =
         "xmlns:toolkit=\"http://schemas.syncfusion.com/maui/toolkit\"";
-
-    [ObservableProperty]
-    string basicSfCartesianChartXamlCode =
-        "<toolkit:SfCartesianChart>\r\n" +
-        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
-        "        <toolkit:CategoryAxis>\r\n" +
-        "            <toolkit:CategoryAxis.Title>\r\n" +
-        "                <toolkit:ChartAxisTitle Text=\"Name\" TextColor=\"{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}\" />\r\n" +
-        "            </toolkit:CategoryAxis.Title>\r\n" +
-        "        </toolkit:CategoryAxis>\r\n" +
-        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
-        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
-        "        <toolkit:NumericalAxis>\r\n" +
-        "            <toolkit:NumericalAxis.Title>\r\n" +
-        "                 <toolkit:ChartAxisTitle Text=\"Exp\" TextColor=\"{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}\" />\r\n" +
-        "            </toolkit:NumericalAxis.Title>\r\n" +
-        "        </toolkit:NumericalAxis>\r\n" +
-        "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
-        "    <toolkit:ColumnSeries EnableAnimation=\"True\"\r\n" +
-        "                          ItemsSource=\"{x:Binding Persons}\"\r\n" +
-        "                          PaletteBrushes=\"{x:Binding PalletBrushes, Mode=OneWay}\"\r\n" +
-        "                          SelectionBehavior=\"{x:StaticResource SfCartesianChartSelectionBrush}\"\r\n" +
-        "                          XBindingPath=\"Name\"\r\n" +
-        "                          YBindingPath=\"Exp\" />\r\n" +
-        "</toolkit:SfCartesianChart>";
 
     [ObservableProperty]
     string cartesianCategoryAxisXamlCode =
@@ -288,6 +266,42 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "        <toolkit:FastLineSeries EnableAnimation=\"True\" EnableTooltip=\"True\" \r\n" +
         "                                ItemsSource=\"{x:Binding FastLine}\" \r\n" +
         "                                XBindingPath=\"Date\" YBindingPath=\"Value\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianMultipleAxesXamlCode =
+        "<toolkit:SfCartesianChart>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"False\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"False\"/>\r\n" +
+        "        <toolkit:NumericalAxis Name=\"ColumnYAxis2\" CrossesAt=\"{Static x:Double.MaxValue}\" ShowMajorGridLines=\"False\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:ColumnSeries ItemsSource=\"{x:Binding Column}\" \r\n" +
+        "                          XBindingPath=\"Name\" YBindingPath=\"Value\" YAxisName=\"ColumnYAxis2\"/>\r\n" +
+        "    <toolkit:SplineSeries ItemsSource=\"{x:Binding Column}\" \r\n" +
+        "                          XBindingPath=\"Name\" YBindingPath=\"Exp\"/>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianCrossingAxisXamlCode =
+        "<toolkit:SfCartesianChart x:Name=\"axisCrossingChart\">\r\n" +
+        "    <toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "        <toolkit:ChartZoomPanBehavior/>\r\n" +
+        "    </toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:NumericalAxis CrossesAt=\"0\" Minimum=\"-10\" Maximum=\"10\" \r\n" +
+        "                               EdgeLabelsDrawingMode=\"Shift\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis CrossesAt=\"0\" Minimum=\"-10\" Maximum=\"10\"  \r\n" +
+        "                               EdgeLabelsDrawingMode=\"Shift\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:SplineSeries ItemsSource=\"{x:Binding CrossingAxis}\" \r\n" +
+        "                              XBindingPath=\"Value\" YBindingPath=\"Size\"/>\r\n" +
         "    </toolkit:SfCartesianChart.Series>\r\n" +
         "</toolkit:SfCartesianChart>";
 
@@ -991,9 +1005,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "        </toolkit:NumericalAxis>\r\n" +
         "    </toolkit:SfCartesianChart.YAxes>\r\n" +
         "    <toolkit:SfCartesianChart.Series>\r\n" +
-        "        <toolkit:ColumnSeries Label=\"Countries\" EnableAnimation=\"True\" ShowDataLabels=\"True\"  \r\n" +
-        "                                ItemsSource=\"{x:Binding ComponentData,Source={x:Reference root}}\" \r\n" +
-        "                                XBindingPath=\"Name\" YBindingPath=\"Exp\">\r\n" +
+        "        <toolkit:ColumnSeries EnableAnimation=\"True\" ShowDataLabels=\"True\"  \r\n" +
+        "                              ItemsSource=\"{x:Binding ComponentData,Source={x:Reference root}}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Exp\">\r\n" +
         "            <toolkit:ColumnSeries.DataLabelSettings>\r\n" +
         "                <toolkit:CartesianDataLabelSettings >\r\n" +
         "                    <toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
@@ -2125,6 +2139,402 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "        </toolkit:WaterfallSeries.DataLabelSettings>\r\n" +
         "    </toolkit:WaterfallSeries>\r\n" +
         "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianAppearanceChartXamlCode =
+        "<toolkit:SfCartesianChart PaletteBrushes=\"{x:Binding ColdPalletBrushes}\" HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Simple Sample Chart\" FontSize=\"16\" \r\n" +
+        "               HorizontalTextAlignment=\"Center\" HorizontalOptions=\"Fill\"  VerticalOptions=\"Center\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis>\r\n" +
+        "            <toolkit:CategoryAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Text=\"Name\" TextColor=\"{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}\" />\r\n" +
+        "            </toolkit:CategoryAxis.Title>\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis>\r\n" +
+        "            <toolkit:NumericalAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle TextColor=\"{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}\" />\r\n" +
+        "            </toolkit:NumericalAxis.Title>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
+        "    <toolkit:ColumnSeries EnableAnimation=\"True\"\r\n" +
+        "                          ItemsSource=\"{x:Binding Column}\"\r\n" +
+        "                          SelectionBehavior=\"{x:StaticResource SfCartesianChartSelectionBrush}\"\r\n" +
+        "                          XBindingPath=\"Name\" YBindingPath=\"Exp\" />\r\n" +
+        "    <toolkit:ColumnSeries EnableAnimation=\"True\"\r\n" +
+        "                          ItemsSource=\"{x:Binding Column}\"\r\n" +
+        "                          SelectionBehavior=\"{x:StaticResource SfCartesianChartSelectionBrush}\"\r\n" +
+        "                          XBindingPath=\"Name\" YBindingPath=\"Value\" />\r\n" +
+        "    <toolkit:ColumnSeries EnableAnimation=\"True\"\r\n" +
+        "                          ItemsSource=\"{x:Binding Column}\"\r\n" +
+        "                          SelectionBehavior=\"{x:StaticResource SfCartesianChartSelectionBrush}\"\r\n" +
+        "                          XBindingPath=\"Name\" YBindingPath=\"Size\" />\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianAppearanceSeriesLinearXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\"\r\n" +
+        "                            Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Simple Sample Chart\" FontSize=\"16\" \r\n" +
+        "                HorizontalTextAlignment=\"Center\" HorizontalOptions=\"Fill\"  VerticalOptions=\"Center\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis>\r\n" +
+        "            <toolkit:CategoryAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Text=\"Name\" TextColor=\"{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}\" />\r\n" +
+        "            </toolkit:CategoryAxis.Title>\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis>\r\n" +
+        "            <toolkit:NumericalAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Text=\"Exp\" TextColor=\"{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}\" />\r\n" +
+        "            </toolkit:NumericalAxis.Title>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
+        "    <toolkit:ColumnSeries EnableAnimation=\"True\"\r\n" +
+        "                            ItemsSource=\"{x:Binding Column}\"\r\n" +
+        "                            PaletteBrushes=\"{x:Binding ColdPalletBrushes}\"\r\n" +
+        "                            SelectionBehavior=\"{x:StaticResource SfCartesianChartSelectionBrush}\"\r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Exp\" />\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianAppearanceSeriesLinearCSharpCode =
+        "[ObservableProperty]\r\n" +
+        "List<Brush> coldPalletBrushes;\r\n\r\n" +
+        "List<Brush> CreateColdGradientPalletBrushes(int count)\r\n" +
+        "{\r\n" +
+        "    var allBrushes = new List<LinearGradientBrush>\r\n" +
+        "    {\r\n" +
+        "        new LinearGradientBrush\r\n" +
+        "        {\r\n" +
+        "            GradientStops = new GradientStopCollection\r\n" +
+        "            {\r\n" +
+        "                new GradientStop { Offset = 1, Color = Color.FromRgb(0, 255, 255) },\r\n" +
+        "                new GradientStop { Offset = 0, Color = Color.FromRgb(0, 191, 255) }\r\n" +
+        "            }\r\n" +
+        "        },\r\n" +
+        "        new LinearGradientBrush\r\n" +
+        "        {\r\n" +
+        "            GradientStops = new GradientStopCollection\r\n" +
+        "            {\r\n" +
+        "                new GradientStop { Offset = 1, Color = Color.FromRgb(0, 191, 255) },\r\n" +
+        "                new GradientStop { Offset = 0, Color = Color.FromRgb(0, 128, 255) }\r\n" +
+        "            }\r\n" +
+        "        },\r\n" +
+        "        new LinearGradientBrush\r\n" +
+        "        {\r\n" +
+        "            GradientStops = new GradientStopCollection\r\n" +
+        "            {\r\n" +
+        "                new GradientStop { Offset = 1, Color = Color.FromRgb(0, 128, 255) },\r\n" +
+        "                new GradientStop { Offset = 0, Color = Color.FromRgb(0, 64, 255) }\r\n" +
+        "            }\r\n" +
+        "        },\r\n" +
+        "        new LinearGradientBrush\r\n" +
+        "        {\r\n" +
+        "            GradientStops = new GradientStopCollection\r\n" +
+        "            {\r\n" +
+        "                new GradientStop { Offset = 1, Color = Color.FromRgb(0, 64, 255) },\r\n" +
+        "                new GradientStop { Offset = 0, Color = Color.FromRgb(0, 0, 255) }\r\n" +
+        "            }\r\n" +
+        "        },\r\n" +
+        "        new LinearGradientBrush\r\n" +
+        "        {\r\n" +
+        "            GradientStops = new GradientStopCollection\r\n" +
+        "            {\r\n" +
+        "                new GradientStop { Offset = 1, Color = Color.FromRgb(0, 0, 255) },\r\n" +
+        "                new GradientStop { Offset = 0, Color = Color.FromRgb(0, 0, 191) }\r\n" +
+        "            }\r\n" +
+        "        }\r\n" +
+        "    };\r\n\r\n" +
+        "    var brush = new List<Brush>();\r\n" +
+        "    allBrushes.Take(count).ToList().ForEach(item => { brush.Add(item); });\r\n\r\n" +
+        "    return brush;\r\n" +
+        "}";
+
+    [ObservableProperty]
+    string cartesianAppearanceSeriesGradientXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\"\r\n" +
+        "                            Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Simple Sample Chart\" FontSize=\"16\" \r\n" +
+        "                HorizontalTextAlignment=\"Center\" HorizontalOptions=\"Fill\"  VerticalOptions=\"Center\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis>\r\n" +
+        "            <toolkit:CategoryAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Text=\"Name\" TextColor=\"{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}\" />\r\n" +
+        "            </toolkit:CategoryAxis.Title>\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis>\r\n" +
+        "            <toolkit:NumericalAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Text=\"Exp\" TextColor=\"{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}\" />\r\n" +
+        "            </toolkit:NumericalAxis.Title>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
+        "    <toolkit:ColumnSeries EnableAnimation=\"True\"\r\n" +
+        "                            ItemsSource=\"{x:Binding Column}\"\r\n" +
+        "                            PaletteBrushes=\"{x:Binding RainbowPalletBrushes}\"\r\n" +
+        "                            SelectionBehavior=\"{x:StaticResource SfCartesianChartSelectionBrush}\"\r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Exp\" />\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianAppearanceSeriesGradientCSharpCode =
+        "[ObservableProperty]\r\n" +
+        "List<Brush> rainbowPalletBrushes;\r\n\r\n" +
+        "List<Brush> createRainbowGradientPalletBrushes(int count)\r\n" +
+        "{\r\n" +
+        "    var allBrushes = new List<RadialGradientBrush> \r\n" +
+        "    { \r\n" +
+        "        new RadialGradientBrush\r\n" +
+        "        { \r\n" +
+        "            GradientStops = new GradientStopCollection \r\n" +
+        "            { \r\n" +
+        "                new GradientStop { Offset = 1, Color = Color.FromRgb(255, 231, 199) }, \r\n" +
+        "                new GradientStop { Offset = 0, Color = Color.FromRgb(252, 182, 159) } \r\n" +
+        "            } \r\n" +
+        "        }, \r\n" +
+        "        new RadialGradientBrush\r\n" +
+        "        { \r\n" +
+        "            GradientStops = new GradientStopCollection \r\n" +
+        "            { \r\n" +
+        "                new GradientStop { Offset = 1, Color = Color.FromRgb(250, 221, 125) }, \r\n" +
+        "                new GradientStop { Offset = 0, Color = Color.FromRgb(252, 204, 45) } \r\n" +
+        "            } \r\n" +
+        "        }, \r\n" +
+        "        new RadialGradientBrush\r\n" +
+        "        { \r\n" +
+        "            GradientStops = new GradientStopCollection \r\n" +
+        "            { \r\n" +
+        "                new GradientStop { Offset = 1, Color = Color.FromRgb(255, 231, 199) }, \r\n" +
+        "                new GradientStop { Offset = 0, Color = Color.FromRgb(252, 182, 159) } \r\n" +
+        "            } \r\n" +
+        "        }, \r\n" +
+        "        new RadialGradientBrush\r\n" +
+        "        { \r\n" +
+        "            GradientStops = new GradientStopCollection \r\n" +
+        "            { \r\n" +
+        "                new GradientStop { Offset = 1, Color = Color.FromRgb(221, 214, 243) }, \r\n" +
+        "                new GradientStop { Offset = 0, Color = Color.FromRgb(250, 172, 168) } \r\n" +
+        "            } \r\n" +
+        "        }, \r\n" +
+        "        new RadialGradientBrush\r\n" +
+        "        { \r\n" +
+        "            GradientStops = new GradientStopCollection \r\n" +
+        "            { \r\n" +
+        "                new GradientStop { Offset = 1, Color = Color.FromRgb(168, 234, 238) }, \r\n" +
+        "                new GradientStop { Offset = 0, Color = Color.FromRgb(123, 176, 249) } \r\n" +
+        "            } \r\n" +
+        "        },\r\n" +
+        "    };\r\n\r\n" +
+        "    var brush = new List<Brush>();\r\n" +
+        "    allBrushes.Take(count).ToList().ForEach(item => { brush.Add(item); });\r\n\r\n" +
+        "    return brush;\r\n" +
+        "}";
+
+    [ObservableProperty]
+    string cartesianPlottingCustomizationXamlCode =
+        "<toolkit:SfCartesianChart>\r\n" +
+        "    <toolkit:SfCartesianChart.PlotAreaBackgroundView>\r\n" +
+        "        <AbsoluteLayout>\r\n" +
+        "            <Label Text=\"Copyright @ 2001 - 2022 Syncfusion Inc\"\r\n" +
+        "                    FontSize=\"18\" AbsoluteLayout.LayoutBounds=\"1,1,-1,-1\"\r\n" +
+        "                    AbsoluteLayout.LayoutFlags=\"PositionProportional\"\r\n" +
+        "                    Opacity=\"0.4\"/>\r\n" +
+        "            <Label Text=\"CONFIDENTIAL\"\r\n" +
+        "                    Rotation=\"340\"\r\n" +
+        "                    FontSize=\"80\"\r\n" +
+        "                    FontAttributes=\"Bold,Italic\"\r\n" +
+        "                    TextColor=\"Gray\"\r\n" +
+        "                    Margin=\"10,0,0,0\"\r\n" +
+        "                    AbsoluteLayout.LayoutBounds=\"0.5,0.5,-1,-1\"\r\n" +
+        "                    AbsoluteLayout.LayoutFlags=\"PositionProportional\"\r\n" +
+        "                    Opacity=\"0.3\"/>\r\n" +
+        "        </AbsoluteLayout>\r\n" +
+        "    </toolkit:SfCartesianChart.PlotAreaBackgroundView>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianNumericalPlotBandXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                            Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Line Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"false\" Interval=\"2\" PlotOffsetStart=\"10\" PlotOffsetEnd=\"10\" AxisLineOffset=\"10\">\r\n" +
+        "            <toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"10\">\r\n" +
+        "                </toolkit:ChartAxisTickStyle>\r\n" +
+        "            </toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Maximum=\"100\" Minimum=\"0\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"0'%\"/>\r\n" +
+        "            </toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\">\r\n" +
+        "                </toolkit:ChartLineStyle>\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "            <toolkit:NumericalAxis.PlotBands>\r\n" +
+        "                <toolkit:NumericalPlotBandCollection>\r\n" +
+        "                    <toolkit:NumericalPlotBand Start=\"25\" End=\"40\" Fill=\"Orange\"/>\r\n" +
+        "                </toolkit:NumericalPlotBandCollection>\r\n" +
+        "            </toolkit:NumericalAxis.PlotBands>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:LineSeries Label=\"Line 1\" EnableTooltip=\"True\" EnableAnimation=\"True\" StrokeWidth=\"1\" \r\n" +
+        "                            ItemsSource=\"{x:Binding FirstLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" \r\n" +
+        "                            ShowMarkers=\"True\" LegendIcon=\"SeriesType\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianDateTimePlotBandXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                            Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Line Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:DateTimeAxis>\r\n" +
+        "            <toolkit:DateTimeAxis.PlotBands>\r\n" +
+        "                <toolkit:DateTimePlotBandCollection>\r\n" +
+        "                    <toolkit:DateTimePlotBand Start=\"2022-05-04\" End=\"2022-05-06\" Fill=\"Orange\"/>\r\n" +
+        "                </toolkit:DateTimePlotBandCollection>\r\n" +
+        "            </toolkit:DateTimeAxis.PlotBands>\r\n" +
+        "        </toolkit:DateTimeAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Maximum=\"40\" Minimum=\"20\" Interval=\"5\">\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\">\r\n" +
+        "                </toolkit:ChartLineStyle>\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:LineSeries Label=\"Line 1\" EnableTooltip=\"True\" EnableAnimation=\"True\" StrokeWidth=\"1\" \r\n" +
+        "                            ItemsSource=\"{x:Binding ComponentData,Source={x:Reference root}}\" \r\n" +
+        "                            XBindingPath=\"Date\" YBindingPath=\"High\" \r\n" +
+        "                            ShowMarkers=\"True\" LegendIcon=\"SeriesType\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianRecursivePlotBandXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Recursive Plot Band Column Sample Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\" IsVisible=\"true\" ShowMajorGridLines=\"false\" />\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Maximum=\"100\" Minimum=\"0\">\r\n" +
+        "            <toolkit:NumericalAxis.PlotBands>\r\n" +
+        "                <toolkit:NumericalPlotBandCollection>\r\n" +
+        "                    <toolkit:NumericalPlotBand Start=\"0\" End=\"10\" IsRepeatable=\"True\"\r\n" +
+        "                                               RepeatUntil=\"100\" RepeatEvery=\"20\" Fill=\"LightGray\"/>\r\n" +
+        "                </toolkit:NumericalPlotBandCollection>\r\n" +
+        "            </toolkit:NumericalAxis.PlotBands>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:LineSeries EnableAnimation=\"True\" ShowMarkers=\"True\"\r\n" +
+        "                            ItemsSource=\"{x:Binding FirstLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianSegmentedPlotBandXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Segmented Plot Band Column Sample Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\" IsVisible=\"true\" ShowMajorGridLines=\"false\" />\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Maximum=\"100\" Minimum=\"0\">\r\n" +
+        "            <toolkit:NumericalAxis.PlotBands>\r\n" +
+        "                <toolkit:NumericalPlotBandCollection>\r\n" +
+        "                    <toolkit:NumericalPlotBand Start=\"0\" End=\"25\" AssociatedAxisEnd=\"0.5\"\r\n" +
+        "                                               Fill=\"#B300E190\" Text=\"Low\"/>\r\n" +
+        "                    <toolkit:NumericalPlotBand Start=\"35\" End=\"65\" AssociatedAxisStart=\"2.5\" AssociatedAxisEnd=\"4\"\r\n" +
+        "                                               Fill=\"#B3FCD404\" Text=\"Average\"/>\r\n" +
+        "                    <toolkit:NumericalPlotBand Start=\"75\" End=\"100\" AssociatedAxisStart=\"5.5\"\r\n" +
+        "                                                Fill=\"#B3FF4E4E\" Text=\"High\"/>\r\n" +
+        "                </toolkit:NumericalPlotBandCollection>\r\n" +
+        "            </toolkit:NumericalAxis.PlotBands>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:LineSeries EnableAnimation=\"True\" ShowMarkers=\"True\"\r\n" +
+        "                            ItemsSource=\"{x:Binding FirstLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianPlotLineXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Plot Line Column Sample Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\" IsVisible=\"true\" ShowMajorGridLines=\"false\" />\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Maximum=\"100\" Minimum=\"0\">\r\n" +
+        "            <toolkit:NumericalAxis.PlotBands>\r\n" +
+        "                <toolkit:NumericalPlotBandCollection>\r\n" +
+        "                    <toolkit:NumericalPlotBand Start=\"20\" End=\"20\"\r\n" +
+        "                                               Fill=\"#B300E190\" Stroke=\"#B300E190\"\r\n" +
+        "                                               StrokeWidth=\"2\"/>\r\n" +
+        "                    <toolkit:NumericalPlotBand Start=\"40\" End=\"40\" \r\n" +
+        "                                               Fill=\"#FCD404\" Stroke=\"#FCD404\"\r\n" +
+        "                                               StrokeWidth=\"2\"/>\r\n" +
+        "                    <toolkit:NumericalPlotBand Start=\"70\" End=\"70\" \r\n" +
+        "                                               Fill=\"#FF4E4E\" Stroke=\"#FF4E4E\"\r\n" +
+        "                                               StrokeWidth=\"2\"/>\r\n" +
+        "                </toolkit:NumericalPlotBandCollection>\r\n" +
+        "            </toolkit:NumericalAxis.PlotBands>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:LineSeries EnableAnimation=\"True\" ShowMarkers=\"True\"\r\n" +
+        "                            ItemsSource=\"{x:Binding FirstLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
     #endregion
     #endregion
 
@@ -2276,13 +2686,17 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     #region [ Methods ]
     private async Task LoadDataAsync()
     {
-        Persons = new ObservableCollection<SfCartesianChartModel>()
+        CrossingAxis = new ObservableCollection<SfCartesianChartModel>()
         {
-            new SfCartesianChartModel() { Name = "Strypper", Exp = 100 },
-            new SfCartesianChartModel() { Name = "Tan", Exp = 50 },
-            new SfCartesianChartModel() { Name = "Hung", Exp = 40 },
-            new SfCartesianChartModel() { Name = "Long", Exp = 20 },
-            new SfCartesianChartModel() { Name = "Dat", Exp = 30 }
+            new SfCartesianChartModel() { Value = -7, Size = -3 },
+            new SfCartesianChartModel() { Value = -4.5, Size = -2 },
+            new SfCartesianChartModel() { Value = -3.5, Size = 0 },
+            new SfCartesianChartModel() { Value = -3, Size = 2 },
+            new SfCartesianChartModel() { Value = 0, Size = 7 },
+            new SfCartesianChartModel() { Value =3, Size = 2 },
+            new SfCartesianChartModel() { Value =3.5, Size = 0 },
+            new SfCartesianChartModel() { Value =4.5, Size = -2 },
+            new SfCartesianChartModel() { Value = 7, Size = -3 },
         };
 
         Annotation = new ObservableCollection<SfCartesianChartModel>()
@@ -2631,7 +3045,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
             new SfCartesianChartModel() { Name = "Total", Value = 34, IsSummary = true }
         };
 
-        PalletBrushes = new List<Brush>(createGradientPalletBrushes());
+        ColdPalletBrushes = new List<Brush>(CreateColdGradientPalletBrushes(5));
+
+        RainbowPalletBrushes = new List<Brush>(CreateRainbowGradientPalletBrushes(5));
 
         ChartOptions = new ObservableCollection<string>
         {
@@ -2698,52 +3114,108 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         ErrorBarDirections = Enum.GetNames(typeof(ErrorBarDirection)).ToObservableCollection();
     }
 
-    List<Brush> createGradientPalletBrushes()
+    List<Brush> CreateRainbowGradientPalletBrushes(int count)
     {
-        LinearGradientBrush gradientColor1 = new();
-        gradientColor1.GradientStops = new()
+        var allBrushes = new List<RadialGradientBrush> 
+        { 
+            new RadialGradientBrush
+            { 
+                GradientStops = new GradientStopCollection 
+                { 
+                    new GradientStop { Offset = 1, Color = Color.FromRgb(255, 231, 199) }, 
+                    new GradientStop { Offset = 0, Color = Color.FromRgb(252, 182, 159) } 
+                } 
+            }, 
+            new RadialGradientBrush
+            { 
+                GradientStops = new GradientStopCollection 
+                { 
+                    new GradientStop { Offset = 1, Color = Color.FromRgb(250, 221, 125) }, 
+                    new GradientStop { Offset = 0, Color = Color.FromRgb(252, 204, 45) } 
+                } 
+            }, 
+            new RadialGradientBrush
+            { 
+                GradientStops = new GradientStopCollection 
+                { 
+                    new GradientStop { Offset = 1, Color = Color.FromRgb(255, 231, 199) }, 
+                    new GradientStop { Offset = 0, Color = Color.FromRgb(252, 182, 159) } 
+                } 
+            }, 
+            new RadialGradientBrush
+            { 
+                GradientStops = new GradientStopCollection 
+                { 
+                    new GradientStop { Offset = 1, Color = Color.FromRgb(221, 214, 243) }, 
+                    new GradientStop { Offset = 0, Color = Color.FromRgb(250, 172, 168) } 
+                } 
+            }, 
+            new RadialGradientBrush
+            { 
+                GradientStops = new GradientStopCollection 
+                { 
+                    new GradientStop { Offset = 1, Color = Color.FromRgb(168, 234, 238) }, 
+                    new GradientStop { Offset = 0, Color = Color.FromRgb(123, 176, 249) } 
+                } 
+            },
+        };
+
+        var brush = new List<Brush>();
+        allBrushes.Take(count).ToList().ForEach(item => { brush.Add(item); });
+
+        return brush;
+    }
+
+    List<Brush> CreateColdGradientPalletBrushes(int count)
+    {
+        var allBrushes = new List<LinearGradientBrush>
+        {
+            new LinearGradientBrush
             {
-                new GradientStop() { Offset = 1, Color = Color.FromRgb(255, 231, 199) },
-                new GradientStop() { Offset = 0, Color = Color.FromRgb(252, 182, 159) }
-            };
-
-        LinearGradientBrush gradientColor2 = new();
-        gradientColor2.GradientStops = new()
+                GradientStops = new GradientStopCollection
+                {
+                    new GradientStop { Offset = 1, Color = Color.FromRgb(0, 255, 255) },
+                    new GradientStop { Offset = 0, Color = Color.FromRgb(0, 191, 255) }
+                }
+            },
+            new LinearGradientBrush
             {
-                new GradientStop() { Offset = 1, Color = Color.FromRgb(250, 221, 125) },
-                new GradientStop() { Offset = 0, Color = Color.FromRgb(252, 204, 45) }
-            };
-
-        LinearGradientBrush gradientColor3 = new();
-        gradientColor3.GradientStops = new()
+                GradientStops = new GradientStopCollection
+                {
+                    new GradientStop { Offset = 1, Color = Color.FromRgb(0, 191, 255) },
+                    new GradientStop { Offset = 0, Color = Color.FromRgb(0, 128, 255) }
+                }
+            },
+            new LinearGradientBrush
             {
-                new GradientStop() { Offset = 1, Color = Color.FromRgb(255, 231, 199) },
-                new GradientStop() { Offset = 0, Color = Color.FromRgb(252, 182, 159) }
-            };
-
-        LinearGradientBrush gradientColor4 = new LinearGradientBrush();
-        gradientColor4.GradientStops = new GradientStopCollection()
+                GradientStops = new GradientStopCollection
+                {
+                    new GradientStop { Offset = 1, Color = Color.FromRgb(0, 128, 255) },
+                    new GradientStop { Offset = 0, Color = Color.FromRgb(0, 64, 255) }
+                }
+            },
+            new LinearGradientBrush
             {
-                new GradientStop() { Offset = 1, Color = Color.FromRgb(221, 214, 243) },
-                new GradientStop() { Offset = 0, Color = Color.FromRgb(250, 172, 168) }
-            };
-
-        LinearGradientBrush gradientColor5 = new LinearGradientBrush();
-        gradientColor5.GradientStops = new GradientStopCollection()
+                GradientStops = new GradientStopCollection
+                {
+                    new GradientStop { Offset = 1, Color = Color.FromRgb(0, 64, 255) },
+                    new GradientStop { Offset = 0, Color = Color.FromRgb(0, 0, 255) }
+                }
+            },
+            new LinearGradientBrush
             {
-                new GradientStop() { Offset = 1, Color = Color.FromRgb(168, 234, 238) },
-                new GradientStop() { Offset = 0, Color = Color.FromRgb(123, 176, 249) }
-            };
+                GradientStops = new GradientStopCollection
+                {
+                    new GradientStop { Offset = 1, Color = Color.FromRgb(0, 0, 255) },
+                    new GradientStop { Offset = 0, Color = Color.FromRgb(0, 0, 191) }
+                }
+            }
+        };
 
-        List<Brush> brushes = new();
-        brushes.Add(gradientColor1);
-        brushes.Add(gradientColor2);
-        brushes.Add(gradientColor3);
-        brushes.Add(gradientColor4);
-        brushes.Add(gradientColor5);
+        var brush = new List<Brush>();
+        allBrushes.Take(count).ToList().ForEach(item => { brush.Add(item); });
 
-        return brushes;
-
+        return brush;
     }
     #endregion
 }

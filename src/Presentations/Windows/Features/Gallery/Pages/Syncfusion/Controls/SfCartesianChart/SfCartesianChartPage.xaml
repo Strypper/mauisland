@@ -82,6 +82,66 @@
             SfCartesianChart provides annotation support that allows you to mark specific areas of interest in the chart area. This feature enables you to add text, images, and custom views using the following annotations.
         </x:String>
 
+        <x:Array x:Key="AxisProperties" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ Axis can be inverted by using the <strong style="color:blue">IsInversed</strong> property. The default value of this property is <strong style="color:blue">False</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ Axis visibility can be controlled using the <strong style="color:blue">IsVisible</strong> property of axis. Default value of <strong style="color:blue">IsVisible</strong> property is <strong style="color:blue">True</strong>. ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="PaletteBrushesChart" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ By default, chart applies a set of predefined brushes to the series in a predefined order. <strong style="color:blue">SfCartesianChart</strong> provides <strong style="color:blue">PaletteBrushes</strong> property for applying various kinds of custom palettes brushes. ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="PaletteBrushesSeries" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ Cartesian chart provides support to set the palette to series for applying predefined brushes to the segment. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ Gradient for the chart can be set by using the <strong style="color:blue">PaletteBrushes</strong> property with the help of <strong style="color:blue">LinearGradientBrush</strong> or <strong style="color:blue">RadialGradientBrush</strong>.  ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="PlottingCustomization" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">SfCartesianChart</strong> allows you to add any view to the chart plot area, which is useful for adding any relevant data, a watermark, or a color gradient to the background of the chart. ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="PlotBandPRoperties" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Size</strong> - changes how long plot band should be expanded. This is applicable only when end is not specified. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">SizeType</strong> - changes the date-time unit of the value specified in the Size property. The values can be year, month, day, hour, minute, second, and millisecond. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Text</strong> - changes the text of the plot band. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Fill</strong> - changes the fill of the plot band. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Stroke</strong> - changes the stroke color of the plot band.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">StrokeWidth</strong> - changes the stroke width of the plot band. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">StrokeDashArray</strong> - changes the stoke in dash array. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">IsVisible</strong> - changes the visibility of the plot band in chart axis. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">IsRepeatable</strong> - specifies the plot band need to be repeated in specified interval. ]]>
+            </x:String>
+        </x:Array>
+
         <DataTemplate x:Key="SfListViewHeader">
             <Label FontAttributes="Bold" Text="{x:StaticResource PropertiesListHeader}" />
         </DataTemplate>
@@ -133,8 +193,6 @@
                 </VisualStateManager.VisualStateGroups>
             </Border>
         </DataTemplate>
-
-        <toolkit:DataPointSelectionBehavior x:Key="SfCartesianChartSelectionBrush" SelectionBrush="#314A6E" />
     </core:BasePage.Resources>
 
     <ScrollView>
@@ -148,7 +206,7 @@
                                     Style="{x:StaticResource PropertiesListStyle}" />
                 </VerticalStackLayout>
             </Border>
-            
+
             <Border Padding="20" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="5">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}"  Text="{x:StaticResource SetupToolkit}" />
@@ -158,48 +216,24 @@
             </Border>
 
             <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="10">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Simple Cartesian Chart" />
-                    <toolkit:SfCartesianChart>
-                        <toolkit:SfCartesianChart.Title>
-                            <Label Text="Simple Sample Chart" FontSize="16" 
-                                   HorizontalTextAlignment="Center" HorizontalOptions="Fill"  VerticalOptions="Center" />
-                        </toolkit:SfCartesianChart.Title>
-                        <toolkit:SfCartesianChart.XAxes>
-                            <toolkit:CategoryAxis>
-                                <toolkit:CategoryAxis.Title>
-                                    <toolkit:ChartAxisTitle Text="Name" TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}" />
-                                </toolkit:CategoryAxis.Title>
-                            </toolkit:CategoryAxis>
-                        </toolkit:SfCartesianChart.XAxes>
-                        <toolkit:SfCartesianChart.YAxes>
-                            <toolkit:NumericalAxis>
-                                <toolkit:NumericalAxis.Title>
-                                    <toolkit:ChartAxisTitle Text="Exp" TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}" />
-                                </toolkit:NumericalAxis.Title>
-                            </toolkit:NumericalAxis>
-                        </toolkit:SfCartesianChart.YAxes>
-
-                        <toolkit:ColumnSeries EnableAnimation="True"
-                                              ItemsSource="{x:Binding Persons}"
-                                              PaletteBrushes="{x:Binding PalletBrushes, Mode=OneWay}"
-                                              SelectionBehavior="{x:StaticResource SfCartesianChartSelectionBrush}"
-                                              XBindingPath="Name"
-                                              YBindingPath="Exp" />
-                    </toolkit:SfCartesianChart>
-
-                    <core:SourceCodeExpander Code="{x:Binding BasicSfCartesianChartXamlCode}" />
-                </VerticalStackLayout>
-            </Border>
-
-            <Border Padding="20" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="5">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}"  Text="Cartesian Chart Axis" />
+                <VerticalStackLayout Spacing="5" Padding="5, 0">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}"  Text="Cartesian Chart Axis Type" />
                     <Label Text="Cartesian chart supports the following types of chart axis." />
 
                     <core:SfCartesianChartNumericalAxis ComponentData="{x:Binding Column}" CodeDescription="{x:Binding CartesianNumericalAxisXamlCode}"/>
                     <core:SfCartesianChartCategoryAxis ComponentData="{x:Binding Column}" CodeDescription="{x:Binding CartesianCategoryAxisXamlCode}"/>
                     <core:SfCartesianChartDateTimeAxis ComponentData="{x:Binding FastLine}" CodeDescription="{x:Binding CartesianDateTimeAxisXamlCode}"/>
+                    <core:SfCartesianChartLogarithmicAxis ComponentData="{x:Binding FirstLine}" CodeDescription="{x:Binding}"/>
+
+                    <CollectionView ItemsSource="{x:StaticResource AxisProperties}"
+                                    Style="{x:StaticResource PropertiesListStyle}" 
+                                    Margin="5"/>
+
+                    <core:SfCartesianChartOtherAxis MultipleAxesComponentData="{x:Binding Column}" 
+                                                    AxisCrossingComponentData="{x:Binding CrossingAxis}" 
+                                                    MultipleAxesCodeDescription="{x:Binding CartesianMultipleAxesXamlCode}"
+                                                    AxisCrossingCodeDescription="{x:Binding CartesianCrossingAxisXamlCode}"/>
+
                 </VerticalStackLayout>
             </Border>
             
@@ -506,8 +540,61 @@
                 </VerticalStackLayout>
             </Border>
 
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Chart Appearance" />
+                    <CollectionView ItemsSource="{x:StaticResource PaletteBrushesChart}"
+                                    Style="{x:StaticResource PropertiesListStyle}" 
+                                    Margin="5"/>
+                    <core:SfCartesianChartAppearanceChart ComponentData="{x:Binding Column}" 
+                                                          PalletBrushesData="{x:Binding ColdPalletBrushes}"
+                                                          CodeDescription="{x:Binding CartesianAppearanceChartXamlCode}"/>
+                    <CollectionView ItemsSource="{x:StaticResource PaletteBrushesSeries}"
+                                    Style="{x:StaticResource PropertiesListStyle}" 
+                                    Margin="5"/>
+                    <Grid ColumnDefinitions="0.5*, 0.5*">
+                        <VerticalStackLayout Grid.Column="0">
+                            <core:SfCartesianChartAppearanceSeries ComponentData="{x:Binding Column}" 
+                                                                   PalletBrushesData="{x:Binding ColdPalletBrushes}" 
+                                                                   CSharpCodeDescription="{x:Binding CartesianAppearanceSeriesLinearCSharpCode}"
+                                                                   XamlCodeDescription="{x:Binding CartesianAppearanceSeriesLinearXamlCode}"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1">
+                            <core:SfCartesianChartAppearanceSeries ComponentData="{x:Binding Column}" 
+                                                                   PalletBrushesData="{x:Binding RainbowPalletBrushes}" 
+                                                                   CSharpCodeDescription="{x:Binding CartesianAppearanceSeriesGradientCSharpCode}"
+                                                                   XamlCodeDescription="{x:Binding CartesianAppearanceSeriesGradientXamlCode}"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <CollectionView ItemsSource="{x:StaticResource PlottingCustomization}"
+                                    Style="{x:StaticResource PropertiesListStyle}" 
+                                    Margin="5"/>
+                    <core:SfCartesianChartPlottingCustomization FirstLineComponentData="{x:Binding FirstLine}" 
+                                                                SecondLineComponentData="{x:Binding SecondLine}" 
+                                                                CodeDescription="{x:Binding CartesianPlottingCustomizationXamlCode}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="5">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Chart Plot Bands" />
+                    <Label Text="A plot band, also known as a stripline, allows for shading specific regions or ranges in the plot area background at regular or custom intervals. It also provides options to customize the size of these bands. Text can be added to plot band and indicate the significance of each particular region." />
+                    <Label Text="Plot bands are classified into NumericalPlotBand and DateTimePlotBand. Based on the axis, plot bands are drawn using these classifications. The following properties are used to configure the plot band:" />
+                    <CollectionView ItemsSource="{x:StaticResource PlotBandPRoperties}"
+                                    Style="{x:StaticResource PropertiesListStyle}" 
+                                    Margin="5"/>
+
+                    <core:SfCartesianChartNumericalPlotBand ComponentData="{x:Binding FirstLine}" CodeDescription="{x:Binding CartesianNumericalPlotBandXamlCode}"/>
+                    <core:SfCartesianChartDateTimePlotBand ComponentData="{x:Binding RangeArea}" CodeDescription="{x:Binding CartesianDateTimePlotBandXamlCode}" />
+                    <core:SfCartesianChartOtherPlotBand ComponentData="{x:Binding FirstLine}" 
+                                                        RecursivePlotCodeDescription="{x:Binding CartesianRecursivePlotBandXamlCode}" 
+                                                        SegmentedPlotCodeDescription="{x:Binding CartesianSegmentedPlotBandXamlCode}" 
+                                                        PlotLineCodeDescription="{x:Binding CartesianPlotLineXamlCode}"/>
+                </VerticalStackLayout>
+            </Border>
 
             <Border>
+
             </Border>
         </VerticalStackLayout>
     </ScrollView>

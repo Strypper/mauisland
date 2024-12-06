@@ -2,11 +2,11 @@ namespace MAUIsland;
 
 public partial class SfCartesianChartPage : IGalleryPage
 {
-    #region [Services]
+    #region [ Services ]
     private readonly SfCartesianChartPageViewModel ViewModel;
     #endregion
 
-    #region [CTor]
+    #region [ CTor ]
     public SfCartesianChartPage(SfCartesianChartPageViewModel vm)
     {
         InitializeComponent();

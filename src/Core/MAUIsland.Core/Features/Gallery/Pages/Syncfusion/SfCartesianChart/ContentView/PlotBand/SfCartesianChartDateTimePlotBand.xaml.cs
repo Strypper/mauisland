@@ -1,9 +1,11 @@
+using Syncfusion.Maui.Toolkit.Charts;
+
 namespace MAUIsland.Core;
 
-public partial class SfCartesianChartLogarithmicAxis : ContentView
+public partial class SfCartesianChartDateTimePlotBand : ContentView
 {
     #region [ CTor ]
-    public SfCartesianChartLogarithmicAxis()
+    public SfCartesianChartDateTimePlotBand()
     {
         InitializeComponent();
         Info.IsVisible = false;
@@ -14,14 +16,14 @@ public partial class SfCartesianChartLogarithmicAxis : ContentView
     public static readonly BindableProperty ComponentDataProperty = BindableProperty.Create(
         nameof(ComponentData),
         typeof(ObservableCollection<SfCartesianChartModel>),
-        typeof(SfCartesianChartLogarithmicAxis),
+        typeof(SfCartesianChartDateTimePlotBand),
         default(ObservableCollection<SfCartesianChartModel>)
     );
 
     public static readonly BindableProperty CodeDescriptionProperty = BindableProperty.Create(
         nameof(CodeDescription),
         typeof(string),
-        typeof(SfCartesianChartLogarithmicAxis),
+        typeof(SfCartesianChartDateTimePlotBand),
         default(string)
     );
     #endregion
@@ -43,8 +45,8 @@ public partial class SfCartesianChartLogarithmicAxis : ContentView
     #region [ Events ]
     private void OnComponentLoaded(object sender, EventArgs e)
     {
-        var logarithmicAxisInfo = (string[])Resources["LogarithmicAxisInfo"];
-        LogarithmicAxisChartCollectionView.ItemsSource = logarithmicAxisInfo;
+        var dateTimePlotBand = (string[])Resources["DateTimePlotBand"];
+        DateTimePlotBandCollectionView.ItemsSource = dateTimePlotBand;
     }
 
     private async void OnGridTapped(object sender, EventArgs e)

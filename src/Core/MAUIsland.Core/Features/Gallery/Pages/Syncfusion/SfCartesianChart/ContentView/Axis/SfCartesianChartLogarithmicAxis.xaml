@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView 
-    x:Class="MAUIsland.Core.SfCartesianChartCategoryAxis"
+    x:Class="MAUIsland.Core.SfCartesianChartLogarithmicAxis"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:core="clr-namespace:MAUIsland.Core"
@@ -9,15 +9,18 @@
     Loaded="OnComponentLoaded">
 
     <ContentView.Resources>
-        <x:Array x:Key="DateTimeAxisInfo" Type="{x:Type x:String}">
+        <x:Array x:Key="LogarithmicAxisInfo" Type="{x:Type x:String}">
             <x:String>
-                <![CDATA[ <strong style="color:blue">DateTimeAxis</strong> is used to plot <strong style="color:blue">DateTime</strong> values. The <strong style="color:blue">DateTimeAxis</strong> is widely used to make financial charts in places like the Stock Market, where index plotting is done every day. ]]>
+                <![CDATA[ The <strong style="color:blue">LogarithmicAxis</strong> uses a logarithmic scale, and it is very useful in visualizing data when the given data range has a big difference. It can be used either on the x-axis or the chart’s y-axis. ]]>
             </x:String>
             <x:String>
-                <![CDATA[ In <strong style="color:blue">DateTimeAxis</strong>, intervals can be customized by using the <strong style="color:blue">Interval</strong> and <strong style="color:blue">IntervalType</strong> properties. For example, setting <strong style="color:blue">Interval</strong> as 6 and <strong style="color:blue">IntervalType</strong> as <strong style="color:blue">Months</strong> will consider 6 months as interval. ]]>
+                <![CDATA[ Axis interval can be customized using the <strong style="color:blue">Interval</strong> property of the axis. By default, interval will be calculated based on the minimum and maximum value of the provided data. And the default value of the interval is 1. ]]>
             </x:String>
             <x:String>
-                <![CDATA[ <strong style="color:blue">Minimum</strong> and <strong style="color:blue">Maximum</strong> properties behavior is same as in <strong style="color:blue">NumericalAxis</strong> instead of setting numerical value, have to set date time values. ]]>
+                <![CDATA[ To customize the range of the log axis, you can use the <strong style="color:blue">Minimum</strong>, <strong style="color:blue">Maximum</strong> properties of the <strong style="color:blue">LogarithmicAxis</strong>. By default, an excellent range will be calculated automatically based on the provided data. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ The logarithmic axis base can be customized using the <strong style="color:blue">LogarithmicBase</strong> property of the axis. By default, the base value is 10. ]]>
             </x:String>
         </x:Array>
     </ContentView.Resources>
@@ -28,32 +31,19 @@
                 <VerticalStackLayout>
                     <HorizontalStackLayout Spacing="10">
                         <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
-                       Source="{x:StaticResource ArrowCircleRight24Regular}" />
-                        <Label Text="DateTime Axis" VerticalTextAlignment="Center" FontSize="16"/>
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Logarithmic Axis" VerticalTextAlignment="Center" FontSize="16"/>
                     </HorizontalStackLayout>
                     <Grid ColumnDefinitions="0.4*, 0.6*" x:Name="Info" Margin="5">
-                        <CollectionView x:Name="DateTimeAxisChartCollectionView"
-                                    Grid.Column="0"
-                                    Style="{x:StaticResource PropertiesListStyle}"/>
+                        <CollectionView x:Name="LogarithmicAxisChartCollectionView"
+                                        Grid.Column="0"
+                                        Style="{x:StaticResource PropertiesListStyle}"/>
                         <Border Grid.Column="1" StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
                             <VerticalStackLayout Spacing="5">
-                                <toolkit:SfCartesianChart IsTransposed="False" x:Name="logChart">
-                                    <toolkit:SfCartesianChart.Resources>
-                                        <DataTemplate x:Key="tooltiptemplate">
-                                            <StackLayout>
-                                                <Label Text="Profit" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalTextAlignment="Center" FontFamily="Helvetica" Margin="0,2,0,2" FontSize="12"/>
-                                                <BoxView VerticalOptions="Center" HeightRequest="1" />
-                                                <StackLayout Orientation="Horizontal"  VerticalOptions="Fill" Spacing="0" Padding="3" Margin="0">
-                                                    <Ellipse Stroke="{AppThemeBinding Default={StaticResource ContentBackground}}" StrokeThickness="2" HeightRequest="10" TranslationY="-1.2" WidthRequest="10" Margin="0,3,3,0" />
-                                                    <Label Text="{Binding Item.Name,StringFormat='{0} :'}" VerticalTextAlignment="Center" HorizontalOptions="Start" FontFamily="Helvetica" FontSize="12" Margin="3,0,3,0"/>
-                                                    <Label Text="{Binding Item.Value,StringFormat=' ${0}'}" VerticalTextAlignment="Center" HorizontalOptions="End" FontFamily="Helvetica" Margin="0,0,3,0" FontAttributes="Bold" FontSize="12"/>
-                                                </StackLayout>
-                                            </StackLayout>
-                                        </DataTemplate>
-                                    </toolkit:SfCartesianChart.Resources>
-
+                                <toolkit:SfCartesianChart IsTransposed="False" HorizontalOptions="Fill" VerticalOptions="Fill"
+                                                          Margin="0, 0, 20, 0">
                                     <toolkit:SfCartesianChart.Title>
-                                        <Label Text="" Margin="0,0,0,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16"/>
+                                        <Label Text="Logarithmic Axis Line Sample Chart" Margin="0,0,0,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16"/>
                                     </toolkit:SfCartesianChart.Title>
                                     <toolkit:SfCartesianChart.XAxes>
                                         <toolkit:CategoryAxis PlotOffsetStart="10" PlotOffsetEnd="10" AxisLineOffset="10" EdgeLabelsDrawingMode="Shift" ShowMajorGridLines="True">
@@ -72,13 +62,12 @@
                                         </toolkit:CategoryAxis>
                                     </toolkit:SfCartesianChart.XAxes>
                                     <toolkit:SfCartesianChart.YAxes>
-                                        <toolkit:LogarithmicAxis Minimum="10" Maximum="100000" MinorTicksPerInterval="5" ShowMinorGridLines="True" >
+                                        <toolkit:LogarithmicAxis Minimum="10" Maximum="1000" MinorTicksPerInterval="5" ShowMinorGridLines="True" >
                                             <toolkit:LogarithmicAxis.Title>
-                                                <toolkit:ChartAxisTitle Text="Profit" />
+                                                <toolkit:ChartAxisTitle Text="Logarithmic Axis" />
                                             </toolkit:LogarithmicAxis.Title>
                                             <toolkit:LogarithmicAxis.AxisLineStyle>
-                                                <toolkit:ChartLineStyle StrokeWidth="0">
-                                                </toolkit:ChartLineStyle>
+                                                <toolkit:ChartLineStyle StrokeWidth="0"/>
                                             </toolkit:LogarithmicAxis.AxisLineStyle>
                                             <toolkit:LogarithmicAxis.MajorGridLineStyle>
                                                 <toolkit:ChartLineStyle StrokeWidth="1.4"/>
@@ -95,16 +84,16 @@
                                         </toolkit:LogarithmicAxis>
                                     </toolkit:SfCartesianChart.YAxes>
                                     <toolkit:SfCartesianChart.Series>
-                                        <toolkit:LineSeries StrokeWidth="2" TooltipTemplate="{StaticResource tooltiptemplate}" EnableTooltip="True" EnableAnimation="False" 
-                                                            ItemsSource="{Binding DataCollection}" 
+                                        <toolkit:LineSeries StrokeWidth="2" EnableTooltip="True" EnableAnimation="False" 
+                                                            ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
                                                             XBindingPath="Name" YBindingPath="Value"/>
                                         <toolkit:ScatterSeries PointWidth="8" PointHeight="8" EnableAnimation="False" 
-                                                               ItemsSource="{Binding DataCollection}"
+                                                               ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}"
                                                                XBindingPath="Name" YBindingPath="Value"/>
                                     </toolkit:SfCartesianChart.Series>
                                 </toolkit:SfCartesianChart>
 
-                                <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+                                <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}" CodeType="Xaml"/>
                             </VerticalStackLayout>
                         </Border>
                     </Grid>

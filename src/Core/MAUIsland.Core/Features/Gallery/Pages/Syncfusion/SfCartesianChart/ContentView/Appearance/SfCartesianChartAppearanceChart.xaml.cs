@@ -1,9 +1,9 @@
 namespace MAUIsland.Core;
 
-public partial class SfCartesianChartLogarithmicAxis : ContentView
+public partial class SfCartesianChartAppearanceChart : ContentView
 {
     #region [ CTor ]
-    public SfCartesianChartLogarithmicAxis()
+    public SfCartesianChartAppearanceChart()
     {
         InitializeComponent();
         Info.IsVisible = false;
@@ -14,14 +14,21 @@ public partial class SfCartesianChartLogarithmicAxis : ContentView
     public static readonly BindableProperty ComponentDataProperty = BindableProperty.Create(
         nameof(ComponentData),
         typeof(ObservableCollection<SfCartesianChartModel>),
-        typeof(SfCartesianChartLogarithmicAxis),
+        typeof(SfCartesianChartAppearanceChart),
         default(ObservableCollection<SfCartesianChartModel>)
+    );
+
+    public static readonly BindableProperty PalletBrushesDataProperty = BindableProperty.Create(
+        nameof(PalletBrushesData),
+        typeof(List<Brush>),
+        typeof(SfCartesianChartAppearanceChart),
+        default(List<Brush>)
     );
 
     public static readonly BindableProperty CodeDescriptionProperty = BindableProperty.Create(
         nameof(CodeDescription),
         typeof(string),
-        typeof(SfCartesianChartLogarithmicAxis),
+        typeof(SfCartesianChartAppearanceChart),
         default(string)
     );
     #endregion
@@ -33,6 +40,12 @@ public partial class SfCartesianChartLogarithmicAxis : ContentView
         set => SetValue(ComponentDataProperty, value);
     }
 
+    public List<Brush> PalletBrushesData
+    {
+        get => (List<Brush>)GetValue(PalletBrushesDataProperty);
+        set => SetValue(PalletBrushesDataProperty, value);
+    }
+
     public string CodeDescription
     {
         get => (string)GetValue(CodeDescriptionProperty);
@@ -41,12 +54,6 @@ public partial class SfCartesianChartLogarithmicAxis : ContentView
     #endregion
 
     #region [ Events ]
-    private void OnComponentLoaded(object sender, EventArgs e)
-    {
-        var logarithmicAxisInfo = (string[])Resources["LogarithmicAxisInfo"];
-        LogarithmicAxisChartCollectionView.ItemsSource = logarithmicAxisInfo;
-    }
-
     private async void OnGridTapped(object sender, EventArgs e)
     {
         // Rotate the arrow image based on the expanded state
