@@ -112,33 +112,31 @@
             </x:String>
         </x:Array>
 
-        <x:Array x:Key="PlotBandPRoperties" Type="{x:Type x:String}">
+        <x:String x:Key="DataLabels">
+            The ShowDataLabels property of series is used to enable the data labels. Data labels can be customized by using the DataLabelSettings property of chart series. For customizing, need to create an instance of CartesianDataLabelSettings and set to the DataLabelSettings property. Following properties are used to customize the data labels which are available in CartesianDataLabelSettings.
+        </x:String>
+
+        <x:Array x:Key="DataLabelProperties" Type="{x:Type x:String}">
             <x:String>
-                <![CDATA[ <strong style="color:blue">Size</strong> - changes how long plot band should be expanded. This is applicable only when end is not specified. ]]>
+                <![CDATA[ <strong style="color:blue">BarAlignment</strong> - Gets or sets the data label alignment top, middle or bottom. ]]>
             </x:String>
             <x:String>
-                <![CDATA[ <strong style="color:blue">SizeType</strong> - changes the date-time unit of the value specified in the Size property. The values can be year, month, day, hour, minute, second, and millisecond. ]]>
+                <![CDATA[ <strong style="color:blue">LabelPlacement</strong> - Gets or sets the data label position inside, outside or default. ]]>
             </x:String>
             <x:String>
-                <![CDATA[ <strong style="color:blue">Text</strong> - changes the text of the plot band. ]]>
+                <![CDATA[ <strong style="color:blue">LabelStyle</strong> - Gets or sets the options for customizing the data labels. ]]>
             </x:String>
             <x:String>
-                <![CDATA[ <strong style="color:blue">Fill</strong> - changes the fill of the plot band. ]]>
+                <![CDATA[ <strong style="color:blue">UseSeriesPalette</strong> - Gets or sets a value indicating whether the data label should reflect the series interior. ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="DataLabelContext" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Percentage</strong> - This will show the percentage value of corresponding data point Y value. ]]>
             </x:String>
             <x:String>
-                <![CDATA[ <strong style="color:blue">Stroke</strong> - changes the stroke color of the plot band.  ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[ <strong style="color:blue">StrokeWidth</strong> - changes the stroke width of the plot band. ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[ <strong style="color:blue">StrokeDashArray</strong> - changes the stoke in dash array. ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[ <strong style="color:blue">IsVisible</strong> - changes the visibility of the plot band in chart axis. ]]>
-            </x:String>
-            <x:String>
-                <![CDATA[ <strong style="color:blue">IsRepeatable</strong> - specifies the plot band need to be repeated in specified interval. ]]>
+                <![CDATA[ <strong style="color:blue">YValue</strong> - This will show the corresponding Y value. ]]>
             </x:String>
         </x:Array>
 
@@ -579,11 +577,7 @@
                 <VerticalStackLayout Spacing="5">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Chart Plot Bands" />
                     <Label Text="A plot band, also known as a stripline, allows for shading specific regions or ranges in the plot area background at regular or custom intervals. It also provides options to customize the size of these bands. Text can be added to plot band and indicate the significance of each particular region." />
-                    <Label Text="Plot bands are classified into NumericalPlotBand and DateTimePlotBand. Based on the axis, plot bands are drawn using these classifications. The following properties are used to configure the plot band:" />
-                    <CollectionView ItemsSource="{x:StaticResource PlotBandPRoperties}"
-                                    Style="{x:StaticResource PropertiesListStyle}" 
-                                    Margin="5"/>
-
+                    <core:SfCartesianChartPlotBandPropertiesInfo />
                     <core:SfCartesianChartNumericalPlotBand ComponentData="{x:Binding FirstLine}" CodeDescription="{x:Binding CartesianNumericalPlotBandXamlCode}"/>
                     <core:SfCartesianChartDateTimePlotBand ComponentData="{x:Binding RangeArea}" CodeDescription="{x:Binding CartesianDateTimePlotBandXamlCode}" />
                     <core:SfCartesianChartOtherPlotBand ComponentData="{x:Binding FirstLine}" 
@@ -593,8 +587,26 @@
                 </VerticalStackLayout>
             </Border>
 
-            <Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="5">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Chart Data Labels" />
+                    <Label Text="Data labels are used to display values related to a chart segment. Values from data point(x, y) or other custom properties from a data source can be displayed." />
+                    <Label Text="{x:StaticResource DataLabels}"/>
+                    <CollectionView ItemsSource="{x:StaticResource DataLabelProperties}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+                    <core:SfCartesianChartDataLabel ComponentData="{x:Binding Column}" CodeDescription="{x:Binding CartesianDataLabelAlignmentXamlCode}"/>
 
+                    <Label Text="The content of the label can be customized using the LabelContext property. Following are the two options that are supported."/>
+                    <CollectionView ItemsSource="{x:StaticResource DataLabelContext}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+                    <core:SfCartesianChartDataLabelContext ComponentData="{x:Binding Column}" CodeDescription="{x:Binding CartesianDataLabelContextXamlCode}"/>
+
+                    <Label Text="The SfCartesianChart provides support to customize the appearance of the data labels using the LabelTemplate property."/>
+                    <core:SfCartesianChartDataLabelTemplate ComponentData="{x:Binding Column}" CodeDescription="{x:Binding CartesianDataLabelTemplateXamlCode}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border>
             </Border>
         </VerticalStackLayout>
     </ScrollView>

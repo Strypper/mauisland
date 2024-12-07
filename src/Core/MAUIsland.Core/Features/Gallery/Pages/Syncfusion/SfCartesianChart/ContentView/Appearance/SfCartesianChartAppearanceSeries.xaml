@@ -18,7 +18,7 @@
                     <HorizontalStackLayout Spacing="10">
                         <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
                            Source="{x:StaticResource ArrowCircleRight24Regular}" />
-                        <Label Text="PaletteBrushes for Chart" VerticalTextAlignment="Center" FontSize="16"/>
+                        <Label Text="PaletteBrushes for Series" VerticalTextAlignment="Center" FontSize="16"/>
                     </HorizontalStackLayout>
                     <VerticalStackLayout x:Name="Info" Spacing="10">
                         <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="FillAndExpand"

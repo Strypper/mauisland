@@ -294,6 +294,15 @@
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Chart\Waterfall\SfCartesianChartWaterfall.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\DataLabel\SfCartesianChartDataLabel.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\DataLabel\SfCartesianChartDataLabelContext.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\DataLabel\SfCartesianChartDataLabelTemplate.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\PlotBand\SfCartesianChartDateTimePlotBand.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -301,6 +310,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\PlotBand\SfCartesianChartOtherPlotBand.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\PlotBand\SfCartesianChartPlotBandPropertiesInfo.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ContentViews\DocumentAlert.xaml">

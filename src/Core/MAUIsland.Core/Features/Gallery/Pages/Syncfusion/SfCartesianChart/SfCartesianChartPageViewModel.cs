@@ -2535,6 +2535,144 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "                            XBindingPath=\"Name\" YBindingPath=\"Value\"/>\r\n" +
         "    </toolkit:SfCartesianChart.Series>\r\n" +
         "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianDataLabelAlignmentXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Column Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\" IsVisible=\"true\" ShowMajorGridLines=\"false\" />\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"True\" ShowMinorGridLines=\"false\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"0 Exp\"/>\r\n" +
+        "            </toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MinorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle Stroke=\"Transparent\" StrokeWidth=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.MinorTickStyle>\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:ColumnSeries EnableAnimation=\"True\" ShowDataLabels=\"True\"  \r\n" +
+        "                              ItemsSource=\"{x:Binding ComponentData,Source={x:Reference root}}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Exp\">\r\n" +
+        "            <toolkit:ColumnSeries.DataLabelSettings>\r\n" +
+        "                <toolkit:CartesianDataLabelSettings BarAlignment=\"Middle\" LabelPlacement=\"Center\">\r\n" +
+        "                    <toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
+        "                        <toolkit:ChartDataLabelStyle FontSize=\"12\" LabelFormat='0 Exp'/>\r\n" +
+        "                    </toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
+        "                </toolkit:CartesianDataLabelSettings>\r\n" +
+        "            </toolkit:ColumnSeries.DataLabelSettings>\r\n" +
+        "        </toolkit:ColumnSeries>\r\n" +
+        "        <toolkit:ColumnSeries EnableAnimation=\"True\" ShowDataLabels=\"True\"  \r\n" +
+        "                              ItemsSource=\"{x:Binding ComponentData,Source={x:Reference root}}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Value\">\r\n" +
+        "            <toolkit:ColumnSeries.DataLabelSettings>\r\n" +
+        "                <toolkit:CartesianDataLabelSettings BarAlignment=\"Top\" LabelPlacement=\"Outer\">\r\n" +
+        "                    <toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
+        "                        <toolkit:ChartDataLabelStyle FontSize=\"12\" LabelFormat='0 Exp'/>\r\n" +
+        "                    </toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
+        "                </toolkit:CartesianDataLabelSettings>\r\n" +
+        "            </toolkit:ColumnSeries.DataLabelSettings>\r\n" +
+        "        </toolkit:ColumnSeries>\r\n" +
+        "        <toolkit:ColumnSeries EnableAnimation=\"True\" ShowDataLabels=\"True\"  \r\n" +
+        "                              ItemsSource=\"{x:Binding Column}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Size\">\r\n" +
+        "            <toolkit:ColumnSeries.DataLabelSettings>\r\n" +
+        "                <toolkit:CartesianDataLabelSettings BarAlignment=\"Top\" LabelPlacement=\"Inner\">\r\n" +
+        "                    <toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
+        "                        <toolkit:ChartDataLabelStyle FontSize=\"12\" LabelFormat='0 Exp'/>\r\n" +
+        "                    </toolkit:CartesianDataLabelSettings.LabelStyle>\r\n" +
+        "                </toolkit:CartesianDataLabelSettings>\r\n" +
+        "            </toolkit:ColumnSeries.DataLabelSettings>\r\n" +
+        "        </toolkit:ColumnSeries>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianDataLabelContextXamlCode =
+        "<toolkit:SfCartesianChart IsTransposed=\"True\" HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Column Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\" IsVisible=\"true\" ShowMajorGridLines=\"false\" />\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"True\" ShowMinorGridLines=\"false\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"0 Exp\"/>\r\n" +
+        "            </toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MinorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle Stroke=\"Transparent\" StrokeWidth=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.MinorTickStyle>\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:ColumnSeries EnableAnimation=\"True\" ShowDataLabels=\"True\"  \r\n" +
+        "                              ItemsSource=\"{x:Binding Column}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Exp\"\r\n" +
+        "                              LabelContext=\"Percentage\">\r\n" +
+        "            <toolkit:ColumnSeries.DataLabelSettings>\r\n" +
+        "                <toolkit:CartesianDataLabelSettings BarAlignment=\"Top\" LabelPlacement=\"Inner\"/>\r\n" +
+        "            </toolkit:ColumnSeries.DataLabelSettings>\r\n" +
+        "        </toolkit:ColumnSeries>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianDataLabelTemplateXamlCode =
+        "<toolkit:SfCartesianChart IsTransposed=\"True\" HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Resources>\r\n" +
+        "        <DataTemplate x:Key=\"LabelTemplate\">\r\n" +
+        "            <HorizontalStackLayout Spacing=\"5\" Margin=\"10, 0\">\r\n" +
+        "                <Ellipse Fill=\"Aqua\" Stroke=\"Aqua\" HeightRequest=\"15\" WidthRequest=\"15\"/>\r\n" +
+        "                <Label Text=\"{x:Binding Item.Exp}\" VerticalOptions=\"Center\" FontSize=\"15\"/>\r\n" +
+        "            </HorizontalStackLayout>\r\n" +
+        "        </DataTemplate>\r\n" +
+        "    </toolkit:SfCartesianChart.Resources>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Column Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\" IsVisible=\"true\" ShowMajorGridLines=\"false\" />\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"True\" ShowMinorGridLines=\"false\" Interval=\"20\" Maximum=\"120\">\r\n" +
+        "            <toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"0 Exp\"/>\r\n" +
+        "            </toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MinorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle Stroke=\"Transparent\" StrokeWidth=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.MinorTickStyle>\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:ColumnSeries EnableAnimation=\"True\" ShowDataLabels=\"True\"  \r\n" +
+        "                              ItemsSource=\"{x:Binding Column}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Exp\"\r\n" +
+        "                              LabelTemplate=\"{StaticResource LabelTemplate}\">\r\n" +
+        "            <toolkit:ColumnSeries.DataLabelSettings>\r\n" +
+        "                <toolkit:CartesianDataLabelSettings BarAlignment=\"Top\" LabelPlacement=\"Outer\"/>\r\n" +
+        "            </toolkit:ColumnSeries.DataLabelSettings>\r\n" +
+        "        </toolkit:ColumnSeries>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
     #endregion
     #endregion
 
