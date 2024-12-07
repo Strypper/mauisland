@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartSelection"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root">
+
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <HorizontalStackLayout HorizontalOptions="End">
+                    <Label Text="Multiple Selection :" VerticalOptions="Center" FontSize="16"/>
+                    <CheckBox HeightRequest="35" VerticalOptions="Center" CheckedChanged="CheckedChanged"/>
+                </HorizontalStackLayout>
+                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill"
+                                          Margin="0, 0, 20, 0">
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Selection Column Sample Chart" Margin="0,0,0,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:CategoryAxis LabelPlacement="BetweenTicks" IsVisible="true" ShowMajorGridLines="false" />
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis ShowMajorGridLines="True" ShowMinorGridLines="false" Interval="20">
+                            <toolkit:NumericalAxis.LabelStyle>
+                                <toolkit:ChartAxisLabelStyle LabelFormat="0 Exp"/>
+                            </toolkit:NumericalAxis.LabelStyle>
+                            <toolkit:NumericalAxis.MinorTickStyle>
+                                <toolkit:ChartAxisTickStyle Stroke="Transparent" StrokeWidth="0"/>
+                            </toolkit:NumericalAxis.MinorTickStyle>
+                            <toolkit:NumericalAxis.AxisLineStyle>
+                                <toolkit:ChartLineStyle StrokeWidth="0" />
+                            </toolkit:NumericalAxis.AxisLineStyle>
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:SfCartesianChart.Series>
+                        <toolkit:ColumnSeries EnableAnimation="True" ShowDataLabels="True"  
+                                              ItemsSource="{x:Binding ComponentData,Source={x:Reference root}}" 
+                                              XBindingPath="Name" YBindingPath="Exp">
+                            <toolkit:ColumnSeries.SelectionBehavior>
+                                <toolkit:DataPointSelectionBehavior x:Name="DataPointSelection" SelectionBrush="#2A9AF3" SelectedIndex="6" Type="SingleDeselect"/>
+                            </toolkit:ColumnSeries.SelectionBehavior>
+                        </toolkit:ColumnSeries>
+                    </toolkit:SfCartesianChart.Series>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding XamlCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+                <core:SourceCodeExpander Code="{x:Binding CSharpCodeDescription, Source={x:Reference root}}"  CodeType="CSharp"/>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

@@ -140,6 +140,28 @@
             </x:String>
         </x:Array>
 
+        <x:String x:Key="SelectionHeader">
+            The following properties are used to customize the ChartSelectionBehavior:
+        </x:String>
+
+        <x:Array x:Key="SelectionBehaviorProperties" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Type</strong> - Gets or sets the <strong style="color:blue">ChartSelectionType</strong> for the selection behavior. There are <strong style="color:blue">Single</strong>, <strong style="color:blue">SingleDeselect</strong>, <strong style="color:blue">Multiple</strong> and <strong style="color:blue">None</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">SelectionBrush</strong> - Gets or sets the brush color for the selection. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">SelectedIndex</strong> - Gets or sets the value of the index to be selected. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">SelectedIndexes</strong> - Gets or sets the list of indexes to be selected. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">ClearSelection</strong> - Used to reset all the selection customizations to default. ]]>
+            </x:String>
+        </x:Array>
+
         <DataTemplate x:Key="SfListViewHeader">
             <Label FontAttributes="Bold" Text="{x:StaticResource PropertiesListHeader}" />
         </DataTemplate>
@@ -617,6 +639,23 @@
                                                  LegendCodeDescription="{x:Binding CartesianLegendXamlCode}"
                                                  ItemLayoutLegendCodeDescription="{x:Binding CartesianItemLayoutLegendXamlCode}"
                                                  ItemTemplateLegendCodeDescription="{x:Binding CartesianItemTemplateLegendXamlCode}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="5">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Chart Selection" />
+                    <Label Text="The SfCartesianChart provides selection behavior support, which allows you to select or highlight a segment (data points) or a series in the chart using the DataPointSelectionBehavior and SeriesSelectionBehavior."/>
+                    <CollectionView Header="{x:StaticResource SelectionHeader}"
+                                    ItemsSource="{x:StaticResource SelectionBehaviorProperties}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+
+                    <core:SfCartesianChartSelection ComponentData="{x:Binding Column}" 
+                                                    XamlCodeDescription="{x:Binding CartesianSelectionXamlCode}" 
+                                                    CSharpCodeDescription="{x:Binding CartesianSelectionCSharpCode}"/>
+                    <core:SfCartesianChartSeriesSelection ComponentData="{x:Binding Column}" 
+                                                          XamlCodeDescription="{x:Binding CartesianSeriesSelectionXamlCode}" 
+                                                          CSharpCodeDescription="{x:Binding CartesianSeriesSelectionCSharpCode}"/>
                 </VerticalStackLayout>
             </Border>
 

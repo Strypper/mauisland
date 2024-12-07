@@ -2541,7 +2541,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
         "                          Margin=\"0, 0, 20, 0\">\r\n" +
         "    <toolkit:SfCartesianChart.Title>\r\n" +
-        "        <Label Text=\"Column Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "        <Label Text=\"Data Label Column Sample Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
         "    </toolkit:SfCartesianChart.Title>\r\n" +
         "    <toolkit:SfCartesianChart.XAxes>\r\n" +
         "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\" IsVisible=\"true\" ShowMajorGridLines=\"false\" />\r\n" +
@@ -2601,7 +2601,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "<toolkit:SfCartesianChart IsTransposed=\"True\" HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
         "                          Margin=\"0, 0, 20, 0\">\r\n" +
         "    <toolkit:SfCartesianChart.Title>\r\n" +
-        "        <Label Text=\"Column Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "        <Label Text=\"Data Label with Context Sample Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
         "    </toolkit:SfCartesianChart.Title>\r\n" +
         "    <toolkit:SfCartesianChart.XAxes>\r\n" +
         "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\" IsVisible=\"true\" ShowMajorGridLines=\"false\" />\r\n" +
@@ -2644,7 +2644,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "        </DataTemplate>\r\n" +
         "    </toolkit:SfCartesianChart.Resources>\r\n" +
         "    <toolkit:SfCartesianChart.Title>\r\n" +
-        "        <Label Text=\"Column Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "        <Label Text=\"Data Label with Label Template Sample Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
         "    </toolkit:SfCartesianChart.Title>\r\n" +
         "    <toolkit:SfCartesianChart.XAxes>\r\n" +
         "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\" IsVisible=\"true\" ShowMajorGridLines=\"false\" />\r\n" +
@@ -2818,6 +2818,142 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
         "    </toolkit:SfCartesianChart.Series>\r\n" +
         "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianSelectionXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Selection Column Sample Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\" IsVisible=\"true\" ShowMajorGridLines=\"false\" />\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"True\" ShowMinorGridLines=\"false\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"0 Exp\"/>\r\n" +
+        "            </toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MinorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle Stroke=\"Transparent\" StrokeWidth=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.MinorTickStyle>\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:ColumnSeries EnableAnimation=\"True\" ShowDataLabels=\"True\"  \r\n" +
+        "                              ItemsSource=\"{x:Binding ComponentData,Source={x:Reference root}}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Exp\">\r\n" +
+        "            <toolkit:ColumnSeries.SelectionBehavior>\r\n" +
+        "                <toolkit:DataPointSelectionBehavior x:Name=\"DataPointSelection\" SelectionBrush=\"#2A9AF3\" SelectedIndex=\"6\" Type=\"SingleDeselect\"/>\r\n" +
+        "            </toolkit:ColumnSeries.SelectionBehavior>\r\n" +
+        "        </toolkit:ColumnSeries>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianSelectionCSharpCode =
+        "private void CheckedChanged(object sender, CheckedChangedEventArgs e)\r\n" +
+        "{\r\n" +
+        "    DataPointSelection.Type = e.Value ? ChartSelectionType.Multiple : ChartSelectionType.SingleDeselect;\r\n" +
+        "}";
+
+    [ObservableProperty]
+    string cartesianSeriesSelectionXamlCode =
+        "<toolkit:SfCartesianChart x:Name=\"SelectionChart\" HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Selection Column Sample Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.SelectionBehavior>\r\n" +
+        "        <toolkit:SeriesSelectionBehavior x:Name =\"SeriesSelection\" SelectionBrush=\"{x:Null}\" SelectionChanging=\"SelectionChanging\" Type=\"SingleDeselect\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.SelectionBehavior>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\" IsVisible=\"true\" ShowMajorGridLines=\"false\" />\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"True\" ShowMinorGridLines=\"false\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"0 Exp\"/>\r\n" +
+        "            </toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MinorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle Stroke=\"Transparent\" StrokeWidth=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.MinorTickStyle>\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:ColumnSeries EnableAnimation=\"True\" Fill=\"#8000BDAE\"\r\n" +
+        "                              ItemsSource=\"{x:Binding ComponentData,Source={x:Reference root}}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Exp\"/>\r\n" +
+        "        <toolkit:ColumnSeries EnableAnimation=\"True\" Fill=\"#80404041\" \r\n" +
+        "                              ItemsSource=\"{x:Binding ComponentData,Source={x:Reference root}}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Value\"/>\r\n" +
+        "        <toolkit:ColumnSeries EnableAnimation=\"True\" Fill=\"#80357CD2\"\r\n" +
+        "                              ItemsSource=\"{x:Binding ComponentData,Source={x:Reference root}}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Size\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianSeriesSelectionCSharpCode =
+        "List<int> SelectedIndexes = new List<int>();\r\n\r\n" +
+        "private void CheckedChanged(object sender, CheckedChangedEventArgs e)\r\n" +
+        "{\r\n" +
+        "    SeriesSelection.Type = e.Value ? ChartSelectionType.Multiple : ChartSelectionType.SingleDeselect;\r\n" +
+        "    SelectedIndexes.Clear();\r\n\r\n" +
+        "    var fadedColors = new List<SolidColorBrush> \r\n" +
+        "    { \r\n" +
+        "        new SolidColorBrush(Color.FromArgb(\"#8000BDAE\")), \r\n" +
+        "        new SolidColorBrush(Color.FromArgb(\"#80404041\")), \r\n" +
+        "        new SolidColorBrush(Color.FromArgb(\"#80357CD2\")) \r\n" +
+        "    };\r\n\r\n" +
+        "    foreach (var series in SelectionChart.Series)\r\n" +
+        "    {\r\n" +
+        "        series.Fill = fadedColors[SelectionChart.Series.IndexOf(series)];\r\n" +
+        "    }\r\n" +
+        "}\r\n\r\n" +
+        "private void SelectionChanging(object sender, ChartSelectionChangingEventArgs e)\r\n" +
+        "{\r\n" +
+        "    var defaultColors = new List<SolidColorBrush>\r\n" +
+        "    {\r\n" +
+        "        new SolidColorBrush(Color.FromArgb(\"#00BDAE\")),\r\n" +
+        "        new SolidColorBrush(Color.FromArgb(\"#404041\")),\r\n" +
+        "        new SolidColorBrush(Color.FromArgb(\"#357CD2\"))\r\n" +
+        "    };\r\n\r\n" +
+        "    var fadedColors = new List<SolidColorBrush>\r\n" +
+        "    {\r\n" +
+        "        new SolidColorBrush(Color.FromArgb(\"#8000BDAE\")),\r\n" +
+        "        new SolidColorBrush(Color.FromArgb(\"#80404041\")),\r\n" +
+        "        new SolidColorBrush(Color.FromArgb(\"#80357CD2\"))\r\n" +
+        "    };\r\n\r\n" +
+        "    // Create a HashSet of all selected indexes including old and new indexes.\r\n" +
+        "    var selectedIndexes = new HashSet<int>(SelectedIndexes);\r\n\r\n" +
+        "    // Add new indexes to the selected set.\r\n" +
+        "    foreach (var index in e.NewIndexes)\r\n" +
+        "    {\r\n" +
+        "        selectedIndexes.Add(index);\r\n" +
+        "        if (!SelectedIndexes.Contains(index))\r\n" +
+        "            SelectedIndexes.Add(index);\r\n" +
+        "    }\r\n\r\n" +
+        "    // Remove old indexes from the selected set.\r\n" +
+        "    foreach (var index in e.OldIndexes)\r\n" +
+        "    {\r\n" +
+        "        selectedIndexes.Remove(index);\r\n" +
+        "        if (SelectedIndexes.Contains(index))\r\n" +
+        "            SelectedIndexes.Remove(index);\r\n" +
+        "    }\r\n\r\n" +
+        "    // Set the fill color based on whether the index is in the selected set.\r\n" +
+        "    foreach (var series in SelectionChart.Series)\r\n" +
+        "    {\r\n" +
+        "        int index = SelectionChart.Series.IndexOf(series);\r\n" +
+        "        series.Fill = selectedIndexes.Contains(index) ? defaultColors[index] : fadedColors[index];\r\n" +
+        "    }\r\n" +
+        "}";
     #endregion
     #endregion
 
