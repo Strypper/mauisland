@@ -606,6 +606,20 @@
                 </VerticalStackLayout>
             </Border>
 
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="5">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Chart Legend" />
+                    <Label Text="The Legend provides a list of series or data points, helping to identify the corresponding data series in the chart."/>
+
+                    <core:SfCartesianChartLegend FirstLineComponentData="{x:Binding FirstLine}" 
+                                                 SecondLineComponentData="{x:Binding SecondLine}" 
+                                                 ThirdLineComponentData="{x:Binding ThirdLine}" 
+                                                 LegendCodeDescription="{x:Binding CartesianLegendXamlCode}"
+                                                 ItemLayoutLegendCodeDescription="{x:Binding CartesianItemLayoutLegendXamlCode}"
+                                                 ItemTemplateLegendCodeDescription="{x:Binding CartesianItemTemplateLegendXamlCode}"/>
+                </VerticalStackLayout>
+            </Border>
+
             <Border>
             </Border>
         </VerticalStackLayout>

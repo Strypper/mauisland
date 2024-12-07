@@ -303,6 +303,9 @@
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\DataLabel\SfCartesianChartDataLabelTemplate.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Legend\SfCartesianChartLegend.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\PlotBand\SfCartesianChartDateTimePlotBand.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -2673,6 +2673,151 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "        </toolkit:ColumnSeries>\r\n" +
         "    </toolkit:SfCartesianChart.Series>\r\n" +
         "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianLegendXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\" \r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend Placement=\"Top\">\r\n" +
+        "            <toolkit:ChartLegend.LabelStyle>\r\n" +
+        "                <toolkit:ChartLegendLabelStyle TextColor=\"#108dda\" Margin=\"5\" FontSize=\"18\" FontAttributes=\"Bold\"/>\r\n" +
+        "            </toolkit:ChartLegend.LabelStyle>\r\n" +
+        "        </toolkit:ChartLegend>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Legend Sample Line Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"false\"  PlotOffsetStart=\"10\" PlotOffsetEnd=\"10\" AxisLineOffset=\"10\">\r\n" +
+        "            <toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"10\"/>\r\n" +
+        "            </toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Maximum=\"0\" Minimum=\"120\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:LineSeries EnableTooltip=\"True\" Label=\"Line 1\" StrokeWidth=\"1\" LegendIcon=\"Diamond\"\r\n" +
+        "                            ItemsSource=\"{x:Binding FirstLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
+        "        <toolkit:LineSeries EnableTooltip=\"True\" Label=\"Line 2\" StrokeWidth=\"1\" LegendIcon=\"Hexagon\"\r\n" +
+        "                            ItemsSource=\"{x:Binding SecondLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
+        "        <toolkit:LineSeries EnableTooltip=\"True\" Label=\"Line 3\" StrokeWidth=\"1\" LegendIcon=\"Pentagon\"\r\n" +
+        "                            ItemsSource=\"{x:Binding ThirdLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianItemLayoutLegendXamlCode =
+        "<toolkit:SfCartesianChart x:Name=\"ItemLayoutChart\" HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\" \r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend Placement=\"Bottom\">\r\n" +
+        "            <toolkit:ChartLegend.ItemsLayout>\r\n" +
+        "                <FlexLayout HorizontalOptions=\"Center\" Margin=\"10\"\r\n" +
+        "                            WidthRequest=\"{Binding Width, Source={x:Reference ItemLayoutChart}}\"/>\r\n" +
+        "            </toolkit:ChartLegend.ItemsLayout>\r\n" +
+        "        </toolkit:ChartLegend>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Item Layout Legend Sample Line Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"false\"  PlotOffsetStart=\"10\" PlotOffsetEnd=\"10\" AxisLineOffset=\"10\">\r\n" +
+        "            <toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"10\"/>\r\n" +
+        "            </toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Maximum=\"0\" Minimum=\"120\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:LineSeries EnableTooltip=\"True\" Label=\"Line 1\" StrokeWidth=\"1\"\r\n" +
+        "                            ItemsSource=\"{x:Binding FirstLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
+        "        <toolkit:LineSeries EnableTooltip=\"True\" Label=\"Line 2\" StrokeWidth=\"1\"\r\n" +
+        "                            ItemsSource=\"{x:Binding SecondLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
+        "        <toolkit:LineSeries EnableTooltip=\"True\" Label=\"Line 3\" StrokeWidth=\"1\"\r\n" +
+        "                            ItemsSource=\"{x:Binding ThirdLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianItemTemplateLegendXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\" \r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Resources>\r\n" +
+        "        <DataTemplate x:Key=\"LegendTemplate\">\r\n" +
+        "            <Grid ColumnDefinitions=\"Auto,Auto\">\r\n" +
+        "                <HorizontalStackLayout Grid.Column=\"0\" WidthRequest=\"30\" HeightRequest=\"30\">\r\n" +
+        "                    <Path Scale=\"0.75\" TranslationX=\"0.5\" HorizontalOptions=\"Center\" VerticalOptions=\"Center\"\r\n" +
+        "                          Data=\"F1 M 19.482422 10 C 19.482422 12.591146 18.549805 14.791667 16.68457 16.601562 C 14.819335 18.411459 12.58789 19.316406 9.990234 19.316406 C 7.392578 19.316406 5.16276 18.411459 3.300781 16.601562 C 1.438802 14.791667 0.507812 12.591146 0.507812 10 C 0.507812 7.408854 1.442057 5.201822 3.310547 3.378906 C 5.166015 1.575521 7.392578 0.673829 9.990234 0.673828 C 12.58789 0.673829 14.814452 1.575521 16.669922 3.378906 C 18.544922 5.201822 19.482422 7.408854 19.482422 10 Z M 18.964844 10 C 18.964844 7.597656 18.037109 5.501303 16.181641 3.710938 L 15.869141 4.248047 L 14.365234 3.847656 L 13.212891 4.169922 L 12.65625 5.673828 L 11.425781 5.996094 L 11.259766 7.265625 L 10.751953 7.03125 L 10.351562 8.105469 L 10.712891 10.048828 L 10.273438 10.878906 L 9.433594 10.917969 L 9.638672 12.03125 C 8.994141 11.666667 8.238932 11.149089 7.373047 10.478516 L 5.908203 10.341797 C 5.745442 10.257162 5.481771 10.139975 5.117188 9.990234 C 4.6875 10.54362 4.127604 11.158854 3.4375 11.835938 L 3.398438 12.548828 L 3.076172 13.203125 L 2.714844 13.173828 L 1.494141 10.722656 L 1.533203 10.009766 L 1.025391 9.980469 L 1.025391 10 C 1.025391 12.447916 1.910807 14.53125 3.681641 16.25 C 5.432942 17.949219 7.535807 18.798828 9.990234 18.798828 C 12.444661 18.798828 14.554036 17.944336 16.318359 16.235352 C 18.082682 14.526367 18.964844 12.447916 18.964844 10 Z M 13.183594 6.484375 L 12.695312 6.787109 L 12.294922 6.787109 L 12.695312 6.113281 L 12.96875 6.162109 Z M 12.451172 7.226562 C 12.262369 7.65625 11.923828 8.235678 11.435547 8.964844 L 11.201172 9.013672 C 11.539713 8.082683 11.865234 7.434896 12.177734 7.070312 Z M 14.042969 11.337891 L 13.789062 11.982422 L 13.173828 11.923828 Z M 14.541016 12.880859 L 14.160156 13.027344 L 14.423828 12.470703 Z M 17.392578 14.21875 L 17.089844 14.902344 C 16.634113 15.195312 16.168619 15.504558 15.693359 15.830078 L 15.380859 16.542969 L 15.097656 16.748047 L 14.873047 16.40625 C 15.0944 15.917969 15.31901 15.566406 15.546875 15.351562 L 16.210938 15.058594 C 16.373697 14.641927 16.5625 14.30013 16.777344 14.033203 L 17.060547 14.462891 Z M 12.177734 12.626953 L 11.416016 12.197266 L 12.138672 11.972656 Z M 10.996094 12.304688 L 10.712891 12.705078 L 10.205078 12.021484 Z M 14.677734 14.814453 C 14.580077 15.426433 14.143879 16.113281 13.369141 16.875 L 12.890625 16.914062 L 11.259766 16.240234 L 9.716797 16.318359 C 9.723307 15.960286 9.576822 15.537109 9.277344 15.048828 C 9.375 14.593099 9.638672 14.117839 10.068359 13.623047 C 10.992838 13.727214 11.774088 13.59375 12.412109 13.222656 L 13.095703 13.779297 L 13.486328 12.744141 C 13.707682 13.447266 14.104817 14.13737 14.677734 14.814453 Z M 9.492188 12.294922 L 9.199219 12.548828 L 8.837891 12.333984 Z M 13.818359 17.314453 L 13.603516 17.587891 L 12.958984 17.548828 L 13.447266 17.148438 Z M 5.214844 13.349609 C 4.817708 13.714193 4.420573 14.003906 4.023438 14.21875 L 3.544922 14.003906 L 4.384766 13.134766 Z \"\r\n" +
+        "                          Fill=\"{x:Binding IconBrush}\" Stroke=\"{x:Binding IconBrush}\"/>\r\n" +
+        "                </HorizontalStackLayout>\r\n" +
+        "                <Label Grid.Column=\"1\" FontSize=\"13\" \r\n" +
+        "                       Text=\"{x:Binding Item.Label}\"\r\n" +
+        "                       VerticalTextAlignment=\"Center\"\r\n" +
+        "                       HorizontalOptions=\"Center\"\r\n" +
+        "                       HorizontalTextAlignment=\"Start\"/>\r\n" +
+        "            </Grid>\r\n" +
+        "        </DataTemplate>\r\n" +
+        "    </toolkit:SfCartesianChart.Resources>\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ItemTemplate=\"{x:StaticResource LegendTemplate}\" Placement=\"Top\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Item Template Legend Sample Line Chart\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"false\" PlotOffsetStart=\"10\" PlotOffsetEnd=\"10\" AxisLineOffset=\"10\">\r\n" +
+        "            <toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"10\"/>\r\n" +
+        "            </toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Maximum=\"0\" Minimum=\"120\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:LineSeries EnableTooltip=\"True\" Label=\"Line 1\" StrokeWidth=\"1\" \r\n" +
+        "                            ItemsSource=\"{x:Binding FirstLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
+        "        <toolkit:LineSeries EnableTooltip=\"True\" Label=\"Line 2\" StrokeWidth=\"1\" \r\n" +
+        "                            ItemsSource=\"{x:Binding SecondLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
+        "        <toolkit:LineSeries EnableTooltip=\"True\" Label=\"Line 3\" StrokeWidth=\"1\" \r\n" +
+        "                            ItemsSource=\"{x:Binding ThirdLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
     #endregion
     #endregion
 
