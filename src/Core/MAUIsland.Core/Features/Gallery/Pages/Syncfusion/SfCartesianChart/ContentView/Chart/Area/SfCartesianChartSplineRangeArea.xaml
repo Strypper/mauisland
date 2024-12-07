@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartSplineRangeArea"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root"
+    Loaded="OnComponentLoaded">
+
+    <ContentView.Resources>
+        <x:Array x:Key="SplineRangeAreaChartInfo" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ Spline Range Area Chart is used to visualize data points with smooth curves. In this series, the area between the curves is filled to indicate a range of values, such as a high and low price range or an upper and lower limit. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ To render a spline range area chart, create an instance of <strong style="color:blue">SplineRangeAreaSeries</strong> and add it to the <strong style="color:blue">Series</strong> collection property of <strong style="color:blue">SfCartesianChart</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ Since the <strong style="color:blue">SplineRangeAreaSeries</strong> requires two Y values for each point, your data should contain both the high and low values. These high and low values specify the maximum and minimum ranges of the point. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+    
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Spline Range Chart Information" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="Info" Margin="5">
+                        <CollectionView x:Name="SplineRangeAreaChartCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill" 
+                                          Margin="0, 0, 20, 0">
+                    <toolkit:SfCartesianChart.ZoomPanBehavior>
+                        <toolkit:ChartZoomPanBehavior EnablePinchZooming="False" EnableDoubleTap="False"/>
+                    </toolkit:SfCartesianChart.ZoomPanBehavior>
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Spline Range Area Chart" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:DateTimeAxis LabelCreated="LabelCreated" Interval="5" 
+                                              ShowMajorGridLines="false" AutoScrollingMode="Start" AutoScrollingDeltaType="Days"/>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes >
+                        <toolkit:NumericalAxis ShowMajorGridLines="False" Minimum="0" Maximum="50" Interval="10">
+                            <toolkit:NumericalAxis.LabelStyle>
+                                <toolkit:ChartAxisLabelStyle LabelFormat= "0.#&#186;c"/>
+                            </toolkit:NumericalAxis.LabelStyle>
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:SplineRangeAreaSeries ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                                   XBindingPath="Date" High="High" Low="Low" LegendIcon="SeriesType"
+                                                   EnableAnimation="True" EnableTooltip="True" ShowTrackballLabel="True" StrokeWidth="1" />
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}" CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+
+
+</ContentView>

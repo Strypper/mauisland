@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartDateTimePlotBand"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root"
+    Loaded="OnComponentLoaded">
+
+    <ContentView.Resources>
+        <x:Array x:Key="DateTimePlotBand" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">NumericalPlotBands</strong> are used to draw plot bands for <strong style="color:blue">NumericalAxis</strong> and <strong style="color:blue">CategoryAxis</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ To add a plot band, create an instance of <strong style="color:blue">NumericalPlotBandCollection</strong> and specify numerical value for the <strong style="color:blue">Start</strong> and <strong style="color:blue">End</strong> parameter. These parameters determine the beginning and end of the plot band. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                           Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="DateTime Plot Band" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <Grid ColumnDefinitions="0.4*, 0.6*" x:Name="Info" Margin="5">
+                        <CollectionView x:Name="DateTimePlotBandCollectionView"
+                                        Grid.Column="0"
+                                        Style="{x:StaticResource PropertiesListStyle}"/>
+                        <Border Grid.Column="1" StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+                            <VerticalStackLayout Spacing="5">
+                                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill"
+                                                          Margin="0, 0, 20, 0">
+                                    <toolkit:SfCartesianChart.Legend>
+                                        <toolkit:ChartLegend ToggleSeriesVisibility="True"/>
+                                    </toolkit:SfCartesianChart.Legend>
+                                    <toolkit:SfCartesianChart.Title>
+                                        <Label Text="DateTime Plot Band Line Sample Chart" Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                                    </toolkit:SfCartesianChart.Title>
+                                    <toolkit:SfCartesianChart.XAxes>
+                                        <toolkit:DateTimeAxis>
+                                            <toolkit:DateTimeAxis.PlotBands>
+                                                <toolkit:DateTimePlotBandCollection>
+                                                    <toolkit:DateTimePlotBand Start="2022-05-04" End="2022-05-06" Fill="Orange"/>
+                                                </toolkit:DateTimePlotBandCollection>
+                                            </toolkit:DateTimeAxis.PlotBands>
+                                        </toolkit:DateTimeAxis>
+                                    </toolkit:SfCartesianChart.XAxes>
+                                    <toolkit:SfCartesianChart.YAxes>
+                                        <toolkit:NumericalAxis Maximum="40" Minimum="20" Interval="5">
+                                            <toolkit:NumericalAxis.AxisLineStyle>
+                                                <toolkit:ChartLineStyle StrokeWidth="0">
+                                                </toolkit:ChartLineStyle>
+                                            </toolkit:NumericalAxis.AxisLineStyle>
+                                            <toolkit:NumericalAxis.MajorTickStyle>
+                                                <toolkit:ChartAxisTickStyle TickSize="0" />
+                                            </toolkit:NumericalAxis.MajorTickStyle>
+                                        </toolkit:NumericalAxis>
+                                    </toolkit:SfCartesianChart.YAxes>
+                                    <toolkit:SfCartesianChart.Series>
+                                        <toolkit:LineSeries Label="Line 1" EnableTooltip="True" EnableAnimation="True" StrokeWidth="1" 
+                                                            ItemsSource="{x:Binding ComponentData,Source={x:Reference root}}" 
+                                                            XBindingPath="Date" YBindingPath="High" 
+                                                            ShowMarkers="True" LegendIcon="SeriesType"/>
+                                    </toolkit:SfCartesianChart.Series>
+                                </toolkit:SfCartesianChart>
+
+                                <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

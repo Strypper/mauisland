@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartLogarithmicAxis"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root"
+    Loaded="OnComponentLoaded">
+
+    <ContentView.Resources>
+        <x:Array x:Key="LogarithmicAxisInfo" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ The <strong style="color:blue">LogarithmicAxis</strong> uses a logarithmic scale, and it is very useful in visualizing data when the given data range has a big difference. It can be used either on the x-axis or the chart’s y-axis. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ Axis interval can be customized using the <strong style="color:blue">Interval</strong> property of the axis. By default, interval will be calculated based on the minimum and maximum value of the provided data. And the default value of the interval is 1. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ To customize the range of the log axis, you can use the <strong style="color:blue">Minimum</strong>, <strong style="color:blue">Maximum</strong> properties of the <strong style="color:blue">LogarithmicAxis</strong>. By default, an excellent range will be calculated automatically based on the provided data. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ The logarithmic axis base can be customized using the <strong style="color:blue">LogarithmicBase</strong> property of the axis. By default, the base value is 10. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Logarithmic Axis" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <Grid ColumnDefinitions="0.4*, 0.6*" x:Name="Info" Margin="5">
+                        <CollectionView x:Name="LogarithmicAxisChartCollectionView"
+                                        Grid.Column="0"
+                                        Style="{x:StaticResource PropertiesListStyle}"/>
+                        <Border Grid.Column="1" StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+                            <VerticalStackLayout Spacing="5">
+                                <toolkit:SfCartesianChart IsTransposed="False" HorizontalOptions="Fill" VerticalOptions="Fill"
+                                                          Margin="0, 0, 20, 0">
+                                    <toolkit:SfCartesianChart.Title>
+                                        <Label Text="Logarithmic Axis Line Sample Chart" Margin="0,0,0,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16"/>
+                                    </toolkit:SfCartesianChart.Title>
+                                    <toolkit:SfCartesianChart.XAxes>
+                                        <toolkit:CategoryAxis PlotOffsetStart="10" PlotOffsetEnd="10" AxisLineOffset="10" EdgeLabelsDrawingMode="Shift" ShowMajorGridLines="True">
+                                            <toolkit:CategoryAxis.Title>
+                                                <toolkit:ChartAxisTitle Text="Category Axis" />
+                                            </toolkit:CategoryAxis.Title>
+                                            <toolkit:CategoryAxis.MajorGridLineStyle>
+                                                <toolkit:ChartLineStyle StrokeWidth="0.5"/>
+                                            </toolkit:CategoryAxis.MajorGridLineStyle>
+                                            <toolkit:CategoryAxis.MajorTickStyle>
+                                                <toolkit:ChartAxisTickStyle TickSize="10"/>
+                                            </toolkit:CategoryAxis.MajorTickStyle>
+                                            <toolkit:CategoryAxis.AxisLineStyle>
+                                                <toolkit:ChartLineStyle StrokeWidth="0"/>
+                                            </toolkit:CategoryAxis.AxisLineStyle>
+                                        </toolkit:CategoryAxis>
+                                    </toolkit:SfCartesianChart.XAxes>
+                                    <toolkit:SfCartesianChart.YAxes>
+                                        <toolkit:LogarithmicAxis Minimum="10" Maximum="1000" MinorTicksPerInterval="5" ShowMinorGridLines="True" >
+                                            <toolkit:LogarithmicAxis.Title>
+                                                <toolkit:ChartAxisTitle Text="Logarithmic Axis" />
+                                            </toolkit:LogarithmicAxis.Title>
+                                            <toolkit:LogarithmicAxis.AxisLineStyle>
+                                                <toolkit:ChartLineStyle StrokeWidth="0"/>
+                                            </toolkit:LogarithmicAxis.AxisLineStyle>
+                                            <toolkit:LogarithmicAxis.MajorGridLineStyle>
+                                                <toolkit:ChartLineStyle StrokeWidth="1.4"/>
+                                            </toolkit:LogarithmicAxis.MajorGridLineStyle>
+                                            <toolkit:LogarithmicAxis.MinorTickStyle>
+                                                <toolkit:ChartAxisTickStyle StrokeWidth="0"/>
+                                            </toolkit:LogarithmicAxis.MinorTickStyle>
+                                            <toolkit:LogarithmicAxis.MajorTickStyle>
+                                                <toolkit:ChartAxisTickStyle StrokeWidth="0"/>
+                                            </toolkit:LogarithmicAxis.MajorTickStyle>
+                                            <toolkit:LogarithmicAxis.LabelStyle>
+                                                <toolkit:ChartAxisLabelStyle LabelFormat="$##.##"/>
+                                            </toolkit:LogarithmicAxis.LabelStyle>
+                                        </toolkit:LogarithmicAxis>
+                                    </toolkit:SfCartesianChart.YAxes>
+                                    <toolkit:SfCartesianChart.Series>
+                                        <toolkit:LineSeries StrokeWidth="2" EnableTooltip="True" EnableAnimation="False" 
+                                                            ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                                            XBindingPath="Name" YBindingPath="Value"/>
+                                        <toolkit:ScatterSeries PointWidth="8" PointHeight="8" EnableAnimation="False" 
+                                                               ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}"
+                                                               XBindingPath="Name" YBindingPath="Value"/>
+                                    </toolkit:SfCartesianChart.Series>
+                                </toolkit:SfCartesianChart>
+
+                                <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}" CodeType="Xaml"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

@@ -3,6 +3,9 @@
 public partial class SfCartesianChartModel : BaseModel
 {
     [ObservableProperty]
+    int? number;
+
+    [ObservableProperty]
     string? name;
 
     [ObservableProperty]
@@ -25,4 +28,10 @@ public partial class SfCartesianChartModel : BaseModel
 
     [ObservableProperty]
     DateTime date;
+
+    [ObservableProperty]
+    List<double>? values;
+
+    [ObservableProperty]
+    bool isSummary;
 }

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartOtherAxis"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root"
+    Loaded="OnComponentLoaded">
+
+    <ContentView.Resources>
+        <x:Array x:Key="AxisCrossingInfo" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ The <strong style="color:blue">RenderNextToCrossingValue</strong> property is used to determine whether the crossing axis should be placed at crossing position or not. The default value of <strong style="color:blue">RenderNextToCrossingValue</strong> property is true. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ For the crossing in date time horizontal axis, date object should be provided as value for <strong style="color:blue">CrossesAt</strong> property of vertical axis. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ The chart allows you to position the axis to opposed position by setting the value as <strong style="color:blue">double.MaxValue</strong> to the <strong style="color:blue">CrossesAt</strong> property. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
+        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Chart Multiple Axes" />
+        <Label Text="Cartesian charts provides support to arrange the multiple series inside the same chart area with specified x-axis and y-axis. There are two properties XAxisName and YAxisName in all the Cartesian series type, which is used to provide multiple axes support. These axes can be arranged in a stacking order or in a side by side pattern." />
+        <Label Text="By default, The 0th index value of XAxes and YAxes is used to plot all of the series." />
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="MultipleAxesArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Multiple Axes Chart Sample" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <Grid x:Name="MultipleAxesInfo" ColumnDefinitions="0.15*, 0.7*, 0.15*">
+                        <Border Grid.Column="1" StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+                            <VerticalStackLayout Grid.Column="1" Spacing="5">
+                                <toolkit:SfCartesianChart>
+                                    <toolkit:SfCartesianChart.XAxes>
+                                        <toolkit:CategoryAxis ShowMajorGridLines="False"/>
+                                    </toolkit:SfCartesianChart.XAxes>
+                                    <toolkit:SfCartesianChart.YAxes>
+                                        <toolkit:NumericalAxis ShowMajorGridLines="False"/>
+                                        <toolkit:NumericalAxis Name="ColumnYAxis2" CrossesAt="{Static x:Double.MaxValue}" ShowMajorGridLines="False"/>
+                                    </toolkit:SfCartesianChart.YAxes>
+                                    <toolkit:ColumnSeries ItemsSource="{x:Binding MultipleAxesComponentData, Source={x:Reference root}}" 
+                                                          XBindingPath="Name" YBindingPath="Value" YAxisName="ColumnYAxis2"/>
+                                    <toolkit:SplineSeries ItemsSource="{x:Binding MultipleAxesComponentData, Source={x:Reference root}}" 
+                                                          XBindingPath="Name" YBindingPath="Exp"/>
+                                </toolkit:SfCartesianChart>
+
+                                <core:SourceCodeExpander Code="{x:Binding MultipleAxesCodeDescription, Source={x:Reference root}}" CodeType="Xaml"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnMultipleAxesGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+
+        <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Chart Axis Crossing" />
+        <Label Text="The chart allows you to customize the origin, by default the axis will be rendered with (0,0) as the origin in x and y-axes. An axis can be positioned anywhere in the chart area by using the CrossesAt property. This property specifies where the horizontal axis intersects or crosses the vertical axis, and vice versa. The default value of the CrossesAt property is double.NaN." />
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="AxisCrossingArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                       Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Axis Crossing Chart Sample" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <Grid x:Name="AxisCrossingInfo" ColumnDefinitions="0.4*, 0.6*" Margin="5">
+                        <CollectionView Grid.Column="0"
+                                        x:Name="AxisCrossingCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}"/>
+                        <Border Grid.Column="1" StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+                            <VerticalStackLayout Spacing="5">
+                                <toolkit:SfCartesianChart x:Name="axisCrossingChart">
+                                    <toolkit:SfCartesianChart.ZoomPanBehavior>
+                                        <toolkit:ChartZoomPanBehavior/>
+                                    </toolkit:SfCartesianChart.ZoomPanBehavior>
+                                    <toolkit:SfCartesianChart.XAxes>
+                                        <toolkit:NumericalAxis CrossesAt="0" Minimum="-10" Maximum="10" 
+                                                               EdgeLabelsDrawingMode="Shift"/>
+                                    </toolkit:SfCartesianChart.XAxes>
+                                    <toolkit:SfCartesianChart.YAxes>
+                                        <toolkit:NumericalAxis CrossesAt="0" Minimum="-10" Maximum="10"  
+                                                               EdgeLabelsDrawingMode="Shift"/>
+                                    </toolkit:SfCartesianChart.YAxes>
+                                    <toolkit:SfCartesianChart.Series>
+                                        <toolkit:SplineSeries ItemsSource="{x:Binding AxisCrossingComponentData, Source={x:Reference root}}" 
+                                                              XBindingPath="Value" YBindingPath="Size"/>
+                                    </toolkit:SfCartesianChart.Series>
+                                </toolkit:SfCartesianChart>
+
+                                <core:SourceCodeExpander Code="{x:Binding AxisCrossingCodeDescription, Source={x:Reference root}}" CodeType="Xaml"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAxisCrossingGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

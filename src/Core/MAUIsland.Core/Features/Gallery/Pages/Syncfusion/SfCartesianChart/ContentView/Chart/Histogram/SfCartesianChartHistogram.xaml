@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartHistogram"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root"
+    Loaded="OnComponentLoaded">
+
+    <ContentView.Resources>
+        <x:Array x:Key="HistogramChartInfo" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Histogram</strong> chart is a graphical representation that organizes a group of data points into user-specified ranges. It is similar in appearance to a column chart. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ Customize histogram intervals using the <strong style="color:blue">HistogramInterval</strong> property and normal distribution curve can be collapsed using the <strong style="color:blue">ShowNormalDistributionCurve</strong> property. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Histogram Chart Information" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="Info" Margin="5">
+                        <CollectionView x:Name="HistogramChartCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <HorizontalStackLayout HorizontalOptions="End">
+                    <Label Text="Show distribution line" VerticalTextAlignment="Center"/>
+                    <CheckBox x:Name="CheckBox" IsChecked="True" VerticalOptions="Start" Margin="30,0,0,0"/>
+                </HorizontalStackLayout>
+                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill"
+                                          Margin="0, 0, 20, 0">
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Histogram Chart" Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16"/>
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:NumericalAxis />
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis />
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:HistogramSeries ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}"
+                                             XBindingPath="Value" YBindingPath="Size"
+                                             ShowNormalDistributionCurve="{x:Binding Source={x:Reference CheckBox},Path=IsChecked}"
+                                             HistogramInterval="20" StrokeWidth="1.5" ShowDataLabels="True"
+                                             EnableTooltip="True">
+                        <toolkit:HistogramSeries.CurveStyle>
+                            <toolkit:ChartLineStyle StrokeDashArray="12, 3, 3, 3" StrokeWidth="2"/>
+                        </toolkit:HistogramSeries.CurveStyle>
+                        <toolkit:HistogramSeries.DataLabelSettings>
+                            <toolkit:CartesianDataLabelSettings UseSeriesPalette="False">
+                                <toolkit:CartesianDataLabelSettings.LabelStyle>
+                                    <toolkit:ChartDataLabelStyle TextColor="Aqua"/>
+                                </toolkit:CartesianDataLabelSettings.LabelStyle>
+                            </toolkit:CartesianDataLabelSettings>
+                        </toolkit:HistogramSeries.DataLabelSettings>
+                    </toolkit:HistogramSeries>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+
+
+</ContentView>
