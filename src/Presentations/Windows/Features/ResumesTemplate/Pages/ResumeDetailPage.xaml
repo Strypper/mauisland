@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<core:BasePage
+    x:Class="MAUIsland.ResumesTemplate.ResumeDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:MAUIsland"
+    xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
+    xmlns:local="clr-namespace:MAUIsland.ResumesTemplate"
+    x:Name="thisPage"
+    x:DataType="local:ResumeDetailPageViewModel">
+    <core:BasePage.Resources>
+
+        <FontImageSource
+            x:Key="RemoveIcon"
+            FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static core:FluentUIIcon.Ic_fluent_delete_48_regular}"
+            Color="{AppThemeBinding Light='#15161e',
+                                    Dark='#eaeaea'}" />
+    </core:BasePage.Resources>
+    <Grid ColumnDefinitions="*,1000">
+        <ScrollView Margin="16">
+            <VerticalStackLayout Spacing="16">
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Title" TextColor="White" />
+                    <Entry
+                        x:Name="userName"
+                        BackgroundColor="#2F2F2F"
+                        Placeholder=""
+                        Text="{x:Binding Title}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Your name" TextColor="White" />
+                    <Entry
+                        x:Name="position"
+                        BackgroundColor="#2F2F2F"
+                        Placeholder=""
+                        Text="{x:Binding DisplayName}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Description" TextColor="White" />
+                    <Editor
+                        x:Name="description"
+                        BackgroundColor="#2F2F2F"
+                        HeightRequest="250"
+                        Text="{x:Binding Bio}" />
+                </VerticalStackLayout>
+
+                <CollectionView ItemsSource="{x:Binding WorksHistory, Mode=TwoWay}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="8" Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="local:WorkHistoryModel">
+                            <Border Padding="16" StrokeShape="RoundRectangle 4">
+                                <Grid ColumnDefinitions="*, 40" ColumnSpacing="4">
+                                    <VerticalStackLayout Spacing="4">
+                                        <Entry Text="{x:Binding Title, Mode=TwoWay}" />
+                                        <DatePicker Date="{x:Binding StartDate, Mode=TwoWay}" />
+                                        <Editor Text="{x:Binding Description, Mode=TwoWay}" />
+                                    </VerticalStackLayout>
+                                    <ImageButton
+                                        Grid.Column="1"
+                                        Command="{x:Binding Source={x:Reference thisPage},
+                                                            Path=BindingContext.RemoveWorkHistoryCommand}"
+                                        CommandParameter="{x:Binding Id}"
+                                        HorizontalOptions="Center"
+                                        Source="{x:StaticResource RemoveIcon}"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <HorizontalStackLayout Spacing="4">
+                    <Button Command="{x:Binding AddWorkHistoryCommand}" Text="Add more" />
+                </HorizontalStackLayout>
+                <Button Clicked="Button_Clicked" Text="Move" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <BlazorWebView
+            x:Name="BlazorWebViewElement"
+            Grid.Column="1"
+            HostPage="wwwroot\index.html"
+            Loaded="BlazorWebViewElement_Loaded"
+            StartPath="{x:Binding BlazorWebViewStartPath}">
+            <BlazorWebView.RootComponents>
+                <RootComponent ComponentType="{x:Type app:Routes}" Selector="#app" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
+    </Grid>
+</core:BasePage>

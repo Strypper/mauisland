@@ -11,4 +11,5 @@ public static class AppRoutes
     public const string MockupPage = "mockupPage";
     public const string CardsByGroupPage = "cardsByGroupPage";
     public const string ResumesPage = "resumesPage";
+    public const string ResumeDetailPage = "resumeDetailPage";
 }
