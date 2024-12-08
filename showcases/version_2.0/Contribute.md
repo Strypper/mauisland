@@ -2,7 +2,7 @@
 # Welcome to the MAUIsland Community
 
 <p align="center">
-  <img width="300" align="center" src="showcases/version_2.0/showcases_preview.png">
+  <img width="800" align="center" src="showcases_preview.png">
 </p>
 
 Hi Community,
