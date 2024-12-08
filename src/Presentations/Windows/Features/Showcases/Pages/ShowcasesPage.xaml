@@ -23,6 +23,18 @@
 
         <mockup:ListOfMockupPreviewItemModelToListStringConverter x:Key="ListOfMockupPreviewItemModelToListStringConverter" />
 
+        <x:String x:Key="TopContributorsMessage">
+            Explore the possibilities of .NET MAUI! See how others in the community have used this technology to create beautiful, open-source apps.
+        </x:String>
+
+        <x:String x:Key="ContributeMessage">
+            Showcase your MAUI skills! Learn about the requirements to submit your .NET MAUI project to MAUIsland and connect with thousands of developers eager to learn from your expertise.
+        </x:String>
+
+        <x:String x:Key="SubmitMessage">
+            Submit your app here, and we'll review it. Once approved, we'll frame it with your desired device frame and include your open-source app information in the next MAUIsland update.
+        </x:String>
+
         <FontImageSource
             x:Key="ShowcasesIcon"
             FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
@@ -255,7 +267,7 @@
                                 HorizontalOptions="Start"
                                 HorizontalTextAlignment="Start"
                                 MaximumWidthRequest="240"
-                                Text="Explore the possibilities of .NET MAUI! See how others in the community have used this technology to create beautiful, open-source apps." />
+                                Text="{x:StaticResource TopContributorsMessage}" />
                         </VerticalStackLayout>
                     </Grid>
                 </Frame>
@@ -265,11 +277,16 @@
                     Padding="16"
                     StrokeShape="RoundRectangle 14">
                     <Grid ColumnDefinitions="2*, *">
-                        <VerticalStackLayout Spacing="16">
+                        <VerticalStackLayout Spacing="8">
                             <Label
                                 FontSize="Title"
                                 Text="Contribute"
                                 TextDecorations="Underline" />
+                            <Label
+                                HorizontalOptions="Start"
+                                HorizontalTextAlignment="Start"
+                                MaximumWidthRequest="236"
+                                Text="{x:StaticResource ContributeMessage}" />
                         </VerticalStackLayout>
                         <Button
                             Grid.Column="1"
@@ -285,11 +302,16 @@
                     Padding="16"
                     StrokeShape="RoundRectangle 14">
                     <Grid ColumnDefinitions="2*, *">
-                        <VerticalStackLayout Spacing="16">
+                        <VerticalStackLayout Spacing="8">
                             <Label
                                 FontSize="Title"
-                                Text="Mock Up"
+                                Text="Submit"
                                 TextDecorations="Underline" />
+                            <Label
+                                HorizontalOptions="Start"
+                                HorizontalTextAlignment="Start"
+                                MaximumWidthRequest="236"
+                                Text="{x:StaticResource SubmitMessage}" />
                         </VerticalStackLayout>
                         <Button
                             Grid.Column="1"

@@ -361,7 +361,7 @@
                             TextColor="Black" />
                         <Button
                             BackgroundColor="#e0b56f"
-                            Text="Explore"
+                            Text="Submit"
                             TextColor="Black" />
                     </HorizontalStackLayout>
                     <HorizontalStackLayout HorizontalOptions="Center">

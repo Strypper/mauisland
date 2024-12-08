@@ -209,9 +209,11 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
 
     [RelayCommand]
     async Task OpenUrlAsync(string url)
-    {
-        await AppNavigator.OpenUrlAsync(url);
-    }
+       => await AppNavigator.OpenUrlAsync(url);
+    
+    [RelayCommand]
+    async Task NavigatePageAsync(string route)
+       => await AppNavigator.NavigateAsync(route);
     #endregion
 
     #region [ Methods ]
