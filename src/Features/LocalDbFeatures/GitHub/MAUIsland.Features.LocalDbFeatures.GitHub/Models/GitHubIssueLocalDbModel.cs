@@ -15,13 +15,16 @@ public class GitHubIssueLocalDbModel : BaseLocalEntity
 
     #region [ Properties ]
     [Column("control_name")]
-    public string ControlName { get; set; }
+    public string ControlName { get; set; } //Because of this prop, this class should be renamed to GitHubControlIssueLocalDbModel
 
     [Column("issue_id")]
     public long IssueId { get; set; }
 
     [Column("title")]
     public string Title { get; set; }
+
+    [Column("is_open")]
+    public bool IsOpen { get; set; }
 
     [Column("issue_link_url")]
     public string IssueLinkUrl { get; set; }
@@ -40,5 +43,11 @@ public class GitHubIssueLocalDbModel : BaseLocalEntity
 
     [Column("last_updated")]
     public DateTime LastUpdated { get; set; }
+
+    /// <summary>
+    /// Serialized list of labels of this issue
+    /// </summary>
+    [Column("labels")]
+    public string Labels { get; set; }
     #endregion
 }
