@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartTooltip"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root">
+
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
+                                          Margin="0, 0, 20, 0">
+                    <toolkit:SfCartesianChart.Legend>
+                        <toolkit:ChartLegend ToggleSeriesVisibility="True" />
+                    </toolkit:SfCartesianChart.Legend>
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Tooltip Column Sample Chart" Margin="0,0,0,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16"/>
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.TooltipBehavior>
+                        <toolkit:ChartTooltipBehavior Duration="500" TextColor="Aqua" FontSize="16" Background="Gray"/>
+                    </toolkit:SfCartesianChart.TooltipBehavior>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:CategoryAxis ShowMajorGridLines="False" LabelPlacement="BetweenTicks">
+                        </toolkit:CategoryAxis>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis ShowMajorGridLines="True" Minimum="0">
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:SfCartesianChart.Series>
+                        <toolkit:ColumnSeries Label="Aqua" EnableTooltip="True" EnableAnimation="True" Width="0.8" Spacing="0.2" 
+                                              ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                              XBindingPath="Name" YBindingPath="Exp" LegendIcon="SeriesType"/>
+                        <toolkit:ColumnSeries Label="Gray" EnableTooltip="True" EnableAnimation="True" Width="0.8" Spacing="0.2" 
+                                              ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                              XBindingPath="Name" YBindingPath="Value" LegendIcon="SeriesType"/>
+                    </toolkit:SfCartesianChart.Series>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding TooltipCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+
+        <Label Text="The SfCartesianChart provides support to customize the appearance of the tooltip by using the TooltipTemplate property."/>
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Customization Tooltip" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <Border x:Name="Info" StrokeShape="RoundRectangle 4" Margin="10" Padding="10">
+                        <VerticalStackLayout Spacing="5">
+                            <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
+                                <toolkit:SfCartesianChart.Resources>
+                                    <DataTemplate x:Key="TemplateColumn">
+                                        <VerticalStackLayout Spacing="5">
+                                            <HorizontalStackLayout VerticalOptions="Fill" HorizontalOptions="Center" Spacing="10">
+                                                <Ellipse TranslationY="-1" Stroke="Aqua" StrokeThickness="2" HeightRequest="10" WidthRequest="10" />
+                                                <Label Text="{x:Binding Item.Name}" HorizontalTextAlignment="Center" HorizontalOptions="Center" 
+                                                       VerticalTextAlignment="Center" FontAttributes="Bold" 
+                                                       FontFamily="Helvetica" Margin="0,2" FontSize="12"/>
+                                            </HorizontalStackLayout>
+                                            <BoxView HeightRequest="1" WidthRequest="100" Color="White" />
+                                            <HorizontalStackLayout VerticalOptions="Fill" >
+                                                <Label Text="{x:Binding Item.Value, StringFormat='Value:  {0}M'}"  
+                                                       VerticalTextAlignment="Center" HorizontalOptions="Start" 
+                                                       FontFamily="Helvetica" FontSize="12" />
+                                                <Label Text="{x:Binding Item.Exp, StringFormat=', Exp:  {0}M'}" 
+                                                       VerticalTextAlignment="Center" HorizontalOptions="End" 
+                                                       FontFamily="Helvetica" FontSize="12" />
+                                            </HorizontalStackLayout>
+                                        </VerticalStackLayout>
+                                    </DataTemplate>
+                                </toolkit:SfCartesianChart.Resources>
+                                <toolkit:SfCartesianChart.Legend>
+                                    <toolkit:ChartLegend ToggleSeriesVisibility="True" />
+                                </toolkit:SfCartesianChart.Legend>
+                                <toolkit:SfCartesianChart.Title>
+                                    <Label Text="Custom Tooltip Column Sample Chart" Margin="0,0,0,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16"/>
+                                </toolkit:SfCartesianChart.Title>
+                                <toolkit:SfCartesianChart.XAxes>
+                                    <toolkit:CategoryAxis ShowMajorGridLines="False" LabelPlacement="BetweenTicks">
+                                    </toolkit:CategoryAxis>
+                                </toolkit:SfCartesianChart.XAxes>
+                                <toolkit:SfCartesianChart.YAxes>
+                                    <toolkit:NumericalAxis ShowMajorGridLines="True" Minimum="0">
+                                    </toolkit:NumericalAxis>
+                                </toolkit:SfCartesianChart.YAxes>
+                                <toolkit:SfCartesianChart.Series>
+                                    <toolkit:ColumnSeries Label="Aqua" EnableAnimation="True" Width="0.8" Spacing="0.2" 
+                                                          ItemsSource="{Binding ComponentData, Source={x:Reference root}}" 
+                                                          XBindingPath="Name" YBindingPath="Exp" LegendIcon="SeriesType"
+                                                          EnableTooltip="True" TooltipTemplate="{x:StaticResource TemplateColumn}"/>
+                                    <toolkit:ColumnSeries Label="Gray" EnableAnimation="True" Width="0.8" Spacing="0.2" 
+                                                          ItemsSource="{Binding ComponentData, Source={x:Reference root}}" 
+                                                          XBindingPath="Name" YBindingPath="Value" LegendIcon="SeriesType"
+                                                          EnableTooltip="True" TooltipTemplate="{x:StaticResource TemplateColumn}"/>
+                                </toolkit:SfCartesianChart.Series>
+                            </toolkit:SfCartesianChart>
+
+                            <core:SourceCodeExpander Code="{x:Binding CustomToolTipCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

@@ -121,6 +121,9 @@
 	  <Compile Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Chart\Column\Bar\SfCartesianChartStackingBar.xaml.cs">
 	    <DependentUpon>SfCartesianChartStackingBar.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Trackball\SfCartesianChartTrackball.xaml.cs">
+	    <DependentUpon>SfCartesianChartTrackball.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\ContentViews\DocumentAlert.xaml.cs">
 	    <DependentUpon>DocumentAlert.xaml</DependentUpon>
 	  </Compile>
@@ -324,6 +327,15 @@
 	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Selection\SfCartesianChartSeriesSelection.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Tooltip\SfCartesianChartTooltip.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Trackball\SfCartesianChartCustomTrackball.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Trackball\SfCartesianChartTrackball.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ContentViews\DocumentAlert.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -356,6 +368,10 @@
 	  <MauiXaml Update="Views\ContentViews\SourceCodeExpander\SourceCodeExpanderContent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Features\Gallery\Pages\Syncfusion\SfCartesianChart\ContentView\Zooming\" />
 	</ItemGroup>
 
 </Project>
