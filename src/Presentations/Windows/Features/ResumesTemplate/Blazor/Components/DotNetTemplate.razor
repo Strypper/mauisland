@@ -8,7 +8,7 @@
 <body>
     <header class="header">
         <a href="#home" class="logo">
-            FirstName <span>@ViewModel.UserName</span>
+            <span>@ViewModel.Title</span>
         </a>
 
         <i class="bx bx-menu" id="menu-icon"></i>
@@ -23,9 +23,9 @@
 
     <section class="home-content" id="home">
         <div>
-            <h1>Hi, I'm <span>Nghia Duong</span></h1>
+            <h1>Hi, I'm <span>@ViewModel.DisplayName</span></h1>
             <h3 class="text-animation">Position: <span></span></h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>@ViewModel.Bio</p>
 
             <div class="social-icons">
                 <a href="#a" title="linkedin">
@@ -54,49 +54,23 @@
     </section>
 
     <section class="education-content" id="education">
-        <h2 class="heading">Education</h2>
+        <h2 class="heading">History</h2>
 
         <div class="timeline-items">
 
-            <div class="timeline-item">
-                <div class="timeline-dot">
-                </div>
-                <div class="timeline-date">2021</div>
-                <div class="timeline-content">
-                    <h3>Master of Computer Science</h3>
-                    <p>University of Science, Vietnam</p>
-                </div>
-            </div>
 
-            <div class="timeline-item">
-                <div class="timeline-dot">
+            @foreach (var item in ViewModel.WorksHistory)
+            {
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                    </div>
+                    <div class="timeline-date">@item.StartDate.Year</div>
+                    <div class="timeline-content">
+                        <h3>@item.Title</h3>
+                        <p>@item.Description</p>
+                    </div>
                 </div>
-                <div class="timeline-date">2018</div>
-                <div class="timeline-content">
-                    <h3>Bachelor of Computer Science</h3>
-                    <p>University of Science, Vietnam</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot">
-                </div>
-                <div class="timeline-date">2015</div>
-                <div class="timeline-content">
-                    <h3>High School</h3>
-                    <p>Le Quy Don High School, Vietnam</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot">
-                </div>
-                <div class="timeline-date">2012</div>
-                <div class="timeline-content">
-                    <h3>Junior High School</h3>
-                    <p>Le Quy Don Junior High School, Vietnam</p>
-                </div>
-            </div>
+            }
 
         </div>
     </section>
@@ -145,13 +119,6 @@
             <span>Email:</span><span>seledy219@outlook.com</span>
             <span>Phone:</span><span>+84 123 456 789</span>
         </div>
-
-        @foreach (var item in ViewModel.Items)
-        {
-            <div class="contact-info">
-                <span>@item:</span><span>@item</span>
-            </div>
-        }
 
     </section>
 
