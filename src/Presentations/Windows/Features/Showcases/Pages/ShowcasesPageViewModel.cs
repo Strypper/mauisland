@@ -63,7 +63,12 @@ public partial class ShowcasesPageViewModel : NavigationAwareBaseViewModel
         },
         CurrentMockupFrameState = "iPhone 13 Mini",
         AuthorGitHubUserName = "naweed",
-        GitHubRepoName = "MauiPlanets"
+        GitHubRepoName = "MauiPlanets",
+        Platforms = new()
+        {
+            "android_logo.png",
+            "ios_logo.png"
+        }
     };
 
     [ObservableProperty]
@@ -83,7 +88,12 @@ public partial class ShowcasesPageViewModel : NavigationAwareBaseViewModel
 
         CurrentMockupFrameState = "Apple iPhone 15 Pro Max",
         AuthorGitHubUserName = "chsakell",
-        GitHubRepoName = "maui-trackizer"
+        GitHubRepoName = "maui-trackizer",
+        Platforms = new()
+        {
+            "android_logo.png",
+            "ios_logo.png"
+        }
     };
 
     [ObservableProperty]
@@ -102,7 +112,12 @@ public partial class ShowcasesPageViewModel : NavigationAwareBaseViewModel
         },
         CurrentMockupFrameState = "Samsung Galaxy S22 Ultra",
         AuthorGitHubUserName = "exendahal",
-        GitHubRepoName = "ecommerce_maui"
+        GitHubRepoName = "ecommerce_maui",
+        Platforms = new()
+        {
+            "android_logo.png",
+            "ios_logo.png"
+        }
     };
 
     [ObservableProperty]
@@ -119,7 +134,12 @@ public partial class ShowcasesPageViewModel : NavigationAwareBaseViewModel
         },
         CurrentMockupFrameState = "Google Pixel 6 Pro",
         AuthorGitHubUserName = "marcfabregatb",
-        GitHubRepoName = "RealEstate.App"
+        GitHubRepoName = "RealEstate.App",
+        Platforms = new()
+        {
+            "android_logo.png",
+            "ios_logo.png"
+        }
     };
 
     [ObservableProperty]
@@ -133,7 +153,12 @@ public partial class ShowcasesPageViewModel : NavigationAwareBaseViewModel
         },
         CurrentMockupFrameState = "Google Pixel 5",
         AuthorGitHubUserName = "sattasundar",
-        GitHubRepoName = "maui-starbucks-ui"
+        GitHubRepoName = "maui-starbucks-ui",
+        Platforms = new()
+        {
+            "android_logo.png",
+            "ios_logo.png"
+        }
     };
 
     [ObservableProperty]
@@ -149,7 +174,12 @@ public partial class ShowcasesPageViewModel : NavigationAwareBaseViewModel
         },
         CurrentMockupFrameState = "iPhone 13 Mini",
         AuthorGitHubUserName = "tuyen-vuduc",
-        GitHubRepoName = "chick-and-paddy-dotnet-maui"
+        GitHubRepoName = "chick-and-paddy-dotnet-maui",
+        Platforms = new()
+        {
+            "android_logo.png",
+            "ios_logo.png"
+        }
     };
 
     #endregion

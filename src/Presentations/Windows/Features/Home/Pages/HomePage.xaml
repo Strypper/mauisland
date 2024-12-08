@@ -17,6 +17,11 @@
     SizeChanged="BasePage_SizeChanged">
 
     <core:BasePage.Resources>
+
+        <x:String x:Key="ShowcasesUrl">
+            https://github.com/Strypper/mauisland/blob/main/showcases/version_2.0/Contribute.md
+        </x:String>
+
         <DataTemplate x:Key="ActivitiesItemTemplate" x:DataType="home:ApplicationNew">
             <home:ControlActivityCardContentView ApplicationNew="{x:Binding}" />
         </DataTemplate>
@@ -356,6 +361,8 @@
                         Text="{x:Binding Section3Description}" />
                     <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
                         <Button
+                            Command="{x:Binding OpenUrlCommand}"
+                            CommandParameter="{x:StaticResource ShowcasesUrl}"
                             HorizontalOptions="Center"
                             Text="Contribute"
                             TextColor="Black" />

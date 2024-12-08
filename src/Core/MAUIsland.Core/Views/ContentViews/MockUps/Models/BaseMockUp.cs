@@ -31,4 +31,8 @@ public partial class BaseMockup : BaseModel
 
     [ObservableProperty]
     string currentMockupFrameState;
+
+    [ObservableProperty]
+    ObservableCollection<string> platforms;
 }
+
