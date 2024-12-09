@@ -34,6 +34,8 @@ body:
       options:
         - 6.0 (Default)
         - 7.0
+        - 8.0
+        - 9.0
     validations:
       required: true
   - type: dropdown

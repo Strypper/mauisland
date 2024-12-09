@@ -3,7 +3,10 @@
 public partial class ResumesPageViewModel(IAppNavigator appNavigator) : NavigationAwareBaseViewModel(appNavigator)
 {
 
-    #region [ Fields ]
+    #region [ Relay Commands ]
 
+    [RelayCommand]
+    async Task NavigateUrlAsync(string url)
+        => await AppNavigator.NavigateAsync(url);
     #endregion
 }

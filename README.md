@@ -27,6 +27,7 @@ MAUIsland is an app that showcases all the .NET MAUI controls available for deve
 3. Expanded Community Toolkit 🔨: The Community Toolkit Gallery has been enriched with the addition of four new controls, nine converters, and three layouts, empowering developers with more tools to enhance their applications.
 
 4. GitHub Community Gallery 🤝: We've integrated six widely used GitHub nuggets that are commonly utilized with .NET MAUI, including LiveChart2, ZXing.Net.Maui, and more. This gallery not only provides access to these resources but also offers UI fixes to address issues like stretched clicking and hovering targets for a smoother user interaction.
+5. Explore [Showcases](https://github.com/Strypper/mauisland/blob/main/showcases/version_2.0/Contribute.md)
 
 # ⚠️ Create appsettings.Development.json before run App
 1. Click right MAUIsland in Solution Explorer
