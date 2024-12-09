@@ -3246,6 +3246,81 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "        </toolkit:LineSeries>\r\n" +
         "    </toolkit:SfCartesianChart.Series>\r\n" +
         "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianZoomingXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Zooming Scatter Sample Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "        <toolkit:ChartZoomPanBehavior x:Name=\"Zooming\" ZoomMode=\"XY\" EnablePanning=\"True\" MaximumZoomLevel=\"2\" \r\n" +
+        "                                      EnablePinchZooming=\"True\" EnableDirectionalZooming=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"False\" EdgeLabelsDrawingMode=\"Shift\" Minimum=\"100\" Maximum=\"220\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Margin=\"5,10,5,2\" Text=\"Centimeter\"/>\r\n" +
+        "            </toolkit:NumericalAxis.Title>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"False\" Minimum=\"50\" Maximum=\"80\" Interval=\"5\">\r\n" +
+        "            <toolkit:NumericalAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Text=\"Kilogram\"/>\r\n" +
+        "            </toolkit:NumericalAxis.Title>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:ScatterSeries Label=\"Scatter 1\" EnableTooltip=\"True\" EnableAnimation=\"True\" Opacity=\"0.6\" PointWidth=\"8\" PointHeight=\"8\" \r\n" +
+        "                                ItemsSource=\"{Binding FirstScatter}\" XBindingPath=\"Value\" YBindingPath=\"Size\"/>\r\n" +
+        "        <toolkit:ScatterSeries Label=\"Scatter 2\" EnableTooltip=\"True\" EnableAnimation=\"True\" Opacity=\"0.6\" PointWidth=\"8\" PointHeight=\"8\" \r\n" +
+        "                                ItemsSource=\"{Binding SecondScatter}\" XBindingPath=\"Value\" YBindingPath=\"Size\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianSelectionZoomingXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Selection Zooming Scatter Sample Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "        <toolkit:ChartZoomPanBehavior EnableSelectionZooming=\"True\" EnablePinchZooming=\"False\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"False\" EdgeLabelsDrawingMode=\"Shift\" Minimum=\"100\" Maximum=\"220\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Margin=\"5,10,5,2\" Text=\"Centimeter\"/>\r\n" +
+        "            </toolkit:NumericalAxis.Title>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"False\" Minimum=\"50\" Maximum=\"80\" Interval=\"5\">\r\n" +
+        "            <toolkit:NumericalAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Text=\"Kilogram\"/>\r\n" +
+        "            </toolkit:NumericalAxis.Title>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:ScatterSeries Label=\"Scatter 1\" EnableTooltip=\"True\" EnableAnimation=\"True\" \r\n" +
+        "                               Opacity=\"0.6\" PointWidth=\"8\" PointHeight=\"8\" \r\n" +
+        "                               ItemsSource=\"{Binding FirstScatterComponentData, Source={x:Reference root}}\" \r\n" +
+        "                               XBindingPath=\"Value\" YBindingPath=\"Size\"/>\r\n" +
+        "        <toolkit:ScatterSeries Label=\"Scatter 2\" EnableTooltip=\"True\" EnableAnimation=\"True\" \r\n" +
+        "                               Opacity=\"0.6\" PointWidth=\"8\" PointHeight=\"8\" \r\n" +
+        "                               ItemsSource=\"{Binding SecondScatterComponentData, Source={x:Reference root}}\" \r\n" +
+        "                               XBindingPath=\"Value\" YBindingPath=\"Size\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
     #endregion
     #endregion
 

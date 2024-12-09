@@ -23,16 +23,6 @@
                             <toolkit:SfCartesianChart.Resources>
                                 <DataTemplate x:Key="TrackballLabelTemplate">
                                     <HorizontalStackLayout Spacing="5">
-                                        <!--<Path Fill="{x:Binding Series.MarkerSettings.Stroke}" Margin="0,2,0,0">
-                                            <Path.Data>
-                                                <PathGeometry>
-                                                    <PathFigure StartPoint="5,0">
-                                                        <ArcSegment Point="5,10" Size="5, 5" SweepDirection="Clockwise" IsLargeArc="True"/>
-                                                        <ArcSegment Point="5,0" Size="5,5" SweepDirection="Clockwise" IsLargeArc="True"/>
-                                                    </PathFigure>
-                                                </PathGeometry>
-                                            </Path.Data>
-                                        </Path>-->
                                         <Ellipse TranslationY="-1" Fill="{x:Binding Series.MarkerSettings.Stroke}" StrokeThickness="2" HeightRequest="10" WidthRequest="10" />
                                         <Label Text="{x:Binding Series.Label, StringFormat='{0}:'}" FontSize="12"  HorizontalOptions="Center" />
                                         <Label Text="{x:Binding Label,StringFormat='{0}Exp'}" FontSize="12" Margin="0,0,2,0" HorizontalOptions="Center"/>

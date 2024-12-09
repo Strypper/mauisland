@@ -190,6 +190,33 @@
             </x:String>
         </x:Array>
 
+        <x:Array x:Key="ZoomingProperties" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ To enable the zooming and panning in the chart, create an instance of <strong style="color:blue">ChartZoomPanBehavior</strong> and set it to the <strong style="color:blue">ZoomPanBehavior</strong> property of <strong style="color:blue">SfCartesianChart</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ Pinch zooming is enable by using the <strong style="color:blue">EnablePinchZooming</strong> property to <strong style="color:blue">true</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ Directional Zooming is enabled by setting the <strong style="color:blue">EnableDirectionalZooming</strong> property to <strong style="color:blue">true</strong>. The default value of this property is <strong style="color:blue">false</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ Zooming the plot area can be achieved by pinch zooming, and also using the properties <strong style="color:blue">ZoomFactor</strong> and <strong style="color:blue">ZoomPosition</strong>. <strong style="color:blue">ZoomFactor</strong> defines the percentage of visible range from the total range of axis values. <strong style="color:blue">ZoomPosition</strong> defines the position for ranges of values that need to be displayed as a result of <strong style="color:blue">ZoomFactor</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ The zooming can be done both horizontally and vertically. The zooming direction is defined by using the <strong style="color:blue">ZoomMode</strong> property. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ The <strong style="color:blue">MaximumZoomLevel</strong> property is used to determine the maximum limit for zooming within the chart. Once the zooming operation reaches its limit, further zooming actions are not carried out. The <strong style="color:blue">MaximumZoomLevel</strong> property default value is <strong style="color:blue">double.NaN</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ Panning feature allows moving the visible area of the chart when it is zoomed in. To enable panning, you have to set <strong style="color:blue">EnablePanning</strong> property to <strong style="color:blue">true</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ Selection zooming feature allows users to interactively choose a particular area of the chart and zoom in. By specifying the <strong style="color:blue">EnableSelectionZooming</strong> property to <strong style="color:blue">true</strong> ]]>
+            </x:String>
+        </x:Array>
+
         <DataTemplate x:Key="SfListViewHeader">
             <Label FontAttributes="Bold" Text="{x:StaticResource PropertiesListHeader}" />
         </DataTemplate>
@@ -719,8 +746,21 @@
                                                           AxisCodeDescription="{x:Binding CartesianTrackballAxisLabelTemplateXamlCode}"/>
                 </VerticalStackLayout>
             </Border>
-            
-            <Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="5">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Chart Zooming and Panning" />
+                    <Label Text="SfCartesianChart allows you to zoom the chart area with the help of the zoom feature. This behavior is mostly used to view the data point in the specific area, when there are large number of data points inside the chart."/>
+                    <CollectionView ItemsSource="{x:StaticResource ZoomingProperties}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+
+                    <core:SfCartesianChartZooming FirstScatterComponentData="{x:Binding FirstScatter}" 
+                                                  SecondScatterComponentData="{x:Binding SecondScatter}" 
+                                                  CodeDescription="{x:Binding CartesianZoomingXamlCode}"/>
+                    <core:SfCartesianChartSelectionZooming FirstScatterComponentData="{x:Binding FirstScatter}"
+                                                           SecondScatterComponentData="{x:Binding SecondScatter}"
+                                                           CodeDescription="{x:Binding CartesianSelectionZoomingXamlCode}"/>
+                </VerticalStackLayout>
             </Border>
         </VerticalStackLayout>
     </ScrollView>
