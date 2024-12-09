@@ -140,6 +140,83 @@
             </x:String>
         </x:Array>
 
+        <x:String x:Key="SelectionHeader">
+            The following properties are used to customize the ChartSelectionBehavior:
+        </x:String>
+
+        <x:Array x:Key="SelectionBehaviorProperties" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Type</strong> - Gets or sets the <strong style="color:blue">ChartSelectionType</strong> for the selection behavior. There are <strong style="color:blue">Single</strong>, <strong style="color:blue">SingleDeselect</strong>, <strong style="color:blue">Multiple</strong> and <strong style="color:blue">None</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">SelectionBrush</strong> - Gets or sets the brush color for the selection. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">SelectedIndex</strong> - Gets or sets the value of the index to be selected. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">SelectedIndexes</strong> - Gets or sets the list of indexes to be selected. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">ClearSelection</strong> - Used to reset all the selection customizations to default. ]]>
+            </x:String>
+        </x:Array>
+
+        <x:String x:Key="TooltipBehaviorHeader">
+            The following properties are used to customize the tooltip behavior:
+        </x:String>
+
+        <x:Array x:Key="TooltipBehaviorProperties" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Background</strong> - Gets or sets the background color to the tooltip label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">FontAttributes</strong> - Gets or sets the font style for the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">FontFamily</strong> - Gets or sets the font family name for the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">FontSize</strong> - Gets or sets the font size for the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Duration</strong> - Gets or sets the duration of the tooltip text in seconds. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Margin</strong> - Gets or sets the margin of the label to customize the appearance of label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">TextColor</strong> - Used to set the color for the text of the label. ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="ZoomingProperties" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ To enable the zooming and panning in the chart, create an instance of <strong style="color:blue">ChartZoomPanBehavior</strong> and set it to the <strong style="color:blue">ZoomPanBehavior</strong> property of <strong style="color:blue">SfCartesianChart</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ Pinch zooming is enable by using the <strong style="color:blue">EnablePinchZooming</strong> property to <strong style="color:blue">true</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ Directional Zooming is enabled by setting the <strong style="color:blue">EnableDirectionalZooming</strong> property to <strong style="color:blue">true</strong>. The default value of this property is <strong style="color:blue">false</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ Zooming the plot area can be achieved by pinch zooming, and also using the properties <strong style="color:blue">ZoomFactor</strong> and <strong style="color:blue">ZoomPosition</strong>. <strong style="color:blue">ZoomFactor</strong> defines the percentage of visible range from the total range of axis values. <strong style="color:blue">ZoomPosition</strong> defines the position for ranges of values that need to be displayed as a result of <strong style="color:blue">ZoomFactor</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ The zooming can be done both horizontally and vertically. The zooming direction is defined by using the <strong style="color:blue">ZoomMode</strong> property. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ The <strong style="color:blue">MaximumZoomLevel</strong> property is used to determine the maximum limit for zooming within the chart. Once the zooming operation reaches its limit, further zooming actions are not carried out. The <strong style="color:blue">MaximumZoomLevel</strong> property default value is <strong style="color:blue">double.NaN</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ Panning feature allows moving the visible area of the chart when it is zoomed in. To enable panning, you have to set <strong style="color:blue">EnablePanning</strong> property to <strong style="color:blue">true</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ Selection zooming feature allows users to interactively choose a particular area of the chart and zoom in. By specifying the <strong style="color:blue">EnableSelectionZooming</strong> property to <strong style="color:blue">true</strong> ]]>
+            </x:String>
+        </x:Array>
+
         <DataTemplate x:Key="SfListViewHeader">
             <Label FontAttributes="Bold" Text="{x:StaticResource PropertiesListHeader}" />
         </DataTemplate>
@@ -606,7 +683,84 @@
                 </VerticalStackLayout>
             </Border>
 
-            <Border>
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="5">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Chart Legend" />
+                    <Label Text="The Legend provides a list of series or data points, helping to identify the corresponding data series in the chart."/>
+
+                    <core:SfCartesianChartLegend FirstLineComponentData="{x:Binding FirstLine}" 
+                                                 SecondLineComponentData="{x:Binding SecondLine}" 
+                                                 ThirdLineComponentData="{x:Binding ThirdLine}" 
+                                                 LegendCodeDescription="{x:Binding CartesianLegendXamlCode}"
+                                                 ItemLayoutLegendCodeDescription="{x:Binding CartesianItemLayoutLegendXamlCode}"
+                                                 ItemTemplateLegendCodeDescription="{x:Binding CartesianItemTemplateLegendXamlCode}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="5">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Chart Selection" />
+                    <Label Text="The SfCartesianChart provides selection behavior support, which allows you to select or highlight a segment (data points) or a series in the chart using the DataPointSelectionBehavior and SeriesSelectionBehavior."/>
+                    <CollectionView Header="{x:StaticResource SelectionHeader}"
+                                    ItemsSource="{x:StaticResource SelectionBehaviorProperties}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+
+                    <core:SfCartesianChartSelection ComponentData="{x:Binding Column}" 
+                                                    XamlCodeDescription="{x:Binding CartesianSelectionXamlCode}" 
+                                                    CSharpCodeDescription="{x:Binding CartesianSelectionCSharpCode}"/>
+                    <core:SfCartesianChartSeriesSelection ComponentData="{x:Binding Column}" 
+                                                          XamlCodeDescription="{x:Binding CartesianSeriesSelectionXamlCode}" 
+                                                          CSharpCodeDescription="{x:Binding CartesianSeriesSelectionCSharpCode}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="5">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Chart Tooltip" />
+                    <Label Text="To define the tooltip in the series, set the EnableTooltip property to true. The default value of EnableTooltip property is false."/>
+                    <Label Text="The ChartTooltipBehavior is used to customize the tooltip. For customizing the tooltip, create an instance ChartTooltipBehavior and set it to the TooltipBehavior property of SfCartesianChart."/>
+                    <CollectionView Header="{x:StaticResource TooltipBehaviorHeader}"
+                                    ItemsSource="{x:StaticResource TooltipBehaviorProperties}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+
+                    <core:SfCartesianChartTooltip ComponentData="{x:Binding Column}" 
+                                                  TooltipCodeDescription="{x:Binding CartesianTooltipXamlCode}" 
+                                                  CustomToolTipCodeDescription="{x:Binding CartesianCustomTooltipXamlCode}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="5">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Chart Trackball" />
+                    <Label Text="Trackball, which allows you to show the tooltip for the nearest data points when you interact with the chart area. On mobile, long press the chart to show the trackball, and drag the chart to change the trackball’s location constantly. To display the trackball on the desktop, move the cursor over the chart area."/>
+
+                    <core:SfCartesianChartTrackball FirstLineComponentData="{x:Binding FirstLine}" 
+                                                    SecondLineComponentData="{x:Binding SecondLine}" 
+                                                    ThirdLineComponentData="{x:Binding ThirdLine}" 
+                                                    LabelDisplayModes="{x:Binding TrackballDisplayMode}"
+                                                    CodeDescription="{x:Binding CartesianTrackballXamlCode}" />
+                    <core:SfCartesianChartCustomTrackball FirstLineComponentData="{x:Binding FirstLine}"
+                                                          SecondLineComponentData="{x:Binding SecondLine}"
+                                                          ThirdLineComponentData="{x:Binding ThirdLine}"
+                                                          SeriesCodeDescription="{x:Binding CartesianTrackballSeriesLabelTemplateXamlCode}"
+                                                          AxisCodeDescription="{x:Binding CartesianTrackballAxisLabelTemplateXamlCode}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="20" StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="5">
+                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Cartesian Chart Zooming and Panning" />
+                    <Label Text="SfCartesianChart allows you to zoom the chart area with the help of the zoom feature. This behavior is mostly used to view the data point in the specific area, when there are large number of data points inside the chart."/>
+                    <CollectionView ItemsSource="{x:StaticResource ZoomingProperties}"
+                                    Style="{x:StaticResource PropertiesListStyle}" />
+
+                    <core:SfCartesianChartZooming FirstScatterComponentData="{x:Binding FirstScatter}" 
+                                                  SecondScatterComponentData="{x:Binding SecondScatter}" 
+                                                  CodeDescription="{x:Binding CartesianZoomingXamlCode}"/>
+                    <core:SfCartesianChartSelectionZooming FirstScatterComponentData="{x:Binding FirstScatter}"
+                                                           SecondScatterComponentData="{x:Binding SecondScatter}"
+                                                           CodeDescription="{x:Binding CartesianSelectionZoomingXamlCode}"/>
+                </VerticalStackLayout>
             </Border>
         </VerticalStackLayout>
     </ScrollView>

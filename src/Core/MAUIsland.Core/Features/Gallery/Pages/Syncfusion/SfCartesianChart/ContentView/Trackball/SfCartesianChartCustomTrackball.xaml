@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartCustomTrackball"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root">
+
+    <VerticalStackLayout Spacing="5">
+        <Label Text="Trackball labels can be customized by adding any view as its template by using TrackballLabelTemplate of CartesianSeries."/>
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ItemArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Trackball Item Template" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="ItemInfo" Spacing="10">
+                        <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
+                                                  Margin="0, 0, 20, 0">
+                            <toolkit:SfCartesianChart.Resources>
+                                <DataTemplate x:Key="TrackballLabelTemplate">
+                                    <HorizontalStackLayout Spacing="5">
+                                        <Ellipse TranslationY="-1" Fill="{x:Binding Series.MarkerSettings.Stroke}" StrokeThickness="2" HeightRequest="10" WidthRequest="10" />
+                                        <Label Text="{x:Binding Series.Label, StringFormat='{0}:'}" FontSize="12"  HorizontalOptions="Center" />
+                                        <Label Text="{x:Binding Label,StringFormat='{0}Exp'}" FontSize="12" Margin="0,0,2,0" HorizontalOptions="Center"/>
+                                    </HorizontalStackLayout>
+                                </DataTemplate>
+                            </toolkit:SfCartesianChart.Resources>
+                            <toolkit:SfCartesianChart.Legend>
+                                <toolkit:ChartLegend Placement="Top" ToggleSeriesVisibility="True"/>
+                            </toolkit:SfCartesianChart.Legend>
+                            <toolkit:SfCartesianChart.Title >
+                                <Label Text="Trackball Line Sample Chart" Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                            </toolkit:SfCartesianChart.Title>
+                            <toolkit:SfCartesianChart.TrackballBehavior>
+                                <toolkit:ChartTrackballBehavior x:Name="Trackball" ShowLine="True" ShowMarkers="True" DisplayMode="FloatAllPoints" ActivationMode="TouchMove">
+                                    <toolkit:ChartTrackballBehavior.LineStyle>
+                                        <toolkit:ChartLineStyle StrokeWidth="1.5"/>
+                                    </toolkit:ChartTrackballBehavior.LineStyle>
+                                    <toolkit:ChartTrackballBehavior.MarkerSettings>
+                                        <toolkit:ChartMarkerSettings Width="10" Height="10" StrokeWidth="1"/>
+                                    </toolkit:ChartTrackballBehavior.MarkerSettings>
+                                </toolkit:ChartTrackballBehavior>
+                            </toolkit:SfCartesianChart.TrackballBehavior>
+                            <toolkit:SfCartesianChart.XAxes>
+                                <toolkit:DateTimeAxis IntervalType="Years" Interval="1" EdgeLabelsVisibilityMode="Visible" ShowMajorGridLines="false"
+                                                      PlotOffsetStart="10" PlotOffsetEnd="10" AxisLineOffset="10">
+                                    <toolkit:DateTimeAxis.MajorTickStyle>
+                                        <toolkit:ChartAxisTickStyle TickSize="10"/>
+                                    </toolkit:DateTimeAxis.MajorTickStyle>
+                                </toolkit:DateTimeAxis>
+                            </toolkit:SfCartesianChart.XAxes>
+                            <toolkit:SfCartesianChart.YAxes>
+                                <toolkit:NumericalAxis Maximum="120" Minimum="0" Interval="20">
+                                    <toolkit:NumericalAxis.AxisLineStyle>
+                                        <toolkit:ChartLineStyle StrokeWidth="0"/>
+                                    </toolkit:NumericalAxis.AxisLineStyle>
+                                    <toolkit:NumericalAxis.MajorTickStyle>
+                                        <toolkit:ChartAxisTickStyle TickSize="0" />
+                                    </toolkit:NumericalAxis.MajorTickStyle>
+                                </toolkit:NumericalAxis>
+                            </toolkit:SfCartesianChart.YAxes>
+                            <toolkit:SfCartesianChart.Series>
+                                <toolkit:LineSeries ItemsSource="{x:Binding FirstLineComponentData, Source={x:Reference root}}" Label="Line 1" 
+                                                    XBindingPath="Date" YBindingPath="Value" ShowMarkers="True" StrokeWidth="1"
+                                                    TrackballLabelTemplate="{x:StaticResource TrackballLabelTemplate}">
+                                    <toolkit:LineSeries.MarkerSettings>
+                                        <toolkit:ChartMarkerSettings Type="Circle" Width="10" Height="10" 
+                                                                     StrokeWidth="1" Stroke="#8000BDAE"/>
+                                    </toolkit:LineSeries.MarkerSettings>
+                                </toolkit:LineSeries>
+                                <toolkit:LineSeries ItemsSource="{x:Binding SecondLineComponentData, Source={x:Reference root}}" Label="Line 2" 
+                                                    XBindingPath="Date" YBindingPath="Value" ShowMarkers="True" StrokeWidth="1"
+                                                    TrackballLabelTemplate="{x:StaticResource TrackballLabelTemplate}">
+                                    <toolkit:LineSeries.MarkerSettings>
+                                        <toolkit:ChartMarkerSettings Type="Circle" Width="10" Height="10" 
+                                                                     StrokeWidth="1" Stroke="#80404041"/>
+                                    </toolkit:LineSeries.MarkerSettings>
+                                </toolkit:LineSeries>
+                                <toolkit:LineSeries ItemsSource="{x:Binding ThirdLineComponentData, Source={x:Reference root}}" Label="Line 3" 
+                                                    XBindingPath="Date" YBindingPath="Value" ShowMarkers="True" StrokeWidth="1"
+                                                    TrackballLabelTemplate="{x:StaticResource TrackballLabelTemplate}">
+                                    <toolkit:LineSeries.MarkerSettings>
+                                        <toolkit:ChartMarkerSettings Type="Circle" Width="10" Height="10" 
+                                                                     StrokeWidth="1" Stroke="#80357CD2"/>
+                                    </toolkit:LineSeries.MarkerSettings>
+                                </toolkit:LineSeries>
+                            </toolkit:SfCartesianChart.Series>
+                        </toolkit:SfCartesianChart>
+                        
+                        <core:SourceCodeExpander Code="{x:Binding SeriesCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnItemGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+
+        <Label Text="To customize the appearance of axis labels on the trackball, you can use the TrackballLabelTemplate property of the ChartAxis."/>
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="AxisArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Trackball Axis Template" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="AxisInfo" Spacing="10">
+                        <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill"
+                                          Margin="0, 0, 20, 0">
+                            <toolkit:SfCartesianChart.Resources>
+                                <DataTemplate x:Key="AxisLabelTemplate">
+                                    <Label WidthRequest="100" HeightRequest="20" HorizontalTextAlignment="Center" 
+                                           Text="{x:Binding .}" TextColor="White" FontSize ="15"/>
+                                </DataTemplate>
+                            </toolkit:SfCartesianChart.Resources>
+                            <toolkit:SfCartesianChart.Legend>
+                                <toolkit:ChartLegend Placement="Top" ToggleSeriesVisibility="True"/>
+                            </toolkit:SfCartesianChart.Legend>
+                            <toolkit:SfCartesianChart.Title >
+                                <Label Text="Trackball Line Sample Chart" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                            </toolkit:SfCartesianChart.Title>
+                            <toolkit:SfCartesianChart.TrackballBehavior>
+                                <toolkit:ChartTrackballBehavior ShowLine="True" ShowMarkers="True" DisplayMode="FloatAllPoints" ActivationMode="TouchMove">
+                                    <toolkit:ChartTrackballBehavior.LineStyle>
+                                        <toolkit:ChartLineStyle StrokeWidth="1.5"/>
+                                    </toolkit:ChartTrackballBehavior.LineStyle>
+                                    <toolkit:ChartTrackballBehavior.MarkerSettings>
+                                        <toolkit:ChartMarkerSettings Width="10" Height="10" StrokeWidth="1"/>
+                                    </toolkit:ChartTrackballBehavior.MarkerSettings>
+                                </toolkit:ChartTrackballBehavior>
+                            </toolkit:SfCartesianChart.TrackballBehavior>
+                            <toolkit:SfCartesianChart.XAxes>
+                                <toolkit:DateTimeAxis IntervalType="Years" Interval="1" EdgeLabelsVisibilityMode="Visible" ShowMajorGridLines="false"
+                                                      PlotOffsetStart="10" PlotOffsetEnd="10" AxisLineOffset="10"
+                                                      ShowTrackballLabel="True" TrackballLabelTemplate="{x:StaticResource AxisLabelTemplate}">
+                                    <toolkit:DateTimeAxis.MajorTickStyle>
+                                        <toolkit:ChartAxisTickStyle TickSize="10"/>
+                                    </toolkit:DateTimeAxis.MajorTickStyle>
+                                </toolkit:DateTimeAxis>
+                            </toolkit:SfCartesianChart.XAxes>
+                            <toolkit:SfCartesianChart.YAxes>
+                                <toolkit:NumericalAxis Maximum="120" Minimum="0" Interval="20">
+                                    <toolkit:NumericalAxis.AxisLineStyle>
+                                        <toolkit:ChartLineStyle StrokeWidth="0"/>
+                                    </toolkit:NumericalAxis.AxisLineStyle>
+                                    <toolkit:NumericalAxis.MajorTickStyle>
+                                        <toolkit:ChartAxisTickStyle TickSize="0" />
+                                    </toolkit:NumericalAxis.MajorTickStyle>
+                                </toolkit:NumericalAxis>
+                            </toolkit:SfCartesianChart.YAxes>
+                            <toolkit:SfCartesianChart.Series>
+                                <toolkit:LineSeries ItemsSource="{x:Binding FirstLineComponentData, Source={x:Reference root}}" Label="Line 1" 
+                                                    XBindingPath="Date" YBindingPath="Value" ShowMarkers="True" StrokeWidth="1" >
+                                    <toolkit:LineSeries.MarkerSettings>
+                                        <toolkit:ChartMarkerSettings Type="Circle" Width="10" Height="10" StrokeWidth="1"/>
+                                    </toolkit:LineSeries.MarkerSettings>
+                                </toolkit:LineSeries>
+                                <toolkit:LineSeries ItemsSource="{x:Binding SecondLineComponentData, Source={x:Reference root}}" Label="Line 2" 
+                                                    XBindingPath="Date" YBindingPath="Value" ShowMarkers="True" StrokeWidth="1" >
+                                    <toolkit:LineSeries.MarkerSettings>
+                                        <toolkit:ChartMarkerSettings Type="Circle" Width="10" Height="10" StrokeWidth="1"/>
+                                    </toolkit:LineSeries.MarkerSettings>
+                                </toolkit:LineSeries>
+                                <toolkit:LineSeries ItemsSource="{x:Binding ThirdLineComponentData, Source={x:Reference root}}" Label="Line 3" 
+                                                    XBindingPath="Date" YBindingPath="Value" ShowMarkers="True" StrokeWidth="1" >
+                                    <toolkit:LineSeries.MarkerSettings>
+                                        <toolkit:ChartMarkerSettings Type="Circle" Width="10" Height="10" StrokeWidth="1"/>
+                                    </toolkit:LineSeries.MarkerSettings>
+                                </toolkit:LineSeries>
+                            </toolkit:SfCartesianChart.Series>
+                        </toolkit:SfCartesianChart>
+                        
+                        <core:SourceCodeExpander Code="{x:Binding AxisCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAxisGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

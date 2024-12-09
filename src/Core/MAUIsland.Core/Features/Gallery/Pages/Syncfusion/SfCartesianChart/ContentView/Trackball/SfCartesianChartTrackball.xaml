@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartTrackball"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root"
+    Loaded="OnComponentLoaded">
+
+    <ContentView.Resources>
+        <x:Array x:Key="TrackballBehaviorProperties" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">ShowLabel</strong>, of type <strong style="color:blue">bool</strong>, indicates the shows or hides the trackball label. The default value is <strong style="color:blue">True</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">ShowMarkers</strong>, of type <strong style="color:blue">bool</strong>, indicates the shows or hides trackball markers. The default value is <strong style="color:blue">True</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">ShowLine</strong>, of type <strong style="color:blue">bool</strong>, indicates the shows or hides the trackball line. The default value is <strong style="color:blue">True</strong>. ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="TrackballDisplayEnum" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">FloatAllPoints</strong> – Displays labels for all the data points along the vertical line. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">NearestPoint</strong> – Displays a label for a single data point nearer to the touch point on the chart area. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">GroupAllPoints</strong> – Displays all the data point labels grouped at the top of the chart area. ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="TrackballActivationMode" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">LongPress</strong> – Activates trackball only when performing the long press action. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">TouchMove</strong> – Activates trackball only when performing touch move action. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">None</strong> – Hides the visibility of trackball when setting activation mode to None. It will be activated when calling the Show method. ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="TrackballLabelProperties" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Background</strong>, of type <strong style="color:blue">Brush</strong>, used to change the label background color. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Margin</strong>, of type <strong style="color:blue">Thickness</strong>, used to change the margin of the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">TextColor</strong>, of type <strong style="color:blue">Color</strong>, used to change the text color. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">StrokeWidth</strong>, of type <strong style="color:blue">double</strong>, used to change the stroke thickness of the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Stroke</strong>, of type <strong style="color:blue">Brush</strong>, used to customize the border of the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">LabelFormat</strong>, of type <strong style="color:blue">string</strong>, used to change the format of the label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">FontFamily</strong>, of type <strong style="color:blue">string</strong>, used to change the font family for the trackball label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">FontAttributes</strong>, of type <strong style="color:blue">FontAttributes</strong>, used to change the font style for the trackball label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">FontSize</strong>, of type <strong style="color:blue">double</strong>, used to change the font size for the trackball label. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">CornerRadius</strong>, of type <strong style="color:blue">CornerRadius</strong>, used to set the rounded corners for labels. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                           Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Category Axis" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="Info" Grid.Column="0" Margin="5" Spacing="5">
+                        <Label Text="To enable the trackball in the chart, create an instance of the ChartTrackballBehavior and set it to the TrackballBehavior property. The following properties are used to show or hide the line and tooltip." />
+                        <CollectionView x:Name="BehaviorPropertiesCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}"/>
+
+                        <Label Text="The DisplayMode property specifies whether a label should be displayed for all data points along the trackball line or only the nearest data point label. The following choices are available for this property." />
+                        <CollectionView x:Name="DisplayEnumCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}"/>
+
+                        <Label Text="The ActivationMode property is used to restrict the visibility of trackball based on the touch actions." />
+                        <CollectionView x:Name="ActivationModeEnumCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}"/>
+
+                        <Label Text="The LabelStyle property provides to customize the trackball labels. These options are:" />
+                        <CollectionView x:Name="LabelPropertiesCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="5">
+                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill"
+                                          Margin="0, 0, 20, 0">
+                    <toolkit:SfCartesianChart.Legend>
+                        <toolkit:ChartLegend ToggleSeriesVisibility="True" Placement="Top"/>
+                    </toolkit:SfCartesianChart.Legend>
+                    <toolkit:SfCartesianChart.Title>
+                        <Grid>
+                            <Label Text="Trackball Line Sample Chart" Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                            <HorizontalStackLayout Spacing="5" HorizontalOptions="EndAndExpand">
+                                <Label Text="Mode: " VerticalTextAlignment="Center" FontSize="14"/>
+                                <Picker x:Name="LabelDisplayModePicker" ItemsSource="{x:Binding LabelDisplayModes, Source={x:Reference root}}" 
+                                        VerticalOptions="Center" SelectedIndex="0" HeightRequest="30"
+                                        SelectedIndexChanged="OnPickerSelectedChanged" FontSize="14">
+                                </Picker>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.TrackballBehavior>
+                        <toolkit:ChartTrackballBehavior x:Name="Trackball" ShowLine="True" ShowMarkers="True" DisplayMode="FloatAllPoints" ActivationMode="TouchMove">
+                            <toolkit:ChartTrackballBehavior.LabelStyle>
+                                <toolkit:ChartLabelStyle Background="#383838" Stroke="#383838" 
+                                                         FontSize="15" TextColor="#ff8900"
+                                                         CornerRadius="4" StrokeWidth="1" />
+                            </toolkit:ChartTrackballBehavior.LabelStyle>
+                            <toolkit:ChartTrackballBehavior.LineStyle>
+                                <toolkit:ChartLineStyle Stroke="White" StrokeWidth="1"/>
+                            </toolkit:ChartTrackballBehavior.LineStyle>
+                            <toolkit:ChartTrackballBehavior.MarkerSettings>
+                                <toolkit:ChartMarkerSettings Height="10" Width="10" Fill="#ff8900"/>
+                            </toolkit:ChartTrackballBehavior.MarkerSettings>
+                        </toolkit:ChartTrackballBehavior>
+                    </toolkit:SfCartesianChart.TrackballBehavior>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:DateTimeAxis IntervalType="Years" Interval="1" EdgeLabelsVisibilityMode="Visible" ShowMajorGridLines="false"
+                                              PlotOffsetStart="10" PlotOffsetEnd="10" AxisLineOffset="10">
+                            <toolkit:DateTimeAxis.MajorTickStyle>
+                                <toolkit:ChartAxisTickStyle TickSize="10"/>
+                            </toolkit:DateTimeAxis.MajorTickStyle>
+                        </toolkit:DateTimeAxis>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis Maximum="120" Minimum="0" Interval="20">
+                            <toolkit:NumericalAxis.AxisLineStyle>
+                                <toolkit:ChartLineStyle StrokeWidth="0"/>
+                            </toolkit:NumericalAxis.AxisLineStyle>
+                            <toolkit:NumericalAxis.MajorTickStyle>
+                                <toolkit:ChartAxisTickStyle TickSize="0" />
+                            </toolkit:NumericalAxis.MajorTickStyle>
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:SfCartesianChart.Series>
+                        <toolkit:LineSeries ItemsSource="{x:Binding FirstLineComponentData, Source={x:Reference root}}" Label="Line 1" 
+                                            XBindingPath="Date" YBindingPath="Value" ShowMarkers="True" StrokeWidth="1">
+                            <toolkit:LineSeries.MarkerSettings>
+                                <toolkit:ChartMarkerSettings Type="Circle" Width="10" Height="10" StrokeWidth="1"/>
+                            </toolkit:LineSeries.MarkerSettings>
+                        </toolkit:LineSeries>
+                        <toolkit:LineSeries ItemsSource="{x:Binding SecondLineComponentData, Source={x:Reference root}}" Label="Line 2" 
+                                            XBindingPath="Date" YBindingPath="Value" ShowMarkers="True" StrokeWidth="1">
+                            <toolkit:LineSeries.MarkerSettings>
+                                <toolkit:ChartMarkerSettings Type="Circle" Width="10" Height="10" StrokeWidth="1"/>
+                            </toolkit:LineSeries.MarkerSettings>
+                        </toolkit:LineSeries>
+                        <toolkit:LineSeries ItemsSource="{x:Binding ThirdLineComponentData, Source={x:Reference root}}" Label="Line 3" 
+                                            XBindingPath="Date" YBindingPath="Value" ShowMarkers="True" StrokeWidth="1">
+                            <toolkit:LineSeries.MarkerSettings>
+                                <toolkit:ChartMarkerSettings Type="Circle" Width="10" Height="10" StrokeWidth="1"/>
+                            </toolkit:LineSeries.MarkerSettings>
+                        </toolkit:LineSeries>
+                    </toolkit:SfCartesianChart.Series>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

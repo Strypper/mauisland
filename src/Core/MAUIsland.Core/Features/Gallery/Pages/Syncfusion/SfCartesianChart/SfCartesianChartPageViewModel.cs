@@ -125,6 +125,9 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
     ObservableCollection<string> errorBarDirections;
 
     [ObservableProperty]
+    ObservableCollection<string> trackballDisplayMode;
+
+    [ObservableProperty]
     string chartsSelectedOption;
 
     [ObservableProperty]
@@ -2541,7 +2544,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
         "                          Margin=\"0, 0, 20, 0\">\r\n" +
         "    <toolkit:SfCartesianChart.Title>\r\n" +
-        "        <Label Text=\"Column Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "        <Label Text=\"Data Label Column Sample Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
         "    </toolkit:SfCartesianChart.Title>\r\n" +
         "    <toolkit:SfCartesianChart.XAxes>\r\n" +
         "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\" IsVisible=\"true\" ShowMajorGridLines=\"false\" />\r\n" +
@@ -2601,7 +2604,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "<toolkit:SfCartesianChart IsTransposed=\"True\" HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
         "                          Margin=\"0, 0, 20, 0\">\r\n" +
         "    <toolkit:SfCartesianChart.Title>\r\n" +
-        "        <Label Text=\"Column Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "        <Label Text=\"Data Label with Context Sample Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
         "    </toolkit:SfCartesianChart.Title>\r\n" +
         "    <toolkit:SfCartesianChart.XAxes>\r\n" +
         "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\" IsVisible=\"true\" ShowMajorGridLines=\"false\" />\r\n" +
@@ -2644,7 +2647,7 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "        </DataTemplate>\r\n" +
         "    </toolkit:SfCartesianChart.Resources>\r\n" +
         "    <toolkit:SfCartesianChart.Title>\r\n" +
-        "        <Label Text=\"Column Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "        <Label Text=\"Data Label with Label Template Sample Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
         "    </toolkit:SfCartesianChart.Title>\r\n" +
         "    <toolkit:SfCartesianChart.XAxes>\r\n" +
         "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\" IsVisible=\"true\" ShowMajorGridLines=\"false\" />\r\n" +
@@ -2671,6 +2674,651 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         "                <toolkit:CartesianDataLabelSettings BarAlignment=\"Top\" LabelPlacement=\"Outer\"/>\r\n" +
         "            </toolkit:ColumnSeries.DataLabelSettings>\r\n" +
         "        </toolkit:ColumnSeries>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianLegendXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\" \r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend Placement=\"Top\">\r\n" +
+        "            <toolkit:ChartLegend.LabelStyle>\r\n" +
+        "                <toolkit:ChartLegendLabelStyle TextColor=\"#108dda\" Margin=\"5\" FontSize=\"18\" FontAttributes=\"Bold\"/>\r\n" +
+        "            </toolkit:ChartLegend.LabelStyle>\r\n" +
+        "        </toolkit:ChartLegend>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Legend Sample Line Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"false\"  PlotOffsetStart=\"10\" PlotOffsetEnd=\"10\" AxisLineOffset=\"10\">\r\n" +
+        "            <toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"10\"/>\r\n" +
+        "            </toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Maximum=\"0\" Minimum=\"120\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:LineSeries EnableTooltip=\"True\" Label=\"Line 1\" StrokeWidth=\"1\" LegendIcon=\"Diamond\"\r\n" +
+        "                            ItemsSource=\"{x:Binding FirstLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
+        "        <toolkit:LineSeries EnableTooltip=\"True\" Label=\"Line 2\" StrokeWidth=\"1\" LegendIcon=\"Hexagon\"\r\n" +
+        "                            ItemsSource=\"{x:Binding SecondLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
+        "        <toolkit:LineSeries EnableTooltip=\"True\" Label=\"Line 3\" StrokeWidth=\"1\" LegendIcon=\"Pentagon\"\r\n" +
+        "                            ItemsSource=\"{x:Binding ThirdLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianItemLayoutLegendXamlCode =
+        "<toolkit:SfCartesianChart x:Name=\"ItemLayoutChart\" HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\" \r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend Placement=\"Bottom\">\r\n" +
+        "            <toolkit:ChartLegend.ItemsLayout>\r\n" +
+        "                <HorizontalStackLayout HorizontalOptions=\"Center\" VerticalOptions=\"Center\">\r\n" +
+        "                    <FlexLayout WidthRequest=\"{Binding Width, Source={x:Reference ItemLayoutChart}}\"/>\r\n" +
+        "                </HorizontalStackLayout>\r\n" +
+        "            </toolkit:ChartLegend.ItemsLayout>\r\n" +
+        "        </toolkit:ChartLegend>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Item Layout Legend Sample Line Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"false\"  PlotOffsetStart=\"10\" PlotOffsetEnd=\"10\" AxisLineOffset=\"10\">\r\n" +
+        "            <toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"10\"/>\r\n" +
+        "            </toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Maximum=\"0\" Minimum=\"120\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:LineSeries EnableTooltip=\"True\" Label=\"Line 1\" StrokeWidth=\"1\"\r\n" +
+        "                            ItemsSource=\"{x:Binding FirstLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
+        "        <toolkit:LineSeries EnableTooltip=\"True\" Label=\"Line 2\" StrokeWidth=\"1\"\r\n" +
+        "                            ItemsSource=\"{x:Binding SecondLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
+        "        <toolkit:LineSeries EnableTooltip=\"True\" Label=\"Line 3\" StrokeWidth=\"1\"\r\n" +
+        "                            ItemsSource=\"{x:Binding ThirdLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianItemTemplateLegendXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\" \r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Resources>\r\n" +
+        "        <DataTemplate x:Key=\"LegendTemplate\">\r\n" +
+        "            <Grid ColumnDefinitions=\"Auto,Auto\">\r\n" +
+        "                <HorizontalStackLayout Grid.Column=\"0\" WidthRequest=\"30\" HeightRequest=\"30\">\r\n" +
+        "                    <Path Scale=\"0.75\" TranslationX=\"0.5\" HorizontalOptions=\"Center\" VerticalOptions=\"Center\"\r\n" +
+        "                          Data=\"F1 M 19.482422 10 C 19.482422 12.591146 18.549805 14.791667 16.68457 16.601562 C 14.819335 18.411459 12.58789 19.316406 9.990234 19.316406 C 7.392578 19.316406 5.16276 18.411459 3.300781 16.601562 C 1.438802 14.791667 0.507812 12.591146 0.507812 10 C 0.507812 7.408854 1.442057 5.201822 3.310547 3.378906 C 5.166015 1.575521 7.392578 0.673829 9.990234 0.673828 C 12.58789 0.673829 14.814452 1.575521 16.669922 3.378906 C 18.544922 5.201822 19.482422 7.408854 19.482422 10 Z M 18.964844 10 C 18.964844 7.597656 18.037109 5.501303 16.181641 3.710938 L 15.869141 4.248047 L 14.365234 3.847656 L 13.212891 4.169922 L 12.65625 5.673828 L 11.425781 5.996094 L 11.259766 7.265625 L 10.751953 7.03125 L 10.351562 8.105469 L 10.712891 10.048828 L 10.273438 10.878906 L 9.433594 10.917969 L 9.638672 12.03125 C 8.994141 11.666667 8.238932 11.149089 7.373047 10.478516 L 5.908203 10.341797 C 5.745442 10.257162 5.481771 10.139975 5.117188 9.990234 C 4.6875 10.54362 4.127604 11.158854 3.4375 11.835938 L 3.398438 12.548828 L 3.076172 13.203125 L 2.714844 13.173828 L 1.494141 10.722656 L 1.533203 10.009766 L 1.025391 9.980469 L 1.025391 10 C 1.025391 12.447916 1.910807 14.53125 3.681641 16.25 C 5.432942 17.949219 7.535807 18.798828 9.990234 18.798828 C 12.444661 18.798828 14.554036 17.944336 16.318359 16.235352 C 18.082682 14.526367 18.964844 12.447916 18.964844 10 Z M 13.183594 6.484375 L 12.695312 6.787109 L 12.294922 6.787109 L 12.695312 6.113281 L 12.96875 6.162109 Z M 12.451172 7.226562 C 12.262369 7.65625 11.923828 8.235678 11.435547 8.964844 L 11.201172 9.013672 C 11.539713 8.082683 11.865234 7.434896 12.177734 7.070312 Z M 14.042969 11.337891 L 13.789062 11.982422 L 13.173828 11.923828 Z M 14.541016 12.880859 L 14.160156 13.027344 L 14.423828 12.470703 Z M 17.392578 14.21875 L 17.089844 14.902344 C 16.634113 15.195312 16.168619 15.504558 15.693359 15.830078 L 15.380859 16.542969 L 15.097656 16.748047 L 14.873047 16.40625 C 15.0944 15.917969 15.31901 15.566406 15.546875 15.351562 L 16.210938 15.058594 C 16.373697 14.641927 16.5625 14.30013 16.777344 14.033203 L 17.060547 14.462891 Z M 12.177734 12.626953 L 11.416016 12.197266 L 12.138672 11.972656 Z M 10.996094 12.304688 L 10.712891 12.705078 L 10.205078 12.021484 Z M 14.677734 14.814453 C 14.580077 15.426433 14.143879 16.113281 13.369141 16.875 L 12.890625 16.914062 L 11.259766 16.240234 L 9.716797 16.318359 C 9.723307 15.960286 9.576822 15.537109 9.277344 15.048828 C 9.375 14.593099 9.638672 14.117839 10.068359 13.623047 C 10.992838 13.727214 11.774088 13.59375 12.412109 13.222656 L 13.095703 13.779297 L 13.486328 12.744141 C 13.707682 13.447266 14.104817 14.13737 14.677734 14.814453 Z M 9.492188 12.294922 L 9.199219 12.548828 L 8.837891 12.333984 Z M 13.818359 17.314453 L 13.603516 17.587891 L 12.958984 17.548828 L 13.447266 17.148438 Z M 5.214844 13.349609 C 4.817708 13.714193 4.420573 14.003906 4.023438 14.21875 L 3.544922 14.003906 L 4.384766 13.134766 Z \"\r\n" +
+        "                          Fill=\"{x:Binding IconBrush}\" Stroke=\"{x:Binding IconBrush}\"/>\r\n" +
+        "                </HorizontalStackLayout>\r\n" +
+        "                <Label Grid.Column=\"1\" FontSize=\"13\" \r\n" +
+        "                       Text=\"{x:Binding Item.Label}\"\r\n" +
+        "                       VerticalTextAlignment=\"Center\"\r\n" +
+        "                       HorizontalOptions=\"Center\"\r\n" +
+        "                       HorizontalTextAlignment=\"Start\"/>\r\n" +
+        "            </Grid>\r\n" +
+        "        </DataTemplate>\r\n" +
+        "    </toolkit:SfCartesianChart.Resources>\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ItemTemplate=\"{x:StaticResource LegendTemplate}\" Placement=\"Top\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Item Template Legend Sample Line Chart\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"false\" PlotOffsetStart=\"10\" PlotOffsetEnd=\"10\" AxisLineOffset=\"10\">\r\n" +
+        "            <toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"10\"/>\r\n" +
+        "            </toolkit:CategoryAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Maximum=\"0\" Minimum=\"120\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:LineSeries EnableTooltip=\"True\" Label=\"Line 1\" StrokeWidth=\"1\" \r\n" +
+        "                            ItemsSource=\"{x:Binding FirstLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
+        "        <toolkit:LineSeries EnableTooltip=\"True\" Label=\"Line 2\" StrokeWidth=\"1\" \r\n" +
+        "                            ItemsSource=\"{x:Binding SecondLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
+        "        <toolkit:LineSeries EnableTooltip=\"True\" Label=\"Line 3\" StrokeWidth=\"1\" \r\n" +
+        "                            ItemsSource=\"{x:Binding ThirdLine}\" \r\n" +
+        "                            XBindingPath=\"Name\" YBindingPath=\"Value\" ShowMarkers=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianSelectionXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Selection Column Sample Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\" IsVisible=\"true\" ShowMajorGridLines=\"false\" />\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"True\" ShowMinorGridLines=\"false\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"0 Exp\"/>\r\n" +
+        "            </toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MinorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle Stroke=\"Transparent\" StrokeWidth=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.MinorTickStyle>\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:ColumnSeries EnableAnimation=\"True\" ShowDataLabels=\"True\"  \r\n" +
+        "                              ItemsSource=\"{x:Binding ComponentData,Source={x:Reference root}}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Exp\">\r\n" +
+        "            <toolkit:ColumnSeries.SelectionBehavior>\r\n" +
+        "                <toolkit:DataPointSelectionBehavior x:Name=\"DataPointSelection\" SelectionBrush=\"#2A9AF3\" SelectedIndex=\"6\" Type=\"SingleDeselect\"/>\r\n" +
+        "            </toolkit:ColumnSeries.SelectionBehavior>\r\n" +
+        "        </toolkit:ColumnSeries>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianSelectionCSharpCode =
+        "private void CheckedChanged(object sender, CheckedChangedEventArgs e)\r\n" +
+        "{\r\n" +
+        "    DataPointSelection.Type = e.Value ? ChartSelectionType.Multiple : ChartSelectionType.SingleDeselect;\r\n" +
+        "}";
+
+    [ObservableProperty]
+    string cartesianSeriesSelectionXamlCode =
+        "<toolkit:SfCartesianChart x:Name=\"SelectionChart\" HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Selection Column Sample Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.SelectionBehavior>\r\n" +
+        "        <toolkit:SeriesSelectionBehavior x:Name =\"SeriesSelection\" SelectionBrush=\"{x:Null}\" SelectionChanging=\"SelectionChanging\" Type=\"SingleDeselect\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.SelectionBehavior>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis LabelPlacement=\"BetweenTicks\" IsVisible=\"true\" ShowMajorGridLines=\"false\" />\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"True\" ShowMinorGridLines=\"false\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "                <toolkit:ChartAxisLabelStyle LabelFormat=\"0 Exp\"/>\r\n" +
+        "            </toolkit:NumericalAxis.LabelStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MinorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle Stroke=\"Transparent\" StrokeWidth=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.MinorTickStyle>\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:ColumnSeries EnableAnimation=\"True\" Fill=\"#8000BDAE\"\r\n" +
+        "                              ItemsSource=\"{x:Binding ComponentData,Source={x:Reference root}}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Exp\"/>\r\n" +
+        "        <toolkit:ColumnSeries EnableAnimation=\"True\" Fill=\"#80404041\" \r\n" +
+        "                              ItemsSource=\"{x:Binding ComponentData,Source={x:Reference root}}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Value\"/>\r\n" +
+        "        <toolkit:ColumnSeries EnableAnimation=\"True\" Fill=\"#80357CD2\"\r\n" +
+        "                              ItemsSource=\"{x:Binding ComponentData,Source={x:Reference root}}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Size\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianSeriesSelectionCSharpCode =
+        "List<int> SelectedIndexes = new List<int>();\r\n\r\n" +
+        "private void CheckedChanged(object sender, CheckedChangedEventArgs e)\r\n" +
+        "{\r\n" +
+        "    SeriesSelection.Type = e.Value ? ChartSelectionType.Multiple : ChartSelectionType.SingleDeselect;\r\n" +
+        "    SelectedIndexes.Clear();\r\n\r\n" +
+        "    var fadedColors = new List<SolidColorBrush> \r\n" +
+        "    { \r\n" +
+        "        new SolidColorBrush(Color.FromArgb(\"#8000BDAE\")), \r\n" +
+        "        new SolidColorBrush(Color.FromArgb(\"#80404041\")), \r\n" +
+        "        new SolidColorBrush(Color.FromArgb(\"#80357CD2\")) \r\n" +
+        "    };\r\n\r\n" +
+        "    foreach (var series in SelectionChart.Series)\r\n" +
+        "    {\r\n" +
+        "        series.Fill = fadedColors[SelectionChart.Series.IndexOf(series)];\r\n" +
+        "    }\r\n" +
+        "}\r\n\r\n" +
+        "private void SelectionChanging(object sender, ChartSelectionChangingEventArgs e)\r\n" +
+        "{\r\n" +
+        "    var defaultColors = new List<SolidColorBrush>\r\n" +
+        "    {\r\n" +
+        "        new SolidColorBrush(Color.FromArgb(\"#00BDAE\")),\r\n" +
+        "        new SolidColorBrush(Color.FromArgb(\"#404041\")),\r\n" +
+        "        new SolidColorBrush(Color.FromArgb(\"#357CD2\"))\r\n" +
+        "    };\r\n\r\n" +
+        "    var fadedColors = new List<SolidColorBrush>\r\n" +
+        "    {\r\n" +
+        "        new SolidColorBrush(Color.FromArgb(\"#8000BDAE\")),\r\n" +
+        "        new SolidColorBrush(Color.FromArgb(\"#80404041\")),\r\n" +
+        "        new SolidColorBrush(Color.FromArgb(\"#80357CD2\"))\r\n" +
+        "    };\r\n\r\n" +
+        "    // Create a HashSet of all selected indexes including old and new indexes.\r\n" +
+        "    var selectedIndexes = new HashSet<int>(SelectedIndexes);\r\n\r\n" +
+        "    // Add new indexes to the selected set.\r\n" +
+        "    foreach (var index in e.NewIndexes)\r\n" +
+        "    {\r\n" +
+        "        selectedIndexes.Add(index);\r\n" +
+        "        if (!SelectedIndexes.Contains(index))\r\n" +
+        "            SelectedIndexes.Add(index);\r\n" +
+        "    }\r\n\r\n" +
+        "    // Remove old indexes from the selected set.\r\n" +
+        "    foreach (var index in e.OldIndexes)\r\n" +
+        "    {\r\n" +
+        "        selectedIndexes.Remove(index);\r\n" +
+        "        if (SelectedIndexes.Contains(index))\r\n" +
+        "            SelectedIndexes.Remove(index);\r\n" +
+        "    }\r\n\r\n" +
+        "    // Set the fill color based on whether the index is in the selected set.\r\n" +
+        "    foreach (var series in SelectionChart.Series)\r\n" +
+        "    {\r\n" +
+        "        int index = SelectionChart.Series.IndexOf(series);\r\n" +
+        "        series.Fill = selectedIndexes.Contains(index) ? defaultColors[index] : fadedColors[index];\r\n" +
+        "    }\r\n" +
+        "}";
+
+    [ObservableProperty]
+    string cartesianTooltipXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\">\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Tooltip Column Sample Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.TooltipBehavior>\r\n" +
+        "        <toolkit:ChartTooltipBehavior Duration=\"500\" TextColor=\"Aqua\" FontSize=\"16\" Background=\"Gray\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.TooltipBehavior>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"False\" LabelPlacement=\"BetweenTicks\">\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"True\" Minimum=\"0\">\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:ColumnSeries Label=\"Aqua\" EnableTooltip=\"True\" EnableAnimation=\"True\" Width=\"0.8\" Spacing=\"0.2\" \r\n" +
+        "                              ItemsSource=\"{x:Binding Column}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Exp\" LegendIcon=\"SeriesType\"/>\r\n" +
+        "        <toolkit:ColumnSeries Label=\"Gray\" EnableTooltip=\"True\" EnableAnimation=\"True\" Width=\"0.8\" Spacing=\"0.2\" \r\n" +
+        "                              ItemsSource=\"{x:Binding Column}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Value\" LegendIcon=\"SeriesType\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianCustomTooltipXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Resources>\r\n" +
+        "        <DataTemplate x:Key=\"TemplateColumn\">\r\n" +
+        "            <VerticalStackLayout Spacing=\"5\">\r\n" +
+        "                <HorizontalStackLayout VerticalOptions=\"Fill\" HorizontalOptions=\"Center\" Spacing=\"10\">\r\n" +
+        "                    <Ellipse TranslationY=\"-1\" Stroke=\"Aqua\" StrokeThickness=\"2\" HeightRequest=\"10\" WidthRequest=\"10\" />\r\n" +
+        "                    <Label Text=\"{x:Binding Item.Name}\" HorizontalTextAlignment=\"Center\" HorizontalOptions=\"Center\" \r\n" +
+        "                           VerticalTextAlignment=\"Center\" FontAttributes=\"Bold\" \r\n" +
+        "                           FontFamily=\"Helvetica\" Margin=\"0,2\" FontSize=\"12\"/>\r\n" +
+        "                </HorizontalStackLayout>\r\n" +
+        "                <BoxView HeightRequest=\"1\" WidthRequest=\"100\" Color=\"White\" />\r\n" +
+        "                <HorizontalStackLayout VerticalOptions=\"Fill\" >\r\n" +
+        "                    <Label Text=\"{x:Binding Item.Value, StringFormat='Value:  {0}M'}\"  \r\n" +
+        "                           VerticalTextAlignment=\"Center\" HorizontalOptions=\"Start\" \r\n" +
+        "                           FontFamily=\"Helvetica\" FontSize=\"12\" />\r\n" +
+        "                    <Label Text=\"{x:Binding Item.Exp, StringFormat=', Exp:  {0}M'}\" \r\n" +
+        "                           VerticalTextAlignment=\"Center\" HorizontalOptions=\"End\" \r\n" +
+        "                           FontFamily=\"Helvetica\" FontSize=\"12\" />\r\n" +
+        "                </HorizontalStackLayout>\r\n" +
+        "            </VerticalStackLayout>\r\n" +
+        "        </DataTemplate>\r\n" +
+        "    </toolkit:SfCartesianChart.Resources>\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Custom Tooltip Column Sample Chart\" Margin=\"0,0,0,5\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:CategoryAxis ShowMajorGridLines=\"False\" LabelPlacement=\"BetweenTicks\">\r\n" +
+        "        </toolkit:CategoryAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"True\" Minimum=\"0\">\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:ColumnSeries Label=\"Aqua\" EnableAnimation=\"True\" Width=\"0.8\" Spacing=\"0.2\" \r\n" +
+        "                              ItemsSource=\"{Binding Column}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Exp\" LegendIcon=\"SeriesType\"\r\n" +
+        "                              EnableTooltip=\"True\" TooltipTemplate=\"{x:StaticResource TemplateColumn}\"/>\r\n" +
+        "        <toolkit:ColumnSeries Label=\"Gray\" EnableAnimation=\"True\" Width=\"0.8\" Spacing=\"0.2\" \r\n" +
+        "                              ItemsSource=\"{Binding Column}\" \r\n" +
+        "                              XBindingPath=\"Name\" YBindingPath=\"Value\" LegendIcon=\"SeriesType\"\r\n" +
+        "                              EnableTooltip=\"True\" TooltipTemplate=\"{x:StaticResource TemplateColumn}\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianTrackballXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\" Placement=\"Top\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Trackball Line Sample Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.TrackballBehavior>\r\n" +
+        "        <toolkit:ChartTrackballBehavior x:Name=\"Trackball\" ShowLine=\"True\" ShowMarkers=\"True\" DisplayMode=\"FloatAllPoints\" ActivationMode=\"TouchMove\">\r\n" +
+        "            <toolkit:ChartTrackballBehavior.LabelStyle>\r\n" +
+        "                <toolkit:ChartLabelStyle Background=\"#383838\" Stroke=\"#383838\" \r\n" +
+        "                                         FontSize=\"15\" TextColor=\"#ff8900\"\r\n" +
+        "                                         CornerRadius=\"4\" StrokeWidth=\"1\" />\r\n" +
+        "            </toolkit:ChartTrackballBehavior.LabelStyle>\r\n" +
+        "            <toolkit:ChartTrackballBehavior.LineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle Stroke=\"White\" StrokeWidth=\"1\"/>\r\n" +
+        "            </toolkit:ChartTrackballBehavior.LineStyle>\r\n" +
+        "            <toolkit:ChartTrackballBehavior.MarkerSettings>\r\n" +
+        "                <toolkit:ChartMarkerSettings Height=\"10\" Width=\"10\" Fill=\"#ff8900\"/>\r\n" +
+        "            </toolkit:ChartTrackballBehavior.MarkerSettings>\r\n" +
+        "        </toolkit:ChartTrackballBehavior>\r\n" +
+        "    </toolkit:SfCartesianChart.TrackballBehavior>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:DateTimeAxis IntervalType=\"Years\" Interval=\"1\" EdgeLabelsVisibilityMode=\"Visible\" ShowMajorGridLines=\"false\"\r\n" +
+        "                              PlotOffsetStart=\"10\" PlotOffsetEnd=\"10\" AxisLineOffset=\"10\">\r\n" +
+        "            <toolkit:DateTimeAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"10\"/>\r\n" +
+        "            </toolkit:DateTimeAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:DateTimeAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Maximum=\"120\" Minimum=\"0\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:LineSeries ItemsSource=\"{x:Binding FirstLine}\" Label=\"Line 1\" \r\n" +
+        "                            XBindingPath=\"Date\" YBindingPath=\"Value\" ShowMarkers=\"True\" StrokeWidth=\"1\">\r\n" +
+        "            <toolkit:LineSeries.MarkerSettings>\r\n" +
+        "                <toolkit:ChartMarkerSettings Type=\"Circle\" Width=\"10\" Height=\"10\" StrokeWidth=\"1\"/>\r\n" +
+        "            </toolkit:LineSeries.MarkerSettings>\r\n" +
+        "        </toolkit:LineSeries>\r\n" +
+        "        <toolkit:LineSeries ItemsSource=\"{x:Binding SecondLine}\" Label=\"Line 2\" \r\n" +
+        "                            XBindingPath=\"Date\" YBindingPath=\"Value\" ShowMarkers=\"True\" StrokeWidth=\"1\">\r\n" +
+        "            <toolkit:LineSeries.MarkerSettings>\r\n" +
+        "                <toolkit:ChartMarkerSettings Type=\"Circle\" Width=\"10\" Height=\"10\" StrokeWidth=\"1\"/>\r\n" +
+        "            </toolkit:LineSeries.MarkerSettings>\r\n" +
+        "        </toolkit:LineSeries>\r\n" +
+        "        <toolkit:LineSeries ItemsSource=\"{x:Binding ThirdLine}\" Label=\"Line 3\" \r\n" +
+        "                            XBindingPath=\"Date\" YBindingPath=\"Value\" ShowMarkers=\"True\" StrokeWidth=\"1\">\r\n" +
+        "            <toolkit:LineSeries.MarkerSettings>\r\n" +
+        "                <toolkit:ChartMarkerSettings Type=\"Circle\" Width=\"10\" Height=\"10\" StrokeWidth=\"1\"/>\r\n" +
+        "            </toolkit:LineSeries.MarkerSettings>\r\n" +
+        "        </toolkit:LineSeries>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianTrackballSeriesLabelTemplateXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"FillAndExpand\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Resources>\r\n" +
+        "        <DataTemplate x:Key=\"TrackballLabelTemplate\">\r\n" +
+        "            <HorizontalStackLayout Spacing=\"5\">\r\n" +
+        "                <Ellipse TranslationY=\"-1\" Fill=\"{x:Binding Series.MarkerSettings.Stroke}\" StrokeThickness=\"2\" HeightRequest=\"10\" WidthRequest=\"10\" />\r\n" +
+        "                <Label Text=\"{x:Binding Series.Label, StringFormat='{0}:'}\" FontSize=\"12\"  HorizontalOptions=\"Center\" />\r\n" +
+        "                <Label Text=\"{x:Binding Label,StringFormat='{0}Exp'}\" FontSize=\"12\" Margin=\"0,0,2,0\" HorizontalOptions=\"Center\"/>\r\n" +
+        "            </HorizontalStackLayout>\r\n" +
+        "        </DataTemplate>\r\n" +
+        "    </toolkit:SfCartesianChart.Resources>\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend Placement=\"Top\" ToggleSeriesVisibility=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title >\r\n" +
+        "        <Label Text=\"Trackball Line Sample Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.TrackballBehavior>\r\n" +
+        "        <toolkit:ChartTrackballBehavior x:Name=\"Trackball\" ShowLine=\"True\" ShowMarkers=\"True\" DisplayMode=\"FloatAllPoints\" ActivationMode=\"TouchMove\">\r\n" +
+        "            <toolkit:ChartTrackballBehavior.LineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"1.5\"/>\r\n" +
+        "            </toolkit:ChartTrackballBehavior.LineStyle>\r\n" +
+        "            <toolkit:ChartTrackballBehavior.MarkerSettings>\r\n" +
+        "                <toolkit:ChartMarkerSettings Width=\"10\" Height=\"10\" StrokeWidth=\"1\"/>\r\n" +
+        "            </toolkit:ChartTrackballBehavior.MarkerSettings>\r\n" +
+        "        </toolkit:ChartTrackballBehavior>\r\n" +
+        "    </toolkit:SfCartesianChart.TrackballBehavior>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:DateTimeAxis IntervalType=\"Years\" Interval=\"1\" EdgeLabelsVisibilityMode=\"Visible\" ShowMajorGridLines=\"false\"\r\n" +
+        "                              PlotOffsetStart=\"10\" PlotOffsetEnd=\"10\" AxisLineOffset=\"10\">\r\n" +
+        "            <toolkit:DateTimeAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"10\"/>\r\n" +
+        "            </toolkit:DateTimeAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:DateTimeAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Maximum=\"120\" Minimum=\"0\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:LineSeries ItemsSource=\"{x:Binding FirstLineComponentData, Source={x:Reference root}}\" Label=\"Line 1\" \r\n" +
+        "                            XBindingPath=\"Date\" YBindingPath=\"Value\" ShowMarkers=\"True\" StrokeWidth=\"1\"\r\n" +
+        "                            TrackballLabelTemplate=\"{x:StaticResource TrackballLabelTemplate}\">\r\n" +
+        "            <toolkit:LineSeries.MarkerSettings>\r\n" +
+        "                <toolkit:ChartMarkerSettings Type=\"Circle\" Width=\"10\" Height=\"10\" \r\n" +
+        "                                             StrokeWidth=\"1\" Stroke=\"#8000BDAE\"/>\r\n" +
+        "            </toolkit:LineSeries.MarkerSettings>\r\n" +
+        "        </toolkit:LineSeries>\r\n" +
+        "        <toolkit:LineSeries ItemsSource=\"{x:Binding SecondLineComponentData, Source={x:Reference root}}\" Label=\"Line 2\" \r\n" +
+        "                            XBindingPath=\"Date\" YBindingPath=\"Value\" ShowMarkers=\"True\" StrokeWidth=\"1\"\r\n" +
+        "                            TrackballLabelTemplate=\"{x:StaticResource TrackballLabelTemplate}\">\r\n" +
+        "            <toolkit:LineSeries.MarkerSettings>\r\n" +
+        "                <toolkit:ChartMarkerSettings Type=\"Circle\" Width=\"10\" Height=\"10\" \r\n" +
+        "                                             StrokeWidth=\"1\" Stroke=\"#80404041\"/>\r\n" +
+        "            </toolkit:LineSeries.MarkerSettings>\r\n" +
+        "        </toolkit:LineSeries>\r\n" +
+        "        <toolkit:LineSeries ItemsSource=\"{x:Binding ThirdLineComponentData, Source={x:Reference root}}\" Label=\"Line 3\" \r\n" +
+        "                            XBindingPath=\"Date\" YBindingPath=\"Value\" ShowMarkers=\"True\" StrokeWidth=\"1\"\r\n" +
+        "                            TrackballLabelTemplate=\"{x:StaticResource TrackballLabelTemplate}\">\r\n" +
+        "            <toolkit:LineSeries.MarkerSettings>\r\n" +
+        "                <toolkit:ChartMarkerSettings Type=\"Circle\" Width=\"10\" Height=\"10\" \r\n" +
+        "                                             StrokeWidth=\"1\" Stroke=\"#80357CD2\"/>\r\n" +
+        "            </toolkit:LineSeries.MarkerSettings>\r\n" +
+        "        </toolkit:LineSeries>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianTrackballAxisLabelTemplateXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                            Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Resources>\r\n" +
+        "        <DataTemplate x:Key=\"AxisLabelTemplate\">\r\n" +
+        "            <Label WidthRequest=\"100\" HeightRequest=\"20\" HorizontalTextAlignment=\"Center\" \r\n" +
+        "                   Text=\"{x:Binding .}\" TextColor=\"Aqua\" FontSize =\"15\"/>\r\n" +
+        "        </DataTemplate>\r\n" +
+        "    </toolkit:SfCartesianChart.Resources>\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend Placement=\"Top\" ToggleSeriesVisibility=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title >\r\n" +
+        "        <Label Text=\"Trackball Line Sample Chart\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.TrackballBehavior>\r\n" +
+        "        <toolkit:ChartTrackballBehavior ShowLine=\"True\" ShowMarkers=\"True\" DisplayMode=\"FloatAllPoints\" ActivationMode=\"TouchMove\">\r\n" +
+        "            <toolkit:ChartTrackballBehavior.LineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"1.5\"/>\r\n" +
+        "            </toolkit:ChartTrackballBehavior.LineStyle>\r\n" +
+        "            <toolkit:ChartTrackballBehavior.MarkerSettings>\r\n" +
+        "                <toolkit:ChartMarkerSettings Width=\"10\" Height=\"10\" StrokeWidth=\"1\"/>\r\n" +
+        "            </toolkit:ChartTrackballBehavior.MarkerSettings>\r\n" +
+        "        </toolkit:ChartTrackballBehavior>\r\n" +
+        "    </toolkit:SfCartesianChart.TrackballBehavior>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:DateTimeAxis IntervalType=\"Years\" Interval=\"1\" EdgeLabelsVisibilityMode=\"Visible\" ShowMajorGridLines=\"false\"\r\n" +
+        "                              PlotOffsetStart=\"10\" PlotOffsetEnd=\"10\" AxisLineOffset=\"10\"\r\n" +
+        "                              ShowTrackballLabel=\"True\" TrackballLabelTemplate=\"{x:StaticResource AxisLabelTemplate}\">\r\n" +
+        "            <toolkit:DateTimeAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"10\"/>\r\n" +
+        "            </toolkit:DateTimeAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:DateTimeAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis Maximum=\"120\" Minimum=\"0\" Interval=\"10\">\r\n" +
+        "            <toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "                <toolkit:ChartLineStyle StrokeWidth=\"0\"/>\r\n" +
+        "            </toolkit:NumericalAxis.AxisLineStyle>\r\n" +
+        "            <toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "                <toolkit:ChartAxisTickStyle TickSize=\"0\" />\r\n" +
+        "            </toolkit:NumericalAxis.MajorTickStyle>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:LineSeries ItemsSource=\"{x:Binding FirstLine}\" Label=\"Line 1\" \r\n" +
+        "                            XBindingPath=\"Date\" YBindingPath=\"Value\" ShowMarkers=\"True\" StrokeWidth=\"1\" >\r\n" +
+        "            <toolkit:LineSeries.MarkerSettings>\r\n" +
+        "                <toolkit:ChartMarkerSettings Type=\"Circle\" Width=\"10\" Height=\"10\" StrokeWidth=\"1\"/>\r\n" +
+        "            </toolkit:LineSeries.MarkerSettings>\r\n" +
+        "        </toolkit:LineSeries>\r\n" +
+        "        <toolkit:LineSeries ItemsSource=\"{x:Binding SecondLine}\" Label=\"Line 2\" \r\n" +
+        "                            XBindingPath=\"Date\" YBindingPath=\"Value\" ShowMarkers=\"True\" StrokeWidth=\"1\" >\r\n" +
+        "            <toolkit:LineSeries.MarkerSettings>\r\n" +
+        "                <toolkit:ChartMarkerSettings Type=\"Circle\" Width=\"10\" Height=\"10\" StrokeWidth=\"1\"/>\r\n" +
+        "            </toolkit:LineSeries.MarkerSettings>\r\n" +
+        "        </toolkit:LineSeries>\r\n" +
+        "        <toolkit:LineSeries ItemsSource=\"{x:Binding ThirdLine}\" Label=\"Line 3\" \r\n" +
+        "                            XBindingPath=\"Date\" YBindingPath=\"Value\" ShowMarkers=\"True\" StrokeWidth=\"1\" >\r\n" +
+        "            <toolkit:LineSeries.MarkerSettings>\r\n" +
+        "                <toolkit:ChartMarkerSettings Type=\"Circle\" Width=\"10\" Height=\"10\" StrokeWidth=\"1\"/>\r\n" +
+        "            </toolkit:LineSeries.MarkerSettings>\r\n" +
+        "        </toolkit:LineSeries>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianZoomingXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Zooming Scatter Sample Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "        <toolkit:ChartZoomPanBehavior x:Name=\"Zooming\" ZoomMode=\"XY\" EnablePanning=\"True\" MaximumZoomLevel=\"2\" \r\n" +
+        "                                      EnablePinchZooming=\"True\" EnableDirectionalZooming=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"False\" EdgeLabelsDrawingMode=\"Shift\" Minimum=\"100\" Maximum=\"220\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Margin=\"5,10,5,2\" Text=\"Centimeter\"/>\r\n" +
+        "            </toolkit:NumericalAxis.Title>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"False\" Minimum=\"50\" Maximum=\"80\" Interval=\"5\">\r\n" +
+        "            <toolkit:NumericalAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Text=\"Kilogram\"/>\r\n" +
+        "            </toolkit:NumericalAxis.Title>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:ScatterSeries Label=\"Scatter 1\" EnableTooltip=\"True\" EnableAnimation=\"True\" Opacity=\"0.6\" PointWidth=\"8\" PointHeight=\"8\" \r\n" +
+        "                                ItemsSource=\"{Binding FirstScatter}\" XBindingPath=\"Value\" YBindingPath=\"Size\"/>\r\n" +
+        "        <toolkit:ScatterSeries Label=\"Scatter 2\" EnableTooltip=\"True\" EnableAnimation=\"True\" Opacity=\"0.6\" PointWidth=\"8\" PointHeight=\"8\" \r\n" +
+        "                                ItemsSource=\"{Binding SecondScatter}\" XBindingPath=\"Value\" YBindingPath=\"Size\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Series>\r\n" +
+        "</toolkit:SfCartesianChart>";
+
+    [ObservableProperty]
+    string cartesianSelectionZoomingXamlCode =
+        "<toolkit:SfCartesianChart HorizontalOptions=\"Fill\" VerticalOptions=\"Fill\"\r\n" +
+        "                          Margin=\"0, 0, 20, 0\">\r\n" +
+        "    <toolkit:SfCartesianChart.Legend>\r\n" +
+        "        <toolkit:ChartLegend ToggleSeriesVisibility=\"True\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.Legend>\r\n" +
+        "    <toolkit:SfCartesianChart.Title>\r\n" +
+        "        <Label Text=\"Selection Zooming Scatter Sample Chart\" Margin=\"0\" HorizontalOptions=\"Fill\" HorizontalTextAlignment=\"Center\" VerticalOptions=\"Center\" FontSize=\"16\" />\r\n" +
+        "    </toolkit:SfCartesianChart.Title>\r\n" +
+        "    <toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "        <toolkit:ChartZoomPanBehavior EnableSelectionZooming=\"True\" EnablePinchZooming=\"False\"/>\r\n" +
+        "    </toolkit:SfCartesianChart.ZoomPanBehavior>\r\n" +
+        "    <toolkit:SfCartesianChart.XAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"False\" EdgeLabelsDrawingMode=\"Shift\" Minimum=\"100\" Maximum=\"220\" Interval=\"20\">\r\n" +
+        "            <toolkit:NumericalAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Margin=\"5,10,5,2\" Text=\"Centimeter\"/>\r\n" +
+        "            </toolkit:NumericalAxis.Title>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.XAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.YAxes>\r\n" +
+        "        <toolkit:NumericalAxis ShowMajorGridLines=\"False\" Minimum=\"50\" Maximum=\"80\" Interval=\"5\">\r\n" +
+        "            <toolkit:NumericalAxis.Title>\r\n" +
+        "                <toolkit:ChartAxisTitle Text=\"Kilogram\"/>\r\n" +
+        "            </toolkit:NumericalAxis.Title>\r\n" +
+        "        </toolkit:NumericalAxis>\r\n" +
+        "    </toolkit:SfCartesianChart.YAxes>\r\n" +
+        "    <toolkit:SfCartesianChart.Series>\r\n" +
+        "        <toolkit:ScatterSeries Label=\"Scatter 1\" EnableTooltip=\"True\" EnableAnimation=\"True\" \r\n" +
+        "                               Opacity=\"0.6\" PointWidth=\"8\" PointHeight=\"8\" \r\n" +
+        "                               ItemsSource=\"{Binding FirstScatterComponentData, Source={x:Reference root}}\" \r\n" +
+        "                               XBindingPath=\"Value\" YBindingPath=\"Size\"/>\r\n" +
+        "        <toolkit:ScatterSeries Label=\"Scatter 2\" EnableTooltip=\"True\" EnableAnimation=\"True\" \r\n" +
+        "                               Opacity=\"0.6\" PointWidth=\"8\" PointHeight=\"8\" \r\n" +
+        "                               ItemsSource=\"{Binding SecondScatterComponentData, Source={x:Reference root}}\" \r\n" +
+        "                               XBindingPath=\"Value\" YBindingPath=\"Size\"/>\r\n" +
         "    </toolkit:SfCartesianChart.Series>\r\n" +
         "</toolkit:SfCartesianChart>";
     #endregion
@@ -2960,35 +3608,35 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
 
         FirstLine = new ObservableCollection<SfCartesianChartModel>()
         {
-            new SfCartesianChartModel() { Name = "2005", Value = 21 },
-            new SfCartesianChartModel() { Name = "2006", Value = 24 },
-            new SfCartesianChartModel() { Name = "2007", Value = 36 },
-            new SfCartesianChartModel() { Name = "2008", Value = 38 },
-            new SfCartesianChartModel() { Name = "2009", Value = 54 },
-            new SfCartesianChartModel() { Name = "2010", Value = 57 },
-            new SfCartesianChartModel() { Name = "2011", Value = 70 }
+            new SfCartesianChartModel() { Name = "2005", Value = 21, Date = new DateTime(2005, 01, 01).Date },
+            new SfCartesianChartModel() { Name = "2006", Value = 24, Date = new DateTime(2006, 01, 01).Date },
+            new SfCartesianChartModel() { Name = "2007", Value = 36, Date = new DateTime(2007, 01, 01).Date },
+            new SfCartesianChartModel() { Name = "2008", Value = 38, Date = new DateTime(2008, 01, 01).Date },
+            new SfCartesianChartModel() { Name = "2009", Value = 54, Date = new DateTime(2009, 01, 01).Date },
+            new SfCartesianChartModel() { Name = "2010", Value = 57, Date = new DateTime(2010, 01, 01).Date },
+            new SfCartesianChartModel() { Name = "2011", Value = 70, Date = new DateTime(2011, 01, 01).Date }
         };
 
         SecondLine = new ObservableCollection<SfCartesianChartModel>()
         {
-            new SfCartesianChartModel() { Name = "2005", Value = 28 },
-            new SfCartesianChartModel() { Name = "2006", Value = 44 },
-            new SfCartesianChartModel() { Name = "2007", Value = 48 },
-            new SfCartesianChartModel() { Name = "2008", Value = 50 },
-            new SfCartesianChartModel() { Name = "2009", Value = 66 },
-            new SfCartesianChartModel() { Name = "2010", Value = 78 },
-            new SfCartesianChartModel() { Name = "2011", Value = 84 }
+            new SfCartesianChartModel() { Name = "2005", Value = 28, Date = new DateTime(2005, 01, 01).Date },
+            new SfCartesianChartModel() { Name = "2006", Value = 44, Date = new DateTime(2006, 01, 01).Date },
+            new SfCartesianChartModel() { Name = "2007", Value = 48, Date = new DateTime(2007, 01, 01).Date },
+            new SfCartesianChartModel() { Name = "2008", Value = 50, Date = new DateTime(2008, 01, 01).Date },
+            new SfCartesianChartModel() { Name = "2009", Value = 66, Date = new DateTime(2009, 01, 01).Date },
+            new SfCartesianChartModel() { Name = "2010", Value = 78, Date = new DateTime(2010, 01, 01).Date },
+            new SfCartesianChartModel() { Name = "2011", Value = 84, Date = new DateTime(2011, 01, 01).Date }
         };
 
         ThirdLine = new ObservableCollection<SfCartesianChartModel>()
         {
-            new SfCartesianChartModel() { Name = "2005", Value = 32 },
-            new SfCartesianChartModel() { Name = "2006", Value = 44 },
-            new SfCartesianChartModel() { Name = "2007", Value = 52 },
-            new SfCartesianChartModel() { Name = "2008", Value = 55 },
-            new SfCartesianChartModel() { Name = "2009", Value = 70 },
-            new SfCartesianChartModel() { Name = "2010", Value = 78 },
-            new SfCartesianChartModel() { Name = "2011", Value = 90 }
+            new SfCartesianChartModel() { Name = "2005", Value = 32, Date = new DateTime(2005, 01, 01).Date },
+            new SfCartesianChartModel() { Name = "2006", Value = 44, Date = new DateTime(2006, 01, 01).Date },
+            new SfCartesianChartModel() { Name = "2007", Value = 52, Date = new DateTime(2007, 01, 01).Date },
+            new SfCartesianChartModel() { Name = "2008", Value = 55, Date = new DateTime(2008, 01, 01).Date },
+            new SfCartesianChartModel() { Name = "2009", Value = 70, Date = new DateTime(2009, 01, 01).Date },
+            new SfCartesianChartModel() { Name = "2010", Value = 78, Date = new DateTime(2010, 01, 01).Date },
+            new SfCartesianChartModel() { Name = "2011", Value = 90, Date = new DateTime(2011, 01, 01).Date }
         };
 
         var randomNumber = new Random();
@@ -3247,9 +3895,13 @@ public partial class SfCartesianChartPageViewModel : NavigationAwareBaseViewMode
         ErrorBarModes = new();
         ErrorBarDirections = new();
 
+        TrackballDisplayMode = new();
+
         ErrorBarTypes = Enum.GetNames(typeof(ErrorBarType)).ToObservableCollection();
         ErrorBarModes = Enum.GetNames(typeof(ErrorBarMode)).ToObservableCollection();
         ErrorBarDirections = Enum.GetNames(typeof(ErrorBarDirection)).ToObservableCollection();
+
+        TrackballDisplayMode = Enum.GetNames(typeof(LabelDisplayMode)).ToObservableCollection();
     }
 
     List<Brush> CreateRainbowGradientPalletBrushes(int count)

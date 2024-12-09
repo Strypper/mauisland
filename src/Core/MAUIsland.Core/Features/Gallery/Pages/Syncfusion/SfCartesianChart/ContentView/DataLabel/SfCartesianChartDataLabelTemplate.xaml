@@ -28,7 +28,7 @@
                                 </DataTemplate>
                             </toolkit:SfCartesianChart.Resources>
                             <toolkit:SfCartesianChart.Title>
-                                <Label Text="Column Chart" Margin="0,0,0,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                                <Label Text="Data Label with Label Template Sample Chart" Margin="0,0,0,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
                             </toolkit:SfCartesianChart.Title>
                             <toolkit:SfCartesianChart.XAxes>
                                 <toolkit:CategoryAxis LabelPlacement="BetweenTicks" IsVisible="true" ShowMajorGridLines="false" />
