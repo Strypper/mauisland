@@ -1,0 +1,85 @@
+name: Showcase Submission
+description: Submit your project to be showcased on MAUIsland.
+title: "Showcase Submission: MAUIsland"
+labels:
+  - showcase
+  - submission
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for submitting your project to be showcased! Please provide the following details so we can include your project on MAUIsland.
+
+  - type: input
+    id: repository_url
+    attributes:
+      label: "Repository URL"
+      description: "Provide the URL of the GitHub repository for your project."
+      placeholder: "https://github.com/username/repository-name"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: project_technology
+    attributes:
+      label: "What technology is this project using?"
+      description: "Select all technologies applicable to your project."
+      options:
+        - label: ".NET MAUI"
+          value: dotnet_maui
+        - label: "Uno Platform"
+          value: uno_platform
+        - label: "WinUI 3"
+          value: winui_3
+        - label: "UWP"
+          value: uwp
+        - label: "WPF"
+          value: wpf
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform_support
+    attributes:
+      label: "How many platforms does this project support?"
+      description: "Specify the platforms your project supports (e.g., Android, iOS, Windows)."
+      multiple: true
+      options:
+        - Android
+        - iOS
+        - Windows
+        - MacOS
+        - Tizen
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: "Screenshots of the application"
+      description: "Provide links to screenshots of your application. You can upload them to your repository or a cloud storage service and share the links here."
+    validations:
+      required: true
+
+  - type: input
+    id: device_frame
+    attributes:
+      label: "Which device frame do you want to display your application on?"
+      description: "Specify the device frame you would like to use (e.g., iPhone, Android phone, tablet)."
+      placeholder: "e.g., iPhone 14 Pro, Samsung Galaxy S22"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: "By submitting this showcase, you agree to follow our [Code of Conduct](https://example.com)."
+      options:
+        - label: I agree to respect and follow this project's rules
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Public API Changes
+
+        None
