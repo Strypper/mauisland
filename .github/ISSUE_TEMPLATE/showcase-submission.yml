@@ -63,7 +63,7 @@ body:
     id: device_frame
     attributes:
       label: "Which device frame do you want to display your application on?"
-      description: "Specify the device frame you would like to use (e.g., iPhone, Android phone, tablet)."
+      description: "Select one or more device frames you would like to use."
       multiple: true
       options:
         - Apple IPhone 15 Pro Max
