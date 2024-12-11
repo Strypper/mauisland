@@ -64,7 +64,15 @@ body:
     attributes:
       label: "Which device frame do you want to display your application on?"
       description: "Specify the device frame you would like to use (e.g., iPhone, Android phone, tablet)."
-      placeholder: "e.g., iPhone 14 Pro, Samsung Galaxy S22"
+      multiple: true
+      options:
+        - Apple IPhone 15 Pro Max
+        - Google Pixel 5
+        - Google Pixel 6 Pro
+        - Apple IPhone 13 Mini
+        - Apple IPhone 15
+        - Samsung Galaxy S22 Ultra
+        - Samsung Galaxy S8
     validations:
       required: true
 
