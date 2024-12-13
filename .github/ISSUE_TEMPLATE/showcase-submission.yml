@@ -27,30 +27,27 @@ body:
       description: "Select all technologies applicable to your project."
       options:
         - label: ".NET MAUI"
-          value: dotnet_maui
         - label: "Uno Platform"
-          value: uno_platform
         - label: "WinUI 3"
-          value: winui_3
         - label: "UWP"
-          value: uwp
         - label: "WPF"
-          value: wpf
     validations:
       required: true
 
-  - type: dropdown
+  - type: checkboxes
     id: platform_support
     attributes:
       label: "How many platforms does this project support?"
-      description: "Specify the platforms your project supports (e.g., Android, iOS, Windows)."
-      multiple: true
+      description: "Select all platforms your project supports."
       options:
-        - Android
-        - iOS
-        - Windows
-        - MacOS
-        - Tizen
+        - label: Android
+        - label: iOS
+        - label: Windows
+        - label: MacOS
+        - label: Tizen
+    validations:
+      required: true
+
   - type: textarea
     id: screenshots
     attributes:
@@ -59,7 +56,7 @@ body:
     validations:
       required: true
 
-  - type: input
+  - type: dropdown
     id: device_frame
     attributes:
       label: "Which device frame do you want to display your application on?"
@@ -83,7 +80,8 @@ body:
       description: "By submitting this showcase, you agree to follow our [Code of Conduct](https://example.com)."
       options:
         - label: I agree to respect and follow this project's rules
-          required: true
+    validations:
+      required: true
 
   - type: markdown
     attributes:
