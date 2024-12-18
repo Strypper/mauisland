@@ -9,6 +9,15 @@ public partial class ResumeDetailPageViewModel(IAppNavigator appNavigator) : Nav
     string blazorWebViewStartPath = "/resumes-template/dotnet-template";
 
     [ObservableProperty]
+    Dictionary<int, string> pages;
+
+    [ObservableProperty]
+    int previousSelectedPageIndex = 0;
+
+    [ObservableProperty]
+    int selectedPageIndex = 0;
+
+    [ObservableProperty]
     string title = string.Empty;
 
     [ObservableProperty]
@@ -19,6 +28,12 @@ public partial class ResumeDetailPageViewModel(IAppNavigator appNavigator) : Nav
 
     [ObservableProperty]
     ObservableCollection<WorkHistoryModel> worksHistory;
+
+    [ObservableProperty]
+    WorkHistoryModel selectedWorksHistory;
+
+    [ObservableProperty]
+    int selectedIndexWorksHistory;
     #endregion
 
     #region [ Overrides ]
@@ -36,11 +51,18 @@ public partial class ResumeDetailPageViewModel(IAppNavigator appNavigator) : Nav
 
     async Task LoadDataAsync()
     {
+        Pages = new Dictionary<int, string>
+        {
+            { 0, "#home" }, 
+            { 1, "#education" }, 
+            { 2, "#services" }, 
+            { 3, "#contact" } 
+        };
+
         WorksHistory = new()
             {
                 new()
                 {
-
                     Id = Guid.NewGuid().ToString(),
                     Title = "iDealogic",
                     Description = "Full stack .NET Developer",
@@ -49,7 +71,6 @@ public partial class ResumeDetailPageViewModel(IAppNavigator appNavigator) : Nav
                 },
                 new()
                 {
-
                     Id = Guid.NewGuid().ToString(),
                     Title = "Tech Innovators",
                     Description = "Senior Software Engineer",
@@ -58,7 +79,6 @@ public partial class ResumeDetailPageViewModel(IAppNavigator appNavigator) : Nav
                 },
                 new()
                 {
-
                     Id = Guid.NewGuid().ToString(),
                     Title = "Web Solutions",
                     Description = "Software Engineer",
@@ -67,7 +87,6 @@ public partial class ResumeDetailPageViewModel(IAppNavigator appNavigator) : Nav
                 },
                 new()
                 {
-
                     Id = Guid.NewGuid().ToString(),
                     Title = "Code Creators",
                     Description = "Junior Developer",
@@ -107,6 +126,20 @@ public partial class ResumeDetailPageViewModel(IAppNavigator appNavigator) : Nav
             return;
 
         WorksHistory.Remove(removeWork);
+    }
+
+    [RelayCommand]
+    void UpdatePageIndex(int index)
+    {
+        PreviousSelectedPageIndex = SelectedPageIndex;
+        SelectedPageIndex = index;
+    }
+
+    [RelayCommand]
+    void UpdateWorkHistorySelectedItem(WorkHistoryModel work)
+    {
+        SelectedWorksHistory = work;
+        SelectedIndexWorksHistory = WorksHistory.IndexOf(work);
     }
     #endregion
 }

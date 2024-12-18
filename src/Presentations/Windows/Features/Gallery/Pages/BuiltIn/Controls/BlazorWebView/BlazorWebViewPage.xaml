@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
-    xmlns:local="clr-namespace:MAUIsland"
     Title="Blazor Web View"
     Padding="20"
     x:DataType="core:BlazorWebViewPageViewModel"
@@ -117,19 +116,13 @@
 
         <x:Array x:Key="RootComponentProperties" Type="{x:Type x:String}">
             <x:String>
-                <![CDATA[
-                                <strong style="color:blue">Selector</strong>, of type <strong style="color:blue">string?</strong>, which defines the CSS selector string that specifies where in the document the component should be placed.
-                            ]]>
+                <![CDATA[  <strong style="color:blue">Selector</strong>, of type <strong style="color:blue">string?</strong>, which defines the CSS selector string that specifies where in the document the component should be placed.  ]]>
             </x:String>
             <x:String>
-                <![CDATA[
-                                <strong style="color:blue">ComponentType</strong>, of type <strong style="color:blue">Type?</strong>, which defines the type of the root component.
-                            ]]>
+                <![CDATA[  <strong style="color:blue">ComponentType</strong>, of type <strong style="color:blue">Type?</strong>, which defines the type of the root component.  ]]>
             </x:String>
             <x:String>
-                <![CDATA[
-                                <strong style="color:blue">Parameters</strong>, of type <strong style="color:blue">IDictionary<string, object?>?</strong>, which represents an optional dictionary of parameters to pass to the root component.
-                            ]]>
+                <![CDATA[  <strong style="color:blue">Parameters</strong>, of type <strong style="color:blue">IDictionary?</strong> (string, object?), which represents an optional dictionary of parameters to pass to the root component.  ]]>
             </x:String>
         </x:Array>
 
@@ -321,11 +314,11 @@
                                     StrokeShape="RoundRectangle 4"
                                     StrokeThickness="0">
                                     <BlazorWebView
-                                        x:Name="blazorWebView"
+                                        x:Name="BlazorWebView"
                                         HostPage="wwwroot\index.html"
                                         StartPath="{x:Binding BlazorWebViewStartPath}">
                                         <BlazorWebView.RootComponents>
-                                            <RootComponent ComponentType="{x:Type local:Routes}" Selector="#app" />
+                                            <RootComponent ComponentType="{x:Type app:Routes}" Selector="#app"/>
                                         </BlazorWebView.RootComponents>
                                     </BlazorWebView>
                                 </Border>

@@ -4,6 +4,8 @@ using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Storage;
 using MAUIsland.Home;
 using MAUIsland.ResumesTemplate;
+using Microsoft.AspNetCore.Components.WebView.Maui;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
