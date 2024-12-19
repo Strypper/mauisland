@@ -54,7 +54,7 @@ public partial class ResumeDetailPageViewModel(IAppNavigator appNavigator) : Nav
         Pages = new Dictionary<int, string>
         {
             { 0, "#home" }, 
-            { 1, "#education" }, 
+            { 1, "#history" }, 
             { 2, "#services" }, 
             { 3, "#contact" } 
         };

@@ -1,0 +1,91 @@
+name: Showcase Submission
+description: Submit your project to be showcased on MAUIsland.
+title: "Showcase Submission: MAUIsland"
+labels:
+  - showcase
+  - submission
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for submitting your project to be showcased! Please provide the following details so we can include your project on MAUIsland.
+
+  - type: input
+    id: repository_url
+    attributes:
+      label: "Repository URL"
+      description: "Provide the URL of the GitHub repository for your project."
+      placeholder: "https://github.com/username/repository-name"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: project_technology
+    attributes:
+      label: "What technology is this project using?"
+      description: "Select all technologies applicable to your project."
+      options:
+        - label: ".NET MAUI"
+        - label: "Uno Platform"
+        - label: "WinUI 3"
+        - label: "UWP"
+        - label: "WPF"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: platform_support
+    attributes:
+      label: "How many platforms does this project support?"
+      description: "Select all platforms your project supports."
+      options:
+        - label: Android
+        - label: iOS
+        - label: Windows
+        - label: MacOS
+        - label: Tizen
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: "Screenshots of the application"
+      description: "Provide links to screenshots of your application. You can upload them to your repository or a cloud storage service and share the links here."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device_frame
+    attributes:
+      label: "Which device frame do you want to display your application on?"
+      description: "Select one or more device frames you would like to use."
+      multiple: true
+      options:
+        - Apple IPhone 15 Pro Max
+        - Google Pixel 5
+        - Google Pixel 6 Pro
+        - Apple IPhone 13 Mini
+        - Apple IPhone 15
+        - Samsung Galaxy S22 Ultra
+        - Samsung Galaxy S8
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: "By submitting this showcase, you agree to follow our [Code of Conduct](https://example.com)."
+      options:
+        - label: I agree to respect and follow this project's rules
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Public API Changes
+
+        None
