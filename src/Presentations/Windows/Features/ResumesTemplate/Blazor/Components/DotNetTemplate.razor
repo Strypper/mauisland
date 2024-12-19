@@ -14,16 +14,20 @@
         <i class="bx bx-menu" id="menu-icon"></i>
 
         <nav class="navbar">
-            <a href="#home" class="active">Home</a>
-            <a href="#education">Education</a>
-            <a href="#services">Services</a>
-            <a href="#contact">Contact</a>
+            @foreach (var page in ViewModel.Pages)
+            {
+                <a href="@(page.Value)"
+                   class="@((ViewModel.SelectedPageIndex == page.Key) ? "active" : "")"
+                   onclick="@(() => UpdatePageIndex(page.Key))">
+                    @(char.ToUpper(page.Value[1]) + page.Value.Substring(2))
+                </a>
+            }
         </nav>
     </header>
 
     <section class="home-content" id="home">
-        <div>
-            <h1>Hi, I'm <span>Nghia Duong</span></h1>
+        <div class="user-info">
+            <h1>Hi, I'm <span>@ViewModel.DisplayName</span></h1>
             <h3 class="text-animation">Position: <span></span></h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
@@ -49,7 +53,7 @@
         </div>
 
         <div class="home-img">
-            <img src="https://i.pinimg.com/550x/62/82/41/628241b01dc7c4fa2bea6ea702713a87.jpg" alt="" />
+            <img src="https://i.pinimg.com/550x/62/82/41/628241b01dc7c4fa2bea6ea702713a87.jpg" alt="" width="300" height="300" />
         </div>
     </section>
 
@@ -175,7 +179,7 @@
             @@2024 Totechs. All rights reserved.
         </p>
     </footer>
-</body> 
+</body>
 
 <style>
     :root {
@@ -268,13 +272,11 @@
         display: none;
     }
 
-    .home {
+    .user-info {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        gap: 30px
+        text-align: left;
+        min-width: 50%;
     }
 
     .home-content {
@@ -300,6 +302,10 @@
             font-weight: 600;
         }
 
+        .home-content p {
+            word-wrap: break-word;
+        }
+
     .home-img {
         border-radius: 50%;
     }
@@ -309,8 +315,6 @@
             box-shadow: 0 0 25px var(--primary-color);
             cursor: pointer;
             transition: 0.4s ease-in-out;
-            width: 240px;
-            height: 240px;
         }
 
             .home-img img:hover {
@@ -363,21 +367,20 @@
         display: flex;
         gap: 20px;
         flex-direction: row;
-        align-items: center;
     }
 
-        .btn-group a:nth-of-type(2) {
-            background-color: black;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-            box-shadow: 0 0 25px transparent;
-        }
-
-            .btn-group a:nth-of-type(2):hover {
-                background-color: var(--primary-color);
-                color: black;
-                box-shadow: 0 0 25px var(--primary-color);
+            .btn-group a:nth-of-type(2) {
+                background-color: black;
+                color: var(--primary-color);
+                border: 2px solid var(--primary-color);
+                box-shadow: 0 0 25px transparent;
             }
+
+                .btn-group a:nth-of-type(2):hover {
+                    background-color: var(--primary-color);
+                    color: black;
+                    box-shadow: 0 0 25px var(--primary-color);
+                }
 
     .text-animation {
         font-size: 30px;
@@ -407,62 +410,41 @@
             }
 
     @@keyframes cursor {
-        to
-
-    {
-        border-left: 2px solid var(--primary-color);
-    }
-
+        to {
+            border-left: 2px solid var(--primary-color);
+        }
     }
 
     @@keyframes words {
-        0%, 20%
+        0%, 20% {
+            content: "Web Developer";
+        }
 
-    {
-        content: "Web Developer";
-    }
+        21%, 40% {
+            content: "Frontend Developer";
+        }
 
-    21%,
-    40% {
-        content: "Frontend Developer";
-    }
+        41%, 60% {
+            content: "Backend Developer";
+        }
 
-    41%,
-    60% {
-        content: "Backend Developer";
-    }
+        61%, 80% {
+            content: "Full Stack Developer";
+        }
 
-    61%,
-    80% {
-        content: "Full Stack Developer";
-    }
-
-    81%,
-    100% {
-        content: "UI / UX Designer";
-    }
-
+        81%, 100% {
+            content: "UI / UX Designer";
+        }
     }
 
     @@keyframes typing {
-        10%, 15%, 30%, 35%, 50%, 55%, 70%, 75%, 90%, 95%
+        10%, 15%, 30%, 35%, 50%, 55%, 70%, 75%, 90%, 95% {
+            width: 0px;
+        }
 
-    {
-        width: 0px;
-    }
-
-    5%,
-    20%,
-    25%,
-    40%,
-    45%,
-    60%,
-    65%,
-    80%,
-    85% {
-        width: calc(100% + 8px);
-    }
-
+        5%, 20%, 25%, 40%, 45%, 60%, 65%, 80%, 85% {
+            width: calc(100% + 8px);
+        }
     }
 
     .education-content {
@@ -595,6 +577,7 @@
             justify-content: left;
             align-items: baseline;
             padding: 50px;
+            gap: 15px;
         }
 
     .service-info h4 {
@@ -678,4 +661,14 @@
             font-size: 16px;
             color: white;
         }
+
+
+    @@media only screen and (max-width: 1000px) {
+        .home-content h3 {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+        }
+    }
+
 </style>

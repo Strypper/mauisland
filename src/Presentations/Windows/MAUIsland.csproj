@@ -460,7 +460,7 @@
 
 	<ItemGroup>
 		<EmbeddedResource Include="appsettings.Development.json">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
 		<EmbeddedResource Include="Features\Gallery\Pages\BuiltIn\Helpers\AppSettingsJson\JsonFiles\appsettings.json">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
