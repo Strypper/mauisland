@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartAppearanceSeries"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root">
+
+    <ContentView.Resources>
+        <toolkit:DataPointSelectionBehavior x:Key="SfCartesianChartSelectionBrush" SelectionBrush="#314A6E" />
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout Spacing="10">
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                           Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="PaletteBrushes for Series" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="Info" Spacing="10">
+                        <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
+                                                  Margin="0, 0, 20, 0">
+                            <toolkit:SfCartesianChart.Title>
+                                <Label Text="Simple Sample Chart" FontSize="16" 
+                                        HorizontalTextAlignment="Center" HorizontalOptions="Fill"  VerticalOptions="Center" />
+                            </toolkit:SfCartesianChart.Title>
+                            <toolkit:SfCartesianChart.XAxes>
+                                <toolkit:CategoryAxis>
+                                    <toolkit:CategoryAxis.Title>
+                                        <toolkit:ChartAxisTitle TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}" />
+                                    </toolkit:CategoryAxis.Title>
+                                </toolkit:CategoryAxis>
+                            </toolkit:SfCartesianChart.XAxes>
+                            <toolkit:SfCartesianChart.YAxes>
+                                <toolkit:NumericalAxis>
+                                    <toolkit:NumericalAxis.Title>
+                                        <toolkit:ChartAxisTitle TextColor="{x:AppThemeBinding Dark={x:StaticResource White}, Light={x:StaticResource Black}}" />
+                                    </toolkit:NumericalAxis.Title>
+                                </toolkit:NumericalAxis>
+                            </toolkit:SfCartesianChart.YAxes>
+
+                            <toolkit:ColumnSeries EnableAnimation="True"
+                                                  ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}"
+                                                  PaletteBrushes="{x:Binding PalletBrushesData, Source={x:Reference root}, Mode=OneWay}"
+                                                  SelectionBehavior="{x:StaticResource SfCartesianChartSelectionBrush}"
+                                                  XBindingPath="Name" YBindingPath="Exp" />
+                        </toolkit:SfCartesianChart>
+
+                        <core:SourceCodeExpander Code="{x:Binding XamlCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+                        <core:SourceCodeExpander Code="{x:Binding CSharpCodeDescription, Source={x:Reference root}}"  CodeType="CSharp"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
+
+</ContentView>

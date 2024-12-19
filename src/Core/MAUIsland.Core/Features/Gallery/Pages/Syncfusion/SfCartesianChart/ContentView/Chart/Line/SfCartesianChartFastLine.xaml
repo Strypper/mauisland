@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartFastLine"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root"
+    Loaded="OnComponentLoaded">
+
+    <ContentView.Resources>
+        <x:Array x:Key="FastLineChartInfo" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ The FastLineSeries is a special kind of line series that can render a collection with large number of datapoints. To render a fast line toolkit, create an instance of <strong style="color:blue">FastLineSeries</strong>, and add it to the <strong style="color:blue">Series</strong> collection property of <strong style="color:blue">SfCartesianChart</strong>. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    <VerticalStackLayout>
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Fast Line Chart Information" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="Info" Margin="5">
+                        <CollectionView x:Name="FastLineChartCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill"
+                                          Margin="0, 0, 20, 0">
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Fast Line Chart" Margin="0,0,0,5" 
+                               HorizontalOptions="Fill" HorizontalTextAlignment="Center" 
+                               VerticalOptions="Center" FontSize="16"/>
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:DateTimeAxis ShowMinorGridLines="False" ShowMajorGridLines="False" 
+                                           IntervalType="Years" Interval="15">
+                            <toolkit:DateTimeAxis.Title>
+                                <toolkit:ChartAxisTitle Text="X-Axis"/>
+                            </toolkit:DateTimeAxis.Title>
+                            <toolkit:DateTimeAxis.LabelStyle>
+                                <toolkit:ChartAxisLabelStyle LabelFormat="yyyy"/>
+                            </toolkit:DateTimeAxis.LabelStyle>
+                        </toolkit:DateTimeAxis>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis>
+                            <toolkit:NumericalAxis.Title>
+                                <toolkit:ChartAxisTitle Text="Y-Axis"/>
+                            </toolkit:NumericalAxis.Title>
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:SfCartesianChart.ZoomPanBehavior>
+                        <toolkit:ChartZoomPanBehavior EnablePinchZooming="True" EnableDoubleTap="True" 
+                                                      EnablePanning="True"/>
+                    </toolkit:SfCartesianChart.ZoomPanBehavior>
+                    <toolkit:SfCartesianChart.Series>
+                        <toolkit:FastLineSeries ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}"
+                                                EnableAntiAliasing="True"
+                                                XBindingPath="Date" YBindingPath="Value"/>
+                    </toolkit:SfCartesianChart.Series>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

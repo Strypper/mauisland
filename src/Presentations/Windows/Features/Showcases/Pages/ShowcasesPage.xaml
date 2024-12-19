@@ -23,6 +23,22 @@
 
         <mockup:ListOfMockupPreviewItemModelToListStringConverter x:Key="ListOfMockupPreviewItemModelToListStringConverter" />
 
+        <x:String x:Key="TopContributorsMessage">
+            Explore the possibilities of .NET MAUI! See how others in the community have used this technology to create beautiful, open-source apps.
+        </x:String>
+
+        <x:String x:Key="ContributeMessage">
+            Showcase your MAUI skills! Learn about the requirements to submit your .NET MAUI project to MAUIsland and connect with thousands of developers eager to learn from your expertise.
+        </x:String>
+
+        <x:String x:Key="SubmitMessage">
+            Submit your app here, and we'll review it. Once approved, we'll frame it with your desired device frame and include your open-source app information in the next MAUIsland update.
+        </x:String>
+
+        <x:String x:Key="ShowcasesUrl">
+            https://github.com/Strypper/mauisland/blob/main/showcases/version_2.0/Contribute.md
+        </x:String>
+
         <FontImageSource
             x:Key="ShowcasesIcon"
             FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
@@ -90,29 +106,24 @@
                         HorizontalOptions="Center"
                         Text="{TemplateBinding Content.BindingContext.AppName}"
                         VerticalOptions="End" />
-                    <HorizontalStackLayout
+                    <CollectionView
                         Grid.Row="2"
                         Grid.ColumnSpan="2"
                         HorizontalOptions="Center"
-                        Spacing="16"
+                        ItemsSource="{TemplateBinding Content.BindingContext.Platforms}"
                         VerticalOptions="Center">
-                        <Image
-                            HeightRequest="28"
-                            Source="windowslogo.png"
-                            WidthRequest="28" />
-                        <Image
-                            HeightRequest="28"
-                            Source="android_logo.png"
-                            WidthRequest="28" />
-                        <Image
-                            HeightRequest="28"
-                            Source="ios_logo.png"
-                            WidthRequest="28" />
-                        <Image
-                            HeightRequest="28"
-                            Source="tizen_logo.png"
-                            WidthRequest="28" />
-                    </HorizontalStackLayout>
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout ItemSpacing="16" Orientation="Horizontal" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="x:String">
+                                <Image
+                                    HeightRequest="32"
+                                    Source="{x:Binding}"
+                                    WidthRequest="32" />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                     <VerticalStackLayout
                         Grid.Column="1"
                         Margin="0,16,0,0"
@@ -255,7 +266,7 @@
                                 HorizontalOptions="Start"
                                 HorizontalTextAlignment="Start"
                                 MaximumWidthRequest="240"
-                                Text="Explore the possibilities of .NET MAUI! See how others in the community have used this technology to create beautiful, open-source apps." />
+                                Text="{x:StaticResource TopContributorsMessage}" />
                         </VerticalStackLayout>
                     </Grid>
                 </Frame>
@@ -265,17 +276,24 @@
                     Padding="16"
                     StrokeShape="RoundRectangle 14">
                     <Grid ColumnDefinitions="2*, *">
-                        <VerticalStackLayout Spacing="16">
+                        <VerticalStackLayout Spacing="8">
                             <Label
                                 FontSize="Title"
                                 Text="Contribute"
                                 TextDecorations="Underline" />
+                            <Label
+                                HorizontalOptions="Start"
+                                HorizontalTextAlignment="Start"
+                                MaximumWidthRequest="236"
+                                Text="{x:StaticResource ContributeMessage}" />
                         </VerticalStackLayout>
                         <Button
                             Grid.Column="1"
                             Background="{x:StaticResource PullRequestGradient}"
                             BorderColor="#004D4D"
                             BorderWidth="3"
+                            Command="{x:Binding OpenUrlCommand}"
+                            CommandParameter="{x:StaticResource ShowcasesUrl}"
                             ImageSource="{x:StaticResource PullRequestIcon}" />
                     </Grid>
                 </Border>
@@ -285,11 +303,16 @@
                     Padding="16"
                     StrokeShape="RoundRectangle 14">
                     <Grid ColumnDefinitions="2*, *">
-                        <VerticalStackLayout Spacing="16">
+                        <VerticalStackLayout Spacing="8">
                             <Label
                                 FontSize="Title"
-                                Text="Mock Up"
+                                Text="Submit"
                                 TextDecorations="Underline" />
+                            <Label
+                                HorizontalOptions="Start"
+                                HorizontalTextAlignment="Start"
+                                MaximumWidthRequest="236"
+                                Text="{x:StaticResource SubmitMessage}" />
                         </VerticalStackLayout>
                         <Button
                             Grid.Column="1"

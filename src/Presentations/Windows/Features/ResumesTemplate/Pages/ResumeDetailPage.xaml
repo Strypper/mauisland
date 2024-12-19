@@ -6,49 +6,139 @@
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:local="clr-namespace:MAUIsland.ResumesTemplate"
-    x:DataType="local:ResumeDetailPageViewModel">
-    <Grid ColumnDefinitions="*,1000">
-        <VerticalStackLayout Margin="20" Spacing="20">
+    x:Name="thisPage"
+    x:DataType="local:ResumeDetailPageViewModel"
+    BackgroundColor="Transparent"
+    Loaded="OnSizeChanged">
+    <core:BasePage.Resources>
 
-            <VerticalStackLayout Spacing="5">
-                <Label Text="Your name" TextColor="White" />
+        <FontImageSource
+            x:Key="RemoveIcon"
+            FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+            Glyph="{Static core:FluentUIIcon.Ic_fluent_delete_48_regular}"
+            Color="{AppThemeBinding Light='#15161e',
+                                    Dark='#eaeaea'}" />
+    </core:BasePage.Resources>
 
-                <Entry
-                    x:Name="userName"
-                    BackgroundColor="#2F2F2F"
-                    Placeholder=""
-                    Text="{x:Binding UserName}" />
+    <Grid ColumnDefinitions="0.3*, 0.7*">
+        <ScrollView x:Name="ResumeInputScrollView" VerticalScrollBarVisibility="Never" Scrolled="OnScrolled" Padding="10">
+            <VerticalStackLayout x:Name="ResumeInputStackLayout" Padding="10">
+                <VerticalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <VerticalStackLayout Spacing="4" HorizontalOptions="FillAndExpand">
+                        <Label Text="Title" TextColor="White" />
+                        <Entry BackgroundColor="#2F2F2F"
+                               Placeholder=""
+                               Text="{x:Binding Title}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="4" HorizontalOptions="FillAndExpand">
+                        <Label Text="Your name" TextColor="White" />
+                        <Entry BackgroundColor="#2F2F2F"
+                               Placeholder=""
+                               Text="{x:Binding DisplayName}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="4" HorizontalOptions="FillAndExpand">
+                        <Label Text="Description" TextColor="White" />
+                        <Editor BackgroundColor="#2F2F2F"
+                                HeightRequest="250"
+                                Text="{x:Binding Bio}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" IsVisible="False"
+                                     Spacing="10">
+                    <CarouselView x:Name="WorkHistoryCarouselView"
+                                  ItemsSource="{x:Binding WorksHistory, Mode=TwoWay}"
+                                  IndicatorView="IndicatorView"
+                                  CurrentItem="{x:Binding SelectedWorksHistory, Mode=TwoWay}"
+                                  Position="{x:Binding SelectedIndexWorksHistory, Mode=TwoWay}"
+                                  Loop="False" 
+                                  IsSwipeEnabled="True"
+                                  IsBounceEnabled="True"
+                                  ItemsUpdatingScrollMode="KeepLastItemInView"
+                                  HorizontalScrollBarVisibility="Never"
+                                  FlowDirection="LeftToRight"
+                                  HorizontalOptions="FillAndExpand" >
+                        <CarouselView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" 
+                                               SnapPointsType="MandatorySingle"
+                                               SnapPointsAlignment="Center" 
+                                               ItemSpacing="100"/>
+                        </CarouselView.ItemsLayout>
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate x:DataType="local:WorkHistoryModel">
+                                <Border StrokeShape="RoundRectangle 4" 
+                                        HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                    <Grid ColumnDefinitions="0.8*, 0.2*" ColumnSpacing="5">
+                                        <VerticalStackLayout Padding="5" Spacing="4">
+                                            <Entry Text="{x:Binding Title, Mode=TwoWay}" />
+                                            <HorizontalStackLayout >
+                                                <Label Text="Applied Date" VerticalTextAlignment="Center" Margin="5"/>
+                                                <DatePicker Date="{x:Binding StartDate, Mode=TwoWay}" HorizontalOptions="FillAndExpand"/>
+                                            </HorizontalStackLayout>
+                                            <Editor Text="{x:Binding Description, Mode=TwoWay}" AutoSize="TextChanges" HeightRequest="300"/>
+                                        </VerticalStackLayout>
+                                        <ImageButton Grid.Column="1"
+                                                     Command="{x:Binding Source={x:Reference thisPage},
+                                                                         Path=BindingContext.RemoveWorkHistoryCommand}"
+                                                     CommandParameter="{x:Binding Id}"
+                                                     Source="{x:StaticResource RemoveIcon}"
+                                                     HorizontalOptions="FillAndExpand"
+                                                     VerticalOptions="FillAndExpand" />
+                                    </Grid>
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="CurrentItem">
+                                                <VisualState.Setters>
+                                                    <Setter Property="Scale" Value="1.1" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="PreviousItem">
+                                                <VisualState.Setters>
+                                                    <Setter Property="Opacity" Value="0.5" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="NextItem">
+                                                <VisualState.Setters>
+                                                    <Setter Property="Opacity" Value="0.5" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="DefaultItem">
+                                                <VisualState.Setters>
+                                                    <Setter Property="Opacity" Value="0.25" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </Border>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <IndicatorView x:Name="IndicatorView"
+                                   ItemsSource="{x:Binding WorksHistory}"
+                                   Position="{x:Binding SelectedIndexWorksHistory, Mode=TwoWay}"
+                                   IndicatorColor="LightGray"
+                                   SelectedIndicatorColor="#25ffed"
+                                   VerticalOptions="Center" />
+                    <Button Command="{x:Binding AddWorkHistoryCommand}" Text="Add more" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout IsVisible="False">
+                    <Label Text="Page 3" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout IsVisible="False">
+                    <Label Text="Page 4" />
+                </VerticalStackLayout>
             </VerticalStackLayout>
+        </ScrollView>
 
-
-
-            <VerticalStackLayout Spacing="5">
-                <Label Text="Your position" TextColor="White" />
-                <Entry
-                    x:Name="position"
-                    BackgroundColor="#2F2F2F"
-                    Placeholder="" />
-            </VerticalStackLayout>
-
-            <VerticalStackLayout Spacing="5">
-                <Label Text="Description" TextColor="White" />
-                <Editor
-                    x:Name="description"
-                    BackgroundColor="#2F2F2F"
-                    HeightRequest="250"
-                    Placeholder="" />
-            </VerticalStackLayout>
-
-            <Button Clicked="Button_Clicked" Text="Move" />
-
-        </VerticalStackLayout>
-
-        <BlazorWebView
-            x:Name="BlazorWebViewElement"
-            Grid.Column="1"
-            HostPage="Blazor\hosting\index.html"
-            Loaded="BlazorWebViewElement_Loaded"
-            StartPath="{x:Binding BlazorWebViewStartPath}">
+        <BlazorWebView x:Name="BlazorWebViewElement"
+                       Grid.Column="1"
+                       HostPage="wwwroot\index.html"
+                       StartPath="{x:Binding BlazorWebViewStartPath}"
+                       Loaded="BlazorWebViewElement_Loaded">
             <BlazorWebView.RootComponents>
                 <RootComponent ComponentType="{x:Type app:Routes}" Selector="#app" />
             </BlazorWebView.RootComponents>

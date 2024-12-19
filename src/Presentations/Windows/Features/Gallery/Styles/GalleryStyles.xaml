@@ -46,6 +46,13 @@
                                   Light=Black}" />
 
     <FontImageSource
+        x:Key="ArrowCircleRight24Regular"
+        FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
+        Glyph="{x:Static core:FluentUIIcon.Ic_fluent_arrow_circle_right_24_regular}"
+        Color="{AppThemeBinding Dark=White,
+                                Light=Black}" />
+
+    <FontImageSource
         x:Key="SaveIcon"
         FontFamily="{x:Static core:FontNames.FluentSystemIconsRegular}"
         Glyph="{Static core:FluentUIIcon.Ic_fluent_save_28_regular}"

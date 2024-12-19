@@ -1,7 +1,9 @@
-﻿using LiveChartsCore;
+﻿using System.Text.Json;
+using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.SkiaSharpView.VisualElements;
+using MAUIsland.Features.LocalDbFeatures.GitHub;
 using MAUIsland.GitHubFeatures;
 using SkiaSharp;
 
@@ -9,10 +11,14 @@ namespace MAUIsland.Home;
 public partial class HomePageViewModel : NavigationAwareBaseViewModel
 {
     #region [ Fields ]
-
     private readonly IHomeService homeService;
     private readonly IGitHubService gitHubService;
     private readonly IConversationService conversationService;
+    private readonly IGitHubIssueLocalDbService gitHubIssueLocalDbService;
+    #endregion
+
+    #region [ Const ]
+    private const string _homePageName = "mauisland-homepage";
     #endregion
 
     #region [ CTor ]
@@ -21,17 +27,18 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
         IAppNavigator appNavigator,
         IHomeService homeService,
         IGitHubService gitHubService,
-        IConversationService conversationService
+        IConversationService conversationService,
+        IGitHubIssueLocalDbService gitHubIssueLocalDbService 
     ) : base(appNavigator)
     {
         this.homeService = homeService;
         this.gitHubService = gitHubService;
         this.conversationService = conversationService;
+        this.gitHubIssueLocalDbService = gitHubIssueLocalDbService;
     }
     #endregion
 
     #region [ Properties ]
-
     [ObservableProperty]
     string projectRepo = "https://github.com/Strypper/mauisland";
 
@@ -162,7 +169,6 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
     #endregion
 
     #region [ Methods ]
-
     protected override void OnInit(IDictionary<string, object> query)
     {
         base.OnInit(query);
@@ -203,35 +209,87 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
 
     [RelayCommand]
     async Task OpenUrlAsync(string url)
-    {
-        await AppNavigator.OpenUrlAsync(url);
-    }
+       => await AppNavigator.OpenUrlAsync(url);
+    
+    [RelayCommand]
+    async Task NavigatePageAsync(string route)
+       => await AppNavigator.NavigateAsync(route);
     #endregion
 
     #region [ Methods ]
-
     async Task LoadDotNetMauiRepoInfoAsync()
     {
         IsGitHubOpenIssuesChartLoading = true;
 
+        //await LoadIssuesAsync(); //??
+
         string repositoryAuthor = "dotnet";
         string repositoryName = "maui";
 
-        var openIssues = await gitHubService.GetGitHubIssues(repositoryAuthor, repositoryName);
+        var now = DateTime.UtcNow;
+        IEnumerable<GitHubIssueModel> issuesList;
 
-        if (openIssues.IsT1)
-            return;
+        // First: sync from local db.
+        var allLocalDbIssues = await GetIssueByControlNameFromLocalDb(_homePageName);
+
+        // If localdb version is not null & not outdated => use local version.
+        if (allLocalDbIssues != null && allLocalDbIssues.Any() && !allLocalDbIssues.Any(x => (now - x.LastUpdated).TotalDays > 1)) {
+            issuesList = new List<GitHubIssueModel>(allLocalDbIssues.Select(x => new GitHubIssueModel() { // TODO: need mapping at another place
+                // For now, just need labels, createdAt & isopen
+                CreatedAt = x.CreatedDate,
+                Labels = DeserializeIssueLables(x.Labels).ToList(),
+                IsOpen = x.IsOpen
+            }));
+
+            IsBusy = false;
+        }
+        else {
+            // If localdb does not have issue info, or info outdated => sync from GitHub & save.
+            var result = await gitHubService.GetGitHubIssues(repositoryAuthor, repositoryName);
+
+
+            if (result.IsT0) // Check if result is ServiceSuccess
+            {
+                issuesList = result.AsT0.AttachedData as IEnumerable<GitHubIssueModel>;
+
+                // Save to localdb.
+                foreach (var issue in issuesList) {
+                    await UpdateLocalIssue(issue, _homePageName);
+                }
+
+                IsBusy = false;
+            }
+            else {
+                IsBusy = false;
+
+                var error = result.AsT1;
+                var emptyViewText = error.ErrorDetail;
+                await AppNavigator.ShowSnackbarAsync(error.ErrorDetail,
+                                                     async () => {
+                                                         await AppNavigator.OpenUrlAsync("GitHubAPIRateLimit");
+                                                     },
+                                                     "Visit GitHub API Rate Limits Policies");
+
+                return;
+            }
+        }
+
+        // old
+        //var openIssues = await gitHubService.GetGitHubIssues(repositoryAuthor, repositoryName);
+
+        //if (openIssues.IsT1)
+        //    return;
+
+        //var issuesList = openIssues.AsT0.AttachedData as IEnumerable<GitHubIssueModel>; // old
+        // --- end old ---
 
         var latestRelease = await gitHubService.GetLatestRelease(repositoryAuthor, repositoryName);
-
-        var issuesList = openIssues.AsT0.AttachedData as IEnumerable<GitHubIssueModel>;
-
 
         IssuesListCount = issuesList.Count();
         AndroidIssuesCount = issuesList.Count(issue => issue.Labels.Any(label => label.Name.Equals("platform/android 🤖", StringComparison.OrdinalIgnoreCase)));
         IosIssuesCount = issuesList.Count(issue => issue.Labels.Any(label => label.Name.Equals("platform/iOS 🍎", StringComparison.OrdinalIgnoreCase)));
         WindowsIssueCount = issuesList.Count(issue => issue.Labels.Any(label => label.Name.Equals("platform/windows 🪟", StringComparison.OrdinalIgnoreCase)));
-        TizenIssuesCount = issuesList.Count(issue => issue.Labels.Any(label => label.Name.Equals("platform/tizen", StringComparison.OrdinalIgnoreCase)));
+        TizenIssuesCount = issuesList.Count(issue => issue.Labels.Any(label => label.Name.Equals("platform/tizen", StringComparison.OrdinalIgnoreCase))); // TODO: issue.Labels
 
         IsGitHubOpenIssuesChartLoading = false;
         if (issuesList == null || !issuesList.Any())
@@ -245,7 +303,7 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
         var openIssuesCount = dates.Select(date =>
         {
             return issuesList.Count(issue =>
-                issue.IsOpen && issue.CreatedAt.Date == date.Date);
+                issue.IsOpen && issue.CreatedAt.Date == date.Date); // TODO: issue.IsOpen issue.CreatedAt
         }).ToList();
 
         GitHubOpenIssuesChart = new[]{
@@ -280,6 +338,94 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
         var releaseInfo = latestRelease.AsT0.AttachedData as GitHubRepositoryReleaseModel;
 
         ReleaseInfo = releaseInfo.Name;
+    }
+
+    async Task LoadIssuesAsync() {
+        string repositoryAuthor = "dotnet";
+        string repositoryName = "maui";
+
+        var openIssues = await gitHubService.GetGitHubIssues(repositoryAuthor, repositoryName);
+
+        if (openIssues.IsT1)
+            return;
+
+        var latestRelease = await gitHubService.GetLatestRelease(repositoryAuthor, repositoryName);
+
+        var issuesList = openIssues.AsT0.AttachedData as IEnumerable<GitHubIssueModel>;
+
+
+        IssuesListCount = issuesList.Count();
+        AndroidIssuesCount = issuesList.Count(issue => issue.Labels.Any(label => label.Name.Equals("platform/android 🤖", StringComparison.OrdinalIgnoreCase)));
+        IosIssuesCount = issuesList.Count(issue => issue.Labels.Any(label => label.Name.Equals("platform/iOS 🍎", StringComparison.OrdinalIgnoreCase)));
+        WindowsIssueCount = issuesList.Count(issue => issue.Labels.Any(label => label.Name.Equals("platform/windows 🪟", StringComparison.OrdinalIgnoreCase)));
+        TizenIssuesCount = issuesList.Count(issue => issue.Labels.Any(label => label.Name.Equals("platform/tizen", StringComparison.OrdinalIgnoreCase)));
+
+        IsGitHubOpenIssuesChartLoading = false;
+    }
+
+    private async Task UpdateLocalIssue(GitHubIssueModel issue, string controlName) {
+        try {
+            var now = DateTime.UtcNow;
+
+            var localIssue = await gitHubIssueLocalDbService.GetByIssueUrlAsync(issue.HtmlUrl);
+
+            var labels = SerializeIssueLables(issue.Labels);
+
+            if (localIssue is null) {
+                await gitHubIssueLocalDbService.AddAsync(new() {
+                    IssueId = issue.Id,
+                    Title = issue.Title,
+                    IsOpen = issue.IsOpen,
+                    IssueLinkUrl = issue.HtmlUrl,
+                    ControlName = controlName,
+                    MileStone = issue.Milestone?.Title,
+                    OwnerName = issue.User?.Login,
+                    UserAvatarUrl = issue.User?.AvatarUrl,
+                    CreatedDate = issue.CreatedAt.DateTime,
+                    Labels = labels,
+                    LastUpdated = now
+                });
+                return;
+            }
+
+            // Update fields: milestone (TODO: what else?).
+            localIssue.IsOpen = issue.IsOpen;
+            localIssue.MileStone = issue.Milestone?.Title;
+            localIssue.Labels = labels;
+            localIssue.LastUpdated = now;
+
+            await gitHubIssueLocalDbService.UpdateAsync(localIssue);
+        }
+        catch (Exception e) {
+            await AppNavigator.ShowSnackbarAsync(e.Message, null, null);
+        }
+    }
+
+    private async Task<IEnumerable<GitHubIssueLocalDbModel>> GetIssueByControlNameFromLocalDb(string controlName) {
+        try {
+            var now = DateTime.UtcNow;
+
+            var result = await gitHubIssueLocalDbService.GetByControlNameAsync(controlName);
+            return result is not null ?
+                        result :
+                        new List<GitHubIssueLocalDbModel>().AsEnumerable();
+        }
+        catch (Exception e) {
+            await AppNavigator.ShowSnackbarAsync(e.Message, null, null);
+            return new List<GitHubIssueLocalDbModel>().AsEnumerable();
+        }
+    }
+
+    private IEnumerable<GitHubLabelModel> DeserializeIssueLables(string labels) {
+        var deserializedLabels = JsonSerializer.Deserialize<IEnumerable<GitHubLabelModel>>(labels);
+
+        return deserializedLabels;
+    }
+
+    private string SerializeIssueLables(IEnumerable<GitHubLabelModel> labels) {
+        var serializedLabels = JsonSerializer.Serialize(labels);
+
+        return serializedLabels;
     }
 
     Task LoadBooks()

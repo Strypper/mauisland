@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartOtherPlotBand"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root"
+    Loaded="OnComponentLoaded">
+
+    <ContentView.Resources>
+        <x:Array x:Key="RecursivePlotBandInfo" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">RepeatEvery</strong> - Specifies the frequency at which the plot band is repeated. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">RepeatEveryType</strong> - Specifies the date time unit for <strong style="color:blue">DateTimePlotBand</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">RepeatUntil</strong> - Specifies the end value at which the plot band stops repeating.  ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="SegmentedPlotBandInfo" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">AssociatedAxisStart</strong> - Specifies the starting value of the plot band on its associated axis. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">AssociatedAxisEnd</strong> - Specifies the ending value of the plot band on its associated axis. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">AssociatedAxisName</strong> - Specifies the name of the axis associated with the plot band.  ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="PlotLineInfo" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ When specifying the same value for both <strong style="color:blue">Start</strong> and <strong style="color:blue">End</strong>, a plot line will be drawn. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
+        <Label Text="The Plot band recurrence feature enables plot bands to be drawn repeatedly at regular intervals. This functionality is particularly useful when you need to mark events that occur recursively along the timeline of the chart."/>
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="RecursiveArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Recursive Plot Band" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <Grid ColumnDefinitions="0.4*, 0.6*" x:Name="RecursivePlotBandInfo" Margin="5">
+                        <CollectionView x:Name="RecursivePlotBandCollectionView"
+                                        Grid.Column="0"
+                                        Style="{x:StaticResource PropertiesListStyle}"/>
+                        <Border Grid.Column="1" StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+                            <VerticalStackLayout Spacing="5">
+                                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill"
+                                                          Margin="0, 0, 20, 0">
+                                    <toolkit:SfCartesianChart.Title>
+                                        <Label Text="Recursive Plot Band Column Sample Chart" Margin="0,0,0,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                                    </toolkit:SfCartesianChart.Title>
+                                    <toolkit:SfCartesianChart.XAxes>
+                                        <toolkit:CategoryAxis LabelPlacement="BetweenTicks" IsVisible="true" ShowMajorGridLines="false" />
+                                    </toolkit:SfCartesianChart.XAxes>
+                                    <toolkit:SfCartesianChart.YAxes>
+                                        <toolkit:NumericalAxis Maximum="100" Minimum="0">
+                                            <toolkit:NumericalAxis.PlotBands>
+                                                <toolkit:NumericalPlotBandCollection>
+                                                    <toolkit:NumericalPlotBand Start="0" End="10" IsRepeatable="True"
+                                                                               RepeatUntil="100" RepeatEvery="20" Fill="LightGray"/>
+                                                </toolkit:NumericalPlotBandCollection>
+                                            </toolkit:NumericalAxis.PlotBands>
+                                        </toolkit:NumericalAxis>
+                                    </toolkit:SfCartesianChart.YAxes>
+                                    <toolkit:SfCartesianChart.Series>
+                                        <toolkit:LineSeries EnableAnimation="True" ShowMarkers="True"
+                                                            ItemsSource="{x:Binding ComponentData,Source={x:Reference root}}" 
+                                                            XBindingPath="Name" YBindingPath="Value"/>
+                                    </toolkit:SfCartesianChart.Series>
+                                </toolkit:SfCartesianChart>
+
+                                <core:SourceCodeExpander Code="{x:Binding RecursivePlotCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnRecursivePlotBandGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+
+        <Label Text="For vertical axis plot bands, the height is determined by the start and end properties, and it extends horizontally across the associated horizontal axis. For horizontal axis plot bands, the width is determined by the start and end properties, and it extends vertically across the associated vertical axis."/>
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="SegmentedArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Segmented Plot Band" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <Grid ColumnDefinitions="0.4*, 0.6*" x:Name="SegmentedPlotBandInfo" Margin="5">
+                        <CollectionView x:Name="SegmentedPlotBandCollectionView"
+                                        Grid.Column="0"
+                                        Style="{x:StaticResource PropertiesListStyle}"/>
+                        <Border Grid.Column="1" StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+                            <VerticalStackLayout Spacing="5">
+                                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill"
+                                                          Margin="0, 0, 20, 0">
+                                    <toolkit:SfCartesianChart.Title>
+                                        <Label Text="Segmented Plot Band Column Sample Chart" Margin="0,0,0,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                                    </toolkit:SfCartesianChart.Title>
+                                    <toolkit:SfCartesianChart.XAxes>
+                                        <toolkit:CategoryAxis LabelPlacement="BetweenTicks" IsVisible="true" ShowMajorGridLines="false" />
+                                    </toolkit:SfCartesianChart.XAxes>
+                                    <toolkit:SfCartesianChart.YAxes>
+                                        <toolkit:NumericalAxis Maximum="100" Minimum="0">
+                                            <toolkit:NumericalAxis.PlotBands>
+                                                <toolkit:NumericalPlotBandCollection>
+                                                    <toolkit:NumericalPlotBand Start="0" End="25" AssociatedAxisEnd="0.5"
+                                                                               Fill="#B300E190" Text="Low"/>
+                                                    <toolkit:NumericalPlotBand Start="35" End="65" AssociatedAxisStart="2.5" AssociatedAxisEnd="4"
+                                                                               Fill="#B3FCD404" Text="Average"/>
+                                                    <toolkit:NumericalPlotBand Start="75" End="100" AssociatedAxisStart="5.5"
+                                                                               Fill="#B3FF4E4E" Text="High"/>
+                                                </toolkit:NumericalPlotBandCollection>
+                                            </toolkit:NumericalAxis.PlotBands>
+                                        </toolkit:NumericalAxis>
+                                    </toolkit:SfCartesianChart.YAxes>
+                                    <toolkit:SfCartesianChart.Series>
+                                        <toolkit:LineSeries EnableAnimation="True" ShowMarkers="True"
+                                                            ItemsSource="{x:Binding ComponentData,Source={x:Reference root}}" 
+                                                            XBindingPath="Name" YBindingPath="Value"/>
+                                    </toolkit:SfCartesianChart.Series>
+                                </toolkit:SfCartesianChart>
+
+                                <core:SourceCodeExpander Code="{x:Binding SegmentedPlotCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnSegmentedPlotBandGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+        
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="LineArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Plot Line" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <Grid ColumnDefinitions="0.4*, 0.6*" x:Name="PlotLineInfo" Margin="5">
+                        <CollectionView x:Name="PlotLineCollectionView"
+                                        Grid.Column="0"
+                                        Style="{x:StaticResource PropertiesListStyle}"/>
+                        <Border Grid.Column="1" StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+                            <VerticalStackLayout Spacing="5">
+                                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill"
+                                                          Margin="0, 0, 20, 0">
+                                    <toolkit:SfCartesianChart.Title>
+                                        <Label Text="Plot Line Column Sample Chart" Margin="0,0,0,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                                    </toolkit:SfCartesianChart.Title>
+                                    <toolkit:SfCartesianChart.XAxes>
+                                        <toolkit:CategoryAxis LabelPlacement="BetweenTicks" IsVisible="true" ShowMajorGridLines="false" />
+                                    </toolkit:SfCartesianChart.XAxes>
+                                    <toolkit:SfCartesianChart.YAxes>
+                                        <toolkit:NumericalAxis Maximum="100" Minimum="0">
+                                            <toolkit:NumericalAxis.PlotBands>
+                                                <toolkit:NumericalPlotBandCollection>
+                                                    <toolkit:NumericalPlotBand Start="20" End="20"
+                                                                               Fill="#B300E190" Stroke="#B300E190"
+                                                                               StrokeWidth="2"/>
+                                                    <toolkit:NumericalPlotBand Start="40" End="40" 
+                                                                               Fill="#FCD404" Stroke="#FCD404"
+                                                                               StrokeWidth="2"/>
+                                                    <toolkit:NumericalPlotBand Start="70" End="70" 
+                                                                               Fill="#FF4E4E" Stroke="#FF4E4E"
+                                                                               StrokeWidth="2"/>
+                                                </toolkit:NumericalPlotBandCollection>
+                                            </toolkit:NumericalAxis.PlotBands>
+                                        </toolkit:NumericalAxis>
+                                    </toolkit:SfCartesianChart.YAxes>
+                                    <toolkit:SfCartesianChart.Series>
+                                        <toolkit:LineSeries EnableAnimation="True" ShowMarkers="True"
+                                                            ItemsSource="{x:Binding ComponentData,Source={x:Reference root}}" 
+                                                            XBindingPath="Name" YBindingPath="Value"/>
+                                    </toolkit:SfCartesianChart.Series>
+                                </toolkit:SfCartesianChart>
+
+                                <core:SourceCodeExpander Code="{x:Binding PlotLineCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnPlotLineGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

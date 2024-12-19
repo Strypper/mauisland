@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartSelectionZooming"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root"
+    Loaded="OnComponentLoaded">
+
+    <ContentView.Resources>
+        <x:Array x:Key="SelectionRectangleProperties" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">SelectionRectStrokeWidth</strong> – Get or set the stroke width for selection rectangle. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">SelectionRectStroke</strong> - Get or set the stroke color for selection rectangle. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">SelectionRectStrokeDashArray</strong> - Get or set the stroke dashes for selection rectangle. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">SelectionRectFill</strong> - Get or set the fill color for the selection rectangle. ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="TrackballAxisLabelProperties" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ The <strong style="color:blue">CategoryAxis</strong> is an indexed based axis that plots values based on the index of the data point collection. The points are equally spaced here. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ The <strong style="color:blue">LabelPlacement</strong> property in <strong style="color:blue">CategoryAxis</strong> is used to placed the axis labels based on ticks and between ticks. The default value of <strong style="color:blue">LabelPlacement</strong> is <strong style="color:blue">OnTicks</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ By default, the <strong style="color:blue">CategoryAxis</strong> axis labels are display with fixed interval 1. It can customized by using the <strong style="color:blue">Interval</strong> property of axis. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ In Cartesian Charts, the <strong style="color:blue">ArrangeByIndex</strong> property is used to determine how the items in a category axis are arranged. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ If <strong style="color:blue">ArrangeByIndex</strong> is set to true, then the items in the category axis will be arranged according to their index values. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ If <strong style="color:blue">ArrangeByIndex</strong> is set to false, then the items in the category axis will be arranged according to their values. By default, <strong style="color:blue">ArrangeByIndex</strong> is true. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ The <strong style="color:blue">CategoryAxis</strong> is an indexed based axis that plots values based on the index of the data point collection. The points are equally spaced here. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ The <strong style="color:blue">LabelPlacement</strong> property in <strong style="color:blue">CategoryAxis</strong> is used to placed the axis labels based on ticks and between ticks. The default value of <strong style="color:blue">LabelPlacement</strong> is <strong style="color:blue">OnTicks</strong>. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ By default, the <strong style="color:blue">CategoryAxis</strong> axis labels are display with fixed interval 1. It can customized by using the <strong style="color:blue">Interval</strong> property of axis. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ In Cartesian Charts, the <strong style="color:blue">ArrangeByIndex</strong> property is used to determine how the items in a category axis are arranged. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ If <strong style="color:blue">ArrangeByIndex</strong> is set to true, then the items in the category axis will be arranged according to their index values. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ If <strong style="color:blue">ArrangeByIndex</strong> is set to false, then the items in the category axis will be arranged according to their values. By default, <strong style="color:blue">ArrangeByIndex</strong> is true. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout>
+                <Grid>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Selection Zooming" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnGridTapped" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <Grid ColumnDefinitions="0.4*, 0.6*" x:Name="Info" Margin="5">
+                    <VerticalStackLayout Grid.Column="0" Spacing="5">
+                        <Label Text="Selection rectangle can be customized by using the following properties:"/>
+                        <CollectionView x:Name="SelectionRectangleCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}"/>
+                        <Label Text="The selection zooming trackball axis label is enabled by setting the ShowTrackballLabel property to true. The default value of the ShowTrackballLabel is false. The TrackballLabelStyle property provides to customize the trackball axis labels. These options are:"/>
+                        <CollectionView x:Name="TrackballAxisCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}"/>
+                    </VerticalStackLayout>
+
+                    <Border Grid.Column="1" StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+                        <VerticalStackLayout Spacing="10">
+                            <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill"
+                                                Margin="0, 0, 20, 0">
+                                <toolkit:SfCartesianChart.Legend>
+                                    <toolkit:ChartLegend ToggleSeriesVisibility="True"/>
+                                </toolkit:SfCartesianChart.Legend>
+                                <toolkit:SfCartesianChart.Title>
+                                    <Label Text="Selection Zooming Scatter Sample Chart" Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                                </toolkit:SfCartesianChart.Title>
+                                <toolkit:SfCartesianChart.ZoomPanBehavior>
+                                    <toolkit:ChartZoomPanBehavior EnableSelectionZooming="True" EnablePinchZooming="False"/>
+                                </toolkit:SfCartesianChart.ZoomPanBehavior>
+                                <toolkit:SfCartesianChart.XAxes>
+                                    <toolkit:NumericalAxis ShowMajorGridLines="False" EdgeLabelsDrawingMode="Shift" Minimum="100" Maximum="220" Interval="20">
+                                        <toolkit:NumericalAxis.Title>
+                                            <toolkit:ChartAxisTitle Margin="5,10,5,2" Text="Centimeter"/>
+                                        </toolkit:NumericalAxis.Title>
+                                    </toolkit:NumericalAxis>
+                                </toolkit:SfCartesianChart.XAxes>
+                                <toolkit:SfCartesianChart.YAxes>
+                                    <toolkit:NumericalAxis ShowMajorGridLines="False" Minimum="50" Maximum="80" Interval="5">
+                                        <toolkit:NumericalAxis.Title>
+                                            <toolkit:ChartAxisTitle Text="Kilogram"/>
+                                        </toolkit:NumericalAxis.Title>
+                                    </toolkit:NumericalAxis>
+                                </toolkit:SfCartesianChart.YAxes>
+                                <toolkit:SfCartesianChart.Series>
+                                    <toolkit:ScatterSeries Label="Scatter 1" EnableTooltip="True" EnableAnimation="True" 
+                                                    Opacity="0.6" PointWidth="8" PointHeight="8" 
+                                                    ItemsSource="{Binding FirstScatterComponentData, Source={x:Reference root}}" 
+                                                    XBindingPath="Value" YBindingPath="Size"/>
+                                    <toolkit:ScatterSeries Label="Scatter 2" EnableTooltip="True" EnableAnimation="True" 
+                                                    Opacity="0.6" PointWidth="8" PointHeight="8" 
+                                                    ItemsSource="{Binding SecondScatterComponentData, Source={x:Reference root}}" 
+                                                    XBindingPath="Value" YBindingPath="Size"/>
+                                </toolkit:SfCartesianChart.Series>
+                            </toolkit:SfCartesianChart>
+                            <Label Text="Double tap then hold and drag out, to get back to default please double tap"/>
+                            <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

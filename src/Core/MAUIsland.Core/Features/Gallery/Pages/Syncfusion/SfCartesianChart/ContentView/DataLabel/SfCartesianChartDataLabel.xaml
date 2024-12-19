@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartDataLabel"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root"
+    Loaded="OnComponentLoaded">
+
+    <ContentView.Resources>
+        <x:Array x:Key="BarAlignmentProperty" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Top</strong> - Positions the data label at the top edge point of a chart segment. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Middle</strong> - Positions the data label at the center point of a chart segment. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Bottom</strong> - Positions the data label at the bottom edge point of a chart segment. ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="LabelPlacementProperty" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Center</strong> - Positions the data label at the center of the data point. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Inner</strong> - Positions the data label inside the data point. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Outer</strong> - Positions the data label outside the data point. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Properties Options " VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="Info" Spacing="5" Padding="5">
+                        <Label Text="The alignment of data labels inside the series is defined by using the BarAlignment property."/>
+                        <CollectionView Grid.Column="0"
+                                        x:Name="BarAlignmentCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}"/>
+                        <Label Text="The positioning of data labels relative to the data point is defined by using the LabelPlacement property."/>
+                        <CollectionView Grid.Column="0"
+                                        x:Name="LabelPlacementCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill"
+                                          Margin="0, 0, 20, 0">
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Data Label Column Sample Chart" Margin="0,0,0,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:CategoryAxis LabelPlacement="BetweenTicks" IsVisible="true" ShowMajorGridLines="false" />
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis ShowMajorGridLines="True" ShowMinorGridLines="false" Interval="20">
+                            <toolkit:NumericalAxis.LabelStyle>
+                                <toolkit:ChartAxisLabelStyle LabelFormat="0 Exp"/>
+                            </toolkit:NumericalAxis.LabelStyle>
+                            <toolkit:NumericalAxis.MinorTickStyle>
+                                <toolkit:ChartAxisTickStyle Stroke="Transparent" StrokeWidth="0"/>
+                            </toolkit:NumericalAxis.MinorTickStyle>
+                            <toolkit:NumericalAxis.AxisLineStyle>
+                                <toolkit:ChartLineStyle StrokeWidth="0" />
+                            </toolkit:NumericalAxis.AxisLineStyle>
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:SfCartesianChart.Series>
+                        <toolkit:ColumnSeries EnableAnimation="True" ShowDataLabels="True"  
+                                              ItemsSource="{x:Binding ComponentData,Source={x:Reference root}}" 
+                                              XBindingPath="Name" YBindingPath="Exp">
+                            <toolkit:ColumnSeries.DataLabelSettings>
+                                <toolkit:CartesianDataLabelSettings BarAlignment="Middle" LabelPlacement="Center">
+                                    <toolkit:CartesianDataLabelSettings.LabelStyle>
+                                        <toolkit:ChartDataLabelStyle FontSize="12" LabelFormat='0 Exp'/>
+                                    </toolkit:CartesianDataLabelSettings.LabelStyle>
+                                </toolkit:CartesianDataLabelSettings>
+                            </toolkit:ColumnSeries.DataLabelSettings>
+                        </toolkit:ColumnSeries>
+                        <toolkit:ColumnSeries EnableAnimation="True" ShowDataLabels="True"  
+                                              ItemsSource="{x:Binding ComponentData,Source={x:Reference root}}" 
+                                              XBindingPath="Name" YBindingPath="Value">
+                            <toolkit:ColumnSeries.DataLabelSettings>
+                                <toolkit:CartesianDataLabelSettings BarAlignment="Top" LabelPlacement="Outer">
+                                    <toolkit:CartesianDataLabelSettings.LabelStyle>
+                                        <toolkit:ChartDataLabelStyle FontSize="12" LabelFormat='0 Exp'/>
+                                    </toolkit:CartesianDataLabelSettings.LabelStyle>
+                                </toolkit:CartesianDataLabelSettings>
+                            </toolkit:ColumnSeries.DataLabelSettings>
+                        </toolkit:ColumnSeries>
+                        <toolkit:ColumnSeries EnableAnimation="True" ShowDataLabels="True"  
+                                              ItemsSource="{x:Binding ComponentData,Source={x:Reference root}}" 
+                                              XBindingPath="Name" YBindingPath="Size">
+                            <toolkit:ColumnSeries.DataLabelSettings>
+                                <toolkit:CartesianDataLabelSettings BarAlignment="Top" LabelPlacement="Inner">
+                                    <toolkit:CartesianDataLabelSettings.LabelStyle>
+                                        <toolkit:ChartDataLabelStyle FontSize="12" LabelFormat='0 Exp'/>
+                                    </toolkit:CartesianDataLabelSettings.LabelStyle>
+                                </toolkit:CartesianDataLabelSettings>
+                            </toolkit:ColumnSeries.DataLabelSettings>
+                        </toolkit:ColumnSeries>
+                    </toolkit:SfCartesianChart.Series>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartBar"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root"
+    Loaded="OnComponentLoaded">
+
+    <ContentView.Resources>
+        <x:Array x:Key="BarChartInfo" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ A bar chart uses bars to represent data points and compare values across different categories. To render bar chart, initialize the <strong style="color:blue">SfCartesianChart</strong> and switch the chart X and Y axes by using the <strong style="color:blue">IsTransposed</strong> property as true. Then, create the column chart. To render a column chart, create an instance of <strong style="color:blue">ColumnSeries</strong>, and add it to the <strong style="color:blue">Series</strong> collection property of <strong style="color:blue">SfCartesianChart</strong>. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Bar Chart Information" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="Info" Margin="5">
+                        <CollectionView x:Name="BarChartCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <toolkit:SfCartesianChart IsTransposed="True" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" 
+                                          Margin="0, 0, 20, 0">
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Bar Chart" LineBreakMode="WordWrap" Margin="2,0,2,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16"/>
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:CategoryAxis EdgeLabelsDrawingMode="Shift" LabelPlacement="BetweenTicks" ShowMajorGridLines="false">
+                        </toolkit:CategoryAxis>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis Minimum="0" Interval="10" IsVisible="False" EdgeLabelsDrawingMode="Shift" ShowMajorGridLines="false" ShowMinorGridLines="false">
+                            <toolkit:NumericalAxis.MajorTickStyle>
+                                <toolkit:ChartAxisTickStyle TickSize="8"/>
+                            </toolkit:NumericalAxis.MajorTickStyle>
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:SfCartesianChart.Series>
+                        <toolkit:ColumnSeries EnableAnimation="True" ShowDataLabels="True" 
+                                              ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                              XBindingPath="Name" YBindingPath="Exp">
+                            <toolkit:ColumnSeries.DataLabelSettings>
+                                <toolkit:CartesianDataLabelSettings LabelPlacement="Inner">
+                                    <toolkit:CartesianDataLabelSettings.LabelStyle>
+                                        <toolkit:ChartDataLabelStyle LabelFormat="0.## Exp"/>
+                                    </toolkit:CartesianDataLabelSettings.LabelStyle>
+                                </toolkit:CartesianDataLabelSettings>
+                            </toolkit:ColumnSeries.DataLabelSettings>
+                        </toolkit:ColumnSeries>
+                    </toolkit:SfCartesianChart.Series>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding BarCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <toolkit:SfCartesianChart IsTransposed="True" HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Bar Chart" Margin="0,0,0,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16"/>
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.Legend>
+                        <toolkit:ChartLegend ToggleSeriesVisibility="True"/>
+                    </toolkit:SfCartesianChart.Legend>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:CategoryAxis EdgeLabelsDrawingMode="Shift" ShowMajorGridLines="false">
+                            <toolkit:CategoryAxis.Title>
+                                <toolkit:ChartAxisTitle Text="Food" />
+                            </toolkit:CategoryAxis.Title>
+                        </toolkit:CategoryAxis>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis IsVisible="false" EdgeLabelsDrawingMode="Shift" ShowMajorGridLines="false" ShowMinorGridLines="false">
+                            <toolkit:NumericalAxis.MajorTickStyle>
+                                <toolkit:ChartAxisTickStyle TickSize="8">
+                                </toolkit:ChartAxisTickStyle>
+                            </toolkit:NumericalAxis.MajorTickStyle>
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:SfCartesianChart.Series>
+                        <toolkit:ColumnSeries Label="Imports" Width="0.8" EnableTooltip="True" Spacing="0.1" 
+                                              ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                              XBindingPath="Name" YBindingPath="Exp" EnableAnimation="True" LegendIcon="SeriesType"/>
+                        <toolkit:ColumnSeries Label="Exports" Width="0.8" EnableTooltip="True" Spacing="0.1" 
+                                              ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                              XBindingPath="Name" YBindingPath="Exp" EnableAnimation="True" LegendIcon="SeriesType"/>
+                    </toolkit:SfCartesianChart.Series>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding DoubleBarCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <toolkit:SfCartesianChart IsTransposed="True" HorizontalOptions="Fill" VerticalOptions="Fill">
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Custom Bar Chart" Margin="0,0,0,5" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16"/>
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:CategoryAxis LabelPlacement="BetweenTicks" ShowMajorGridLines="false">
+                            <toolkit:CategoryAxis.AxisLineStyle>
+                                <toolkit:ChartLineStyle StrokeWidth="0"/>
+                            </toolkit:CategoryAxis.AxisLineStyle>
+                            <toolkit:CategoryAxis.MajorTickStyle>
+                                <toolkit:ChartAxisTickStyle StrokeWidth="0"/>
+                            </toolkit:CategoryAxis.MajorTickStyle>
+                        </toolkit:CategoryAxis>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes>
+                        <toolkit:NumericalAxis Maximum="100" ShowMajorGridLines="False" IsVisible="False" EdgeLabelsDrawingMode="Shift" ShowMinorGridLines="false">
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
+
+                    <toolkit:SfCartesianChart.Series>
+                        <core:CustomBarChart ShowDataLabels="True" Width="0.5" 
+                                             EnableAnimation="True" CornerRadius="25"  
+                                             ItemsSource="{x:Binding ComponentData, Source={x:Reference root}}" 
+                                             XBindingPath="Name" YBindingPath="Exp">
+                            <core:CustomBarChart.DataLabelSettings>
+                                <toolkit:CartesianDataLabelSettings UseSeriesPalette="True" LabelPlacement="Inner">
+                                    <toolkit:CartesianDataLabelSettings.LabelStyle>
+                                        <toolkit:ChartDataLabelStyle LabelFormat="#.##" />
+                                    </toolkit:CartesianDataLabelSettings.LabelStyle>
+                                </toolkit:CartesianDataLabelSettings>
+                            </core:CustomBarChart.DataLabelSettings>
+                        </core:CustomBarChart>
+                    </toolkit:SfCartesianChart.Series>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding CustomBarXamlCodeDescription, Source={x:Reference root}}"  CodeType="CSharp"/>
+                <core:SourceCodeExpander Code="{x:Binding CustomBarXamlCodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

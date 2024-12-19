@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartPlotBandPropertiesInfo"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root"
+    Loaded="OnComponentLoaded">
+
+    <ContentView.Resources>
+        <x:Array x:Key="PlotBandProperties" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Size</strong> - changes how long plot band should be expanded. This is applicable only when end is not specified. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">SizeType</strong> - changes the date-time unit of the value specified in the Size property. The values can be year, month, day, hour, minute, second, and millisecond. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Text</strong> - changes the text of the plot band. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Fill</strong> - changes the fill of the plot band. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">Stroke</strong> - changes the stroke color of the plot band.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">StrokeWidth</strong> - changes the stroke width of the plot band. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">StrokeDashArray</strong> - changes the stoke in dash array. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">IsVisible</strong> - changes the visibility of the plot band in chart axis. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ <strong style="color:blue">IsRepeatable</strong> - specifies the plot band need to be repeated in specified interval. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                           Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Plot Band Properties" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="Info" Margin="5">
+                        <Label Text="Plot bands are classified into NumericalPlotBand and DateTimePlotBand. Based on the axis, plot bands are drawn using these classifications. The following properties are used to configure the plot band:" />
+                        <CollectionView x:Name="PlotBandPRopertiesCollectionView"
+                                        Grid.Column="0"
+                                        Style="{x:StaticResource PropertiesListStyle}"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

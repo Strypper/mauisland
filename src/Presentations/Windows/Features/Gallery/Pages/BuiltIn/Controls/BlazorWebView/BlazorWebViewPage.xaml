@@ -5,12 +5,163 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
-    xmlns:local="clr-namespace:MAUIsland"
     Title="Blazor Web View"
     Padding="20"
     x:DataType="core:BlazorWebViewPageViewModel"
     BackgroundColor="Transparent"
     Loaded="BasePage_Loaded">
+    <core:BasePage.Resources>
+
+
+        <LinearGradientBrush x:Key="GradientColor" EndPoint="1,0">
+            <GradientStop Offset="0.0" Color="#DCE35B" />
+            <GradientStop Offset="1.0" Color="#45B649" />
+        </LinearGradientBrush>
+
+        <x:String x:Key="ReportIssueToMauiTeamLink">
+            https://github.com/dotnet/maui/issues/new/choose
+        </x:String>
+
+        <x:String x:Key="Section2Title">
+            Add a BlazorWebView to an existing app
+        </x:String>
+
+        <x:String x:Key="Section2">
+            The process to add a BlazorWebView to an existing .NET MAUI app is as follows:
+        </x:String>
+
+        <x:String x:Key="Section21">
+            1. Add the Razor SDK, Microsoft.NET.Sdk.Razor to your project by editing its first line of the CSPROJ project file:
+        </x:String>
+
+        <x:String x:Key="Section212">
+            The Razor SDK is required to build and package projects containing Razor files for Blazor projects.
+        </x:String>
+
+        <x:String x:Key="Section22">
+            2. Add the root Razor component for the app to the project.
+        </x:String>
+
+        <x:String x:Key="Section23">
+            3. Add your Razor components to project folders named Pages and Shared.
+        </x:String>
+
+        <x:String x:Key="Section24">
+            4. Add your static web assets to a project folder named wwwroot.
+        </x:String>
+
+        <x:String x:Key="Section25">
+            5. Add any optional _Imports.razor files to your project.
+        </x:String>
+
+        <x:String x:Key="Section26">
+            6. Add a BlazorWebView to a page in your .NET MAUI app, and point it to the root of the Blazor app:
+        </x:String>
+
+        <x:String x:Key="Section27">
+            7. Modify the CreateMauiApp method of your MauiProgram class to register the BlazorWebView control for use in your app. To do this, on the IServiceCollection object, call the AddMauiBlazorWebView method to add component web view services to the services collection:
+        </x:String>
+
+        <x:String x:Key="Section272">
+            This code also enables developer tools on the underlying WebView controls, when the app is running in debug configuration.
+        </x:String>
+
+        <x:String x:Key="BlazorWebViewPropsHeader">
+            BlazorWebView defines the following properties:
+        </x:String>
+
+        <x:String x:Key="BlazorWebViewEventsHeader">
+            In addition, BlazorWebView defines the following events:
+        </x:String>
+
+        <x:String x:Key="RootComponentPropsHeader">
+            The RootComponent class defines the following properties:
+        </x:String>
+
+        <x:Array x:Key="BlazorWebViewProperties" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">HostPage</strong>, of type <strong style="color:blue">string?</strong>, which defines the root page of the Blazor web app.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">RootComponents</strong>, of type <strong style="color:blue">RootComponentsCollection</strong>, which specifies the collection of root components that can be added to the control.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">StartPath</strong>, of type <strong style="color:blue">string</strong>, which defines the path for initial navigation within the Blazor navigation context when the Blazor component is finished loading.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="BlazorWebViewEvents" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">BlazorWebViewInitializing</strong>, with an accompanying <strong style="color:blue">BlazorWebViewInitializingEventArgs</strong> object, which is raised before the BlazorWebView is initialized. This event enables customization of the BlazorWebView configuration.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">BlazorWebViewInitialized</strong>, with an accompanying <strong style="color:blue">BlazorWebViewInitializedEventArgs</strong>, object, which is raised after the BlazorWebView is initialized but before any component has been rendered. This event enables retrieval of the platform-specific web view instance.
+                            ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[
+                                <strong style="color:blue">UrlLoading</strong>, with an accompanying <strong style="color:blue">UrlLoadingEventArgs</strong>, is raised when a hyperlink is clicked within a BlazorWebView. This event enables customization of whether a hyperlink is opened in the BlazorWebView, in an external app, or whether the URL loading attempt is cancelled.
+                            ]]>
+            </x:String>
+        </x:Array>
+
+        <x:Array x:Key="RootComponentProperties" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[  <strong style="color:blue">Selector</strong>, of type <strong style="color:blue">string?</strong>, which defines the CSS selector string that specifies where in the document the component should be placed.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[  <strong style="color:blue">ComponentType</strong>, of type <strong style="color:blue">Type?</strong>, which defines the type of the root component.  ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[  <strong style="color:blue">Parameters</strong>, of type <strong style="color:blue">IDictionary?</strong> (string, object?), which represents an optional dictionary of parameters to pass to the root component.  ]]>
+            </x:String>
+        </x:Array>
+
+        <DataTemplate x:Key="ControlIssueItemTemplate" x:DataType="core:ControlIssueModel">
+            <Border
+                Padding="20"
+                BackgroundColor="#0a0c10"
+                StrokeShape="RoundRectangle 4">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Micro"
+                        LineBreakMode="CharacterWrap"
+                        MaxLines="2"
+                        Text="{x:Binding Title,
+                                         Mode=OneWay}"
+                        TextDecorations="Underline"
+                        ToolTipProperties.Text="{x:Binding Title,
+                                                           Mode=OneWay}" />
+                    <HorizontalStackLayout Spacing="8">
+                        <ImageButton
+                            CornerRadius="25"
+                            HeightRequest="10"
+                            Source="{x:Binding AvatarUrl,
+                                               Mode=OneWay}"
+                            VerticalOptions="Center"
+                            WidthRequest="10" />
+                        <Label Text="{x:Binding OwnerName, Mode=OneWay}" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <Label HorizontalOptions="End" Text="{x:Binding CreatedDate, Mode=OneWay}" />
+                </VerticalStackLayout>
+            </Border>
+        </DataTemplate>
+
+        <LinearItemsLayout
+            x:Key="ControlIssueLayout"
+            ItemSpacing="5"
+            Orientation="Vertical" />
+    </core:BasePage.Resources>
 
     <core:BasePage.ToolbarItems>
         <ToolbarItem
@@ -35,44 +186,169 @@
                     Text="Go back" />
             </SwipeItems>
         </SwipeView.LeftItems>
-        <RefreshView>
+        <RefreshView Command="{x:Binding RefreshCommand}" IsRefreshing="{x:Binding IsBusy, Mode=OneWay}">
             <ScrollView>
-                <Grid ColumnDefinitions="*, *">
-                    <VerticalStackLayout Grid.Column="0">
-                        <Button
-                            Command="{x:Binding CounterButtonCommand}"
-                            HorizontalOptions="Start"
-                            Text="Click me" />
-                        <Label FontSize="16">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="Total Counter: " />
-                                    <Span Text="{x:Binding Counter, Mode=OneWay}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <CollectionView ItemsLayout="HorizontalList" ItemsSource="{x:Binding NavigationPageName}">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate x:DataType="x:String">
-                                    <Button Clicked="PageNavigateButton_Clicked" Text="{x:Binding}" />
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
+                <Grid ColumnDefinitions="310, *" ColumnSpacing="8">
+                    <Grid RowDefinitions="90, 540, 120" RowSpacing="10">
+                        <Border
+                            Padding="20"
+                            BackgroundColor="#272b33"
+                            StrokeShape="RoundRectangle 4">
+                            <Grid>
+                                <HorizontalStackLayout Spacing="10">
+                                    <Image
+                                        HeightRequest="25"
+                                        Source="github_logo.png"
+                                        VerticalOptions="Center"
+                                        WidthRequest="25" />
+
+                                    <Label
+                                        HorizontalOptions="Start"
+                                        Style="{x:StaticResource DocumentSectionTitleStyle}"
+                                        Text="Issues"
+                                        VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                                <Border
+                                    BackgroundColor="OrangeRed"
+                                    HeightRequest="40"
+                                    HorizontalOptions="End"
+                                    StrokeShape="RoundRectangle 20"
+                                    VerticalOptions="Center"
+                                    WidthRequest="40">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="Center"
+                                        Text="{x:Binding ControlIssues.Count,
+                                                         Mode=OneWay}"
+                                        VerticalOptions="Center" />
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <CollectionView
+                            Grid.Row="1"
+                            Margin="0,0,0,0"
+                            ItemTemplate="{x:StaticResource ControlIssueItemTemplate}"
+                            ItemsLayout="{x:StaticResource ControlIssueLayout}"
+                            ItemsSource="{x:Binding ControlIssues,
+                                                    Mode=OneWay}"
+                            SelectedItem="{x:Binding SelectedControlIssue,
+                                                     Mode=TwoWay}"
+                            SelectionChangedCommand="{x:Binding OpenUrlCommand}"
+                            SelectionChangedCommandParameter="{x:Binding SelectedControlIssue.IssueLinkUrl,
+                                                                         Mode=OneWay}"
+                            SelectionMode="Single"
+                            VerticalOptions="Start" />
+                        <Border
+                            Grid.Row="2"
+                            Margin="0,0,0,10"
+                            Padding="20"
+                            BackgroundColor="#272b33"
+                            StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="5">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Found a new bug?"
+                                    TextColor="White"
+                                    TextDecorations="Underline" />
+                                <Button
+                                    Command="{x:Binding OpenUrlCommand}"
+                                    CommandParameter="{x:StaticResource ReportIssueToMauiTeamLink}"
+                                    Text="Report to the MAUI team" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                    <VerticalStackLayout Grid.Column="1" Spacing="8">
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <Label FontSize="Subtitle" Text="{x:Binding ControlInformation.ControlDetail}" />
+                        </Border>
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="8">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Subtitle"
+                                    Text="{x:StaticResource BlazorWebViewPropsHeader}"
+                                    TextDecorations="Underline" />
+                                <CollectionView ItemsSource="{x:StaticResource BlazorWebViewProperties}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Subtitle"
+                                    Text="{x:StaticResource BlazorWebViewEventsHeader}"
+                                    TextDecorations="Underline" />
+                                <CollectionView ItemsSource="{x:StaticResource BlazorWebViewEvents}" Style="{x:StaticResource PropertiesListStyle}" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Subtitle"
+                                    Text="{x:StaticResource RootComponentPropsHeader}"
+                                    TextDecorations="Underline" />
+                                <CollectionView ItemsSource="{x:StaticResource RootComponentProperties}" Style="{x:StaticResource PropertiesListStyle}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="8">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Demo" />
+                                <Button
+                                    Command="{x:Binding CounterButtonCommand}"
+                                    HorizontalOptions="Start"
+                                    Text="Click me from XAML" />
+                                <Label FontSize="16">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Total Counter: " />
+                                            <Span Text="{x:Binding Counter, Mode=OneWay}" />
+                                            <Span Text=" (Navigate to counter page)" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Pages" />
+                                <CollectionView ItemsLayout="HorizontalList" ItemsSource="{x:Binding NavigationPageName}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="x:String">
+                                            <Button Clicked="PageNavigateButton_Clicked" Text="{x:Binding}" />
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                                <Border
+                                    Padding="0"
+                                    HeightRequest="320"
+                                    StrokeShape="RoundRectangle 4"
+                                    StrokeThickness="0">
+                                    <BlazorWebView
+                                        x:Name="BlazorWebView"
+                                        HostPage="wwwroot\index.html"
+                                        StartPath="{x:Binding BlazorWebViewStartPath}">
+                                        <BlazorWebView.RootComponents>
+                                            <RootComponent ComponentType="{x:Type app:Routes}" Selector="#app"/>
+                                        </BlazorWebView.RootComponents>
+                                    </BlazorWebView>
+                                </Border>
+                                <Button
+                                    Background="{x:StaticResource GradientColor}"
+                                    Command="{x:Binding NavigatePageCommand}"
+                                    CommandParameter="{x:Static app:AppRoutes.ResumeDetailPage}"
+                                    Text="Try out our preview resume builder"
+                                    TextColor="{x:Static core:AppColors.White}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Padding="20" StrokeShape="RoundRectangle 4">
+                            <VerticalStackLayout Spacing="8">
+                                <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="{x:StaticResource Section2Title}" />
+                                <Label Text="{x:StaticResource Section2}" />
+                                <Label Text="{x:StaticResource Section21}" />
+                                <core:SourceCodeExpander Code="{x:Binding CsprojChanges}" CodeType="Xaml" />
+                                <Label Text="{x:StaticResource Section212}" />
+                                <Label Text="{x:StaticResource Section22}" />
+                                <Label Text="{x:StaticResource Section23}" />
+                                <Label Text="{x:StaticResource Section24}" />
+                                <Label Text="{x:StaticResource Section25}" />
+                                <Label Text="{x:StaticResource Section26}" />
+                                <core:SourceCodeExpander Code="{x:Binding BlazorWebViewXamlCode}" CodeType="Xaml" />
+                                <Label Text="{x:StaticResource Section27}" />
+                                <core:SourceCodeExpander Code="{x:Binding BlazorWebViewConfig}" CodeType="CSharp" />
+                                <Label Text="{x:StaticResource Section272}" />
+                            </VerticalStackLayout>
+                        </Border>
                     </VerticalStackLayout>
-                    <Border
-                        Grid.Column="1"
-                        Padding="0"
-                        StrokeShape="RoundRectangle 4"
-                        StrokeThickness="0">
-                        <BlazorWebView
-                            x:Name="blazorWebView"
-                            HostPage="Blazor\hosting\index.html"
-                            StartPath="{x:Binding BlazorWebViewStartPath}">
-                            <BlazorWebView.RootComponents>
-                                <RootComponent ComponentType="{x:Type local:Routes}" Selector="#app" />
-                            </BlazorWebView.RootComponents>
-                        </BlazorWebView>
-                    </Border>
                 </Grid>
             </ScrollView>
         </RefreshView>

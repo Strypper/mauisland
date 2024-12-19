@@ -20,14 +20,29 @@ public partial class BlazorWebViewPageViewModel : BaseBuiltInPageControlViewMode
     #endregion
 
     #region [ Properties ]
-    [ObservableProperty]
-    ObservableCollection<string> navigationPageName = new();
 
     [ObservableProperty]
     int counter;
 
     [ObservableProperty]
+    ObservableCollection<string> navigationPageName = new()
+    {
+        "Main Page",
+        "Counter",
+        "Weather Page"
+    };
+
+    [ObservableProperty]
     string blazorWebViewStartPath = "/blazor-web-view/";
+
+    [ObservableProperty]
+    string csprojChanges = "<Project Sdk=\"Microsoft.NET.Sdk.Razor\">";
+
+    [ObservableProperty]
+    string blazorWebViewXamlCode = "<ContentPage xmlns=\"http://schemas.microsoft.com/dotnet/2021/maui\"\r\n             xmlns:x=\"http://schemas.microsoft.com/winfx/2009/xaml\"\r\n             xmlns:local=\"clr-namespace:MyBlazorApp\"\r\n             x:Class=\"MyBlazorApp.MainPage\">\r\n\r\n    <BlazorWebView HostPage=\"wwwroot/index.html\">\r\n        <BlazorWebView.RootComponents>\r\n            <RootComponent Selector=\"#app\" ComponentType=\"{x:Type local:Main}\" />\r\n        </BlazorWebView.RootComponents>\r\n    </BlazorWebView>\r\n\r\n</ContentPage>";
+
+    [ObservableProperty]
+    string blazorWebViewConfig = "public static class MauiProgram\r\n{\r\n    public static MauiApp CreateMauiApp()\r\n    {\r\n        var builder = MauiApp.CreateBuilder();\r\n        builder\r\n            .UseMauiApp<App>()\r\n            .ConfigureFonts(fonts =>\r\n            {\r\n                fonts.AddFont(\"OpenSans-Regular.ttf\", \"OpenSansRegular\");\r\n            });\r\n\r\n        builder.Services.AddMauiBlazorWebView();\r\n#if DEBUG\r\n        builder.Services.AddBlazorWebViewDeveloperTools();\r\n#endif\r\n        // Register any app services on the IServiceCollection object\r\n        // e.g. builder.Services.AddSingleton<WeatherForecastService>();\r\n\r\n        return builder.Build();\r\n    }\r\n}";
     #endregion
 
     #region [ Overrides ]
@@ -53,16 +68,13 @@ public partial class BlazorWebViewPageViewModel : BaseBuiltInPageControlViewMode
         this.Counter++;
     }
 
-    //[RelayCommand]
-    //void PageNavigation(string pageName)
-    //{
-    //    var pageUrl = "/" + pageName.Replace(" ", "");
-    //    this.BlazorNavigator.NavigateTo(pageUrl, replace: true);
-    //}
-
     [RelayCommand]
     Task OpenUrlAsync(string url)
         => AppNavigator.OpenUrlAsync(url);
+
+    [RelayCommand]
+    Task NavigatePageAsync(string route)
+        => AppNavigator.NavigateAsync(route);
 
     [RelayCommand]
     async Task RefreshAsync()
@@ -70,17 +82,11 @@ public partial class BlazorWebViewPageViewModel : BaseBuiltInPageControlViewMode
         if (ControlInformation is null)
             return;
 
-        this.NavigationPageName.Clear();
-
         await RefreshControlIssues(true,
                                    ControlInformation.ControlName,
                                    ControlInformation.GitHubAuthorIssueName,
                                    ControlInformation.GitHubRepositoryIssueName,
                                    ControlInformation.GitHubIssueLabels);
-
-        this.NavigationPageName.Add("Main Page");
-        this.NavigationPageName.Add("Controls Page");
-        this.NavigationPageName.Add("Weather Page");
     }
     #endregion
 }

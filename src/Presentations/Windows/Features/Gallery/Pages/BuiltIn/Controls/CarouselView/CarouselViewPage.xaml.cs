@@ -17,7 +17,6 @@ public partial class CarouselViewPage : IGalleryPage
     }
     #endregion
 
-
     #region [ Event Handlers ]
 
     private void BasePage_Loaded(object sender, EventArgs e)

@@ -53,15 +53,6 @@
             </Border>
             <Border Padding="16" StrokeShape="RoundRectangle 4">
                 <VerticalStackLayout Spacing="8">
-                    <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Beautiful Resumes" />
-                    <Button
-                        Command="{x:Binding NavigateCommand}"
-                        CommandParameter="{x:Static app:AppRoutes.ResumesPage}"
-                        Text="Explore" />
-                </VerticalStackLayout>
-            </Border>
-            <Border Padding="16" StrokeShape="RoundRectangle 4">
-                <VerticalStackLayout Spacing="8">
                     <Label Style="{x:StaticResource DocumentSectionTitleStyle}" Text="Source Code" />
                     <ImageButton
                         Padding="10"

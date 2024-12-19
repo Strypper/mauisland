@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.WebView.Maui;
 
 namespace MAUIsland;
 
@@ -32,7 +33,7 @@ public partial class BlazorWebViewPage : IGalleryPage
     {
         var button = (Button)sender;
         var pageUrl = viewModel.BlazorWebViewStartPath + button.Text.Replace(" Page", "").ToLower();
-        var wasDispatchCalled = await blazorWebView.TryDispatchAsync(sp =>
+        var wasDispatchCalled = await BlazorWebView.TryDispatchAsync(sp =>
         {
             var navMan = sp.GetRequiredService<NavigationManager>();
             navMan.NavigateTo(pageUrl);

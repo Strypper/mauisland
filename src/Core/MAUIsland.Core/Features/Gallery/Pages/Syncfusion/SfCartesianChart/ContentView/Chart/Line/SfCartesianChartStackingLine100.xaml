@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    x:Class="MAUIsland.Core.SfCartesianChartStackingLine100"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:MAUIsland.Core"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    x:Name="root"
+    Loaded="OnComponentLoaded">
+
+    <ContentView.Resources>
+        <x:Array x:Key="StackingLine100ChartInfo" Type="{x:Type x:String}">
+            <x:String>
+                <![CDATA[ The stacked line 100 chart is a type of chart that displays multiple line series stacked on top of each other, to indicate the cumulative value of the data points at 100%. ]]>
+            </x:String>
+            <x:String>
+                <![CDATA[ To render a stacked line 100 chart, create an instance of the <strong style="color:blue">StackingLine100Series</strong> and add it to the <strong style="color:blue">Series</strong> collection property of the <strong style="color:blue">SfCartesianChart</strong>. ]]>
+            </x:String>
+        </x:Array>
+    </ContentView.Resources>
+
+    <VerticalStackLayout Spacing="5">
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <Grid>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image x:Name="ArrowImage" Grid.Column="1" HeightRequest="20" WidthRequest="20" 
+                               Source="{x:StaticResource ArrowCircleRight24Regular}" />
+                        <Label Text="Stacking Line 100% Chart Information" VerticalTextAlignment="Center" FontSize="16"/>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout x:Name="Info" Margin="5">
+                        <CollectionView x:Name="StackingLine100ChartCollectionView"
+                                        Style="{x:StaticResource PropertiesListStyle}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnGridTapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 4" Margin="5" Padding="10">
+            <VerticalStackLayout Spacing="10">
+                <toolkit:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="FillAndExpand" 
+                                          Margin="0, 0, 20, 0">
+                    <toolkit:SfCartesianChart.Resources>
+                        <ResourceDictionary>
+                            <DataTemplate x:Key="TooltipTemplate">
+                                <StackLayout Orientation="Horizontal">
+                                    <Rectangle HeightRequest="35" WidthRequest="8"/>
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding Item.Name}" FontSize="13" Padding="5,0,0,0"/>
+                                        <Label FontSize="12" Padding="5,0,0,0" Margin="0,0,3,0">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Grades" FontAttributes="Bold" />
+                                                    <Span Text="{Binding Item.Value, StringFormat=' : {0}%'}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </DataTemplate>
+                        </ResourceDictionary>
+                    </toolkit:SfCartesianChart.Resources>
+                    <toolkit:SfCartesianChart.Title>
+                        <Label Text="Blood Type Distribution Among Population"  LineBreakMode="WordWrap"  Margin="0" HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Center" FontSize="16" />
+                    </toolkit:SfCartesianChart.Title>
+                    <toolkit:SfCartesianChart.XAxes>
+                        <toolkit:CategoryAxis IsVisible="True" ShowMajorGridLines="False" LabelPlacement="BetweenTicks">
+                        </toolkit:CategoryAxis>
+                    </toolkit:SfCartesianChart.XAxes>
+                    <toolkit:SfCartesianChart.YAxes >
+                        <toolkit:NumericalAxis Minimum="0" Maximum="100" Interval="20" ShowMajorGridLines="True" ShowMinorGridLines="False" 
+                                               EdgeLabelsDrawingMode="Center" PlotOffsetEnd="10">
+                            <toolkit:NumericalAxis.LabelStyle>
+                                <toolkit:ChartAxisLabelStyle LabelFormat="0'%"/>
+                            </toolkit:NumericalAxis.LabelStyle>
+                            <toolkit:NumericalAxis.AxisLineStyle>
+                                <toolkit:ChartLineStyle StrokeWidth="0" />
+                            </toolkit:NumericalAxis.AxisLineStyle>
+                            <toolkit:NumericalAxis.MajorTickStyle>
+                                <toolkit:ChartAxisTickStyle  TickSize="0" />
+                            </toolkit:NumericalAxis.MajorTickStyle>
+                        </toolkit:NumericalAxis>
+                    </toolkit:SfCartesianChart.YAxes>
+                    <toolkit:SfCartesianChart.Legend>
+                        <toolkit:ChartLegend/>
+                    </toolkit:SfCartesianChart.Legend>
+                    <toolkit:StackingLine100Series Label="Line 1" LegendIcon="SeriesType" 
+                                                   ItemsSource="{x:Binding FirstLineComponentData, Source={x:Reference root}}" XBindingPath="Name" YBindingPath="Value"
+                                                   EnableAnimation="True" ShowMarkers="True" StrokeWidth="2" 
+                                                   EnableTooltip="True" TooltipTemplate="{x:StaticResource TooltipTemplate}">
+                        <toolkit:StackingLine100Series.MarkerSettings>
+                            <toolkit:ChartMarkerSettings Width="10" Height="10" StrokeWidth="2"/>
+                        </toolkit:StackingLine100Series.MarkerSettings>
+                    </toolkit:StackingLine100Series>
+                    <toolkit:StackingLine100Series Label="Line 2" LegendIcon="SeriesType" 
+                                                   ItemsSource="{x:Binding SecondLineComponentData, Source={x:Reference root}}" XBindingPath="Name" YBindingPath="Value"
+                                                   EnableAnimation="True" ShowMarkers="True" StrokeWidth="2" 
+                                                   EnableTooltip="True" TooltipTemplate="{x:StaticResource TooltipTemplate}">
+                        <toolkit:StackingLine100Series.MarkerSettings>
+                            <toolkit:ChartMarkerSettings Width="10" Height="10" StrokeWidth="2"/>
+                        </toolkit:StackingLine100Series.MarkerSettings>
+                    </toolkit:StackingLine100Series>
+                    <toolkit:StackingLine100Series Label="Line 3" LegendIcon="SeriesType" 
+                                                   ItemsSource="{x:Binding ThirdLineComponentData, Source={x:Reference root}}" XBindingPath="Name" YBindingPath="Value"
+                                                   EnableAnimation="True"  ShowMarkers="True" StrokeWidth="2" 
+                                                   EnableTooltip="True" TooltipTemplate="{x:StaticResource TooltipTemplate}">
+                        <toolkit:StackingLine100Series.MarkerSettings>
+                            <toolkit:ChartMarkerSettings Width="10" Height="10" StrokeWidth="2"/>
+                        </toolkit:StackingLine100Series.MarkerSettings>
+                    </toolkit:StackingLine100Series>
+                </toolkit:SfCartesianChart>
+
+                <core:SourceCodeExpander Code="{x:Binding CodeDescription, Source={x:Reference root}}"  CodeType="Xaml"/>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+
+</ContentView>

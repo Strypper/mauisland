@@ -4,9 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:MAUIsland"
-    xmlns:settings="clr-namespace:MAUIsland.Settings"
     xmlns:core="clr-namespace:MAUIsland.Core;assembly=MAUIsland.Core"
     xmlns:home="clr-namespace:MAUIsland.Home"
+    xmlns:settings="clr-namespace:MAUIsland.Settings"
     xmlns:showcases="clr-namespace:MAUIsland.Showcases"
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     Shell.FlyoutBehavior="Disabled">
@@ -65,7 +65,7 @@
             Title="Showcases"
             ContentTemplate="{DataTemplate showcases:ShowcasesPage}"
             Icon="{x:StaticResource ShowcasesIcon}"
-            Route="showcases" />
+            Route="showcasesPage" />
     </FlyoutItem>
     <ShellContent
         Title="Settings"
