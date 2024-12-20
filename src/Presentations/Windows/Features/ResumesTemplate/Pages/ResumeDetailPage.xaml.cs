@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Octokit;
 using System.ComponentModel;
 using System.Diagnostics;
 
@@ -42,10 +43,13 @@ public partial class ResumeDetailPage
 
     private async void ViewModel_PropertyChanged(Object sender, PropertyChangedEventArgs e)
     {
-        await HandlePageIndexChangedAsync();
+        if (e.PropertyName == nameof(ViewModel.SelectedPageIndex))
+        {
+            await HandlePageIndexChangedByWebViewAsync();
+        }
     }
 
-    private async void OnScrolled(object sender, ScrolledEventArgs e)
+    private void OnScrolled(object sender, ScrolledEventArgs e)
     {
         if (IsAnimating)
             return;
@@ -58,41 +62,73 @@ public partial class ResumeDetailPage
 
         if (scrollY > (maxScrollY - threshold))
         {
-            if (ViewModel.SelectedPageIndex < ResumeInputStackLayout.Children.Count - 1)
+            if (ViewModel.SelectedPageIndex < (ResumeInputStackLayout.Children.Count - 1))
             {
-                await ChangePage(ViewModel.SelectedPageIndex + 1);
+                ChangePage(ViewModel.SelectedPageIndex + 1);
             }
         }
         else if (scrollY < (threshold))
         {
             if (ViewModel.SelectedPageIndex > 0)
             {
-                await ChangePage(ViewModel.SelectedPageIndex - 1);
+                ChangePage(ViewModel.SelectedPageIndex - 1);
             }
         }
     }
     #endregion
 
     #region [ Methods ]
-    private async Task HandlePageIndexChangedAsync()
+    private void ChangePage(int newPage)
     {
+        ViewModel.PreviousSelectedPageIndex = ViewModel.SelectedPageIndex;
+        ViewModel.SelectedPageIndex = newPage;
+
+        //await BlazorWebViewElement.TryDispatchAsync(async sp =>
+        //{
+        //    var navigationManager = sp.GetRequiredService<NavigationManager>();
+        //    var newUri = ViewModel.BlazorWebViewStartPath + ViewModel.Pages[newPage];
+        //    if (navigationManager.Uri != navigationManager.ToAbsoluteUri(newUri).ToString())
+        //    {
+        //        await Task.Delay(800);
+        //        navigationManager.NavigateTo(newUri, true);
+        //        await Task.Delay(800);
+        //    }
+        //});
+    }
+
+    private async Task HandlePageIndexChangedByWebViewAsync()
+    {
+        IsAnimating = true;
+
         var previousLayout = ResumeInputStackLayout.Children[ViewModel.PreviousSelectedPageIndex] as VisualElement;
         var currentLayout = ResumeInputStackLayout.Children[ViewModel.SelectedPageIndex] as VisualElement;
 
-        await previousLayout.FadeTo(0, 500);
-        previousLayout.IsVisible = false;
+        if (previousLayout != null)
+        {
+            await Task.Delay(100);
+            await previousLayout.FadeTo(0, 300);
+            previousLayout.IsVisible = false;
+        }
 
-        currentLayout.IsVisible = true;
-        await currentLayout.FadeTo(1, 500);
+        if (currentLayout != null)
+        {
+            await Task.Delay(100);
+            currentLayout.IsVisible = true;
+            await currentLayout.FadeTo(1, 300);
+        }
+
         await AdjustLayout();
+
+        IsAnimating = false;
     }
 
     private async Task AdjustLayout()
     {
         IsAnimating = true;
         var currentPageHeight = 0.0;
+        var currentElement = ResumeInputStackLayout.Children[ViewModel.SelectedPageIndex] as VisualElement;
 
-        if (ResumeInputStackLayout.Children[ViewModel.SelectedPageIndex] is VisualElement stackChildrenElement)
+        if (currentElement is VisualElement stackChildrenElement)
         {
             stackChildrenElement.Measure(double.PositiveInfinity, double.PositiveInfinity);
             currentPageHeight = stackChildrenElement.DesiredSize.Height;
@@ -111,46 +147,8 @@ public partial class ResumeDetailPage
         }
 
         await Task.Delay(300);
-        await ResumeInputScrollView.ScrollToAsync(0, desiredHeight * 0.1, true);
-
-        IsAnimating = false;
-    }
-
-    private async Task ChangePage(int newPage)
-    {
-        IsAnimating = true;
-
-        var currentLayout = ResumeInputStackLayout.Children[ViewModel.SelectedPageIndex] as VisualElement;
-        var newLayout = ResumeInputStackLayout.Children[newPage] as VisualElement;
-
-        if (currentLayout != null)
-        {
-            await currentLayout.FadeTo(0, 500);
-            currentLayout.IsVisible = false;
-        }
-
-        //await BlazorWebViewElement.TryDispatchAsync(async sp =>
-        //{
-        //    NavigationManager = sp.GetRequiredService<NavigationManager>();
-        //    var newUri = ViewModel.BlazorWebViewStartPath + ViewModel.Pages[newPage];
-        //    if (NavigationManager.Uri != NavigationManager.ToAbsoluteUri(newUri).ToString())
-        //    {
-        //        await Task.Delay(800);
-        //        NavigationManager.NavigateTo(newUri, true);
-        //        await Task.Delay(800);
-        //    }
-        //});
-
-        ViewModel.PreviousSelectedPageIndex = ViewModel.SelectedPageIndex;
-        ViewModel.SelectedPageIndex = newPage;
-
-        if (newLayout != null)
-        {
-            newLayout.IsVisible = true;
-            await newLayout.FadeTo(1, 500);
-        }
-
-        await AdjustLayout();
+        //await ResumeInputScrollView.ScrollToAsync(0, desiredHeight * 0.1, true);
+        await ResumeInputScrollView.ScrollToAsync(currentElement, ScrollToPosition.Center, true);
 
         IsAnimating = false;
     }
